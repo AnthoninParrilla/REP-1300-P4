@@ -2,13 +2,13 @@
 <!--
   REP 1300 — simulateur de tranche · © Claude & Anthonin
   Code protégé — reproduction, extraction ou réutilisation interdites sans autorisation.
-  Build 2026-07-29 · empreinte 144fe3a2c16e · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
+  Build 2026-07-29 · empreinte 60453176fe2e · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
 -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.14-rc</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.17-rc</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -268,12 +268,13 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <details id="aboutDd" style="float:right;position:relative"><summary><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.14-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <details id="aboutDd" style="float:right;position:relative"><summary><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.17-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
 <p><b>Ce qu’on peut y vivre :</b> la conduite normale de RP jusqu’au rechargement (états standards, fenêtre RRA [160-180 °C]), les transitoires (îlotage manqué, coups de froid, pics xénon, re-divergence), et une vingtaine d’incidents jouables — APRP, RTGV, RTV, pertes de source froide ou électrique, perte totale, jusqu’aux séquences graves fidèles (TMI : soupape bloquée, RDP, rupture du disque, découvrement, fusion — haute ou basse pression).</p>
 <p><b>Les protections sont câblées comme sur le palier :</b> AAR sur ses vrais critères, P7/P11/P14, isolements automatiques, déclenchement turbine, chaînes KRT — et toutes s’inhibent une à une pour apprendre en cassant.</p>
+<p><b>Adossé à la littérature de sûreté publique</b> (IRSN, Éléments de sûreté nucléaire — REP) : états standards, garde de gradient 28 °C/h, GMPP maintenue au-dessus de 70 °C en AN/RRA, bore APR à 2385 ppm, fenêtre RRA.</p>
 <p><b>La physique est certifiée :</b> chaque annotation de la figure 4.1 (domaine P-T, saturation, soupapes, NPSH, RRA) est re-vérifiée à chaque version par un banc de conformité — verdict 15/15 — plus deux bancs de non-régression. Ordres de grandeur sourcés : 23 000 m³/h par GMPP, 5 000+ tubes par GV, enceinte 120 + 55 cm.</p>
 <p><b>Pour apprendre :</b> mode Facile (seize missions guidées, du premier mégawatt à la boucle complète), lexique à deux niveaux, journal horodaté, enregistreur multi-voies, diagramme P-T temps réel, accélération ×60/×300. Fonctionne hors-ligne (PWA), au doigt.</p>
 <p style="color:var(--dim)">by Claude &amp; Anthonin · © tous droits réservés — code protégé, reproduction interdite sans autorisation.</p>
@@ -1093,10 +1094,10 @@ body.shake{animation:quake .9s linear;}
   var PRESET={
     RP:   {Pn:1.0,   pzrSet:155,gv:50,turb:100,rod:95,gmpp:true, rra:false},
     ANGV: {Pn:0.0002,pzrSet:155,gv:50,turb:0,  rod:0, Cb:200, gmpp:true, rra:false, asgOn:true},
-    ANRRA:{Pn:0.0002, pzrSet:25, turb:0,  rod:0, Cb:500, gmpp:false,rra:true},
+    ANRRA:{Pn:0.0002, pzrSet:25, turb:0,  rod:0, Cb:500, gmpp:1,rra:true},
     APIF: {Pn:0.0002, pzrSet:3,  turb:0,  rod:0, Cb:800, gmpp:false,rra:true},
     APIO: {Pn:0.0002, pzrSet:1,  turb:0,  rod:0, Cb:1000,gmpp:false,rra:true},
-    APR:  {Pn:0.0002, pzrSet:1,  turb:0,  rod:0, Cb:1300,gmpp:false,rra:true},
+    APR:  {Pn:0.0002, pzrSet:1,  turb:0,  rod:0, Cb:2385,gmpp:false,rra:true},
     RCD:  {Xe:0, Pn:0,Pres:0, pzrSet:1,  turb:0,  rod:0, Cb:1300,gmpp:false,rra:true}
   };
   function isHot(){return S.etat==='RP'||S.etat==='ANGV';}
@@ -1318,7 +1319,7 @@ body.shake{animation:quake .9s linear;}
     var pOld=S.Ppzr;
     var p=PRESET[e];
     for(var k in p){if(k!=='Cb')S[k]=p[k];}
-    if(p.gmpp!==undefined)S.gmppN=p.gmpp?4:0;
+    if(p.gmpp!==undefined)S.gmppN=(p.gmpp===true?4:(typeof p.gmpp==='number'?p.gmpp:0));
     if(e==='RCD'){S.Pr1=0;S.Pr2=0;S.Pr3=0;S.Pres=0;}
     if(e==='RP'){
       S.Cb=clamp(-W_XE*(S.Xe-1)/W_BORE,-CB0,1500);
@@ -1736,11 +1737,19 @@ body.shake{animation:quake .9s linear;}
       S.gmppN=0;
       log('CONSIGNE APRP : ARR\u00caT DES GMPP \u2014 perte du sous-refroidissement (\u0394Tsat < 8 \u00b0C sur la branche chaude). Passage en circulation naturelle.','amber');
     }
+    if(S.gmppN>0&&S.Tavg<70&&(S.etat==='ANRRA'||S.etat==='APIF'||S.etat==='APIO'||S.etat==='APR'||S.etat==='RCD')){
+      S.gmppN=0;
+      log('ARRÊT DE LA DERNIÈRE GMPP — sous 70 °C la circulation forcée n\u2019est plus nécessaire (réf. Éléments de sûreté REP, IRSN) : le RRA suffit.','');
+    }
     if(S.gmppN>0&&S.inv<72){
       S.gmppN=0;
       log('ARR\u00caT DES GMPP \u2014 inventaire primaire '+Math.round(S.inv)+' % : d\u00e9couvrement des tubulures de boucles, perte d\u2019aspiration des pompes.','amber');
     }
     var _cool=(S._Tw!==undefined&&S.Tavg<S._Tw-0.0003);S._Tw=S.Tavg;
+    var _gi=(S._Tg===undefined)?0:(S.Tavg-S._Tg)/0.05*3600; S._Tg=S.Tavg;
+    S.gradH=(S.gradH||0)+(_gi-(S.gradH||0))*(0.05/60);
+    if(S.etat!=='RP'&&Math.abs(S.gradH)>28&&!S._grMsg){S._grMsg=true;log('CONDUITE : gradient de température '+Math.abs(S.gradH).toFixed(0)+' \u00b0C/h \u2014 la figure limite \u00e0 28 \u00b0C/h. Ralentir le transitoire.','amber');}
+    if(Math.abs(S.gradH)<20)S._grMsg=false;
     var _gap=S.turb-S.Pn*100;
     if(!S.scram&&S.Pn<0.55&&_gap>15&&!S._cfMsg){S._cfMsg=true;log('CONDUITE : la turbine appelle '+Math.round(S.turb)+' % mais le c\u0153ur ne fournit que '+Math.round(S.Pn*100)+' % \u2014 COUP DE FROID en cours. Referme les vannes ou attends que les barres remontent la puissance.','amber');}
     if(_gap<8)S._cfMsg=false;
@@ -2260,7 +2269,7 @@ body.shake{animation:quake .9s linear;}
    'GMPP':{d:'Groupes MotoPompes Primaires — les 4 énormes pompes qui font circuler l’eau du réacteur',
      p:'Chacune brasse environ 23 000 m³/h (près de 100 000 m³/h à quatre — une piscine olympique toutes les 100 secondes), consomme 5 à 6 MW, et leur simple frottement chauffe le circuit d’environ 20 MW au total. Si elles s’arrêtent toutes, l’eau continue de circuler doucement d’elle-même : l’eau chaude monte au cœur, refroidit dans les GV et redescend — c’est la circulation naturelle, un thermosiphon géant qui suffit à évacuer la chaleur résiduelle.'},
    'RRA':{d:'Refroidissement du Réacteur à l’Arrêt — le circuit qui évacue la chaleur quand tout est arrêté et froid',
-     p:'La connexion se fait dans une FENÊTRE : entre 160 et 180 °C, à moins de 31 bar. Au-dessus de 180 °C, le RRA (un circuit basse pression) ne tiendrait pas ; et on ne descend pas sous 160 °C sans l’avoir connecté, car les GV s’essoufflent à basse température — ce serait se priver de moyen d’évacuation. Une fois connecté, le RRA descend la température jusqu’à 20-40 °C.'},
+     p:'La connexion se fait dans une FENÊTRE : entre 160 et 180 °C, à moins de 31 bar. Au-dessus de 180 °C, le RRA (un circuit basse pression) ne tiendrait pas ; et on ne descend pas sous 160 °C sans l’avoir connecté, car les GV s’essoufflent à basse température — ce serait se priver de moyen d’évacuation. Une fois connecté, le RRA descend la température jusqu’à 20-40 °C. Autre borne du même document : sous 120 °C, plus de matelas vapeur au pressuriseur — c’est la base de conception de sa ligne d’expansion.'},
    'RRI':'Réfrigération Intermédiaire — le circuit d’eau qui refroidit les équipements et emporte la chaleur vers la source froide',
    'SEC':'la source froide de secours (eau brute) qui refroidit le RRI',
    'RIS':{d:'Injection de Secours — envoie de l’eau borée dans le réacteur en cas de fuite',
@@ -2304,6 +2313,14 @@ body.shake{animation:quake .9s linear;}
    'CVI':{d:'le circuit de vide — maintient le vide dans le condenseur pour que la turbine fonctionne bien',
      p:'Il n’aspire pas la vapeur (la condensation s’en charge toute seule) : il chasse l’air et les gaz incondensables qui s’infiltrent par les joints. Sans lui, l’air « couvre » les tubes froids comme une couverture, la condensation se dégrade, le vide remonte et la turbine finit par déclencher.'},
    'CHAUSSETTE':'le diagramme pression/température : le point doit rester dans la zone autorisée, comme sur les vrais documents',
+   'RGE':{d:'les Règles Générales d’Exploitation — le document-cadre qui traduit les études de sûreté en règles du quotidien',
+     p:'Organisation, spécifications techniques (STE), essais périodiques, conduite incidentelle et accidentelle : les RGE sont le pont entre la démonstration de sûreté et la salle de commande. Les chapitres clés (STE, conduite, essais) sont formellement approuvés par l’Autorité de sûreté.'},
+   'STE':{d:'les Spécifications Techniques d’Exploitation — les limites à respecter, état par état',
+     p:'Pour chacun des six domaines d’exploitation (RP, AN/GV, AN/RRA, API, APR, RCD), les STE listent les matériels requis, les limites (dont notre chaussette P-T) et la CONDUITE À TENIR quand quelque chose manque. Leur logique : rester dans l’enveloppe des situations étudiées, pour que les protections dimensionnées couvrent toujours l’accident.'},
+   'Événements groupe 1 / groupe 2':{d:'le classement des écarts aux STE selon leur gravité',
+     p:'Groupe 1 : l’écart met en cause la démonstration de sûreté — interdit de le provoquer volontairement, repli du réacteur sous 1 heure à 7 jours. Groupe 2 : une fonction est fragilisée sans remise en cause directe — tolérable le temps d’une maintenance, règles de cumul à l’appui. Trois événements de groupe 1 sur des systèmes différents : repli sous une heure.'},
+   'État de repli':{d:'l’état sûr vers lequel on replie la tranche quand un matériel requis manque',
+     p:'Chaque matériel requis a, dans les STE, son délai codifié et son état de repli désigné — celui où le matériel manquant n’est plus nécessaire, atteignable par les procédures normales. Exemple du palier 1300 : une pompe ASG (sur quatre) indisponible en puissance est tolérée TROIS JOURS, avec pour état de repli l’arrêt intermédiaire diphasique aux conditions du RRA, circuit connecté. Le calibrage est un équilibre : assez long pour réparer, assez court pour ne pas s’installer dans le dégradé. Et les cumuls raccourcissent tout : la même pompe ASG cumulée avec une pompe d’injection moyenne ou basse pression, c’est 24 heures maximum.'},
    'GSS':{d:'les Sécheurs-Surchauffeurs, entre les corps HP et BP de la turbine',
      p:'À la sortie du corps HP, la vapeur est détendue et HUMIDE — des gouttelettes qui éroderaient les ailettes BP. Les GSS la sèchent (séparateurs) puis la resurchauffent avec de la vapeur vive prélevée en amont : la détente BP repart avec une vapeur sèche et plus chaude. Un étage discret, un gain de rendement réel.'},
    'Poste d’eau (ABP/AHP)':{d:'la chaîne de réchauffeurs qui préchauffe l’eau du condenseur avant son retour aux GV',
@@ -2952,7 +2969,7 @@ body.shake{animation:quake .9s linear;}
     setAl('aAcc',S._accDue?'amber':'');
     INH_BTNS.forEach(function(cf){var b=el(cf[0]);if(b){b.classList.toggle('warn',!!S[cf[1]]);var t=S[cf[1]]?'INHIBÉ':'INHIBER';if(b.textContent!==t)b.textContent=t;}});
     setAl('aMan',(hot&&!S.auto&&!S.scram)?'amber':'');
-    setAl('aGmpp',(!S.gmpp&&(hot||S.etat==='ANRRA'))?'red':'');
+    setAl('aGmpp',(S.gmppN===0&&(hot||(S.etat==='ANRRA'&&S.Tavg>=70)))?'red':'');
     setAl('aAu',S.scram?'red':'');
     setAl('aXe',hot&&S.Xe>1.08?'amber':'');
     setAl('aPenc',S.Penc>1.3?'red':S.Penc>1.1?'amber':'');
