@@ -2,13 +2,13 @@
 <!--
   REP 1300 — simulateur de tranche · © Claude & Anthonin
   Code protégé — reproduction, extraction ou réutilisation interdites sans autorisation.
-  Build 2026-07-29 · empreinte 9888b0a9e206 · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
+  Build 2026-07-29 · empreinte 144fe3a2c16e · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
 -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.13-rc</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.14-rc</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -104,6 +104,10 @@ if('serviceWorker' in navigator){
   #synWrap{overflow:hidden;position:relative;border-radius:5px}
   #panOver{pointer-events:none;overflow:visible;transition:opacity .35s}
   #synZr,#sockZr{display:none;position:absolute;top:6px;right:6px;z-index:5;background:#1a2a1cee;border:1px solid #3a6a42;color:#8fe89a;border-radius:7px;padding:6px 10px;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer}
+  #aboutDd summary{list-style:none;cursor:pointer;user-select:none}
+  #aboutDd summary::-webkit-details-marker{display:none}
+  #aboutPane{position:absolute;right:0;top:calc(100% + 8px);width:min(460px,92vw);max-height:min(66vh,540px);overflow:auto;background:linear-gradient(180deg,#ddd4bf,#cfc5ac);border:2px solid #7a6850;border-radius:8px;box-shadow:0 8px 26px #0007;padding:11px 13px;z-index:90;text-align:left;color:#2b2318;font-size:12.5px;line-height:1.55}
+  #aboutPane p{margin:7px 0}
   #mnav{position:fixed;bottom:0;left:0;right:0;display:none;gap:8px;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:#c2b494f2;border-top:2px solid #6e5c44;box-shadow:0 -5px 16px #0007;z-index:60;backdrop-filter:blur(8px)}
   #mnav button{flex:1;background:linear-gradient(180deg,#ddd2b8,#c2b494);border:1px solid #6e5c44;color:#2b2318;border-radius:8px;padding:12px 4px;font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:.03em;cursor:pointer}
   @media(max-width:1099px){#mnav{display:flex}body{padding-bottom:70px}}
@@ -264,7 +268,16 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.13-rc · by Claude &amp; AnthoninP</span></div>
+      <details id="aboutDd" style="float:right;position:relative"><summary><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.14-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+<div id="aboutPane">
+<b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
+<p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
+<p><b>Ce qu’on peut y vivre :</b> la conduite normale de RP jusqu’au rechargement (états standards, fenêtre RRA [160-180 °C]), les transitoires (îlotage manqué, coups de froid, pics xénon, re-divergence), et une vingtaine d’incidents jouables — APRP, RTGV, RTV, pertes de source froide ou électrique, perte totale, jusqu’aux séquences graves fidèles (TMI : soupape bloquée, RDP, rupture du disque, découvrement, fusion — haute ou basse pression).</p>
+<p><b>Les protections sont câblées comme sur le palier :</b> AAR sur ses vrais critères, P7/P11/P14, isolements automatiques, déclenchement turbine, chaînes KRT — et toutes s’inhibent une à une pour apprendre en cassant.</p>
+<p><b>La physique est certifiée :</b> chaque annotation de la figure 4.1 (domaine P-T, saturation, soupapes, NPSH, RRA) est re-vérifiée à chaque version par un banc de conformité — verdict 15/15 — plus deux bancs de non-régression. Ordres de grandeur sourcés : 23 000 m³/h par GMPP, 5 000+ tubes par GV, enceinte 120 + 55 cm.</p>
+<p><b>Pour apprendre :</b> mode Facile (seize missions guidées, du premier mégawatt à la boucle complète), lexique à deux niveaux, journal horodaté, enregistreur multi-voies, diagramme P-T temps réel, accélération ×60/×300. Fonctionne hors-ligne (PWA), au doigt.</p>
+<p style="color:var(--dim)">by Claude &amp; Anthonin · © tous droits réservés — code protégé, reproduction interdite sans autorisation.</p>
+</div></details></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1010,15 +1023,8 @@ body.shake{animation:quake .9s linear;}
 <text id="skVal" x="52" y="26" class="skT" fill="#e8e0c8"></text>
 </svg></div>
 </div>
-<div class="card" id="cardAbout">
-  <h2>À propos</h2>
-  <p style="margin:6px 0">Un simulateur pédagogique d’une tranche REP 1300 MWe du palier P4, entièrement contenu dans un seul fichier HTML, sans dépendance. Il s’installe comme application hors-ligne (PWA) et se pilote au doigt. L’ambition : que la physique et la conduite soient assez justes pour qu’un exploitant s’y retrouve — nomenclature du parc, ordres de grandeur réels, protections câblées comme sur le palier.</p>
-  <p style="margin:6px 0"><b>La figure est la loi.</b> Le domaine pression/température (figure 4.1), ses quatre limites, la fenêtre de connexion du RRA [160-180 °C], les soupapes, le NPSH des pompes primaires : chaque annotation du document d’exploitation est codée et re-certifiée à chaque version par un banc de conformité dédié — verdict 15/15 — aux côtés de deux bancs de non-régression (invariants physiques et balayage de scénarios). Les ordres de grandeur sont sourcés : 23 000 m³/h par pompe primaire, plus de 5 000 tubes par générateur de vapeur, enceinte à double paroi de 120 + 55 cm.</p>
-  <p style="margin:6px 0">Un mode Facile guide les débutants : seize missions progressives, un lexique à deux niveaux, et les rappels de conduite d’un instructeur patient.</p>
-  <p style="margin:8px 0 2px;color:var(--dim);font-size:11.5px"><span id="aboutVer"></span> · by Claude &amp; Anthonin · © tous droits réservés — code protégé, reproduction interdite sans autorisation.</p>
-</div>
 <div id="mnav">
-  <button id="mnv1">Synoptique</button><button id="mnv2">Incidents</button><button id="mnv3">Inhibitions</button><button id="mnv4">Turbine</button><button id="mnv5">Chaussette</button><button id="mnv6">À propos</button>
+  <button id="mnv1">Synoptique</button><button id="mnv2">Incidents</button><button id="mnv3">Inhibitions</button><button id="mnv4">Turbine</button><button id="mnv5">Chaussette</button>
 </div>
 <script>
 (function(){
@@ -1947,7 +1953,7 @@ body.shake{animation:quake .9s linear;}
   window.addEventListener('scroll',function(){
     if(window.scrollX!==0)window.scrollTo(0,window.scrollY);
   },{passive:true});
-  [['mnv1','synop'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock'],['mnv6','cardAbout']].forEach(function(p){
+  [['mnv1','synop'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock']].forEach(function(p){
     var b=el(p[0]);if(b)b.onclick=function(){var t=el(p[1]);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});};
   });
   turb.addEventListener('change',function(){log('OPÉRATEUR : consigne vannes admission '+turb.value+' %','cyan');});
@@ -3068,7 +3074,6 @@ body.shake{animation:quake .9s linear;}
     if(now-_lr>=250){_lr=now;render();}
     requestAnimationFrame(loop);
   }
-  try{el('aboutVer').textContent=el('verTag').textContent.split('\u00b7')[0].trim();}catch(e){}
   setDig('th');
   render();
   requestAnimationFrame(loop);
