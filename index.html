@@ -2,13 +2,13 @@
 <!--
   REP 1300 — simulateur de tranche · © Claude & Anthonin
   Code protégé — reproduction, extraction ou réutilisation interdites sans autorisation.
-  Build 2026-07-29 · empreinte fc36aabb7426 · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
+  Build 2026-07-29 · empreinte 9888b0a9e206 · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
 -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.12-rc</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.13-rc</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -264,7 +264,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.12-rc · by Claude &amp; AnthoninP</span></div>
+      <span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.13-rc · by Claude &amp; AnthoninP</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1010,8 +1010,15 @@ body.shake{animation:quake .9s linear;}
 <text id="skVal" x="52" y="26" class="skT" fill="#e8e0c8"></text>
 </svg></div>
 </div>
+<div class="card" id="cardAbout">
+  <h2>À propos</h2>
+  <p style="margin:6px 0">Un simulateur pédagogique d’une tranche REP 1300 MWe du palier P4, entièrement contenu dans un seul fichier HTML, sans dépendance. Il s’installe comme application hors-ligne (PWA) et se pilote au doigt. L’ambition : que la physique et la conduite soient assez justes pour qu’un exploitant s’y retrouve — nomenclature du parc, ordres de grandeur réels, protections câblées comme sur le palier.</p>
+  <p style="margin:6px 0"><b>La figure est la loi.</b> Le domaine pression/température (figure 4.1), ses quatre limites, la fenêtre de connexion du RRA [160-180 °C], les soupapes, le NPSH des pompes primaires : chaque annotation du document d’exploitation est codée et re-certifiée à chaque version par un banc de conformité dédié — verdict 15/15 — aux côtés de deux bancs de non-régression (invariants physiques et balayage de scénarios). Les ordres de grandeur sont sourcés : 23 000 m³/h par pompe primaire, plus de 5 000 tubes par générateur de vapeur, enceinte à double paroi de 120 + 55 cm.</p>
+  <p style="margin:6px 0">Un mode Facile guide les débutants : seize missions progressives, un lexique à deux niveaux, et les rappels de conduite d’un instructeur patient.</p>
+  <p style="margin:8px 0 2px;color:var(--dim);font-size:11.5px"><span id="aboutVer"></span> · by Claude &amp; Anthonin · © tous droits réservés — code protégé, reproduction interdite sans autorisation.</p>
+</div>
 <div id="mnav">
-  <button id="mnv1">Synoptique</button><button id="mnv2">Incidents</button><button id="mnv3">Inhibitions</button><button id="mnv4">Turbine</button><button id="mnv5">Chaussette</button>
+  <button id="mnv1">Synoptique</button><button id="mnv2">Incidents</button><button id="mnv3">Inhibitions</button><button id="mnv4">Turbine</button><button id="mnv5">Chaussette</button><button id="mnv6">À propos</button>
 </div>
 <script>
 (function(){
@@ -1940,7 +1947,7 @@ body.shake{animation:quake .9s linear;}
   window.addEventListener('scroll',function(){
     if(window.scrollX!==0)window.scrollTo(0,window.scrollY);
   },{passive:true});
-  [['mnv1','synop'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock']].forEach(function(p){
+  [['mnv1','synop'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock'],['mnv6','cardAbout']].forEach(function(p){
     var b=el(p[0]);if(b)b.onclick=function(){var t=el(p[1]);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});};
   });
   turb.addEventListener('change',function(){log('OPÉRATEUR : consigne vannes admission '+turb.value+' %','cyan');});
@@ -3061,6 +3068,7 @@ body.shake{animation:quake .9s linear;}
     if(now-_lr>=250){_lr=now;render();}
     requestAnimationFrame(loop);
   }
+  try{el('aboutVer').textContent=el('verTag').textContent.split('\u00b7')[0].trim();}catch(e){}
   setDig('th');
   render();
   requestAnimationFrame(loop);
