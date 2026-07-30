@@ -2,13 +2,13 @@
 <!--
   REP 1300 — simulateur de tranche · © Claude & Anthonin
   Code protégé — reproduction, extraction ou réutilisation interdites sans autorisation.
-  Build 2026-07-29 · empreinte 60453176fe2e · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
+  Build 2026-07-30 · empreinte 7c7f09743d72 · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
 -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.7.17-rc</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.8.0-rc</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -224,7 +224,7 @@ if('serviceWorker' in navigator){
     border-radius:6px;padding:10px 14px;box-shadow:0 2px 5px #0004, inset 0 1px 0 #fffa;margin-bottom:2px}
   #easyCard.on{display:block}
   #easyMsg{font-size:15px;line-height:1.5;color:#3a2c10;font-weight:600}
-  #easyLex{display:none;margin-top:8px;font-size:12.5px;line-height:1.55;color:#4a3a1a;column-width:270px;column-gap:22px}
+  #easyLex{display:none;margin:8px 0;font-size:12.5px;line-height:1.55;color:#4a3a1a;column-width:270px;column-gap:22px;background:linear-gradient(180deg,#ddd4bf,#cfc5ac);border:2px solid #7a6850;border-radius:6px;padding:10px 12px}
   #easyLex.on{display:block}
   #easyLex b{color:#2b2318}
   .lexD summary{cursor:pointer;color:#a8720a;font-weight:700;font-size:11.5px;margin-top:2px}
@@ -268,7 +268,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <details id="aboutDd" style="float:right;position:relative"><summary><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.7.17-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <details id="aboutDd" style="float:right;position:relative"><summary><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.8.0-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -282,7 +282,7 @@ body.shake{animation:quake .9s linear;}
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
-  <button class="sw" id="bEasy" title="Guide pas-à-pas sans jargon">MODE FACILE</button><div class="accel" id="accel">
+  <button class="sw" id="bEasy" title="Analyse d’état et aide à la conduite">MODE FACILE</button><button class="sw" id="bMis" title="Parcours guidé : seize missions progressives">MISSIONS</button><button class="sw" id="bLex" title="Lexique de la tranche">📖</button><div class="accel" id="accel">
     <button data-a="1" class="on">×1</button>
     <button data-a="60">×60</button>
     <button data-a="300">×300</button>
@@ -293,8 +293,8 @@ body.shake{animation:quake .9s linear;}
   <span style="font-size:11px;letter-spacing:.12em;font-weight:700;color:#8a6a10">PUPITRE FORMATION</span>
   <button class="sw" id="bMSkip" style="margin-left:auto;font-size:11px">PASSER LA MISSION</button><button class="sw" id="bEasyLex">LEXIQUE</button></div>
   <div id="easyMsg">Bienvenue ! Ici, je t’explique quoi faire, sans jargon. Astuce : les boutons ×60 et ×300 (en haut) accélèrent le temps quand il ne se passe rien.</div>
-  <div id="easyLex"></div>
 </div>
+<div id="easyLex"></div>
 <div class="layout">
   <div class="main">
     <div class="mimic anim" id="mimic">
@@ -1122,7 +1122,7 @@ body.shake{animation:quake .9s linear;}
     {id:'ppzr', sh:'P PZR', lbl:'P pressuriseur',    u:'bar',  d:1, get:function(){return S.Ppzr;}},
     {id:'pgv',  sh:'P GV',  lbl:'P vapeur GV',       u:'bar',  d:1, get:function(){return S.Psteam;}},
     {id:'ngv',  sh:'N GV',  lbl:'Niveau GV',         u:'%',    d:1, get:function(){return S.gv;}},
-    {id:'tvap', sh:'T VAP', lbl:'T vapeur (sat)',    u:'°C',   d:0, get:function(){return tsat(S.Psteam);}},
+    {id:'tvap', sh:'T VAP', lbl:'T vapeur (sat)',    u:'°C',   d:0, get:function(){return Math.min(tsat(S.Psteam),S.Tavg);}},
     {id:'padm', sh:'P ADM', lbl:'P admission HP',    u:'bar',  d:1, get:function(){return S.Padm;}},
     {id:'pcond',sh:'PCOND', lbl:'P condenseur',      u:'mbar', d:0, get:function(){return S.Pcond*1000;}},
     {id:'tare', sh:'T ARE', lbl:'T eau alim.',       u:'°C',   d:0, get:function(){return S.Tare;}},
@@ -1316,7 +1316,7 @@ body.shake{animation:quake .9s linear;}
     return null;
   }
   function applyEtat(e){
-    var pOld=S.Ppzr;
+    var pOld=S.Ppzr;var pnBefore=S.Pn;
     var p=PRESET[e];
     for(var k in p){if(k!=='Cb')S[k]=p[k];}
     if(p.gmpp!==undefined)S.gmppN=(p.gmpp===true?4:(typeof p.gmpp==='number'?p.gmpp:0));
@@ -1328,8 +1328,10 @@ body.shake{animation:quake .9s linear;}
       if(p.Cb!=null)S.Cb=Math.max(S.Cb,p.Cb);
     }
     S.turbSet=S.turb;
+    if(e==='RP'&&pnBefore<0.5){S.Pn=Math.max(pnBefore,0.03);S.turb=Math.min(S.turb,8);S.turbSet=8;S._rpRamp=true;log('Retour en production : montée AUTOMATIQUE par paliers (~3 %/min quand le cœur suit). La turbine part à 8 %.','cyan');}
     if(e==='RP'||e==='ANGV'){S.gctSet=74;S.gctTgt=74;}
     if(e!=='RP'&&S.Ppzr>pOld+25)S.Ppzr=pOld+25;
+    if(e!=='RP'&&p.pzrSet!==undefined&&S.Ppzr>Math.max(pOld,p.pzrSet))S.Ppzr=Math.max(pOld,p.pzrSet);
     S.etat=e;
     S.scram=false;S.tripMsg="";S.note="";
     S.areAvail=true;S.asgLatch=false;
@@ -1337,6 +1339,7 @@ body.shake{animation:quake .9s linear;}
     if(p.asgOn)log('Configuration ASG : motopompes MPS voies A et B en service — alimentation normale des GV au palier, turbopompes TPS disponibles sur vapeur','cyan');
     S.breche=0;S.inv=100;S.accu=Math.min(S.accu===undefined?100:S.accu,100);S.Penc=1;S.sebim=false;S.rdp=0;S.rdpBurst=false;
     var goingUp=(S._fromIdx!==undefined)&&(ORDER.indexOf(e)<S._fromIdx);
+    if(e==='ANGV'&&goingUp){S._pzrFollow=true;S.pzrSet=Math.max(27,Math.min(31,S.Ppzr+2));log('Remontée AN/GV : la consigne pressuriseur SUIT le domaine (plancher de la figure + marge) jusqu\u2019au conditionnement complet.','cyan');}
     if(!goingUp){S.accIso=(e==='ANRRA'||e==='APIF'||e==='APIO'||e==='APR'||e==='RCD');}
     S.ishp=false;S.isbp=false;S.eas=false;S.sigIS=false;S.easLatch=false;S.isoEnc=false;
     S.gctSet=74;S.gctTgt=74;el('gctSp').value=74;
@@ -1520,7 +1523,7 @@ body.shake{animation:quake .9s linear;}
       var asgDemande=Math.min(asgCap*clamp((58-S.gv)/8,0,1),(S.Ptot<0.03&&!S.breche)?0.035:1);
       if(asgCap>0&&S.bacheASG>0)S.bacheASG=Math.max(0,S.bacheASG-asgCap*0.00023*dt);
       if(S.sec&&S.secOk&&S.bacheASG<1)S.bacheASG=Math.min(1,S.bacheASG+0.0018*dt);
-      var areRallie=(!S.scram&&S.tpaRun&&S.areOut>2.5&&S.gv>42);
+      var areRallie=(S.etat==='RP'&&!S.scram&&S.tpaRun&&S.areOut>2.5&&S.gv>42);
       S.asg=(S.bacheASG>0&&!(S.rtv>0&&S._rtvIso)&&!areRallie)?asgDemande:0;
       S.asgVis=Math.max(S.asg>0.0005?1:0,(S.asgVis||0)-dt/4);
       var evapGV=S.Ptot*(S.viv?1:0.35);
@@ -1746,11 +1749,22 @@ body.shake{animation:quake .9s linear;}
       log('ARR\u00caT DES GMPP \u2014 inventaire primaire '+Math.round(S.inv)+' % : d\u00e9couvrement des tubulures de boucles, perte d\u2019aspiration des pompes.','amber');
     }
     var _cool=(S._Tw!==undefined&&S.Tavg<S._Tw-0.0003);S._Tw=S.Tavg;
+    if(S._pzrFollow){
+      if(S.etat!=='ANGV'||S.Tavg>283){S._pzrFollow=false;}
+      else{var _pf=psat(S.Tavg+30)+2;if(S.Tavg>255)_pf=Math.max(_pf,27+(155-27)*(S.Tavg-255)/28);S.pzrSet=Math.max(27,Math.min(155,_pf));}
+    }
     var _gi=(S._Tg===undefined)?0:(S.Tavg-S._Tg)/0.05*3600; S._Tg=S.Tavg;
     S.gradH=(S.gradH||0)+(_gi-(S.gradH||0))*(0.05/60);
     if(S.etat!=='RP'&&Math.abs(S.gradH)>28&&!S._grMsg){S._grMsg=true;log('CONDUITE : gradient de température '+Math.abs(S.gradH).toFixed(0)+' \u00b0C/h \u2014 la figure limite \u00e0 28 \u00b0C/h. Ralentir le transitoire.','amber');}
     if(Math.abs(S.gradH)<20)S._grMsg=false;
     var _gap=S.turb-S.Pn*100;
+    if(S._rpRamp){
+      if(S.scram||S.etat!=='RP'){S._rpRamp=false;}
+      else{
+        if(_gap<8&&S.turbSet<100)S.turbSet=Math.min(100,S.turbSet+0.0025);
+        if(S.turbSet>=99.9&&S.Pn>0.97){S._rpRamp=false;log('Montée en puissance terminée : la tranche est à 100 %.','cyan');}
+      }
+    }
     if(!S.scram&&S.Pn<0.55&&_gap>15&&!S._cfMsg){S._cfMsg=true;log('CONDUITE : la turbine appelle '+Math.round(S.turb)+' % mais le c\u0153ur ne fournit que '+Math.round(S.Pn*100)+' % \u2014 COUP DE FROID en cours. Referme les vannes ou attends que les barres remontent la puissance.','amber');}
     if(_gap<8)S._cfMsg=false;
     var rraWin=(S.etat==='ANGV')&&!S.rra&&S.Tavg<166&&S.Tavg>150&&_cool;
@@ -2335,11 +2349,21 @@ body.shake{animation:quake .9s linear;}
     return '<div style="break-inside:avoid;margin-bottom:6px"><b>'+k+'</b> : '+d+p+'</div>';
   }).join('');
   el('bEasyLex').onclick=function(){el('easyLex').classList.toggle('on');};
-  el('bEasy').onclick=function(){
-    S.easy=!S.easy;
-    el('easyCard').classList.toggle('on',!!S.easy);
+  el('bLex').onclick=function(){el('easyLex').classList.toggle('on');};
+  el('bMSkip').style.display='none';
+  function updEasyUI(){
+    el('easyCard').classList.toggle('on',!!(S.easy||S.mis));
     el('bEasy').classList.toggle('on',!!S.easy);
-    log(S.easy?'MODE FACILE : guide pas-à-pas activé (pupitre formation en haut de page).':'Mode facile désactivé.','cyan');
+    el('bMis').classList.toggle('on',!!S.mis);
+    el('bMSkip').style.display=S.mis?'':'none';
+  }
+  el('bMis').onclick=function(){
+    S.mis=!S.mis;updEasyUI();
+    log(S.mis?'MISSIONS : parcours guidé activé — seize missions, du premier mégawatt à la boucle complète.':'Parcours missions désactivé (la progression est conservée).','cyan');
+  };
+  el('bEasy').onclick=function(){
+    S.easy=!S.easy;updEasyUI();
+    log(S.easy?'MODE FACILE : analyse d\u2019état en continu et aide à la conduite (alarmes, transitoires).':'Mode facile désactivé.','cyan');
   };
   var MISSIONS=[
    {t:'Prendre la main',c:'Baisse la charge : mets le curseur « Vannes admission HP » (onglet Turbine) sur 80 %. Regarde les barres de contrôle descendre toutes seules pour suivre.',test:function(){return S.turb<83&&S.turb>74&&Math.abs(S.turbSet-80)<3;},b:'Tu viens de voir le cœur du pilotage : le réacteur SUIT la turbine. Tu as demandé moins de vapeur, la température a monté d’un poil, et la régulation a inséré les barres pour la ramener au programme.'},
@@ -2372,18 +2396,19 @@ body.shake{animation:quake .9s linear;}
     if(M.test()){S._mBravo=Date.now();return '✅ '+((typeof M.b==='function')?M.b():M.b);}
     return 'MISSION '+(S.mIdx+1)+'/'+MISSIONS.length+' — '+M.t+' : '+M.c;
   }
-  el('bMSkip').onclick=function(){if(S.easy&&S.mIdx<MISSIONS.length){S._mBravo=0;S._mW={};S.mIdx++;log('Formation : mission passée.','dim');}};
+  el('bMSkip').onclick=function(){if(S.mis&&S.mIdx<MISSIONS.length){S._mBravo=0;S._mW={};S.mIdx++;log('Formation : mission passée.','dim');}};
   function easyMsg(){
     var e=S.etat;
     if(S.dmg>0.05)return "🔴 Le cœur est endommagé : le combustible a trop chauffé. En vrai, ce serait un accident grave. Tu peux RÉINITIALISER la simulation, ou observer la suite.";
     if(S.fus)return "🔴 Fusion du cœur. Réinitialise la simulation pour recommencer.";
     if(S._ptBad)return "⚠ Le point pression/température est SORTI de la zone autorisée (onglet Chaussette). En général : refroidir moins vite, ou ajuster la consigne du pressuriseur.";
     if(S.sigIS)return "🚨 FUITE DÉTECTÉE : l’injection de secours envoie automatiquement de l’eau borée dans le réacteur. Laisse les automatismes travailler et surveille l’inventaire en eau.";
-    if(S._blkDue)return "👉 Changement d’état de tranche : on baisse la pression volontairement, sans fuite. BLOQUE l’injection de secours (bouton BLOQUER IS, carte Signaux) — sinon l’automate croira à une brèche et re-pressurisera le circuit.";
-    if(S._accDue)return "👉 ISOLE les accumulateurs (carte RIS) : ces réservoirs sous pression se videraient tout seuls dans le circuit en dessous de 42 bar.";
-    if(S._reaDue)return "👉 La pression est revenue : RÉALIGNE les accumulateurs (carte RIS) pour qu’ils protègent à nouveau le réacteur.";
-    if(S.gv<30&&e!=='ANRRA'&&S.Tavg>200)return "⚠ Le niveau d’eau baisse dans les générateurs de vapeur. Vérifie l’alimentation : ARE en marche, ou pompes de secours ASG.";
-    var _mm=easyMission();if(_mm)return _mm;
+    if(S.easy&&S._blkDue)return "👉 Changement d’état de tranche : on baisse la pression volontairement, sans fuite. BLOQUE l’injection de secours (bouton BLOQUER IS, carte Signaux) — sinon l’automate croira à une brèche et re-pressurisera le circuit.";
+    if(S.easy&&S._accDue)return "👉 ISOLE les accumulateurs (carte RIS) : ces réservoirs sous pression se videraient tout seuls dans le circuit en dessous de 42 bar.";
+    if(S.easy&&S._reaDue)return "👉 La pression est revenue : RÉALIGNE les accumulateurs (carte RIS) pour qu’ils protègent à nouveau le réacteur.";
+    if(S.easy&&S.gv<30&&e!=='ANRRA'&&S.Tavg>200)return "⚠ Le niveau d’eau baisse dans les générateurs de vapeur. Vérifie l’alimentation : ARE en marche, ou pompes de secours ASG.";
+    if(S.mis){var _mm=easyMission();if(_mm)return _mm;}
+    if(!S.easy)return S.mis?"🎓 Parcours terminé — bravo ! Active le MODE FACILE pour l\u2019analyse d\u2019état en continu.":"";
     if(S.scram&&S.Pn<0.02&&S.Tavg>250)return "🟠 ARRÊT D’URGENCE : toutes les barres sont tombées, la réaction est stoppée. Le réacteur chauffe encore (chaleur résiduelle) : vérifie que l’eau arrive aux générateurs de vapeur (pompes de secours ASG) — la vapeur s’évacue par le GCT.";
     if(e==='RP'&&S.Pn>0.97&&Math.abs(S.turbSet-100)<2)return "✅ Pleine puissance : la centrale produit ~1 300 MW. Pour t’entraîner : baisse doucement le curseur « Vannes admission HP » (les robinets de vapeur de la turbine) et regarde les barres de contrôle suivre toutes seules.";
     if(e==='RP'&&S.turbSet<S.turb-2)return "La turbine réduit sa charge : les barres s’enfoncent automatiquement pour suivre. Rien à faire, observe.";
@@ -2736,7 +2761,7 @@ body.shake{animation:quake .9s linear;}
     el('sThot').textContent=fmt(Thot)+' °C';
     el('sTcold').textContent=fmt(S.Tavg-dTgm())+' °C';
     el('sPgv').textContent=fmt(S.Psteam)+' bar';
-    el('sTvap').textContent=fmt(tsat(S.Psteam),0)+' °C';
+    el('sTvap').textContent=fmt(Math.min(tsat(S.Psteam),S.Tavg),0)+' °C';
     el('sPadm').textContent=fmt(S.Padm)+' bar';
     el('sPcond').textContent=Math.round(S.Pcond*1000)+' mbar';
     el('sTare').textContent=fmt(S.Tare,0)+' °C';
@@ -3074,7 +3099,7 @@ body.shake{animation:quake .9s linear;}
     var h=Math.floor(tt/3600),m=Math.floor((tt%3600)/60),s=tt%60;
     clock.textContent='T+'+(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s+(S.accel>1?'  ×'+S.accel:'');
     if(window.renderSock)window.renderSock();
-    if(S.easy&&S.t-(S._easyT||0)>1){S._easyT=S.t;var em=el('easyMsg');if(em)em.textContent=window.__easyMsg();}
+    if((S.easy||S.mis)&&S.t-(S._easyT||0)>1){S._easyT=S.t;var em=el('easyMsg');if(em)em.textContent=window.__easyMsg();}
   }
   var last=performance.now(), acc=0, DT=0.05, _lr=0;
   function loop(now){
