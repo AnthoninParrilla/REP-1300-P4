@@ -2852,6 +2852,12 @@ function pull(){
     var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur en ligne';el.style.color='#2c7a2c';}
   }).catch(function(e){console.error('REP chassis (reseau):',e);var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur injoignable';el.style.color='#a03030';}});
 }
+var lastSent={};
+setInterval(function(){ // watcher rapide : toute commande locale part en ~80 ms (impulsions comprises)
+  for(var i=0;i<CMD.length;i++){var k=CMD[i];
+    if(S[k]!==undefined&&S[k]!==lastSent[k]&&(!prev||S[k]!==prev[k])){lastSent[k]=S[k];cmd({type:'set',k:k,v:S[k]});if(prev)prev[k]=S[k];}
+  }
+},80);
 setInterval(pull,250);pull();
 var au=document.getElementById('bAu');if(au)au.onclick=function(){cmd({type:'scram'});};
 var re2=document.getElementById('bRearm');if(re2){var old=re2.onclick;re2.onclick=function(){cmd({type:'rearm'});};}
