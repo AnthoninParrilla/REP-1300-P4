@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<!--
-  REP 1300 — simulateur de tranche · © Claude & Anthonin
-  Code protégé — reproduction, extraction ou réutilisation interdites sans autorisation.
-  Build 2026-08-05 · empreinte 61dce7004654 · certifié conforme figure 4.1 (15/15) — physique validée par bancs de non-régression.
--->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Synoptique REP 1300 MWe — Palier P4 · version 2.9.0-rc</title>
+<!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="REP 1300">
 <meta name="theme-color" content="#12171c">
 <script>
+// enregistrement du service worker : rend le simulateur utilisable hors ligne
+// après un premier chargement en ligne (nécessite le fichier sw.js à côté)
 if('serviceWorker' in navigator){
   window.addEventListener('load',function(){
     navigator.serviceWorker.register('./sw.js').catch(function(){});
@@ -23,16 +21,16 @@ if('serviceWorker' in navigator){
 </script>
 <style>
   :root{
-    --panel:#d8cfba;
-    --panel2:#c6bba1;
-    --edge:#8a765a;
-    --ink:#2b2318;
+    --panel:#d8cfba;          /* beige panneau */
+    --panel2:#c6bba1;         /* fond pupitre */
+    --edge:#8a765a;           /* marron cadre */
+    --ink:#2b2318;            /* encre brune */
     --dim:#6f5f4b;
     --amber:#e8a33d;
     --red:#c9271b;
-    --green:#17b33c;
-    --cyan:#17656f;
-    --scr:#0a120c;
+    --green:#17b33c;          /* vert voyant */
+    --cyan:#17656f;           /* bleu pétrole (lisible sur beige) */
+    --scr:#0a120c;            /* fond écran automate */
     --scrEdge:#2c4a32;
     --scrInk:#8fe89a;
     --scrDim:#4a7a52;
@@ -46,6 +44,7 @@ if('serviceWorker' in navigator){
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:linear-gradient(180deg,#cdc2a8,#bfb298 60%,#b5a78c);color:var(--ink);font-family:var(--cond);-webkit-text-size-adjust:100%}
   body{padding:10px;min-height:100vh}
+
   .topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
     border:2px solid #6e5c44;background:linear-gradient(180deg,#efe7d2,#ddd2b8);
     box-shadow:0 2px 5px #0004, inset 0 1px 0 #fff8;
@@ -62,6 +61,7 @@ if('serviceWorker' in navigator){
     font-family:var(--mono);font-size:13px;padding:6px 12px;cursor:pointer}
   .accel button:last-child{border-right:0}
   .accel button.on{background:#3d3021;color:#ffb03a;box-shadow:inset 0 0 6px #000a}
+
   html,body{overflow-x:hidden;overflow-x:clip;max-width:100vw;touch-action:manipulation}
   .layout{display:grid;grid-template-columns:1fr;gap:10px}
   .main,.side,.card{min-width:0}
@@ -101,7 +101,7 @@ if('serviceWorker' in navigator){
   #gPanache .puff:nth-child(11){animation-delay:-7.83s}
   #gPanache .puff:nth-child(12){animation-delay:-8.62s}
   #synop,#sockSvg{transform-origin:0 0;display:block;touch-action:pan-y;will-change:transform}
-  #synWrap{overflow:hidden;position:relative}
+  #synWrap{overflow:hidden;position:relative} /* PAS de border-radius ici : un clip arrondi sur contenu transformé casse le fast-path GPU iOS (zoom qui rame) */
   #panOver{pointer-events:none;overflow:visible;transition:opacity .35s}
   #synZr,#sockZr{display:none;position:absolute;top:6px;right:6px;z-index:5;background:#1a2a1cee;border:1px solid #3a6a42;color:#8fe89a;border-radius:7px;padding:6px 10px;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer}
   #aboutDd summary{list-style:none;cursor:pointer;user-select:none}
@@ -116,6 +116,7 @@ if('serviceWorker' in navigator){
   .mimic svg{width:100%;height:auto;display:block}
   .side{display:grid;gap:10px;align-content:start}
   .main{display:grid;gap:10px;align-items:start}
+
   .card{position:relative;border:2px solid #7a6850;background:linear-gradient(180deg,#ddd4bf,#cfc5ac);border-radius:6px;padding:10px 12px;box-shadow:0 2px 4px #0003, inset 0 1px 0 #fff7;margin-bottom:10px}
   .main .card,.side .card{margin-bottom:0}
   .main{align-items:start}
@@ -138,6 +139,7 @@ if('serviceWorker' in navigator){
   input[type=range]:disabled{opacity:.45}
   #slideBub{position:fixed;display:none;z-index:99;background:#101208;color:#3ae065;border:2px solid #6e5c44;border-radius:6px;padding:5px 12px;font-family:var(--mono);font-size:17px;font-weight:700;box-shadow:0 3px 10px #0008, inset 0 0 6px #000c;pointer-events:none;transform:translate(-50%,-115%);white-space:nowrap}
   #slideBub.on{display:block}
+
   button.sw{background:linear-gradient(180deg,#c2b494,#a89a78);border:1px solid #6e5c44;color:#2b2318;
     font-family:var(--cond);font-size:13px;padding:6px 12px;border-radius:4px;cursor:pointer;letter-spacing:.04em;
     box-shadow:0 1px 2px #0004, inset 0 1px 0 #fff6}
@@ -158,17 +160,21 @@ if('serviceWorker' in navigator){
     font-size:13px;padding:8px 10px;border-radius:4px;cursor:pointer;flex:1;letter-spacing:.03em}
   button.rearm{background:linear-gradient(180deg,#3a7a4a,#256036);border:1px solid #14401e;color:#c8ffd4;
     font-size:13px;padding:8px 10px;border-radius:4px;cursor:pointer;flex:1}
+
   .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
   .p{background:#12140c;border:2px solid #6e5c44;border-radius:4px;padding:7px 9px;min-width:0;overflow:hidden;box-shadow:inset 0 0 8px #000b}
   .p .k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a9a6a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .p .v{font-family:var(--mono);font-size:15px;color:#3ae065;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .p .v.a{color:var(--amber)} .p .v.r{color:var(--red)}
+
   .bilan{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
   .bilan td{padding:3px 2px;border-bottom:1px dotted #202a31}
   .bilan td:last-child{text-align:right;color:var(--amber)}
   .bilan tr.tot td{border-top:1px solid var(--edge);border-bottom:0;color:#e6edf0;font-weight:700}
   .bilan tr.tot td:last-child{color:var(--green)}
+
   .alarms{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:6px}
+  /* verrines d'alarme : dalle translucide sur caisson sombre, étiquette dans l'épaisseur */
   .al{position:relative;
     background:linear-gradient(180deg,rgba(238,230,206,.16),rgba(190,178,148,.08)),#2a2620;
     border:1px solid #5c5244;border-radius:3px;
@@ -187,8 +193,10 @@ if('serviceWorker' in navigator){
     animation:blink .6s steps(2,start) infinite}
   @keyframes blink{50%{filter:brightness(.55)}}
   @media (prefers-reduced-motion:reduce){.al.amber,.al.red{animation:none}}
+
   .msg{border:1px solid #9a8664;border-left:4px solid var(--amber);background:#efe8d4;
     border-radius:4px;padding:9px 12px;font-size:13.5px;line-height:1.45;color:#2b2318;min-height:44px;box-shadow:inset 0 1px 0 #fff8}
+
   .log{font-family:var(--mono);font-size:11.5px;line-height:1.55;height:200px;overflow-y:auto;
     background:var(--scr);border:2px solid #3a3a34;border-radius:4px;padding:6px 9px;box-shadow:inset 0 0 12px #000d;
     scrollbar-width:thin;scrollbar-color:#2c4a32 transparent}
@@ -201,6 +209,8 @@ if('serviceWorker' in navigator){
   .log .e.dim{color:var(--scrDim)}
   .logclear{margin-left:auto;background:none;border:1px solid var(--edge);color:var(--dim);
     font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;cursor:pointer}
+
+  /* ---- écran d'ordinateur ---- */
   @media (min-width:1100px){
     body{padding:14px 16px}
     .layout{grid-template-columns:minmax(0,1fr) 372px;align-items:start}
@@ -216,10 +226,14 @@ if('serviceWorker' in navigator){
     .params{grid-template-columns:repeat(3,minmax(0,1fr))}
     .alarms{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
+
+  /* SVG */
   .lbl{font-family:var(--mono);font-size:12px;fill:#8fd89a;letter-spacing:.02em}
   .lblS{font-family:var(--mono);font-size:10.5px;fill:#5a9a62;letter-spacing:.02em}
+  /* écran de supervision : rendu pixel d'automate */
   #synop *{shape-rendering:crispEdges}
   #synop text{font-family:var(--mono)}
+  /* pupitre formation (mode facile) */
   #easyCard{display:none;border:2px solid #c89a1a;background:linear-gradient(180deg,#fff3c8,#f5e4a4);
     border-radius:6px;padding:10px 14px;box-shadow:0 2px 5px #0004, inset 0 1px 0 #fffa;margin-bottom:2px}
   #easyCard.on{display:block}
@@ -264,11 +278,12 @@ body.shake{animation:quake .9s linear;}
 </style>
 </head>
 <body>
+
 <div class="topbar">
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <details id="aboutDd" style="float:right;position:relative"><summary><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.9.0-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <details id="aboutDd" style="float:right;position:relative"><summary><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.9.0-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -290,6 +305,7 @@ body.shake{animation:quake .9s linear;}
   </div>
   <div class="clock" id="clock">T+00:00:00</div>
 </div>
+
 <div id="easyCard"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
   <span style="font-size:11px;letter-spacing:.12em;font-weight:700;color:#8a6a10">PUPITRE FORMATION</span>
   <button class="sw" id="bMSkip" style="margin-left:auto;font-size:11px">PASSER LA MISSION</button><button class="sw" id="bEasyLex">LEXIQUE</button></div>
@@ -303,15 +319,25 @@ body.shake{animation:quake .9s linear;}
       <svg id="synop" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" aria-label="Synoptique">
         <text class="lblS" x="40" y="16">CIRCUIT PRIMAIRE</text>
         <text class="lblS" x="620" y="28">CIRCUIT SECONDAIRE</text>
+
+        <!-- enceinte de confinement -->
         <rect x="28" y="34" width="330" height="433" rx="26" fill="none" stroke="#3a5a42" stroke-width="2.5"/>
         <text class="lblS" x="296" y="462" text-anchor="end" font-size="9">ENCEINTE</text>
+        <!-- aspersion EAS -->
         <g id="easSpray" opacity="0" stroke="#5fd88a" stroke-width="2" fill="none">
           <path d="M110 44 q8 10 16 0 M134 44 q8 10 16 0 M158 44 q8 10 16 0 M218 44 q8 10 16 0 M242 44 q8 10 16 0"/>
         </g>
+
+        <!-- ============ PRIMAIRE ============ -->
+        <!-- branche chaude : cuve -> boîte à eau GV (entrée basse, côté chaud) -->
         <path class="flowhot" d="M154 210 H210 V430 H286 V404"/>
         <path class="flowdash fdash" id="fHot" d="M154 210 H210 V430 H286 V404"/>
+        <!-- branche froide : sortie basse boîte à eau -> GMPP -> cuve -->
         <path class="flowcold" d="M314 404 V424 H216 A6 6 0 0 0 204 424 H44 V210 H56"/>
         <path class="flowdash fdash" id="fCold" d="M314 404 V424 H216 A6 6 0 0 0 204 424 H44 V210 H56"/>
+
+        <!-- cuve trapue (r52) : plan de tubulures unique y=210, MCG connecté par
+             adaptateurs de couvercle, RIC par le fond — ordre de peinture propre -->
         <g id="gHeadB"><path d="M58 152 A44 44 0 0 1 146 152 Z" fill="#10180f"/></g>
         <path d="M50 158 V318 A52 52 0 0 0 154 318 V158 Z" fill="#16241a" stroke="#3a5a42" stroke-width="2"/>
         <clipPath id="cuveClip"><path d="M58 152 A44 44 0 0 1 146 152 V318 A44 44 0 0 1 58 318 Z"/></clipPath>
@@ -333,6 +359,7 @@ body.shake{animation:quake .9s linear;}
           <rect x="78" y="60" width="48" height="12" rx="2.5" fill="#1c2e20" stroke="#4a7a52" stroke-width="1.2"/>
           <line x1="80" y1="112" x2="124" y2="112" stroke="#3a5a42" stroke-width="2"/>
         </g>
+        <!-- tubulures : plan unique sous la bride, de part et d'autre -->
         <rect x="44" y="204" width="12" height="12" rx="2" fill="#16241a" stroke="#3a5a42" stroke-width="1.5"/>
         <rect x="148" y="204" width="12" height="12" rx="2" fill="#16241a" stroke="#3a5a42" stroke-width="1.5"/>
         <path d="M84 366.8 v9 M93 369.2 v9 M102 370.0 v9 M111 369.2 v9 M120 366.8 v9" stroke="#5a8a62" stroke-width="2"/>
@@ -346,6 +373,8 @@ body.shake{animation:quake .9s linear;}
         </g>
         <rect id="puisFill" x="40" y="459" width="0" height="6" rx="2" fill="#1a4a2a" opacity="0"/>
         <text class="lblS" x="140" y="465" font-size="7.5">PUISARDS</text>
+
+        <!-- pressuriseur : capsule, chaufferettes, aspersion, SEBIM latérale -> RDP -->
         <path class="flowhot" d="M178 215 V131" stroke-width="5"/>
         <path d="M156 68 A22 22 0 0 1 200 68 V110 A22 22 0 0 1 156 110 Z" fill="#16241a" stroke="#3a5a42" stroke-width="2"/>
         <clipPath id="pzrClip"><path d="M162 68 A16 16 0 0 1 194 68 V110 A16 16 0 0 1 162 110 Z"/></clipPath>
@@ -367,16 +396,23 @@ body.shake{animation:quake .9s linear;}
         <rect id="rdpFill" x="207" y="77" width="38" height="0" rx="3" fill="#1a4a2a"/>
         <path id="rdpDisc" d="M244 80 l6 7 M250 80 l-4 8 M247 84 l7 3" stroke="#e6483d" stroke-width="1.6" opacity="0"/>
         <text class="lblS" x="226" y="72" text-anchor="middle" font-size="8">RDP</text>
+        <!-- accumulateurs RIS : réservoirs sous azote, décharge passive < 42 bar -->
         <path class="watersmall" d="M226 384 V424"/>
         <rect class="vessel" x="216" y="350" width="20" height="34" rx="5"/>
         <rect id="accuFill" x="219" y="360" width="14" height="21" rx="2" fill="#1a4a2a"/>
         <text class="lblS" x="226" y="375" text-anchor="middle" font-size="6" fill="#8c8c86">N₂</text>
         <text class="lblS" x="226" y="344" text-anchor="middle" font-size="7">ACCU</text>
+        <!-- P enceinte -->
         <g class="sens">
           <rect x="34" y="42" width="42" height="26" rx="3"/>
           <text class="sl" x="38" y="52">P ENC</text>
           <text class="sv" x="38" y="64" id="sPenc" font-size="10">1.00 bar</text>
         </g>
+
+        <!-- bâche PTR (eau borée, 3000 m³) : injection RIS vers la branche froide,
+             recirculation sur les puisards quand la bâche est épuisée -->
+        <!-- RIS / RCV : aspiration commune à la bâche PTR — ISHP/ISBP injectent
+             en branche froide, la pompe de charge RCV alimente les joints des GMPP -->
         <path class="watersmall" d="M314 520 H268"/>
         <path class="watersmall" d="M312 424 V504"/>
         <path class="flowdash fdash" id="fInj" d="M312 504 V424" opacity="0"/>
@@ -395,21 +431,30 @@ body.shake{animation:quake .9s linear;}
         <rect id="ptrFill" x="318" y="506" width="80" height="24" rx="3" fill="#1a4a2a"/>
         <text class="lblS" x="358" y="520" text-anchor="middle" fill="#8fd89a">BÂCHE PTR</text>
         <text class="lblS" x="358" y="546" text-anchor="middle" font-size="8" id="ptrTxt">100 %</text>
+
+        <!-- GMPP sur branche froide -->
         <circle cx="245" cy="424" r="16" fill="#16241a" stroke="#3a5a42" stroke-width="2"/>
         <g id="pump">
           <path id="iGmppL" d="M245 412 L251 424 L245 436 L239 424 Z" fill="#3ae065"/>
         </g>
         <text class="lblS" x="226" y="452" text-anchor="end">GMPP ×4</text>
+
+        <!-- ============ GV : boîte à eau en bas, faisceau en U, dôme vapeur élargi ============ -->
         <clipPath id="gvClip">
           <path d="M272 385 V235 L252 195 V132 Q252 108 276 108 H324 Q348 108 348 132 V195 L328 235 V385 A28 22 0 0 1 272 385 Z"/>
         </clipPath>
+        <!-- enveloppe -->
         <path d="M272 385 V235 L252 195 V132 Q252 108 276 108 H324 Q348 108 348 132 V195 L328 235 V385 A28 22 0 0 1 272 385 Z"
               fill="#10180f" stroke="#3a5a42" stroke-width="2"/>
+        <!-- eau côté secondaire (niveau variable) -->
         <rect x="252" y="176" width="96" height="209" fill="#1a4a2a" clip-path="url(#gvClip)" id="gvWater"/>
+        <!-- boîte à eau primaire : partition chaud / froid -->
         <path d="M272 385 A28 22 0 0 0 300 407 L300 385 Z" fill="#4a2018" clip-path="url(#gvClip)"/>
         <path d="M300 407 A28 22 0 0 0 328 385 L300 385 Z" fill="#1a3a24" clip-path="url(#gvClip)"/>
         <line x1="300" y1="385" x2="300" y2="406" stroke="#3a5a42" stroke-width="2"/>
+        <!-- plaque tubulaire -->
         <line x1="272" y1="385" x2="328" y2="385" stroke="#4a7a52" stroke-width="3"/>
+        <!-- faisceau tubulaire en U -->
         <g stroke="#5a8a62" stroke-width="2.4" fill="none">
           <path d="M280 385 V268 A20 20 0 0 1 320 268 V385"/>
           <path d="M287 385 V276 A13 13 0 0 1 313 276 V385"/>
@@ -417,13 +462,20 @@ body.shake{animation:quake .9s linear;}
         </g>
         <text class="lbl" x="246" y="122" text-anchor="end">GV ×4</text>
         <text class="digitsG" x="246" y="138" text-anchor="end" font-size="13" id="gvTxt">NGV 50 %</text>
+
+        <!-- ============ SECONDAIRE ============ -->
+        <!-- ligne vapeur : dôme GV -> adm turbine -->
         <path class="steamline" d="M300 108 V88 H560"/>
         <path class="flowdash fdash" id="fSteam" d="M300 108 V88 H560"/>
+
+        <!-- piquage GCT-atmosphère (décharge à l'atmosphère, repli du GCT-c) -->
         <path class="steamline" id="gctaPipe" d="M390 88 V52" opacity="0.12"/>
         <path class="flowdash fdash" id="fGcta" d="M390 88 V52" opacity="0"/>
         <path d="M382 52 H398 M384 46 H396 M386 40 H394" stroke="#e4ecef" stroke-width="2" opacity="0.25" id="gctaVent"/>
         <text class="lblS" x="404" y="52">GCTa</text>
         <text class="lblS" x="404" y="65" id="gctaTxt">0 %</text>
+
+        <!-- piquage GCT -->
         <path class="steamline" id="gctpipe" d="M505 88 V300 H620 V332" opacity="0.12"/>
         <path class="flowdash fdash" id="fGct" d="M505 88 V300 H620 V332" opacity="0"/>
         <g id="vGct" transform="translate(505,180)">
@@ -432,12 +484,16 @@ body.shake{animation:quake .9s linear;}
         </g>
         <text class="lblS" x="519" y="176">GCT</text>
         <text class="lblS" x="519" y="189" id="gctTxt">Auto · 0 %</text>
+
+        <!-- vannes admission HP -->
         <g id="vAdm" transform="translate(560,88)">
           <polygon points="-10,-10 10,0 -10,10" fill="#e4ecef"/>
           <polygon points="10,-10 -10,0 10,10" fill="#e4ecef"/>
         </g>
         <text class="lblS" x="560" y="66" text-anchor="middle">VANNES ADM. HP</text>
         <text class="lblS" x="560" y="118" text-anchor="middle" id="admTxt">100 %</text>
+
+        <!-- turbine HP / BP, alternateur -->
         <path class="steamline" d="M570 88 H640"/>
         <polygon points="640,64 700,50 700,126 640,112" fill="#1c2820" stroke="#4a7a52" stroke-width="2"/>
         <text class="lblS" x="670" y="92" text-anchor="middle">HP</text>
@@ -451,16 +507,23 @@ body.shake{animation:quake .9s linear;}
         <text class="lblS" x="884" y="80" text-anchor="middle">ALT</text>
         <text class="digitsG" x="884" y="98" text-anchor="middle" font-size="14" id="digPe">1300</text>
         <text class="lblS" x="884" y="138" text-anchor="middle">MWe</text>
+
+        <!-- condenseur -->
         <path class="steamline" d="M770 140 V332" stroke-opacity=".5"/>
         <rect class="vessel" x="560" y="332" width="270" height="86" rx="10"/>
         <rect x="568" y="376" width="254" height="34" rx="6" fill="#1a4a2a"/>
         <text class="lbl" x="695" y="362" text-anchor="middle">CONDENSEUR</text>
+        <!-- CRF : station de pompage source froide -->
         <path class="watersmall" d="M640 418 V448 H612" id="crfIn"/>
         <path class="watersmall" d="M760 418 V448 H792" id="crfOut"/>
         <rect x="586" y="440" width="26" height="18" rx="3" fill="#16241a" stroke="#3a5a42" stroke-width="1.5"/>
         <text class="lblS" x="599" y="453" text-anchor="middle" font-size="8.5">CRF</text>
         <text class="lblS" x="695" y="436" text-anchor="middle" id="crfTxt">CRF · mer 12 °C</text>
+        <!-- aéroréfrigérant (circuit fermé) -->
         <g id="gAero" opacity="0">
+          <!-- tour aéroréfrigérante : silhouette hyperbolique GÉNÉRÉE
+               R(y)=R_col·sqrt(1+((y-y_col)/b)²) — col à 75 % de hauteur,
+               embouchure rx=23.7 raccordée par construction. -->
           <filter id="fCloud" x="-60%" y="-60%" width="220%" height="220%">
             <feGaussianBlur stdDeviation="3.4"/>
           </filter>
@@ -472,24 +535,30 @@ body.shake{animation:quake .9s linear;}
           <path class="watersmall" d="M792 448 H930 V429"/>
           <text class="lblS" x="930" y="448" text-anchor="middle" font-size="9">AÉRORÉFRIGÉRANT</text>
         </g>
+        <!-- KRT VVP (activité lignes vapeur) -->
         <g class="sens">
           <line x1="399" y1="100" x2="399" y2="88"/>
           <rect x="366" y="100" width="66" height="26" rx="3"/>
           <text class="sl" x="370" y="110">FUITE VVP</text>
           <text class="sv" x="370" y="122" id="sKrtV">0.00</text>
         </g>
+        <!-- SEC → RRI (source froide des sauvegardes) -->
         <g class="sens">
           <rect x="838" y="412" width="58" height="26" rx="3"/>
           <text class="sl" x="842" y="422">SEC/RRI</text>
           <text class="sv" x="842" y="434" id="secTxt">en service</text>
         </g>
+        <!-- CVI : mise et maintien sous vide -->
         <g class="sens">
           <line x1="838" y1="393" x2="830" y2="393"/>
           <rect x="838" y="380" width="58" height="26" rx="3"/>
           <text class="sl" x="842" y="390">CVI</text>
           <text class="sv" x="842" y="402" id="cviTxt">en service</text>
         </g>
+
+        <!-- retour eau alimentaire normale : condenseur -> TPA (turbopompe vapeur) -> vanne ARE -> GV (haut) -->
         <path class="waterline" d="M560 400 H513"/>
+        <!-- alimentation vapeur de la TPA (soutirage barillet) -->
         <path class="steamsmall" d="M490 88 V388 H497" id="tpaSteam" opacity="0.7"/>
         <circle cx="500" cy="400" r="13" fill="#16241a" stroke="#3a5a42" stroke-width="2" id="cTpa"/>
         <path d="M500 390 L506 400 L500 410 L494 400 Z" fill="#3ae065" id="iTpa"/>
@@ -503,33 +572,44 @@ body.shake{animation:quake .9s linear;}
         </g>
         <text class="lblS" x="446" y="316">ARE</text>
         <text class="lblS" x="446" y="329" id="areTxt">Auto · 100 %</text>
+
+        <!-- ============ ASG : eau alimentaire de secours ============ -->
+        <!-- bâche + pompes -->
         <rect class="vessel" x="462" y="502" width="110" height="32" rx="5"/>
         <rect x="466" y="514" width="102" height="16" rx="3" fill="#1a4a2a"/>
         <text class="lblS" x="517" y="525" text-anchor="middle" fill="#8fd89a">BÂCHE ASG</text>
         <path class="watersmall" d="M492 502 V482 M540 502 V482"/>
+        <!-- refoulement commun -> injection GV (haut) -->
         <path class="watersmall" d="M528 470 H448 V150 H348" id="asgpipe" opacity="0.25"/>
         <path class="flowdash fdash" id="fAsg" d="M528 470 H448 V150 H348" opacity="0"/>
+        <!-- MPS (motopompe) -->
         <circle cx="492" cy="470" r="12" fill="#16241a" stroke="#3a5a42" stroke-width="2" id="cMps"/>
         <path d="M492 461 L497 470 L492 479 L487 470 Z" fill="#3ae065" id="iMps" opacity="0.25"/>
         <text class="lblS" x="492" y="452" text-anchor="middle">MPS</text>
+        <!-- TPS (turbopompe, vapeur GV) -->
         <path class="steamsmall" d="M470 88 V392 A8 8 0 0 1 470 408 V440 H540 V458" id="tpsSteam" opacity="0.25"/>
         <circle cx="540" cy="470" r="12" fill="#16241a" stroke="#3a5a42" stroke-width="2" id="cTps"/>
         <path d="M540 461 L545 470 L540 479 L535 470 Z" fill="#3ae065" id="iTps" opacity="0.25"/>
         <text class="lblS" x="563" y="474">TPS</text>
         <text class="lblS" x="405" y="144" text-anchor="middle">ASG</text>
         <text class="lblS" x="405" y="166" text-anchor="middle" id="asgTxt">0 %</text>
+
+        <!-- ============ instrumentation ============ -->
+        <!-- T branche chaude -->
         <g class="sens">
           <line x1="216" y1="300" x2="210" y2="300"/>
           <rect x="216" y="287" width="52" height="26" rx="3"/>
           <text class="sl" x="220" y="297">T BC</text>
           <text class="sv" x="220" y="309" id="sThot">324.0 °C</text>
         </g>
+        <!-- T branche froide -->
         <g class="sens">
           <line x1="360" y1="430" x2="314" y2="448"/>
           <rect x="360" y="412" width="56" height="26" rx="3"/>
           <text class="sl" x="364" y="422">T BF</text>
           <text class="sv" x="364" y="434" id="sTcold">296.0 °C</text>
         </g>
+        <!-- cheminée DVN (palier P4) : fût à diamètre constant, escalier hélicoïdal -->
         <rect x="4" y="456" width="20" height="6" rx="1.5" fill="#1a2a1e" stroke="#3a5a42" stroke-width="1"/>
         <rect x="8" y="172" width="12" height="286" fill="#16241a" stroke="#3a5a42" stroke-width="1.5"/>
         <path d="M14.0 458.0 L16.7 454.4 L18.9 450.9 L20.5 447.3 L21.0 443.7 L20.5 440.1 L18.9 436.6 L16.7 433.0 L14.0 429.4 L11.3 425.8 L9.1 422.2 L7.5 418.7 L7.0 415.1 L7.5 411.5 L9.1 407.9 L11.3 404.4 L14.0 400.8 L16.7 397.2 L18.9 393.6 L20.5 390.1 L21.0 386.5 L20.5 382.9 L18.9 379.4 L16.7 375.8 L14.0 372.2 L11.3 368.6 L9.1 365.1 L7.5 361.5 L7.0 357.9 L7.5 354.3 L9.1 350.8 L11.3 347.2 L14.0 343.6 L16.7 340.0 L18.9 336.4 L20.5 332.9 L21.0 329.3 L20.5 325.7 L18.9 322.1 L16.7 318.6 L14.0 315.0 L11.3 311.4 L9.1 307.9 L7.5 304.3 L7.0 300.7 L7.5 297.1 L9.1 293.6 L11.3 290.0 L14.0 286.4 L16.7 282.8 L18.9 279.2 L20.5 275.7 L21.0 272.1 L20.5 268.5 L18.9 264.9 L16.7 261.4 L14.0 257.8 L11.3 254.2 L9.1 250.7 L7.5 247.1 L7.0 243.5 L7.5 239.9 L9.1 236.3 L11.3 232.8 L14.0 229.2 L16.7 225.6 L18.9 222.1 L20.5 218.5 L21.0 214.9 L20.5 211.3 L18.9 207.8 L16.7 204.2 L14.0 200.6 L11.3 197.0 L9.1 193.4 L7.5 189.9 L7.0 186.3 L7.5 182.7 L9.1 179.1 L11.3 175.6 L14.0 172.0" stroke="#5a8a62" stroke-width="1.1" fill="none" opacity="0.85"/>
@@ -538,36 +618,43 @@ body.shake{animation:quake .9s linear;}
           <path d="M8 167 q3 -2.5 6 0 q3 2.5 6 0 M6.5 160 q3.7 -3 7.5 0 q3.7 3 7.5 0 M5 153 q4.5 -3.5 9 0 q4.5 3.5 9 0" stroke="#8fd0a0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
         </g>
         <text class="lblS" x="14" y="472" text-anchor="middle" font-size="7">DVN</text>
+        <!-- P dôme GV -->
         <g class="sens">
           <line x1="246" y1="163" x2="252" y2="163"/>
           <rect x="188" y="150" width="58" height="26" rx="3"/>
           <text class="sl" x="192" y="160">P GV</text>
           <text class="sv" x="192" y="172" id="sPgv">71.0 bar</text>
         </g>
+        <!-- T vapeur sortie GV (saturation) -->
         <g class="sens">
           <line x1="316" y1="72" x2="316" y2="88"/>
           <rect x="286" y="46" width="60" height="26" rx="3"/>
           <text class="sl" x="290" y="56">T VAP GV</text>
           <text class="sv" x="290" y="68" id="sTvap">287 °C</text>
         </g>
+        <!-- P admission turbine HP -->
         <g class="sens">
           <line x1="600" y1="104" x2="600" y2="88"/>
           <rect x="580" y="104" width="56" height="26" rx="3"/>
           <text class="sl" x="584" y="114">P ADM HP</text>
           <text class="sv" x="584" y="126" id="sPadm">69.0 bar</text>
         </g>
+        <!-- P condenseur -->
         <g class="sens">
           <line x1="838" y1="359" x2="830" y2="360"/>
           <rect x="838" y="346" width="58" height="26" rx="3"/>
           <text class="sl" x="842" y="356">P COND</text>
           <text class="sv" x="842" y="368" id="sPcond">60 mbar</text>
         </g>
+        <!-- T eau alimentaire -->
         <g class="sens">
           <line x1="424" y1="235" x2="430" y2="235"/>
           <rect x="366" y="222" width="58" height="26" rx="3"/>
           <text class="sl" x="370" y="232">T ARE</text>
           <text class="sv" x="370" y="244" id="sTare">230 °C</text>
         </g>
+
+        <!-- ============ afficheur puissance + sélecteur ============ -->
         <g class="tab" id="tabTh">
           <rect x="46" y="468" width="62" height="18" rx="3" fill="#16241a" stroke="#3a5a42" stroke-width="0"/>
           <text x="77" y="481" text-anchor="middle" font-size="11" fill="#e8a33d" font-family="Arial Narrow,sans-serif">MWth</text>
@@ -579,6 +666,8 @@ body.shake{animation:quake .9s linear;}
         <rect x="40" y="490" width="214" height="52" rx="6" fill="#000" stroke="#202e24" stroke-width="1.5"/>
         <text class="digits" id="digMain" x="147" y="526" text-anchor="middle" font-size="30">3800</text>
         <text class="lblS" x="147" y="538" text-anchor="middle" id="lblMain">PUISSANCE RÉACTEUR · MWth</text>
+                
+            
       </svg>
       </div>
       <svg id="panOver" viewBox="0 0 1000 560" style="position:absolute;left:8px;top:8px;width:calc(100% - 16px);height:auto"><defs><radialGradient id="gPuff"><stop offset="0%" stop-color="#cfeacf" stop-opacity="0.85"/><stop offset="55%" stop-color="#cfeacf" stop-opacity="0.4"/><stop offset="100%" stop-color="#cfeacf" stop-opacity="0"/></radialGradient></defs><g id="gPanache" opacity="0.65">
@@ -595,7 +684,9 @@ body.shake{animation:quake .9s linear;}
             <g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g>
           </g></svg>
     </div>
+
     <div class="msg" id="msg">Régime établi.</div>
+
     <div class="card">
       <h2>Paramètres tranche</h2>
       <div class="params">
@@ -626,6 +717,7 @@ body.shake{animation:quake .9s linear;}
         <div class="p"><div class="k">Grappes R</div><div class="v" id="pRod">95.0 %</div></div>
       </div>
     </div>
+
     <div class="card">
       <h2>Tableau d'alarmes</h2>
       <div class="alarms">
@@ -682,11 +774,13 @@ body.shake{animation:quake .9s linear;}
         <div class="al" id="aEncF">Rupture confinement</div>
       </div>
     </div>
+
     <div class="card">
       <h2 style="display:flex;align-items:center;gap:8px">Journal des événements
         <button class="logclear" id="logClear" style="margin-left:0">effacer</button></h2>
       <div class="log" id="log"></div>
     </div>
+
     <div class="card">
       <h2 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">Enregistreur
         <select id="recPas" class="logclear" style="margin-left:auto;background:#f2ecd8;color:#2b2318;border:1px solid #6e5c44;border-radius:5px;padding:2px 6px">
@@ -706,6 +800,7 @@ body.shake{animation:quake .9s linear;}
       <div class="row"><span class="note">Échantillonnage à pas fixe en temps tranche — une ligne complète par pas, toutes voies. Les événements (AU, alarmes) s'insèrent dans le flux. Poignée en bas du cadre pour redimensionner.</span></div>
     </div>
   </div>
+
   <div class="side">
     <div class="card">
       <h2>État de tranche</h2>
@@ -720,6 +815,7 @@ body.shake{animation:quake .9s linear;}
       </div>
       <div class="row"><span class="note">Traversée séquentielle des états : cliquer un état lointain enchaîne les transitions dont les conditions physiques (T, P, résiduelle) sont réunies, et s'arrête à la première refusée. L'arrêt à chaud n'est pas un état standard : c'est le domaine d'entrée de l'AN/GV.</span></div>
     </div>
+
     <div class="card">
       <h2>Grappes de régulation (groupe R)</h2>
       <div class="row">
@@ -732,6 +828,7 @@ body.shake{animation:quake .9s linear;}
         <input type="range" id="rod" min="0" max="100" value="95" step="0.5" disabled>
       </div>
     </div>
+
     <div class="card">
       <h2 id="secTurb">Turbine · VIV</h2>
       <div class="row">
@@ -750,6 +847,7 @@ body.shake{animation:quake .9s linear;}
         <span class="val" id="vivVal">ouvertes</span>
       </div>
     </div>
+
     <div class="card">
       <h2>GCT — consigne de pression</h2>
       <div class="row">
@@ -771,6 +869,7 @@ body.shake{animation:quake .9s linear;}
       </div>
       <div class="row"><span class="note">La consigne effective suit en rampe (~0,01 bar/s simulé, gradient de refroidissement limité). GCTa asservi à consigne + 3 bar. Abaisser la consigne en AN/GV pour refroidir vers les conditions de connexion RRA (Tmoy &lt; 180 °C).</span></div>
     </div>
+
     <div class="card">
       <h2>Source froide — CRF / SEC</h2>
       <div class="row">
@@ -788,6 +887,7 @@ body.shake{animation:quake .9s linear;}
       </div>
       <div class="row"><span class="note" id="srcNote">—</span></div>
     </div>
+
     <div class="card">
       <h2>Eau alimentaire normale — ARE</h2>
       <div class="row">
@@ -805,6 +905,7 @@ body.shake{animation:quake .9s linear;}
       </div>
       <div class="row"><span class="note">Turbopompes alimentaires entraînées par la vapeur GV, régulation de vitesse propre (ΔP vannes réglantes). Capacité pleine au-dessus de ~37 bar, arrêt sous ~12 bar — en fin de descente au GCT, l'alimentation des GV bascule sur l'ASG.</span></div>
     </div>
+
     <div class="card">
       <h2>Eau alimentaire de secours — ASG</h2>
       <div class="row">
@@ -826,6 +927,7 @@ body.shake{animation:quake .9s linear;}
       <div class="row"><label>Bâche ASG</label><span class="val" id="bacheVal">100 %</span></div>
       <div class="row"><span class="note" id="asgNote">Bâche ~1400 m³, autonomie ~12 h à débit résiduelle. Réappoint eau brute par SEC. Bâche vide + GV secs → assèchement, montée en température et fusion (séquence H1). Parade : gavé-ouvert (SEBIM + RIS).</span></div>
     </div>
+
     <div class="card">
       <h2>RCV / REA — Bore</h2>
       <div class="row">
@@ -838,6 +940,7 @@ body.shake{animation:quake .9s linear;}
       </div>
       <div class="row"><span class="note">Maintenir appuyé · ~0,15 ppm/s (× accél. temps)</span></div>
     </div>
+
     <div class="card">
       <h2>Pressuriseur</h2>
       <div class="row">
@@ -859,6 +962,7 @@ body.shake{animation:quake .9s linear;}
         <button class="sw" id="bSebimM">OUVERTURE VOLONTAIRE</button>
       </div>
     </div>
+
     <div class="card">
       <h2>RPN / RIC — Neutronique</h2>
       <div class="row" style="margin:6px 0 2px"><button id="coreOpen" style="flex:1;background:linear-gradient(180deg,#c2b494,#a89a78);border:1px solid #6e5c44;color:#2b2318;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:700;letter-spacing:.06em;cursor:pointer;font-family:inherit;box-shadow:0 1px 2px #0004, inset 0 1px 0 #fff6">⬢ CARTE DU CŒUR · 193 ASSEMBLAGES</button></div>
@@ -869,6 +973,7 @@ body.shake{animation:quake .9s linear;}
       <div class="row"><label>Niveau cuve (post-acc.)</label><span class="val" id="lvlV">100 %</span></div>
       <div class="row"><span class="note">En sous-critique, la chaîne source suit la multiplication 1/(1−keff) : le comptage monte à l'approche de la divergence.</span></div>
     </div>
+
     <div class="card">
       <h2>KRT — Radioprotection</h2>
       <div class="row"><label>RCV 50-51 MA — activité primaire</label><span class="val" id="krtP">— Bq/L</span></div>
@@ -880,6 +985,7 @@ body.shake{animation:quake .9s linear;}
       <div class="row"><label>GCTa/VVP — rejets accidentels</label><span class="val" id="krtA">0.0 GBq</span></div>
       <div class="row"><span class="note">Activité volumique en Bq/L, débit de dose en Gy/h. Isolement VVP automatique sur très haute activité des lignes vapeur (fuite/rupture tube GV).</span></div>
     </div>
+
     <div class="card">
       <h2>Bilan de réactivité</h2>
       <table class="bilan">
@@ -893,6 +999,7 @@ body.shake{animation:quake .9s linear;}
         <tr class="tot"><td>ρ total</td><td id="rTot">+0 pcm</td></tr>
       </table>
     </div>
+
     <div class="card">
       <h2 id="secInh">Inhibitions — RPR &amp; automatismes</h2>
       <div class="row"><label>AAR (arrêt automatique)</label><button class="sw" id="bInhib">INHIBER</button></div>
@@ -904,6 +1011,7 @@ body.shake{animation:quake .9s linear;}
       <div class="row"><label>Isolement VVP (KRT)</label><button class="sw inh" id="bInhKrt">INHIBER</button></div>
       <div class="row"><span class="note">Chaque ordre inhibé est consigné au journal quand il aurait dû tomber. Les inhibitions ne sont pas réinitialisées par la mise à l'état. Tout inhiber transforme les incidents en accidents graves : découvrement, endommagement du cœur, hydrogène, rupture du confinement.</span></div>
     </div>
+
     <div class="card">
       <h2>Circuits de sauvegarde — RIS / EAS</h2>
       <div class="row">
@@ -932,6 +1040,7 @@ body.shake{animation:quake .9s linear;}
       </div>
       <div class="row"><span class="note">Signal IS automatique sur très basse pression pressuriseur (&lt; 118 bar). Blocage possible sous la permissive P11 (139 bar) pour la descente normale — levé automatiquement si la pression remonte. EAS automatique sur très haute pression enceinte (&gt; 2,4 bar). Isolement enceinte à 1,4 bar.</span></div>
     </div>
+
     <div class="card">
       <h2 id="secInc">Incidents</h2>
       <div class="row">
@@ -979,6 +1088,7 @@ body.shake{animation:quake .9s linear;}
         <button class="inc" id="iRtgv">RTGV franche</button>
       </div>
     </div>
+
     <div class="card">
       <button class="au" id="bAu">Arrêt d'urgence</button>
       <div class="row" style="margin-top:9px">
@@ -988,6 +1098,7 @@ body.shake{animation:quake .9s linear;}
     </div>
   </div>
 </div>
+
 <div id="boomFx"></div>
 <div id="coreModal" style="display:none;position:fixed;inset:0;background:rgba(4,7,9,.85);z-index:50;padding:12px;overflow:auto">
   <div class="card" style="max-width:min(760px,96vw);margin:3vh auto">
@@ -1034,13 +1145,16 @@ body.shake{animation:quake .9s linear;}
   "use strict";
   function el(i){return document.getElementById(i);}
   function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+
+  
   var BETA=650, TAU=12;
-  var W_ROD=20, W_BORE=-10, W_XE=-2800;
+  var W_ROD=20, W_BORE=1, W_XE=0;
   var A_MOD=-30, DEF_PUI=-1700;
-  var LAM_I=2.87e-5, LAM_XE=2.09e-5, SIG=8.5e-5;
+  var LAM_I=2.87e-5, LAM_XE=2.09e-5, SIG=8.5e-5; 
   var K1=0.95*(LAM_XE+SIG), K2=0.05*(LAM_XE+SIG);
   var CB0=1000;
-  var F_FISS=0.935, F_RES=0.065;
+  var F_FISS=0.935, F_RES=0.065; 
+
   var S={
     Pn:1.0, Pr1:0.026, Pr2:0.024, Pr3:0.009, Pres:0.059, Ptot:1.0,
     rod:95, Cb:0, I:1.0, Xe:1.0,
@@ -1055,7 +1169,7 @@ body.shake{animation:quake .9s linear;}
     cvi:true, air:0, gctA:0,
     etat:'RP',accIso:false,easy:false, rra:false, pzrSet:155, turbRate:0.6,
     Penc:1.0, inv:100, accu:100, breche:0, sebim:false,
-    rdp:0, rdpBurst:false,
+    rdp:0, rdpBurst:false, 
     ishp:false, isbp:false, eas:false,
     sigIS:false, easLatch:false, isoEnc:false, ebaSweep:false, turbSet:100, actDvn:800, rejCum:0,
     aarInhib:false, lastInhib:-999,
@@ -1072,17 +1186,21 @@ body.shake{animation:quake .9s linear;}
     lvlCuve:100, rraF:false,
     mpsA:false, mpsB:false, tpsA:false, tpsB:false, gmppN:4,
     bacheASG:1, secOk:true, asgManualStop:false,
-    ptr:1,
-    puisard:0,
-    recirc:false
+    ptr:1,        
+    puisard:0,    
+    recirc:false  
   };
+
+  
   var SRC={
     mer:{lbl:'Mer (Manche / Mer du Nord)',sites:'Gravelines · Paluel · Penly · Flamanville',t:{hiver:7,mi:12,ete:18}},
     estuaire:{lbl:'Estuaire',sites:'Blayais',t:{hiver:8,mi:14,ete:23}},
     fleuve:{lbl:'Fleuve, circuit ouvert',sites:'Saint-Alban · Tricastin · Bugey',t:{hiver:8,mi:14,ete:24}},
     tour:{lbl:'Fleuve + aéroréfrigérants',sites:'Cattenom · Golfech · Nogent · Cruas · Civaux',t:{hiver:15,mi:20,ete:26},aero:true}
   };
-  function magnus(T){return 0.006112*Math.exp(17.62*T/(243.12+T));}
+  function magnus(T){return 0.006112*Math.exp(17.62*T/(243.12+T));} 
+
+  
   var ORDER=['RP','ANGV','ANRRA','APIF','APIO','APR','RCD'];
   var ETAT_LBL={
     RP:'RP — réacteur en production',
@@ -1093,17 +1211,12 @@ body.shake{animation:quake .9s linear;}
     APR:'APR — arrêt pour rechargement',
     RCD:'RCD — réacteur complètement déchargé'
   };
-  var PRESET={
-    RP:   {Pn:1.0,   pzrSet:155,gv:50,turb:100,rod:95,gmpp:true, rra:false},
-    ANGV: {Pn:0.0002,pzrSet:155,gv:50,turb:0,  rod:0, Cb:200, gmpp:true, rra:false, asgOn:true},
-    ANRRA:{Pn:0.0002, pzrSet:25, turb:0,  rod:0, Cb:500, gmpp:1,rra:true},
-    APIF: {Pn:0.0002, pzrSet:3,  turb:0,  rod:0, Cb:800, gmpp:false,rra:true},
-    APIO: {Pn:0.0002, pzrSet:1,  turb:0,  rod:0, Cb:1000,gmpp:false,rra:true},
-    APR:  {Pn:0.0002, pzrSet:1,  turb:0,  rod:0, Cb:2385,gmpp:false,rra:true},
-    RCD:  {Xe:0, Pn:0,Pres:0, pzrSet:1,  turb:0,  rod:0, Cb:1300,gmpp:false,rra:true}
-  };
+  var PRESET={};
   function isHot(){return S.etat==='RP'||S.etat==='ANGV';}
-  function dTgm(){return 18*S.Ptot*(S.gmppN>0?4/S.gmppN:3);}
+  
+  function dTgm(){return 18*S.Ptot*(S.gmppN>0?4/S.gmppN:3);} 
+
+  
   var logBox=el('log');
   function tstamp(){
     var tt=Math.floor(S.t),h=Math.floor(tt/3600),m=Math.floor((tt%3600)/60),s=tt%60;
@@ -1118,6 +1231,8 @@ body.shake{animation:quake .9s linear;}
     while(logBox.children.length>200)logBox.removeChild(logBox.lastChild);
   }
   el('logClear').onclick=function(){logBox.innerHTML='';};
+
+  
   var REC_CH=[
     {id:'thot', sh:'T BC',  lbl:'T branche chaude',  u:'°C',   d:1, get:function(){return S.Tavg+dTgm();}},
     {id:'tcold',sh:'T BF',  lbl:'T branche froide',  u:'°C',   d:1, get:function(){return S.Tavg-dTgm();}},
@@ -1146,17 +1261,20 @@ body.shake{animation:quake .9s linear;}
     {id:'dvn',  sh:'DVN',   lbl:'KRT cheminée DVN',  u:'Bq/m³',d:0, get:function(){return S.actDvn;}},
     {id:'tep',  sh:'TEP',   lbl:'Effluents vers TEP',u:'m³',   d:1, get:function(){return S.effl||0;}}
   ];
+
+  
+  
   var recRows=[], recRun=true, recPas=10, recNext=0;
   function recTick(){
     if(!recRun)return;
     if(S.t>=recNext){
-      recNext=(S.t-recNext<recPas*2)?recNext+recPas:S.t+recPas;
+      recNext=(S.t-recNext<recPas*2)?recNext+recPas:S.t+recPas; 
       recRows.push({t:S.t,v:REC_CH.map(function(c){var x=c.get();return isFinite(x)?x:0;})});
       if(recRows.length>3600)recRows.splice(0,600);
     }
   }
   function recEvt(txt){
-    if(!recRun)return;
+    if(!recRun)return; 
     recRows.push({t:S.t,evt:txt});
     if(recRows.length>3600)recRows.splice(0,600);
   }
@@ -1228,6 +1346,8 @@ body.shake{animation:quake .9s linear;}
     });
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(out.join('\n'));
   };
+
+  
   var CORE_ROWS=[7,11,13,13,15,15,15,15,15,15,15,13,13,11,7];
   var ASM=[],asmByHot=[];
   (function(){
@@ -1237,7 +1357,7 @@ body.shake{animation:quake .9s linear;}
       for(var c=0;c<n;c++){
         var x=off+c,y=r;
         var dx=(x-7)/7,dy=(y-7)/7,r2=dx*dx+dy*dy;
-        var tier=(x+2*y)%3;
+        var tier=(x+2*y)%3; 
         var f=(1.28-0.55*Math.min(1,r2))*[0.90,1.02,1.10][tier];
         ASM.push({i:idx++,x:x,y:y,r2:r2,tier:tier,f:f,
           bu:[36,22,8][tier]+((Math.sin(x*12.9898+y*78.233)*43758.5453)%1+1)%1*3,
@@ -1296,6 +1416,8 @@ body.shake{animation:quake .9s linear;}
     Array.prototype.forEach.call(el('coreModes').querySelectorAll('button'),function(c){c.classList.toggle('on',c===b);});
     coreRender();
   });
+
+  
   function guardDown(to){
     if(to==='ANRRA'){
       if(S.Pres>0.025)return 'puissance résiduelle trop élevée ('+Math.round(S.Pres*3800)+' MWth > 95 MWth) — poursuivre le refroidissement sur GV (accélérer le temps)';
@@ -1317,62 +1439,16 @@ body.shake{animation:quake .9s linear;}
       return 'conditions de déchargement non réunies (résiduelle, température ou pression) — le déchargement se fait depuis l\u2019APR, piscine en eau';
     return null;
   }
-  function applyEtat(e){
-    var pOld=S.Ppzr;var pnBefore=S.Pn;
-    var p=PRESET[e];
-    for(var k in p){if(k!=='Cb')S[k]=p[k];}
-    if(p.gmpp!==undefined)S.gmppN=(p.gmpp===true?4:(typeof p.gmpp==='number'?p.gmpp:0));
-    if(e==='RCD'){S.Pr1=0;S.Pr2=0;S.Pr3=0;S.Pres=0;}
-    if(e==='RP'){
-      S.Cb=clamp(-W_XE*(S.Xe-1)/W_BORE,-CB0,1500);
-      log('Calage critique au bore : '+Math.round(CB0+S.Cb)+' ppm (xénon '+Math.round(S.Xe*100)+' % éq.)','dim');
-    }else if(p.Cb!==undefined){
-      if(p.Cb!=null)S.Cb=Math.max(S.Cb,p.Cb);
-    }
-    S.turbSet=S.turb;
-    if(e==='RP'&&pnBefore<0.5){S.Pn=Math.max(pnBefore,0.03);S.turb=Math.min(S.turb,8);S.turbSet=8;S._rpRamp=true;log('Retour en production : montée AUTOMATIQUE par paliers (~3 %/min quand le cœur suit). La turbine part à 8 %.','cyan');}
-    if(e==='RP'||e==='ANGV'){S.gctSet=74;S.gctTgt=74;}
-    if(e!=='RP'&&S.Ppzr>pOld+25)S.Ppzr=pOld+25;
-    if(e!=='RP'&&p.pzrSet!==undefined&&S.Ppzr>Math.max(pOld,p.pzrSet))S.Ppzr=Math.max(pOld,p.pzrSet);
-    S.etat=e;
-    S.scram=false;S.tripMsg="";S.note="";
-    S.areAvail=true;S.asgLatch=false;
-    S.mpsA=!!p.asgOn;S.mpsB=!!p.asgOn;S.tpsA=false;S.tpsB=false;
-    if(p.asgOn)log('Configuration ASG : motopompes MPS voies A et B en service — alimentation normale des GV au palier, turbopompes TPS disponibles sur vapeur','cyan');
-    S.breche=0;S.inv=100;S.accu=Math.min(S.accu===undefined?100:S.accu,100);S.Penc=1;S.sebim=false;S.rdp=0;S.rdpBurst=false;
-    var goingUp=(S._fromIdx!==undefined)&&(ORDER.indexOf(e)<S._fromIdx);
-    if(e==='ANGV'&&goingUp){S._pzrFollow=true;S.pzrSet=Math.max(27,Math.min(31,S.Ppzr+2));log('Remontée AN/GV : la consigne pressuriseur SUIT le domaine (plancher de la figure + marge) jusqu\u2019au conditionnement complet.','cyan');}
-    if(!goingUp){S.accIso=(e==='ANRRA'||e==='APIF'||e==='APIO'||e==='APR'||e==='RCD');}
-    S.ishp=false;S.isbp=false;S.eas=false;S.sigIS=false;S.easLatch=false;S.isoEnc=false;
-    S.gctSet=74;S.gctTgt=74;el('gctSp').value=74;
-    S.reseau=true;S.diesel=false;S.ilote=false;S.runbk=false;S.gctB=0;S.rodDrop=0;
-    S.scram=false;S.tripMsg='';
-    S.viv=true;S.svf=0;S.h3=false;S.lls=false;
-    S.crf=true;S.sec=true;S.secOk=true;S.PcondX=0;S.fuiteGV=0;S.bacheASG=1;S.asgManualStop=false;
-    S.ptr=1;S.puisard=0;S.recirc=false;S.recircHot=false;
-    S.actGV=0.001;S.actCvi=0.001;S.actEnc=0.005;
-    S.h2=0;S.h2boom=false;S.encFail=false;
-    S.sebimM=false;S.pzrAuto=true;S.gctMode='auto';S.gctaMode='auto';S.rraF=false;el('iRra').textContent='Perte RRA';S.rri=true;S.rriT=0;S.rriMsg=0;el('iRri').textContent='Perte RRI';el('iRri').classList.remove('on');S.myst='';el('iMyst').textContent='🎲 Panne mystère';S.diluI=false;S.diluMsg=false;el('iDiluI').textContent='Dilution intempestive';el('iDiluI').classList.remove('on');S.rtv=0;S._rtvIso=false;S._rtvAl=false;S.rejAtmMsg=false;el('iRtv').textContent='Rupture tuyauterie vapeur (RTV)';el('iRtv').classList.remove('on');
-    if(e==='APR'||e==='RCD'){
-      if(S.gaine>0.001||S.dmg>0.001)log('Rechargement : assemblages défaillants déchargés — gaines saines','dim');
-      S.gaine=0;S.dmg=0;S.actP=0.02;
-    }
-    el('iCrf').textContent='Perte CRF';el('iSec').textContent='Perte SEC';
-    el('iApr').textContent='Brèche primaire (APRP)';el('iGmpp').textContent='Perte GMPP';
-    el('iTrip').textContent='Déclenchement turbine';el('iAre').textContent='Perte eau alimentaire normale (ARE)';
-    el('iFtgv').textContent='Fuite tube GV';el('iRtgv').textContent='RTGV franche';
-    el('iH3').textContent='Défaillance diesels (H3)';
-    el('gaineN').value=Math.round(S.gaine*200);el('gaineNVal').textContent=Math.round(S.gaine*200)+' asm';
-    el('iLoop').textContent='Perte source extérieure';
-    el('turb').value=S.turb;el('rod').value=S.rod;
-    log('OPÉRATEUR : passage à l\u2019état '+ETAT_LBL[e],'cyan');
-  }
+
+  function applyEtat(e){}
+
   function setEtat(e){
     if(e===S.etat)return;
     S._fromIdx=ORDER.indexOf(S.etat);
     var i1=ORDER.indexOf(e);
     var iC=ORDER.indexOf(S.etat);
     if(i1>iC){
+      
       for(var kk=iC+1;kk<=i1;kk++){
         var gPre=guardDown(ORDER[kk]);
         if(gPre){
@@ -1382,9 +1458,11 @@ body.shake{animation:quake .9s linear;}
         }
       }
     }
+    
+    
     var iRCD=ORDER.indexOf('RCD');
     if(iC>=iRCD&&i1<iRCD&&S.Pres<0.0018){
-      S.Pr3=Math.max(S.Pr3||0,0.0018);
+      S.Pr3=Math.max(S.Pr3||0,0.0018); 
       log('RECHARGEMENT : 193 assemblages en cuve (cœur neuf + irradiés) — puissance résiduelle ~7 MWth à évacuer.','cyan');
     }
     var iAPIO=ORDER.indexOf('APIO');
@@ -1412,311 +1490,14 @@ body.shake{animation:quake .9s linear;}
     var b=ev.target.closest('button');if(!b)return;
     setEtat(b.dataset.e);
   });
+
   function tprog(p){return 291+19*p;}
-  function tsat(p){return 100.9*Math.pow(Math.max(p,0.05),0.245);}
-  function physStep(dt){
-    if(S.turb!==S.turbSet){
-      var dTu=S.turbSet-S.turb;
-      S.turb+=clamp(dTu,-S.turbRate*dt,S.turbRate*dt);
-      if(Math.abs(dTu)<0.05)S.turb=S.turbSet;
-    }
-    S.mps=S.mpsA||S.mpsB; S.tps=S.tpsA||S.tpsB; S.gmpp=S.gmppN>0;
-    var hot=isHot();
-    if(S.cvi) S.air=Math.max(0,S.air-S.air*dt/8);
-    else S.air=Math.min(1,S.air+dt/240);
-    if(!S.crf)S.PcondX=Math.min(0.8,S.PcondX+(0.004+0.010*((S.turb/100)+S.gct))*dt);
-    else S.PcondX=Math.max(0,S.PcondX-S.PcondX*0.06*dt);
-    var Tcond=S.Tsrc+5+(10+4*S.gct)*((S.turb/100)+S.gct*0.5);
-    S.Pcond=magnus(Tcond)+S.air*0.25+S.PcondX;
-    var D=0;
-    var elecOk=S.reseau||S.diesel;
-    if(hot){
-      if(S.runbk){
-        S.turb=Math.max(7,S.turb-12*dt);S.turbSet=7;
-        if(S.turb<=7)S.runbk=false;
-      }
-      if(S.gctB>0)S.gctB-=dt;
-      if(S.rodDrop>0){S.rodDrop-=dt;S.rod=Math.max(28,S.rod-2*dt);}
-      var gctCavail=S.Pcond<0.20&&S.viv;
-      var gctReg=clamp((S.Psteam-S.gctSet)*0.08,0,1);
-      S.gct=gctCavail
-        ?(S.gctMode==='manu'?S.gctM/100:Math.max(gctReg,S.gctB>0?clamp(S.gctB/6,0,1):0))
-        :0;
-      S.gctA=S.gctaMode==='manu'?S.gctaM/100:clamp((S.Psteam-(S.gctSet+3))*0.10,0,1);
-      S.svf=clamp((S.Psteam-90)*0.25,0,1);
-      var tpsDraw=((S.tpsA?1:0)+(S.tpsB?1:0))*(0.001+0.25*(S.asg||0))*clamp((S.Psteam-6)/6,0,1);
-      D=(S.viv?(S.turb/100):0)+S.gct*0.85+S.gctA*0.4+S.svf*0.7+tpsDraw;
-      D+=S.rtv*1.6*Math.max(0,S.Psteam/71)*clamp(S.gv/22,0.12,1);
-    }else{
-      S.gct=0;S.gctA=0;
-    }
-    var rRod=(S.rod-95)*W_ROD;
-    var rBore=S.Cb*W_BORE;
-    var rXe=W_XE*(S.Xe-1);
-    var rPow=DEF_PUI*(S.Pn-1);
-    var rMod=clamp(A_MOD*(S.Tavg-tprog(S.Ptot)),-3000,800);
-    var rVoid=S.inv<85?-(85-S.inv)*90:0;
-    var rAu=S.scram?-6000:0;
-    S.rho=rRod+rBore+rXe+rPow+rMod+rVoid+rAu;
-    S.bal=[rRod,rBore,rXe,rPow,rMod,rVoid,rAu];
-    if(S.etat!=='RP'&&S.rho>0&&!S.scram){
-      S.Pn=Math.max(S.Pn,1e-6)*Math.pow(4,dt);
-      var sansAU=(S.etat==='APR'||S.etat==='RCD');
-      if(!sansAU&&S.Pn>0.03)scramReq('AU automatique : HAUT FLUX AU NIVEAU SOURCE — excursion de criticité à l\u2019arrêt (dilution non maîtrisée ?).');
-      if(sansAU){S.Pn=Math.min(S.Pn,0.04);
-        if(S.Pn>0.02&&!S.coMsg){S.coMsg=true;log('CRITICITÉ CŒUR OUVERT — aucune grappe mobilisable (couvercle déposé) : BORIQUER EN URGENCE (ISBP / eau PTR). Le cœur bout, l\u2019eau de protection s\u2019évapore.','red');}}
-    }
-    if((S.etat==='APR'||S.etat==='RCD')&&S.Pn>0.015){
-      S.Tavg=Math.min(102,S.Tavg+S.Pn*3800/2500*dt);
-      if(S.Tavg>=99&&S.Ppzr<=psat(S.Tavg)+0.5){S.inv=Math.max(0,S.inv-S.Ptot*0.85*dt);
-        if(S.inv<60)S.dmg=Math.min(1,S.dmg+0.0005*dt);}
-    }
-    if(S.scram){
-      S.rod=Math.max(0,S.rod-8*dt);
-    }else if(S.auto&&S.etat==='RP'){
-      var err=S.Tavg-tprog(Math.min(1,D));
-      var gSch=clamp(0.25+0.75*(S.turb/100),0.25,1);
-      var rate=clamp((-err*0.12-S.rho*0.0006)*gSch,-0.35*gSch,0.35*gSch);
-      var rodNew=clamp(S.rod+rate*dt,0,100);
-      if(rate<0&&rodNew<28&&S.rod>=28)rodNew=28;
-      S.rod=rodNew;
-      if(rate<-0.02&&S.rod<=28.4&&!S.rodLowMsg){
-        S.rodLowMsg=true;
-        log('EXPLOITATION : groupe R en butée basse d\u2019insertion — poursuivre la compensation par borication (réglage fin) pour remonter les grappes.','amber');
-      }
-      if(S.rod>40)S.rodLowMsg=false;
-    }
-    S.Pn+=S.Pn*(S.rho/(BETA*TAU))*dt;
-    S.Pn=clamp(S.Pn,0.0002,1.25);
-    if(S.etat==='RCD'){S.Pr1=0;S.Pr2=0;S.Pr3=0;S.Pres=0;}
-    S.Ptot=F_FISS*S.Pn+S.Pres;
-    if(hot){
-      var dry=S.gv<=1;
-      var w=clamp(S.gv/15,0,1);
-      var heat=(S.gmpp?D:D*0.25);
-      var Pth=S.Ptot+S.gmppN*0.0013;
-      var tgt=tsat(S.Psteam)+4+19*Pth+(Pth-heat)*40*(S.gmpp?1:2.5);
-      var covered=clamp((S.inv-30)/15,0,1);
-      var dWet=(tgt-S.Tavg)*(1-Math.exp(-dt/8))*covered;
-      var Pdry=Math.max(S.Pres+S.gmppN*0.0013,S.Pn*0.02)*3800;
-      var bleedOpen=(S.sebim||S.breche>0);
-      var cool=(bleedOpen&&!S.recircHot)?(S.injL||0)*clamp((S.Tavg-180)/100,0,1)*3.2:0;
-      var dDry=(Pdry/2500-cool)*dt;
-      S.Tavg+=clamp(w*dWet+(1-w)*dDry,-9*dt,((S.Ptot*3800+S.gmppN*5+2)/2500)*dt);
-      var prod=dry?0:(S.Ptot+S.gmppN*0.0013*w);
-      S.Psteam+=((prod-D)*8-(S.Psteam-71)*0.2*(S.turb/100)-(dry?(S.Psteam-4)*0.05:0))*dt;
-      S.Psteam=Math.min(S.Psteam,psat(S.Tavg));
-      S.Psteam=clamp(S.Psteam,1,120);
-      var tpaCap=clamp((S.Psteam-12)/25,0,1);
-      var areReg=S.areAvail
-        ?(S.areAuto?clamp(S.Ptot*100+(50-S.gv)*2,0,110):S.areM)
-        :0;
-      S.tpaRun=S.areAvail&&tpaCap>0&&!dry&&S.Pcond<0.20&&S.viv&&(areReg>(S.tpaRun?2.5:6));
-      S.areOut=(S.p14||(S.rtv>0&&S._rtvIso))?0:Math.min(areReg,S.tpaRun?115*tpaCap:0);
-      if(S.tpaRun)D+=0.004+0.009*(S.areOut/115);
-      var tpaTgt=S.tpaRun?clamp(22+0.8*S.areOut,0,100)*tpaCap:0;
-      S.tpaN+=(tpaTgt-S.tpaN)*(1-Math.exp(-dt/5));
-      var asgCap=((S.mpsA?0.025:0)+(S.mpsB?0.025:0))*(elecOk?1:0)
-                +((S.tpsA?0.025:0)+(S.tpsB?0.025:0))*clamp((S.Psteam-6)/6,0,1);
-      if(S.Tavg>200&&!S.rra&&!S.tpaRun&&S.areAvail&&S.gv<49.5&&!S.mpsA&&!S.mpsB&&(S.reseau||S.diesel)&&!S.inhASG){
-        S.mpsA=true;S.mpsB=true;
-        log('AUTO : bascule de l\u2019alimentation GV sur ASG (motopompes) \u2014 TPA arr\u00eat\u00e9es au minimum technique.','cyan');
-      }
-      var asgDemande=Math.min(asgCap*clamp((58-S.gv)/8,0,1),(S.Ptot<0.03&&!S.breche)?0.035:1);
-      if(asgCap>0&&S.bacheASG>0)S.bacheASG=Math.max(0,S.bacheASG-asgCap*0.00023*dt);
-      if(S.sec&&S.secOk&&S.bacheASG<1)S.bacheASG=Math.min(1,S.bacheASG+0.0018*dt);
-      var areRallie=(S.etat==='RP'&&!S.scram&&S.tpaRun&&S.areOut>2.5&&S.gv>42);
-      S.asg=((S.bacheASG>0&&!areRallie)?asgDemande:0)*((S.rtv>0&&S._rtvIso)?0.75:1);
-      S.asgVis=Math.max(S.asg>0.0005?1:0,(S.asgVis||0)-dt/4);
-      var evapGV=S.Ptot*(S.viv?1:0.35);
-      S.gv+=((S.areOut/100)+S.asg-evapGV)*4*dt;
-      S.gv=clamp(S.gv,0,100);
-      var dryP=(1-w)*clamp((S.Tavg-310)*1.2,0,45);
-      var pFloor=psat(S.Tavg+30)+1, pCeil=Math.min(S.Psteam+110, S.Tavg<=255?psat(Math.min(S.Tavg+110,370)):999,
-        (S.Tavg<179&&S.breche===0&&S.rtv===0&&S.fuiteGV===0)?30.5:999);
-      var pnat=Math.min(Math.max(S.pzrSet, pFloor), pCeil) - (100-S.inv)*1.4 + dryP;
-      if(pCeil<S.pzrSet-2&&!S._ptMsg){S._ptMsg=true;log('CONDUITE : suivi du domaine P-T \u2014 d\u00e9pressurisation pilot\u00e9e par le \u0394P max plaques GV (P \u2264 P GV + 110 bar).','cyan');}
-      if(pCeil>=S.pzrSet-2)S._ptMsg=false;
-      if(S.pzrSet<pFloor-2&&!S._flrMsg){S._flrMsg=true;log('CONDUITE : consigne pressuriseur sous le plancher du domaine (Tsat\u221230) \u2014 la pression suivra le refroidissement.','cyan');}
-      if(S.pzrSet>=pFloor-2)S._flrMsg=false;
-      var ctrl;
-      if(S.pzrAuto){
-        ctrl=clamp((pnat-S.Ppzr)*0.45,-0.9,S.sebim?0.08:0.9);
-        S.heat=S.Ppzr<pnat-0.5&&S.breche===0; S.spray=S.Ppzr>pnat+0.8;
-      }else{
-        S.heat=S.heatM; S.spray=S.sprayM;
-        ctrl=(S.heat?(S.sebim?0.08:0.3):0)-(S.spray?0.45:0);
-      }
-      var dPz=clamp((pnat-S.Ppzr)*0.12+ctrl,
-        (S.sebim||S.breche>0||S.inv<95)?-2.5:(S.Ppzr>pCeil+0.5?-0.25:-0.12),
-        0.035);
-      S.Ppzr+=dPz*dt;
-      if(S.Ppzr>172)S.sebim=true; else if(S.Ppzr<166&&!S.sebimM)S.sebim=false;
-      if(S.sebimM)S.sebim=true;
-      var fS=S.sebim?Math.max(0.12,0.2+(S.Ppzr-172)*0.06):0;
-      if(S.sebim){
-        S.Ppzr-=0.9*dt;
-        if(S.Ppzr>176)S.Ppzr=176+(S.Ppzr-176)*Math.exp(-2*dt);
-      }
-      if(fS>0&&!S.rdpBurst)S.rdp=Math.min(1.2,S.rdp+fS*0.02*dt);
-      else S.rdp=Math.max(0,S.rdp-0.0002*dt);
-      if(S.rdp>=0.9&&!S.rdpBurst){
-        S.rdpBurst=true;
-        log('DISQUE DE RUPTURE DU RÉSERVOIR DE DÉCHARGE (RDP) — la décharge SEBIM s\u2019écoule désormais dans l\u2019enceinte (scénario TMI)','red');
-      }
-      var fB=S.breche*0.25*Math.sqrt(Math.max(S.Ppzr-S.Penc,0)/155)*Math.min(1,S.inv/20);
-      if(S.ptr<=0.08&&!S.recirc&&(S.breche>0||S.sebim)){
-        S.recirc=true;
-        log('AUTO : basculement RIS/EAS en RECIRCULATION — bâche PTR épuisée, reprise sur les puisards enceinte. Refroidissement assuré par les échangeurs RRA/RRI (donc par SEC).','red');
-      }
-      var injWant=0;
-      if(elecOk&&S.ishp&&S.Ppzr<150)injWant+=0.12+(150-S.Ppzr)*0.0014;
-      if(S.Ppzr<42&&S.accu>0&&!S.accIso){injWant+=0.5;S.accu=Math.max(0,S.accu-2*dt);}
-      if(elecOk&&S.isbp&&S.Ppzr<12)injWant+=0.4;
-      var inj=injWant;
-      var rcpFull=(S.inv>=99.8);
-      if(rcpFull)inj=injWant*0.08;
-      if(!S.recirc){
-        if(S.ptr<=0){inj=0;}
-        else S.ptr=Math.max(0,S.ptr-inj*0.9*0.006*dt);
-      }else{
-        S.ptr=0;
-        if(S.puisard<=0.02)inj=injWant*0.15;
-      }
-      S.recircHot=(S.recirc&&!(S.sec&&S.secOk));
-      S.injL=inj;
-      S.inj=inj;
-      var boilLP=(S.Ppzr<45&&(S.breche>0||S.sebim))?S.Pres*0.6:0;
-      var boilDry=(dry&&S.Tavg>345)?Math.max(S.Pres,0.008)*0.9*clamp((S.Tavg-345)/40,0,1):0;
-      var boilHot=(S.recircHot&&(S.breche>0||S.sebim))?Math.max(S.Pres,0.010)*0.35:0;
-      var boil=boilLP+boilDry+boilHot;
-      var fG=S.fuiteGV>=3?0.10*clamp((S.Ppzr-S.Psteam)/140,0,1):0;
-      if(fG>0)S.gv=Math.min(100,S.gv+fG*3*dt);
-      var app=(S.breche===0&&S.fuiteGV<3&&!S.sebim&&S.inv<100)?0.02:0;
-      var injEff=S.recircHot?0:inj;
-      S.inv=clamp(S.inv+(injEff+app-fB-fS-boil-fG)*dt,0,100);
-      S.puisard=clamp(S.puisard+(fB+(S.rdpBurst?fS:0)+boil)*0.6*dt-(S.recirc?injWant*0.32*dt:0),0,1.5);
-      S.Ppzr+=(-(fB*8+fS*6)+(rcpFull?injWant*20:inj*4))*dt;
-      S.Ppzr=clamp(S.Ppzr,Math.max(1,S.Penc),190);
-      var easEff=(S.eas&&elecOk&&!S.recircHot)?(S.Penc-1)*0.012:0;
-      var rdpSpill=(S.rdpBurst&&fS>0)?fS*0.04:0;
-      S.Penc+=((fB+fS)*0.06*(S.Ppzr/155+0.3)+rdpSpill-easEff-(S.Penc-1)*0.0015)*dt;
-      S.Penc=clamp(S.Penc,1,8);
-      if(S.inv<40){
-        var Pcore=Math.max(S.Pres,S.Pn*0.02)*3800;
-        S.Tavg+=(1-covered)*(Pcore/1800+(40-S.inv)*0.02)*dt;
-      }
-      S.Tavg=clamp(S.Tavg,60,2200);
-      if(S.Tavg>800){
-        S.dmg=Math.min(1,S.dmg+clamp((S.Tavg-800)/1400,0,1)*0.0018*dt);
-      }
-      if(S.inv<40&&S.Pres>0.0008){
-        S.dmg=Math.min(1,S.dmg+((40-S.inv)/40)*0.0009*dt);
-        S.gaine=Math.max(S.gaine,S.dmg);
-      }
-      if(S.Tavg>900&&S.dmg>0.01)S.h2=Math.min(30,S.h2+clamp((S.Tavg-900)/800,0,1)*0.02*dt);
-      if(S.h2>9.5&&!S.h2boom){
-        S.h2boom=true;S.h2=Math.max(1,S.h2-8);
-        try{var _fx=document.getElementById('boomFx');if(_fx){_fx.classList.remove('go');void _fx.offsetWidth;_fx.classList.add('go');}}catch(e){}
-        S.Penc=Math.min(8,S.Penc+2.8);
-        S.encFail=true;
-        log('EXPLOSION HYDROGÈNE (déflagration > 9,5 % vol) — pic de pression, rupture du confinement','red');
-      }
-      if(S.Penc>7.0&&!S.encFail){
-        S.encFail=true;
-        log('RUPTURE DU CONFINEMENT en surpression — la troisième barrière cède, rejets massifs','red');
-      }
-      if(S.encFail){S.Penc+=(1-S.Penc)*0.008*dt;}
-      S.relEnc=(fB+fS)*S.actP*0.03+S.dmg*S.actP*0.002;
-    }else{
-      var dtc=dt;
-      S.Tavg+=clamp((((S.Pres*3800+S.gmppN*5)/2500)-((S.rra&&S.sec&&S.rri&&!S.rraF&&S.Pn<0.025)?(S.Tavg-(S.Tsrc+8))*0.0009:0))*dtc,-30/3600*dtc,70/3600*dtc);
-      S.relEnc=0;
-      S.Tavg=clamp(S.Tavg,15,350);
-      var pTgt=(S.etat==='ANRRA'&&S.Tavg>=60)?25:2.2;
-      if(S.etat==='APIF'||S.etat==='APIO'||S.etat==='APR'||S.etat==='RCD')pTgt=1.0;
-      if(S.spray)pTgt=1.0;
-      S.pzrSet+=clamp(pTgt-S.pzrSet,-0.04*dtc,0.04*dtc);
-      var pt=clamp(Math.pow(S.Tavg/100.9,1/0.245),1,120);
-      S.Psteam+=(pt-S.Psteam)*(1-Math.exp(-dtc/30));
-      S.areOut=0;if(!(S.rtv>0&&S._rtvIso))S.asg=0;S.tpaRun=false;S.tpaN=Math.max(0,S.tpaN-dtc);
-      S.Ppzr+=clamp((S.pzrSet-S.Ppzr)*(1-Math.exp(-dtc/20)),-0.07*dtc,0.035*dtc);
-      if(S.breche===0)S.Ppzr=Math.max(S.Ppzr,psat(S.Tavg));
-      S.heat=false;S.spray=false;
-      S.sebim=false;S.inj=0;
-      S.Penc+=(1-S.Penc)*(1-Math.exp(-dtc/60));
-    }
-    var eta=clamp(1+(0.055-S.Pcond)*0.9,0.88,1.04);
-    var pet=Math.max(0,(S.turb/100)*1362*Math.min(1.2,S.Psteam/71)*eta-62)*(S.viv?1:0);
-    S.Pelec+=(pet-S.Pelec)*(1-Math.exp(-dt/4));
-    if(S.turb<1) S.Pelec=Math.max(0,S.Pelec*(1-dt*0.8));
-    var turbf=S.turb/100;
-    var padmT=turbf<0.02?0.05:Math.max(0.05,S.Psteam-2-8*(1-turbf));
-    S.Padm+=(padmT-S.Padm)*(1-Math.exp(-dt/3));
-    var tCondit=(S.viv&&S.Psteam>18)?140:45;
-    S.Tare+=(Math.max(45+185*turbf*(S.viv?1:0),tCondit)-S.Tare)*(1-Math.exp(-dt/700));
-  }
-  function slowStep(dts){
-    S.I+=LAM_I*(S.Pn-S.I)*dts;
-    S.Xe+=(K1*S.I+K2*S.Pn-(LAM_XE+SIG*S.Pn)*S.Xe)*dts;
-    var cpOuvert=(S.etat==='APIO'||S.etat==='APR'||S.etat==='RCD');
-    if(S.etat==='RCD')S.Xe=Math.max(0,S.Xe-0.004*dts);
-    var balDvn=0;
-    if(S.ebaSweep){balDvn=Math.min(0.0019,S.Xe/Math.max(dts,0.001));S.Xe=Math.max(0,S.Xe-0.0019*dts);
-      if(S.Xe<=0.02){S.ebaSweep=false;log('Balayage EBA : teneur en gaz de fission résorbée — la ventilation reste en service tant que le circuit est ouvert. Rejet cumulé à la cheminée : '+S.rejCum.toFixed(1)+' GBq (gaz rares).','cyan');}}
-    else if(cpOuvert&&S.Xe>0.03){balDvn=0.0019;S.Xe=Math.max(0,S.Xe-0.0019*dts);}
-    var dvnTgt=(cpOuvert?1400:800)+balDvn*3.5e9;
-    S.actDvn+=(dvnTgt-S.actDvn)*(1-Math.exp(-dts/30));
-    S.rejCum+=balDvn*42*dts;
-    if(S.ebaSweep&&balDvn>0)S.actEnc=Math.min(S.actEnc+balDvn*1400*dts,6);
-    else if(cpOuvert&&S.actEnc>0.01)S.actEnc=Math.max(0.005,S.actEnc-0.0009*dts);
-    S.Xe=Math.max(0,S.Xe);
-    S.Pr1+=((0.026*S.Pn-S.Pr1)/((0.026*S.Pn>S.Pr1)?300:300))*dts;
-    S.Pr2+=((0.024*S.Pn-S.Pr2)/((0.024*S.Pn>S.Pr2)?3000:2400))*dts;
-    S.Pr3=S.Pr3||0;
-    S.Pr3+=((0.009*S.Pn-S.Pr3)/((0.009*S.Pn>S.Pr3)?30000:130000))*dts;
-    S.Pres=S.Pr1+S.Pr2+S.Pr3;
-    if(S.rtv>0&&S.gv>0)S.gv=Math.max(0,S.gv-1.2*S.rtv*Math.max(0.25,S.Psteam/71)*dts);
-    if(S.Psteam<45&&S.Tavg>272&&isHot()&&!S._rtvIso&&!S.inhIsoV){
-      S._rtvIso=true;S.viv=false;
-      log('ISOLEMENT VAPEUR : fermeture des vannes VIV — très basse pression VVP (découplage P/T : rupture de tuyauterie vapeur suspectée).','red');
-      scramReq('AU automatique : très basse pression vapeur — RTV suspectée.');
-    }
-    if(S._rtvIso&&S.rtv===0&&S.Psteam>50)S._rtvIso=false;
-    if(S.rtv>0&&S._rtvIso){
-      if(!S._rtvAl){S._rtvAl=true;log('CONSIGNE RTV : isolement de l\u2019alimentation du GV affecté (ARE/ASG) — GV laissé à l\u2019assèchement.','amber');}
-    } else S._rtvAl=false;
-    S.tpsOk=S.tps&&(S.tpsOk?S.Psteam>7:S.Psteam>10);
-    if(S.tpsOk!==S._tpsOkL){S._tpsOkT=S.t;S._tpsOkL=S.tpsOk;}
-    if(S.tpsOkV===undefined||S.t-(S._tpsOkT||0)>3)S.tpsOkV=S.tpsOk;
-    if(S.bori) S.Cb+=0.15*dts;
-    if(S.dilu) S.Cb-=0.15*dts;
-    if(S.diluI){S.Cb-=Math.max(0,CB0+S.Cb)*2.5e-5*dts;
-      if(S.diluCb0-S.Cb>150&&!S.diluMsg){S.diluMsg=true;log('ALARME KIT : bilan bore incohérent (écart > 150 ppm) — dilution non commandée suspectée. ISOLER l\u2019appoint REA puis boriquer.','red');}}
-    if(S.bori||S.dilu||S.diluI) S.effl=(S.effl||0)+0.0075*dts;
-    S.Cb=clamp(S.Cb,-CB0,1500);
-    S.actP+=((0.02+S.gaine*60)-S.actP)/180*dts;
-    var dpX=clamp((S.Ppzr-S.Psteam)/140,0,1);
-    var actTgt=S.fuiteGV*dpX*(S.Pn*0.40+S.actP*0.30);
-    S.actGV=Math.max(0.001,S.actGV+(actTgt-S.actGV)*(1-Math.exp(-dts/10)));
-    var dchgA=S.gctA*0.4+S.svf*0.7;
-    if(dchgA>0.001&&S.actGV>0.05){
-      S.rejAtm=(S.rejAtm||0)+dchgA*S.actGV*2.5*dts;
-      if(!S.rejAtmMsg){S.rejAtmMsg=true;
-        log('REJETS CONTAMINÉS À L\u2019ATMOSPHÈRE — la décharge GCTa/soupapes porte la vapeur d\u2019un GV actif. Conduite : équilibrer la pression primaire avec le GV isolé pour annuler la fuite, ne pas décharger le GV affecté.','red');}
-    }
-    S.actCvi=Math.max(0.001,S.actCvi+(S.actGV*0.008-S.actCvi*0.008)*dts);
-    S.actEnc=Math.max(0.005,S.actEnc+((S.relEnc||0)-(S.actEnc-0.005)*(S.encFail?0.01:0.0004))*dts);
-    S.lvlCuve=S.inv>75?100:clamp((S.inv-15)/0.6,0,100);
-    if(S._Tlast===undefined)S._Tlast=S.Tavg;
-    S._gT=0.985*(S._gT||0)+0.015*((S._Tlast-S.Tavg)/dts*3600);S._Tlast=S.Tavg;
-    var dSp=clamp(S.gctTgt-S.gctSet,-0.01*dts,0.01*dts);
-    if(dSp<0&&S._gT>27){dSp=0;
-      if(!S._gradMsg){S._gradMsg=true;log('CONDUITE : limiteur de gradient de refroidissement actif (\u2264 28 \u00b0C/h) \u2014 la consigne GCT attend la temp\u00e9rature.','cyan');}}
-    if(S._gT<24)S._gradMsg=false;
-    S.gctSet+=dSp;
-    S.t+=dts;
-  }
+  function tsat(p){return 100.9*Math.pow(Math.max(p,0.05),0.245);} 
+
+  function physStep(dt){}
+
+  function slowStep(dts){}
+
   var inhibLogT={};
   function logInhib(key,msg){
     if(S.t-(inhibLogT[key]||-999)>120){
@@ -1734,156 +1515,9 @@ body.shake{animation:quake .9s linear;}
     }
     doScram(m);
   }
-  function trips(){
-    if(S.gmppN>0&&S.Tavg<70&&(S.etat==='ANRRA'||S.etat==='APIF'||S.etat==='APIO'||S.etat==='APR'||S.etat==='RCD')){
-      S.gmppN=0;
-      log('ARRÊT DE LA DERNIÈRE GMPP — sous 70 °C la circulation forcée n\u2019est plus nécessaire (réf. Éléments de sûreté REP, IRSN) : le RRA suffit.','');
-    }
-    if(S.gmppN>0&&S.inv<72){
-      S.gmppN=0;
-      log('ARR\u00caT DES GMPP \u2014 inventaire primaire '+Math.round(S.inv)+' % : d\u00e9couvrement des tubulures de boucles, perte d\u2019aspiration des pompes.','amber');
-    }
-    var _gi=(S._Tg===undefined)?0:(S.Tavg-S._Tg)/0.05*3600; S._Tg=S.Tavg;
-    S.gradH=(S.gradH||0)+(_gi-(S.gradH||0))*(0.05/60);
-    if(S.etat!=='RP'&&Math.abs(S.gradH)>28&&!S._grMsg){S._grMsg=true;log('CONDUITE : gradient de température '+Math.abs(S.gradH).toFixed(0)+' \u00b0C/h \u2014 la figure limite \u00e0 28 \u00b0C/h. Ralentir le transitoire.','amber');}
-    if(Math.abs(S.gradH)<20)S._grMsg=false;
-    if(!isHot())return;
-    if(!S._sock)S._sock=[];
-    if(S.t-(S._sockT||0)>15){S._sockT=S.t;S._sock.push([S.Tavg,S.Ppzr]);if(S._sock.length>240)S._sock.shift();}
-    if(S.breche>0&&S.gmppN>0&&S.Ppzr<psat(S.Tavg+dTgm()+8)){
-      S.gmppN=0;
-      log('CONSIGNE APRP : ARR\u00caT DES GMPP \u2014 perte du sous-refroidissement (\u0394Tsat < 8 \u00b0C sur la branche chaude). Passage en circulation naturelle.','amber');
-    }
-    var _cool=(S._Tw!==undefined&&S.Tavg<S._Tw-0.0003);S._Tw=S.Tavg;
-    if(S._pzrFollow){
-      if(S.etat!=='ANGV'||S.Tavg>283){S._pzrFollow=false;}
-      else{var _pf=psat(S.Tavg+30)+2;if(S.Tavg>255)_pf=Math.max(_pf,27+(155-27)*(S.Tavg-255)/28);S.pzrSet=Math.max(27,Math.min(155,_pf));}
-    }
-    var _gap=S.turb-S.Pn*100;
-    if(S._rpRamp){
-      if(S.scram||S.etat!=='RP'){S._rpRamp=false;}
-      else{
-        if(_gap<8&&S.turbSet<100)S.turbSet=Math.min(100,S.turbSet+0.0025);
-        if(S.turbSet>=99.9&&S.Pn>0.97){S._rpRamp=false;log('Montée en puissance terminée : la tranche est à 100 %.','cyan');}
-      }
-    }
-    if(!S.scram&&S.Pn<0.55&&_gap>15&&!S._cfMsg){S._cfMsg=true;log('CONDUITE : la turbine appelle '+Math.round(S.turb)+' % mais le c\u0153ur ne fournit que '+Math.round(S.Pn*100)+' % \u2014 COUP DE FROID en cours. Referme les vannes ou attends que les barres remontent la puissance.','amber');}
-    if(_gap<8)S._cfMsg=false;
-    var rraWin=(S.etat==='ANGV')&&!S.rra&&S.Tavg<166&&S.Tavg>150&&_cool;
-    if(rraWin&&!S._rwMsg){S._rwMsg=true;log('CONDUITE : la fen\u00eatre de connexion du RRA se referme (limite inf\u00e9rieure 160 \u00b0C) \u2014 connecter maintenant, ou r\u00e9duire le refroidissement.','amber');}
-    if(!rraWin)S._rwMsg=false;
-    var blkDue=!S.isBlk&&!S.sigIS&&!S.scram&&S.Ppzr<145&&S.Ppzr>119;S._blkDue=blkDue;
-    var accDue=!S.accIso&&!S.scram&&S.accu>5&&S.Ppzr<58&&S.Ppzr>40&&S.pzrSet<60;S._accDue=accDue;
-    var reaDue=S.accIso&&!S.scram&&S.Ppzr>50&&S.pzrSet>60&&S.breche===0;S._reaDue=reaDue;
-    if(reaDue&&!S._reaMsg){S._reaMsg=true;log('CONDUITE : pression r\u00e9tablie \u2014 R\u00c9ALIGNER les accumulateurs RIS (sinon indisponibilit\u00e9 injection de s\u00fbret\u00e9).','amber');}
-    if(!reaDue)S._reaMsg=false;
-    if(accDue&&!S._accMsg){S._accMsg=true;log('CONDUITE : ISOLER les accumulateurs RIS avant de descendre sous 42 bar \u2014 sinon ils se vidangent dans le primaire et bloquent la d\u00e9pressurisation.','amber');}
-    if(!accDue)S._accMsg=false;
-    if(blkDue&&!S._blkMsg){S._blkMsg=true;log('CONDUITE : la pression approche P11 (139 bar) — BLOQUER le signal IS avant de poursuivre la descente (sinon IS + isolement enceinte à 118 bar).','amber');}
-    if(!blkDue)S._blkMsg=false;
-    if(S.isBlk&&S.Ppzr>=139){
-      S.isBlk=false;
-      log('AUTO : levée du blocage IS — pression au-dessus de la permissive P11','amber');
-    }
-    if(S.sigIS&&!S._isAux){S._isAux=true;
-      if(!S.inhASG){S.mpsA=true;S.mpsB=true;
-        log('Signal IS : démarrage automatique des motopompes ASG (MPS A/B).','amber');
-      }else{logInhib('asg','démarrage automatique ASG (signal IS)');}
-      if(!S.inhIsoE){S.isoEnc=true;
-        log('Signal IS : ISOLEMENT ENCEINTE PHASE A (ventilations et circuits non essentiels).','amber');
-      }else{logInhib('isoe','isolement enceinte phase A (signal IS)');}
-    }
-    if(!S.sigIS)S._isAux=false;
-    if(!S.sigIS&&S.Ppzr<118&&!S.isBlk){
-      if(S.inhIS){logInhib('is','signal IS (très basse pression pressuriseur)');}
-      else{
-        S.sigIS=true;S.ishp=true;S.isbp=true;
-        log('AUTO : SIGNAL IS — très basse pression pressuriseur ('+S.Ppzr.toFixed(0)+' bar). Démarrage ISHP + ISBP.','red');
-      }
-    }
-    if(S.actGV>1.0&&S.viv){
-      if(S.inhKrt){logInhib('krt','isolement VVP sur très haute activité vapeur (KRT)');}
-      else{
-        S.viv=false;
-        if(S.turb>1){S.turb=0;S.turbSet=0;el('turb').value=0;}
-        log('AUTO : ISOLEMENT VVP — très haute activité vapeur (chaînes KRT azote-16). Fermeture des vannes d\u2019isolement.','red');
-        if(!S.scram)scramReq('AU automatique : isolement VVP à puissance (perte du puits de chaleur, RPR).');
-      }
-    }
-    if(!S.isoEnc&&S.Penc>1.4){
-      if(S.inhIsoE){logInhib('isoe','isolement enceinte (pression enceinte haute)');}
-      else{
-      S.isoEnc=true;
-      log('AUTO : ISOLEMENT ENCEINTE — pression enceinte '+S.Penc.toFixed(2)+' bar','red');
-      if(S.viv&&!S.inhIsoV){
-        S.viv=false;
-        if(S.turb>1){S.turb=0;S.turbSet=0;el('turb').value=0;}
-        log('AUTO : ISOLEMENT VAPEUR (VVP) — fermeture des vannes d\u2019isolement vapeur. GCT-condenseur indisponible ; GCTa, soupapes GV et TPS ASG restent en amont des VIV.','red');
-      log('CONDUITE RTGV : le GV isolé sert de récipient — ramener la pression primaire à celle du GV pour ANNULER la fuite (aspersion/refroidissement) ; ne décharger le GV affecté sous aucun prétexte (rejets non filtrés).','amber');
-      }else if(S.viv&&S.inhIsoV){logInhib('isov','isolement vapeur (fermeture VIV)');}
-      }
-    }
-    if(!S.easLatch&&S.Penc>2.4){
-      if(S.inhEAS){logInhib('eas','démarrage automatique EAS (très haute pression enceinte)');}
-      else{
-        S.easLatch=true;S.eas=true;
-        log('AUTO : démarrage EAS — très haute pression enceinte ('+S.Penc.toFixed(2)+' bar)','red');
-      }
-    }
-    if(S.gv>76&&!S.p14&&isHot()&&(S.turb>1||S.areOut>1)){
-      S.p14=true;
-      log('P14 : NIVEAU GV TRÈS HAUT — isolement de l\u2019eau alimentaire normale (protection anti-primage de la turbine).','red');
-      turbTrip('protection P14 (risque d\u2019entra\u00eenement d\u2019eau)');
-    }
-    if(S.p14&&S.gv<66){S.p14=false;log('P14 retombé : niveau GV revenu en gamme — eau alimentaire à nouveau admissible.','cyan');}
-    if(S.Pcond>0.15&&S.turb>1){
-      S.note="Déclenchement turbine : vide condenseur dégradé — la vapeur ne peut plus être condensée.";
-      turbTrip('vide condenseur dégradé ('+Math.round(S.Pcond*1000)+' mbar)');
-    }
-    if(!S.viv&&S.turb>2){
-      S.note="Déclenchement turbine : vannes d'isolement vapeur fermées — plus aucune admission.";
-      turbTrip('fermeture des VIV (admission vapeur isolée)');
-    }
-    if(S.viv&&S.turb>2&&S.Psteam<18){
-      S.note="Déclenchement turbine : pression vapeur insuffisante — plus assez de vapeur pour entraîner la ligne d'arbre.";
-      turbTrip('pression vapeur insuffisante ('+S.Psteam.toFixed(0)+' bar)');
-    }
-    if(S.gv<12&&!S.asgLatch&&!S.asgManualStop){
-      if(S.inhASG){logInhib('asg','démarrage automatique ASG (niveau GV très bas)');}
-      else{
-        S.mpsA=true;S.mpsB=true;S.tpsA=true;S.tpsB=true;S.asgLatch=true;
-        S.note="Démarrage automatique de l'ASG sur niveau GV très bas.";
-        log('AUTO : démarrage ASG (MPS + TPS) sur niveau GV très bas','amber');
-      }
-    }
-    if(S.gv>35&&!S.asgManualStop){S.asgLatch=false;if(S.note&&S.note.indexOf('ASG')>=0)S.note="";}
-    if(S.scram) return;
-    var Thot=S.Tavg+dTgm();
-    if(S.Pn>1.15) scramReq("AU automatique : surpuissance neutronique (> 115 % PN).");
-    else if(Thot>335) scramReq("AU automatique : température branche chaude excessive.");
-    else if(S.gv<8) scramReq(S.areAvail
-      ?"AU automatique : niveau GV très bas — protection assèchement."
-      :"AU automatique : niveau GV très bas suite à la perte de l'eau alimentaire normale. L'ASG assure le refroidissement.");
-    else if(S.gv>97) scramReq("AU automatique : niveau GV très haut — risque d'entraînement d'eau vers la turbine.");
-    else if(S.Ppzr>163) scramReq("AU automatique : pression pressuriseur haute.");
-    else if(S.Ppzr<135&&S.Ptot>0.1) scramReq("AU automatique : pression pressuriseur basse.");
-    else if(S.gv<30&&isHot()&&(S.mpsA||S.mpsB||S.tpsA||S.tpsB||S.areAvail)) scramReq("AU automatique : niveau GV très bas.");
-    else if(S.Penc>1.3) scramReq("AU automatique : pression enceinte haute.");
-    if(!S.reseau&&!S.ilote&&S.turb>3)turbTrip('survitesse — réseau perdu sans îlotage');
-    var auxOk=S.reseau||S.turb>3;
-    if(!auxOk&&!S.h3&&!S.lls&&S.gmppN>0){
-      S.gmppN=0;S.diesel=true;
-      log('PERTE DES ALIMENTATIONS EXTERNES (LOOP) — GMPP non secourues : arrêt des quatre pompes primaires. Diesels démarrés sur les tableaux secourus.','red');
-    }
-    if(!S.rri){if(!S.rriT)S.rriT=S.t||0.001;var eRri=S.t-S.rriT;
-      if(eRri>240&&S.rriMsg<1){S.rriMsg=1;log('RRI indisponible : échauffement de la barrière thermique des GMPP — sans rétablissement, arrêt des pompes primaires inévitable','amber');}
-      if(eRri>720&&S.gmppN>0&&isHot()){S.gmppN=0;log('PERTE DES GMPP : barrière thermique hors limites (RRI indisponible)','red');}
-    }else{S.rriT=0;S.rriMsg=0;}
-    if(!S.gmpp&&S.gmppTimer>=0){
-      S.gmppTimer-=1;
-      if(S.gmppTimer<=0){scramReq("AU automatique : perte des GMPP — bas débit primaire.");S.gmppTimer=-1;}
-    }
-  }
+
+  function trips(){}
+
   function dieselCascade(){
     if(S.diesel)return;
     S.diesel=true;S.ilote=false;
@@ -1892,22 +1526,19 @@ body.shake{animation:quake .9s linear;}
     S.cvi=false;el('iCvi').textContent='Rétablir CVI';
     log('AUTO : démarrage diesels de secours LHP/LHQ — tableaux secourus LHA/LHB réalimentés. GMPP non secourues (thermosiphon). Train ARE indisponible : TPA (APP) à vapeur mais fluide de régulation (AFR), graissage (AGR) et extraction condensats (CEX) non secourus. CVI perdu. Refroidissement : ASG (MPS secourue + TPS vapeur) et GCTa.','red');
   }
-  function psat(T){return Math.pow(10,5.11564-1687.537/(T+230.17));}
+
+  function psat(T){return Math.pow(10,5.11564-1687.537/(T+230.17));} 
   function turbTrip(cause){
     if(S.turb<1&&S.turbSet<1)return;
     S.turb=0;S.turbSet=0;var tv=el('turb');if(tv)tv.value=0;
     log('DÉCLENCHEMENT TURBINE — '+cause,'red');
     if(S.Ptot>0.1&&!S.scram)scramReq('AU automatique : déclenchement turbine (puissance > P7).');
   }
-  function doScram(m){
-    S.scram=true;S.tripMsg=m;
-    if(S.turb>1||S.turbSet>1){S.turb=0;S.turbSet=0;log('Déclenchement turbine sur AAR — groupe découplé, l\u2019évacuation de la puissance passe au GCT.','amber');}
-    log('ARRÊT D\u2019URGENCE'+(m?' — '+m.replace(/^AU automatique : /,''):' (manuel)'),'red');
-    if(S.turb>1) log('AUTO : fermeture vannes admission turbine sur AU','amber');
-    S.turb=0;S.turbSet=0;el('turb').value=0;
-    if(!S.reseau)dieselCascade();
-  }
+  function doScram(m){}
+
+  
   var rod=el('rod'), turb=el('turb'), are=el('are');
+
   el('bAuto').onclick=function(){setRodMode(true);};
   el('bManu').onclick=function(){setRodMode(false);};
   function setRodMode(a){
@@ -1921,7 +1552,9 @@ body.shake{animation:quake .9s linear;}
   }
   rod.addEventListener('input',function(){if(!S.auto&&!S.scram)S.rod=+rod.value;});
   rod.addEventListener('change',function(){if(!S.auto&&!S.scram)log('OPÉRATEUR : grappes à '+rod.value+' % d\u2019extraction','cyan');});
+
   turb.addEventListener('input',function(){S.turbSet=+turb.value;});
+  
   function mkPinch(wid,sid,zid){
     var w=el(wid),sv=el(sid),zr=el(zid);if(!w||!sv)return;
     var z={s:1,x:0,y:0},pts={};
@@ -1932,9 +1565,10 @@ body.shake{animation:quake .9s linear;}
       z.y=Math.min(0,Math.max(r.height*(1-z.s),z.y));
       if(z.s<=1.02){z.s=1;z.x=0;z.y=0;}
       sv.style.transform='translate('+z.x+'px,'+z.y+'px) scale('+z.s+')';
-      if(sid==='synop'){z._po=z._po||document.getElementById('panOver');if(z._po){if(z.s>1.06)z._po.style.opacity=0;else if(z.s<1.005)z._po.style.opacity=1;}}
+      if(sid==='synop'){z._po=z._po||document.getElementById('panOver');if(z._po){if(z.s>1.06)z._po.style.opacity=0;else if(z.s<1.005)z._po.style.opacity=1;}} 
       var ta=(z.s>1)?'none':'pan-y';
-      w.style.touchAction=ta;sv.style.touchAction=ta;
+      w.style.touchAction=ta;sv.style.touchAction=ta; 
+
       zr.style.display=(z.s>1)?'block':'none';
     }
     zr.onclick=function(){z={s:1,x:0,y:0};apply();};
@@ -1963,8 +1597,10 @@ body.shake{animation:quake .9s linear;}
     });
     function up(e){delete pts[e.pointerId];}
     w.addEventListener('pointerup',up);w.addEventListener('pointercancel',up);w.addEventListener('pointerleave',up);
+    
     w.addEventListener('touchmove',function(e){if(z.s>1)e.preventDefault();},{passive:false});
   }
+  
   var _sb=document.createElement('div');_sb.id='slideBub';document.body.appendChild(_sb);
   var SFMT={rod:[1,' %'],turb:[0,' %'],gctSp:[1,' bar'],gctMan:[0,' %'],gctaMan:[0,' %'],tsrc:[1,' \u00b0C'],are:[0,' %'],gaineN:[0,' crayons']};
   function sbShow(sl){var f=SFMT[sl.id]||[0,''];var r=sl.getBoundingClientRect?sl.getBoundingClientRect():{left:0,top:0,width:100};var mn=+sl.min||0,mx=+sl.max||100,v=+sl.value||0;var x=r.left+(mx>mn?(v-mn)/(mx-mn):0.5)*r.width;_sb.textContent=v.toFixed(f[0])+f[1];_sb.style.left=x+'px';_sb.style.top=(r.top-8)+'px';_sb.classList.add('on');}
@@ -1975,13 +1611,17 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointercancel',sbHide,true);
   mkPinch('synWrap','synop','synZr');
   mkPinch('sockWrap','sockSvg','sockZr');
+  
   window.addEventListener('scroll',function(){
     if(window.scrollX!==0)window.scrollTo(0,window.scrollY);
   },{passive:true});
+  
+  
   [['mnv1','synop'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock']].forEach(function(p){
     var b=el(p[0]);if(b)b.onclick=function(){var t=el(p[1]);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});};
   });
   turb.addEventListener('change',function(){log('OPÉRATEUR : consigne vannes admission '+turb.value+' %','cyan');});
+
   el('bAreAuto').onclick=function(){setAreMode(true);};
   el('bAreManu').onclick=function(){setAreMode(false);};
   function setAreMode(a){
@@ -1995,15 +1635,19 @@ body.shake{animation:quake .9s linear;}
   }
   are.addEventListener('input',function(){S.areM=+are.value;});
   are.addEventListener('change',function(){if(!S.areAuto)log('OPÉRATEUR : vanne ARE à '+are.value+' %','cyan');});
+
   var gctSp=el('gctSp');
   gctSp.addEventListener('input',function(){S.gctTgt=+gctSp.value;});
   gctSp.addEventListener('change',function(){log('OPÉRATEUR : consigne pression GCT '+(+gctSp.value).toFixed(1)+' bar (rampe en cours)','cyan');});
+
   function bindAsg(id,key,lbl,verb){
     el(id).onclick=function(){
       S[key]=!S[key];
       if(S[key]){
+        
         S.asgManualStop=false;
       }else{
+        
         if(!(S.mpsA||S.mpsB||S.tpsA||S.tpsB)){
           S.asgManualStop=true;S.asgLatch=true;
           log('OPÉRATEUR : ASG entièrement à l\u2019arrêt — démarrage automatique inhibé jusqu\u2019à remise en service manuelle','amber');
@@ -2016,6 +1660,7 @@ body.shake{animation:quake .9s linear;}
   bindAsg('bMpsB','mpsB','motopompe ASG voie B','en service');
   bindAsg('bTpsA','tpsA','turbopompe ASG voie A','demandée');
   bindAsg('bTpsB','tpsB','turbopompe ASG voie B','demandée');
+
   function bindHold(btn,key,lbl){
     var on=function(e){e.preventDefault();if(!S[key])log('OPÉRATEUR : '+lbl+' engagée','cyan');S[key]=true;btn.classList.add('holding');};
     var off=function(){S[key]=false;btn.classList.remove('holding');};
@@ -2026,6 +1671,7 @@ body.shake{animation:quake .9s linear;}
   }
   bindHold(el('bBori'),'bori','borication RCV');
   bindHold(el('bDilu'),'dilu','dilution RCV');
+
   el('iReset').onclick=function(){location.reload();};
   el('iBoom').onclick=function(){
     try{el('synop').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
@@ -2033,11 +1679,13 @@ body.shake{animation:quake .9s linear;}
     S.aarInhib=true;S.inhIsoE=true;S.inhIsoV=true;S.inhIS=true;S.inhEAS=true;S.inhASG=true;S.inhKrt=true;
     S.breche=1;S.gaine=0.3;el('iApr').textContent='Isoler la brèche';
     var fx=el('boomFx');
+    
     setTimeout(function(){
       S.dmg=Math.max(S.dmg,0.6);S.h2=9.4;S.actP=20;
       S.inv=48;S.Ppzr=60;
       log('Fusion du cœur en cours — dépressurisation primaire, hydrogène en accumulation rapide','red');
     },1200);
+    
     setTimeout(function(){
       fx.classList.remove('go');void fx.offsetWidth;fx.classList.add('go');
       document.body.classList.add('shake');
@@ -2045,9 +1693,10 @@ body.shake{animation:quake .9s linear;}
       S.turb=0;S.turbSet=0;el('turb').value=0;S.Pelec=0;
       S.viv=false;S.gmpp=false;S.gmppTimer=-1;
       S.gv=12;S.Psteam=28;S.Ppzr=25;S.inv=25;
-      S.Penc=4.2;S.h2=12;
+      S.Penc=4.2;S.h2=12; 
       log('DÉFLAGRATION — salle des machines et lignes vapeur dévastées, perte totale de la production','red');
     },2600);
+    
     setTimeout(function(){
       S.inv=12;S.dmg=1;S.gaine=1;
       log('Découvrement complet du cœur — la tranche est perdue. Réinitialiser pour rejouer.','red');
@@ -2163,7 +1812,7 @@ body.shake{animation:quake .9s linear;}
   };
   el('gaineN').addEventListener('input',function(){
     var n=+el('gaineN').value;
-    if(S.dmg>0.01){el('gaineN').value=Math.round(S.gaine*200);return;}
+    if(S.dmg>0.01){el('gaineN').value=Math.round(S.gaine*200);return;} 
     S.gaine=n/200;
     el('gaineNVal').textContent=n+' asm';
   });
@@ -2264,6 +1913,7 @@ body.shake{animation:quake .9s linear;}
     S.eas=false;S.ishp=false;S.isbp=false;
     log('INCIDENT injecté : DÉFAILLANCE DES DIESELS LHP/LHQ — perte totale des sources électriques (situation H3). Démarrage du turbo-alternateur d\u2019ultime secours LLS : instrumentation et joints GMPP alimentés. Moyens restants : ASG turbopompe (TPS, vapeur GV) et GCTa. MPS, RIS et EAS non alimentés.','red');
   };
+
   var INH_BTNS=[['bInhIS','inhIS','signal IS'],['bInhEAS','inhEAS','EAS automatique'],['bInhASG','inhASG','ASG automatique'],['bInhIsoE','inhIsoE','isolement enceinte'],['bInhIsoV','inhIsoV','isolement vapeur (VIV)'],['bInhKrt','inhKrt','isolement VVP sur très haute activité (KRT)']];
   INH_BTNS.forEach(function(cf){
     el(cf[0]).onclick=function(){
@@ -2502,6 +2152,7 @@ body.shake{animation:quake .9s linear;}
     S.isBlk=!S.isBlk;
     log('OPÉRATEUR : signal IS '+(S.isBlk?'BLOQUÉ (permissive P11)':'débloqué'),'cyan');
   };
+
   el('bAu').onclick=function(){doScram("");};
   [['tr02',0.2],['tr06',0.6],['tr12',1.2]].forEach(function(p){
     el(p[0]).onclick=function(){S.turbRate=p[1];
@@ -2547,6 +2198,8 @@ body.shake{animation:quake .9s linear;}
     log('OPÉRATEUR : réarmement — GMPP, ARE, CVI rétablis et VIV rouvertes','cyan');
     if(!S.auto){rod.value=S.rod;}
   };
+
+  
   var srcSel=el('srcSel');
   Object.keys(SRC).forEach(function(k){
     var o=document.createElement('option');
@@ -2571,6 +2224,8 @@ body.shake{animation:quake .9s linear;}
   el('tsrc').addEventListener('input',function(){S.Tsrc=+el('tsrc').value;});
   el('tsrc').addEventListener('change',function(){log('OPÉRATEUR : T source froide réglée à '+S.Tsrc+' °C','cyan');});
   applySrc(false);
+
+  
   function setGctMode(m){
     S.gctMode=m;
     el('bGctA').classList.toggle('on',m==='auto');
@@ -2595,6 +2250,8 @@ body.shake{animation:quake .9s linear;}
   el('bGctaA').onclick=function(){if(S.gctaMode!=='auto')setGctaMode('auto');};
   el('bGctaM').onclick=function(){if(S.gctaMode!=='manu')setGctaMode('manu');};
   el('gctaMan').addEventListener('input',function(){S.gctaM=+el('gctaMan').value;});
+
+  
   el('bVivF').onclick=function(){
     if(!S.viv)return;
     S.viv=false;
@@ -2607,6 +2264,8 @@ body.shake{animation:quake .9s linear;}
     S.viv=true;
     log('OPÉRATEUR : réouverture des VIV','cyan');
   };
+
+  
   function setPzrMode(a){
     S.pzrAuto=a;
     el('bPzrA').classList.toggle('on',a);
@@ -2626,6 +2285,8 @@ body.shake{animation:quake .9s linear;}
     log(S.sebimM?'OPÉRATEUR : OUVERTURE VOLONTAIRE SEBIM — décharge primaire (gavé-ouvert)'
                :'OPÉRATEUR : refermeture SEBIM (commande volontaire levée)','red');
   };
+
+  
   function bindInh(id,key,lbl){
     el(id).onclick=function(){
       S[key]=!S[key];
@@ -2640,6 +2301,8 @@ body.shake{animation:quake .9s linear;}
   bindInh('bInhEAS','inhEAS','EAS automatique');
   bindInh('bInhASG','inhASG','ASG automatique');
   bindInh('bInhKrt','inhKrt','isolement VVP sur activité (KRT)');
+
+  
   function setDig(sel){
     S.digSel=sel;
     var th=sel==='th';
@@ -2657,11 +2320,14 @@ body.shake{animation:quake .9s linear;}
   }
   el('tabTh').addEventListener('click',function(){setDig('th');});
   el('tabE').addEventListener('click',function(){setDig('e');});
+
   el('accel').addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
     S.accel=+b.dataset.a;
     Array.prototype.forEach.call(el('accel').children,function(c){c.classList.toggle('on',c===b);});
   });
+
+  
   var msg=el('msg'), clock=el('clock');
   var renderTick=0, recRT=0;
   function fmt(x,d){return x.toFixed(d===undefined?1:d);}
@@ -2681,9 +2347,11 @@ body.shake{animation:quake .9s linear;}
     aActE:'Activité enceinte (KRT EBA)',aDmg:'Endommagement du cœur',
     aH2:'Concentration H2 enceinte'
   };
+  
+  
   var alState={},alPend={};
   function alTrack(id,st){
-    if(!(id in AL_LBL))return;
+    if(!(id in AL_LBL))return; 
     var cur=alState[id]||'';
     if(st===cur){delete alPend[id];return;}
     var p=alPend[id];
@@ -2695,6 +2363,7 @@ body.shake{animation:quake .9s linear;}
       else log('Disparition : '+AL_LBL[id],'dim');
     }
   }
+  
   var valveState={},valvePend={};
   function valveTrack(key,open,onTxt,offTxt,onCls){
     var cur=valveState[key]||false;
@@ -2706,10 +2375,13 @@ body.shake{animation:quake .9s linear;}
       log(open?onTxt():offTxt(),open?(onCls||'amber'):'dim');
     }
   }
+
   function render(){
     var Thot=S.Tavg+dTgm();
     var dry=S.gv<=1;
     var hot=isHot();
+
+    
     el('etatChip').textContent=S.etat;
     el('etatChip').style.color=S.etat==='RP'?'var(--green)':'var(--amber)';
     Array.prototype.forEach.call(el('etats').querySelectorAll('button'),function(b){
@@ -2717,6 +2389,8 @@ body.shake{animation:quake .9s linear;}
     });
     el('rraTxt').textContent=S.rra?'en service':'isolé';
     el('rraTxt').setAttribute('fill',S.rra?'#4fc57a':'#5d6d75');
+
+    
     el('rods').setAttribute('transform','translate(0,'+((100-S.rod)*0.99)+')');
     el('rodTxt').textContent='Grappes '+fmt(S.rod,1)+' %';
     var glow=Math.min(1,S.Ptot);
@@ -2728,10 +2402,14 @@ body.shake{animation:quake .9s linear;}
     el('pzrTxt').textContent=fmt(S.Ppzr,1)+' b';
     el('pzrHeat').setAttribute('opacity',S.heat?1:0);
     el('pzrSpray').setAttribute('opacity',S.spray?1:0);
-    var yl=Math.max(176,385-S.gv*4.18);
+
+    
+    var yl=Math.max(176,385-S.gv*4.18); 
     el('gvWater').setAttribute('y',yl);
     el('gvWater').setAttribute('height',385-yl);
     el('gvTxt').textContent='NGV '+fmt(S.gv,0)+' %';
+
+    
     el('digPe').textContent=String(Math.round(S.Pelec));
     el('admTxt').textContent=Math.round(S.turb)+' %';
     var admCol=S.turb>1?'#e4ecef':'#3a4a40';
@@ -2753,33 +2431,41 @@ body.shake{animation:quake .9s linear;}
       ?((S.areAuto?'Auto · ':'Manu · ')+Math.round(S.areOut)+' %')
       :'INDISPONIBLE';
     el('fSteam').style.opacity=(!dry&&S.Ptot>0.02)?0.55:0.06;
-    el('fFw').style.opacity=S.areOut>1?0.55:0;
+    el('fFw').style.opacity=S.areOut>1?0.55:0; 
     el('tpaTxt').textContent=Math.round(S.tpaN)+' %';
     el('tpaSteam').setAttribute('opacity',S.tpaRun?0.7:0.2);
     el('iTpa').setAttribute('opacity',S.tpaRun?1:0.25);
     var _gl=el('iGmppL');if(_gl){_gl.setAttribute('opacity',S.gmppN>0?1:0.25);_gl.setAttribute('fill',S.gmppN>=4?'#3ae065':(S.gmppN>0?'#f0a91c':'#3ae065'));}
-    el('fRcv').setAttribute('opacity',S.gmppN>0?0.85:0);
+    el('fRcv').setAttribute('opacity',S.gmppN>0?0.85:0); 
     el('cTpa').setAttribute('stroke',S.tpaRun?'#4fc57a':'#3b4a54');
     el('tpaVal').textContent=S.tpaRun?('en service · '+Math.round(S.tpaN)+' %'):'à l\u2019arrêt';
+
+    
     el('asgpipe').setAttribute('opacity',S.asg>0?1:0.25);
     el('fAsg').setAttribute('opacity',(0.9*(S.asgVis||0)).toFixed(2));
     var mpsRun=S.mps&&(S.reseau||S.diesel)&&isHot();
+    
+    
     el('iMps').setAttribute('opacity',((S.mpsA||S.mpsB)&&eOk)?1:0.25);
     el('iTps').setAttribute('opacity',((S.tpsA||S.tpsB)&&S.tpsOkV)?1:0.25);
     el('cMps').setAttribute('stroke',mpsRun?'#4fc57a':'#3b4a54');
     el('cTps').setAttribute('stroke',S.tpsOkV?'#4fc57a':(S.tps?'#8c6d1e':'#3b4a54'));
     el('tpsSteam').setAttribute('opacity',S.tpsOkV?0.7:0.25);
     el('asgTxt').textContent=Math.round(S.asg*100)+' %';
+
+    
     el('sThot').textContent=fmt(Thot)+' °C';
     el('sTcold').textContent=fmt(S.Tavg-dTgm())+' °C';
     el('sPgv').textContent=fmt(S.Psteam)+' bar';
-    el('sTvap').textContent=fmt(Math.min(tsat(S.Psteam),S.Tavg),0)+' °C';
+    el('sTvap').textContent=fmt(Math.min(tsat(S.Psteam),S.Tavg),0)+' °C'; 
     el('sPadm').textContent=fmt(S.Padm)+' bar';
     el('sPcond').textContent=Math.round(S.Pcond*1000)+' mbar';
     el('sTare').textContent=fmt(S.Tare,0)+' °C';
     el('sPenc').textContent=fmt(S.Penc,2)+' bar';
     el('sPenc').setAttribute('fill',S.Penc>1.3?'#e6483d':S.Penc>1.1?'#e8a33d':'#4fc57a');
     el('easSpray').setAttribute('opacity',S.eas?1:0);
+
+    
     el('bIshp').classList.toggle('on',!!S.ishp);
     el('bIsbp').classList.toggle('on',!!S.isbp);
     el('bEas').classList.toggle('on',!!S.eas);
@@ -2793,11 +2479,15 @@ body.shake{animation:quake .9s linear;}
     el('bIsBlk').classList.toggle('warn',!!S.isBlk);
     el('bIsBlk').textContent=S.isBlk?'BLOQUÉ':'BLOQUER';
     el('isBlkVal').textContent=S.isBlk?'actif':(S.Ppzr<139?'possible':'P > P11');
+
+    
     var csrc=SRC[S.srcType];
     el('crfTxt').textContent=S.crf?('CRF · '+csrc.lbl.split(' ')[0].toLowerCase()+' '+S.Tsrc.toFixed(0)+' °C'):'CRF · PERDU';
     el('gAero').setAttribute('opacity',csrc.aero?1:0);
     var pan=el('gPanache');
     if(pan){var uP=S.turb/100;
+      
+      
       pan.setAttribute('opacity',csrc.aero?(0.5+0.3*uP).toFixed(2):0);
       pan.setAttribute('transform','translate(930,288) scale('+(0.55+0.45*uP).toFixed(3)+','+(0.3+0.7*uP).toFixed(3)+') translate(-930,-288)');
     }
@@ -2806,11 +2496,14 @@ body.shake{animation:quake .9s linear;}
     el('secTxt').setAttribute('fill',S.sec?'#4fc57a':'#e6483d');
     el('tsrcVal').textContent=S.Tsrc.toFixed(1)+' °C';
     el('pTsrc').textContent=S.Tsrc.toFixed(1)+' °C';
-    var headOn=(S.etat!=='APR'&&S.etat!=='RCD');
+
+    
+    var headOn=(S.etat!=='APR'&&S.etat!=='RCD'); 
     el('gHead').style.opacity=headOn?1:0;
     el('gHeadB').style.opacity=headOn?1:0;
+    
     var lvw=S.lvlCuve/100;
-    var topW=headOn?106:158;
+    var topW=headOn?106:158; 
     el('vesselWater').setAttribute('y',(362-lvw*(362-topW)).toFixed(1));
     el('vesselWater').setAttribute('height',(lvw*(362-topW)).toFixed(1));
     el('ptrFill').setAttribute('y',(530-24*S.ptr).toFixed(1));
@@ -2848,6 +2541,8 @@ body.shake{animation:quake .9s linear;}
         rct.setAttribute('fill','rgb('+Math.round(58+150*Math.min(1,loc))+','+Math.round(36+50*Math.min(1,loc)*(S.dmg>0.05?0.4:1))+',22)');
       });
     }
+
+    
     el('rpnP').textContent=(S.Pn*100).toFixed(1)+' %';
     el('rpnI').textContent=S.Pn>1e-4?(Math.log10(S.Pn*100)).toFixed(2)+' décades':'< seuil';
     var keff=1+S.rho*1e-5;
@@ -2859,18 +2554,30 @@ body.shake{animation:quake .9s linear;}
     el('pLvl').className='v'+(S.lvlCuve<60?' r':(S.lvlCuve<95?' a':''));
     el('pH2').textContent=S.h2.toFixed(1)+' %';
     el('pH2').className='v'+(S.h2>8?' r':(S.h2>4?' a':''));
+
+    
+    
     function eng(x,unit){
+      
       var a=Math.abs(x),p='',m=x;
       if(a>=1e9){m=x/1e9;p='G';}else if(a>=1e6){m=x/1e6;p='M';}else if(a>=1e3){m=x/1e3;p='k';}
       else if(a>0&&a<1e-3){m=x/1e-6;p='µ';}else if(a>0&&a<1){m=x/1e-3;p='m';}
       return (Math.abs(m)>=100?m.toFixed(0):m.toFixed(1))+' '+p+unit;
     }
+    
     var bqP=Math.min(5e11,2e7*Math.pow(10,clamp(Math.log10(1+S.actP*50),0,4.4)));
+    
     var gyV=Math.min(50,0.01e-3*Math.pow(10,clamp(S.actGV,0,6.7)));
+    
+    
+    
+    
     var dpLeak=S.fuiteGV>=3?clamp((S.Ppzr-Math.max(S.Psteam*0.5,S.Penc))/140,0.15,1):clamp((S.Ppzr-S.Psteam)/140,0,1);
     var leakLh = S.fuiteGV<=0 ? 2.4
                : S.fuiteGV*dpLeak*(S.fuiteGV>=3?9000:220);
+    
     var bqC=Math.min(1e9,1e5*Math.pow(10,clamp(S.actCvi*1.5,0,4)));
+    
     var gyE=Math.min(200,0.5e-3*Math.pow(10,clamp(Math.log10(1+S.actEnc*30),0,5.6)));
     function fk2(id,val,unit,seuilA,seuilR){
       el(id).textContent=eng(val,unit);
@@ -2878,12 +2585,15 @@ body.shake{animation:quake .9s linear;}
     }
     fk2('krtP',bqP,'Bq/L',1e9,1e10);
     fk2('krtV',gyV,'Gy/h',0.5,5);
+    
     el('krtVleak').textContent=eng(leakLh,'L/h');
     el('krtVleak').style.color=leakLh>5000?'var(--red)':(leakLh>50?'var(--amber)':'var(--green)');
     fk2('krtC',bqC,'Bq/L',1e7,1e8);
     fk2('krtE',gyE,'Gy/h',0.1,1);
     el('sKrtV').textContent=eng(leakLh,'L/h');
     el('sKrtV').setAttribute('fill',S.actGV>1?'#e6483d':(S.actGV>0.2?'#e8a33d':'#4fc57a'));
+
+    
     el('vivVal').textContent=S.viv?'ouvertes':'FERMÉES';
     el('vivVal').style.color=S.viv?'var(--green)':'var(--red)';
     el('bVivO').classList.toggle('on',!!S.viv);
@@ -2895,7 +2605,11 @@ body.shake{animation:quake .9s linear;}
     if(coreOpen&&(renderTick++%8===0))coreRender();
     recRT++;
     if(recRT%30===0)recRender();
+
+    
     el('digMain').textContent=S.digSel==='th'?String(Math.round(S.Ptot*3800)):String(Math.round(S.Pelec));
+
+    
     if(S.auto||S.scram) rod.value=S.rod;
     if(S.runbk) turb.value=Math.round(S.turb);
     el('rodVal').textContent=fmt(S.rod,1)+' %';
@@ -2911,7 +2625,9 @@ body.shake{animation:quake .9s linear;}
     el('bTpsB').classList.toggle('on',S.tpsB&&S.tpsOkV);
     el('bTpsA').classList.toggle('warn',S.tpsA&&!S.tpsOkV);
     el('bTpsB').classList.toggle('warn',S.tpsB&&!S.tpsOkV);
-    S.svaOn=S.svaOn?(S.Psteam<14):(S.Psteam<11);
+    
+    
+    S.svaOn=S.svaOn?(S.Psteam<14):(S.Psteam<11); 
     el('svaVal').textContent=S.svaOn?'EN SERVICE (conditionnement TPS/TPA)':'en attente';
     var nM=(S.mpsA?1:0)+(S.mpsB?1:0), nT=(S.tpsA?1:0)+(S.tpsB?1:0);
     el('mpsVal').textContent=nM?(eOk?(nM*2.5).toFixed(1)+' %':'NON ALIMENTÉES'):'arrêt';
@@ -2930,6 +2646,8 @@ body.shake{animation:quake .9s linear;}
     el('pzrH').style.color=S.heat?'var(--amber)':'var(--dim)';
     el('pzrS').textContent=S.spray?'OUVERTE':'fermée';
     el('pzrS').style.color=S.spray?'var(--cyan)':'var(--dim)';
+
+    
     el('pPth').textContent=Math.round(S.Ptot*3800)+' MWth';
     el('pPres').textContent=Math.round(S.Pres*3800)+' MWth';
     el('pPe').textContent=Math.round(S.Pelec)+' MWe';
@@ -2940,7 +2658,7 @@ body.shake{animation:quake .9s linear;}
     el('pPvap').textContent=fmt(S.Psteam)+' bar';
     el('pGv').textContent=fmt(S.gv)+' %';
     el('pGv').className='v'+(dry?' r':(S.gv<25?' a':''));
-    el('pGct').textContent=S.gct>0.001?((S.gct<0.1?(S.gct*100).toFixed(1):Math.round(S.gct*100))+' %'):'Fermé';
+    el('pGct').textContent=S.gct>0.001?((S.gct<0.1?(S.gct*100).toFixed(1):Math.round(S.gct*100))+' %'):'Fermé'; 
     el('pGct').className='v'+(S.gct>0.02?' a':'');
     el('pAsg').textContent=S.asg>0?Math.round(S.asg*100)+' %':'Arrêt';
     el('pAsg').className='v'+(S.asg>0?' a':'');
@@ -2960,6 +2678,8 @@ body.shake{animation:quake .9s linear;}
     el('pXe').className='v'+(S.Xe>1.06?' a':'');
     el('pI').textContent=Math.round(S.I*100)+' % éq.';
     el('pRod').textContent=fmt(S.rod)+' %';
+
+    
     var b=S.bal||[0,0,0,0,0,0,0];
     el('rRod').textContent=pcm(b[0]);
     el('rBore').textContent=pcm(b[1]);
@@ -2969,6 +2689,8 @@ body.shake{animation:quake .9s linear;}
     el('rVoid').textContent=pcm(b[5]);
     el('rAu').textContent=pcm(b[6]);
     el('rTot').textContent=pcm(S.rho);
+
+    
     valveTrack('tpa',!!S.tpaRun,
       function(){return 'AUTO : TPA en service — vapeur barillet disponible';},
       function(){return 'AUTO : ARRÊT TPA — vapeur GV insuffisante ou train alimentaire indisponible. Alimentation GV à reprendre par l\u2019ASG.';});
@@ -2985,6 +2707,8 @@ body.shake{animation:quake .9s linear;}
     valveTrack('sebim',S.sebim,
       function(){return 'AUTO : OUVERTURE SOUPAPES SEBIM — pression pressuriseur '+S.Ppzr.toFixed(0)+' bar';},
       function(){return 'AUTO : refermeture soupapes SEBIM';},'red');
+
+    
     setAl('aOver',hot&&S.Pn>1.10?'red':hot&&S.Pn>1.03?'amber':'');
     setAl('aThot',hot&&Thot>335?'red':hot&&Thot>330?'amber':'');
     setAl('aGvLo',!hot?'':S.gv<12?'red':S.gv<25?'amber':'');
@@ -3001,13 +2725,13 @@ body.shake{animation:quake .9s linear;}
     setAl('aPzrHi',!hot?'':S.Ppzr>160?'red':S.Ppzr>157.5?'amber':'');
     setAl('aPzrLo',(!hot||S.Ptot<0.1)?'':S.Ppzr<140?'red':S.Ppzr<148?'amber':'');
     setAl('aBlkIS',S._blkDue?'amber':'');
-    var ptBad=(S.Tavg>120&&S.inv>95&&S.breche===0&&S.Ppzr<psat(S.Tavg+30)-3)||(S.Ppzr>S.Psteam+112)||(S.Tavg<=255&&S.Tavg>120&&S.Ppzr>psat(S.Tavg+110)+4)||(S.etat==='ANRRA'&&(S.Tavg>182&&S.Ppzr>33))||(S.Tavg<178&&S.Tavg>75&&S.Ppzr>32&&S.breche===0&&S.rtv===0&&S.fuiteGV===0&&S.inv>95);
+    var ptBad=(S.Tavg>120&&S.inv>95&&S.breche===0&&S.Ppzr<psat(S.Tavg+30)-3)||(S.Ppzr>S.Psteam+112)||(S.Tavg<=255&&S.Tavg>120&&S.Ppzr>psat(S.Tavg+110)+4)||(S.etat==='ANRRA'&&(S.Tavg>182&&S.Ppzr>33))||(S.Tavg<178&&S.Tavg>75&&S.Ppzr>32&&S.breche===0&&S.rtv===0&&S.fuiteGV===0&&S.inv>95); 
     S._ptBad=ptBad;setAl('aPT',ptBad?'red':'');
     setAl('aAcc',S._accDue?'amber':'');
     INH_BTNS.forEach(function(cf){var b=el(cf[0]);if(b){b.classList.toggle('warn',!!S[cf[1]]);var t=S[cf[1]]?'INHIBÉ':'INHIBER';if(b.textContent!==t)b.textContent=t;}});
     setAl('aMan',(hot&&!S.auto&&!S.scram)?'amber':'');
     setAl('aGmpp',(S.gmppN===0&&(hot||(S.etat==='ANRRA'&&S.Tavg>=70)))?'red':'');
-    setAl('aDom',(S.breche===0&&!S.sebim&&S.dmg<0.01&&S.Tavg<177&&S.Ppzr>32.5)?'red':'');
+    setAl('aDom',(S.breche===0&&!S.sebim&&S.dmg<0.01&&S.Tavg<177&&S.Ppzr>32.5)?'red':''); 
     setAl('aAu',S.scram?'red':'');
     setAl('aXe',hot&&S.Xe>1.08?'amber':'');
     setAl('aPenc',S.Penc>1.3?'red':S.Penc>1.1?'amber':'');
@@ -3035,6 +2759,8 @@ body.shake{animation:quake .9s linear;}
     setAl('aDmg',S.dmg>0.2?'red':S.dmg>0.02?'amber':'');
     setAl('aH2',S.h2>8?'red':S.h2>4?'amber':'');
     setAl('aEncF',S.encFail?'red':'');
+
+    
     var ETAT_MSG={
       ANRRA:"AN/RRA : réacteur sous-critique boré, refroidissement assuré par le RRA (primaire ~25 bar), GV à l'arrêt.",
       APIF:"API circuit primaire fermé : primaire froid et dépressurisé, RRA en service, GMPP à l'arrêt.",
@@ -3108,16 +2834,21 @@ body.shake{animation:quake .9s linear;}
     }else{
       msg.textContent="Régime établi. Les grappes tiennent Tmoy au programme, la puissance réacteur suit l'appel de vapeur.";
     }
+
     var tt=Math.floor(S.t);
     var h=Math.floor(tt/3600),m=Math.floor((tt%3600)/60),s=tt%60;
     clock.textContent='T+'+(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s+(S.accel>1?'  ×'+S.accel:'');
     if(window.renderSock)window.renderSock();
     if((S.easy||S.mis)&&S.t-(S._easyT||0)>1){S._easyT=S.t;var em=el('easyMsg');if(em)em.textContent=window.__easyMsg();}
   }
+
+  
   var last=performance.now(), acc=0, DT=0.05, _lr=0;
   function loop(now){
     var dr=Math.min(0.25,(now-last)/1000); last=now; acc+=dr;
     while(acc>=DT){
+      
+      
       for(var k=0;k<S.accel;k++){
         physStep(DT);
         slowStep(DT);
@@ -3126,13 +2857,50 @@ body.shake{animation:quake .9s linear;}
       }
       acc-=DT;
     }
+    
+    
     if(now-_lr>=250){_lr=now;render();}
     requestAnimationFrame(loop);
   }
   setDig('th');
   render();
   requestAnimationFrame(loop);
+
+  
   window.__sim={S:S,physStep:physStep,slowStep:slowStep,trips:trips};
+})();
+
+;(function(){ // chassis reseau : le moteur vit sur le serveur ; le serveur est le maitre
+var SRV='https://moteur.simurep.fr';var sid=null;try{sid=localStorage.getItem('rep_sid');}catch(e){}
+function hdr(){var h={'content-type':'application/json'};if(sid)h['x-sid']=sid;return h;}
+function cmd(o){fetch(SRV+'/cmd',{method:'POST',headers:hdr(),body:JSON.stringify(o)}).catch(function(){});}
+window.__net={cmd:cmd};
+var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrMode','rod','rodMode','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','srcSel','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaineN','speed'];
+var prev=null,lastLogT=-1;
+function pull(){
+  fetch(SRV+'/state',{headers:hdr()}).then(function(r){
+    var ns=r.headers.get('x-sid');if(ns&&ns!==sid){sid=ns;try{localStorage.setItem('rep_sid',sid);}catch(e){}}
+    return r.json();
+  }).then(function(d){
+    var logs=d._logs||[];delete d._logs;delete d._speed;
+    for(var k in d){
+      if(prev&&CMD.indexOf(k)>=0&&S[k]!==prev[k]){cmd({type:'set',k:k,v:S[k]});d[k]=S[k];} // l'utilisateur a agi : sa volonte part au serveur
+      S[k]=d[k];
+    }
+    if(prev===null)prev={};for(var k2 in d)prev[k2]=d[k2];
+    if(!prev._init){prev._init=1;}
+    for(var i=0;i<logs.length;i++){if(logs[i].t>lastLogT){lastLogT=logs[i].t;try{log(logs[i].txt,logs[i].cls);}catch(e){}}}
+    var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur en ligne';el.style.color='#2c7a2c';}
+  }).catch(function(){var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur injoignable';el.style.color='#a03030';}});
+}
+setInterval(pull,250);pull();
+window.setEtat=function(e){cmd({type:'etat',e:e});};
+window.doScram=function(m){cmd({type:'scram'});};
+var au=document.getElementById('bAu');if(au)au.onclick=function(){cmd({type:'scram'});};
+var re2=document.getElementById('bRearm');if(re2){var old=re2.onclick;re2.onclick=function(){cmd({type:'rearm'});};}
+document.querySelectorAll('button').forEach(function(b){
+  if(/^i[A-Z]/.test(b.id||'')){b.onclick=function(){cmd({type:'incident',id:b.id});};}
+});
 })();
 </script>
 </body>
