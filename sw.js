@@ -18,7 +18,8 @@ self.addEventListener('activate', function (e) {
   );
 });
 
-self.addEventListener('fetch', function (e) {
+self.addEventListener('fetch', function (e) {if(e.request.url.indexOf('moteur.simurep.fr')>=0)return; // l'API moteur passe TOUJOURS au réseau, jamais au cache
+
   e.respondWith(
     fetch(e.request).then(function (r) {
       var copy = r.clone();
