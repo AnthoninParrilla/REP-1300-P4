@@ -2882,16 +2882,17 @@ function pull(){
     var ns=r.headers.get('x-sid');if(ns&&ns!==sid){sid=ns;try{localStorage.setItem('rep_sid',sid);}catch(e){}}
     return r.json();
   }).then(function(d){
-    var logs=d._logs||[];delete d._logs;delete d._speed;
-    for(var k in d){
-      if(prev&&CMD.indexOf(k)>=0&&S[k]!==prev[k]){cmd({type:'set',k:k,v:S[k]});d[k]=S[k];} // l'utilisateur a agi : sa volonte part au serveur
-      S[k]=d[k];
-    }
-    if(prev===null)prev={};for(var k2 in d)prev[k2]=d[k2];
-    if(!prev._init){prev._init=1;}
-    for(var i=0;i<logs.length;i++){if(logs[i].t>lastLogT){lastLogT=logs[i].t;try{log(logs[i].txt,logs[i].cls);}catch(e){}}}
+    try{
+      var logs=d._logs||[];delete d._logs;delete d._speed;
+      for(var k in d){
+        if(prev&&CMD.indexOf(k)>=0&&S[k]!==prev[k]){cmd({type:'set',k:k,v:S[k]});d[k]=S[k];}
+        S[k]=d[k];
+      }
+      if(prev===null)prev={};for(var k2 in d)prev[k2]=d[k2];
+      for(var i=0;i<logs.length;i++){if(logs[i].t>lastLogT){lastLogT=logs[i].t;try{log(logs[i].txt,logs[i].cls);}catch(e){}}}
+    }catch(e){console.error('REP chassis (interne, non fatal):',e);}
     var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur en ligne';el.style.color='#2c7a2c';}
-  }).catch(function(){var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur injoignable';el.style.color='#a03030';}});
+  }).catch(function(e){console.error('REP chassis (reseau):',e);var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur injoignable';el.style.color='#a03030';}});
 }
 setInterval(pull,250);pull();
 window.setEtat=function(e){cmd({type:'etat',e:e});};
