@@ -2833,7 +2833,7 @@ function hdr(){var h={'content-type':'application/json'};if(sid)h['x-sid']=sid;r
 function cmd(o){fetch(SRV+'/cmd',{method:'POST',headers:hdr(),body:JSON.stringify(o)}).catch(function(){});}
 window.__net={cmd:cmd};
 var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log)||function(){};
-var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrMode','rod','rodMode','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','srcSel','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaineN','speed'];
+var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','srcSel','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaineN','speed'];
 var prev=null,lastLogT=-1;
 function pull(){
   fetch(SRV+'/state',{headers:hdr()}).then(function(r){
