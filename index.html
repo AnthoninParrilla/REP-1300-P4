@@ -238,7 +238,7 @@ if('serviceWorker' in navigator){
     border-radius:6px;padding:10px 14px;box-shadow:0 2px 5px #0004, inset 0 1px 0 #fffa;margin-bottom:2px}
   #easyCard.on{display:block}
   #easyMsg{font-size:15px;line-height:1.5;color:#3a2c10;font-weight:600}
-  #easyLex{display:none;margin:8px 0;font-size:12.5px;line-height:1.55;color:#4a3a1a;column-width:270px;column-gap:22px;background:linear-gradient(180deg,#ddd4bf,#cfc5ac);border:2px solid #7a6850;border-radius:6px;padding:10px 12px}
+  #easyLex{display:none;margin:8px 0;font-size:12.5px;line-height:1.55;color:#4a3a1a;background:linear-gradient(180deg,#ddd4bf,#cfc5ac);border:2px solid #7a6850;border-radius:6px;padding:10px 12px}
   #easyLex.on{display:block}
   #easyLex b{color:#2b2318}
   .lexD summary{cursor:pointer;color:#a8720a;font-weight:700;font-size:11.5px;margin-top:2px}
@@ -2843,7 +2843,8 @@ function hdr(){var h={'content-type':'application/json'};if(sid)h['x-sid']=sid;r
 function cmd(o){fetch(SRV+'/cmd',{method:'POST',headers:hdr(),body:JSON.stringify(o)}).catch(function(){});}
 window.__net={cmd:cmd};
 var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log)||function(){};
-var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','srcSel','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaineN','speed'];
+var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','srcSel','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaineN','srcType','speed'];
+var CLIENT_ONLY={mIdx:1,easy:1,mis:1};
 var prev=null,lastLogT=-1;
 function pull(){
   fetch(SRV+'/state',{headers:hdr()}).then(function(r){
@@ -2852,7 +2853,7 @@ function pull(){
   }).then(function(d){
     try{
       var logs=d._logs||[];delete d._logs;delete d._speed;
-      for(var k in d){
+      for(var k in d){if(CLIENT_ONLY[k])continue;
         if(prev&&CMD.indexOf(k)>=0&&S[k]!==prev[k]){cmd({type:'set',k:k,v:S[k]});d[k]=S[k];}
         S[k]=d[k];
       }
@@ -2871,6 +2872,7 @@ setInterval(function(){ // watcher rapide : toute commande locale part en ~80 ms
 setInterval(pull,250);pull();
 var au=document.getElementById('bAu');if(au)au.onclick=function(){cmd({type:'scram'});};
 var re2=document.getElementById('bRearm');if(re2){var old=re2.onclick;re2.onclick=function(){cmd({type:'rearm'});};}
+document.querySelectorAll('[data-a]').forEach(function(b){b.addEventListener('click',function(){cmd({type:'speed',v:+b.getAttribute('data-a')});});});
 document.querySelectorAll('button').forEach(function(b){
   if(/^i[A-Z]/.test(b.id||'')){b.onclick=function(){cmd({type:'incident',id:b.id});};}
 });
