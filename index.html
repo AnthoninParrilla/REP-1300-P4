@@ -283,7 +283,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <details id="aboutDd" style="float:right;position:relative"><summary><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="color:var(--dim);font-size:11px;letter-spacing:0.5px">version 2.9.0-rc · by Claude &amp; AnthoninP</span> <span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.9.0-rc · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -1963,10 +1963,20 @@ body.shake{animation:quake .9s linear;}
    'Trois barrières':{d:'les trois enveloppes successives entre le combustible et l’environnement',
      p:'1) La gaine métallique de chaque crayon emprisonne le combustible et ses produits de fission. 2) Le circuit primaire en acier (dont la cuve, 20 cm d’épaisseur) enferme l’eau activée. 3) L’enceinte en béton — double paroi sur ce palier : 120 cm de béton précontraint à l’intérieur, 55 cm de béton armé à l’extérieur — confine tout le reste. Toute la sûreté consiste à protéger ces trois barrières : les alarmes KRT surveillent chacune.'}
   };
-  el('easyLex').innerHTML=Object.keys(LEX).map(function(k){
-    var v=LEX[k],d=(typeof v==='string')?v:v.d,p=(typeof v==='string')?'':'<details class="lexD"><summary>en savoir plus</summary><div class="lexP">'+v.p+'</div></details>';
-    return '<div style="break-inside:avoid;margin-bottom:6px"><b>'+k+'</b> : '+d+p+'</div>';
-  }).join('');
+  function renderLex(q){
+    q=(q||'').toLowerCase();
+    el('lexBody').innerHTML=Object.keys(LEX).filter(function(k){
+      var v=LEX[k];var hay=(k+' '+((typeof v==='string')?v:v.d+' '+(v.p||''))).toLowerCase();
+      return !q||hay.indexOf(q)>=0;
+    }).map(function(k){
+      var v=LEX[k],d=(typeof v==='string')?v:v.d,p=(typeof v==='string')?'':'<details class="lexD"><summary>en savoir plus</summary><div class="lexP">'+v.p+'</div></details>';
+      return '<div style="break-inside:avoid;margin-bottom:6px"><b>'+k+'</b> : '+d+p+'</div>';
+    }).join('')||'<i style="color:var(--dim)">aucune entrée ne correspond</i>';
+  }
+  el('easyLex').innerHTML='<input id="lexSearch" type="search" placeholder="&#128269; rechercher dans le lexique&#8230;" style="width:100%;box-sizing:border-box;column-span:all;margin-bottom:8px;padding:6px 8px;font-family:inherit;font-size:12.5px;background:#f2ecd8;color:#2b2318;border:1px solid #6e5c44;border-radius:4px">'
+    +'<div id="lexBody" style="column-width:270px;column-gap:22px"></div>';
+  renderLex('');
+  el('lexSearch').addEventListener('input',function(){renderLex(this.value);});
   el('bEasyLex').onclick=function(){el('easyLex').classList.toggle('on');};
   el('bLex').onclick=function(){el('easyLex').classList.toggle('on');};
   el('bMSkip').style.display='none';
