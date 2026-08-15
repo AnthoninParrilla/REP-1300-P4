@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.9.2a</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.9.2b</title>
 <!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -283,7 +283,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.9.2a · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.9.2b · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -2011,7 +2011,7 @@ body.shake{animation:quake .9s linear;}
    {t:'Changer d’état',c:'Passe officiellement à l’état AN/GV (bandeau des états, en haut de page).',test:function(){return S.etat==='ANGV';},b:'Te voilà en Arrêt Normal sur les GV. Prochaine étape : la vraie descente d’un exploitant.'},
    {t:'La descente complète',c:'Objectif final : rejoins l’AN/RRA. Consigne GCT vers 6-8 bar, consigne pressuriseur à 27 bar, ×300, et SUIS LES RAPPELS du guide (blocage IS, isolement des accumulateurs). La chaussette est ton juge.',test:function(){return S.etat==='ANRRA';},b:'🏆 CHAPEAU ! Tu viens de conduire une tranche de 1 300 MW de la pleine puissance jusqu’au refroidissement à l’arrêt, dans les clous du domaine. Continue vers l’API/APR/RCD, remonte, ou casse tout pour voir — le guide reste là.'},
    {t:'Perte du RRA',c:'En AN/RRA, déclenche la Perte RRA (carte Incidents) : plus rien n’évacue la chaleur, la température remonte toute seule. RÉPARE avant de repasser 180 °C !',test:function(){return S._mW.sawRraF&&!S.rraF&&S.etat==='ANRRA'&&S.Tavg<178;},watch:function(){if(S.rraF)S._mW.sawRraF=true;},b:'Tu as vu la tranche « morte » se réchauffer seule : la chaleur résiduelle n’attend personne, et la pression finit par décoller le long de la courbe de saturation. C’est LE scénario qui justifie les secours du RRA.'},
-   {t:'La boucle complète',c:'Dernier défi : remonte TOUTE la tranche. AN/GV (les GMPP redémarrent), laisse réchauffer (×300), repasse RP, recouple la turbine et retrouve les 100 %.',test:function(){return S.etat==='RP'&&S.Pn>0.9;},b:'🏆 RP retrouvé après un cycle complet descente-remontée : tu as fait, en accéléré, ce qu’une équipe de conduite fait sur plusieurs jours. La tranche est à toi.'},
+   {t:'La boucle complète',c:'Dernier défi : remonte TOUTE la tranche. AN/GV (les GMPP redémarrent), laisse réchauffer (×300), repasse RP, recouple la turbine et retrouve les 100 %. ATTENTION : après un long arrêt le xénon est retombé — le cœur est TRÈS réactif. Si les barres plongent sous 25 %, la montée se suspend : BORIQUE. Si elles sortent À FOND et que la puissance plafonne (le xénon se refait), elle se suspend aussi : DILUE. C\u2019est le vrai métier du redémarrage.',test:function(){return S.etat==='RP'&&S.Pn>0.9;},b:'🏆 RP retrouvé après un cycle complet descente-remontée : tu as fait, en accéléré, ce qu’une équipe de conduite fait sur plusieurs jours. La tranche est à toi.'},
   ];
   S.mIdx=S.mIdx||0;S._mW=S._mW||{};
   function easyMission(){
