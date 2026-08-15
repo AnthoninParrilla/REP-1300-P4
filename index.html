@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.10.0</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.10.0a</title>
 <!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -283,7 +283,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.10.0 · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.10.0a · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -2913,7 +2913,7 @@ body.shake{animation:quake .9s linear;}
    "La régulation de température moyenne que tu utilises (grappes + bore) est la vraie boucle de pilotage du palier : Tmoy suit un programme fonction de la charge."
   ];
   function histo(){var t=document.getElementById('histoTxt');if(t)t.textContent=HIST[(Math.random()*HIST.length)|0];}
-  function openCarte(){var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';buildCarte();var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.replace('by Claude','').split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();}
+  function openCarte(){var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';buildCarte();if(!openCarte._z){openCarte._z=1;try{mkPinch('carteWrap','svgFr','carteZr');}catch(_e){}}var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.replace('by Claude','').split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();}
   var _bc=document.getElementById('bCarte');if(_bc)_bc.onclick=openCarte;
   try{var _sv=localStorage.getItem('rep_site');
     if(_sv){var _p=_sv.split('|');var st2=document.getElementById('siteTag');if(st2)st2.textContent='CNPE de '+_p[0]+' \u00b7 tranche '+_p[1];}
@@ -2965,11 +2965,14 @@ document.querySelectorAll('button').forEach(function(b){
 }); // le serveur reçoit l'incident ET le client garde son animation/réversibilité
 })();
 </script>
-<div id="carteFr" style="display:block;position:fixed;inset:0;z-index:400;background:#e8eef4;overflow:auto">
-  <div style="max-width:680px;margin:10px auto;padding:0 10px;color:#243242;font-family:inherit">
+<div id="carteFr" style="display:block;position:fixed;inset:0;z-index:400;background:#e8eef4;overflow:auto;overscroll-behavior:none">
+  <div style="max-width:680px;margin:0 auto;padding:max(12px, env(safe-area-inset-top, 12px)) 10px 12px;color:#243242;font-family:inherit">
     <div style="font-size:46px;font-weight:900;letter-spacing:7px;line-height:1.05;font-family:'Arial Black','Arial Bold',Arial,sans-serif;background:linear-gradient(90deg,#2e7d3a 0%,#2e6fb8 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#2e7d3a">SIMUREP <span id="carteVer" style="font-size:13px;letter-spacing:1px;-webkit-text-fill-color:#7a8a99;color:#7a8a99;font-weight:600"></span></div>
     <div style="font-size:16px;color:#33465c;margin:3px 0 8px;font-weight:600">Choisis ta centrale</div>
-    <svg id="svgFr" viewBox="0 0 508 471" style="width:100%;height:auto;background:#e8eef4;border-radius:10px"></svg>
+    <div id="carteWrap" style="position:relative;overflow:hidden;border-radius:10px">
+      <svg id="svgFr" viewBox="0 0 508 471" style="width:100%;height:auto;background:#e8eef4;display:block;transform-origin:0 0"></svg>
+      <button id="carteZr" style="display:none;position:absolute;top:8px;right:8px;z-index:5;background:#2f4256;color:#fff;border:0;border-radius:8px;padding:5px 9px;font-size:12px">&#10530; 1:1</button>
+    </div>
     <div id="carteMsg" style="min-height:24px;font-size:13px;color:#8a5a10;padding:5px 2px;font-weight:600"></div>
     <div style="font-size:12px;color:#33465c;padding:6px 2px;background:#dde7f0;border-radius:8px;margin-top:4px">&#9432; <b>Clique un site vert</b> pour prendre ton quart (le simulateur s'ouvre sur cette centrale, avec SA source froide). Les sites gris arrivent aux prochains paliers. Le bouton &#128506;&#65039; en haut du simulateur te ramène ici.</div>
     <div id="histoBox" style="font-size:12px;color:#2f4256;padding:8px 10px;background:#f4efdf;border:1px solid #e0d6b8;border-radius:8px;margin-top:6px"><b>&#9889; Le savais-tu ?</b> <span id="histoTxt"></span> <a id="histoNext" style="cursor:pointer;color:#2e6fb8;text-decoration:underline">une autre !</a></div>
