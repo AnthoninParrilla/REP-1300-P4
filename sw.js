@@ -1,6 +1,6 @@
 // Service worker — Synoptique REP 1300 · fonctionnement hors ligne
 // Stratégie : réseau d'abord (version toujours fraîche), cache en secours (mode avion).
-var CACHE = 'rep1300-client-202608151136';
+var CACHE = 'rep1300-client-202608151154';
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
