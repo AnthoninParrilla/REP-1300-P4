@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.9.1c</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.9.2</title>
 <!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -283,7 +283,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.9.1c · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.9.2 · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -1964,8 +1964,9 @@ body.shake{animation:quake .9s linear;}
      p:'1) La gaine métallique de chaque crayon emprisonne le combustible et ses produits de fission. 2) Le circuit primaire en acier (dont la cuve, 20 cm d’épaisseur) enferme l’eau activée. 3) L’enceinte en béton — double paroi sur ce palier : 120 cm de béton précontraint à l’intérieur, 55 cm de béton armé à l’extérieur — confine tout le reste. Toute la sûreté consiste à protéger ces trois barrières : les alarmes KRT surveillent chacune.'}
   };
   function renderLex(q){
+    var _lb=el('lexBody');if(!_lb)return; 
     q=(q||'').toLowerCase();
-    el('lexBody').innerHTML=Object.keys(LEX).filter(function(k){
+    _lb.innerHTML=Object.keys(LEX).filter(function(k){
       var v=LEX[k];var hay=(k+' '+((typeof v==='string')?v:v.d+' '+(v.p||''))).toLowerCase();
       return !q||hay.indexOf(q)>=0;
     }).map(function(k){
@@ -1976,7 +1977,7 @@ body.shake{animation:quake .9s linear;}
   el('easyLex').innerHTML='<input id="lexSearch" type="search" placeholder="&#128269; rechercher dans le lexique&#8230;" style="width:100%;box-sizing:border-box;column-span:all;margin-bottom:8px;padding:6px 8px;font-family:inherit;font-size:12.5px;background:#f2ecd8;color:#2b2318;border:1px solid #6e5c44;border-radius:4px">'
     +'<div id="lexBody" style="column-width:270px;column-gap:22px"></div>';
   renderLex('');
-  el('lexSearch').addEventListener('input',function(){renderLex(this.value);});
+  var _ls=el('lexSearch');if(_ls)_ls.addEventListener('input',function(){renderLex(this.value);});
   el('bEasyLex').onclick=function(){el('easyLex').classList.toggle('on');};
   el('bLex').onclick=function(){el('easyLex').classList.toggle('on');};
   el('bMSkip').style.display='none';
@@ -2843,8 +2844,8 @@ function hdr(){var h={'content-type':'application/json'};if(sid)h['x-sid']=sid;r
 function cmd(o){fetch(SRV+'/cmd',{method:'POST',headers:hdr(),body:JSON.stringify(o)}).catch(function(){});}
 window.__net={cmd:cmd};
 var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log)||function(){};
-var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','srcSel','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaineN','srcType','Tsrc','saison','speed'];
-var CLIENT_ONLY={mIdx:1,easy:1,mis:1};
+var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaine','gctTgt','srcType','Tsrc','saison','speed'];
+var CLIENT_ONLY={mIdx:1,easy:1,mis:1,accel:1}; // accel = la vitesse COTE CLIENT (timers, missions) ; le serveur a la sienne (session)
 var prev=null,lastLogT=-1;
 function pull(){
   fetch(SRV+'/state',{headers:hdr()}).then(function(r){
