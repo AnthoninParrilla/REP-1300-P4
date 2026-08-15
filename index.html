@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Synoptique REP 1300 MWe — Palier P4 · version 2.9.2c</title>
+<title>Synoptique REP 1300 MWe — Palier P4 · version 2.10.0</title>
 <!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -283,7 +283,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.9.2c · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.10.0 · by Claude &amp; AnthoninP</span><details id="aboutDd" style="float:right;position:relative"><summary><span style="color:var(--dim);font-size:10px">▾ à propos</span></summary>
 <div id="aboutPane">
 <b>REP 1300 — un simulateur de tranche complet, dans un seul fichier.</b>
 <p>Toute la tranche vit : le cœur (cinétique, xénon et iode, effet Doppler et modérateur, bore et grappes, puissance résiduelle décroissante), le circuit primaire (pressuriseur, SEBIM, bilan de masse, accumulateurs passifs, NPSH et découvrement des pompes), les GV et tout le secondaire (GCT condenseur et atmosphère, soupapes, VIV, turbine et vide, ARE, TPA à vapeur vive, poste d’eau, ASG motopompes et turbopompe), les sauvegardes (IS haute et basse pression, EAS, isolements, diesels) et l’enceinte (puisards, RDP, hydrogène et déflagration).</p>
@@ -301,7 +301,7 @@ body.shake{animation:quake .9s linear;}
   <button class="sw" id="bEasy" title="Analyse d’état et aide à la conduite">MODE FACILE</button><button class="sw" id="bMis" title="Parcours guidé : seize missions progressives">MISSIONS</button><button class="sw" id="bLex" title="Lexique de la tranche">📖</button><div class="accel" id="accel">
     <button data-a="1" class="on">×1</button>
     <button data-a="60">×60</button>
-    <button data-a="300">×300</button><button data-a="600">×600</button>
+    <button data-a="300">×300</button><button data-a="600">×600</button> <button id="bCarte" title="Carte du parc">🗺️</button>
   </div>
   <div class="clock" id="clock">T+00:00:00</div>
 </div>
@@ -2837,6 +2837,89 @@ body.shake{animation:quake .9s linear;}
   requestAnimationFrame(loop);
 
   
+  
+  var SITES=[
+   {n:'Gravelines',x:237,y:25,p:'CPY',t:6},{n:'Chooz',x:312,y:64,p:'N4',t:2},{n:'Penly',x:210,y:69,p:"P'4",t:2,src:'mer'},
+   {n:'Paluel',x:193,y:76,p:'P4',t:4,g:1,src:'mer'},{n:'Cattenom',x:354,y:92,p:"P'4",t:4,src:'tour'},{n:'Flamanville',x:121,y:85,p:'P4',t:2,g:1,src:'mer',epr:1},
+   {n:'Nogent',x:276,y:134,p:"P'4",t:2,src:'tour'},{n:'Fessenheim',x:396,y:157,p:'\u2020',t:2,g:1},{n:'Saint-Laurent',x:219,y:169,p:'CPY',t:2,g:1},
+   {n:'Dampierre',x:247,y:169,p:'CPY',t:4},{n:'Belleville',x:257,y:179,p:"P'4",t:2,src:'tour'},{n:'Chinon',x:176,y:190,p:'CPY',t:4,g:1},
+   {n:'Civaux',x:189,y:224,p:'N4',t:2,g:1},{n:'Bugey',g:1,x:331,y:254,p:'CP0',t:4},{n:'Creys-Malville',x:338,y:255,p:'\u2020',t:1},
+   {n:'Saint-Alban',x:316,y:272,p:'P4',t:2,g:1,src:'fleuve'},{n:'Blayais',x:146,y:276,p:'CPY',t:4,g:1},{n:'Cruas',x:316,y:306,p:'CPY',t:4},
+   {n:'Tricastin',x:316,y:319,p:'CPY',t:4},{n:'Golfech',x:193,y:329,p:"P'4",t:2,g:1,src:'tour'}
+  ];
+  var FR='M243,22 L229,26 L221,29 L222,36 L220,50 L221,60 L215,65 L206,71 L196,74 L186,78 L179,85 L178,90 L183,92 L176,95 L167,98 L156,95 L144,93 L141,95 L139,88 L138,83 L139,80 L129,80 L119,76 L121,82 L121,85 L123,92 L128,107 L127,116 L129,125 L119,124 L114,124 L105,122 L98,125 L93,128 L87,122 L85,116 L73,113 L57,116 L47,117 L38,121 L33,126 L32,131 L39,134 L33,142 L32,145 L38,146 L42,156 L56,154 L72,161 L78,173 L89,171 L93,180 L95,183 L105,184 L106,192 L103,197 L111,210 L115,219 L126,228 L134,235 L138,245 L137,259 L144,270 L147,282 L144,284 L139,272 L135,262 L132,273 L129,287 L127,302 L124,322 L120,337 L118,346 L116,353 L107,358 L122,361 L139,374 L154,383 L170,386 L185,390 L202,395 L214,401 L227,399 L246,404 L267,404 L262,392 L262,383 L264,372 L284,361 L298,355 L307,358 L320,361 L324,359 L338,364 L343,368 L356,373 L363,373 L379,364 L382,357 L390,351 L398,344 L405,340 L406,326 L384,313 L379,301 L378,290 L378,283 L383,275 L379,263 L380,250 L378,241 L379,232 L377,226 L362,230 L357,235 L355,228 L357,219 L364,212 L365,204 L373,194 L381,183 L398,172 L397,158 L401,140 L402,126 L410,112 L413,109 L405,107 L390,107 L379,105 L368,97 L358,90 L352,89 L344,87 L341,88 L332,87 L317,81 L312,70 L313,62 L305,69 L298,68 L289,56 L276,53 L269,44 L266,37 L258,34 L250,28 L248,20 Z';
+  var CORSE='M469,370 L471,384 L476,401 L473,419 L470,433 L468,443 L454,436 L451,419 L445,408 L443,401 L448,392 L453,386 L466,377 Z';
+  var PAYS=[
+   {n:'BELGIQUE',x:301,y:43,d:'M248,20 L250,28 L258,34 L266,37 L269,44 L276,53 L289,56 L298,68 L305,69 L313,62 L312,70 L317,81 L332,87 L340,76 L347,60 L355,51 L353,39 L346,34 L341,20 L323,11 L301,8 L271,8 L264,12 L254,17 Z'},
+   {n:'PAYS-BAS',x:338,y:13,d:'M271,8 L301,8 L323,11 L341,20 L346,34 L349,22 L345,-4 L362,-25 L371,-39 L373,-86 L314,-92 L302,-39 L290,-20 L279,-3 Z'},
+   {n:'LUX.',x:348,y:81,d:'M358,90 L352,89 L344,87 L341,88 L332,87 L340,76 L347,60 L361,72 L359,84 Z'},
+   {n:'ALLEMAGNE',x:432,y:86,d:'M398,172 L397,158 L401,140 L402,126 L410,112 L413,109 L405,107 L390,107 L379,105 L368,97 L358,90 L359,84 L361,72 L347,60 L355,51 L353,39 L346,34 L349,22 L345,-4 L362,-25 L371,-39 L373,-86 L499,-105 L530,166 L457,169 L445,165 L429,164 L416,169 Z'},
+   {n:'SUISSE',x:407,y:214,d:'M398,172 L381,183 L373,194 L365,204 L364,212 L357,219 L355,228 L357,235 L362,230 L377,226 L379,232 L378,241 L380,250 L390,248 L404,242 L415,230 L436,235 L447,246 L454,231 L476,218 L488,212 L486,197 L460,191 L457,169 L429,164 L416,169 Z'},
+   {n:'AUTRICHE',x:472,y:192,d:'M457,169 L460,191 L486,197 L488,212 L535,212 L530,166 Z'},
+   {n:'ITALIE',x:444,y:302,d:'M380,250 L379,263 L383,275 L378,283 L378,290 L379,301 L384,313 L406,326 L405,340 L408,339 L414,338 L422,335 L428,324 L435,315 L449,310 L478,323 L495,344 L552,353 L535,212 L488,212 L476,218 L454,231 L447,246 L436,235 L415,230 L404,242 L390,248 L380,250 Z'},
+   {n:'ESPAGNE',x:150,y:432,d:'M107,358 L122,361 L139,374 L154,383 L170,386 L185,390 L202,395 L214,401 L227,399 L246,404 L267,404 L270,412 L264,428 L241,443 L221,456 L189,469 L175,489 L155,515 L146,537 L104,575 L-108,577 L-87,346 L-53,334 L-21,339 L17,346 L49,350 L77,355 L100,359 Z'},
+   {n:'ROYAUME-UNI',x:107,y:29,d:'M14,52 L28,52 L40,44 L60,44 L77,42 L95,36 L120,38 L149,33 L171,32 L185,27 L202,23 L216,18 L217,8 L202,-1 L210,-10 L221,-25 L226,-47 L206,-63 L186,-62 L176,-76 L99,-87 L63,-79 L52,-64 L68,-42 L38,-21 L68,-9 L92,0 L77,7 L54,19 L38,33 Z'}
+  ];
+  var VILLES=[{n:'Paris',x:246,y:121},{n:'Lyon',x:322,y:260,dx:4,dy:11},{n:'Marseille',x:340,y:362},{n:'Toulouse',x:214,y:357},{n:'Bordeaux',x:150,y:299},{n:'Nantes',x:126,y:191},{n:'Lille',x:267,y:41},{n:'Strasbourg',x:401,y:131,g:1}];
+  var FLEUVES=['M180,91 L206,93 L220,110 L242,119 L276,134','M109,184 L124,188 L192,183 L211,175 L228,161 L250,171 L257,179','M356,233 L340,249 L318,256 L319,266 L320,292 L316,309 L319,336 L317,356','M141,267 L149,295 L185,324 L193,329 L211,352'];
+  function buildCarte(){
+    var svg=document.getElementById('svgFr');if(!svg)return;
+    var h='';
+    h+='<rect x="0" y="0" width="508" height="471" fill="#cfe3f0"/>';
+    for(var v=0;v<PAYS.length;v++){var vz=PAYS[v];h+='<path d="'+vz.d+'" fill="#efe6cc" stroke="#c9bd9c" stroke-width="1.2"/>';}
+    for(var v=0;v<PAYS.length;v++){var vz=PAYS[v];h+='<text x="'+vz.x+'" y="'+vz.y+'" font-size="10" fill="#a09468" font-weight="700" text-anchor="middle" letter-spacing="1">'+vz.n+'</text>';}
+    h+='<path d="'+FR+'" fill="#dfe4ec" stroke="#8fa3b8" stroke-width="2"/><path d="'+CORSE+'" fill="#dfe4ec" stroke="#8fa3b8" stroke-width="1.5"/>';
+    for(var f=0;f<FLEUVES.length;f++)h+='<path d="'+FLEUVES[f]+'" fill="none" stroke="#9cc4e4" stroke-width="3" stroke-linecap="round"/>';
+    for(var vi=0;vi<VILLES.length;vi++){var vv=VILLES[vi];h+='<circle cx="'+vv.x+'" cy="'+vv.y+'" r="2.4" fill="#5a6b7c"/><text x="'+(vv.x+(vv.g?-5:5)+(vv.dx||0))+'" y="'+(vv.y+3+(vv.dy||0))+'" text-anchor="'+(vv.g?'end':'start')+'" font-size="8.5" font-style="italic" fill="#7a8a99" stroke="#dfe4ec" stroke-width="2" paint-order="stroke">'+vv.n+'</text>';}
+    var COUL={CPY:'#2e6fb8',CP0:'#2e6fb8',N4:'#b0509c',EPR:'#e07830',P4:'#3f9c4c'};COUL["P'4"]='#3f9c4c';
+    for(var i=0;i<SITES.length;i++){var s=SITES[i];var ok=(s.p==='P4'||s.p==="P'4");var mort=(s.p==='\u2020');
+      h+='<g class="stG" data-i="'+i+'" style="cursor:pointer">';
+      if(mort){h+='<text x="'+s.x+'" y="'+(s.y+5)+'" font-size="13" text-anchor="middle">\ud83e\udea6</text>';}
+      else{
+        if(ok)h+='<circle cx="'+s.x+'" cy="'+s.y+'" r="11" fill="none" stroke="#2e7d3a55" stroke-width="3"/>';
+        h+='<circle cx="'+s.x+'" cy="'+s.y+'" r="6.5" fill="'+(COUL[s.p]||'#888')+'" stroke="#ffffff" stroke-width="2" opacity="'+(ok?'1':'0.8')+'"/>';
+        if(s.epr)h+='<circle cx="'+(s.x+9)+'" cy="'+(s.y-7)+'" r="4" fill="#e07830" stroke="#ffffff" stroke-width="1.5"/>';
+      }
+      h+='<text x="'+(s.g?(s.x-10):(s.x+10))+'" y="'+(s.y+4)+'" text-anchor="'+(s.g?'end':'start')+'" font-size="11" font-weight="'+(ok?'700':'400')+'" fill="'+(mort?'#8a8a8a':(ok?'#1d3a24':'#5a6b7c'))+'" stroke="#e8eef4" stroke-width="3" paint-order="stroke">'+s.n+(mort?'':' <tspan fill="#6a7b8c" font-size="9">'+s.t+'\u00d7'+s.p+(s.epr?' + EPR':'')+'</tspan>')+'</text></g>';
+    }
+    svg.innerHTML=h;
+    svg.addEventListener('click',function(e){
+      var g=e.target.closest('.stG');if(!g)return;
+      var s=SITES[+g.getAttribute('data-i')];var msg=document.getElementById('carteMsg');
+      if(s.p==='P4'||s.p==="P'4"){
+        var tr=1+((Math.random()*s.t)|0);
+        try{localStorage.setItem('rep_site',s.n+'|'+tr);}catch(_e){}
+        if(s.src){try{S.srcType=s.src;var _ss=document.getElementById('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(_e){}}
+        var st=document.getElementById('siteTag');if(st)st.textContent='CNPE de '+s.n+' \u00b7 tranche '+tr+' ('+s.p+')';
+        var cf=document.getElementById('carteFr');if(cf)cf.style.display='none';
+        try{log('Prise de quart au CNPE de '+s.n+', tranche '+tr+' \u2014 palier '+s.p+'.','cyan');}catch(_e){}
+      }else if(s.p==='\u2020'){
+        if(msg)msg.textContent='\ud83e\udea6 '+s.n+' \u2014 '+(s.n==='Fessenheim'?'arr\u00eat\u00e9e en 2020 (2\u00d7900 MWe). Repose en paix.':'Superph\u00e9nix, arr\u00eat\u00e9 en 1997. Le surg\u00e9n\u00e9rateur dort.');
+      }else{
+        if(msg)msg.textContent='\ud83d\udea7 '+s.n+' ('+s.p+') \u2014 EN CONSTRUCTION : reviens avec un casque. Le palier 1300 d\u2019abord, le '+(s.p==='N4'?'N4':'900')+' ensuite.';
+      }
+    });
+  }
+  var HIST=[
+   "En 1974, après le premier choc pétrolier, le plan Messmer lance le plus grand programme nucléaire civil du monde : la France construira 58 réacteurs en une génération.",
+   "Les 20 tranches du palier 1300 MWe (P4 et P'4) sont entrées en service entre 1984 et 1993 — celle que tu pilotes ici en est une.",
+   "Le 27 décembre 1999, la tempête inonde la centrale du Blayais : l'événement fonde la doctrine actuelle de protection contre les agressions externes.",
+   "Superphénix, à Creys-Malville, fut le plus puissant surgénérateur du monde (1240 MWe au sodium liquide). Arrêté en 1997, il dort sur ta carte sous une petite tombe.",
+   "Un réacteur 1300 MWe évacue les deux tiers de sa chaleur par la source froide : c'est pour ça que choisir ta centrale change la température de ton condenseur.",
+   "Fessenheim, doyenne du parc (1977), a été arrêtée en 2020. Ses deux 900 MWe reposent en Alsace, au bord du grand canal.",
+   "Gravelines est la plus grande centrale d'Europe de l'Ouest : six réacteurs 900 MWe refroidis par la mer du Nord.",
+   "L'îlotage — se replier sur sa propre consommation en cas de perte du réseau — est un exercice réel du parc : SIMUREP te l'apprendra à l'étage CNPE.",
+   "SIMUREP est développé par un professionnel du nucléaire et une IA : la physique du palier P4 y est calée sur des références publiques (ASNR, RGE) — et testée chaque nuit par un banc automatique.",
+   "La régulation de température moyenne que tu utilises (grappes + bore) est la vraie boucle de pilotage du palier : Tmoy suit un programme fonction de la charge."
+  ];
+  function histo(){var t=document.getElementById('histoTxt');if(t)t.textContent=HIST[(Math.random()*HIST.length)|0];}
+  function openCarte(){var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';buildCarte();var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.replace('by Claude','').split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();}
+  var _bc=document.getElementById('bCarte');if(_bc)_bc.onclick=openCarte;
+  try{var _sv=localStorage.getItem('rep_site');
+    if(_sv){var _p=_sv.split('|');var st2=document.getElementById('siteTag');if(st2)st2.textContent='CNPE de '+_p[0]+' \u00b7 tranche '+_p[1];}
+  }catch(_e){}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',openCarte);}else{openCarte();} 
+  window.__carte={open:openCarte};
   window.__sim={S:S,log:log,physStep:physStep,slowStep:slowStep,trips:trips};
 })();
 
@@ -2882,5 +2965,16 @@ document.querySelectorAll('button').forEach(function(b){
 }); // le serveur reçoit l'incident ET le client garde son animation/réversibilité
 })();
 </script>
+<div id="carteFr" style="display:block;position:fixed;inset:0;z-index:400;background:#e8eef4;overflow:auto">
+  <div style="max-width:680px;margin:10px auto;padding:0 10px;color:#243242;font-family:inherit">
+    <div style="font-size:46px;font-weight:900;letter-spacing:7px;line-height:1.05;font-family:'Arial Black','Arial Bold',Arial,sans-serif;background:linear-gradient(90deg,#2e7d3a 0%,#2e6fb8 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#2e7d3a">SIMUREP <span id="carteVer" style="font-size:13px;letter-spacing:1px;-webkit-text-fill-color:#7a8a99;color:#7a8a99;font-weight:600"></span></div>
+    <div style="font-size:16px;color:#33465c;margin:3px 0 8px;font-weight:600">Choisis ta centrale</div>
+    <svg id="svgFr" viewBox="0 0 508 471" style="width:100%;height:auto;background:#e8eef4;border-radius:10px"></svg>
+    <div id="carteMsg" style="min-height:24px;font-size:13px;color:#8a5a10;padding:5px 2px;font-weight:600"></div>
+    <div style="font-size:12px;color:#33465c;padding:6px 2px;background:#dde7f0;border-radius:8px;margin-top:4px">&#9432; <b>Clique un site vert</b> pour prendre ton quart (le simulateur s'ouvre sur cette centrale, avec SA source froide). Les sites gris arrivent aux prochains paliers. Le bouton &#128506;&#65039; en haut du simulateur te ramène ici.</div>
+    <div id="histoBox" style="font-size:12px;color:#2f4256;padding:8px 10px;background:#f4efdf;border:1px solid #e0d6b8;border-radius:8px;margin-top:6px"><b>&#9889; Le savais-tu ?</b> <span id="histoTxt"></span> <a id="histoNext" style="cursor:pointer;color:#2e6fb8;text-decoration:underline">une autre !</a></div>
+    <div style="font-size:11px;color:#4a5c70;padding:2px">Puissances : <span style="color:#2e6fb8">&#9679; 900</span> · <span style="color:#2e7d3a">&#9679; 1300 (P4/P&#8217;4)</span> · <span style="color:#b0509c">&#9679; 1450 (N4)</span> · <span style="color:#e07830">&#9679; 1650 (EPR)</span> · <span style="color:#777">&#129702; arrêtées</span></div>
+  </div>
+</div>
 </body>
 </html>
