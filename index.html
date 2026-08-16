@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.11.0a</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.0</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : pilote une tranche nucléaire REP 1300 MWe depuis ton navigateur. Choisis ta centrale sur la carte du parc français.">
@@ -106,6 +106,13 @@ if('serviceWorker' in navigator){
   #synop,#sockSvg{transform-origin:0 0;display:block;touch-action:pan-y;will-change:transform}
   #synWrap{overflow:hidden;position:relative}
 #isoWrap{overflow:hidden;position:relative;display:none;background:#050806;border-radius:10px}
+#cnpeWrap{position:relative;overflow:hidden;border-radius:14px;background:#fff;box-shadow:0 1px 4px rgba(20,40,60,.10)}
+#cnpeSvg{width:100%;height:auto;display:block;transform-origin:0 0;touch-action:pan-y;will-change:transform}
+#cnpeZr{display:none;position:absolute;top:8px;right:8px;z-index:5;background:#fff;border:1px solid #d5dee6;color:#1d2a38;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:700;cursor:pointer}
+#cnpeUnits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.cnpeCard{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 1px 3px rgba(20,40,60,.08)}
+.cnpeBtn{background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06);cursor:pointer;font-family:inherit}
+.cnpeBtn.on{background:#2e7d3a;color:#fff;border-color:#2e7d3a}
 #isoSvg{width:100%;height:auto;max-height:82vh;display:block;transform-origin:0 0;touch-action:pan-y;will-change:transform}
 #viewBar{display:flex;gap:5px;align-items:center;margin:0 0 5px}
 #viewBar .sw{min-width:0;font-size:9.5px;line-height:1;padding:4px 8px 3px;letter-spacing:.7px;text-transform:uppercase;font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;color:#8fe89a;background:#0f1a13;border:1px solid #5a8a62;border-radius:2px;box-shadow:inset 1px 1px 0 #2f5238,inset -1px -1px 0 #060c08,0 1px 0 #000;position:relative;padding-left:16px}
@@ -294,14 +301,14 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.11.0a</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.0</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
   <button class="sw" id="bEasy" title="Analyse d’état et aide à la conduite">MODE FACILE</button><button class="sw" id="bMis" title="Parcours guidé : seize missions progressives">MISSIONS</button><button class="sw" id="bLex" title="Lexique de la tranche">📖</button><div class="accel" id="accel">
     <button data-a="1" class="on">×1</button>
     <button data-a="60">×60</button>
-    <button data-a="300">×300</button><button data-a="600">×600</button> <button id="bCarte" title="Carte du parc">🗺️</button>
+    <button data-a="300">×300</button><button data-a="600">×600</button> <button id="bCarte" title="Carte du parc">🗺️</button> <button id="bCnpe" title="Mon CNPE">🏭</button>
   </div>
   <div class="clock" id="clock">T+00:00:00</div>
 </div>
@@ -1202,6 +1209,7 @@ body.shake{animation:quake .9s linear;}
     puisard:0,    
     recirc:false  
   };
+  var S0=JSON.parse(JSON.stringify(S)); 
 
   
   var SRC={
@@ -1224,6 +1232,19 @@ body.shake{animation:quake .9s linear;}
     RCD:'RCD — réacteur complètement déchargé'
   };
   var PRESET={};
+  
+  var JUMP={};
+  function jumpEtat(e){var p=PRESET[e]||PRESET.RP,J=JUMP[e]||{},keep={t:S.t,srcType:S.srcType,Tsrc:S.Tsrc,saison:S.saison,accel:S.accel,mIdx:S.mIdx,easy:S.easy,mis:S.mis,gaine:S.gaine};
+    for(var k in S0){var v=S0[k];S[k]=Array.isArray(v)?v.slice():((v&&typeof v==='object')?JSON.parse(JSON.stringify(v)):v);}   
+    for(var k2 in keep)if(keep[k2]!==undefined)S[k2]=keep[k2];
+    for(var k3 in p){if(k3==='gmpp')continue;S[k3]=p[k3];}                                                                     
+    S.gmppN=(p.gmpp===true?4:(typeof p.gmpp==='number'?p.gmpp:0));S.gmpp=S.gmppN>0;
+    for(var k4 in J)S[k4]=J[k4];                                                                                              
+    S.Pres=S.Pr1+S.Pr2+S.Pr3;S.Ptot=F_FISS*S.Pn+S.Pres;S.turbSet=S.turb;S.gctTgt=S.gctSet=(e==='RP'||e==='ANGV')?74:S.gctSet;
+    S.mpsA=!!p.asgOn;S.mpsB=!!p.asgOn;S.tpsA=false;S.tpsB=false;
+    S._rodTgt=null;S._turbTgt=null;S._cbTgt=null;S._rodFinal=null;S._rpHold=false;S._rpHold2=false;S._rpRamp=false;
+    S.etat=e;S.scram=false;S.tripMsg='';S.note='';S.areAvail=(e==='RP');S.asgLatch=false;
+    try{log('Prise de quart : la tranche est en '+e+' \u2014 '+Math.round(S.Tavg)+' \u00b0C / '+Math.round(S.Ppzr)+' bar, '+Math.round(S.Pelec)+' MWe.','dim');}catch(_e){}}
   function isHot(){return S.etat==='RP'||S.etat==='ANGV';}
   
   function dTgm(){return 18*S.Ptot*(S.gmppN>0?4/S.gmppN:3);} 
@@ -3114,6 +3135,7 @@ var ISO=(function(){
    {n:'Saint-Alban',x:316,y:272,p:'P4',t:2,g:1,src:'fleuve'},{n:'Blayais',x:146,y:276,p:'CPY',t:4,g:1},{n:'Cruas',x:316,y:306,p:'CPY',t:4},
    {n:'Tricastin',x:316,y:319,p:'CPY',t:4},{n:'Golfech',x:193,y:329,p:"P'4",t:2,g:1,src:'tour'}
   ];
+  try{window.__SITES=SITES;}catch(_e){}
   var FR='M243,22 L229,26 L221,29 L222,36 L220,50 L221,60 L215,65 L206,71 L196,74 L186,78 L179,85 L178,90 L183,92 L176,95 L167,98 L156,95 L144,93 L141,95 L139,88 L138,83 L139,80 L129,80 L119,76 L121,82 L121,85 L123,92 L128,107 L127,116 L129,125 L119,124 L114,124 L105,122 L98,125 L93,128 L87,122 L85,116 L73,113 L57,116 L47,117 L38,121 L33,126 L32,131 L39,134 L33,142 L32,145 L38,146 L42,156 L56,154 L72,161 L78,173 L89,171 L93,180 L95,183 L105,184 L106,192 L103,197 L111,210 L115,219 L126,228 L134,235 L138,245 L137,259 L144,270 L147,282 L144,284 L139,272 L135,262 L132,273 L129,287 L127,302 L124,322 L120,337 L118,346 L116,353 L107,358 L122,361 L139,374 L154,383 L170,386 L185,390 L202,395 L214,401 L227,399 L246,404 L267,404 L262,392 L262,383 L264,372 L284,361 L298,355 L307,358 L320,361 L324,359 L338,364 L343,368 L356,373 L363,373 L379,364 L382,357 L390,351 L398,344 L405,340 L406,326 L384,313 L379,301 L378,290 L378,283 L383,275 L379,263 L380,250 L378,241 L379,232 L377,226 L362,230 L357,235 L355,228 L357,219 L364,212 L365,204 L373,194 L381,183 L398,172 L397,158 L401,140 L402,126 L410,112 L413,109 L405,107 L390,107 L379,105 L368,97 L358,90 L352,89 L344,87 L341,88 L332,87 L317,81 L312,70 L313,62 L305,69 L298,68 L289,56 L276,53 L269,44 L266,37 L258,34 L250,28 L248,20 Z';
   var CORSE='M469,370 L471,384 L476,401 L473,419 L470,433 L468,443 L454,436 L451,419 L445,408 L443,401 L448,392 L453,386 L466,377 Z';
   var PAYS=[
@@ -3154,12 +3176,7 @@ var ISO=(function(){
       var g=e.target.closest('.stG');if(!g)return;
       var s=SITES[+g.getAttribute('data-i')];var msg=document.getElementById('carteMsg');
       if(s.p==='P4'||s.p==="P'4"){
-        var tr=1+((Math.random()*s.t)|0);
-        try{localStorage.setItem('rep_site',s.n+'|'+tr);}catch(_e){}
-        if(s.src){try{S.srcType=s.src;var _ss=document.getElementById('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(_e){}}
-        var st=document.getElementById('siteTag');if(st)st.textContent='CNPE de '+s.n+' \u00b7 tranche '+tr+' ('+s.p+')';
-        var cf=document.getElementById('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(_e){}
-        try{log('Prise de quart au CNPE de '+s.n+', tranche '+tr+' \u2014 palier '+s.p+'.','cyan');}catch(_e){}
+        CNPE.open(s);
       }else if(s.p==='\u2020'){
         if(msg)msg.textContent='\ud83e\udea6 '+s.n+' \u2014 '+(s.n==='Fessenheim'?'arr\u00eat\u00e9e en 2020 (2\u00d7900 MWe). Repose en paix.':'Superph\u00e9nix, arr\u00eat\u00e9 en 1997. Le surg\u00e9n\u00e9rateur dort.');
       }else{
@@ -3194,7 +3211,7 @@ var ISO=(function(){
    "Un cœur de 1300 MWe contient 193 assemblages combustibles, soit plus de 50 000 crayons : la carte du cœur que tu vois en suit chaque grappe."
   ];
   function histo(){var t=document.getElementById('histoTxt');if(t)t.textContent=HIST[(Math.random()*HIST.length)|0];}
-  function openCarte(){var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';try{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';}catch(_e){}buildCarte();if(!openCarte._z){openCarte._z=1;try{mkPinch('carteWrap','svgFr','carteZr');}catch(_e){}}var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();
+  function openCarte(){var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';try{CNPE.homeTable(S);}catch(_e){}try{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';}catch(_e){}buildCarte();if(!openCarte._z){openCarte._z=1;try{mkPinch('carteWrap','svgFr','carteZr');}catch(_e){}}var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();
     var _bl=document.getElementById('bCarteLex');if(_bl&&!_bl._w){_bl._w=1;_bl.onclick=function(){var m=document.getElementById('carteLexM');m.style.display='block';renderLex('',document.getElementById('carteLexBody'));var q=document.getElementById('carteLexQ');if(q&&!q._w){q._w=1;q.addEventListener('input',function(){renderLex(this.value,document.getElementById('carteLexBody'));});}};}
     var _ba=document.getElementById('bCarteApro');if(_ba&&!_ba._w){_ba._w=1;_ba.onclick=function(){document.getElementById('carteAproM').style.display='block';var av=document.getElementById('aproVer'),vt=document.getElementById('verTag');if(av&&vt)av.textContent=vt.textContent;};}}
   var _bc=document.getElementById('bCarte');if(_bc)_bc.onclick=openCarte;
@@ -3202,6 +3219,147 @@ var ISO=(function(){
     if(_sv){var _p=_sv.split('|');var st2=document.getElementById('siteTag');if(st2)st2.textContent='CNPE de '+_p[0]+' \u00b7 tranche '+_p[1];}
   }catch(_e){}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',openCarte);}else{openCarte();} 
+  
+  
+  var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 — EPR'}]},
+    'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
+    'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
+  var PN={'P4':1300,"P'4":1300,'CPY':900,'CP0':900,'N4':1450,'EPR':1650};
+  var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'rechargement',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
+  
+  var PARC={hash:function(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h;},
+    unit:function(site,idx,pal,t){var h=this.hash(site+'#'+idx),Pn=PN[pal]||1300,r=h%100;
+      if(r<16)return {Pe:0,etat:'AT',lab:ETLAB.AT};
+      if(r<21){var f=Math.max(0,Math.min(1,(t||0)/(36*3600)));return {Pe:Math.round(Pn*f),etat:f<0.98?'RD':'RP',lab:f<0.98?ETLAB.RD:ETLAB.RP};}
+      var ph=((h>>>8)%1000)/1000*6.283,mod=1-0.05*(1+Math.sin(6.283*((t||0)/86400)+ph))/2,red=1-0.02*((h>>>3)%5)/5;
+      return {Pe:Math.round(Pn*Math.max(0.85,Math.min(1,mod*red))),etat:'RP',lab:ETLAB.RP};}};
+  
+  var UNITMEM={store:{},key:function(){try{return localStorage.getItem('rep_site')||'';}catch(e){return '';}},
+    load:function(){try{this.store=JSON.parse(localStorage.getItem('rep_units')||'{}');}catch(e){this.store={};}},
+    save:function(){try{localStorage.setItem('rep_units',JSON.stringify(this.store));}catch(e){}},
+    park:function(){var k=this.key();if(!k)return;this.store[k]={etat:S.etat||'RP',Pe:Math.round(S.Pelec||0),t:Date.now()};this.save();}};
+  UNITMEM.load();
+  var CNPE=(function(){
+    var cur=null,timer=null,api={};
+    function playable(s){return s.p==='P4'||s.p==="P'4";}
+    function ukey(k){return k.replace(/[^A-Za-z0-9]/g,'_');}
+    
+    function unitSvg(x0,y0,i,tint,yEnd){var h='<g transform="translate('+x0+','+y0+')" class="cnpeU" data-u="'+i+'">';
+      h+='<line x1="-85" y1="0" x2="100" y2="0" stroke="#b9c4cf" stroke-width="1" stroke-dasharray="6 4"/><line x1="0" y1="-90" x2="0" y2="270" stroke="#b9c4cf" stroke-width="1" stroke-dasharray="6 4"/>';
+      h+='<rect x="-50" y="14" width="100" height="66" fill="#e3e9ef" stroke="#6f7f8f" stroke-width="1.6"/>';        
+      h+='<rect x="-62" y="16" width="12" height="15" fill="#e3e9ef" stroke="#6f7f8f"/><rect x="-62" y="34" width="12" height="15" fill="#e3e9ef" stroke="#6f7f8f"/><circle cx="-56" cy="62" r="7" fill="#e3e9ef" stroke="#6f7f8f"/>';
+      h+='<rect x="-45" y="-41" width="30" height="14" fill="#e3e9ef" stroke="#6f7f8f" transform="rotate(-45 -30 -34)"/>';   
+      h+='<rect x="-15" y="-62" width="30" height="30" fill="#e3e9ef" stroke="#6f7f8f"/>';                                    
+      h+='<rect x="30" y="-62" width="55" height="58" rx="8" fill="#e3e9ef" stroke="#6f7f8f" stroke-width="1.4"/><rect x="50" y="-4" width="35" height="84" fill="#e3e9ef" stroke="#6f7f8f"/><rect x="56" y="4" width="23" height="70" fill="none" stroke="#9aa9b8"/>';
+      h+='<circle cx="-78" cy="236" r="7" fill="#f2ede0" stroke="#8a7a52" stroke-width="1.3"/><circle cx="-78" cy="256" r="7" fill="#f2ede0" stroke="#8a7a52" stroke-width="1.3"/><text x="-78" y="274" text-anchor="middle" font-size="7.5" fill="#8a7a52">fioul</text>';   
+      h+='<rect x="-50" y="90" width="88" height="173" fill="#dfe6ee" stroke="#6f7f8f" stroke-width="1.6"/><rect id="cnT'+i+'" x="0" y="92" width="15" height="169" fill="#b0bcc8"/>';   
+      h+='<rect x="38" y="195" width="18" height="40" fill="#e3e9ef" stroke="#6f7f8f"/><line x1="43" y1="196" x2="43" y2="234" stroke="#8fa0b0" stroke-width="3"/>';                   
+      for(var k=0;k<3;k++)h+='<polyline id="cnL'+i+'_'+k+'" points="56,'+(205+k*10)+' '+(90+k*6)+','+(239+k*10)+' '+(90+k*6)+','+(yEnd||292)+'" fill="none" stroke="#9aa9b8" stroke-width="1.6"/>';   
+      h+='<circle id="cnB'+i+'" cx="0" cy="0" r="30" fill="'+(tint||'#8ea3b6')+'" stroke="#33465c" stroke-width="2"/><circle cx="0" cy="0" r="18" fill="none" stroke="#33465c" stroke-width="1"/>';   
+      h+='<text x="0" y="5" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" stroke="#33465c" stroke-width="2.4" paint-order="stroke">'+(i+1)+'</text>';
+      h+='<text id="cnN'+i+'" x="54" y="112" font-size="13" font-weight="800" fill="#243242" stroke="#fff" stroke-width="3" paint-order="stroke">Tranche '+(i+1)+'</text><text id="cnP'+i+'" x="54" y="128" font-size="12" font-weight="600" fill="#33465c" stroke="#fff" stroke-width="3" paint-order="stroke">\u2014</text>';
+      return h+'</g>';}
+    function tourSvg(x,y,i){return '<g class="cnpeTour"><circle cx="'+x+'" cy="'+y+'" r="34" fill="#e8edf2" stroke="#6f7f8f" stroke-width="1.6"/><circle cx="'+x+'" cy="'+y+'" r="26" fill="#f6f8fa" stroke="#9aa9b8"/><circle cx="'+x+'" cy="'+y+'" r="8" fill="#c8d2dc"/><ellipse id="cnV'+i+'" cx="'+(x+22)+'" cy="'+(y-24)+'" rx="34" ry="24" fill="rgba(255,255,255,.85)" opacity="0"/><text x="'+x+'" y="'+(y+52)+'" text-anchor="middle" font-size="10" fill="#5a6b7c">a\u00e9ro '+(i+1)+'</text></g>';}
+    function build(s){var db=CNPE_DB[s.n]||{eau:s.src==='mer'?'mer':'fleuve',nom:'',tours:0};var n=s.t,ex=(db.extra||[]),N=n+ex.length,W=Math.max(900,N*190+90),tours=db.tours?n:0,H=tours?620:520;
+      var h='<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#eef2ea"/>';
+      if(db.eau==='mer'){h+='<path d="M0,0 L'+W+',0 L'+W+',72 Q'+(W*0.75)+',86 '+(W*0.5)+',74 Q'+(W*0.25)+',62 0,76 Z" fill="#cfe3f0"/>';}
+      else{var yb=66;h+='<path d="M0,22 Q'+(W*0.25)+',14 '+(W*0.5)+',24 Q'+(W*0.75)+',34 '+W+',22 L'+W+','+yb+' Q'+(W*0.75)+','+(yb+8)+' '+(W*0.5)+','+(yb-2)+' Q'+(W*0.25)+','+(yb-10)+' 0,'+yb+' Z" fill="#cfe3f0"/>';}
+      h+='<text x="14" y="'+(db.eau==='mer'?42:50)+'" font-size="13" font-style="italic" fill="#5b7a94">'+(db.nom||'')+'</text>';
+      var x0=(W-(N-1)*190)/2,BW=60,sdpX0=x0+(N-1)*95-N*BW/2,sdpY=52;
+      h+='<rect x="'+sdpX0+'" y="'+sdpY+'" width="'+(N*BW)+'" height="30" rx="2" fill="#dbe4ec" stroke="#6f7f8f" stroke-width="1.6"/>';   
+      for(var i=1;i<N;i++){var xw=sdpX0+i*BW;h+='<line x1="'+xw+'" y1="'+sdpY+'" x2="'+xw+'" y2="'+(sdpY+30)+'" stroke="#6f7f8f" stroke-width="1.6"/>';}
+      h+='<text x="'+sdpX0+'" y="'+(sdpY-4)+'" font-size="10.5" font-weight="700" fill="#5a6b7c">SDP</text>';
+      for(var i=0;i<N;i++){var xi=x0+i*190,bx=sdpX0+(i+0.5)*BW;
+        for(var k=-1;k<=1;k+=2)h+='<line x1="'+(bx+k*12)+'" y1="'+(sdpY-12)+'" x2="'+(bx+k*12)+'" y2="'+sdpY+'" stroke="#5b7a94" stroke-width="2.2"/>';
+        h+='<circle cx="'+(bx-12)+'" cy="'+(sdpY+11)+'" r="5.5" fill="#f6f8fa" stroke="#33465c" stroke-width="1.3"/><circle cx="'+(bx+12)+'" cy="'+(sdpY+11)+'" r="5.5" fill="#f6f8fa" stroke="#33465c" stroke-width="1.3"/>';
+        h+='<circle cx="'+(bx-22)+'" cy="'+(sdpY+23)+'" r="3.2" fill="#f6f8fa" stroke="#33465c"/><circle cx="'+(bx+22)+'" cy="'+(sdpY+23)+'" r="3.2" fill="#f6f8fa" stroke="#33465c"/>';
+        for(var k=-1;k<=1;k+=2)h+='<polyline points="'+(bx+k*12)+','+(sdpY+30)+' '+(bx+k*12)+',110 '+(xi+k*10)+',110 '+(xi+k*10)+',240" fill="none" stroke="#5b7a94" stroke-width="1.5" stroke-dasharray="3 3"/>';
+      }
+      for(var i=0;i<N;i++){var xi=x0+i*190,epr=i>=n;h+=unitSvg(xi,150,i,epr?'#c8a06a':null,H-8-150);
+        if(tours&&i<n)h+=tourSvg(xi+(i%2?42:-42),478+(i%2?26:0),i);}
+      h+='<text x="'+(W-12)+'" y="'+(H-10)+'" text-anchor="end" font-size="10.5" fill="#7a8a99">vue du dessus \u00b7 plan de tranche P4 \u00b7 400 kV vers le poste</text>';
+      return {h:h,W:W,H:H,N:N,n:n};}
+    
+    var peekCache={};
+    function stateOf(s,i,S){var key=s.n+'|'+(i+1);
+      if(key===UNITMEM.key())return {Pe:Math.round(S.Pelec||0),etat:S.etat||'RP',lab:ETLAB[S.etat]||'',cur:true};
+      if(i<s.t&&window.__net&&peekCache[key])return {Pe:Math.round(peekCache[key].Pelec||0),etat:peekCache[key].etat||'RP',lab:ETLAB[peekCache[key].etat]||'',cur:false};   
+      if(i<s.t&&UNITMEM.store[key]){var m=UNITMEM.store[key];return {Pe:m.Pe||0,etat:m.etat||'RP',lab:ETLAB[m.etat]||'',cur:false};}
+      var pal=(i>=s.t)?'EPR':s.p;var u=PARC.unit(s.n,i,pal,S.t||0);u.cur=false;return u;}
+    api.unitState=stateOf;
+    function peekTouched(list){if(!window.__net||!window.__net.peek)return;var seen={};(list||[]).forEach(function(s){for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===UNITMEM.key()||seen[key])continue;seen[key]=1;if(UNITMEM.store[key])(function(kk){window.__net.peek(kk.replace(/[^A-Za-z0-9]/g,'_'),function(d){if(d&&d.etat)peekCache[kk]={Pelec:d.Pelec,etat:d.etat};});})(key);}});}
+    api.peekTouched=peekTouched;
+    function col(u){return u.etat==='RP'?'#3f9a4c':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8ea3b6':'#e0a030');}
+    function actionsFor(u){var b='<div style="margin-top:6px;font-size:10px;color:#8a99a8">pilotage rapide \u2014 tranche au pupitre</div>';
+      if(u.etat==='RP')b+='<button class="cnpeBtn" data-act="load|100" style="padding:3px 8px;font-size:11px">100 %</button> <button class="cnpeBtn" data-act="load|75" style="padding:3px 8px;font-size:11px">75 %</button> <button class="cnpeBtn" data-act="load|50" style="padding:3px 8px;font-size:11px">50 %</button> <button class="cnpeBtn" data-act="etat|ANGV" style="padding:3px 8px;font-size:11px">\u2192 ANGV</button>';
+      else if(u.etat==='ANGV')b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button> <button class="cnpeBtn" data-act="etat|ANRRA" style="padding:3px 8px;font-size:11px">\u2192 ANRRA</button>';
+      else b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button>';
+      return b;}
+    function doAct(a){var p=a.split('|');
+      if(p[0]==='load'){try{S.turbSet=+p[1];if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:+p[1]});}catch(e){}try{log('Consigne de charge '+p[1]+' % (vue CNPE).','cyan');}catch(e){}}
+      else if(p[0]==='etat'){try{if(window.__net)window.__net.cmd({type:'etat',e:p[1]});else setEtat(p[1]);}catch(e){}}}
+    api.update=function(S){if(!cur||!S)return;var s=cur.s;
+      for(var i=0;i<cur.N;i++){var u=stateOf(s,i,S),Pn=PN[i>=s.t?'EPR':s.p]||1300,f=Math.max(0,Math.min(1,u.Pe/Pn));
+        var b=el('cnB'+i);if(b)b.setAttribute('fill',i>=s.t?'#c8a06a':col(u));var t=el('cnT'+i);if(t)t.setAttribute('fill',u.Pe>0?'#5aa66a':'#b0bcc8');
+        for(var k=0;k<3;k++){var l=el('cnL'+i+'_'+k);if(l)l.setAttribute('stroke',u.Pe>0?'#2e7d3a':'#9aa9b8');}
+        var p=el('cnP'+i);if(p)p.textContent=u.Pe+' MWe \u00b7 '+u.etat;var nn=el('cnN'+i);if(nn&&i>=s.t)nn.textContent='EPR';
+        var v=el('cnV'+i);if(v)v.setAttribute('opacity',0.9*f);
+        var c=el('cnC'+i);if(c){c.querySelector('.cnpeVal').textContent=u.Pe+' MWe \u00b7 '+u.etat+' \u00b7 '+u.lab;var act=c.querySelector('.cnpeAct');if(act)act.innerHTML=u.cur?actionsFor(u):'';}}
+      var cm=el('cnpeCom');if(cm){var kk=UNITMEM.key(),me=kk.split('|')[0]===s.n,tsrc=me?Math.round(S.Tsrc||0):(s.src==='mer'?12:14),inc=(me&&S.etat&&S.etat!=='RP')?('transitoire en cours sur la tranche '+kk.split('|')[1]+' ('+S.etat+')'):'aucun';
+        cm.textContent='Communs \u00b7 source froide '+tsrc+' \u00b0C \u00b7 r\u00e9seau 400 kV 50,00 Hz \u00b7 incidents en cours : '+inc;}};
+    api.open=function(s){var ov=el('cnpeFr');if(!ov)return;cur={s:s};var b=build(s);cur.N=b.N;
+      if(!api._w){api._w=1;var b1=el('bCnpeCarte'),b2=el('bCnpeBack');                                                       
+        if(b1)b1.onclick=function(){api.close();try{openCarte();}catch(e){}};
+        if(b2)b2.onclick=function(){api.close();var cf=el('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}};}
+      var svg=el('cnpeSvg');if(svg){svg.setAttribute('viewBox','0 0 '+b.W+' '+b.H);svg.innerHTML=b.h;}
+      var db=CNPE_DB[s.n]||{};var ti=el('cnpeTitle');if(ti)ti.textContent='CNPE de '+s.n;
+      var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||1300)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)');
+      var bk=el('bCnpeBack');if(bk)bk.style.display=UNITMEM.key()?'':'none';
+      var uc=el('cnpeUnits');if(uc){var hh='';for(var i=0;i<b.N;i++){var epr=i>=s.t;hh+='<div class="cnpeCard" id="cnC'+i+'"><div style="font-weight:800;font-size:15px">'+(epr?'Flamanville 3 \u2014 EPR':'Tranche '+(i+1)+' \u00b7 '+s.p)+'</div><div class="cnpeVal" style="font-size:12.5px;color:#4a5c70;margin:4px 0 8px">\u2014</div>'+(epr?'<span style="font-size:11px;color:#8a99a8">EN CONSTRUCTION dans SIMUREP</span>':'<button class="cnpeBtn on" data-tr="'+(i+1)+'">Prendre le quart</button><div class="cnpeAct"></div>')+'</div>';}
+        uc.innerHTML=hh;uc.querySelectorAll('button[data-tr]').forEach(function(bt){bt.onclick=function(){api.take(cur.s,+bt.getAttribute('data-tr'));};});
+        uc.onclick=function(ev){var bt=ev.target.closest?ev.target.closest('button[data-act]'):null;if(bt){ev.stopPropagation();doAct(bt.getAttribute('data-act'));}};}
+      ov.style.display='block';try{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';}catch(e){}
+      if(!api._z){api._z=1;try{mkPinch('cnpeWrap','cnpeSvg','cnpeZr');}catch(e){}}
+      try{api.update(S);}catch(e){}if(timer)clearInterval(timer);timer=setInterval(function(){try{api.update(S);}catch(e){}},2000);};
+    api.close=function(){var ov=el('cnpeFr');if(ov)ov.style.display='none';if(timer){clearInterval(timer);timer=null;}
+      var cf=el('carteFr');if(!cf||cf.style.display==='none')try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}};
+    
+    api.take=function(s,tr){var key=s.n+'|'+tr,prev=UNITMEM.key(),mem=UNITMEM.store[key];
+      if(prev&&prev!==key){UNITMEM.park();if(window.__net&&window.__net.release)try{window.__net.release(ukey(prev));}catch(e){}}
+      try{localStorage.setItem('rep_site',key);}catch(e){}
+      var e0=mem?mem.etat:(function(){var u=PARC.unit(s.n,tr-1,s.p,S.t||0);return u.etat==='AT'?'RCD':'RP';})();       
+      if(prev!==key){if(!window.__net){try{jumpEtat(e0);}catch(e){}}else if(e0!=='RP'){try{window.__net.jump(ukey(key),e0);}catch(e){}}}   
+      if(!mem){UNITMEM.store[key]={etat:e0,Pe:e0==='RP'?(PN[s.p]||1300):0,t:Date.now()};UNITMEM.save();}
+      if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}}
+      var st=el('siteTag');if(st)st.textContent='CNPE de '+s.n+' \u00b7 tranche '+tr+' ('+s.p+')';
+      api.close();var cf=el('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}
+      try{log('Prise de quart au CNPE de '+s.n+', tranche '+tr+' \u2014 palier '+s.p+' ('+(ETLAB[e0]||e0)+').','cyan');}catch(e){}};
+    api.openMine=function(){var k=UNITMEM.key();if(!k){try{openCarte();}catch(e){}return;}var n=k.split('|')[0],s=null,L=window.__SITES||[];for(var i=0;i<L.length;i++)if(L[i].n===n)s=L[i];if(s&&playable(s))api.open(s);else try{openCarte();}catch(e){}};
+    
+    api.exp={};
+    api.homeTable=function(S){var box=el('mesTr');if(!box)return;var L=window.__SITES||[];if(!L.length){box.style.display='none';return;}box.style.display='';try{peekTouched(L);}catch(_e){}
+      var tot=0,h='<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div style="font-weight:800;font-size:15px">\u26a1 Le parc</div><div style="font-size:12px;color:#7a8a99">production et \u00e9tat de toutes les tranches \u00b7 clique un CNPE pour le d\u00e9velopper</div></div><table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:6px">';
+      h+='<tr style="color:#7a8a99;font-size:11px;text-transform:uppercase;letter-spacing:.5px"><td style="padding:4px 6px">CNPE</td><td>palier</td><td style="text-align:center">en prod.</td><td style="text-align:right">production</td></tr>';
+      L.forEach(function(s,si){var dead=s.p==='\u2020',units=[],sum=0,np=0;
+        if(!dead){for(var i=0;i<s.t;i++){var u=stateOf(s,i,S);units.push(u);sum+=u.Pe||0;if((u.Pe||0)>0)np++;}}
+        tot+=sum;var open=!!api.exp[s.n],pl=playable(s);
+        h+='<tr class="parcRow" data-s="'+si+'" style="border-top:1px solid #edf1f5;cursor:pointer'+(open?';background:#f4f7fa':'')+'"><td style="padding:6px;font-weight:700">'+(open?'\u25be':'\u25b8')+' '+s.n+(pl?' <span style="font-size:10px;color:#2e7d3a;font-weight:600">jouable</span>':'')+'</td><td style="color:#4a5c70">'+(dead?'arr\u00eat\u00e9e':s.p)+'</td><td style="text-align:center">'+(dead?'\u2014':np+'/'+s.t)+'</td><td style="text-align:right;font-weight:700">'+(dead?'0':sum)+' MW</td></tr>';
+        if(open&&!dead)units.forEach(function(u,i){var cc=u.etat==='RP'?'#2e7d3a':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8a99a8':'#e0a030');
+          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">tranche '+(i+1)+(u.cur?' <span style="font-size:10px;color:#2e7d3a">\u25cf au pupitre</span>':'')+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+(u.lab||'')+'</span></td><td style="text-align:center">'+(pl?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>':'')+'</td><td style="text-align:right;font-weight:700">'+(u.Pe||0)+' MWe</td></tr>';});
+        if(open&&pl)h+='<tr style="background:#fafbfc"><td colspan="4" style="padding:4px 6px 8px 26px"><button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-view="'+si+'">\ud83c\udfed vue du site</button></td></tr>';});
+      h+='<tr style="border-top:2px solid #dfe6ee"><td colspan="3" style="padding:6px;font-weight:800">Production du parc</td><td style="text-align:right;font-weight:800">'+tot+' MW</td></tr></table>';
+      box.innerHTML=h;
+      box.querySelectorAll('tr.parcRow').forEach(function(r){r.onclick=function(){var s=L[+r.getAttribute('data-s')];api.exp[s.n]=!api.exp[s.n];api.homeTable(S);};});
+      box.querySelectorAll('button[data-take]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation();var p=b.getAttribute('data-take').split('|');api.take(L[+p[0]],+p[1]);};});
+      box.querySelectorAll('button[data-view]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation();api.open(L[+b.getAttribute('data-view')]);};});};
+    api.playable=playable;
+    return api;
+  })();
+  try{window.CNPE=CNPE;window.PARC=PARC;window.UNITMEM=UNITMEM;}catch(_e){}
+  try{if(!window.__net&&UNITMEM.key()&&UNITMEM.store[UNITMEM.key()]&&UNITMEM.store[UNITMEM.key()].etat!=='RP')jumpEtat(UNITMEM.store[UNITMEM.key()].etat);}catch(_e){}   
+  try{setInterval(function(){try{if(UNITMEM.key())UNITMEM.park();}catch(e){}},2000);}catch(_e){}   
+  try{setInterval(function(){try{var cf=el('carteFr');if(cf&&cf.style.display!=='none')CNPE.homeTable(S);}catch(e){}},1500);}catch(_e){}
+  (function(){var b3=el('bCnpe');if(b3)b3.onclick=function(){CNPE.openMine();};})();
   window.__carte={open:openCarte};
   (function(){function dragGuard(id,flag){var e2=document.getElementById(id);if(!e2)return;
     ['pointerdown','touchstart','mousedown'].forEach(function(t){e2.addEventListener(t,function(){window[flag]=1;});});
@@ -3211,17 +3369,26 @@ var ISO=(function(){
 })();
 
 ;(function(){ // chassis reseau : le moteur vit sur le serveur ; le serveur est le maitre
-var SRV='https://moteur.simurep.fr';var sid=null;try{sid=localStorage.getItem('rep_sid');}catch(e){}
-function hdr(){var h={'content-type':'application/json'};if(sid)h['x-sid']=sid;return h;}
+var SRV='https://moteur.simurep.fr';var base=null;try{base=localStorage.getItem('rep_sid');}catch(e){}
+function ukey(){try{return (localStorage.getItem('rep_site')||'').replace(/[^A-Za-z0-9]/g,'_');}catch(e){return '';}}   // la tranche courante : site_n
+function sidFor(u){return base?(base+'-'+u).slice(0,64):null;}                                                          // UNE SESSION SERVEUR PAR TRANCHE
+function hdrFor(u){var h={'content-type':'application/json'};var s=sidFor(u);if(s)h['x-sid']=s;return h;}
+function hdr(){return hdrFor(ukey());}
 function cmd(o){fetch(SRV+'/cmd',{method:'POST',headers:hdr(),body:JSON.stringify(o)}).catch(function(){});}
-window.__net={cmd:cmd};
+function peek(u,cb){var s=sidFor(u);if(!s)return;fetch(SRV+'/state',{headers:hdrFor(u)}).then(function(r){return r.json();}).then(cb).catch(function(){});}
+function etatOf(u,e){var s=sidFor(u);if(!s)return;fetch(SRV+'/cmd',{method:'POST',headers:hdrFor(u),body:JSON.stringify({type:'etat',e:e})}).catch(function(){});}
+function release(u){var s=sidFor(u);if(!s)return;fetch(SRV+'/cmd',{method:'POST',headers:hdrFor(u),body:JSON.stringify({type:'release'})}).catch(function(){});}
+function jumpOf(u,e){var s=sidFor(u);if(!s)return;fetch(SRV+'/cmd',{method:'POST',headers:hdrFor(u),body:JSON.stringify({type:'jump',e:e})}).catch(function(){});}
+window.__net={cmd:cmd,peek:peek,etat:etatOf,jump:jumpOf,release:release,ukey:ukey};
+var curU=ukey();
 var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log)||function(){};
 var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaine','gctTgt','srcType','Tsrc','saison','speed'];
 var CLIENT_ONLY={mIdx:1,easy:1,mis:1,accel:1}; // accel = la vitesse COTE CLIENT (timers, missions) ; le serveur a la sienne (session)
 var prev=null,lastLogT=-1;
 function pull(){
+  var u=ukey();if(u!==curU){curU=u;prev=null;lastSent={};}                                                             // changement de tranche : on repart propre sur SA session
   fetch(SRV+'/state',{headers:hdr()}).then(function(r){
-    var ns=r.headers.get('x-sid');if(ns&&ns!==sid){sid=ns;try{localStorage.setItem('rep_sid',sid);}catch(e){}}
+    var ns=r.headers.get('x-sid');if(!base&&ns){base=ns.split('-')[0];try{localStorage.setItem('rep_sid',base);}catch(e){}}
     return r.json();
   }).then(function(d){
     try{
@@ -3263,6 +3430,7 @@ document.querySelectorAll('button').forEach(function(b){
     <div id="carteMsg" style="min-height:22px;font-size:13px;color:#8a5a10;padding:4px 2px;font-weight:600"></div>
     <div style="font-size:11.5px;color:#4a5c70;padding:6px 2px 2px">Puissances&nbsp;: <span style="color:#2e6fb8">&#9679; 900 (CPY/CP0)</span> · <span style="color:#2e7d3a">&#9679; 1300 (P4/P&#8217;4)</span> · <span style="color:#b0509c">&#9679; 1450 (N4)</span> · <span style="color:#e07830">&#9679; 1650 (EPR)</span> · <span style="color:#777">&#129702; arrêtées</span></div>
     <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:12px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#33465c;line-height:1.5">&#9432;&nbsp; <b>Clique un site vert</b> pour prendre ton quart : le simulateur s&#8217;ouvre sur cette centrale, avec sa source froide. Les sites gris arrivent aux prochains paliers. Le bouton &#128506;&#65039; en haut du simulateur te ram&egrave;ne ici.</div>
+    <div id="mesTr" class="cnpeCard" style="margin-top:10px;display:none;color:#243242"></div>
     <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:10px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#2f4256;line-height:1.5"><b>&#9889; Le savais-tu&nbsp;?</b> <span id="histoTxt"></span> <a id="histoNext" style="cursor:pointer;color:#2e6fb8;text-decoration:underline;white-space:nowrap">une autre&nbsp;!</a></div>
     <div style="display:flex;gap:10px;margin-top:12px">
       <button id="bCarteLex" style="flex:1;background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:14px;padding:12px;font-size:14px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06)">&#128214;&nbsp; Lexique du nucl&eacute;aire</button>
@@ -3285,6 +3453,22 @@ document.querySelectorAll('button').forEach(function(b){
     <p>Choisis ta centrale sur la carte, prends ton quart, et pilote : réactivité, grappes, bore, générateurs de vapeur, turbine, source froide — du fonctionnement normal aux transitoires accidentels, avec un <b>mode facile</b> guidé, seize missions et un lexique.</p>
     <p>L'interface tourne dans ton navigateur ; le cœur de calcul physique tourne sur un serveur dédié. Aucune donnée personnelle, aucune inscription.</p>
     <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR — un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span></p>
+  </div>
+</div>
+<div id="cnpeFr" style="display:none;position:fixed;inset:0;z-index:450;background:#f2f5f8;overflow:auto;overscroll-behavior:none">
+  <div style="max-width:980px;margin:0 auto;padding:max(12px, env(safe-area-inset-top, 12px)) 10px 14px;color:#243242;font-family:inherit">
+    <div style="display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap">
+      <div id="cnpeTitle" style="font-size:30px;font-weight:900;letter-spacing:2px;line-height:1.1;font-family:'Arial Black','Arial Bold',Arial,sans-serif;background:linear-gradient(90deg,#2e7d3a 0%,#2e6fb8 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">CNPE</div>
+      <div id="cnpeSub" style="font-size:12.5px;color:#4a5c70;padding-bottom:5px"></div>
+    </div>
+    <div id="cnpeCom" style="font-size:12px;color:#33465c;margin-top:2px"></div>
+    <div style="display:flex;gap:8px;margin:8px 0 10px;flex-wrap:wrap">
+      <button id="bCnpeCarte" class="cnpeBtn">&#128506;&#65039; Carte du parc</button>
+      <button id="bCnpeBack" class="cnpeBtn" style="display:none">&#8617; Retour &agrave; la tranche</button>
+    </div>
+    <div id="cnpeWrap"><button id="cnpeZr" title="R&eacute;initialiser le zoom">&#10530; 1:1</button><svg id="cnpeSvg" xmlns="http://www.w3.org/2000/svg" aria-label="Plan du site"></svg></div>
+    <div id="cnpeUnits"></div>
+    <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI</div>
   </div>
 </div>
 </body>
