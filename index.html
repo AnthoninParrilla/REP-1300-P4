@@ -74,20 +74,20 @@ if('serviceWorker' in navigator){
   select{min-width:0;max-width:100%}
   #synWrap,#sockWrap{overflow:hidden;position:relative;touch-action:pan-y}
   @keyframes puffRise{
-    0%  {transform:translate(930px,304px) scale(0.75);opacity:0;}
-    10% {transform:translate(930px,296px) scale(0.9);opacity:0.95;}
-    30% {transform:translate(933px,262px) scale(1.5);opacity:0.9;}
-    60% {transform:translate(945px,200px) scale(2.6);opacity:0.65;}
-    85% {transform:translate(964px,146px) scale(3.5);opacity:0.32;}
-    100%{transform:translate(982px,110px) scale(4.2);opacity:0;}
+    0%  {transform:translate(930px,283px) scale(0.95);opacity:0;}
+    6%  {opacity:0.95;}
+    30% {transform:translate(933px,236px) scale(1.6);opacity:0.9;}
+    60% {transform:translate(945px,180px) scale(2.6);opacity:0.65;}
+    85% {transform:translate(964px,130px) scale(3.5);opacity:0.32;}
+    100%{transform:translate(982px,96px) scale(4.2);opacity:0;}
   }
   @keyframes puffRiseB{
-    0%  {transform:translate(930px,304px) scale(0.8);opacity:0;}
-    10% {transform:translate(930px,297px) scale(0.95);opacity:0.95;}
-    30% {transform:translate(935px,264px) scale(1.5);opacity:0.9;}
-    60% {transform:translate(949px,204px) scale(2.75);opacity:0.65;}
-    85% {transform:translate(969px,150px) scale(3.35);opacity:0.32;}
-    100%{transform:translate(988px,114px) scale(4.05);opacity:0;}
+    0%  {transform:translate(930px,283px) scale(1.0);opacity:0;}
+    6%  {opacity:0.95;}
+    30% {transform:translate(935px,238px) scale(1.5);opacity:0.9;}
+    60% {transform:translate(949px,184px) scale(2.75);opacity:0.65;}
+    85% {transform:translate(969px,134px) scale(3.35);opacity:0.32;}
+    100%{transform:translate(988px,100px) scale(4.05);opacity:0;}
   }
   #gPanache .puff{animation:puffRise 9.4s linear infinite;will-change:transform,opacity}
   #gPanache .puff:nth-child(even){animation-name:puffRiseB}
@@ -106,7 +106,7 @@ if('serviceWorker' in navigator){
   #synop,#sockSvg{transform-origin:0 0;display:block;touch-action:pan-y;will-change:transform}
   #synWrap{overflow:hidden;position:relative}
 #isoWrap{overflow:hidden;position:relative;display:none;background:#050806;border-radius:10px}
-#isoSvg{width:100%;height:auto;max-height:82vh;display:block}
+#isoSvg{width:100%;height:auto;max-height:82vh;display:block;transform-origin:0 0;touch-action:pan-y;will-change:transform}
 #viewBar{display:flex;gap:5px;align-items:center;margin:0 0 5px}
 #viewBar .sw{min-width:0;font-size:9.5px;line-height:1;padding:4px 8px 3px;letter-spacing:.7px;text-transform:uppercase;font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;color:#8fe89a;background:#0f1a13;border:1px solid #5a8a62;border-radius:2px;box-shadow:inset 1px 1px 0 #2f5238,inset -1px -1px 0 #060c08,0 1px 0 #000;position:relative;padding-left:16px}
 #viewBar .sw::before{content:'';position:absolute;left:5px;top:50%;width:6px;height:6px;margin-top:-3px;background:#22402a;border:1px solid #0a120d;box-shadow:inset 0 0 1px #000}
@@ -671,8 +671,7 @@ body.shake{animation:quake .9s linear;}
                 
             
       </svg>
-      </div>
-      <svg id="panOver" viewBox="0 0 1000 560" style="position:absolute;left:8px;top:8px;width:calc(100% - 16px);height:auto"><defs><radialGradient id="gPuff"><stop offset="0%" stop-color="#cfeacf" stop-opacity="0.85"/><stop offset="55%" stop-color="#cfeacf" stop-opacity="0.4"/><stop offset="100%" stop-color="#cfeacf" stop-opacity="0"/></radialGradient></defs><g id="gPanache" opacity="0.65">
+      <svg id="panOver" viewBox="0 0 1000 560" style="position:absolute;left:0;top:0;width:100%;height:auto"><defs><radialGradient id="gPuff"><stop offset="0%" stop-color="#cfeacf" stop-opacity="0.85"/><stop offset="55%" stop-color="#cfeacf" stop-opacity="0.4"/><stop offset="100%" stop-color="#cfeacf" stop-opacity="0"/></radialGradient></defs><g id="gPanache" opacity="0.65">
             <g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g><g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g>
             <g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g>
             <g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g>
@@ -685,6 +684,8 @@ body.shake{animation:quake .9s linear;}
             <g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g>
             <g class="puff"><circle cx="-9" cy="2" r="14" fill="url(#gPuff)" opacity="0.8"/><circle cx="8" cy="-4" r="12.5" fill="url(#gPuff)" opacity="0.72"/><circle cx="0" cy="-11" r="11" fill="url(#gPuff)" opacity="0.66"/><circle cx="-4" cy="7" r="10" fill="url(#gPuff)" opacity="0.6"/><circle cx="11" cy="4" r="9.5" fill="url(#gPuff)" opacity="0.56"/><circle cx="-14" cy="-3" r="9" fill="url(#gPuff)" opacity="0.52"/><circle cx="4" cy="10" r="8.5" fill="url(#gPuff)" opacity="0.5"/></g>
           </g></svg>
+      </div>
+
     </div>
 
     <div class="msg" id="msg">Régime établi.</div>
@@ -1835,7 +1836,7 @@ var ISO=(function(){
   },{passive:true});
   
   
-  [['mnv1','synop'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock']].forEach(function(p){
+  [['mnv1','viewBar'],['mnv2','secInc'],['mnv3','secInh'],['mnv4','secTurb'],['mnv5','secSock']].forEach(function(p){
     var b=el(p[0]);if(b)b.onclick=function(){var t=el(p[1]);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});};
   });
   turb.addEventListener('change',function(){log('OPÉRATEUR : consigne vannes admission '+turb.value+' %','cyan');});
@@ -1892,7 +1893,7 @@ var ISO=(function(){
 
   el('iReset').onclick=function(){location.reload();};
   el('iBoom').onclick=function(){
-    try{el('synop').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
+    try{el('viewBar').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
     log('☢ SÉQUENCE DÉMONSTRATION — toutes les protections inhibées, cumul d\u2019initiateurs. Ne pas reproduire sur une vraie tranche.','red');
     S.aarInhib=true;S.inhIsoE=true;S.inhIsoV=true;S.inhIS=true;S.inhEAS=true;S.inhASG=true;S.inhKrt=true;
     S.breche=1;S.gaine=0.3;el('iApr').textContent='Isoler la brèche';
