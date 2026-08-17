@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.0</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.0b</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : pilote une tranche nucléaire REP 1300 MWe depuis ton navigateur. Choisis ta centrale sur la carte du parc français.">
@@ -301,7 +301,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.0</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.0b</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1240,11 +1240,14 @@ body.shake{animation:quake .9s linear;}
     for(var k3 in p){if(k3==='gmpp')continue;S[k3]=p[k3];}                                                                     
     S.gmppN=(p.gmpp===true?4:(typeof p.gmpp==='number'?p.gmpp:0));S.gmpp=S.gmppN>0;
     for(var k4 in J)S[k4]=J[k4];                                                                                              
-    S.Pres=S.Pr1+S.Pr2+S.Pr3;S.Ptot=F_FISS*S.Pn+S.Pres;S.turbSet=S.turb;S.gctTgt=S.gctSet=(e==='RP'||e==='ANGV')?74:S.gctSet;
+    S.Pres=S.Pr1+S.Pr2+S.Pr3;S.Ptot=F_FISS*S.Pn+S.Pres;S.turbSet=S.turb;S.gctTgt=S.gctSet=74;
     S.mpsA=!!p.asgOn;S.mpsB=!!p.asgOn;S.tpsA=false;S.tpsB=false;
-    S._rodTgt=null;S._turbTgt=null;S._cbTgt=null;S._rodFinal=null;S._rpHold=false;S._rpHold2=false;S._rpRamp=false;
-    S.etat=e;S.scram=false;S.tripMsg='';S.note='';S.areAvail=(e==='RP');S.asgLatch=false;
-    try{log('Prise de quart : la tranche est en '+e+' \u2014 '+Math.round(S.Tavg)+' \u00b0C / '+Math.round(S.Ppzr)+' bar, '+Math.round(S.Pelec)+' MWe.','dim');}catch(_e){}}
+    if(e!=='RP'){S.tpaN=0;S.tpaRun=false;S.areOut=0;S.Padm=0;}                                                                
+    S._rodTgt=null;S._turbTgt=null;S._cbTgt=null;S._rodFinal=null;S._rpHold=false;S._rpHold2=false;S._rpRamp=false;S._pzrFollow=false;S._fromIdx=undefined;
+    S.tripMsg='';S.note='';S.asgLatch=false;S.ishp=false;S.isbp=false;S.eas=false;S.sigIS=false;S.easLatch=false;S.isoEnc=false;S.breche=0;S.inv=100;S.Penc=1;S.sebim=false;S.rdp=0;S.rdpBurst=false;
+    ['_rtvIso','rejAtmMsg','_ptMsg','_flrMsg','_gradMsg','_grMsg','_cfMsg','_rwMsg','_blkDue','_accDue','_reaDue','_reaMsg','_accMsg','_blkMsg','_isAux','recircHot','asgOn'].forEach(function(f){if(S[f]===undefined)S[f]=false;});
+    S.etat=e;
+    try{log('Prise de quart : la tranche est en '+e+' \u2014 '+Math.round(S.Tavg)+' \u00b0C / '+Math.round(S.Ppzr)+' bar, '+Math.round(S.Pelec)+' MWe'+(e==='ANGV'?', groupes d\u2019arr\u00eat chut\u00e9s':'')+(J.isBlk?', IS bloqu\u00e9e, accus isol\u00e9s':'')+'.','dim');}catch(_e){}}
   function isHot(){return S.etat==='RP'||S.etat==='ANGV';}
   
   function dTgm(){return 18*S.Ptot*(S.gmppN>0?4/S.gmppN:3);} 
