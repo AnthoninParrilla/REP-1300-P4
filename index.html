@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.0b</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.1</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : pilote une tranche nucléaire REP 1300 MWe depuis ton navigateur. Choisis ta centrale sur la carte du parc français.">
@@ -301,7 +301,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe</h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.0b</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.1</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1602,6 +1602,8 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointerdown',function(e){if(e.target&&e.target.type==='range')sbShow(e.target);},true);
   document.addEventListener('pointerup',sbHide,true);
   document.addEventListener('pointercancel',sbHide,true);
+
+
 
 
 
@@ -3242,8 +3244,20 @@ var ISO=(function(){
     save:function(){try{localStorage.setItem('rep_units',JSON.stringify(this.store));}catch(e){}},
     park:function(){var k=this.key();if(!k)return;this.store[k]={etat:S.etat||'RP',Pe:Math.round(S.Pelec||0),t:Date.now()};this.save();}};
   UNITMEM.load();
+  
+  function incidentsOf(S){var L=[];if(!S)return L;
+    if(S.scram)L.push('AU'+(S.tripMsg?' \u2014 '+S.tripMsg:''));
+    if(S.breche>0)L.push('br\u00e8che primaire (APRP)');if(S.fuiteGV>0)L.push('RTGV \u2014 fuite GV vers le secondaire');if(S.rtv>0)L.push('RTV \u2014 rupture de tuyauterie vapeur');
+    if(S.reseau===false)L.push('perte des sources externes (LOOP)');if(S.h3)L.push('H3 \u2014 perte totale des sources \u00e9lectriques');
+    if(S.sigIS)L.push('injection de s\u00e9curit\u00e9 en cours');if(S.eas)L.push('aspersion enceinte (EAS)');if(S.isoEnc)L.push('isolement enceinte');
+    if(S.rdpBurst)L.push('RDP \u2014 disque de rupture cass\u00e9 (d\u00e9charge dans l\u2019enceinte)');
+    if(S.gaine>0)L.push('gaines d\u00e9grad\u00e9es ('+Math.round(S.gaine*100)+' %)');if(S.dmg>0)L.push('endommagement du c\u0153ur ('+Math.round(S.dmg*100)+' %)');
+    if(S.Penc>1.25)L.push('pression enceinte '+S.Penc.toFixed(2)+' bar');if(S.viv===false&&S.etat==='RP')L.push('vide condenseur perdu');
+    var inh=['aarInhib','inhIsoE','inhIsoV','inhIS','inhEAS','inhASG','inhKrt'].filter(function(k){return S[k];}).length;if(inh)L.push('protections inhib\u00e9es ('+inh+')');
+    return L;}
+  var LOGRING=[];try{var _log0=log;log=function(txt,cls){try{LOGRING.push({t:Date.now(),txt:String(txt),cls:cls||''});if(LOGRING.length>40)LOGRING.shift();}catch(e){}return _log0(txt,cls);};}catch(_e){}   
   var CNPE=(function(){
-    var cur=null,timer=null,api={};
+    var cur=null,timer=null,api={},dusTest={};
     function playable(s){return s.p==='P4'||s.p==="P'4";}
     function ukey(k){return k.replace(/[^A-Za-z0-9]/g,'_');}
     
@@ -3280,6 +3294,8 @@ var ISO=(function(){
       }
       for(var i=0;i<N;i++){var xi=x0+i*190,epr=i>=n;h+=unitSvg(xi,150,i,epr?'#c8a06a':null,H-8-150);
         if(tours&&i<n)h+=tourSvg(xi+(i%2?42:-42),478+(i%2?26:0),i);}
+      var dx0=20,dy0=H-72;h+='<rect x="'+(dx0-6)+'" y="'+(dy0-16)+'" width="'+(n*34+12)+'" height="60" rx="4" fill="none" stroke="#b9c4cf" stroke-dasharray="4 3"/><text x="'+dx0+'" y="'+(dy0-4)+'" font-size="9.5" font-weight="700" fill="#5a6b7c">DUS \u2014 diesels d\u2019ultime secours</text>';
+      for(var i=0;i<n;i++){var xd=dx0+i*34;h+='<rect x="'+xd+'" y="'+dy0+'" width="26" height="22" rx="2" fill="#e3e9ef" stroke="#6f7f8f"/><circle id="cnD'+i+'" cx="'+(xd+21)+'" cy="'+(dy0+5)+'" r="3" fill="#8ea3b6" stroke="#33465c" stroke-width=".8"/><circle cx="'+(xd+8)+'" cy="'+(dy0+30)+'" r="4.5" fill="#f2ede0" stroke="#8a7a52"/><text x="'+(xd+13)+'" y="'+(dy0+16)+'" text-anchor="middle" font-size="8" font-weight="700" fill="#5a6b7c">'+(i+1)+'</text>';}   
       h+='<text x="'+(W-12)+'" y="'+(H-10)+'" text-anchor="end" font-size="10.5" fill="#7a8a99">vue du dessus \u00b7 plan de tranche P4 \u00b7 400 kV vers le poste</text>';
       return {h:h,W:W,H:H,N:N,n:n};}
     
@@ -3300,16 +3316,24 @@ var ISO=(function(){
       return b;}
     function doAct(a){var p=a.split('|');
       if(p[0]==='load'){try{S.turbSet=+p[1];if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:+p[1]});}catch(e){}try{log('Consigne de charge '+p[1]+' % (vue CNPE).','cyan');}catch(e){}}
-      else if(p[0]==='etat'){try{if(window.__net)window.__net.cmd({type:'etat',e:p[1]});else setEtat(p[1]);}catch(e){}}}
+      else if(p[0]==='etat'){try{if(window.__net)window.__net.cmd({type:'etat',e:p[1]});else setEtat(p[1]);}catch(e){}}
+      else if(p[0]==='dus'&&cur){dusTest[cur.s.n+'|'+p[1]]=Date.now()+90000;try{log('Essai p\u00e9riodique du DUS de la tranche '+p[1]+' \u2014 d\u00e9marrage, mont\u00e9e en vitesse, couplage sur son tableau : 90 s.','cyan');}catch(e){}try{api.update(S);}catch(e){}}}
     api.update=function(S){if(!cur||!S)return;var s=cur.s;
       for(var i=0;i<cur.N;i++){var u=stateOf(s,i,S),Pn=PN[i>=s.t?'EPR':s.p]||1300,f=Math.max(0,Math.min(1,u.Pe/Pn));
         var b=el('cnB'+i);if(b)b.setAttribute('fill',i>=s.t?'#c8a06a':col(u));var t=el('cnT'+i);if(t)t.setAttribute('fill',u.Pe>0?'#5aa66a':'#b0bcc8');
         for(var k=0;k<3;k++){var l=el('cnL'+i+'_'+k);if(l)l.setAttribute('stroke',u.Pe>0?'#2e7d3a':'#9aa9b8');}
         var p=el('cnP'+i);if(p)p.textContent=u.Pe+' MWe \u00b7 '+u.etat;var nn=el('cnN'+i);if(nn&&i>=s.t)nn.textContent='EPR';
         var v=el('cnV'+i);if(v)v.setAttribute('opacity',0.9*f);
-        var c=el('cnC'+i);if(c){c.querySelector('.cnpeVal').textContent=u.Pe+' MWe \u00b7 '+u.etat+' \u00b7 '+u.lab;var act=c.querySelector('.cnpeAct');if(act)act.innerHTML=u.cur?actionsFor(u):'';}}
-      var cm=el('cnpeCom');if(cm){var kk=UNITMEM.key(),me=kk.split('|')[0]===s.n,tsrc=me?Math.round(S.Tsrc||0):(s.src==='mer'?12:14),inc=(me&&S.etat&&S.etat!=='RP')?('transitoire en cours sur la tranche '+kk.split('|')[1]+' ('+S.etat+')'):'aucun';
-        cm.textContent='Communs \u00b7 source froide '+tsrc+' \u00b0C \u00b7 r\u00e9seau 400 kV 50,00 Hz \u00b7 incidents en cours : '+inc;}};
+        var c=el('cnC'+i);if(c){var li=u.cur?incidentsOf(S):[];c.querySelector('.cnpeVal').innerHTML=u.Pe+' MWe \u00b7 '+u.etat+' \u00b7 '+u.lab+(li.length?'<div style="color:#c0392b;font-weight:700;margin-top:2px">\u26a0 '+li.join(' \u00b7 ').replace(/</g,'&lt;')+'</div>':'');var act=c.querySelector('.cnpeAct');if(act)act.innerHTML=(u.cur?actionsFor(u):'')+'<div style="margin-top:4px"><button class="cnpeBtn" data-act="dus|'+(i+1)+'" style="padding:3px 8px;font-size:11px">\u25b6 essai DUS '+(i+1)+'</button></div>';}}
+      var kk=UNITMEM.key(),me=kk.split('|')[0]===s.n,myTr=me?+kk.split('|')[1]:0,now=Date.now();
+      for(var i=0;i<s.t;i++){var d0=el('cnD'+i),run=(dusTest[s.n+'|'+(i+1)]||0)>now||(me&&myTr===i+1&&!!S.h3);if(d0)d0.setAttribute('fill',run?'#3ad46a':'#8ea3b6');}   
+      var incs=me?incidentsOf(S):[];for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1),mm=UNITMEM.store[key];if(key!==kk&&mm&&mm.etat&&mm.etat!=='RP'&&mm.etat!=='AT'&&mm.etat!=='RCD')incs.push('tranche '+(i+1)+' en transitoire ('+mm.etat+')');}
+      if(me&&incs.length){var b0=el('cnB'+(myTr-1));if(b0&&incidentsOf(S).length)b0.setAttribute('fill','#c0392b');}
+      var cm=el('cnpeCom');if(cm){var tsrc=me?Math.round(S.Tsrc||0):(s.src==='mer'?12:14),sum=0;for(var i=0;i<s.t;i++)sum+=stateOf(s,i,S).Pe||0;
+        cm.innerHTML='<b>Communs</b> \u00b7 source froide '+tsrc+' \u00b0C'+(me?(S.crf?' \u00b7 CRF en service':' \u00b7 <span style="color:#c0392b">CRF \u00e0 l\u2019arr\u00eat</span>'):'')+' \u00b7 '+(me&&S.reseau===false?'<span style="color:#c0392b;font-weight:700">R\u00c9SEAU 400 kV PERDU</span>':'r\u00e9seau 400 kV coupl\u00e9 \u00b7 50,00 Hz')+' \u00b7 production du site <b>'+sum+' MW</b>'
+          +'<div style="margin-top:3px">incidents en cours : '+(incs.length?'<span style="color:#c0392b;font-weight:700">'+incs.join(' \u00b7 ')+'</span>':'aucun')+'</div>';}
+      var jn=el('cnpeJournal');if(jn){var last=LOGRING.slice(-5).reverse();jn.innerHTML=me&&last.length?'<div style="font-weight:800;font-size:12px;margin-bottom:3px">Journal de la tranche '+myTr+'</div>'+last.map(function(l){return '<div style="font-size:11px;color:'+(l.cls==='red'?'#c0392b':(l.cls==='cyan'?'#2e6fb8':'#4a5c70'))+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis">\u2022 '+l.txt.replace(/</g,'&lt;')+'</div>';}).join(''):'';}
+      var vc=el('cnpeVit');if(vc&&me){vc.textContent='Tranche '+myTr+' au pupitre \u00b7 Tmoy '+Math.round(S.Tavg||0)+' \u00b0C \u00b7 P '+Math.round(S.Ppzr||0)+' bar \u00b7 grappes '+Math.round(S.rod||0)+' % \u00b7 GRE '+Math.round(S.turb||0)+' %';}else if(vc)vc.textContent='';};
     api.open=function(s){var ov=el('cnpeFr');if(!ov)return;cur={s:s};var b=build(s);cur.N=b.N;
       if(!api._w){api._w=1;var b1=el('bCnpeCarte'),b2=el('bCnpeBack');                                                       
         if(b1)b1.onclick=function(){api.close();try{openCarte();}catch(e){}};
@@ -3332,7 +3356,10 @@ var ISO=(function(){
       try{localStorage.setItem('rep_site',key);}catch(e){}
       var e0=mem?mem.etat:(function(){var u=PARC.unit(s.n,tr-1,s.p,S.t||0);return u.etat==='AT'?'RCD':'RP';})();       
       if(prev!==key){if(!window.__net){try{jumpEtat(e0);}catch(e){}}else if(e0!=='RP'){try{window.__net.jump(ukey(key),e0);}catch(e){}}}   
-      if(!mem){UNITMEM.store[key]={etat:e0,Pe:e0==='RP'?(PN[s.p]||1300):0,t:Date.now()};UNITMEM.save();}
+      var u0=PARC.unit(s.n,tr-1,s.p,S.t||0),PeT=mem?mem.Pe:(u0.etat==='RP'?u0.Pe:0);
+      if(!mem){UNITMEM.store[key]={etat:e0,Pe:PeT,t:Date.now()};UNITMEM.save();}
+      if(prev!==key&&e0==='RP'&&PeT>0){var ld=Math.max(20,Math.min(100,Math.round(PeT/(PN[s.p]||1300)*100)));                     
+        if(!window.__net){try{S.turbSet=ld;S.turb=ld;}catch(e){}}else{try{window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}
       if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}}
       var st=el('siteTag');if(st)st.textContent='CNPE de '+s.n+' \u00b7 tranche '+tr+' ('+s.p+')';
       api.close();var cf=el('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}
@@ -3379,10 +3406,9 @@ function hdrFor(u){var h={'content-type':'application/json'};var s=sidFor(u);if(
 function hdr(){return hdrFor(ukey());}
 function cmd(o){fetch(SRV+'/cmd',{method:'POST',headers:hdr(),body:JSON.stringify(o)}).catch(function(){});}
 function peek(u,cb){var s=sidFor(u);if(!s)return;fetch(SRV+'/state',{headers:hdrFor(u)}).then(function(r){return r.json();}).then(cb).catch(function(){});}
-function etatOf(u,e){var s=sidFor(u);if(!s)return;fetch(SRV+'/cmd',{method:'POST',headers:hdrFor(u),body:JSON.stringify({type:'etat',e:e})}).catch(function(){});}
 function release(u){var s=sidFor(u);if(!s)return;fetch(SRV+'/cmd',{method:'POST',headers:hdrFor(u),body:JSON.stringify({type:'release'})}).catch(function(){});}
 function jumpOf(u,e){var s=sidFor(u);if(!s)return;fetch(SRV+'/cmd',{method:'POST',headers:hdrFor(u),body:JSON.stringify({type:'jump',e:e})}).catch(function(){});}
-window.__net={cmd:cmd,peek:peek,etat:etatOf,jump:jumpOf,release:release,ukey:ukey};
+window.__net={cmd:cmd,peek:peek,jump:jumpOf,release:release,ukey:ukey};
 var curU=ukey();
 var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log)||function(){};
 var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaine','gctTgt','srcType','Tsrc','saison','speed'];
@@ -3465,6 +3491,8 @@ document.querySelectorAll('button').forEach(function(b){
       <div id="cnpeSub" style="font-size:12.5px;color:#4a5c70;padding-bottom:5px"></div>
     </div>
     <div id="cnpeCom" style="font-size:12px;color:#33465c;margin-top:2px"></div>
+    <div id="cnpeVit" style="font-size:12px;color:#2e6fb8;margin-top:2px;font-weight:600"></div>
+    <div id="cnpeJournal" class="cnpeCard" style="margin-top:8px;padding:8px 12px"></div>
     <div style="display:flex;gap:8px;margin:8px 0 10px;flex-wrap:wrap">
       <button id="bCnpeCarte" class="cnpeBtn">&#128506;&#65039; Carte du parc</button>
       <button id="bCnpeBack" class="cnpeBtn" style="display:none">&#8617; Retour &agrave; la tranche</button>
