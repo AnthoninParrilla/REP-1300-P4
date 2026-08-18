@@ -1,12 +1,25 @@
 <!DOCTYPE html>
+<!--
+  ══════════════════════════════════════════════════════════════════════════════
+  SIMUREP — © 2026 AnthoninP. Tous droits réservés.
+  Ce code, son moteur physique, ses figures, ses textes et ses données sont une
+  œuvre originale protégée par le droit d'auteur. Toute reproduction, copie,
+  extraction, adaptation ou réutilisation, totale ou partielle, à quelque fin que
+  ce soit, est INTERDITE sans l'autorisation écrite préalable de l'auteur.
+  Le moteur de calcul de la version publique tourne sur un serveur privé ; le code
+  visible ici est un châssis d'affichage. Contact : contact@simurep.fr
+  ══════════════════════════════════════════════════════════════════════════════
+-->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.1</title>
+<meta name="author" content="AnthoninP">
+<meta name="copyright" content="© 2026 AnthoninP — SIMUREP, tous droits réservés. Reproduction interdite sans autorisation écrite. contact@simurep.fr">
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.1c</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
-<meta name="description" content="SIMUREP : pilote une tranche nucléaire REP 1300 MWe depuis ton navigateur. Choisis ta centrale sur la carte du parc français.">
+<meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
 <!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -14,6 +27,9 @@
 <meta name="apple-mobile-web-app-title" content="REP 1300">
 <meta name="theme-color" content="#12171c">
 <script>
+  // ═══ SIMUREP — © 2026 AnthoninP — Tous droits réservés. Reproduction, copie, extraction ou réutilisation
+  // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée. ═══
+
 // enregistrement du service worker : rend le simulateur utilisable hors ligne
 // après un premier chargement en ligne (nécessite le fichier sw.js à côté)
 if('serviceWorker' in navigator){
@@ -299,9 +315,9 @@ body.shake{animation:quake .9s linear;}
 
 <div class="topbar">
   <div>
-    <h1>Tranche REP 1300 MWe</h1>
+    <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.1</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.1c</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1209,6 +1225,7 @@ body.shake{animation:quake .9s linear;}
     puisard:0,    
     recirc:false  
   };
+  try{if(typeof navigator!=='undefined'&&navigator.userAgent)console.log('%cSIMUREP \u00a9 2026 AnthoninP \u2014 tous droits r\u00e9serv\u00e9s. Code, moteur et figures prot\u00e9g\u00e9s : reproduction ou r\u00e9utilisation interdites sans autorisation \u00e9crite \u2014 contact@simurep.fr','font-weight:700;color:#2e7d3a');}catch(_e){}
   var S0=JSON.parse(JSON.stringify(S)); 
 
   
@@ -1602,6 +1619,18 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointerdown',function(e){if(e.target&&e.target.type==='range')sbShow(e.target);},true);
   document.addEventListener('pointerup',sbHide,true);
   document.addEventListener('pointercancel',sbHide,true);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3226,6 +3255,12 @@ var ISO=(function(){
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',openCarte);}else{openCarte();} 
   
   
+  
+  
+  
+  
+  
+  
   var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 — EPR'}]},
     'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
     'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
@@ -3335,13 +3370,10 @@ var ISO=(function(){
       var jn=el('cnpeJournal');if(jn){var last=LOGRING.slice(-5).reverse();jn.innerHTML=me&&last.length?'<div style="font-weight:800;font-size:12px;margin-bottom:3px">Journal de la tranche '+myTr+'</div>'+last.map(function(l){return '<div style="font-size:11px;color:'+(l.cls==='red'?'#c0392b':(l.cls==='cyan'?'#2e6fb8':'#4a5c70'))+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis">\u2022 '+l.txt.replace(/</g,'&lt;')+'</div>';}).join(''):'';}
       var vc=el('cnpeVit');if(vc&&me){vc.textContent='Tranche '+myTr+' au pupitre \u00b7 Tmoy '+Math.round(S.Tavg||0)+' \u00b0C \u00b7 P '+Math.round(S.Ppzr||0)+' bar \u00b7 grappes '+Math.round(S.rod||0)+' % \u00b7 GRE '+Math.round(S.turb||0)+' %';}else if(vc)vc.textContent='';};
     api.open=function(s){var ov=el('cnpeFr');if(!ov)return;cur={s:s};var b=build(s);cur.N=b.N;
-      if(!api._w){api._w=1;var b1=el('bCnpeCarte'),b2=el('bCnpeBack');                                                       
-        if(b1)b1.onclick=function(){api.close();try{openCarte();}catch(e){}};
-        if(b2)b2.onclick=function(){api.close();var cf=el('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}};}
+      if(!api._w){api._w=1;var b1=el('bCnpeCarte');if(b1)b1.onclick=function(){api.close();try{openCarte();}catch(e){}};}   
       var svg=el('cnpeSvg');if(svg){svg.setAttribute('viewBox','0 0 '+b.W+' '+b.H);svg.innerHTML=b.h;}
       var db=CNPE_DB[s.n]||{};var ti=el('cnpeTitle');if(ti)ti.textContent='CNPE de '+s.n;
       var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||1300)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)');
-      var bk=el('bCnpeBack');if(bk)bk.style.display=UNITMEM.key()?'':'none';
       var uc=el('cnpeUnits');if(uc){var hh='';for(var i=0;i<b.N;i++){var epr=i>=s.t;hh+='<div class="cnpeCard" id="cnC'+i+'"><div style="font-weight:800;font-size:15px">'+(epr?'Flamanville 3 \u2014 EPR':'Tranche '+(i+1)+' \u00b7 '+s.p)+'</div><div class="cnpeVal" style="font-size:12.5px;color:#4a5c70;margin:4px 0 8px">\u2014</div>'+(epr?'<span style="font-size:11px;color:#8a99a8">EN CONSTRUCTION dans SIMUREP</span>':'<button class="cnpeBtn on" data-tr="'+(i+1)+'">Prendre le quart</button><div class="cnpeAct"></div>')+'</div>';}
         uc.innerHTML=hh;uc.querySelectorAll('button[data-tr]').forEach(function(bt){bt.onclick=function(){api.take(cur.s,+bt.getAttribute('data-tr'));};});
         uc.onclick=function(ev){var bt=ev.target.closest?ev.target.closest('button[data-act]'):null;if(bt){ev.stopPropagation();doAct(bt.getAttribute('data-act'));}};}
@@ -3413,9 +3445,10 @@ var curU=ukey();
 var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log)||function(){};
 var CMD=['turbSet','gctSet','gctMode','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaine','gctTgt','srcType','Tsrc','saison','speed'];
 var CLIENT_ONLY={mIdx:1,easy:1,mis:1,accel:1}; // accel = la vitesse COTE CLIENT (timers, missions) ; le serveur a la sienne (session)
-var prev=null,lastLogT=-1;
+var prev=null,lastLogT=-1,freeze=false;
+function onSwitch(){var u=ukey();if(u===curU)return;curU=u;prev=null;freeze=true;for(var i=0;i<CMD.length;i++)lastSent[CMD[i]]=S[CMD[i]];}   // changement de tranche : le watcher est GELÉ jusqu'au premier état de la nouvelle session, et rien du miroir de l'ancienne n'est « nouveau »
 function pull(){
-  var u=ukey();if(u!==curU){curU=u;prev=null;lastSent={};}                                                             // changement de tranche : on repart propre sur SA session
+  onSwitch();var uReq=curU;
   fetch(SRV+'/state',{headers:hdr()}).then(function(r){
     var ns=r.headers.get('x-sid');if(!base&&ns){base=ns.split('-')[0];try{localStorage.setItem('rep_sid',base);}catch(e){}}
     return r.json();
@@ -3428,6 +3461,7 @@ function pull(){
         S[k]=d[k];
       }
       if(prev===null)prev={};for(var k2 in d)prev[k2]=d[k2];
+      if(uReq===curU){freeze=false;for(var i2=0;i2<CMD.length;i2++)lastSent[CMD[i2]]=S[CMD[i2]];}                     // le miroir est celui de la tranche courante : le watcher peut repartir, à zéro
       for(var i=0;i<logs.length;i++){if(logs[i].t>lastLogT){lastLogT=logs[i].t;try{log(logs[i].txt,logs[i].cls);}catch(e){}}}
     }catch(e){console.error('REP chassis (interne, non fatal):',e);}
     var el=document.getElementById('srvDot');if(el){el.textContent='\u25cf moteur en ligne';el.style.color='#2c7a2c';}
@@ -3435,6 +3469,7 @@ function pull(){
 }
 var lastSent={};
 setInterval(function(){ // watcher rapide : toute commande locale part en ~80 ms (impulsions comprises)
+  onSwitch();if(freeze)return;
   for(var i=0;i<CMD.length;i++){var k=CMD[i];
     if(S[k]!==undefined&&S[k]!==lastSent[k]&&(!prev||S[k]!==prev[k])){lastSent[k]=S[k];cmd({type:'set',k:k,v:S[k]});if(prev)prev[k]=S[k];}
   }
@@ -3465,7 +3500,7 @@ document.querySelectorAll('button').forEach(function(b){
       <button id="bCarteLex" style="flex:1;background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:14px;padding:12px;font-size:14px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06)">&#128214;&nbsp; Lexique du nucl&eacute;aire</button>
       <button id="bCarteApro" style="flex:1;background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:14px;padding:12px;font-size:14px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06)">&#8505;&#65039;&nbsp; &Agrave; propos</button>
     </div>
-    <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP · helped by AI</div>
+    <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP · helped by AI · © 2026 tous droits réservés</div>
   </div>
 </div>
 <div id="carteLexM" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(20,28,38,.45)" onclick="if(event.target===this)this.style.display='none'">
@@ -3478,10 +3513,11 @@ document.querySelectorAll('button').forEach(function(b){
 <div id="carteAproM" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(20,28,38,.45)" onclick="if(event.target===this)this.style.display='none'">
   <div style="max-width:520px;margin:8vh auto;background:#f5f8fb;border-radius:12px;padding:16px;max-height:78vh;overflow:auto;color:#243242;font-size:13.5px;line-height:1.5">
     <div style="display:flex;gap:8px;align-items:center"><b style="font-size:16px">&#8505;&#65039; À propos de SIMUREP</b><button onclick="document.getElementById('carteAproM').style.display='none'" style="margin-left:auto;background:#2f4256;color:#fff;border:0;border-radius:8px;padding:4px 10px">Fermer</button></div>
-    <p>SIMUREP est un simulateur pédagogique d'une tranche nucléaire <b>REP 1300 MWe</b> (palier P4/P'4) : la vraie nomenclature du parc, des ordres de grandeur réels, les protections câblées comme sur site.</p>
+    <p>SIMUREP est un simulateur pédagogique <b>du parc nucléaire français</b>, à trois niveaux : la <b>France</b> (la carte du parc, production et état de toutes les tranches), le <b>CNPE</b> (l'étage du site : communs, production, état, incidents) et la <b>tranche</b> (le pupitre complet). Le palier jouable est le <b>REP 1300 MWe</b> (P4/P'4) — la vraie nomenclature du parc, des ordres de grandeur réels, les protections câblées comme sur site ; les autres paliers viendront.</p>
     <p>Choisis ta centrale sur la carte, prends ton quart, et pilote : réactivité, grappes, bore, générateurs de vapeur, turbine, source froide — du fonctionnement normal aux transitoires accidentels, avec un <b>mode facile</b> guidé, seize missions et un lexique.</p>
     <p>L'interface tourne dans ton navigateur ; le cœur de calcul physique tourne sur un serveur dédié. Aucune donnée personnelle, aucune inscription.</p>
-    <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR — un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span></p>
+    <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR — un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span> · <a href="mailto:contact@simurep.fr" style="color:#2e6fb8">contact@simurep.fr</a></p>
+    <p style="font-size:11.5px;color:#7a8a99;border-top:1px solid #e3e9ef;padding-top:8px">© 2026 AnthoninP — <b>tous droits réservés</b>. SIMUREP (code, moteur physique, figures, textes, données) est une œuvre originale protégée : toute reproduction, copie, extraction ou réutilisation, même partielle, est interdite sans autorisation écrite de l'auteur. Le moteur de calcul tourne sur un serveur privé ; le code visible dans le navigateur n'est qu'un châssis d'affichage.</p>
   </div>
 </div>
 <div id="cnpeFr" style="display:none;position:fixed;inset:0;z-index:450;background:#f2f5f8;overflow:auto;overscroll-behavior:none">
@@ -3495,11 +3531,10 @@ document.querySelectorAll('button').forEach(function(b){
     <div id="cnpeJournal" class="cnpeCard" style="margin-top:8px;padding:8px 12px"></div>
     <div style="display:flex;gap:8px;margin:8px 0 10px;flex-wrap:wrap">
       <button id="bCnpeCarte" class="cnpeBtn">&#128506;&#65039; Carte du parc</button>
-      <button id="bCnpeBack" class="cnpeBtn" style="display:none">&#8617; Retour &agrave; la tranche</button>
     </div>
     <div id="cnpeWrap"><button id="cnpeZr" title="R&eacute;initialiser le zoom">&#10530; 1:1</button><svg id="cnpeSvg" xmlns="http://www.w3.org/2000/svg" aria-label="Plan du site"></svg></div>
     <div id="cnpeUnits"></div>
-    <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI</div>
+    <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
 </body>
