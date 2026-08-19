@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="author" content="AnthoninP">
 <meta name="copyright" content="© 2026 AnthoninP — SIMUREP, tous droits réservés. Reproduction interdite sans autorisation écrite. contact@simurep.fr">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.12.1c</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.13.0</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -317,7 +317,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.12.1c</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.13.0</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -860,7 +860,7 @@ body.shake{animation:quake .9s linear;}
       <div class="row">
         <label for="turb">Consigne vanne admission GRE HP</label>
         <input type="range" id="turb" min="0" max="100" value="100" step="1">
-        <span class="val" id="turbVal" style="white-space:nowrap">100 %</span>
+        <span class="val" id="turbVal" style="white-space:nowrap">100 %</span> <button class="sw" id="bSuivre" title="La consigne de charge suit la production que le réseau attend de cette tranche (données du parc ; réelles en phase 3)" style="margin-left:6px;font-size:11px">suivre le réseau</button>
       </div>
       <div style="margin:8px 2px 4px;padding:3px;border-radius:9px;background:linear-gradient(150deg,#eef1f4,#c2c9d0 28%,#f5f8fa 52%,#a8b0b9 78%,#dce1e6);box-shadow:0 2px 6px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.3)">
         <div style="position:relative;height:44px;border-radius:6px;background:linear-gradient(180deg,#fffefa 0%,#f7f5ed 55%,#ece9db 100%);box-shadow:inset 0 2px 6px rgba(0,0,0,.3),inset 0 -1px 2px rgba(255,255,255,.85);overflow:hidden">
@@ -1506,6 +1506,21 @@ body.shake{animation:quake .9s linear;}
 
   function physStep(dt){}
 
+  
+  
+  
+  function ptrStep(dts){if(S.ptrT===undefined){S.ptrT=35;S.ptrLvl=100;S.ptrH2=0;S.ptrBoil=false;S.ptrQ=2;S.bkDmg=false;S._ptrF=0;}
+    var Q=(S.etat==='RCD'||S.etat==='APR')?9:2;S.ptrQ=Q;var cool=(S.sec!==false)&&(S.rri!==false);var MC=6280;
+    if(cool){S.ptrT+=((35-S.ptrT)/7200)*dts;if(S.ptrT<100)S.ptrBoil=false;}else{S.ptrT+=(Q/MC)*dts;}
+    if(S.ptrT>=100){S.ptrT=100;S.ptrBoil=true;S.ptrLvl=Math.max(0,S.ptrLvl-((Q/2.26e3)/150/8*100)*dts);}
+    if(S.ptrLvl<=0&&!cool)S.ptrH2=Math.min(15,S.ptrH2+(Q>5?0.5:0.12)/3600*dts);
+    if(cool&&S.ptrT<45)S._ptrF=0;
+    if(S.ptrT>50&&S._ptrF<1){S._ptrF=1;try{log('PTR : temp\u00e9rature de la piscine BK > 50 \u00b0C (limite d\u2019exploitation) \u2014 v\u00e9rifier le refroidissement PTR / RRI / SEC.','amber');}catch(e){}}
+    if(S.ptrT>=80&&S._ptrF<2){S._ptrF=2;try{log('PTR : piscine BK \u00e0 80 \u00b0C \u2014 \u00e9bullition imminente, refroidissement \u00e0 r\u00e9tablir d\u2019urgence (sc\u00e9nario Fukushima).','red');}catch(e){}}
+    if(S.ptrBoil&&S._ptrF<3){S._ptrF=3;try{log('PTR : \u00c9BULLITION DE LA PISCINE BK \u2014 appoint d\u2019eau indispensable (PTR, JPI, FARN), surveiller KHY.','red');}catch(e){}}
+    if(S.ptrLvl<=0&&S._ptrF<4){S._ptrF=4;try{log('PTR : ASSEMBLAGES D\u00c9COUVERTS dans la piscine BK \u2014 oxydation des gaines, production d\u2019hydrog\u00e8ne.','red');}catch(e){}}
+    if(S.ptrH2>=4&&S._ptrF<5){S._ptrF=5;try{log('KHY : hydrog\u00e8ne > 4 % dans le b\u00e2timent combustible \u2014 atmosph\u00e8re explosive.','red');}catch(e){}}
+    if(S.ptrH2>=8&&!S.bkDmg){S.bkDmg=true;try{log('KHY : EXPLOSION D\u2019HYDROG\u00c8NE DANS LE B\u00c2TIMENT COMBUSTIBLE (Fukushima Daiichi 4, mars 2011).','red');}catch(e){}}}
   function slowStep(dts){}
 
   var inhibLogT={};
@@ -1619,6 +1634,22 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointerdown',function(e){if(e.target&&e.target.type==='range')sbShow(e.target);},true);
   document.addEventListener('pointerup',sbHide,true);
   document.addEventListener('pointercancel',sbHide,true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1796,18 +1827,19 @@ var ISO=(function(){
     poly(arc(MOUTH[0],MOUTH[1],AZ[5][1]*U,AZ[5][1]*U*ER,0,360,32),AG[1]+1e-3,'#0a120d','#0a120d',LN,0.9,{g:'isoAero'});
     txt(MOUTH[0],MOUTH[1]+AZ[5][1]*U*ER+16,'AÉRO',AG[1]+2e-3,12,{g:'isoAero'});
     
-    var LB=[[[92,635],4.2,'GV',18,'#0b160f',TX],[[608,650],4.2,'GV',18,'#0b160f',TX],[[118,520],26,'GV',14],[[630,535],26,'GV',14],[[185,720],6.2,'GMPP',13],[[515,725],6.2,'GMPP',13],[[250,415],6.2,'GMPP',13],[[520,435],6.2,'GMPP',13],[gZ,11.6,'PRESSURISEUR',14],[g0,-7.3,'CUVE',18,'#0b160f',TX],
+    var LB=[[[92,635],4.2,'GV',22,'#0b160f',TX],[[608,650],4.2,'GV',22,'#0b160f',TX],[[118,520],26,'GV',17],[[630,535],26,'GV',17],[[185,720],6.2,'GMPP',16],[[515,725],6.2,'GMPP',16],[[250,415],6.2,'GMPP',16],[[520,435],6.2,'GMPP',16],[gZ,11.6,'PRESSURISEUR',17],[g0,-7.3,'CUVE',22,'#0b160f',TX],
             [[999,GY],ZD+3.4,'HP',13],[[1239,GY],ZD+5.0,'CORPS BP',13],[[1072,624],5.6,'GSS',12],[[1072,788],-1.0,'GSS',12],[[1500,GY],ZD+3.9,'ALTERNATEUR',13],[[1245,755],-2.4,'CONDENSEUR',13],[[1099,830],-6.2,'CRF',12],[[1391,830],-6.2,'CRF',12],[[999,GY-16],ZD+4.6,'vannes GRE',11]];
     LB.forEach(function(l){var c=P(l[0],l[1]);txt(c[0],c[1],l[2],1e6,l[3],{a:'middle',c:l[4]||TX,st:l[5]||BG});});
     var mh=P(HOTM,HOTZ-1.2);txt(mh[0],mh[1]+13,'branche chaude',1e6,12,{a:'middle',c:'#f0b3a8'});
     var cc=P([(CM[0][0]+CM[1][0])/2,(CM[0][1]+CM[1][1])/2],1.4);txt(cc[0]+6,cc[1]-6,'branche froide',1e6,12,{a:'start',c:'#b9d4f4'});
     var uu=P([(UM[0][0]+UM[1][0])/2,(UM[0][1]+UM[1][1])/2],-5.2);txt(uu[0]+8,uu[1]+12,'branche en U',1e6,12,{a:'start',c:'#b9d4f4'});
-    txt(P([1500,GY],ZD+0.9)[0],P([1500,GY],ZD+0.9)[1]+6,'— MWe',1e6,16,{a:'middle',id:'isoPel'});
-    txt(30,P(g0,-12.4)[1]+16,'P thermique — MWth',1e6,17,{a:'start',id:'isoPth'});
-    var SEN=[['isoSpn',P(g0,8.6),'Pn — %','middle'],['isoSthot',P(HOTM,HOTZ+1.4),'BC — °C','middle'],['isoStcold',P([(CM[0][0]+CM[1][0])/2,(CM[0][1]+CM[1][1])/2],3.2),'BF — °C','start'],
-             ['isoSppzr',P(gZ,12.6),'— bar','middle'],['isoSpgv',P([608,650],23.6),'P GV — bar','middle'],['isoSngv',P([92,635],23.6),'NGV — %','middle'],
-             ['isoStsrc',P([1245,830],-7.6),'CRF — °C','middle'],['isoSgre',P([XH,GY-16],ZD+5.9),'GRE — %','middle'],['isoStvap',P([608,650],25.2),'Tvap — °C','middle']];
-    SEN.forEach(function(s){txt(s[1][0],s[1][1],s[2],1e6+1,17,{a:s[3],id:s[0]});});
+    txt(P([1500,GY],ZD+0.9)[0],P([1500,GY],ZD+0.9)[1]+6,'P_ELEC ___ MWe',1e6,20,{a:'middle',id:'isoPel',c:CW,box:1});
+    txt(30,P(g0,-12.4)[1]+16,'P_THERM ___ MWth',1e6,21,{a:'start',id:'isoPth',c:CW,box:1});
+    var CT='#d7f07a',CP='#7fe8d8',CN='#9ad0ff',CW='#c9ffd0';   
+    var SEN=[['isoSpn',P(g0,9.0),'P_N ___ %','middle',CW],['isoSthot',P(HOTM,HOTZ+1.6),'T_BC ___ °C','middle',CT],['isoStcold',P([(CM[0][0]+CM[1][0])/2,(CM[0][1]+CM[1][1])/2],3.4),'T_BF ___ °C','start',CT],
+             ['isoSppzr',P(gZ,12.8),'P_PZR ___ bar','middle',CP],['isoSpgv',P([608,650],23.8),'P_GV ___ bar','middle',CP],['isoSngv',P([92,635],23.8),'N_GV ___ %','middle',CN],
+             ['isoStsrc',P([1245,830],-8.2),'T_CRF ___ °C','middle',CT],['isoSgre',P([XH,GY-16],ZD+6.2),'GRE ___ %','middle',CW],['isoStvap',P([608,650],25.6),'T_VAP ___ °C','middle',CT]];
+    SEN.forEach(function(s){txt(s[1][0],s[1][1],s[2],1e6+1,21,{a:s[3],id:s[0],c:s[4],box:1});});
     ops.sort(function(a,b){return (a.d-b.d)||(a.i-b.i);});
     var minx=1e9,miny=1e9,maxx=-1e9,maxy=-1e9;
     ops.forEach(function(o){var pts=o.t==='txt'?[[o.x-(o.a==='start'?0:o.s.length*o.sz*0.32),o.y-o.sz],[o.x+o.s.length*o.sz*(o.a==='end'?0:0.34),o.y+6]]:(o.pts||[[o.x,o.y],[o.x+o.w,o.y+o.h]]);pts.forEach(function(p){if(p[0]<minx)minx=p[0];if(p[0]>maxx)maxx=p[0];if(p[1]<miny)miny=p[1];if(p[1]>maxy)maxy=p[1];});});
@@ -1840,7 +1872,8 @@ var ISO=(function(){
       if(o.t==='poly')s+='<polygon points="'+o.pts.map(function(p){return fmt(p[0])+','+fmt(p[1]);}).join(' ')+'" fill="'+o.f+'"'+(o.s?' stroke="'+o.s+'" stroke-width="'+o.sw+'" stroke-linejoin="round"':'')+a+'/>';
       else if(o.t==='line')s+='<polyline points="'+o.pts.map(function(p){return fmt(p[0])+','+fmt(p[1]);}).join(' ')+'" fill="none" stroke="'+o.s+'" stroke-width="'+fmt(o.sw)+'" stroke-linecap="round" stroke-linejoin="round"'+a+'/>';
       else if(o.t==='rect')s+='<rect x="'+fmt(o.x)+'" y="'+fmt(o.y)+'" width="'+fmt(o.w)+'" height="'+fmt(o.h)+'" fill="'+o.f+'"'+(o.s?' stroke="'+o.s+'" stroke-width="'+o.sw+'"':'')+a+'/>';
-      else if(o.t==='txt')s+='<text x="'+fmt(o.x)+'" y="'+fmt(o.y)+'" text-anchor="'+(o.a||'middle')+'" font-size="'+o.sz+'" font-family="inherit" font-weight="600" letter-spacing=".5" fill="'+(o.c||TX)+'" stroke="'+(o.st||BG)+'" stroke-width="3" paint-order="stroke"'+a+'>'+o.s+'</text>';
+      else if(o.t==='txt'){if(o.box){var w=o.s.length*o.sz*0.62+10,x0=o.a==='start'?o.x-5:(o.a==='end'?o.x-w+5:o.x-w/2);s+='<rect x="'+fmt(x0)+'" y="'+fmt(o.y-o.sz*0.95)+'" width="'+fmt(w)+'" height="'+fmt(o.sz*1.3)+'" rx="2" fill="#050806" fill-opacity=".82" stroke="'+(o.c||TX)+'" stroke-opacity=".55" stroke-width="1"/>';}
+        s+='<text x="'+fmt(o.x)+'" y="'+fmt(o.y)+'" text-anchor="'+(o.a||'middle')+'" font-size="'+o.sz+'" font-family="'+(o.box?'ui-monospace,Menlo,Consolas,monospace':'inherit')+'" font-weight="700" letter-spacing=".6" fill="'+(o.c||TX)+'" stroke="'+(o.st||BG)+'" stroke-width="3" paint-order="stroke"'+a+'>'+o.s+'</text>';}
     });
     if(gb)s+='</g>';if(open)s+='</g>';s+='</g>';
     return s+panache();}
@@ -1854,10 +1887,10 @@ var ISO=(function(){
     for(var i=0;i<4;i++){var d=el('isoPmp'+i);if(d)d.setAttribute('fill',(S.gmppN||0)>i?'#3ad46a':'#22402a');}
     var tour=S.srcType==='tour';var ae=el('isoAero');if(ae)ae.setAttribute('opacity',tour?1:0);var pn=el('isoPanache');if(pn)pn.setAttribute('opacity',tour&&(S.Ptot||0)>0.02?0.65:0);
     var hd=el('isoHead');if(hd)hd.style.display=(S.etat==='RCD')?'none':'';
-    var pt=el('isoPth');if(pt)pt.textContent='P thermique '+Math.round((S.Ptot||0)*3800)+' MWth';
-    var pe=el('isoPel');if(pe)pe.textContent=Math.round(S.Pelec||0)+' MWe';
+    var pt=el('isoPth');if(pt)pt.textContent='P_THERM '+Math.round((S.Ptot||0)*3800)+' MWth';
+    var pe=el('isoPel');if(pe)pe.textContent=S.ilote?'P_ELEC ilot\u00e9 0 MWe':'P_ELEC '+Math.round(S.Pelec||0)+' MWe';
     var f1=function(v){return (Math.round(v*10)/10).toFixed(1);},dT=18*(S.Ptot||0)*((S.gmppN||0)>0?4/S.gmppN:3),ts=(typeof tsat==='function'?tsat(S.Psteam||1):280);
-    var SV={isoSpn:'Pn '+Math.round((S.Pn||0)*100)+' %',isoSthot:'BC '+f1((S.Tavg||0)+dT)+' °C',isoStcold:'BF '+f1((S.Tavg||0)-dT)+' °C',isoSppzr:f1(S.Ppzr||0)+' bar',isoSpgv:'P GV '+f1(S.Psteam||0)+' bar',isoSngv:'NGV '+Math.round(S.gv||0)+' %',isoStsrc:'CRF '+Math.round(S.Tsrc||0)+' °C',isoSgre:'GRE '+Math.round(S.turb||0)+' %',isoStvap:'Tvap '+Math.round(Math.min(ts,S.Tavg||0))+' °C'};
+    var SV={isoSpn:'P_N '+Math.round((S.Pn||0)*100)+' %',isoSthot:'T_BC '+f1((S.Tavg||0)+dT)+' °C',isoStcold:'T_BF '+f1((S.Tavg||0)-dT)+' °C',isoSppzr:'P_PZR '+f1(S.Ppzr||0)+' bar',isoSpgv:'P_GV '+f1(S.Psteam||0)+' bar',isoSngv:'N_GV '+Math.round(S.gv||0)+' %',isoStsrc:'T_CRF '+Math.round(S.Tsrc||0)+' °C',isoSgre:'GRE '+Math.round(S.turb||0)+' %',isoStvap:'T_VAP '+Math.round(Math.min(ts,S.Tavg||0))+' °C'};
     for(var kk in SV){var te=el(kk);if(te)te.textContent=SV[kk];}
     if(!api.cut)return;
     var c=B.cut,lv=Math.max(0,Math.min(1,(S.lvlCuve==null?100:S.lvlCuve)/100)),zw=c.zB+lv*(c.zT-c.zB),yw=c.Zw(zw),yb=c.Zw(c.zB);
@@ -2196,6 +2229,10 @@ var ISO=(function(){
     };
   });
   var LEX={
+   'Effet Doppler':{d:'Le frein instantané du réacteur : quand le combustible chauffe, il absorbe plus de neutrons — la réactivité baisse toute seule',
+     p:'Imagine un gardien de but qui grandit quand on le bombarde. L’uranium 238 du combustible a des « résonances » : des énergies très précises où il capture les neutrons au lieu de les laisser passer. Quand la température du combustible monte, les noyaux s’agitent, et vus des neutrons ces résonances s’élargissent (c’est l’effet Doppler, le même qui change le son de la sirène qui passe) : davantage de neutrons sont capturés, moins arrivent à fissionner, la réactivité chute de quelques pcm par degré de combustible — et ça, en une fraction de seconde, sans qu’aucun opérateur ni aucune protection n’intervienne. C’est la première raison pour laquelle un REP est stable : toute hausse de puissance chauffe le combustible, qui se freine lui-même. Dans SIMUREP, cet effet est porté par le « défaut de puissance » (−1 700 pcm entre 0 et 100 %, Doppler + densité du modérateur) appliqué sans délai, plus le coefficient modérateur (−30 pcm par °C au-dessus de la température programme). Le réacteur qui se méfie de lui-même.'},
+   'Xénon':{d:'Le poison qui naît de la fission et mange les neutrons — il suit la puissance avec des heures de retard et décide du redémarrage',
+     p:'Chaque fission laisse des cendres ; l’une d’elles, le xénon 135, est le plus vorace des absorbeurs de neutrons connus. Il apparaît surtout par la désintégration de l’iode 135 (6,6 h de demi-vie), et disparaît de deux façons : en se désintégrant (9,2 h) ou en capturant un neutron — donc d’autant plus vite que le réacteur est puissant. À pleine puissance, production et destruction s’équilibrent : le xénon pèse environ −2 800 pcm, compensés par le bore et les grappes. Arrête le réacteur : plus de neutrons pour le brûler, mais l’iode continue d’en fabriquer — le xénon MONTE pendant 8 à 10 heures (le « pic xénon »), et le redémarrage peut devenir impossible faute de réactivité disponible : il faut attendre un à deux jours qu’il se désintègre (le « creux »), ou diluer du bore. Baisse la puissance : même histoire en plus doux ; remonte-la : le xénon se brûle et ajoute de la réactivité, qu’il faut reprendre avec le bore. Dans les grands cœurs, il peut même osciller d’une moitié à l’autre du cœur, sur une période d’une trentaine d’heures. Dans SIMUREP, l’iode et le xénon sont deux équations (I suit la puissance avec sa demi-vie ; Xe naît de I et de la fission, meurt par décroissance et par combustion proportionnelle à la puissance), normalisées à 1 à l’équilibre pleine puissance, et pèsent −2 800 pcm par unité. L’invité qui arrive après la fête et qui ne veut plus partir.'},
    'RPE':'Réacteur Puisards et Évents — le circuit qui recueille les purges et évents du circuit primaire',
    'GV':{d:'Générateur de Vapeur — la « bouilloire » : l’eau très chaude du réacteur y fait bouillir une autre eau, séparée',
      p:'Pourquoi deux eaux séparées ? Parce que l’eau qui traverse le cœur devient légèrement radioactive. Dans le GV, elle circule dans plus de 5 000 tubes fins (19 mm de diamètre, moins de 1,1 mm d’épaisseur — le métal le plus mince entre le primaire et le secondaire) et chauffe l’eau du circuit secondaire à travers ce métal, sans jamais la toucher : la vapeur qui part vers la turbine est propre. Chaque tranche en a quatre, qui produisent ensemble plusieurs milliers de tonnes de vapeur par heure. Le faisceau, parlons-en : 5 342 tubes en U exactement, 22 m de haut, 465 tonnes, 6 936 m² d’échange — un terrain de football de surface de contact, plié dans une bouteille d’acier. Chaque GV vaporise 2 000 t/h.'},
@@ -2936,7 +2973,7 @@ var ISO=(function(){
     
     el('pPth').textContent=Math.round(S.Ptot*3800)+' MWth';
     el('pPres').textContent=Math.round(S.Pres*3800)+' MWth';
-    el('pPe').textContent=Math.round(S.Pelec)+' MWe';
+    el('pPe').textContent=S.ilote?'\u00eelot\u00e9 \u00b7 0 MWe r\u00e9seau':(Math.round(S.Pelec)+' MWe');
     el('pTavg').textContent=fmt(S.Tavg)+' °C';
     el('pThot').textContent=fmt(Thot)+' °C';
     el('pTcold').textContent=fmt(S.Tavg-dTgm())+' °C';
@@ -3160,6 +3197,12 @@ var ISO=(function(){
 
   
   
+  
+  function ll2xy(lat,lon){var n=0.725605,F=1.846147,l0=0.052360,r0=0.947760;var r=F/Math.pow(Math.tan(Math.PI/4+lat*Math.PI/360),n),t=n*(lon*Math.PI/180-l0);var X=r*Math.sin(t),Y=r0-r*Math.cos(t);
+    return {x:2536.7823*X+-0.9321*Y+261.0488,y:-6.9351*X+-2534.6666*Y+223.6666};}
+  try{window.ll2xy=ll2xy;}catch(_e){}
+  
+  var RTE_POSTES=[{n:'Penly',lat:49.9762,lon:1.2119},{n:'Paluel',lat:49.8580,lon:0.6357},{n:'Flamanville',lat:49.5364,lon:-1.8815},{n:'Cattenom',lat:49.4158,lon:6.2180},{n:'Nogent',lat:48.5153,lon:3.5178},{n:'Belleville',lat:47.5097,lon:2.8750},{n:'Saint-Alban',lat:45.4044,lon:4.7553},{n:'Golfech',lat:44.1067,lon:0.8453}];
   var SITES=[
    {n:'Gravelines',x:237,y:25,p:'CPY',t:6},{n:'Chooz',x:312,y:64,p:'N4',t:2},{n:'Penly',x:210,y:69,p:"P'4",t:2,src:'mer'},
    {n:'Paluel',x:193,y:76,p:'P4',t:4,g:1,dy:-9,dx:-2,src:'mer'},{n:'Cattenom',x:354,y:92,p:"P'4",t:4,src:'tour'},{n:'Flamanville',x:121,y:85,p:'P4',t:2,g:1,src:'mer',epr:1},
@@ -3205,6 +3248,11 @@ var ISO=(function(){
       }
       h+='<text x="'+((s.g?(s.x-10):(s.x+10))+(s.dx||0))+'" y="'+(s.y+4+(s.dy||0))+'" text-anchor="'+(s.g?'end':'start')+'" font-size="11" font-weight="'+(ok?'700':'400')+'" fill="'+(mort?'#8a8a8a':(ok?'#1d3a24':'#5a6b7c'))+'" stroke="#e8eef4" stroke-width="3" paint-order="stroke">'+s.n+(mort?'':' <tspan fill="#6a7b8c" font-size="9">'+s.t+'\u00d7'+s.p+(s.epr?' + EPR':'')+'</tspan>')+'</text></g>';
     }
+    
+    h+='<g id="gPostes" opacity=".9">';
+    for(var q=0;q<RTE_POSTES.length;q++){var po=RTE_POSTES[q],pp=ll2xy(po.lat,po.lon),px=pp.x+9,py=pp.y-9;
+      h+='<line x1="'+pp.x+'" y1="'+pp.y+'" x2="'+px+'" y2="'+py+'" stroke="#5a6b7c" stroke-width=".8"/><rect x="'+(px-3.5)+'" y="'+(py-3.5)+'" width="7" height="7" fill="#fff" stroke="#33465c" stroke-width="1"><title>poste 400 kV \u2014 '+po.n+'</title></rect><line x1="'+(px-2)+'" y1="'+(py-1.5)+'" x2="'+(px+2)+'" y2="'+(py-1.5)+'" stroke="#33465c" stroke-width=".7"/><line x1="'+(px-2)+'" y1="'+(py+1.5)+'" x2="'+(px+2)+'" y2="'+(py+1.5)+'" stroke="#33465c" stroke-width=".7"/>';}
+    h+='</g>';
     svg.innerHTML=h;
     svg.addEventListener('click',function(e){
       var g=e.target.closest('.stG');if(!g)return;
@@ -3261,6 +3309,14 @@ var ISO=(function(){
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
   var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 — EPR'}]},
     'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
     'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
@@ -3268,11 +3324,15 @@ var ISO=(function(){
   var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'rechargement',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
   
   var PARC={hash:function(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h;},
-    unit:function(site,idx,pal,t){var h=this.hash(site+'#'+idx),Pn=PN[pal]||1300,r=h%100;
+    provider:null,   
+    demande:function(t){var s=(typeof S!=='undefined'&&S.saison)||'mi',base=(s==='hiver'?1.0:(s==='ete'?0.86:0.93)),hh=((t||0)/3600)%24,   
+      jour=(hh<6?0.90:(hh<9?0.97:(hh<13?1.0:(hh<18?0.96:(hh<22?1.0:0.93)))));return base*jour;},
+    unit:function(site,idx,pal,t){if(this.provider){try{var rp=this.provider(site,idx,pal,t);if(rp)return rp;}catch(e){}}
+      var h=this.hash(site+'#'+idx),Pn=PN[pal]||1300,r=h%100;
       if(r<16)return {Pe:0,etat:'AT',lab:ETLAB.AT};
       if(r<21){var f=Math.max(0,Math.min(1,(t||0)/(36*3600)));return {Pe:Math.round(Pn*f),etat:f<0.98?'RD':'RP',lab:f<0.98?ETLAB.RD:ETLAB.RP};}
-      var ph=((h>>>8)%1000)/1000*6.283,mod=1-0.05*(1+Math.sin(6.283*((t||0)/86400)+ph))/2,red=1-0.02*((h>>>3)%5)/5;
-      return {Pe:Math.round(Pn*Math.max(0.85,Math.min(1,mod*red))),etat:'RP',lab:ETLAB.RP};}};
+      var ph=((h>>>8)%1000)/1000*6.283,mod=1-0.03*(1+Math.sin(6.283*((t||0)/86400)+ph))/2,red=1-0.02*((h>>>3)%5)/5;
+      return {Pe:Math.round(Pn*Math.max(0.75,Math.min(1,mod*red*this.demande(t)))),etat:'RP',lab:ETLAB.RP};}};
   
   var UNITMEM={store:{},key:function(){try{return localStorage.getItem('rep_site')||'';}catch(e){return '';}},
     load:function(){try{this.store=JSON.parse(localStorage.getItem('rep_units')||'{}');}catch(e){this.store={};}},
@@ -3288,6 +3348,8 @@ var ISO=(function(){
     if(S.rdpBurst)L.push('RDP \u2014 disque de rupture cass\u00e9 (d\u00e9charge dans l\u2019enceinte)');
     if(S.gaine>0)L.push('gaines d\u00e9grad\u00e9es ('+Math.round(S.gaine*100)+' %)');if(S.dmg>0)L.push('endommagement du c\u0153ur ('+Math.round(S.dmg*100)+' %)');
     if(S.Penc>1.25)L.push('pression enceinte '+S.Penc.toFixed(2)+' bar');if(S.viv===false&&S.etat==='RP')L.push('vide condenseur perdu');
+    if(S.sec===false)L.push('SEC perdu (source froide des auxiliaires)');if(S.rri===false)L.push('RRI perdu');if(S.crf===false&&S.etat==='RP')L.push('CRF \u00e0 l\u2019arr\u00eat');
+    if(S.bkDmg)L.push('BK : EXPLOSION D\u2019HYDROG\u00c8NE');else if(S.ptrH2>=1)L.push('KHY : H2 dans le BK '+S.ptrH2.toFixed(1)+' %');else if(S.ptrBoil)L.push('PTR : piscine BK en \u00e9bullition (niveau '+Math.round(S.ptrLvl)+' %)');else if(S.ptrT>50)L.push('PTR : piscine BK \u00e0 '+Math.round(S.ptrT)+' \u00b0C');
     var inh=['aarInhib','inhIsoE','inhIsoV','inhIS','inhEAS','inhASG','inhKrt'].filter(function(k){return S[k];}).length;if(inh)L.push('protections inhib\u00e9es ('+inh+')');
     return L;}
   var LOGRING=[];try{var _log0=log;log=function(txt,cls){try{LOGRING.push({t:Date.now(),txt:String(txt),cls:cls||''});if(LOGRING.length>40)LOGRING.shift();}catch(e){}return _log0(txt,cls);};}catch(_e){}   
@@ -3300,13 +3362,15 @@ var ISO=(function(){
       h+='<line x1="-85" y1="0" x2="100" y2="0" stroke="#b9c4cf" stroke-width="1" stroke-dasharray="6 4"/><line x1="0" y1="-90" x2="0" y2="270" stroke="#b9c4cf" stroke-width="1" stroke-dasharray="6 4"/>';
       h+='<rect x="-50" y="14" width="100" height="66" fill="#e3e9ef" stroke="#6f7f8f" stroke-width="1.6"/>';        
       h+='<rect x="-62" y="16" width="12" height="15" fill="#e3e9ef" stroke="#6f7f8f"/><rect x="-62" y="34" width="12" height="15" fill="#e3e9ef" stroke="#6f7f8f"/><circle cx="-56" cy="62" r="7" fill="#e3e9ef" stroke="#6f7f8f"/>';
-      h+='<rect x="-45" y="-41" width="30" height="14" fill="#e3e9ef" stroke="#6f7f8f" transform="rotate(-45 -30 -34)"/>';   
+      h+='<rect id="cnK'+i+'" x="-45" y="-41" width="30" height="14" fill="#e3e9ef" stroke="#6f7f8f" transform="rotate(-45 -30 -34)"/>';   
       h+='<rect x="-15" y="-62" width="30" height="30" fill="#e3e9ef" stroke="#6f7f8f"/>';                                    
       h+='<rect x="30" y="-62" width="55" height="58" rx="8" fill="#e3e9ef" stroke="#6f7f8f" stroke-width="1.4"/><rect x="50" y="-4" width="35" height="84" fill="#e3e9ef" stroke="#6f7f8f"/><rect x="56" y="4" width="23" height="70" fill="none" stroke="#9aa9b8"/>';
       h+='<circle cx="-78" cy="236" r="7" fill="#f2ede0" stroke="#8a7a52" stroke-width="1.3"/><circle cx="-78" cy="256" r="7" fill="#f2ede0" stroke="#8a7a52" stroke-width="1.3"/><text x="-78" y="274" text-anchor="middle" font-size="7.5" fill="#8a7a52">fioul</text>';   
       h+='<rect x="-50" y="90" width="88" height="173" fill="#dfe6ee" stroke="#6f7f8f" stroke-width="1.6"/><rect id="cnT'+i+'" x="0" y="92" width="15" height="169" fill="#b0bcc8"/>';   
       h+='<rect x="38" y="195" width="18" height="40" fill="#e3e9ef" stroke="#6f7f8f"/><line x1="43" y1="196" x2="43" y2="234" stroke="#8fa0b0" stroke-width="3"/>';                   
-      for(var k=0;k<3;k++)h+='<polyline id="cnL'+i+'_'+k+'" points="56,'+(205+k*10)+' '+(90+k*6)+','+(239+k*10)+' '+(90+k*6)+','+(yEnd||292)+'" fill="none" stroke="#9aa9b8" stroke-width="1.6"/>';   
+      var yE=(yEnd||292);for(var k=0;k<3;k++)h+='<polyline id="cnL'+i+'_'+k+'" points="56,'+(205+k*10)+' '+(84-k*7)+','+(205+k*10)+' '+(84-k*7)+','+(yE-28)+'" fill="none" stroke="#9aa9b8" stroke-width="1.6"/>';   
+      for(var py=262;py<yE-40;py+=70){h+='<path d="M'+(70)+','+(py+10)+' L'+(77)+','+(py-12)+' L'+(84)+','+(py+10)+' M'+(72)+','+(py+2)+' L'+(82)+','+(py+2)+'" fill="none" stroke="#6f7f8f" stroke-width="1.3"/>';}   
+      h+='<rect x="64" y="'+(yE-28)+'" width="26" height="18" rx="2" fill="#e3e9ef" stroke="#6f7f8f"/><line x1="68" y1="'+(yE-24)+'" x2="68" y2="'+(yE-14)+'" stroke="#6f7f8f" stroke-width="1.4"/><line x1="77" y1="'+(yE-24)+'" x2="77" y2="'+(yE-14)+'" stroke="#6f7f8f" stroke-width="1.4"/><line x1="86" y1="'+(yE-24)+'" x2="86" y2="'+(yE-14)+'" stroke="#6f7f8f" stroke-width="1.4"/><text x="77" y="'+(yE-2)+'" text-anchor="middle" font-size="7.5" fill="#5a6b7c">poste 400 kV</text>';   
       h+='<circle id="cnB'+i+'" cx="0" cy="0" r="30" fill="'+(tint||'#8ea3b6')+'" stroke="#33465c" stroke-width="2"/><circle cx="0" cy="0" r="18" fill="none" stroke="#33465c" stroke-width="1"/>';   
       h+='<text x="0" y="5" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" stroke="#33465c" stroke-width="2.4" paint-order="stroke">'+(i+1)+'</text>';
       h+='<text id="cnN'+i+'" x="54" y="112" font-size="13" font-weight="800" fill="#243242" stroke="#fff" stroke-width="3" paint-order="stroke">Tranche '+(i+1)+'</text><text id="cnP'+i+'" x="54" y="128" font-size="12" font-weight="600" fill="#33465c" stroke="#fff" stroke-width="3" paint-order="stroke">\u2014</text>';
@@ -3323,12 +3387,12 @@ var ISO=(function(){
       h+='<text x="'+sdpX0+'" y="'+(sdpY-4)+'" font-size="10.5" font-weight="700" fill="#5a6b7c">SDP</text>';
       for(var i=0;i<N;i++){var xi=x0+i*190,bx=sdpX0+(i+0.5)*BW;
         for(var k=-1;k<=1;k+=2)h+='<line x1="'+(bx+k*12)+'" y1="'+(sdpY-12)+'" x2="'+(bx+k*12)+'" y2="'+sdpY+'" stroke="#5b7a94" stroke-width="2.2"/>';
-        h+='<circle cx="'+(bx-12)+'" cy="'+(sdpY+11)+'" r="5.5" fill="#f6f8fa" stroke="#33465c" stroke-width="1.3"/><circle cx="'+(bx+12)+'" cy="'+(sdpY+11)+'" r="5.5" fill="#f6f8fa" stroke="#33465c" stroke-width="1.3"/>';
-        h+='<circle cx="'+(bx-22)+'" cy="'+(sdpY+23)+'" r="3.2" fill="#f6f8fa" stroke="#33465c"/><circle cx="'+(bx+22)+'" cy="'+(sdpY+23)+'" r="3.2" fill="#f6f8fa" stroke="#33465c"/>';
-        for(var k=-1;k<=1;k+=2)h+='<polyline points="'+(bx+k*12)+','+(sdpY+30)+' '+(bx+k*12)+',110 '+(xi+k*10)+',110 '+(xi+k*10)+',240" fill="none" stroke="#5b7a94" stroke-width="1.5" stroke-dasharray="3 3"/>';
+        h+='<circle id="cnCRF'+i+'_0" cx="'+(bx-12)+'" cy="'+(sdpY+11)+'" r="5.5" fill="#f6f8fa" stroke="#33465c" stroke-width="1.3"/><circle id="cnCRF'+i+'_1" cx="'+(bx+12)+'" cy="'+(sdpY+11)+'" r="5.5" fill="#f6f8fa" stroke="#33465c" stroke-width="1.3"/>';
+        h+='<circle id="cnSEC'+i+'_0" cx="'+(bx-22)+'" cy="'+(sdpY+23)+'" r="3.2" fill="#f6f8fa" stroke="#33465c"/><circle id="cnSEC'+i+'_1" cx="'+(bx+22)+'" cy="'+(sdpY+23)+'" r="3.2" fill="#f6f8fa" stroke="#33465c"/>';
+        for(var k=-1;k<=1;k+=2)h+='<polyline points="'+(bx+k*12)+','+(sdpY+30)+' '+(bx+k*12)+',95 '+(xi+k*10)+',95 '+(xi+k*10)+',240" fill="none" stroke="#5b7a94" stroke-width="1.5" stroke-dasharray="3 3"/>';   
       }
       for(var i=0;i<N;i++){var xi=x0+i*190,epr=i>=n;h+=unitSvg(xi,150,i,epr?'#c8a06a':null,H-8-150);
-        if(tours&&i<n)h+=tourSvg(xi+(i%2?42:-42),478+(i%2?26:0),i);}
+        if(tours&&i<n)h+=tourSvg(xi-42,470+(i%2?36:0),i);}   
       var dx0=20,dy0=H-72;h+='<rect x="'+(dx0-6)+'" y="'+(dy0-16)+'" width="'+(n*34+12)+'" height="60" rx="4" fill="none" stroke="#b9c4cf" stroke-dasharray="4 3"/><text x="'+dx0+'" y="'+(dy0-4)+'" font-size="9.5" font-weight="700" fill="#5a6b7c">DUS \u2014 diesels d\u2019ultime secours</text>';
       for(var i=0;i<n;i++){var xd=dx0+i*34;h+='<rect x="'+xd+'" y="'+dy0+'" width="26" height="22" rx="2" fill="#e3e9ef" stroke="#6f7f8f"/><circle id="cnD'+i+'" cx="'+(xd+21)+'" cy="'+(dy0+5)+'" r="3" fill="#8ea3b6" stroke="#33465c" stroke-width=".8"/><circle cx="'+(xd+8)+'" cy="'+(dy0+30)+'" r="4.5" fill="#f2ede0" stroke="#8a7a52"/><text x="'+(xd+13)+'" y="'+(dy0+16)+'" text-anchor="middle" font-size="8" font-weight="700" fill="#5a6b7c">'+(i+1)+'</text>';}   
       h+='<text x="'+(W-12)+'" y="'+(H-10)+'" text-anchor="end" font-size="10.5" fill="#7a8a99">vue du dessus \u00b7 plan de tranche P4 \u00b7 400 kV vers le poste</text>';
@@ -3345,12 +3409,13 @@ var ISO=(function(){
     api.peekTouched=peekTouched;
     function col(u){return u.etat==='RP'?'#3f9a4c':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8ea3b6':'#e0a030');}
     function actionsFor(u){var b='<div style="margin-top:6px;font-size:10px;color:#8a99a8">pilotage rapide \u2014 tranche au pupitre</div>';
-      if(u.etat==='RP')b+='<button class="cnpeBtn" data-act="load|100" style="padding:3px 8px;font-size:11px">100 %</button> <button class="cnpeBtn" data-act="load|75" style="padding:3px 8px;font-size:11px">75 %</button> <button class="cnpeBtn" data-act="load|50" style="padding:3px 8px;font-size:11px">50 %</button> <button class="cnpeBtn" data-act="etat|ANGV" style="padding:3px 8px;font-size:11px">\u2192 ANGV</button>';
+      if(u.etat==='RP')b+='<button class="cnpeBtn'+(api.follow?' on':'')+'" data-act="follow" style="padding:3px 8px;font-size:11px">\u21c4 suivre le r\u00e9seau</button> <button class="cnpeBtn" data-act="load|100" style="padding:3px 8px;font-size:11px">100 %</button> <button class="cnpeBtn" data-act="load|75" style="padding:3px 8px;font-size:11px">75 %</button> <button class="cnpeBtn" data-act="load|50" style="padding:3px 8px;font-size:11px">50 %</button> <button class="cnpeBtn" data-act="etat|ANGV" style="padding:3px 8px;font-size:11px">\u2192 ANGV</button>';
       else if(u.etat==='ANGV')b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button> <button class="cnpeBtn" data-act="etat|ANRRA" style="padding:3px 8px;font-size:11px">\u2192 ANRRA</button>';
       else b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button>';
       return b;}
     function doAct(a){var p=a.split('|');
-      if(p[0]==='load'){try{S.turbSet=+p[1];if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:+p[1]});}catch(e){}try{log('Consigne de charge '+p[1]+' % (vue CNPE).','cyan');}catch(e){}}
+      if(p[0]==='follow'){api.setFollow(!api.follow);try{api.update(S);}catch(e){}return;}
+      if(p[0]==='load'){api.setFollow(false);try{S.turbSet=+p[1];if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:+p[1]});}catch(e){}try{log('Consigne de charge '+p[1]+' % (vue CNPE).','cyan');}catch(e){}}
       else if(p[0]==='etat'){try{if(window.__net)window.__net.cmd({type:'etat',e:p[1]});else setEtat(p[1]);}catch(e){}}
       else if(p[0]==='dus'&&cur){dusTest[cur.s.n+'|'+p[1]]=Date.now()+90000;try{log('Essai p\u00e9riodique du DUS de la tranche '+p[1]+' \u2014 d\u00e9marrage, mont\u00e9e en vitesse, couplage sur son tableau : 90 s.','cyan');}catch(e){}try{api.update(S);}catch(e){}}}
     api.update=function(S){if(!cur||!S)return;var s=cur.s;
@@ -3362,6 +3427,9 @@ var ISO=(function(){
         var c=el('cnC'+i);if(c){var li=u.cur?incidentsOf(S):[];c.querySelector('.cnpeVal').innerHTML=u.Pe+' MWe \u00b7 '+u.etat+' \u00b7 '+u.lab+(li.length?'<div style="color:#c0392b;font-weight:700;margin-top:2px">\u26a0 '+li.join(' \u00b7 ').replace(/</g,'&lt;')+'</div>':'');var act=c.querySelector('.cnpeAct');if(act)act.innerHTML=(u.cur?actionsFor(u):'')+'<div style="margin-top:4px"><button class="cnpeBtn" data-act="dus|'+(i+1)+'" style="padding:3px 8px;font-size:11px">\u25b6 essai DUS '+(i+1)+'</button></div>';}}
       var kk=UNITMEM.key(),me=kk.split('|')[0]===s.n,myTr=me?+kk.split('|')[1]:0,now=Date.now();
       for(var i=0;i<s.t;i++){var d0=el('cnD'+i),run=(dusTest[s.n+'|'+(i+1)]||0)>now||(me&&myTr===i+1&&!!S.h3);if(d0)d0.setAttribute('fill',run?'#3ad46a':'#8ea3b6');}   
+      if(me){var ii=myTr-1,crfOn=S.crf!==false&&S.etat==='RP',secOn=S.sec!==false;for(var k=0;k<2;k++){var pc=el('cnCRF'+ii+'_'+k),ps=el('cnSEC'+ii+'_'+k);if(pc)pc.setAttribute('fill',S.crf===false?'#c0392b':(crfOn?'#5aa66a':'#f6f8fa'));if(ps)ps.setAttribute('fill',secOn?'#5aa66a':'#c0392b');}
+        var bk=el('cnK'+ii);if(bk)bk.setAttribute('fill',S.bkDmg?'#7a1c12':(S.ptrBoil||S.ptrH2>=1?'#c0392b':(S.ptrT>50?'#e0a030':'#e3e9ef')));}
+      if(api.follow&&me){var uu=PARC.unit(s.n,myTr-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){try{S.turbSet=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}   
       var incs=me?incidentsOf(S):[];for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1),mm=UNITMEM.store[key];if(key!==kk&&mm&&mm.etat&&mm.etat!=='RP'&&mm.etat!=='AT'&&mm.etat!=='RCD')incs.push('tranche '+(i+1)+' en transitoire ('+mm.etat+')');}
       if(me&&incs.length){var b0=el('cnB'+(myTr-1));if(b0&&incidentsOf(S).length)b0.setAttribute('fill','#c0392b');}
       var cm=el('cnpeCom');if(cm){var tsrc=me?Math.round(S.Tsrc||0):(s.src==='mer'?12:14),sum=0;for(var i=0;i<s.t;i++)sum+=stateOf(s,i,S).Pe||0;
@@ -3392,7 +3460,10 @@ var ISO=(function(){
       if(!mem){UNITMEM.store[key]={etat:e0,Pe:PeT,t:Date.now()};UNITMEM.save();}
       if(prev!==key&&e0==='RP'&&PeT>0){var ld=Math.max(20,Math.min(100,Math.round(PeT/(PN[s.p]||1300)*100)));                     
         if(!window.__net){try{S.turbSet=ld;S.turb=ld;}catch(e){}}else{try{window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}
-      if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}}
+      if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}
+        if(window.__net&&prev!==key){try{['srcType','Tsrc','saison','gaine'].forEach(function(k){if(S[k]!==undefined)window.__net.cmd({type:'set',k:k,v:S[k]});});}catch(e){}}}   
+      try{recRows=[];recNext=S.t;recRender(true);}catch(e){}   
+      api.setFollow(false);
       var st=el('siteTag');if(st)st.textContent='CNPE de '+s.n+' \u00b7 tranche '+tr+' ('+s.p+')';
       api.close();var cf=el('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}
       try{log('Prise de quart au CNPE de '+s.n+', tranche '+tr+' \u2014 palier '+s.p+' ('+(ETLAB[e0]||e0)+').','cyan');}catch(e){}};
@@ -3414,6 +3485,8 @@ var ISO=(function(){
       box.querySelectorAll('tr.parcRow').forEach(function(r){r.onclick=function(){var s=L[+r.getAttribute('data-s')];api.exp[s.n]=!api.exp[s.n];api.homeTable(S);};});
       box.querySelectorAll('button[data-take]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation();var p=b.getAttribute('data-take').split('|');api.take(L[+p[0]],+p[1]);};});
       box.querySelectorAll('button[data-view]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation();api.open(L[+b.getAttribute('data-view')]);};});};
+    api.follow=false;
+    api.setFollow=function(v){api.follow=!!v;var b=el('bSuivre');if(b)b.classList.toggle('on',api.follow);try{log(api.follow?'Suivi du r\u00e9seau : la consigne de charge suit la production attendue de la tranche.':'Suivi du r\u00e9seau d\u00e9sactiv\u00e9 : pilotage manuel de la charge.','cyan');}catch(e){}};
     api.playable=playable;
     return api;
   })();
@@ -3421,7 +3494,10 @@ var ISO=(function(){
   try{if(!window.__net&&UNITMEM.key()&&UNITMEM.store[UNITMEM.key()]&&UNITMEM.store[UNITMEM.key()].etat!=='RP')jumpEtat(UNITMEM.store[UNITMEM.key()].etat);}catch(_e){}   
   try{setInterval(function(){try{if(UNITMEM.key())UNITMEM.park();}catch(e){}},2000);}catch(_e){}   
   try{setInterval(function(){try{var cf=el('carteFr');if(cf&&cf.style.display!=='none')CNPE.homeTable(S);}catch(e){}},1500);}catch(_e){}
-  (function(){var b3=el('bCnpe');if(b3)b3.onclick=function(){CNPE.openMine();};})();
+  (function(){var b3=el('bCnpe');if(b3)b3.onclick=function(){CNPE.openMine();};
+    var bs=el('bSuivre');if(bs)bs.onclick=function(){CNPE.setFollow(!CNPE.follow);};
+    var tb=el('turb');if(tb)tb.addEventListener('input',function(){if(CNPE.follow)CNPE.setFollow(false);});
+    setInterval(function(){try{if(CNPE.follow&&UNITMEM.key()){var p=UNITMEM.key().split('|'),L=window.__SITES||[],s=null;for(var i=0;i<L.length;i++)if(L[i].n===p[0])s=L[i];if(s){var uu=PARC.unit(s.n,+p[1]-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){S.turbSet=ld;var sl=el('turb');if(sl)sl.value=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}}}}catch(e){}},3000);})();
   window.__carte={open:openCarte};
   (function(){function dragGuard(id,flag){var e2=document.getElementById(id);if(!e2)return;
     ['pointerdown','touchstart','mousedown'].forEach(function(t){e2.addEventListener(t,function(){window[flag]=1;});});
