@@ -1,6 +1,6 @@
 // Service worker — Synoptique REP 1300 · fonctionnement hors ligne
 // Stratégie : réseau d'abord (version toujours fraîche), cache en secours (mode avion).
-var CACHE = 'rep1300-client-202608211408';
+var CACHE = 'rep1300-client-202608211916';
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
@@ -18,7 +18,9 @@ self.addEventListener('activate', function (e) {
   );
 });
 
-self.addEventListener('fetch', function (e) {if(e.request.url.indexOf('moteur.simurep.fr')>=0)return; // l'API moteur passe TOUJOURS au réseau, jamais au cache
+self.addEventListener('fetch', function (e) {
+  // les API (moteur, parc réel) ne passent JAMAIS par le cache : hors origine = le réseau seul, sans secours index.html
+  try { if (new URL(e.request.url).origin !== self.location.origin) return; } catch (_e) { return; }
 
   e.respondWith(
     fetch(e.request).then(function (r) {
