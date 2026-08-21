@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="author" content="AnthoninP">
 <meta name="copyright" content="© 2026 AnthoninP — SIMUREP, tous droits réservés. Reproduction interdite sans autorisation écrite. contact@simurep.fr">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.1</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.1a</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -329,7 +329,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.1</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.1a</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1332,6 +1332,7 @@ body.shake{animation:quake .9s linear;}
   var recRows=[], recRun=true, recPas=10, recNext=0;
   function recTick(){
     if(!recRun)return;
+    if(S.t<recNext-recPas*2)recNext=S.t;   
     if(S.t>=recNext){
       recNext=(S.t-recNext<recPas*2)?recNext+recPas:S.t+recPas; 
       recRows.push({t:S.t,v:REC_CH.map(function(c){var x=c.get();return isFinite(x)?x:0;})});
@@ -1646,6 +1647,18 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointerdown',function(e){if(e.target&&e.target.type==='range')sbShow(e.target);},true);
   document.addEventListener('pointerup',sbHide,true);
   document.addEventListener('pointercancel',sbHide,true);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2297,6 +2310,20 @@ var ISO=(function(){
     };
   });
   var LEX={
+   'Fréquence du réseau (50 Hz)':{d:'Le pouls du réseau européen : 50 battements par seconde, tenu à ±50 millièmes près — il monte quand on produit trop, il baisse quand il manque du courant',
+     p:'Tous les alternateurs d’Europe continentale, de Lisbonne à Istanbul, tournent ensemble au même rythme : 50 tours par seconde, 50 hertz (Hz). Ce rythme n’est pas figé : si la production dépasse la consommation, les machines accélèrent et la fréquence monte ; si le courant manque, elles ralentissent et elle baisse. Un millihertz (mHz) vaut un millième de hertz : 50 mHz = 0,05 Hz. La bande normale d’exploitation est donc 49,95 à 50,05 Hz — c’est ce que surveille le dispatcheur. À ±200 mHz, la réserve primaire est épuisée ; sous 49,0 Hz, les relais délestent ; vers 47,5 Hz, les centrales se déconnectent pour se protéger. Le 4 novembre 2006, une ligne coupée en Allemagne a scindé l’Europe en trois : 49 Hz à l’ouest, 15 millions de foyers délestés en quelques secondes — et le réseau a tenu.'},
+   'Réserve primaire (FCR)':{d:'La réaction réflexe des centrales d’Europe : en quelques secondes, elles compensent jusqu’à 3 000 MW perdus sans qu’aucun humain intervienne',
+     p:'Quand une grosse tranche déclenche, la fréquence chute aussitôt. Chaque centrale participante a un régulateur qui, sentant cette baisse, ouvre un peu plus ses vannes : c’est le « statisme ». Additionné sur toute la zone synchrone, l’effet vaut environ 26 000 MW par hertz — perdre 1 300 MW fait baisser la fréquence de 50 mHz, et elle s’y stabilise en 15 à 30 secondes. Cette réserve primaire (FCR, frequency containment reserve) est dimensionnée à 3 000 MW, la perte simultanée des deux plus gros groupes. Au-delà, seule la charge s’autorègle (les moteurs ralentissent, environ 3 000 MW par hertz) et la fréquence s’effondre vite : c’est là que le dispatcheur doit agir, puis que les relais de délestage prennent le relais.'},
+   'Délestage fréquence-métrique':{d:'Le dernier filet : sous 49,0 Hz, des relais coupent automatiquement une partie des clients pour sauver le reste du réseau',
+     p:'Dans les postes sources, des relais mesurent la fréquence en permanence. Si elle tombe à 49,0 Hz, ils ouvrent des départs : environ 15 % de la consommation disparaît d’un coup, ce qui redresse l’équilibre. Si ça ne suffit pas, 48,8 Hz puis 48,6 Hz déclenchent des paliers suivants. C’est brutal mais salvateur : mieux vaut quelques villes dans le noir quelques minutes qu’un effondrement total (black-out) qui demanderait des jours pour reconstruire le réseau. Une fois l’équilibre rétabli, le dispatcheur réalimente les clients par étapes, en veillant à ne pas faire replonger la fréquence.'},
+   'Dispatching (CNES)':{d:'La salle de commande du réseau national : chez RTE, le Centre national d’exploitation du système équilibre à chaque instant production et consommation',
+     p:'À Saint-Denis, 24 h/24, les dispatcheurs de RTE surveillent le pays comme tu surveilles ta tranche : consommation qui monte à 19 h, soleil qui se couche, ligne en maintenance, tranche qui déclenche. Leurs leviers : demander à des centrales de monter ou baisser (le « réglage secondaire » puis tertiaire), modifier les programmes d’échange avec les pays voisins, appeler les réserves rapides — barrages et STEP —, ou, en dernier recours, délester. Sur la carte de SIMUREP, tu prends leur place : tes tranches pèsent réellement sur l’équilibre calculé à partir des données RTE, et la fréquence te dit si tu fais bien ton travail.'},
+   'Interconnexions et programmes d’échange':{d:'Les lignes qui relient la France à six voisins : on y exporte ou importe jusqu’à plusieurs milliers de MW par frontière, sur programme',
+     p:'La France est reliée à l’Allemagne, la Belgique, le Royaume-Uni (par câbles sous la Manche : IFA, IFA2, ElecLink), l’Espagne, l’Italie et la Suisse. Chaque heure, des programmes d’échange fixent ce qui passe à chaque frontière, dans la limite de la capacité des lignes (la NTC). Exporter, c’est comme ajouter de la consommation ; importer, c’est ajouter de la production. Quand une tranche manque, modifier un programme d’échange est le levier le plus rapide du dispatcheur — à condition que le voisin ait de la marge. Sur la carte, import en vert, export en bleu, les flèches dans le sens du courant.'},
+   'Entraide entre centrales':{d:'Quand une tranche manque, les autres montent en charge — à 5 % de leur puissance par minute, pas plus vite',
+     p:'Une tranche en production à 1 100 MW peut monter vers ses 1 300 MW nominaux, mais pas d’un coup : la turbine et le cœur suivent une rampe d’environ 5 % de la puissance nominale par minute, soit une vingtaine de minutes pour 100 %. Le dispatcheur appelle donc l’entraide tôt et sur plusieurs sites. Dans SIMUREP, la marge d’un CNPE est la somme de ce que ses tranches en production peuvent encore donner, calculée sur leur production réelle RTE.'},
+   'Données réelles RTE':{d:'Ce que tu vois du parc est mesuré par RTE : production de chaque tranche, arrêts, consommation, échanges — et SIMUREP dit quand il extrapole',
+     p:'Le serveur de SIMUREP interroge les API publiques de RTE (le gestionnaire du réseau de transport) : la production horaire de chaque groupe, les indisponibilités déclarées (arrêts programmés ou fortuits, avec leur date de retour), la consommation, le mix de production au quart d’heure, les flux physiques aux frontières — et éCO2mix en secours. Quand une source se tait, le serveur prolonge les dernières valeurs avec la saison, l’heure et le soleil, et l’affiche en ambre « extrapolé ». Quand tu prends une tranche, elle suit sa production réelle tant que tu ne touches pas à la turbine ; dès que tu la modifies, l’écart avec le réel devient ton empreinte sur le réseau.'},
    'Effet Doppler':{d:'Le frein instantané du réacteur : quand le combustible chauffe, il absorbe plus de neutrons — la réactivité baisse toute seule',
      p:'Imagine un gardien de but qui grandit quand on le bombarde. L’uranium 238 du combustible a des « résonances » : des énergies très précises où il capture les neutrons au lieu de les laisser passer. Quand la température du combustible monte, les noyaux s’agitent, et vus des neutrons ces résonances s’élargissent (c’est l’effet Doppler, le même qui change le son de la sirène qui passe) : davantage de neutrons sont capturés, moins arrivent à fissionner, la réactivité chute de quelques pcm par degré de combustible — et ça, en une fraction de seconde, sans qu’aucun opérateur ni aucune protection n’intervienne. C’est la première raison pour laquelle un REP est stable : toute hausse de puissance chauffe le combustible, qui se freine lui-même. Dans SIMUREP, cet effet est porté par le « défaut de puissance » (−1 700 pcm entre 0 et 100 %, Doppler + densité du modérateur) appliqué sans délai, plus le coefficient modérateur (−30 pcm par °C au-dessus de la température programme). Le réacteur qui se méfie de lui-même.'},
    'Xénon':{d:'Le poison qui naît de la fission et mange les neutrons — il suit la puissance avec des heures de retard et décide du redémarrage',
@@ -3265,6 +3292,9 @@ var ISO=(function(){
 
   
   
+
+
+
 
 
 
@@ -4268,6 +4298,12 @@ try{window.GEO400=GEO400;}catch(_e){}
   
   
   
+  
+  
+  
+  
+  
+  
   var RESEAU=(function(){
     var K_FCR=26000,FCR_MAX=3000,K_LOAD=3000,TAU_F=6;                  
     var UFLS=[[49.0,0.15],[48.8,0.15],[48.6,0.10]];                    
@@ -4298,10 +4334,11 @@ try{window.GEO400=GEO400;}catch(_e){}
       
       api.step=function(dt,ctx){gridStep(api,G,dt||1,ctx||{});};
       
-      api.bilan=function(){var n=G.live&&G.live.nat,conso=n?(n.conso||0):0,nuc=n&&n.mix?(n.mix.nuc||0):0,ech={},solde=0;
+      api.bilan=function(){var n=G.live&&G.live.nat,conso=n?(n.conso||0):0,nuc=n&&n.mix?(n.mix.nuc||0):0,ech={},solde=0,nucSrc='mix national RTE';
+        var U=G.live&&G.live.units,us=0,un=0;for(var k in (U||{})){var u=U[k];if(u&&typeof u.Pe==='number'&&!u.x){us+=u.Pe;un++;}}if(un>=40){nuc=us;nucSrc='somme des '+un+' tranches RTE';}   
         for(var b in BORD){ech[b]=api.echReal(b)+G.lev[b];solde+=ech[b];}
         var real=n&&n.ech&&typeof n.ech.solde==='number'?n.ech.solde:solde;var aide=0;for(var s in G.aide)aide+=G.aide[s];
-        return {f:G.f,dP:G.dP,dPnuc:G.dPnuc,dPlev:G.dPlev,fcr:G.fcr,shed:G.shed,shedStage:G.shedStage,conso:conso,consoNet:conso-G.shed,nuc:nuc+G.dPnuc,nucReal:nuc,ech:ech,solde:solde,soldeReal:real,hyd:G.hyd,hydT:G.hydT,hydMax:G.hydMax,aide:G.aide,aideT:G.aideT,aideMax:G.aideMax,lev:G.lev,levT:G.levT,out:G.out,worst:G.worst,best:G.best,units:G.units,log:G.log,t:G.t,src:G.live?(G.live.meta||{}):null,x:!!(n&&n.x)};};
+        return {f:G.f,dP:G.dP,dPnuc:G.dPnuc,dPlev:G.dPlev,fcr:G.fcr,shed:G.shed,shedStage:G.shedStage,conso:conso,consoNet:conso-G.shed,nuc:nuc+G.dPnuc,nucReal:nuc,nucSrc:nucSrc,ech:ech,solde:solde,soldeReal:real,hyd:G.hyd,hydT:G.hydT,hydMax:G.hydMax,aide:G.aide,aideT:G.aideT,aideMax:G.aideMax,lev:G.lev,levT:G.levT,out:G.out,worst:G.worst,best:G.best,units:G.units,log:G.log,t:G.t,src:G.live?(G.live.meta||{}):null,x:!!(n&&n.x)};};
       api.snap=function(){var o={};for(var k in G){if(k==='live')continue;o[k]=G[k];}return o;};   
       api.apply=function(o){if(!o)return;for(var k in o){if(k==='live')continue;G[k]=o[k];}};
       return api;}
@@ -4321,7 +4358,7 @@ try{window.GEO400=GEO400;}catch(_e){}
     inst.build=function(box,sites){if(!box)return;
       var h='<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div style="font-weight:800;font-size:15px">⚡ Conduite du réseau</div><div style="font-size:12px;color:#7a8a99">tu es le dispatcheur : tes tranches pèsent sur l’équilibre, tu le rétablis</div></div>';
       h+='<div style="display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap"><div class="dpBig" id="dpF">50,00 <small>Hz</small></div><div><span class="dpChip" id="dpSt">à l’équilibre</span><div id="dpSub" style="font-size:12px;color:#7a8a99;margin-top:4px"></div></div></div>';
-      h+='<div style="margin-top:10px;font-size:12.5px;color:#33465c;line-height:1.6"><div>Nucléaire <b id="dpN"></b> <span id="dpNd" style="color:#b07010"></span></div><div>Consommation <b id="dpC"></b> · Échanges <b id="dpE"></b> <span style="color:#8a99a8">(import > 0)</span></div><div>Écart production − consommation <b id="dpD"></b></div><div style="color:#8a99a8">Réserve primaire mobilisée <span id="dpR"></span><div class="dpBar"><i id="dpRb"></i></div></div><div id="dpU" style="color:#7a8a99;font-size:12px;margin-top:4px"></div></div>';
+      h+='<div style="margin-top:10px;font-size:12.5px;color:#33465c;line-height:1.6"><div>Nucléaire <b id="dpN"></b> <span id="dpNd"></span></div><div>Consommation <b id="dpC"></b> · Échanges <b id="dpE"></b> <span style="color:#8a99a8">(import > 0)</span></div><div>Écart production − consommation <b id="dpD"></b></div><div style="color:#8a99a8">Réserve primaire mobilisée <span id="dpR"></span><div class="dpBar"><i id="dpRb"></i></div></div><div id="dpU" style="color:#7a8a99;font-size:12px;margin-top:4px"></div></div>';
       h+='<div class="dpSec">Échanges aux frontières</div><div>';
       for(var b in BORD)h+=row(BORD[b],'programme d’échange',"dpL"+b,'lev',b);
       h+='</div><div class="dpSec">Réserves</div><div>'+row('Hydraulique','lacs et STEP, jusqu’à '+fmt(inst.G.hydMax)+' MW','dpLhyd','hyd','');
@@ -4342,7 +4379,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       var f=B.f,df=Math.abs(f-50),fe=q('dpF');fe.innerHTML=f.toFixed(2).replace('.',',')+' <small>Hz</small>';fe.style.color=df<=0.05?'#1d2a38':(df<=0.2?'#b07010':'#c0392b');
       var st=q('dpSt');var lab=B.shedStage?'DÉLESTAGE palier '+B.shedStage:(Math.abs(B.dP)>FCR_MAX?'réserve primaire saturée':(df<=0.05?'à l’équilibre':(f<50?'il manque de la production':'trop de production')));st.textContent=lab;st.style.background=df<=0.05&&!B.shedStage?'#2e7d3a':(df<=0.2&&!B.shedStage?'#d08a1c':'#c0392b');
       q('dpSub').textContent=B.units.length?'tes tranches pèsent '+fsg(B.dPnuc)+' MW sur le réseau':'aucune tranche pilotée : le réseau est celui de RTE';
-      q('dpN').textContent=fmt(B.nuc)+' MW';q('dpNd').textContent=B.dPnuc?'('+fsg(B.dPnuc)+' MW par rapport au réel)':'';
+      q('dpN').textContent=fmt(B.nuc)+' MW';q('dpNd').innerHTML=(B.dPnuc?'<span style="color:#b07010">('+fsg(B.dPnuc)+' MW par rapport au réel)</span> ':'')+'<span style="color:#8a99a8">'+B.nucSrc+'</span>';
       q('dpC').textContent=fmt(B.consoNet)+' MW'+(B.shed>0?' (délesté '+fmt(B.shed)+')':'');q('dpE').textContent=fsg(B.solde)+' MW';q('dpD').textContent=fsg(B.dP)+' MW';
       q('dpR').textContent=fsg(B.fcr)+' / ±'+fmt(FCR_MAX)+' MW';var rb=q('dpRb');if(rb){rb.style.width=Math.min(100,Math.abs(B.fcr)/FCR_MAX*100)+'%';rb.style.background=Math.abs(B.fcr)>=FCR_MAX?'#c0392b':'#2e6fb8';}
       q('dpU').textContent=B.units.length?B.units.map(function(u){return u.key.replace('|',' ')+' : '+fmt(u.Pe)+' MW ('+fsg(u.d)+')';}).join(' · '):'';
@@ -4535,6 +4572,12 @@ try{window.GEO400=GEO400;}catch(_e){}
   
   
   
+  
+  
+  
+  
+  
+  
   var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 — EPR'}]},
     'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
     'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
@@ -4555,6 +4598,11 @@ try{window.GEO400=GEO400;}catch(_e){}
       var age=Math.round((Date.now()-(this.liveT||0))/1000),m=L.meta||{},su=(m.units||{}).src||'aucune',sn=(m.nat||{}).src||'aucune';var stale=age>15*60;
       var x=stale||su==='extrapol\u00e9'||su==='aucune';var lab=x?(stale?'donn\u00e9es RTE extrapol\u00e9es (derni\u00e8re mesure il y a '+Math.round(age/60)+' min)':(su==='aucune'?'bilan '+sn+' \u00b7 tranches : pas de mesure RTE (identifiants absents)':'donn\u00e9es RTE extrapol\u00e9es')):'donn\u00e9es r\u00e9elles RTE';
       return {src:su,nat:sn,lab:lab,age:age,x:x,t:(m.units||{}).data||null,stale:stale};},
+    
+    
+    differs:function(key,mem){var r=this.live&&this.live.units&&this.live.units[key];if(!r||r.x||!mem)return true;var cap=r.cap||1300;
+      var mp=(mem.etat==='RP'||mem.etat==='RD'),rp=(r.etat==='RP'||r.etat==='RD');if(mp!==rp)return true;return Math.abs((mem.Pe||0)-(r.Pe||0))>Math.max(100,0.08*cap);},
+    nucSum:function(){var L=this.live;if(!L||!L.units)return null;var n=0,s=0;for(var k in L.units){var u=L.units[k];if(u&&typeof u.Pe==='number'&&!u.x){s+=u.Pe;n++;}}return n>=40?{sum:s,n:n,t:(L.meta&&L.meta.units&&L.meta.units.data)||0}:null;},   
     provider:function(site,idx,pal,t){var u=this.real(site,idx);if(!u)return null;return {Pe:Math.round(u.Pe||0),etat:u.etat||'RP',lab:u.lab||ETLAB[u.etat]||'',real:true,x:!!u.x,ind:u.ind||null,cap:u.cap};},   
     demande:function(t){var s=(typeof S!=='undefined'&&S.saison)||'mi',base=(s==='hiver'?1.0:(s==='ete'?0.86:0.93)),hh=((t||0)/3600)%24,   
       jour=(hh<6?0.90:(hh<9?0.97:(hh<13?1.0:(hh<18?0.96:(hh<22?1.0:0.93)))));return base*jour;},
@@ -4645,8 +4693,8 @@ try{window.GEO400=GEO400;}catch(_e){}
     var peekCache={};
     function stateOf(s,i,S){var key=s.n+'|'+(i+1);
       if(key===UNITMEM.key())return {Pe:Math.round(S.Pelec||0),etat:S.etat||'RP',lab:ETLAB[S.etat]||'',cur:true};
-      if(i<s.t&&window.__net&&peekCache[key])return {Pe:Math.round(peekCache[key].Pelec||0),etat:peekCache[key].etat||'RP',lab:ETLAB[peekCache[key].etat]||'',cur:false};   
-      if(i<s.t&&UNITMEM.store[key]){var m=UNITMEM.store[key];return {Pe:m.Pe||0,etat:m.etat||'RP',lab:ETLAB[m.etat]||'',cur:false};}
+      if(i<s.t&&window.__net&&peekCache[key]){var pc={Pe:Math.round(peekCache[key].Pelec||0),etat:peekCache[key].etat||'RP'};if(PARC.differs(key,pc))return {Pe:pc.Pe,etat:pc.etat,lab:ETLAB[pc.etat]||'',cur:false,mod:true};}   
+      if(i<s.t&&UNITMEM.store[key]){var m=UNITMEM.store[key];if(PARC.differs(key,m))return {Pe:m.Pe||0,etat:m.etat||'RP',lab:ETLAB[m.etat]||'',cur:false,mod:true};}   
       var pal=(i>=s.t)?'EPR':s.p;var u=PARC.unit(s.n,i,pal,S.t||0);u.cur=false;return u;}
     api.unitState=stateOf;
     function peekTouched(list){if(!window.__net||!window.__net.peek)return;var seen={};(list||[]).forEach(function(s){for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===UNITMEM.key()||seen[key])continue;seen[key]=1;if(UNITMEM.store[key])(function(kk){window.__net.peek(kk.replace(/[^A-Za-z0-9]/g,'_'),function(d){if(d&&d.etat)peekCache[kk]={Pelec:d.Pelec,etat:d.etat};});})(key);}});}
@@ -4673,7 +4721,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       for(var i=0;i<s.t;i++){var d0=el('cnD'+i),run=(dusTest[s.n+'|'+(i+1)]||0)>now||(me&&myTr===i+1&&!!S.h3);if(d0)d0.setAttribute('fill',run?'#3ad46a':'#8ea3b6');}   
       if(me){var ii=myTr-1,crfOn=S.crf!==false&&S.etat==='RP',secOn=S.sec!==false;for(var k=0;k<2;k++){var pc=el('cnCRF'+ii+'_'+k),ps=el('cnSEC'+ii+'_'+k);if(pc)pc.setAttribute('fill',S.crf===false?'#c0392b':(crfOn?'#5aa66a':'#f6f8fa'));if(ps)ps.setAttribute('fill',secOn?'#5aa66a':'#c0392b');}
         var bk=el('cnK'+ii);if(bk)bk.setAttribute('fill',S.bkDmg?'#7a1c12':(S.ptrBoil||S.ptrH2>=1?'#c0392b':(S.ptrT>50?'#e0a030':'#e3e9ef')));}
-      if(api.follow&&me){var uu=PARC.unit(s.n,myTr-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){try{S.turbSet=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}   
+      if(api.follow&&me&&api.followOk(S)){var uu=PARC.unit(s.n,myTr-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){try{S.turbSet=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}   
       var incs=me?incidentsOf(S):[];for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1),mm=UNITMEM.store[key];if(key!==kk&&mm&&mm.etat&&mm.etat!=='RP'&&mm.etat!=='AT'&&mm.etat!=='RCD')incs.push('tranche '+ULAB(s.n,i+1)+' en transitoire ('+mm.etat+')');}
       if(me&&incs.length){var b0=el('cnB'+(myTr-1));if(b0&&incidentsOf(S).length)b0.setAttribute('fill','#c0392b');}
       var cm=el('cnpeCom');if(cm){var tsrc=me?Math.round(S.Tsrc||0):(s.src==='mer'?12:14),sum=0;for(var i=0;i<s.t;i++)sum+=stateOf(s,i,S).Pe||0;
@@ -4707,7 +4755,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}
         if(window.__net&&prev!==key){try{['srcType','Tsrc','saison','gaine'].forEach(function(k){if(S[k]!==undefined)window.__net.cmd({type:'set',k:k,v:S[k]});});}catch(e){}}}   
       try{recRows=[];recNext=S.t;recRender(true);}catch(e){}   
-      api.setFollow(false);
+      api.setFollow(true,true);   
       var st=el('siteTag');if(st)st.textContent='CNPE de '+s.n+' \u00b7 tranche '+ULAB(s.n,tr)+' ('+s.p+')';
       api.close();var cf=el('carteFr');if(cf)cf.style.display='none';try{document.documentElement.style.overflow='';document.body.style.overflow='';}catch(e){}
       try{log('Prise de quart au CNPE de '+s.n+', tranche '+ULAB(s.n,tr)+' \u2014 palier '+s.p+' ('+(ETLAB[e0]||e0)+').','cyan');}catch(e){}};
@@ -4726,7 +4774,7 @@ try{window.GEO400=GEO400;}catch(_e){}
         if(!dead){for(var i=0;i<nT;i++){var u=stateOf(s,i,S);if(i>=s.t&&!(u&&u.real))continue;units.push(u);sum+=u.Pe||0;if((u.Pe||0)>0)np++;}}
         tot+=sum;var open=!!api.exp[s.n],pl=playable(s);
         h+='<tr class="parcRow" data-s="'+si+'" style="border-top:1px solid #edf1f5;cursor:pointer'+(open?';background:#f4f7fa':'')+'"><td style="padding:6px;font-weight:700">'+(open?'\u25be':'\u25b8')+' '+s.n+(pl?' <span style="font-size:10px;color:#2e7d3a;font-weight:600">jouable</span>':'')+'</td><td style="color:#4a5c70">'+(dead?'arr\u00eat\u00e9e':s.p)+'</td><td style="text-align:center">'+(dead?'\u2014':np+'/'+units.length)+'</td><td style="text-align:right;font-weight:700">'+(dead?'0':sum)+' MW</td></tr>';
-        if(open&&!dead)units.forEach(function(u,i){var cc=u.etat==='RP'?'#2e7d3a':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8a99a8':'#e0a030'),epr=i>=s.t,key=s.n+'|'+(i+1),mem=!u.cur&&!epr&&!!UNITMEM.store[key];
+        if(open&&!dead)units.forEach(function(u,i){var cc=u.etat==='RP'?'#2e7d3a':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8a99a8':'#e0a030'),epr=i>=s.t,key=s.n+'|'+(i+1),mem=!u.cur&&!epr&&!!u.mod;
           h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2e7d3a">\u25cf au pupitre</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':'')))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+(u.lab||'')+'</span></td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700">'+(u.Pe||0)+' MWe</td></tr>';});
         if(open&&pl)h+='<tr style="background:#fafbfc"><td colspan="4" style="padding:4px 6px 8px 26px"><button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-view="'+si+'">\ud83c\udfed vue du site</button></td></tr>';});
       h+='<tr style="border-top:2px solid #dfe6ee"><td colspan="3" style="padding:6px;font-weight:800">Production du parc</td><td style="text-align:right;font-weight:800">'+tot+' MW</td></tr></table>';
@@ -4742,15 +4790,17 @@ try{window.GEO400=GEO400;}catch(_e){}
     api.gridCtx=function(S){var L=window.__SITES||[],by={},cur=UNITMEM.key(),units=[],margins={};L.forEach(function(s){by[s.n]=s;});
       function refOf(site,tr){var s=by[site];if(!s)return undefined;var pal=(tr>s.t)?'EPR':s.p;try{return PARC.unit(site,tr-1,pal,S.t||0).Pe;}catch(e){return undefined;}}   
       if(cur){var p=cur.split('|');units.push({key:cur,Pe:Math.round(S.Pelec||0),ref:refOf(p[0],+p[1])});}
-      for(var k in UNITMEM.store){if(k===cur)continue;var q=k.split('|'),m=UNITMEM.store[k];if(!by[q[0]])continue;var Pe=(window.__net&&peekCache[k])?peekCache[k].Pelec:m.Pe;units.push({key:k,Pe:Math.round(Pe||0),ref:refOf(q[0],+q[1])});}
-      L.forEach(function(s){if(!playable(s))return;var mg=0;for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===cur||UNITMEM.store[key])continue;var u=PARC.unit(s.n,i,s.p,S.t||0);if(u.etat==='RP'&&u.Pe>0)mg+=Math.max(0,(u.cap||PN[s.p]||1300)-u.Pe);}if(mg>=50)margins[s.n]=Math.round(mg);});   
+      for(var k in UNITMEM.store){if(k===cur)continue;var q=k.split('|'),m=UNITMEM.store[k];if(!by[q[0]])continue;var Pe=(window.__net&&peekCache[k])?peekCache[k].Pelec:m.Pe,et=(window.__net&&peekCache[k])?peekCache[k].etat:m.etat;
+        if(!PARC.differs(k,{Pe:Pe,etat:et}))continue;units.push({key:k,Pe:Math.round(Pe||0),ref:refOf(q[0],+q[1])});}   
+      L.forEach(function(s){if(!playable(s))return;var mg=0;for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===cur||(UNITMEM.store[key]&&PARC.differs(key,UNITMEM.store[key])))continue;var u=PARC.unit(s.n,i,s.p,S.t||0);if(u.etat==='RP'&&u.Pe>0)mg+=Math.max(0,(u.cap||PN[s.p]||1300)-u.Pe);}if(mg>=50)margins[s.n]=Math.round(mg);});   
       return {units:units,margins:margins};};
     api.gridSites=function(){var m=(window.RESEAU&&RESEAU.G&&RESEAU.G.aideMax)||{};return Object.keys(m).map(function(n){return {n:n,m:m[n]};});};
     api.dispatch=function(S){var box=el('dispCard');if(!box||!window.RESEAU||!RESEAU.build)return;if(!PARC.live){box.style.display='none';return;}box.style.display='';
       var sig=api.gridSites().map(function(s){return s.n;}).join('|');if(!box.querySelector('#dpF')||box._sites!==sig)RESEAU.build(box,api.gridSites());else RESEAU.update(box);
       try{RESEAU.flux(document.getElementById('svgFr'));}catch(e){}};
     api.follow=false;
-    api.setFollow=function(v){api.follow=!!v;var b=el('bSuivre');if(b)b.classList.toggle('on',api.follow);try{log(api.follow?'Suivi du r\u00e9seau : la consigne de charge suit la production attendue de la tranche.':'Suivi du r\u00e9seau d\u00e9sactiv\u00e9 : pilotage manuel de la charge.','cyan');}catch(e){}};
+    api.followOk=function(S){return S.etat==='RP'&&!S.scram&&!S.ilote&&(S._turbTgt==null);};   
+    api.setFollow=function(v,quiet){api.follow=!!v;var b=el('bSuivre');if(b)b.classList.toggle('on',api.follow);if(quiet)return;try{log(api.follow?'Suivi du r\u00e9seau : la consigne de charge suit la production r\u00e9elle de la tranche (RTE).':'Suivi du r\u00e9seau d\u00e9sactiv\u00e9 : tu as la main sur la charge \u2014 l\u2019\u00e9cart avec le r\u00e9el se voit sur la carte (conduite du r\u00e9seau).','cyan');}catch(e){}};
     api.playable=playable;
     return api;
   })();
@@ -4764,13 +4814,13 @@ try{window.GEO400=GEO400;}catch(_e){}
   (function(){var b3=el('bCnpe');if(b3)b3.onclick=function(){CNPE.openMine();};
     var bs=el('bSuivre');if(bs)bs.onclick=function(){CNPE.setFollow(!CNPE.follow);};
     var tb=el('turb');if(tb)tb.addEventListener('input',function(){if(CNPE.follow)CNPE.setFollow(false);});
-    setInterval(function(){try{if(CNPE.follow&&UNITMEM.key()){var p=UNITMEM.key().split('|'),L=window.__SITES||[],s=null;for(var i=0;i<L.length;i++)if(L[i].n===p[0])s=L[i];if(s){var uu=PARC.unit(s.n,+p[1]-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){S.turbSet=ld;var sl=el('turb');if(sl)sl.value=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}}}}catch(e){}},3000);})();
+    setInterval(function(){try{if(CNPE.follow&&UNITMEM.key()&&CNPE.followOk(S)){var p=UNITMEM.key().split('|'),L=window.__SITES||[],s=null;for(var i=0;i<L.length;i++)if(L[i].n===p[0])s=L[i];if(s){var uu=PARC.unit(s.n,+p[1]-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){S.turbSet=ld;var sl=el('turb');if(sl)sl.value=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}}}}catch(e){}},3000);})();
   window.__carte={open:openCarte};
   (function(){function dragGuard(id,flag){var e2=document.getElementById(id);if(!e2)return;
     ['pointerdown','touchstart','mousedown'].forEach(function(t){e2.addEventListener(t,function(){window[flag]=1;});});
     ['pointerup','touchend','mouseup','change','pointercancel'].forEach(function(t){e2.addEventListener(t,function(){setTimeout(function(){window[flag]=0;},80);});});
   }dragGuard('turb','__tbDrag');dragGuard('rod','__rdDrag');})();
-  window.__sim={S:S,log:log,physStep:physStep,slowStep:slowStep,trips:trips};try{window.__sim.PARC=PARC;window.__sim.RESEAU=RESEAU;}catch(_e){}   
+  window.__sim={S:S,log:log,physStep:physStep,slowStep:slowStep,trips:trips};try{window.__sim.PARC=PARC;window.__sim.RESEAU=RESEAU;window.__sim.LEX=LEX;}catch(_e){}try{window.__sim.recInfo=function(){return {n:recRows.length,next:recNext,run:recRun,pas:recPas,t:S.t};};window.__sim.recTick=recTick;}catch(_e){}   
 })();
 
 ;(function(){ // chassis reseau : le moteur vit sur le serveur ; le serveur est le maitre
