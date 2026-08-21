@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="author" content="AnthoninP">
 <meta name="copyright" content="© 2026 AnthoninP — SIMUREP, tous droits réservés. Reproduction interdite sans autorisation écrite. contact@simurep.fr">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.13.0</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.13.0a</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -317,7 +317,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.13.0</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.13.0a</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -3202,7 +3202,10 @@ var ISO=(function(){
     return {x:2536.7823*X+-0.9321*Y+261.0488,y:-6.9351*X+-2534.6666*Y+223.6666};}
   try{window.ll2xy=ll2xy;}catch(_e){}
   
-  var RTE_POSTES=[{n:'Penly',lat:49.9762,lon:1.2119},{n:'Paluel',lat:49.8580,lon:0.6357},{n:'Flamanville',lat:49.5364,lon:-1.8815},{n:'Cattenom',lat:49.4158,lon:6.2180},{n:'Nogent',lat:48.5153,lon:3.5178},{n:'Belleville',lat:47.5097,lon:2.8750},{n:'Saint-Alban',lat:45.4044,lon:4.7553},{n:'Golfech',lat:44.1067,lon:0.8453}];
+  
+  
+  var RTE_POSTES=[{n:'Penly',lat:49.9762,lon:1.2119,o:'SE'},{n:'Paluel',lat:49.8580,lon:0.6357,o:'SE'},{n:'Flamanville',lat:49.5364,lon:-1.8815,o:'SE'},{n:'Cattenom',lat:49.4158,lon:6.2180,o:'SO'},{n:'Nogent',lat:48.5153,lon:3.5178},{n:'Belleville',lat:47.5097,lon:2.8750,o:'SO'},{n:'Saint-Alban',lat:45.4044,lon:4.7553,o:'SO'},{n:'Golfech',lat:44.1067,lon:0.8453}];
+  var POSTE_DIR={NE:[9,-9],SE:[9,9],SO:[-9,9],NO:[-9,-9]};
   var SITES=[
    {n:'Gravelines',x:237,y:25,p:'CPY',t:6},{n:'Chooz',x:312,y:64,p:'N4',t:2},{n:'Penly',x:210,y:69,p:"P'4",t:2,src:'mer'},
    {n:'Paluel',x:193,y:76,p:'P4',t:4,g:1,dy:-9,dx:-2,src:'mer'},{n:'Cattenom',x:354,y:92,p:"P'4",t:4,src:'tour'},{n:'Flamanville',x:121,y:85,p:'P4',t:2,g:1,src:'mer',epr:1},
@@ -3250,7 +3253,7 @@ var ISO=(function(){
     }
     
     h+='<g id="gPostes" opacity=".9">';
-    for(var q=0;q<RTE_POSTES.length;q++){var po=RTE_POSTES[q],pp=ll2xy(po.lat,po.lon),px=pp.x+9,py=pp.y-9;
+    for(var q=0;q<RTE_POSTES.length;q++){var po=RTE_POSTES[q],pp=ll2xy(po.lat,po.lon),pd=POSTE_DIR[po.o]||POSTE_DIR.NE,px=pp.x+pd[0],py=pp.y+pd[1];
       h+='<line x1="'+pp.x+'" y1="'+pp.y+'" x2="'+px+'" y2="'+py+'" stroke="#5a6b7c" stroke-width=".8"/><rect x="'+(px-3.5)+'" y="'+(py-3.5)+'" width="7" height="7" fill="#fff" stroke="#33465c" stroke-width="1"><title>poste 400 kV \u2014 '+po.n+'</title></rect><line x1="'+(px-2)+'" y1="'+(py-1.5)+'" x2="'+(px+2)+'" y2="'+(py-1.5)+'" stroke="#33465c" stroke-width=".7"/><line x1="'+(px-2)+'" y1="'+(py+1.5)+'" x2="'+(px+2)+'" y2="'+(py+1.5)+'" stroke="#33465c" stroke-width=".7"/>';}
     h+='</g>';
     svg.innerHTML=h;
