@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="author" content="AnthoninP">
 <meta name="copyright" content="© 2026 AnthoninP — SIMUREP, tous droits réservés. Reproduction interdite sans autorisation écrite. contact@simurep.fr">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.0</title>
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.1</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -128,7 +128,18 @@ if('serviceWorker' in navigator){
 #cnpeUnits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
 .cnpeCard{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 1px 3px rgba(20,40,60,.08)}
 .cnpeBtn{background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06);cursor:pointer;font-family:inherit}
-.layBtn{background:#fff;color:#6a7b8c;border:1px solid #d5dee6;border-radius:12px;padding:3px 9px;font-size:11px;font-weight:600;cursor:pointer}.layBtn.on{background:#2f4256;color:#fff;border-color:#2f4256}
+.layBtn{background:#fff;color:#8a99a8;border:1px solid #dfe6ee;border-radius:999px;padding:4px 11px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}.layBtn.on{background:#e6eef6;color:#1d2a38;border-color:#c9d6e2}
+/* ── la conduite du réseau (accueil) : contrôles à boutons, style Apple ── */
+.dpRow{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid #eef2f6}.dpRow:first-child{border-top:0}
+.dpLab{flex:1;min-width:0;font-size:13px;color:#1d2a38;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dpLab small{display:block;font-weight:500;color:#8a99a8;font-size:11px}
+.dpVal{font-variant-numeric:tabular-nums;font-size:13px;color:#33465c;min-width:86px;text-align:right}.dpVal b{color:#1d2a38}
+.dpBtn{width:32px;height:32px;border-radius:50%;border:1px solid #d5dee6;background:#fff;color:#1d2a38;font-size:18px;line-height:30px;text-align:center;padding:0;cursor:pointer;font-family:inherit;box-shadow:0 1px 2px rgba(20,40,60,.06);flex:0 0 auto;-webkit-tap-highlight-color:transparent}.dpBtn:active{background:#e6eef6}.dpBtn[disabled]{opacity:.35}
+.dpBig{font-size:38px;font-weight:800;letter-spacing:-.5px;color:#1d2a38;font-variant-numeric:tabular-nums;line-height:1}.dpBig small{font-size:16px;font-weight:600;color:#8a99a8;letter-spacing:0}
+.dpChip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:700;color:#fff;background:#2e7d3a;white-space:nowrap}
+.dpBar{height:6px;border-radius:3px;background:#eef2f6;overflow:hidden;margin-top:6px}.dpBar i{display:block;height:100%;background:#2e6fb8;width:0;transition:width .4s}
+.dpSec{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#8a99a8;font-weight:700;margin:14px 0 2px}
+.dpHelp{margin-top:10px;font-size:12.5px;color:#33465c;line-height:1.5}.dpHelp summary{cursor:pointer;font-weight:700;color:#2e6fb8;list-style:none;font-size:12.5px}.dpHelp summary::-webkit-details-marker{display:none}.dpHelp p{margin:6px 0}
+.dpLog{margin-top:8px;font-size:12px;line-height:1.5;color:#33465c;max-height:110px;overflow:auto}.dpLog div{padding:2px 0;border-top:1px solid #f0f3f6}
 .cnpeBtn.on{background:#2e7d3a;color:#fff;border-color:#2e7d3a}
 #isoSvg{width:100%;height:auto;max-height:82vh;display:block;transform-origin:0 0;touch-action:pan-y;will-change:transform}
 #viewBar{display:flex;gap:5px;align-items:center;margin:0 0 5px}
@@ -318,7 +329,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.0</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.1</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1635,6 +1646,22 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointerdown',function(e){if(e.target&&e.target.type==='range')sbShow(e.target);},true);
   document.addEventListener('pointerup',sbHide,true);
   document.addEventListener('pointercancel',sbHide,true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3245,6 +3272,10 @@ var ISO=(function(){
 
 
 
+
+
+
+
 var GEO400={gen:'2026-08-21',src:'IGN BD TOPO v3 (lignes), OpenStreetMap (postes), RTE/ODRÉ (liste)',
  P:[['ALBER','Albertville',366.7,258.1],['ARGIA','Argia (Bayonne Sud)',118.6,356.2],['ARGOE','Argoeuves',239.6,71.5],['AVELI','Avelin',263.3,45.6],['AYRES','Ayres',255.5,332.5],['BAIXA','Baixas',254.7,390.3],['BARNA','Barnabos',204,83.5],['BAYET','Bayet',270.1,233.7],['B.MON','Beaumont-Monteux',321.3,288.2],['BEZAU','Bezaumont',351.2,117.4],['BIANC','Biancon',384.1,348.8],['BLENO','Blénod',350.8,117],['B.SE5','Bois-de-Serves',354.4,232.6],['B.TOL','Bois-Tollot',354.5,232.6],['','Boismorand',253.6,166.5],['BOUCH','Bouchain',269.8,55.7],['BOUTR','Boutre',351.8,346],['BROMM','Brommat',251.2,300.3],['CALA5','Calan',74.2,155.7],['CANTE','Cantegrit',137.4,330.9],['CAZAR','Cazaril',180.8,369.8],['CERGY','Cergy',233.7,110.9],['CERN','CERN',354.4,232.4],['CHAIN','Chaingy',225.5,162.7],['CBRY','Chambry',258.3,113.8],['CPNIE','Champagnier',345.7,283.6],['CHAN5','Chanceaux',192.1,179.4],['CHARP','Charpenay',313.2,253.1],['CHEVA','Chevalet',250.7,60.9],['CIROL','Cirolliers',241.1,133],['CLERA','Clerac',159.7,280.3],['COR.P','Cordemais-Poste',115,184.8],['CORNI','Cornier',362.1,239.6],['CRENE','Creney-prés-Troyes',294.5,141.7],['CUBNE','Cubnezais',153.7,284.9],['DAMBR','Dambron',227.2,152.5],['D.BUR','Dampierre-en-Burly',241.6,167.6],['DISTR','Distré',167.5,190.8],['DOMLO','Domloup',126.4,149.7],['ECHAL','Échalas',314.3,265.2],['EGUZO','Éguzon',219,225.3],['F.FRE','Faux-Fresnay',289.5,128.4],['FRASN','Frasne',356.7,205.1],['FRUGE','Fruges',235.5,46.7],['GATI5','Gatinais',242.8,153.4],['GAVRE','Gavrelle',257.7,54],['GEN.P','Genissiat-Poste',347.1,241.5],['G.ILE','Grande-Île',355,267.1],['GRANZ','Granzay',153.4,234],['GREPI','Grépilles',295.3,241.8],['GROSN','Grosne',313,217.2],['H.PAU','Henri-Paul',306.6,212.2],['HOUDR','Houdreville',351.3,132.4],['ISSEL','Issel',228.4,361.3],['JONQU','Jonquieres (Annexe Gmr Cevennes)',311.7,341.1],['BATHI','La Bathie',367.5,258.9],['BOISS','La Boisse',323.4,251.9],['CAPEL','La Capelle',287.7,69.8],['COCHE','La Coche',369.9,265.3],['FEUIL','La Feuillane',322.4,357.4],['GAUDI','La Gaudière',250.7,367.8],['HERS5','La Herse',252.4,97.2],['MARTY','La Martyre',50.1,128.7],['PICOC','La Picocherie',200.6,175.6],['VAUPA','La Vaupalière',203.7,91.2],['LARCA','Larçay',194.1,185.2],['LATEN','Laténa',259.2,84],['LAUNA','Launay',136.3,129.4],['BREUI','Le Breuil',236.6,279],['B.CAR','Le Broc-Carros',395,339],['CHAFF','Le Chaffard',326.7,259.6],['CHESN','Le Chesnoy',257.1,140.2],['CHEY6','Le Cheylas',354.3,270.9],['HAVRE','Le Havre (Centrale)',179,90.9],['HAVR5','Le Havre (Poste)',178.9,90.7],['MQIS','Le Marquis',150,287.3],['ATTAQ','Les Attaques',230.6,27.9],['GALOR','Les Galoreaux',145.4,185.3],['JUMEA','Les Jumeaux',168.1,208.8],['QUINT','Les Quintes',179.2,161.2],['RENAR','Les Renardieres',256.6,140.9],['LESQU','Lesquive',205.9,341.8],['LIMEU','Limeux',227.6,68.2],['LOGEL','Logelbach',388.3,149.9],['LONNY','Lonny',305.9,76],['LOUIS','Louisfert',128.8,168.1],['MAMBE','Mambelin',370.8,182.5],['MANDA','Mandarins',227,28.7],['MARL6','Marlenheim',393.4,126.2],['MARMA','Marmagne',238.8,197],['MARSI','Marsillon',145.4,359.1],['M.PON','Martigues-Ponteau',326.2,361.6],['MASTA','Mastaing',269.2,55.7],['MAZUR','Mazures',307.4,72.5],['MENUE','Menuel',129.3,88.6],['M.SEI','Méry-sur-Seine',287.9,134.2],['MEZE5','Mézerolles',224.4,115.9],['MIONS','Mions',322.1,259.2],['MOLIE','Moliere',162.9,161.1],['M.LAN','Montagny-les-Lanches',355.2,249.6],['MTERE','Montereau',256.7,140.5],['MTEZI','Montezic (Centrale)',249.9,301.9],['MTEZ5','Montezic (Poste Exterieur)',249.7,301.7],['MORBR','Morbras',250.8,122.9],['MOULA','Moulaine',341.3,90.1],['NEOUL','Neoules',358.6,364.1],['N.MAI','Neuves Maisons',352.1,128.3],['OUDON','Oudon',142.4,155.3],['PENC5','Penchard',256.6,113.2],['PEUP5','Peuplingues',226.9,27.9],['P.HA5','Plaine Haute',88.6,132.4],['P.ORG','Plan-d\'Orgon',325.5,340.8],['PLAUD','Plaud',195.2,248.9],['P.GAS','Plessis-Gassot',244.5,111.6],['PONTE','Ponteau',326.3,361.5],['P.AND','Praz-St-Andre',372.7,278],['PREGU','Préguillac',149.6,257.9],['PRION','Prionnet',349.8,345.4],['REALT','Réaltor',336.4,357.3],['REMIS','Remise',230.1,100.3],['REVIG','Revigny',319.2,120.3],['REVI5','Revin Poste-Centrale',307,71.6],['ROM','Rom',173.9,230.1],['ROUGE','Rougemontier',195.7,97.2],['RUEYR','Rueyres',251.3,299.7],['RULHA','Rulhat',269.4,254],['SAUCA','Saucats',147.3,304.7],['SAUS5','Sausset',248.7,114.2],['SCHEE','Scheer',393.8,137.4],['SEREI','Serein',283,162.2],['SEUIL','Seuil',302.3,92.6],['SIERE','Sierentz',394.3,168.8],['SSAVO','St-Avold',368.3,104.2],['SSELO','St-Eloi',267.4,201.9],['S.BIS','Super-Bissorte',372.5,278.2],['TAMAR','Tamareau',284.1,350.3],['TAUTE','Taute',134.9,101],['TAVEL','Tavel',313.4,332.8],['TERR6','Terrette',139.8,103.1],['TERRI','Terrier',239.6,103.5],['TILL5','Tilleul',202,111.2],['TOLLE','Tollevast',129,83.4],['T.SUP','Tore Supra',349.6,345.6],['TOURB','Tourbe',166.4,106.7],['TRANS','Trans',372.7,353.1],['VAUJA','Vaujany',356.2,281.4],['VERFE','Verfeil',218.5,350.3],['VESLE','Vesle',296.9,103.9],['VIELM','Vielmoulin',311.6,186.5],['VIGY','Vigy',355.8,102.2],['VLARO','Villarodin',376.8,277.5],['VLECH','Villechétive',275.2,153],['VLEJU','Villejust',238.5,127.4],['VLERB','Villerbon',211.2,172.5],['VLEVA','Villevaudé',251.2,117.4],['VINCE','Vincey',358.8,139.4],['WARAN','Warande',237.5,26.8],['WEPPE','Weppes',258,40.3],['YVE.O','Yvelines-Ouest',226.9,121.6]],
  L:[[356.7,205.1,361.8,197.7,364.8,191.3,371.5,184.9,372.1,183.8,370.8,182.6],
@@ -4229,6 +4260,14 @@ try{window.GEO400=GEO400;}catch(_e){}
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
   var RESEAU=(function(){
     var K_FCR=26000,FCR_MAX=3000,K_LOAD=3000,TAU_F=6;                  
     var UFLS=[[49.0,0.15],[48.8,0.15],[48.6,0.10]];                    
@@ -4272,47 +4311,57 @@ try{window.GEO400=GEO400;}catch(_e){}
     
     inst.send=function(c){inst.cmd(c);try{if(window.__net&&window.__net.grid)window.__net.grid(c);}catch(e){}};
     
-    var FLUX={GB:[196,30,-16,-10],BE:[296,38,14,-12],DE:[386,108,16,0],CH:[394,214,16,4],IT:[414,300,16,6],ES:[212,430,0,16]};   
+    
+    var FLUX={GB:[196,30,-16,-10,'R.-U.'],BE:[296,38,14,-12,'Belg.'],DE:[386,108,16,0,'All.'],CH:[394,214,16,4,'Suisse'],IT:[414,300,16,6,'Italie'],ES:[212,430,0,16,'Esp.']};   
+    var STEP={lev:250,hyd:250,aide:100};
     function fmt(v){v=Math.round(v||0);return (v<0?'−':'')+Math.abs(v).toLocaleString('fr-FR');}
     function fsg(v){v=Math.round(v||0);return (v>0?'+':(v<0?'−':''))+Math.abs(v).toLocaleString('fr-FR');}
-    inst.build=function(box,sites){if(!box)return;var B=inst.bilan();
-      var h='<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div style="font-weight:800;font-size:15px">⚡ Dispatching — le réseau français en temps réel</div><div style="font-size:12px;color:#7a8a99">tes tranches pèsent sur la fréquence ; les leviers de RTE rétablissent l’équilibre</div></div>';
-      h+='<div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:center;margin-top:8px">';
-      h+='<div style="text-align:center;padding:6px 12px;border-radius:12px;background:#0b1a12"><div id="dpF" style="font-family:ui-monospace,Menlo,monospace;font-size:30px;font-weight:800;color:#3ae065;letter-spacing:1px">50,00</div><div style="font-size:10px;color:#8fe89a;letter-spacing:1px">Hz · RÉSEAU SYNCHRONE</div></div>';
-      h+='<div style="font-size:12.5px;color:#33465c;line-height:1.55"><div>Consommation France : <b id="dpC"></b> · nucléaire : <b id="dpN"></b> <span id="dpNd" style="color:#b07010"></span></div><div>Solde des échanges : <b id="dpE"></b> <span style="color:#7a8a99">(import&nbsp;&gt;&nbsp;0)</span> · réserve primaire : <b id="dpR"></b></div><div>Écart production − consommation : <b id="dpD"></b> <span id="dpS" style="color:#c0392b;font-weight:700"></span></div><div id="dpU" style="color:#7a8a99;font-size:11.5px"></div></div></div>';
-      
-      h+='<div style="margin-top:10px;font-weight:700;font-size:12.5px;color:#33465c">Les leviers du dispatcheur</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;font-size:12px;margin-top:4px" id="dpLev">';
-      for(var b in BORD){var r=inst.levRange(b);h+='<label style="display:flex;align-items:center;gap:6px"><span style="width:92px;color:#33465c">'+BORD[b]+'</span><input type="range" data-lev="'+b+'" min="'+r.min+'" max="'+r.max+'" step="50" value="'+Math.round(B.levT[b]||0)+'" style="flex:1"><span id="dpL'+b+'" style="width:82px;text-align:right;font-variant-numeric:tabular-nums"></span></label>';}
-      h+='<label style="display:flex;align-items:center;gap:6px;grid-column:1/-1"><span style="width:92px;color:#33465c">Hydraulique</span><input type="range" data-hyd="1" min="0" max="'+B.hydMax+'" step="50" value="'+Math.round(B.hydT||0)+'" style="flex:1"><span id="dpLhyd" style="width:82px;text-align:right"></span></label>';
-      (sites||[]).forEach(function(s){h+='<label style="display:flex;align-items:center;gap:6px"><span style="width:92px;color:#33465c" title="les tranches en production de ce CNPE montent en charge (5 %Pn/min)">🏭 '+s.n+'</span><input type="range" data-aide="'+s.n+'" min="0" max="'+Math.round(s.m)+'" step="25" value="'+Math.round((B.aideT||{})[s.n]||0)+'" style="flex:1"><span id="dpA'+s.n.replace(/[^A-Za-z0-9]/g,'_')+'" style="width:82px;text-align:right"></span></label>';});
-      h+='</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="cnpeBtn" id="dpBack" style="padding:4px 10px;font-size:11.5px;display:none">↺ réalimenter les clients délestés</button><button class="cnpeBtn" id="dpReset" style="padding:4px 10px;font-size:11.5px">remise à zéro</button><span id="dpScore" style="font-size:11.5px;color:#7a8a99;align-self:center"></span></div>';
-      h+='<div id="dpLog" style="margin-top:8px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.45;color:#33465c;max-height:96px;overflow:auto;background:#f6f8fa;border-radius:8px;padding:6px 8px"></div>';
+    function sid(n){return n.replace(/[^A-Za-z0-9]/g,'_');}
+    function row(lab,sub,id,dk,dv){return '<div class="dpRow"><div class="dpLab">'+lab+(sub?'<small>'+sub+'</small>':'')+'</div><div class="dpVal" id="'+id+'"></div><button class="dpBtn" data-k="'+dk+'" data-v="'+dv+'" data-d="-1" aria-label="moins">−</button><button class="dpBtn" data-k="'+dk+'" data-v="'+dv+'" data-d="1" aria-label="plus">+</button></div>';}
+    inst.build=function(box,sites){if(!box)return;
+      var h='<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div style="font-weight:800;font-size:15px">⚡ Conduite du réseau</div><div style="font-size:12px;color:#7a8a99">tu es le dispatcheur : tes tranches pèsent sur l’équilibre, tu le rétablis</div></div>';
+      h+='<div style="display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap"><div class="dpBig" id="dpF">50,00 <small>Hz</small></div><div><span class="dpChip" id="dpSt">à l’équilibre</span><div id="dpSub" style="font-size:12px;color:#7a8a99;margin-top:4px"></div></div></div>';
+      h+='<div style="margin-top:10px;font-size:12.5px;color:#33465c;line-height:1.6"><div>Nucléaire <b id="dpN"></b> <span id="dpNd" style="color:#b07010"></span></div><div>Consommation <b id="dpC"></b> · Échanges <b id="dpE"></b> <span style="color:#8a99a8">(import > 0)</span></div><div>Écart production − consommation <b id="dpD"></b></div><div style="color:#8a99a8">Réserve primaire mobilisée <span id="dpR"></span><div class="dpBar"><i id="dpRb"></i></div></div><div id="dpU" style="color:#7a8a99;font-size:12px;margin-top:4px"></div></div>';
+      h+='<div class="dpSec">Échanges aux frontières</div><div>';
+      for(var b in BORD)h+=row(BORD[b],'programme d’échange',"dpL"+b,'lev',b);
+      h+='</div><div class="dpSec">Réserves</div><div>'+row('Hydraulique','lacs et STEP, jusqu’à '+fmt(inst.G.hydMax)+' MW','dpLhyd','hyd','');
+      h+='</div>';
+      if((sites||[]).length){h+='<details class="dpHelp" style="margin-top:6px"><summary>▸ Entraide entre centrales ('+sites.length+' CNPE ont de la marge)</summary><div style="font-size:11.5px;color:#8a99a8;margin:4px 0 2px">les tranches en production du site montent en charge, 5 % par minute</div><div>';
+        sites.forEach(function(s){h+=row(s.n,'marge '+fmt(s.m)+' MW','dpA'+sid(s.n),'aide',s.n);});h+='</div></details>';}
+      h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center"><button class="cnpeBtn" id="dpBack" style="display:none">↺ réalimenter les clients délestés</button><button class="cnpeBtn" id="dpReset">remise à zéro</button></div>';
+      h+='<div id="dpScore" style="font-size:12px;color:#8a99a8;margin-top:8px"></div>';
+      h+='<details class="dpHelp"><summary>▸ Comment ça marche ?</summary><p><b>50,00 Hz.</b> Sur le réseau européen, production et consommation doivent s’égaler à chaque instant. Un excédent fait monter la fréquence, un manque la fait baisser. RTE la tient dans ±50 mHz.</p><p><b>Tes tranches.</b> Le réseau affiché est le vrai (RTE). Quand tu baisses, îlotes ou arrêtes une tranche, l’écart avec sa production réelle se retrouve ici. Une 1 300 MW qui déclenche, c’est −50 mHz.</p><p><b>La réserve primaire.</b> Les centrales d’Europe réagissent seules jusqu’à 3 000 MW. Au-delà, la fréquence s’effondre ; à 49,0 Hz les relais coupent automatiquement 15 % des clients (délestage), puis 48,8 et 48,6 Hz.</p><p><b>Tes leviers.</b> Modifie les programmes d’échange avec chaque pays (dans la capacité des lignes), appelle l’hydraulique (lacs, STEP), demande l’entraide des autres centrales (elles montent à 5 % par minute). Quand tout est revenu, réalimente les clients délestés.</p><p><b>Le score :</b> le temps passé hors de la bande ±50 mHz. Le bon dispatcheur ramène 50,00 Hz vite, sans surplus.</p></details>';
+      h+='<details class="dpHelp"><summary>▸ Journal</summary><div class="dpLog" id="dpLog"></div></details>';
       box.innerHTML=h;box._sites=(sites||[]).map(function(s){return s.n;}).join('|');
-      box.querySelectorAll('input[data-lev]').forEach(function(i){i.onchange=function(){inst.send({k:'lev',b:i.getAttribute('data-lev'),v:+i.value});};});
-      var hy=box.querySelector('input[data-hyd]');if(hy)hy.onchange=function(){inst.send({k:'hyd',v:+hy.value});};
-      box.querySelectorAll('input[data-aide]').forEach(function(i){i.onchange=function(){inst.send({k:'aide',site:i.getAttribute('data-aide'),v:+i.value});};});
-      var bb=box.querySelector('#dpBack');if(bb)bb.onclick=function(){inst.send({k:'back'});};var br=box.querySelector('#dpReset');if(br)br.onclick=function(){inst.send({k:'reset'});inst.update(box);};
+      box.querySelectorAll('button.dpBtn').forEach(function(bt){bt.onclick=function(){var k=bt.getAttribute('data-k'),v=bt.getAttribute('data-v'),d=+bt.getAttribute('data-d'),G=inst.G;
+        if(k==='lev'){inst.send({k:'lev',b:v,v:(G.levT[v]||0)+d*STEP.lev});}else if(k==='hyd'){inst.send({k:'hyd',v:(G.hydT||0)+d*STEP.hyd});}else if(k==='aide'){inst.send({k:'aide',site:v,v:((G.aideT||{})[v]||0)+d*STEP.aide});}
+        inst.update(box);};});
+      var bb=box.querySelector('#dpBack');if(bb)bb.onclick=function(){inst.send({k:'back'});inst.update(box);};var br=box.querySelector('#dpReset');if(br)br.onclick=function(){inst.send({k:'reset'});inst.update(box);};
       inst.update(box);};
-    inst.update=function(box){if(!box||!box.querySelector('#dpF'))return;var B=inst.bilan(),q=function(id){return box.querySelector('#'+id);};
-      var f=B.f,fe=q('dpF');fe.textContent=f.toFixed(2).replace('.',',');fe.style.color=Math.abs(f-50)<=0.05?'#3ae065':(Math.abs(f-50)<=0.2?'#f0a91c':'#ff5a4a');
-      q('dpC').textContent=fmt(B.consoNet)+' MW'+(B.shed>0?' (délesté '+fmt(B.shed)+')':'');q('dpN').textContent=fmt(B.nuc)+' MW';q('dpNd').textContent=B.dPnuc?'('+fsg(B.dPnuc)+' MW par rapport au réel)':'';
-      q('dpE').textContent=fsg(B.solde)+' MW';q('dpR').textContent=fsg(B.fcr)+' / ±'+fmt(FCR_MAX)+' MW';q('dpD').textContent=fsg(B.dP)+' MW';
-      q('dpS').textContent=B.shedStage?'DÉLESTAGE palier '+B.shedStage:(Math.abs(B.dP)>FCR_MAX?'réserve primaire SATURÉE':'');
-      q('dpU').textContent=B.units.length?('tes tranches : '+B.units.map(function(u){return u.key.replace('|',' ')+' '+u.Pe+' MW ('+fsg(u.d)+')';}).join(' · ')):'aucune tranche pilotée : le réseau est celui de RTE, à l’équilibre';
-      for(var b in BORD){var e=q('dpL'+b);if(e)e.textContent=fsg(B.ech[b])+' MW';var i=box.querySelector('input[data-lev="'+b+'"]');if(i&&document.activeElement!==i){var r=inst.levRange(b);i.min=r.min;i.max=r.max;i.value=Math.round(B.levT[b]||0);}}
-      var eh=q('dpLhyd');if(eh)eh.textContent=fsg(B.hyd)+' MW';
-      for(var s in B.aideMax){var ea=q('dpA'+s.replace(/[^A-Za-z0-9]/g,'_'));if(ea)ea.textContent=fsg((B.aide||{})[s]||0)+' MW';var ia=box.querySelector('input[data-aide="'+s+'"]');if(ia&&document.activeElement!==ia){ia.max=Math.round(B.aideMax[s]);}}
+    inst.update=function(box){if(!box||!box.querySelector('#dpF'))return;var B=inst.bilan(),q=function(id){return box.querySelector('#'+id);},G=inst.G;
+      var f=B.f,df=Math.abs(f-50),fe=q('dpF');fe.innerHTML=f.toFixed(2).replace('.',',')+' <small>Hz</small>';fe.style.color=df<=0.05?'#1d2a38':(df<=0.2?'#b07010':'#c0392b');
+      var st=q('dpSt');var lab=B.shedStage?'DÉLESTAGE palier '+B.shedStage:(Math.abs(B.dP)>FCR_MAX?'réserve primaire saturée':(df<=0.05?'à l’équilibre':(f<50?'il manque de la production':'trop de production')));st.textContent=lab;st.style.background=df<=0.05&&!B.shedStage?'#2e7d3a':(df<=0.2&&!B.shedStage?'#d08a1c':'#c0392b');
+      q('dpSub').textContent=B.units.length?'tes tranches pèsent '+fsg(B.dPnuc)+' MW sur le réseau':'aucune tranche pilotée : le réseau est celui de RTE';
+      q('dpN').textContent=fmt(B.nuc)+' MW';q('dpNd').textContent=B.dPnuc?'('+fsg(B.dPnuc)+' MW par rapport au réel)':'';
+      q('dpC').textContent=fmt(B.consoNet)+' MW'+(B.shed>0?' (délesté '+fmt(B.shed)+')':'');q('dpE').textContent=fsg(B.solde)+' MW';q('dpD').textContent=fsg(B.dP)+' MW';
+      q('dpR').textContent=fsg(B.fcr)+' / ±'+fmt(FCR_MAX)+' MW';var rb=q('dpRb');if(rb){rb.style.width=Math.min(100,Math.abs(B.fcr)/FCR_MAX*100)+'%';rb.style.background=Math.abs(B.fcr)>=FCR_MAX?'#c0392b':'#2e6fb8';}
+      q('dpU').textContent=B.units.length?B.units.map(function(u){return u.key.replace('|',' ')+' : '+fmt(u.Pe)+' MW ('+fsg(u.d)+')';}).join(' · '):'';
+      for(var b in BORD){var e=q('dpL'+b);if(e){var tgt=G.levT[b]||0;e.innerHTML='<b>'+fsg(B.ech[b])+'</b> MW'+(Math.abs(tgt-(G.lev[b]||0))>=1?'<br><span style="font-size:11px;color:#8a99a8">→ '+fsg(inst.echReal(b)+tgt)+'</span>':'');}
+        var r=inst.levRange(b);var bm=box.querySelector('button[data-k="lev"][data-v="'+b+'"][data-d="-1"]'),bp=box.querySelector('button[data-k="lev"][data-v="'+b+'"][data-d="1"]');if(bm)bm.disabled=(G.levT[b]||0)<=r.min;if(bp)bp.disabled=(G.levT[b]||0)>=r.max;}
+      var eh=q('dpLhyd');if(eh)eh.innerHTML='<b>'+fsg(B.hyd)+'</b> MW'+(Math.abs((G.hydT||0)-G.hyd)>=1?'<br><span style="font-size:11px;color:#8a99a8">→ '+fsg(G.hydT)+'</span>':'');
+      var hm=box.querySelector('button[data-k="hyd"][data-d="-1"]'),hp=box.querySelector('button[data-k="hyd"][data-d="1"]');if(hm)hm.disabled=(G.hydT||0)<=0;if(hp)hp.disabled=(G.hydT||0)>=G.hydMax;
+      for(var sn in B.aideMax){var ea=q('dpA'+sid(sn));if(ea){var cur=(B.aide||{})[sn]||0,tg=(G.aideT||{})[sn]||0;ea.innerHTML='<b>'+fsg(cur)+'</b> MW'+(Math.abs(tg-cur)>=1?'<br><span style="font-size:11px;color:#8a99a8">→ '+fsg(tg)+'</span>':'');}
+        var am=box.querySelector('button[data-k="aide"][data-v="'+sn+'"][data-d="-1"]'),ap=box.querySelector('button[data-k="aide"][data-v="'+sn+'"][data-d="1"]');if(am)am.disabled=((G.aideT||{})[sn]||0)<=0;if(ap)ap.disabled=((G.aideT||{})[sn]||0)>=(B.aideMax[sn]||0);}
       var bb=q('dpBack');if(bb)bb.style.display=B.shed>0&&f>49.85?'':'none';
-      q('dpScore').textContent='hors bande ±50 mHz : '+Math.round(B.out)+' s · min '+B.worst.toFixed(2)+' Hz · max '+B.best.toFixed(2)+' Hz'+(B.src&&B.src.nat?' · source '+B.src.nat.src:'')+(B.x?' (extrapolé)':'');
-      var lg=q('dpLog');if(lg){var L=(B.log||[]).slice(-8).reverse();lg.innerHTML=L.length?L.map(function(l){var d=new Date(l.t);return '<div style="color:'+(l.cls==='alarm'?'#c0392b':(l.cls==='ok'?'#2e7d3a':'#33465c'))+'">'+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')+' '+l.txt+'</div>';}).join(''):'<div style="color:#7a8a99">journal du dispatching — vide</div>';}};
+      q('dpScore').textContent='Score : '+Math.round(B.out)+' s hors de la bande ±50 mHz · creux '+B.worst.toFixed(2).replace('.',',')+' Hz · pic '+B.best.toFixed(2).replace('.',',')+' Hz'+(B.x?' · données extrapolées':'');
+      var lg=q('dpLog');if(lg){var L=(B.log||[]).slice(-8).reverse();lg.innerHTML=L.length?L.map(function(l){var d=new Date(l.t);return '<div style="color:'+(l.cls==='alarm'?'#c0392b':(l.cls==='ok'?'#2e7d3a':'#33465c'))+'">'+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' '+l.txt+'</div>';}).join(''):'<div style="color:#8a99a8">rien à signaler</div>';}};
     
     inst.flux=function(svg){if(!svg)return;var g=svg.querySelector('#gFlux');if(!g)return;var B=inst.bilan();var h='';
       for(var b in FLUX){var a=FLUX[b],v=B.ech[b]||0,imp=v>0,col=imp?'#2e7d3a':'#2e6fb8',L=Math.min(26,6+Math.abs(v)/250);var ux=a[2],uy=a[3],n=Math.hypot(ux,uy)||1;ux/=n;uy/=n;
         var x1=a[0],y1=a[1],x2=a[0]+ux*L,y2=a[1]+uy*L;if(imp){var t=x1;x1=x2;x2=t;t=y1;y1=y2;y2=t;}   
         h+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="'+col+'" stroke-width="'+(1.2+Math.abs(v)/2500).toFixed(1)+'" marker-end="url(#fxArr'+(imp?'I':'E')+')"/>';
-        h+='<text x="'+(a[0]+ux*(L+4)+(ux<0?-2:2)).toFixed(1)+'" y="'+(a[1]+uy*(L+4)+3).toFixed(1)+'" font-size="7.5" font-weight="700" fill="'+col+'" text-anchor="'+(ux<-0.3?'end':(ux>0.3?'start':'middle'))+'" stroke="#e8eef4" stroke-width="2" paint-order="stroke">'+b+' '+fsg(v)+'</text>';}
-      if(!svg.querySelector('#fxArrI'))h='<defs><marker id="fxArrI" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2e7d3a"/></marker><marker id="fxArrE" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2e6fb8"/></marker></defs>'+h;
-      g.innerHTML=h;};
+        h+='<text x="'+(a[0]+ux*(L+4)+(ux<0?-2:2)).toFixed(1)+'" y="'+(a[1]+uy*(L+4)+3).toFixed(1)+'" font-size="7" font-weight="700" fill="'+col+'" text-anchor="'+(ux<-0.3?'end':(ux>0.3?'start':'middle'))+'" stroke="#e8eef4" stroke-width="2" paint-order="stroke">'+a[4]+' '+fsg(v)+'</text>';}
+      g.innerHTML=h;};   
     return inst;
   })();
   try{window.RESEAU=RESEAU;}catch(_e){}
@@ -4322,10 +4371,6 @@ try{window.GEO400=GEO400;}catch(_e){}
     return {x:2536.7823*X+-0.9321*Y+261.0488,y:-6.9351*X+-2534.6666*Y+223.6666};}
   try{window.ll2xy=ll2xy;}catch(_e){}
   
-  
-  
-  var RTE_POSTES=[{n:'Penly',lat:49.9762,lon:1.2119,o:'SE'},{n:'Paluel',lat:49.8580,lon:0.6357,o:'SE'},{n:'Flamanville',lat:49.5364,lon:-1.8815,o:'SE'},{n:'Cattenom',lat:49.4158,lon:6.2180,o:'SO'},{n:'Nogent',lat:48.5153,lon:3.5178},{n:'Belleville',lat:47.5097,lon:2.8750,o:'SO'},{n:'Saint-Alban',lat:45.4044,lon:4.7553,o:'SO'},{n:'Golfech',lat:44.1067,lon:0.8453}];
-  var POSTE_DIR={NE:[9,-9],SE:[9,9],SO:[-9,9],NO:[-9,-9]};
   var SITES=[
    {n:'Gravelines',x:237,y:25,p:'CPY',t:6},{n:'Chooz',x:312,y:64,p:'N4',t:2},{n:'Penly',x:210,y:69,p:"P'4",t:2,src:'mer'},
    {n:'Paluel',x:193,y:76,p:'P4',t:4,g:1,dy:-9,dx:-2,src:'mer'},{n:'Cattenom',x:354,y:92,p:"P'4",t:4,src:'tour'},{n:'Flamanville',x:121,y:85,p:'P4',t:2,g:1,src:'mer',epr:1},
@@ -4354,6 +4399,7 @@ try{window.GEO400=GEO400;}catch(_e){}
   function buildCarte(){
     var svg=document.getElementById('svgFr');if(!svg)return;
     var h='';
+    h+='<defs><marker id="fxArrI" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2e7d3a"/></marker><marker id="fxArrE" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2e6fb8"/></marker></defs>';   
     h+='<rect x="0" y="0" width="508" height="471" fill="#cfe3f0"/>';
     for(var v=0;v<PAYS.length;v++){var vz=PAYS[v];h+='<path d="'+vz.d+'" fill="#efe6cc" stroke="#c9bd9c" stroke-width="1.2"/>';}
     for(var v=0;v<PAYS.length;v++){var vz=PAYS[v];h+='<text x="'+vz.x+'" y="'+vz.y+'" font-size="10" fill="#a09468" font-weight="700" text-anchor="middle" letter-spacing="1">'+vz.n+'</text>';}
@@ -4378,11 +4424,6 @@ try{window.GEO400=GEO400;}catch(_e){}
       }
       h+='<text x="'+((s.g?(s.x-10):(s.x+10))+(s.dx||0))+'" y="'+(s.y+4+(s.dy||0))+'" text-anchor="'+(s.g?'end':'start')+'" font-size="11" font-weight="'+(ok?'700':'400')+'" fill="'+(mort?'#8a8a8a':(ok?'#1d3a24':'#5a6b7c'))+'" stroke="#e8eef4" stroke-width="3" paint-order="stroke">'+s.n+(mort?'':' <tspan fill="#6a7b8c" font-size="9">'+s.t+'\u00d7'+s.p+(s.epr?' + EPR':'')+'</tspan>')+'</text></g>';
     }
-    h+='</g>';
-    
-    h+='<g id="gPostes" opacity=".9">';
-    for(var q=0;q<RTE_POSTES.length;q++){var po=RTE_POSTES[q],pp=ll2xy(po.lat,po.lon),pd=POSTE_DIR[po.o]||POSTE_DIR.NE,px=pp.x+pd[0],py=pp.y+pd[1];
-      h+='<line x1="'+pp.x+'" y1="'+pp.y+'" x2="'+px+'" y2="'+py+'" stroke="#5a6b7c" stroke-width=".8"/><rect x="'+(px-3.5)+'" y="'+(py-3.5)+'" width="7" height="7" fill="#fff" stroke="#33465c" stroke-width="1"><title>poste 400 kV \u2014 '+po.n+'</title></rect><line x1="'+(px-2)+'" y1="'+(py-1.5)+'" x2="'+(px+2)+'" y2="'+(py-1.5)+'" stroke="#33465c" stroke-width=".7"/><line x1="'+(px-2)+'" y1="'+(py+1.5)+'" x2="'+(px+2)+'" y2="'+(py+1.5)+'" stroke="#33465c" stroke-width=".7"/>';}
     h+='</g><g id="gFlux"></g>';
     svg.innerHTML=h;
     try{carteLayers();}catch(_e){}
@@ -4399,10 +4440,10 @@ try{window.GEO400=GEO400;}catch(_e){}
     });
   }
   
-  var LAYERS=[['gSites','CNPE',1],['gLignes','lignes 400 kV',1],['gPostesRte','postes 400 kV',1],['gFlux','\u00e9changes',1],['gVilles','villes',1],['gFleuves','fleuves',1]];
+  var LAYERS=[['gSites','CNPE',1],['gLignes','lignes 400 kV',1],['gPostesRte','postes 400 kV',0],['gFlux','\u00e9changes',1],['gVilles','villes',1],['gFleuves','fleuves',1]];
   function carteLayers(){var bar=document.getElementById('carteLay'),svg=document.getElementById('svgFr');if(!svg)return;var st={};try{st=JSON.parse(localStorage.getItem('rep_layers')||'{}');}catch(e){}
-    LAYERS.forEach(function(L){var on=(st[L[0]]===undefined)?!!L[2]:!!st[L[0]];var g=svg.querySelector('#'+L[0]);if(g)g.style.display=on?'':'none';if(L[0]==='gSites'){var g2=svg.querySelector('#gPostes');if(g2)g2.style.display=on?'':'none';}});
-    if(!bar)return;var h='';LAYERS.forEach(function(L){var on=(st[L[0]]===undefined)?!!L[2]:!!st[L[0]];h+='<button data-lay="'+L[0]+'" class="layBtn'+(on?' on':'')+'">'+L[1]+'</button>';});bar.innerHTML=h;
+    LAYERS.forEach(function(L){var on=(st[L[0]]===undefined)?!!L[2]:!!st[L[0]];var g=svg.querySelector('#'+L[0]);if(g)g.style.display=on?'':'none';});
+    if(!bar)return;var h='';LAYERS.forEach(function(L){var on=(st[L[0]]===undefined)?!!L[2]:!!st[L[0]];h+='<button data-lay="'+L[0]+'" class="layBtn'+(on?' on':'')+'">'+(on?'\u2713 ':'')+L[1]+'</button>';});bar.innerHTML=h;
     bar.querySelectorAll('button[data-lay]').forEach(function(b){b.onclick=function(){var k=b.getAttribute('data-lay'),cur=(st[k]===undefined)?!!LAYERS.filter(function(L){return L[0]===k;})[0][2]:!!st[k];st[k]=!cur;try{localStorage.setItem('rep_layers',JSON.stringify(st));}catch(e){}carteLayers();};});}
   try{window.carteLayers=carteLayers;}catch(_e){}
   var HIST=[
@@ -4450,6 +4491,14 @@ try{window.GEO400=GEO400;}catch(_e){}
     if(_sv){var _p=_sv.split('|');var st2=document.getElementById('siteTag');if(st2)st2.textContent='CNPE de '+_p[0]+' \u00b7 tranche '+((window.CNPE&&CNPE.ULAB)?CNPE.ULAB(_p[0],+_p[1]):_p[1]);}
   }catch(_e){}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',openCarte);}else{openCarte();} 
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -4781,18 +4830,22 @@ document.querySelectorAll('button').forEach(function(b){
 </script>
 <div id="carteFr" style="display:block;position:fixed;inset:0;z-index:400;background:#f2f5f8;overflow:auto;overscroll-behavior:none">
   <div style="max-width:680px;margin:0 auto;padding:max(12px, env(safe-area-inset-top, 12px)) 10px 12px;color:#243242;font-family:inherit">
-    <div style="font-size:46px;font-weight:900;letter-spacing:7px;line-height:1.05;font-family:'Arial Black','Arial Bold',Arial,sans-serif;background:linear-gradient(90deg,#2e7d3a 0%,#2e6fb8 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#2e7d3a">SIMUREP <span id="carteVer" style="font-size:10px;opacity:.75;letter-spacing:1px;-webkit-text-fill-color:#7a8a99;color:#7a8a99;font-weight:600"></span></div>
-    <div style="font-size:16px;color:#33465c;margin:3px 0 8px;font-weight:600">Choisis ta centrale</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div style="font-size:44px;font-weight:900;letter-spacing:6px;line-height:1.05;font-family:'Arial Black','Arial Bold',Arial,sans-serif;background:linear-gradient(90deg,#2e7d3a 0%,#2e6fb8 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#2e7d3a">SIMUREP</div>
+      <div id="carteVer" style="font-size:11px;letter-spacing:1px;color:#8a99a8;font-weight:600;white-space:nowrap"></div>
+    </div>
+    <div style="font-size:13px;color:#7a8a99;margin:0 0 2px">Le parc nucléaire français, en vrai et en direct.</div>
+    <div style="font-size:16px;color:#1d2a38;margin:0 0 10px;font-weight:700">Choisis ta centrale</div>
     <div id="carteWrap" style="position:relative;overflow:hidden;border-radius:14px;box-shadow:0 1px 4px rgba(20,40,60,.10)">
       <svg id="svgFr" viewBox="0 0 508 471" style="width:100%;height:auto;background:#e8eef4;display:block;transform-origin:0 0"></svg>
       <button id="carteZr" style="display:none;position:absolute;top:8px;right:8px;z-index:5;background:#2f4256;color:#fff;border:0;border-radius:8px;padding:5px 9px;font-size:12px">&#10530; 1:1</button>
     </div>
     <div id="carteLay" style="display:flex;gap:6px;flex-wrap:wrap;padding:6px 2px 0;font-size:11px"></div>
     <div id="carteMsg" style="min-height:22px;font-size:13px;color:#8a5a10;padding:4px 2px;font-weight:600"></div>
-    <div style="font-size:11.5px;color:#4a5c70;padding:6px 2px 2px">Puissances&nbsp;: <span style="color:#2e6fb8">&#9679; 900 (CPY/CP0)</span> · <span style="color:#2e7d3a">&#9679; 1300 (P4/P&#8217;4)</span> · <span style="color:#b0509c">&#9679; 1450 (N4)</span> · <span style="color:#e07830">&#9679; 1650 (EPR)</span> · <span style="color:#777">&#129702; arrêtées</span></div>
+    <div style="font-size:11.5px;color:#8a99a8;padding:4px 2px 0;line-height:1.6"><span style="color:#2e6fb8">&#9679;</span> 900 MWe (CPY/CP0) · <span style="color:#2e7d3a">&#9679;</span> 1300 MWe (P4/P&#8217;4) · <span style="color:#b0509c">&#9679;</span> 1450 MWe (N4) · <span style="color:#e07830">&#9679;</span> 1650 MWe (EPR) · &#129702; arrêtées · <span style="color:#b4485c">&#9644;</span> lignes 400 kV · <span style="color:#2e7d3a">&#10132;</span> import · <span style="color:#2e6fb8">&#10132;</span> export</div>
     <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:12px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#33465c;line-height:1.5">&#9432;&nbsp; <b>Clique un site vert</b> pour prendre ton quart : le simulateur s&#8217;ouvre sur cette centrale, avec sa source froide. Les sites gris arrivent aux prochains paliers. Le bouton &#128506;&#65039; en haut du simulateur te ram&egrave;ne ici.</div>
-    <div id="dispCard" class="cnpeCard" style="margin-top:10px;display:none;color:#243242"></div>
     <div id="mesTr" class="cnpeCard" style="margin-top:10px;display:none;color:#243242"></div>
+    <div id="dispCard" class="cnpeCard" style="margin-top:10px;display:none;color:#243242"></div>
     <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:10px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#2f4256;line-height:1.5"><b>&#9889; Le savais-tu&nbsp;?</b> <span id="histoTxt"></span> <a id="histoNext" style="cursor:pointer;color:#2e6fb8;text-decoration:underline;white-space:nowrap">une autre&nbsp;!</a></div>
     <div style="display:flex;gap:10px;margin-top:12px">
       <button id="bCarteLex" style="flex:1;background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:14px;padding:12px;font-size:14px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06)">&#128214;&nbsp; Lexique du nucl&eacute;aire</button>
