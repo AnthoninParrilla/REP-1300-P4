@@ -10,6 +10,9 @@ SIMUREP — code, moteur physique, figures, textes, interface, identité visuell
 est une œuvre originale de AnthoninP, © 2026, tous droits réservés.
 Voir LICENCE.md. Contact : contact@simurep.fr
 
+Œuvre déposée à l'Agence pour la Protection des Programmes (APP Paris),
+répertoire IDDN : IDDN.FR.001.350014.000.S.P.2026.000.21100
+
 Aucune bibliothèque tierce n'est utilisée : ni framework, ni moteur graphique,
 ni police téléchargée, ni CDN. index.html ne charge AUCUNE ressource externe
 en dehors de son propre moteur (moteur.simurep.fr). Les polices sont celles du

@@ -2,6 +2,15 @@
 
 **© 2026 AnthoninP. Tous droits réservés.**
 
+**Œuvre déposée** à l'Agence pour la Protection des Programmes (APP Paris) et enregistrée au répertoire
+international IDDN sous le numéro :
+
+> `IDDN.FR.001.350014.000.S.P.2026.000.21100`
+
+*Décodage : France · APP Paris · dépôt de sources · œuvre première · 2026 · classe 21100 (enseignement assisté
+par ordinateur). Le dépôt établit une date certaine et la titularité ; il ne conditionne pas la protection,
+acquise dès la création.*
+
 SIMUREP — son code (index.html, modules, serveur, outils), son moteur physique, ses figures, ses textes, ses données et son
 identité visuelle — est une œuvre originale protégée par le droit d'auteur (Code de la propriété intellectuelle).
 

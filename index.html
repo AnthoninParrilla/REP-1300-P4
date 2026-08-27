@@ -8,6 +8,10 @@
   ce soit, est INTERDITE sans l'autorisation écrite préalable de l'auteur.
   Le moteur de calcul de la version publique tourne sur un serveur privé ; le code
   visible ici est un châssis d'affichage. Contact : contact@simurep.fr
+
+  Œuvre déposée à l'Agence pour la Protection des Programmes (APP Paris),
+  enregistrée au répertoire IDDN sous le numéro :
+    IDDN.FR.001.350014.000.S.P.2026.000.21100
   ══════════════════════════════════════════════════════════════════════════════
 -->
 <html lang="fr">
@@ -19,7 +23,9 @@
 <meta name="robots" content="index, follow, noai, noimageai">
 <meta name="tdm-reservation" content="1">
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.3c</title>
+<meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
+<meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.3d</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -31,7 +37,8 @@
 <meta name="theme-color" content="#12171c">
 <script>
   // ═══ SIMUREP — © 2026 AnthoninP — Tous droits réservés. Reproduction, copie, extraction ou réutilisation
-  // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée. ═══
+  // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée.
+  // Œuvre déposée à l'APP, répertoire IDDN : IDDN.FR.001.350014.000.S.P.2026.000.21100 ═══
 
 // enregistrement du service worker : rend le simulateur utilisable hors ligne
 // après un premier chargement en ligne (nécessite le fichier sw.js à côté)
@@ -333,7 +340,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.3c</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.3d</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1245,7 +1252,7 @@ body.shake{animation:quake .9s linear;}
     puisard:0,    
     recirc:false  
   };
-  try{if(typeof navigator!=='undefined'&&navigator.userAgent)console.log('%cSIMUREP \u00a9 2026 AnthoninP \u2014 tous droits r\u00e9serv\u00e9s. Code, moteur et figures prot\u00e9g\u00e9s : reproduction ou r\u00e9utilisation interdites sans autorisation \u00e9crite \u2014 contact@simurep.fr','font-weight:700;color:#2e7d3a');}catch(_e){}
+  try{if(typeof navigator!=='undefined'&&navigator.userAgent)console.log('%cSIMUREP \u00a9 2026 AnthoninP \u2014 tous droits r\u00e9serv\u00e9s. Code, moteur et figures prot\u00e9g\u00e9s : reproduction ou r\u00e9utilisation interdites sans autorisation \u00e9crite \u2014 contact@simurep.fr\nIDDN.FR.001.350014.000.S.P.2026.000.21100 (APP)','font-weight:700;color:#2e7d3a');}catch(_e){}
   var S0=JSON.parse(JSON.stringify(S)); 
 
   
@@ -4872,7 +4879,7 @@ document.querySelectorAll('button').forEach(function(b){
     <p>L'interface tourne dans ton navigateur ; le cœur de calcul physique tourne sur un serveur dédié. Aucune donnée personnelle, aucune inscription.</p>
     <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur les relit toutes les quinze minutes et indique clairement quand il extrapole. Réseau 400&nbsp;kV de la carte&nbsp;: tracés des lignes issus de la BD TOPO® v3 — © IGN, Licence Etalab 2.0 (Géoplateforme)&nbsp;; localisation des postes © les contributeurs d'OpenStreetMap (ODbL)&nbsp;; liste et noms officiels des postes&nbsp;: RTE, jeu «&nbsp;Postes électriques RTE&nbsp;» (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
     <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR — un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span> · <a href="mailto:contact@simurep.fr" style="color:#2e6fb8">contact@simurep.fr</a></p>
-    <p style="font-size:11.5px;color:#7a8a99;border-top:1px solid #e3e9ef;padding-top:8px">© 2026 AnthoninP — <b>tous droits réservés</b>. SIMUREP (code, moteur physique, figures, textes, données) est une œuvre originale protégée : toute reproduction, copie, extraction ou réutilisation, même partielle, est interdite sans autorisation écrite de l'auteur. Le moteur de calcul tourne sur un serveur privé ; le code visible dans le navigateur n'est qu'un châssis d'affichage.</p>
+    <p style="font-size:11.5px;color:#7a8a99;border-top:1px solid #e3e9ef;padding-top:8px">© 2026 AnthoninP — <b>tous droits réservés</b>. SIMUREP (code, moteur physique, figures, textes, données) est une œuvre originale protégée : toute reproduction, copie, extraction ou réutilisation, même partielle, est interdite sans autorisation écrite de l'auteur. Le moteur de calcul tourne sur un serveur privé ; le code visible dans le navigateur n'est qu'un châssis d'affichage.<br><b>Œuvre déposée</b> à l'Agence pour la Protection des Programmes — répertoire IDDN&nbsp;: <span style="font-family:ui-monospace,Menlo,Consolas,monospace">IDDN.FR.001.350014.000.S.P.2026.000.21100</span></p>
     <p style="font-size:11.5px;color:#5a6b7c;text-align:center;padding-top:6px"><a href="/mentions-legales.html" style="color:#17656f">Mentions légales</a> &nbsp;·&nbsp; <a href="/cgu.html" style="color:#17656f">Conditions d’utilisation</a> &nbsp;·&nbsp; <a href="mailto:contact@simurep.fr" style="color:#17656f">contact@simurep.fr</a></p>
   </div>
 </div>
@@ -4893,6 +4900,6 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 5a94c7038cafba3a · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build a0b0313561f0b921 · contact@simurep.fr -->
 </body>
 </html>

@@ -18,6 +18,9 @@ pas distribué. Le code source complet vit dans un dépôt privé.
 
 **© 2026 AnthoninP — tous droits réservés.**
 
+Œuvre déposée à l'Agence pour la Protection des Programmes (APP Paris),
+répertoire IDDN : `IDDN.FR.001.350014.000.S.P.2026.000.21100`
+
 SIMUREP est une œuvre originale protégée par le droit d'auteur (Code de la
 propriété intellectuelle). Toute reproduction, copie, extraction, adaptation,
 décompilation, réutilisation ou redistribution, même partielle, est **interdite
