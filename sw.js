@@ -1,6 +1,8 @@
+// ═══ SIMUREP — © 2026 AnthoninP — Tous droits réservés. Reproduction, copie, extraction ou réutilisation
+// interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée. ═══
 // Service worker — Synoptique REP 1300 · fonctionnement hors ligne
 // Stratégie : réseau d'abord (version toujours fraîche), cache en secours (mode avion).
-var CACHE = 'rep1300-client-202608252225';
+var CACHE = 'rep1300-client-202608271950';
 
 self.addEventListener('install', function (e) {
   e.waitUntil(

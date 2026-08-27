@@ -16,7 +16,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="author" content="AnthoninP">
 <meta name="copyright" content="© 2026 AnthoninP — SIMUREP, tous droits réservés. Reproduction interdite sans autorisation écrite. contact@simurep.fr">
-<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.3b</title>
+<meta name="robots" content="index, follow, noai, noimageai">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
+<title>SIMUREP — le simulateur des réacteurs nucléaires français · version 2.14.3c</title>
 <meta property="og:title" content="SIMUREP — le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP : le simulateur du parc nucléaire français — la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -330,7 +333,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.3b</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.3c</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1666,172 +1669,6 @@ body.shake{animation:quake .9s linear;}
   document.addEventListener('pointerdown',function(e){if(e.target&&e.target.type==='range')sbShow(e.target);},true);
   document.addEventListener('pointerup',sbHide,true);
   document.addEventListener('pointercancel',sbHide,true);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3427,8 +3264,10 @@ var ISO=(function(){
 
 
 
+
+
 var GEO400={gen:'2026-08-21',src:'IGN BD TOPO v3 (lignes), OpenStreetMap (postes), RTE/ODRÉ (liste)',
- P:[['ALBER','Albertville',366.7,258.1],['ARGIA','Argia (Bayonne Sud)',118.6,356.2],['ARGOE','Argoeuves',239.6,71.5],['AVELI','Avelin',263.3,45.6],['AYRES','Ayres',255.5,332.5],['BAIXA','Baixas',254.7,390.3],['BARNA','Barnabos',204,83.5],['BAYET','Bayet',270.1,233.7],['B.MON','Beaumont-Monteux',321.3,288.2],['BEZAU','Bezaumont',351.2,117.4],['BIANC','Biancon',384.1,348.8],['BLENO','Blénod',350.8,117],['B.SE5','Bois-de-Serves',354.4,232.6],['B.TOL','Bois-Tollot',354.5,232.6],['','Boismorand',253.6,166.5],['BOUCH','Bouchain',269.8,55.7],['BOUTR','Boutre',351.8,346],['BROMM','Brommat',251.2,300.3],['CALA5','Calan',74.2,155.7],['CANTE','Cantegrit',137.4,330.9],['CAZAR','Cazaril',180.8,369.8],['CERGY','Cergy',233.7,110.9],['CERN','CERN',354.4,232.4],['CHAIN','Chaingy',225.5,162.7],['CBRY','Chambry',258.3,113.8],['CPNIE','Champagnier',345.7,283.6],['CHAN5','Chanceaux',192.1,179.4],['CHARP','Charpenay',313.2,253.1],['CHEVA','Chevalet',250.7,60.9],['CIROL','Cirolliers',241.1,133],['CLERA','Clerac',159.7,280.3],['COR.P','Cordemais-Poste',115,184.8],['CORNI','Cornier',362.1,239.6],['CRENE','Creney-prés-Troyes',294.5,141.7],['CUBNE','Cubnezais',153.7,284.9],['DAMBR','Dambron',227.2,152.5],['D.BUR','Dampierre-en-Burly',241.6,167.6],['DISTR','Distré',167.5,190.8],['DOMLO','Domloup',126.4,149.7],['ECHAL','Échalas',314.3,265.2],['EGUZO','Éguzon',219,225.3],['F.FRE','Faux-Fresnay',289.5,128.4],['FRASN','Frasne',356.7,205.1],['FRUGE','Fruges',235.5,46.7],['GATI5','Gatinais',242.8,153.4],['GAVRE','Gavrelle',257.7,54],['GEN.P','Genissiat-Poste',347.1,241.5],['G.ILE','Grande-Île',355,267.1],['GRANZ','Granzay',153.4,234],['GREPI','Grépilles',295.3,241.8],['GROSN','Grosne',313,217.2],['H.PAU','Henri-Paul',306.6,212.2],['HOUDR','Houdreville',351.3,132.4],['ISSEL','Issel',228.4,361.3],['JONQU','Jonquieres (Annexe Gmr Cevennes)',311.7,341.1],['BATHI','La Bathie',367.5,258.9],['BOISS','La Boisse',323.4,251.9],['CAPEL','La Capelle',287.7,69.8],['COCHE','La Coche',369.9,265.3],['FEUIL','La Feuillane',322.4,357.4],['GAUDI','La Gaudière',250.7,367.8],['HERS5','La Herse',252.4,97.2],['MARTY','La Martyre',50.1,128.7],['PICOC','La Picocherie',200.6,175.6],['VAUPA','La Vaupalière',203.7,91.2],['LARCA','Larçay',194.1,185.2],['LATEN','Laténa',259.2,84],['LAUNA','Launay',136.3,129.4],['BREUI','Le Breuil',236.6,279],['B.CAR','Le Broc-Carros',395,339],['CHAFF','Le Chaffard',326.7,259.6],['CHESN','Le Chesnoy',257.1,140.2],['CHEY6','Le Cheylas',354.3,270.9],['HAVRE','Le Havre (Centrale)',179,90.9],['HAVR5','Le Havre (Poste)',178.9,90.7],['MQIS','Le Marquis',150,287.3],['ATTAQ','Les Attaques',230.6,27.9],['GALOR','Les Galoreaux',145.4,185.3],['JUMEA','Les Jumeaux',168.1,208.8],['QUINT','Les Quintes',179.2,161.2],['RENAR','Les Renardieres',256.6,140.9],['LESQU','Lesquive',205.9,341.8],['LIMEU','Limeux',227.6,68.2],['LOGEL','Logelbach',388.3,149.9],['LONNY','Lonny',305.9,76],['LOUIS','Louisfert',128.8,168.1],['MAMBE','Mambelin',370.8,182.5],['MANDA','Mandarins',227,28.7],['MARL6','Marlenheim',393.4,126.2],['MARMA','Marmagne',238.8,197],['MARSI','Marsillon',145.4,359.1],['M.PON','Martigues-Ponteau',326.2,361.6],['MASTA','Mastaing',269.2,55.7],['MAZUR','Mazures',307.4,72.5],['MENUE','Menuel',129.3,88.6],['M.SEI','Méry-sur-Seine',287.9,134.2],['MEZE5','Mézerolles',224.4,115.9],['MIONS','Mions',322.1,259.2],['MOLIE','Moliere',162.9,161.1],['M.LAN','Montagny-les-Lanches',355.2,249.6],['MTERE','Montereau',256.7,140.5],['MTEZI','Montezic (Centrale)',249.9,301.9],['MTEZ5','Montezic (Poste Exterieur)',249.7,301.7],['MORBR','Morbras',250.8,122.9],['MOULA','Moulaine',341.3,90.1],['NEOUL','Neoules',358.6,364.1],['N.MAI','Neuves Maisons',352.1,128.3],['OUDON','Oudon',142.4,155.3],['PENC5','Penchard',256.6,113.2],['PEUP5','Peuplingues',226.9,27.9],['P.HA5','Plaine Haute',88.6,132.4],['P.ORG','Plan-d\'Orgon',325.5,340.8],['PLAUD','Plaud',195.2,248.9],['P.GAS','Plessis-Gassot',244.5,111.6],['PONTE','Ponteau',326.3,361.5],['P.AND','Praz-St-Andre',372.7,278],['PREGU','Préguillac',149.6,257.9],['PRION','Prionnet',349.8,345.4],['REALT','Réaltor',336.4,357.3],['REMIS','Remise',230.1,100.3],['REVIG','Revigny',319.2,120.3],['REVI5','Revin Poste-Centrale',307,71.6],['ROM','Rom',173.9,230.1],['ROUGE','Rougemontier',195.7,97.2],['RUEYR','Rueyres',251.3,299.7],['RULHA','Rulhat',269.4,254],['SAUCA','Saucats',147.3,304.7],['SAUS5','Sausset',248.7,114.2],['SCHEE','Scheer',393.8,137.4],['SEREI','Serein',283,162.2],['SEUIL','Seuil',302.3,92.6],['SIERE','Sierentz',394.3,168.8],['SSAVO','St-Avold',368.3,104.2],['SSELO','St-Eloi',267.4,201.9],['S.BIS','Super-Bissorte',372.5,278.2],['TAMAR','Tamareau',284.1,350.3],['TAUTE','Taute',134.9,101],['TAVEL','Tavel',313.4,332.8],['TERR6','Terrette',139.8,103.1],['TERRI','Terrier',239.6,103.5],['TILL5','Tilleul',202,111.2],['TOLLE','Tollevast',129,83.4],['T.SUP','Tore Supra',349.6,345.6],['TOURB','Tourbe',166.4,106.7],['TRANS','Trans',372.7,353.1],['VAUJA','Vaujany',356.2,281.4],['VERFE','Verfeil',218.5,350.3],['VESLE','Vesle',296.9,103.9],['VIELM','Vielmoulin',311.6,186.5],['VIGY','Vigy',355.8,102.2],['VLARO','Villarodin',376.8,277.5],['VLECH','Villechétive',275.2,153],['VLEJU','Villejust',238.5,127.4],['VLERB','Villerbon',211.2,172.5],['VLEVA','Villevaudé',251.2,117.4],['VINCE','Vincey',358.8,139.4],['WARAN','Warande',237.5,26.8],['WEPPE','Weppes',258,40.3],['YVE.O','Yvelines-Ouest',226.9,121.6]],
+ P:[['ALBER','Albertville',366.7,258.1],['ARGIA','Argia (Bayonne Sud)',118.6,356.2],['ARGOE','Argoeuves',239.6,71.5],['AVELI','Avelin',263.3,45.6],['AYRES','Ayres',255.5,332.5],['BAIXA','Baixas',254.7,390.3],['BARNA','Barnabos',204,83.5],['BAYET','Bayet',270.1,233.7],['B.MON','Beaumont-Monteux',321.3,288.2],['BEZAU','Bezaumont',351.2,117.4],['BIANC','Biancon',384.1,348.8],['BLENO','Blénod',350.8,117],['B.SE5','Bois-de-Serves',354.4,232.6],['B.TOL','Bois-Tollot',354.5,232.6],['','Boismorand',253.6,166.5],['BOUCH','Bouchain',269.8,55.7],['BOUTR','Boutre',351.8,346],['BROMM','Brommat',251.2,300.27],['CALA5','Calan',74.2,155.7],['CANTE','Cantegrit',137.4,330.9],['CAZAR','Cazaril',180.8,369.8],['CERGY','Cergy',233.7,110.9],['CERN','CERN',354.4,232.4],['CHAIN','Chaingy',225.5,162.7],['CBRY','Chambry',258.3,113.8],['CPNIE','Champagnier',345.7,283.6],['CHAN5','Chanceaux',192.1,179.4],['CHARP','Charpenay',313.2,253.1],['CHEVA','Chevalet',250.7,60.9],['CIROL','Cirolliers',241.1,133],['CLERA','Clerac',159.7,280.3],['COR.P','Cordemais-Poste',115,184.8],['CORNI','Cornier',362.1,239.6],['CRENE','Creney-prés-Troyes',294.5,141.7],['CUBNE','Cubnezais',153.7,284.9],['DAMBR','Dambron',227.2,152.5],['D.BUR','Dampierre-en-Burly',241.6,167.6],['DISTR','Distré',167.5,190.8],['DOMLO','Domloup',126.4,149.7],['ECHAL','Échalas',314.3,265.2],['EGUZO','Éguzon',219,225.3],['F.FRE','Faux-Fresnay',289.5,128.4],['FRASN','Frasne',356.7,205.1],['FRUGE','Fruges',235.5,46.7],['GATI5','Gatinais',242.8,153.4],['GAVRE','Gavrelle',257.7,54],['GEN.P','Genissiat-Poste',347.1,241.5],['G.ILE','Grande-Île',355,267.1],['GRANZ','Granzay',153.4,234],['GREPI','Grépilles',295.3,241.8],['GROSN','Grosne',313,217.2],['H.PAU','Henri-Paul',306.6,212.2],['HOUDR','Houdreville',351.3,132.4],['ISSEL','Issel',228.4,361.3],['JONQU','Jonquieres (Annexe Gmr Cevennes)',311.7,341.1],['BATHI','La Bathie',367.5,258.9],['BOISS','La Boisse',323.4,251.9],['CAPEL','La Capelle',287.7,69.8],['COCHE','La Coche',369.9,265.3],['FEUIL','La Feuillane',322.4,357.4],['GAUDI','La Gaudière',250.7,367.8],['HERS5','La Herse',252.4,97.2],['MARTY','La Martyre',50.1,128.7],['PICOC','La Picocherie',200.6,175.6],['VAUPA','La Vaupalière',203.7,91.2],['LARCA','Larçay',194.1,185.2],['LATEN','Laténa',259.2,84],['LAUNA','Launay',136.3,129.4],['BREUI','Le Breuil',236.6,279],['B.CAR','Le Broc-Carros',395,339],['CHAFF','Le Chaffard',326.7,259.6],['CHESN','Le Chesnoy',257.1,140.2],['CHEY6','Le Cheylas',354.3,270.9],['HAVRE','Le Havre (Centrale)',179,90.9],['HAVR5','Le Havre (Poste)',178.9,90.7],['MQIS','Le Marquis',150,287.3],['ATTAQ','Les Attaques',230.6,27.9],['GALOR','Les Galoreaux',145.4,185.3],['JUMEA','Les Jumeaux',168.1,208.8],['QUINT','Les Quintes',179.2,161.2],['RENAR','Les Renardieres',256.6,140.9],['LESQU','Lesquive',205.9,341.8],['LIMEU','Limeux',227.6,68.2],['LOGEL','Logelbach',388.3,149.93],['LONNY','Lonny',305.9,76],['LOUIS','Louisfert',128.8,168.1],['MAMBE','Mambelin',370.8,182.5],['MANDA','Mandarins',227,28.7],['MARL6','Marlenheim',393.4,126.2],['MARMA','Marmagne',238.8,197],['MARSI','Marsillon',145.4,359.1],['M.PON','Martigues-Ponteau',326.2,361.6],['MASTA','Mastaing',269.2,55.7],['MAZUR','Mazures',307.4,72.5],['MENUE','Menuel',129.3,88.6],['M.SEI','Méry-sur-Seine',287.9,134.2],['MEZE5','Mézerolles',224.4,115.9],['MIONS','Mions',322.1,259.2],['MOLIE','Moliere',162.9,161.1],['M.LAN','Montagny-les-Lanches',355.2,249.6],['MTERE','Montereau',256.7,140.5],['MTEZI','Montezic (Centrale)',249.9,301.9],['MTEZ5','Montezic (Poste Exterieur)',249.7,301.7],['MORBR','Morbras',250.8,122.9],['MOULA','Moulaine',341.3,90.1],['NEOUL','Neoules',358.6,364.1],['N.MAI','Neuves Maisons',352.1,128.3],['OUDON','Oudon',142.4,155.3],['PENC5','Penchard',256.6,113.2],['PEUP5','Peuplingues',226.9,27.9],['P.HA5','Plaine Haute',88.6,132.4],['P.ORG','Plan-d\'Orgon',325.5,340.8],['PLAUD','Plaud',195.2,248.9],['P.GAS','Plessis-Gassot',244.5,111.6],['PONTE','Ponteau',326.3,361.5],['P.AND','Praz-St-Andre',372.7,278],['PREGU','Préguillac',149.6,257.9],['PRION','Prionnet',349.8,345.4],['REALT','Réaltor',336.4,357.3],['REMIS','Remise',230.1,100.3],['REVIG','Revigny',319.2,120.3],['REVI5','Revin Poste-Centrale',307,71.6],['ROM','Rom',173.9,230.1],['ROUGE','Rougemontier',195.7,97.2],['RUEYR','Rueyres',251.3,299.7],['RULHA','Rulhat',269.4,254],['SAUCA','Saucats',147.3,304.7],['SAUS5','Sausset',248.7,114.2],['SCHEE','Scheer',393.8,137.4],['SEREI','Serein',283,162.2],['SEUIL','Seuil',302.3,92.6],['SIERE','Sierentz',394.3,168.83],['SSAVO','St-Avold',368.3,104.2],['SSELO','St-Eloi',267.4,201.9],['S.BIS','Super-Bissorte',372.5,278.2],['TAMAR','Tamareau',284.1,350.3],['TAUTE','Taute',134.9,101],['TAVEL','Tavel',313.4,332.8],['TERR6','Terrette',139.8,103.1],['TERRI','Terrier',239.6,103.5],['TILL5','Tilleul',202,111.2],['TOLLE','Tollevast',129,83.4],['T.SUP','Tore Supra',349.6,345.6],['TOURB','Tourbe',166.4,106.7],['TRANS','Trans',372.7,353.1],['VAUJA','Vaujany',356.2,281.4],['VERFE','Verfeil',218.5,350.3],['VESLE','Vesle',296.9,103.9],['VIELM','Vielmoulin',311.6,186.5],['VIGY','Vigy',355.8,102.2],['VLARO','Villarodin',376.8,277.5],['VLECH','Villechétive',275.2,153],['VLEJU','Villejust',238.5,127.4],['VLERB','Villerbon',211.2,172.5],['VLEVA','Villevaudé',251.2,117.4],['VINCE','Vincey',358.8,139.4],['WARAN','Warande',237.5,26.8],['WEPPE','Weppes',258,40.3],['YVE.O','Yvelines-Ouest',226.9,121.6]],
  L:[[356.7,205.1,361.8,197.7,364.8,191.3,371.5,184.9,372.1,183.8,370.8,182.6],
 [147.3,304.8,146.8,311.5,137.3,330.9],
 [147.3,304.8,146.9,311.5,137.3,330.9],
@@ -4401,58 +4240,6 @@ try{window.GEO400=GEO400;}catch(_e){}
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   var RESEAU=(function(){
     var K_FCR=26000,FCR_MAX=3000,K_LOAD=3000,TAU_F=6;                  
     var UFLS=[[49.0,0.15],[48.8,0.15],[48.6,0.10]];                    
@@ -4695,80 +4482,6 @@ try{window.GEO400=GEO400;}catch(_e){}
   }catch(_e){}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',openCarte);}else{openCarte();} 
   try{setTimeout(function(){document.body.classList.add('booted');},4000);}catch(_e){}   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -5160,6 +4873,7 @@ document.querySelectorAll('button').forEach(function(b){
     <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur les relit toutes les quinze minutes et indique clairement quand il extrapole. Réseau 400&nbsp;kV de la carte&nbsp;: tracés des lignes issus de la BD TOPO® v3 — © IGN, Licence Etalab 2.0 (Géoplateforme)&nbsp;; localisation des postes © les contributeurs d'OpenStreetMap (ODbL)&nbsp;; liste et noms officiels des postes&nbsp;: RTE, jeu «&nbsp;Postes électriques RTE&nbsp;» (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
     <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR — un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span> · <a href="mailto:contact@simurep.fr" style="color:#2e6fb8">contact@simurep.fr</a></p>
     <p style="font-size:11.5px;color:#7a8a99;border-top:1px solid #e3e9ef;padding-top:8px">© 2026 AnthoninP — <b>tous droits réservés</b>. SIMUREP (code, moteur physique, figures, textes, données) est une œuvre originale protégée : toute reproduction, copie, extraction ou réutilisation, même partielle, est interdite sans autorisation écrite de l'auteur. Le moteur de calcul tourne sur un serveur privé ; le code visible dans le navigateur n'est qu'un châssis d'affichage.</p>
+    <p style="font-size:11.5px;color:#5a6b7c;text-align:center;padding-top:6px"><a href="/mentions-legales.html" style="color:#17656f">Mentions légales</a> &nbsp;·&nbsp; <a href="/cgu.html" style="color:#17656f">Conditions d’utilisation</a> &nbsp;·&nbsp; <a href="mailto:contact@simurep.fr" style="color:#17656f">contact@simurep.fr</a></p>
   </div>
 </div>
 <div id="cnpeFr" style="display:none;position:fixed;inset:0;z-index:450;background:#f2f5f8;overflow:auto;overscroll-behavior:none">
@@ -5179,5 +4893,6 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 5a94c7038cafba3a · contact@simurep.fr -->
 </body>
 </html>

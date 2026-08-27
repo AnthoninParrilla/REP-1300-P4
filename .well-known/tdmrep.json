@@ -1,0 +1,7 @@
+[
+  {
+    "location": "/",
+    "tdm-reservation": 1,
+    "tdm-policy": "https://simurep.fr/.well-known/tdm-policy.json"
+  }
+]

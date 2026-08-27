@@ -1,0 +1,115 @@
+NOTICE — SIMUREP
+Sources et licences des données tierces incorporées
+Mise à jour : 2026-08-27
+
+═══════════════════════════════════════════════════════════════════════════════
+1. L'ŒUVRE
+═══════════════════════════════════════════════════════════════════════════════
+
+SIMUREP — code, moteur physique, figures, textes, interface, identité visuelle —
+est une œuvre originale de AnthoninP, © 2026, tous droits réservés.
+Voir LICENCE.md. Contact : contact@simurep.fr
+
+Aucune bibliothèque tierce n'est utilisée : ni framework, ni moteur graphique,
+ni police téléchargée, ni CDN. index.html ne charge AUCUNE ressource externe
+en dehors de son propre moteur (moteur.simurep.fr). Les polices sont celles du
+système. Le code est écrit intégralement pour ce projet.
+
+Le présent fichier ne recense donc QUE des DONNÉES tierces, incorporées sous
+licence ouverte, et les obligations d'attribution qui les accompagnent.
+
+═══════════════════════════════════════════════════════════════════════════════
+2. RÉSEAU 400 kV DE LA CARTE DE FRANCE  ->  geo.js (généré par geo-rte.py)
+═══════════════════════════════════════════════════════════════════════════════
+
+2.1  Tracés des lignes 400 kV
+     Source   : IGN, BD TOPO® v3, thème « réseau d'énergie » (Géoplateforme, WFS)
+     Licence  : Licence Ouverte / Open Licence 2.0 (Etalab)
+     Mention  : « © IGN — BD TOPO® v3 — Licence Ouverte 2.0 »
+     Extrait  : 2026-08-21 · retraité : reprojection en pixels de la carte,
+                simplification de tracé pour l'affichage.
+
+2.2  Localisation des postes électriques
+     Source   : OpenStreetMap (API Overpass), objets power=substation
+     Licence  : Open Database License (ODbL) v1.0
+     Mention  : « © les contributeurs d'OpenStreetMap »
+     Extrait  : 2026-08-21 · retraité : sélection des postes 400 kV, appariement
+                avec la liste RTE, reprojection en pixels.
+
+     ⚠ OBLIGATION ODbL — à respecter et à ne pas perdre de vue
+       a) L'attribution ci-dessus doit rester visible pour l'utilisateur final.
+          Elle figure dans l'encart « À propos » du simulateur et sur la page
+          des mentions légales.
+       b) L'ODbL est une licence de BASE DE DONNÉES à partage à l'identique.
+          Elle porte sur la base extraite, PAS sur le simulateur qui l'affiche :
+          SIMUREP est une « œuvre produite » (produced work) au sens de l'ODbL,
+          et reste sous licence propriétaire. En revanche, la base dérivée
+          elle-même (les coordonnées de postes issues d'OSM, dans geo.js) est
+          soumise au partage à l'identique si elle venait à être distribuée
+          en tant que base de données.
+       c) EN CLAIR : « tous droits réservés » couvre le code, le moteur, les
+          figures et la mise en forme — il ne s'étend pas aux coordonnées
+          brutes issues d'OSM. Cette distinction ne fragilise en rien les
+          droits sur le reste : elle les rend opposables.
+
+2.3  Liste, noms officiels et codes des postes
+     Source   : RTE, jeu de données « Postes électriques RTE »
+                (ODRÉ — Open Data Réseaux Énergies)
+     Licence  : Licence Ouverte / Open Licence 2.0 (Etalab)
+     Mention  : « Source : RTE — ODRÉ — Licence Ouverte 2.0 »
+     Extrait  : 2026-08-21
+
+═══════════════════════════════════════════════════════════════════════════════
+3. LE PARC RÉEL EN TEMPS RÉEL  ->  rte.js (serveur uniquement)
+═══════════════════════════════════════════════════════════════════════════════
+
+3.1  API RTE — data.rte-france.com
+     Jeux     : production par unité, indisponibilités (planifiées et fortuites),
+                consommation, mix de production, échanges aux frontières
+     Accès    : compte développeur RTE, OAuth2 (identifiants dans /opt/rep1300/
+                rte.env sur le serveur privé — jamais dans le dépôt)
+     Licence  : conditions d'utilisation des API RTE (data.rte-france.com)
+     Mention  : « Données RTE — data.rte-france.com »
+     Usage    : lecture périodique (toutes les 15 min), affichage, cache disque.
+                Aucune redistribution des flux bruts.
+
+3.2  éCO2mix
+     Source   : RTE via ODRÉ (Open Data Réseaux Énergies)
+     Licence  : Licence Ouverte / Open Licence 2.0 (Etalab)
+     Mention  : « Source : éCO2mix — RTE / ODRÉ — Licence Ouverte 2.0 »
+
+     Lorsque ni RTE ni éCO2mix ne répondent, SIMUREP extrapole et l'INDIQUE
+     explicitement à l'utilisateur (pastille ambre « données extrapolées »).
+     Une valeur extrapolée n'est jamais présentée comme une donnée RTE.
+
+═══════════════════════════════════════════════════════════════════════════════
+4. DONNÉES TECHNIQUES ET DOCUMENTAIRES  ->  veille/
+═══════════════════════════════════════════════════════════════════════════════
+
+Toutes les valeurs physiques, nomenclatures, seuils et récits pédagogiques de
+SIMUREP proviennent de sources PUBLIQUES et traçables, consignées source par
+source dans veille/SOURCES.md et veille/JOURNAL.md :
+
+  · Collection « Éléments de sûreté nucléaire — les réacteurs à eau sous
+    pression » (IRSN / ASNR), publications en accès libre
+  · Avis et rapports d'expertise IRSN / ASNR publiés
+  · Décisions et prescriptions de l'Autorité (ASN / ASNR), publiées
+  · Courbe de puissance résiduelle ANS (norme publiée)
+  · Données ouvertes RTE / ODRÉ / IGN / OSM (voir §2 et §3)
+
+AUCUNE donnée d'exploitation, consigne de conduite interne, procédure,
+documentation d'exploitant, information à diffusion restreinte ou information
+sensible relative à la sécurité nucléaire n'entre dans SIMUREP.
+Cette règle est une CONDITION DE CONCEPTION, pas une précaution rédactionnelle :
+elle est inscrite dans veille/AGENT.md et vérifiée à chaque passage de veille.
+
+═══════════════════════════════════════════════════════════════════════════════
+5. OÙ CES MENTIONS SONT VISIBLES POUR L'UTILISATEUR
+═══════════════════════════════════════════════════════════════════════════════
+
+  · encart « À propos » du simulateur (accessible depuis la carte de France)
+  · page public/mentions-legales.html (simurep.fr/mentions-legales.html)
+  · en-tête du fichier geo.js
+  · le présent fichier NOTICE, distribué avec toute copie autorisée
+
+Toute réutilisation autorisée de SIMUREP doit reproduire le présent NOTICE.

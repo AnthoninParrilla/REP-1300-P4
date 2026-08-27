@@ -1,0 +1,33 @@
+{
+  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "@type": "Policy",
+  "uid": "https://simurep.fr/.well-known/tdm-policy.json",
+  "profile": "http://www.w3.org/ns/tdmrep",
+  "permission": [
+    {
+      "target": "https://simurep.fr/",
+      "assigner": "https://simurep.fr/mentions-legales.html",
+      "action": "tdm:mine",
+      "duty": [
+        {
+          "action": [
+            {
+              "rdf:value": { "@id": "cc:AttributionText" },
+              "refinement": [
+                {
+                  "leftOperand": "media",
+                  "operator": "eq",
+                  "rightOperand": "SIMUREP — © 2026 AnthoninP — tous droits réservés"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "action": "obtainConsent",
+          "target": "mailto:contact@simurep.fr"
+        }
+      ]
+    }
+  ]
+}
