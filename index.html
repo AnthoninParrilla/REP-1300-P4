@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.14.5</title>
+<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.14.6</title>
 <meta property="og:title" content="SIMUREP, le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc nucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -340,7 +340,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.5</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.6</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1209,19 +1209,12 @@ body.shake{animation:quake .9s linear;}
   function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
 
   
-  var BETA=650, TAU=12;
-  var W_ROD=20, W_BORE=1, W_XE=0;
-  var A_MOD=-30, DEF_PUI=-1700;
-  var LAM_I=2.87e-5, LAM_XE=2.09e-5, SIG=8.5e-5; 
-  var K1=0.95*(LAM_XE+SIG), K2=0.05*(LAM_XE+SIG);
-  var F_FISS=0.935, F_RES=0.065; 
-
   
   
   
   
   
-  var PAL={
+  var PAL1300={
     PTH:3800,      
     PEL:1300,      
     PEB:1362,      
@@ -1250,20 +1243,106 @@ body.shake{animation:quake .9s linear;}
     CB0:1000,      
     CBMAX:1500,    
     ROD0:95,       
-    NASS:193       
+    NASS:193,      
+    
+    PVAP:71,       
+    PVAPMAX:120,   
+    GVSV:90,       
+    GCT0:74,       
+    GCTAD:3,       
+    GVK:4,         
+    TPA_P0:12,     
+    TPA_PR:25,     
+    AREMAX:115,    
+    ASGP:0.025,    
+    ASGC:0.00023,  
+    ASGR:0.0018,   
+    PADM:69,       
+    TARE0:45,      
+    TAREAMP:185,   
+    TCOND:140,     
+    PCONDN:0.06,   
+    PCOND0:0.055,  
+    ETAMIN:0.88,   
+    ETAMAX:1.04,   
+    
+    ACCU:42,       
+    ACC_H:58, ACC_B:40, 
+    ACC_SET:60,    
+    ACC_REA:50,    
+    ISP:118,       
+    P11:139,       
+    BLK_H:145, BLK_B:119, 
+    REARM:122,     
+    ISHP:150,      
+    ISBP:12,       
+    ISOE:1.4,      
+    ISOE_R:1.15,   
+    EASP:2.4,      
+    AU_PENC:1.3,   
+    PENC_A:1.1,    
+    ENCFAIL:7.0,   
+    PTRR:0.08,     
+    P8:0.32,       
+    AU_PN:1.15,    
+    TGMPP:30,      
+    TRRI:720,      
+    GVN:50,        
+    P14H:76, P14B:66,   
+    AU_GVH:97,     
+    AU_GVB:8,      
+    AU_GVB2:30,    
+    GVASG:12,      
+    GVRESET:35,    
+    GVRAL:42,      
+    GVRTV:22,      
+    REARM_GVB:20, REARM_GVH:90, 
+    
+    
+    
+    W_ROD:20,      
+    W_BORE:-10,    
+    W_XE:-2800,    
+    A_MOD:-30,     
+    DEF_PUI:-1700, 
+    W_AU:-6000,    
+    ROD_SB:25,     
+    ROD_SD:92,     
+    ROD_BH:96,     
+    
+    PENC_I:1.25    
   };
+
+  
+  
+  
+  
+  
+  var PAL900={PEL:900};
+
+  
+  
+  
+  var PALIERS={'P4':PAL1300,"P'4":PAL1300,'CPY':PAL900};
+  var PAL=PALIERS['P4'];
+  var BETA=650, TAU=12;
+  var W_ROD=PAL.W_ROD, W_BORE=1, W_XE=0; 
+  var A_MOD=PAL.A_MOD, DEF_PUI=PAL.DEF_PUI;
+  var LAM_I=2.87e-5, LAM_XE=2.09e-5, SIG=8.5e-5; 
+  var K1=0.95*(LAM_XE+SIG), K2=0.05*(LAM_XE+SIG);
+  var F_FISS=0.935, F_RES=0.065; 
 
   var S={
     Pn:1.0, Pr1:0.026, Pr2:0.024, Pr3:0.009, Pres:0.059, Ptot:1.0,
     rod:PAL.ROD0, Cb:0, I:1.0, Xe:1.0,
-    Tavg:PAL.TM0+PAL.TMAMP, Psteam:71, gv:50, Pelec:PAL.PEL, Ppzr:PAL.PPRIM,
+    Tavg:PAL.TM0+PAL.TMAMP, Psteam:PAL.PVAP, gv:PAL.GVN, Pelec:PAL.PEL, Ppzr:PAL.PPRIM,
     turb:100, auto:true, areAuto:true, areM:100, areAvail:true,
     mps:false, tps:false, asg:0,
     scram:false, gmpp:true, gmppTimer:-1,
     bori:false, dilu:false,
     t:0, accel:1, tripMsg:"", note:"", areOut:100, gct:0, rho:0,
     heat:false, spray:false, digSel:'th',
-    Padm:69, Tare:230, Pcond:0.06,
+    Padm:PAL.PADM, Tare:PAL.TARE0+PAL.TAREAMP, Pcond:PAL.PCONDN,
     cvi:true, air:0, gctA:0,
     etat:'RP',accIso:false,easy:false, rra:false, pzrSet:PAL.PPRIM, turbRate:0.6,
     Penc:1.0, inv:100, accu:100, breche:0, sebim:false,
@@ -1271,7 +1350,7 @@ body.shake{animation:quake .9s linear;}
     ishp:false, isbp:false, eas:false,
     sigIS:false, easLatch:false, isoEnc:false, ebaSweep:false, turbSet:100, actDvn:800, rejCum:0,
     aarInhib:false, lastInhib:-999,
-    gctSet:74, gctTgt:74, isBlk:false,
+    gctSet:PAL.GCT0, gctTgt:PAL.GCT0, isBlk:false,
     reseau:true, diesel:false, ilote:false, runbk:false, gctB:0, rodDrop:0, effl:0, rodLowMsg:false, rri:true, rriT:0, coMsg:false, rtv:0, rriMsg:0, myst:'', diluI:false, diluCb0:0, diluMsg:false,
     tpaN:100, tpaRun:true,
     viv:true, svf:0, h3:false, lls:false,
@@ -1320,7 +1399,7 @@ body.shake{animation:quake .9s linear;}
     for(var k3 in p){if(k3==='gmpp')continue;S[k3]=p[k3];}                                                                     
     S.gmppN=(p.gmpp===true?PAL.NB:(typeof p.gmpp==='number'?p.gmpp:0));S.gmpp=S.gmppN>0;
     for(var k4 in J)S[k4]=J[k4];                                                                                              
-    S.Pres=S.Pr1+S.Pr2+S.Pr3;S.Ptot=F_FISS*S.Pn+S.Pres;S.turbSet=S.turb;S.gctTgt=S.gctSet=74;
+    S.Pres=S.Pr1+S.Pr2+S.Pr3;S.Ptot=F_FISS*S.Pn+S.Pres;S.turbSet=S.turb;S.gctTgt=S.gctSet=PAL.GCT0;
     S.mpsA=!!p.asgOn;S.mpsB=!!p.asgOn;S.tpsA=false;S.tpsB=false;
     if(e!=='RP'){S.tpaN=0;S.tpaRun=false;S.areOut=0;S.Padm=0;}                                                                
     S._rodTgt=null;S._turbTgt=null;S._cbTgt=null;S._rodFinal=null;S._rpHold=false;S._rpHold2=false;S._rpRamp=false;S._pzrFollow=false;S._fromIdx=undefined;
@@ -1577,18 +1656,7 @@ body.shake{animation:quake .9s linear;}
   
   
   
-  function ptrStep(dts){if(S.ptrT===undefined){S.ptrT=35;S.ptrLvl=100;S.ptrH2=0;S.ptrBoil=false;S.ptrQ=2;S.bkDmg=false;S._ptrF=0;}
-    var Q=(S.etat==='RCD'||S.etat==='APR')?9:2;S.ptrQ=Q;var cool=(S.sec!==false)&&(S.rri!==false);var MC=6280;
-    if(cool){S.ptrT+=((35-S.ptrT)/7200)*dts;if(S.ptrT<100)S.ptrBoil=false;}else{S.ptrT+=(Q/MC)*dts;}
-    if(S.ptrT>=100){S.ptrT=100;S.ptrBoil=true;S.ptrLvl=Math.max(0,S.ptrLvl-((Q/2.26e3)/150/8*100)*dts);}
-    if(S.ptrLvl<=0&&!cool)S.ptrH2=Math.min(15,S.ptrH2+(Q>5?0.5:0.12)/3600*dts);
-    if(cool&&S.ptrT<45)S._ptrF=0;
-    if(S.ptrT>50&&S._ptrF<1){S._ptrF=1;try{log('PTR : temp\u00e9rature de la piscine BK > 50 \u00b0C (limite d\u2019exploitation), v\u00e9rifier le refroidissement PTR / RRI / SEC.','amber');}catch(e){}}
-    if(S.ptrT>=80&&S._ptrF<2){S._ptrF=2;try{log('PTR : piscine BK à 80 °C, ébullition imminente, refroidissement à rétablir d’urgence (scénario Fukushima).','red');}catch(e){}}
-    if(S.ptrBoil&&S._ptrF<3){S._ptrF=3;try{log('PTR : ÉBULLITION DE LA PISCINE BK, appoint d’eau indispensable (PTR, JPI, FARN), surveiller KHY.','red');}catch(e){}}
-    if(S.ptrLvl<=0&&S._ptrF<4){S._ptrF=4;try{log('PTR : ASSEMBLAGES DÉCOUVERTS dans la piscine BK, oxydation des gaines, production d’hydrogène.','red');}catch(e){}}
-    if(S.ptrH2>=4&&S._ptrF<5){S._ptrF=5;try{log('KHY : hydrog\u00e8ne > 4 % dans le b\u00e2timent combustible, atmosph\u00e8re explosive.','red');}catch(e){}}
-    if(S.ptrH2>=8&&!S.bkDmg){S.bkDmg=true;try{log('KHY : EXPLOSION D\u2019HYDROG\u00c8NE DANS LE B\u00c2TIMENT COMBUSTIBLE (Fukushima Daiichi 4, mars 2011).','red');}catch(e){}}}
+  function ptrStep(dts){}
   function slowStep(dts){}
 
   var inhibLogT={};
@@ -1600,7 +1668,7 @@ body.shake{animation:quake .9s linear;}
   }
   var _xeSatF=0; 
   function xeSatWatch(){ 
-    if(S.auto&&!S.scram&&(S.ilote||S.Pn<0.15)&&S.rod>96){if(!_xeSatF){_xeSatF=1;log('CONDUITE : grappes en butée haute : le xénon absorbe la réactivité à basse puissance. DILUE (onglet Réactivité) pour redonner de la marge aux grappes avant toute remontée : une montée de charge sur ce cœur finirait en surpuissance.','amber');}}
+    if(S.auto&&!S.scram&&(S.ilote||S.Pn<0.15)&&S.rod>PAL.ROD_BH){if(!_xeSatF){_xeSatF=1;log('CONDUITE : grappes en butée haute : le xénon absorbe la réactivité à basse puissance. DILUE (onglet Réactivité) pour redonner de la marge aux grappes avant toute remontée : une montée de charge sur ce cœur finirait en surpuissance.','amber');}}
     else if(S.rod<85&&_xeSatF)_xeSatF=0;}
   function scramReq(m){
     if(S.aarInhib){
@@ -2078,7 +2146,7 @@ var ISO=(function(){
   el('iGmpp').onclick=function(){
     if(S.gmpp){
       log('INCIDENT injecté : perte des GMPP, passage en thermosiphon (ΔT primaire élargi)','amber');
-      S.gmpp=false;S.gmppN=0;S.gmppTimer=30;
+      S.gmpp=false;S.gmppN=0;S.gmppTimer=PAL.TGMPP;
       el('iGmpp1').textContent='Perte 1 GMPP';
       el('iGmpp').textContent='Relancer GMPP';
       if(isHot()&&S.Pn>0.05)scramReq('AU automatique : baisse de vitesse GMPP (RPR).');
@@ -2179,7 +2247,7 @@ var ISO=(function(){
     cvi:  {lib:'perte CVI (extraction des incondensables)', on:function(){S.cvi=false;},  off:function(){S.cvi=true;}},
     crf:  {lib:'perte CRF (circulation eau de mer)',        on:function(){S.crf=false;},  off:function(){S.crf=true;}},
     fuite:{lib:'fuite tube GV (0,8 t/h)',                   on:function(){S.fuiteGV=0.8;},off:function(){S.fuiteGV=0;}},
-    gmpp1:{lib:'perte d\u2019un GMPP',                     on:function(){S.gmppN=PAL.NB-1;if(S.Pn>0.32){doScram('AAR, TRÈS BAS DÉBIT dans une boucle : perte d’un GMPP au-dessus du permissif P8 (~32 %). Cas réel : Penly 2, 05/04/2012.');}else{log('Perte d\u2019un GMPP sous le permissif P8 : poursuite à 3 pompes AUTORISÉE le temps du repli pour maintenance.','amber');}},    off:function(){S.gmppN=4;}},
+    gmpp1:{lib:'perte d\u2019un GMPP',                     on:function(){S.gmppN=PAL.NB-1;if(S.Pn>PAL.P8){doScram('AAR, TRÈS BAS DÉBIT dans une boucle : perte d’un GMPP au-dessus du permissif P8 (~32 %). Cas réel : Penly 2, 05/04/2012.');}else{log('Perte d\u2019un GMPP sous le permissif P8 : poursuite à 3 pompes AUTORISÉE le temps du repli pour maintenance.','amber');}},    off:function(){S.gmppN=PAL.NB;}},
     brech:{lib:'petite brèche primaire',                    on:function(){S.breche=0.35;},off:function(){S.breche=0;}},
     rri:  {lib:'perte RRI',                                 on:function(){S.rri=false;},  off:function(){S.rri=true;S.rriT=0;S.rriMsg=0;}},
     dilu: {lib:'dilution intempestive (appoint non boré)',  on:function(){S.diluI=true;S.diluCb0=S.Cb;}, off:function(){S.diluI=false;S.diluMsg=false;}},
@@ -2555,7 +2623,7 @@ var ISO=(function(){
     if(S.easy&&S._blkDue)return "👉 Changement d’état de tranche : on baisse la pression volontairement, sans fuite. BLOQUE l’injection de secours (bouton BLOQUER IS, carte Signaux), sinon l’automate croira à une brèche et re-pressurisera le circuit.";
     if(S.easy&&S._accDue)return "👉 ISOLE les accumulateurs (carte RIS) : ces réservoirs sous pression se videraient tout seuls dans le circuit en dessous de 42 bar.";
     if(S.easy&&S._reaDue)return "👉 La pression est revenue : RÉALIGNE les accumulateurs (carte RIS) pour qu’ils protègent à nouveau le réacteur.";
-    if(S.easy&&S.gv<30&&e!=='ANRRA'&&S.Tavg>200)return "⚠ Le niveau d’eau baisse dans les générateurs de vapeur. Vérifie l’alimentation : ARE en marche, ou pompes de secours ASG.";
+    if(S.easy&&S.gv<PAL.AU_GVB2&&e!=='ANRRA'&&S.Tavg>200)return "⚠ Le niveau d’eau baisse dans les générateurs de vapeur. Vérifie l’alimentation : ARE en marche, ou pompes de secours ASG.";
     if(S.mis){var _mm=easyMission();if(_mm)return _mm;}
     if(!S.easy)return S.mis?"🎓 Parcours terminé, bravo ! Active le MODE FACILE pour l’analyse d’état en continu.":"";
     if(S.scram&&S.Pn<0.02&&S.Tavg>250)return "🟠 ARRÊT D’URGENCE : toutes les barres sont tombées, la réaction est stoppée. Le réacteur chauffe encore (chaleur résiduelle) : vérifie que l’eau arrive aux générateurs de vapeur (pompes de secours ASG), la vapeur s’évacue par le GCT.";
@@ -2632,7 +2700,7 @@ var ISO=(function(){
     log('OPÉRATEUR : EAS '+(S.eas?'en service':'à l\u2019arrêt'),'cyan');
   };
   el('bIsBlk').onclick=function(){
-    if(!S.isBlk&&S.Ppzr>=139){
+    if(!S.isBlk&&S.Ppzr>=PAL.P11){
       log('Blocage IS refusé : pression pressuriseur au-dessus de la permissive P11 (139 bar)','dim');
       return;
     }
@@ -2663,21 +2731,21 @@ var ISO=(function(){
   el('bAccIso').onclick=function(){
     S.accIso=!S.accIso;
     if(S.accIso)log('OPÉRATEUR : accumulateurs RIS isolés.','cyan');
-    else log('OPÉRATEUR : accumulateurs RIS réalignés'+(S.Ppzr<42?', ATTENTION : P < 42 bar, ils vont se vidanger !':'.'),S.Ppzr<42?'amber':'cyan');
+    else log('OPÉRATEUR : accumulateurs RIS réalignés'+(S.Ppzr<PAL.ACCU?', ATTENTION : P < '+PAL.ACCU+' bar, ils vont se vidanger !':'.'),S.Ppzr<PAL.ACCU?'amber':'cyan');
   };
   el('bRearmIS').onclick=function(){
     if(!S.sigIS){log('Réarmement IS : aucun signal présent','dim');return;}
-    if(S.Ppzr<122){S.note='Réarmement IS refusé : pression pressuriseur toujours sous le seuil (< 122 bar), le signal se re-déclencherait aussitôt.';log('Réarmement IS refusé : P pressu '+S.Ppzr.toFixed(0)+' bar < 122','dim');return;}
+    if(S.Ppzr<PAL.REARM){S.note='Réarmement IS refusé : pression pressuriseur toujours sous le seuil (< '+PAL.REARM+' bar), le signal se re-déclencherait aussitôt.';log('Réarmement IS refusé : P pressu '+S.Ppzr.toFixed(0)+' bar < 122','dim');return;}
     S.sigIS=false;S.ishp=false;S.isbp=false;
-    if(S.isoEnc&&S.Penc<1.15){S.isoEnc=false;log('Levée de l’isolement enceinte phase A, pression enceinte normale.','cyan');}
+    if(S.isoEnc&&S.Penc<PAL.ISOE_R){S.isoEnc=false;log('Levée de l’isolement enceinte phase A, pression enceinte normale.','cyan');}
     log('OPÉRATEUR : réarmement du signal IS, arrêt ISHP/ISBP, injection de sécurité disponible','cyan');
   };
   el('bRearm').onclick=function(){
     if(!S.scram)return;
     if(!S.reseau){S.tripMsg="Réarmement refusé : source extérieure non rétablie, les GMPP et l'ARE ne peuvent pas être réalimentées sur les diesels.";log('Réarmement refusé : réseau extérieur perdu','dim');return;}
     if(S.breche>0){S.tripMsg="Réarmement refusé : brèche primaire non résorbée, utiliser la mise à l'état (AN/GV) pour réinitialiser la tranche.";log('Réarmement refusé : brèche primaire présente','dim');return;}
-    if(S.gv<20){S.tripMsg="Réarmement refusé : rétablir d'abord le niveau GV (> 20 %), via ARE ou ASG.";log('Réarmement refusé : niveau GV insuffisant ('+S.gv.toFixed(0)+' %)','dim');return;}
-    if(S.gv>90){S.tripMsg="Réarmement refusé : niveau GV trop haut, arrêter les pompes ASG et laisser la puissance résiduelle évaporer l'excédent.";log('Réarmement refusé : niveau GV trop haut ('+S.gv.toFixed(0)+' %)','dim');return;}
+    if(S.gv<PAL.REARM_GVB){S.tripMsg="Réarmement refusé : rétablir d'abord le niveau GV (> "+PAL.REARM_GVB+" %), via ARE ou ASG.";log('Réarmement refusé : niveau GV insuffisant ('+S.gv.toFixed(0)+' %)','dim');return;}
+    if(S.gv>PAL.REARM_GVH){S.tripMsg="Réarmement refusé : niveau GV trop haut, arrêter les pompes ASG et laisser la puissance résiduelle évaporer l'excédent.";log('Réarmement refusé : niveau GV trop haut ('+S.gv.toFixed(0)+' %)','dim');return;}
     S.scram=false;S.tripMsg="";S.note="";
     S.gmpp=true;S.gmppTimer=-1;S.areAvail=true;
     S.viv=true;
@@ -2950,15 +3018,15 @@ var ISO=(function(){
     el('sPcond').textContent=Math.round(S.Pcond*1000)+' mbar';
     el('sTare').textContent=fmt(S.Tare,0)+' °C';
     el('sPenc').textContent=fmt(S.Penc,2)+' bar';
-    el('sPenc').setAttribute('fill',S.Penc>1.3?'#e6483d':S.Penc>1.1?'#e8a33d':'#4fc57a');
+    el('sPenc').setAttribute('fill',S.Penc>PAL.AU_PENC?'#e6483d':S.Penc>PAL.PENC_A?'#e8a33d':'#4fc57a');
     el('easSpray').setAttribute('opacity',S.eas?1:0);
 
     
     el('bIshp').classList.toggle('on',!!S.ishp);
     el('bIsbp').classList.toggle('on',!!S.isbp);
     el('bEas').classList.toggle('on',!!S.eas);
-    el('ishpVal').textContent=S.ishp?(S.Ppzr<150?'injecte':'P > refoulement'):'arrêt';
-    el('isbpVal').textContent=S.isbp?(S.Ppzr<12?'injecte':'P > refoulement'):'arrêt';
+    el('ishpVal').textContent=S.ishp?(S.Ppzr<PAL.ISHP?'injecte':'P > refoulement'):'arrêt';
+    el('isbpVal').textContent=S.isbp?(S.Ppzr<PAL.ISBP?'injecte':'P > refoulement'):'arrêt';
     el('accuVal').textContent=Math.round(S.accu)+' %'+(S.accIso?' · ISOLÉS':' · P < 42 bar');
     var _ba=el('bAccIso'),_bt=S.accIso?'ISOLÉS':'ISOLER';
     _ba.classList.toggle('on',!!S.accIso);
@@ -3151,12 +3219,12 @@ var ISO=(function(){
     el('pAsg').textContent=S.asg>0?Math.round(S.asg*100)+' %':'Arrêt';
     el('pAsg').className='v'+(S.asg>0?' a':'');
     el('pPenc').textContent=fmt(S.Penc,2)+' bar';
-    el('pPenc').className='v'+(S.Penc>1.3?' r':(S.Penc>1.1?' a':''));
+    el('pPenc').className='v'+(S.Penc>PAL.AU_PENC?' r':(S.Penc>PAL.PENC_A?' a':''));
     el('pInv').textContent=Math.round(S.inv)+' %';
     el('pInv').className='v'+(S.inv<35?' r':(S.inv<70?' a':''));
     el('pAccu').textContent=Math.round(S.accu)+' %';
     el('pPtr').textContent=Math.round(S.ptr*100)+' %'+(S.recirc?' (recirc)':'');
-    el('pPtr').className='v'+(S.ptr<=0.08?(S.recircHot?' r':' a'):'');
+    el('pPtr').className='v'+(S.ptr<=PAL.PTRR?(S.recircHot?' r':' a'):'');
     el('pPuis').textContent=Math.round(S.puisard*100)+' %'+(S.recircHot?' CHAUD':'');
     el('pPuis').className='v'+(S.recircHot?' r':'');
     el('pRdp').textContent=Math.round(S.rdp*100)+' %'+(S.rdpBurst?' ROMPU':'');
@@ -3165,7 +3233,7 @@ var ISO=(function(){
     var _tb=el('turb');if(_tb&&!window.__tbDrag)_tb.value=S.turbSet; 
     var _rd2=el('rod');if(_rd2&&!window.__rdDrag)_rd2.value=S.rod;
     var _tn=el('turbNeedle');if(_tn)_tn.style.left='calc('+(4+Math.max(0,Math.min(100,S.turb))*0.92).toFixed(2)+'% - 1px)';
-    var _asgTx=0;try{var _cap=((S.mpsA?0.025:0)+(S.mpsB?0.025:0))*((S.reseau||S.diesel)?1:0)+((S.tpsA?0.025:0)+(S.tpsB?0.025:0))*Math.max(0,Math.min(1,(S.Psteam-6)/6));_asgTx=_cap>0?Math.min(1,(S.asg||0)/_cap):0;}catch(_e){}
+    var _asgTx=0;try{var _cap=((S.mpsA?PAL.ASGP:0)+(S.mpsB?PAL.ASGP:0))*((S.reseau||S.diesel)?1:0)+((S.tpsA?PAL.ASGP:0)+(S.tpsB?PAL.ASGP:0))*Math.max(0,Math.min(1,(S.Psteam-6)/6));_asgTx=_cap>0?Math.min(1,(S.asg||0)/_cap):0;}catch(_e){}
     var GLV=[['gvRodN',S.rod,0,100],['gvPstN',S.Psteam,0,100],['gvTsrcN',S.Tsrc,0,40],['gvAreN',S.areOut,0,100],['gvTareN',S.Tare,0,300],['gvTpaN',(S.tpaRun?S.tpaN:0),0,100],['gvTpsN',((S.tpsA||S.tpsB)&&S.Psteam>6)?_asgTx*100:0,0,100],['gvMpsN',((S.mpsA||S.mpsB)&&(S.reseau||S.diesel))?_asgTx*100:0,0,100],['gvPzrN',S.Ppzr,0,180]];
     for(var _gi=0;_gi<GLV.length;_gi++){var _ge=el(GLV[_gi][0]);if(_ge){var _gv=(GLV[_gi][1]-GLV[_gi][2])/(GLV[_gi][3]-GLV[_gi][2]);_ge.style.left='calc('+(4+Math.max(0,Math.min(1,_gv))*92).toFixed(2)+'% - 1px)';}}
     el('pXe').textContent=Math.round(S.Xe*100)+' % éq.';
@@ -3228,7 +3296,7 @@ var ISO=(function(){
     setAl('aDom',(S.breche===0&&!S.sebim&&S.dmg<0.01&&S.Tavg<177&&S.Ppzr>32.5)?'red':''); 
     setAl('aAu',S.scram?'red':'');
     setAl('aXe',hot&&S.Xe>1.08?'amber':'');
-    setAl('aPenc',S.Penc>1.3?'red':S.Penc>1.1?'amber':'');
+    setAl('aPenc',S.Penc>PAL.AU_PENC?'red':S.Penc>PAL.PENC_A?'amber':'');
     setAl('aSebim',S.sebim?'red':'');
     setAl('aIS',S.sigIS?'red':'');
     setAl('aEasOn',S.eas?'amber':'');
@@ -4703,7 +4771,7 @@ try{window.GEO400=GEO400;}catch(_e){}
   var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 (EPR)'}]},
     'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
     'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
-  var PN={'P4':1300,"P'4":1300,'CPY':900,'CP0':900,'N4':1450,'EPR':1650};
+  var PN={'P4':PAL.PEL,"P'4":PAL.PEL,'CPY':PALIERS['CPY'].PEL,'CP0':900,'N4':1450,'EPR':1650}; 
   var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'rechargement',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
   
   var PARC={hash:function(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h;},
@@ -4722,7 +4790,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       return {src:su,nat:sn,lab:lab,age:age,x:x,t:(m.units||{}).data||null,stale:stale};},
     
     
-    differs:function(key,mem){var r=this.live&&this.live.units&&this.live.units[key];if(!r||r.x||!mem)return true;var cap=r.cap||1300;
+    differs:function(key,mem){var r=this.live&&this.live.units&&this.live.units[key];if(!r||r.x||!mem)return true;var cap=r.cap||PAL.PEL;
       if(mem.il)return true;   
       var mp=(mem.etat==='RP'||mem.etat==='RD')&&!mem.au,rp=(r.etat==='RP'||r.etat==='RD');if(mp!==rp)return true;return Math.abs((mem.Pe||0)-(r.Pe||0))>Math.max(100,0.08*cap);},
     nucSum:function(){var L=this.live;if(!L||!L.units)return null;var n=0,s=0;for(var k in L.units){var u=L.units[k];if(u&&typeof u.Pe==='number'&&!u.x){s+=u.Pe;n++;}}return n>=40?{sum:s,n:n,t:(L.meta&&L.meta.units&&L.meta.units.data)||0}:null;},   
@@ -4730,9 +4798,9 @@ try{window.GEO400=GEO400;}catch(_e){}
     demande:function(t){var s=(typeof S!=='undefined'&&S.saison)||'mi',base=(s==='hiver'?1.0:(s==='ete'?0.86:0.93)),hh=((t||0)/3600)%24,   
       jour=(hh<6?0.90:(hh<9?0.97:(hh<13?1.0:(hh<18?0.96:(hh<22?1.0:0.93)))));return base*jour;},
     unit:function(site,idx,pal,t){if(this.provider){try{var rp=this.provider(site,idx,pal,t);if(rp)return rp;}catch(e){}}
-      var u=this.det(site,idx,pal,t);if(u.etat==='RP'&&u.Pe>0){var k=this.nucScale(t);if(k!==1)u.Pe=Math.round(Math.min((PN[pal]||1300),u.Pe*k));}return u;},
+      var u=this.det(site,idx,pal,t);if(u.etat==='RP'&&u.Pe>0){var k=this.nucScale(t);if(k!==1)u.Pe=Math.round(Math.min((PN[pal]||PAL.PEL),u.Pe*k));}return u;},
     det:function(site,idx,pal,t){ 
-      var h=this.hash(site+'#'+idx),Pn=PN[pal]||1300,r=h%100;
+      var h=this.hash(site+'#'+idx),Pn=PN[pal]||PAL.PEL,r=h%100;
       if(r<16)return {Pe:0,etat:'AT',lab:ETLAB.AT};
       if(r<21){var f=Math.max(0,Math.min(1,(t||0)/(36*3600)));return {Pe:Math.round(Pn*f),etat:f<0.98?'RD':'RP',lab:f<0.98?ETLAB.RD:ETLAB.RP};}
       var ph=((h>>>8)%1000)/1000*6.283,mod=1-0.03*(1+Math.sin(6.283*((t||0)/86400)+ph))/2,red=1-0.02*((h>>>3)%5)/5;
@@ -4760,7 +4828,7 @@ try{window.GEO400=GEO400;}catch(_e){}
     if(S.sigIS)L.push('injection de s\u00e9curit\u00e9 en cours');if(S.eas)L.push('aspersion enceinte (EAS)');if(S.isoEnc)L.push('isolement enceinte');
     if(S.rdpBurst)L.push('RDP : disque de rupture cassé (décharge dans l’enceinte)');
     if(S.gaine>0)L.push('gaines d\u00e9grad\u00e9es ('+Math.round(S.gaine*100)+' %)');if(S.dmg>0)L.push('endommagement du c\u0153ur ('+Math.round(S.dmg*100)+' %)');
-    if(S.Penc>1.25)L.push('pression enceinte '+S.Penc.toFixed(2)+' bar');if(S.viv===false&&S.etat==='RP')L.push('vide condenseur perdu');
+    if(S.Penc>PAL.PENC_I)L.push('pression enceinte '+S.Penc.toFixed(2)+' bar');if(S.viv===false&&S.etat==='RP')L.push('vide condenseur perdu');
     if(S.sec===false)L.push('SEC perdu (source froide des auxiliaires)');if(S.rri===false)L.push('RRI perdu');if(S.crf===false&&S.etat==='RP')L.push('CRF \u00e0 l\u2019arr\u00eat');
     if(S.bkDmg)L.push('BK : EXPLOSION D\u2019HYDROG\u00c8NE');else if(S.ptrH2>=1)L.push('KHY : H2 dans le BK '+S.ptrH2.toFixed(1)+' %');else if(S.ptrBoil)L.push('PTR : piscine BK en \u00e9bullition (niveau '+Math.round(S.ptrLvl)+' %)');else if(S.ptrT>50)L.push('PTR : piscine BK \u00e0 '+Math.round(S.ptrT)+' \u00b0C');
     var inh=['aarInhib','inhIsoE','inhIsoV','inhIS','inhEAS','inhASG','inhKrt'].filter(function(k){return S[k];}).length;if(inh)L.push('protections inhib\u00e9es ('+inh+')');
@@ -4856,7 +4924,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       else if(p[0]==='etat'){try{if(window.__net)window.__net.cmd({type:'etat',e:p[1]});else setEtat(p[1]);}catch(e){}}
       else if(p[0]==='dus'&&cur){dusTest[cur.s.n+'|'+p[1]]=Date.now()+90000;try{log('Essai p\u00e9riodique du DUS de la tranche '+p[1]+' : démarrage, montée en vitesse, couplage sur son tableau : 90 s.','cyan');}catch(e){}try{api.update(S);}catch(e){}}}
     api.update=function(S){if(!cur||!S)return;var s=cur.s;
-      for(var i=0;i<cur.N;i++){var u=stateOf(s,i,S),Pn=PN[i>=s.t?'EPR':s.p]||1300,f=Math.max(0,Math.min(1,u.Pe/Pn));
+      for(var i=0;i<cur.N;i++){var u=stateOf(s,i,S),Pn=PN[i>=s.t?'EPR':s.p]||PAL.PEL,f=Math.max(0,Math.min(1,u.Pe/Pn));
         var b=el('cnB'+i);if(b)b.setAttribute('fill',i>=s.t?'#c8a06a':col(u));var t=el('cnT'+i);if(t)t.setAttribute('fill',u.Pe>0?'#5aa66a':'#b0bcc8');
         for(var k=0;k<3;k++){var l=el('cnL'+i+'_'+k);if(l)l.setAttribute('stroke',u.Pe>0?'#2e7d3a':'#9aa9b8');}
         var p=el('cnP'+i);if(p)p.textContent=u.Pe+' MWe \u00b7 '+u.etat;var nn=el('cnN'+i);if(nn&&i>=s.t)nn.textContent='EPR';
@@ -4866,7 +4934,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       for(var i=0;i<s.t;i++){var d0=el('cnD'+i),run=(dusTest[s.n+'|'+(i+1)]||0)>now||(me&&myTr===i+1&&!!S.h3);if(d0)d0.setAttribute('fill',run?'#3ad46a':'#8ea3b6');}   
       if(me){var ii=myTr-1,crfOn=S.crf!==false&&S.etat==='RP',secOn=S.sec!==false;for(var k=0;k<2;k++){var pc=el('cnCRF'+ii+'_'+k),ps=el('cnSEC'+ii+'_'+k);if(pc)pc.setAttribute('fill',S.crf===false?'#c0392b':(crfOn?'#5aa66a':'#f6f8fa'));if(ps)ps.setAttribute('fill',secOn?'#5aa66a':'#c0392b');}
         var bk=el('cnK'+ii);if(bk)bk.setAttribute('fill',S.bkDmg?'#7a1c12':(S.ptrBoil||S.ptrH2>=1?'#c0392b':(S.ptrT>50?'#e0a030':'#e3e9ef')));}
-      if(api.follow&&me&&!window.__net&&api.followOk(S)){var uu=PARC.unit(s.n,myTr-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){try{S.turbSet=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}   
+      if(api.follow&&me&&!window.__net&&api.followOk(S)){var uu=PARC.unit(s.n,myTr-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||PAL.PEL)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){try{S.turbSet=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}catch(e){}}}   
       var incs=me?incidentsOf(S):[];for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1),mm=UNITMEM.store[key],pc=peekCache[key];
         if(key!==kk&&pc&&pc.incs&&pc.incs.length)pc.incs.forEach(function(x){incs.push('tranche '+ULAB(s.n,i+1)+' : '+x);});
         else if(key!==kk&&mm&&mm.inc)incs.push('tranche '+ULAB(s.n,i+1)+' : '+['SEC','RRI','CRF','H3','réseau'].filter(function(q,qi){return mm.inc[['sec','rri','crf','h3','reseau'][qi]];}).join(' + ')+' perdu(s)');
@@ -4890,7 +4958,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(!api._w){api._w=1;var b1=el('bCnpeCarte');if(b1)b1.onclick=function(){api.close();try{openCarte();}catch(e){}};}   
       var svg=el('cnpeSvg');if(svg){svg.setAttribute('viewBox','0 0 '+b.W+' '+b.H);svg.innerHTML=b.h;}
       var db=CNPE_DB[s.n]||{};var ti=el('cnpeTitle');if(ti)ti.textContent='CNPE de '+s.n;
-      var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||1300)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)');
+      var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||PAL.PEL)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)');
       var uc=el('cnpeUnits');if(uc){var hh='';for(var i=0;i<b.N;i++){var epr=i>=s.t;hh+='<div class="cnpeCard" id="cnC'+i+'"><div style="font-weight:800;font-size:15px">'+(epr?'Flamanville 3 (EPR)':'Tranche '+ULAB(s.n,i+1)+' \u00b7 '+s.p)+'</div><div class="cnpeVal" style="font-size:12.5px;color:#4a5c70;margin:4px 0 8px">\u2014</div>'+(epr?'<span style="font-size:11px;color:#8a99a8">EN CONSTRUCTION dans SIMUREP</span>':'<button class="cnpeBtn on" data-tr="'+(i+1)+'">Prendre le quart</button><div class="cnpeAct"></div>')+'</div>';}
         uc.innerHTML=hh;uc.querySelectorAll('button[data-tr]').forEach(function(bt){bt.onclick=function(){api.take(cur.s,+bt.getAttribute('data-tr'));};});
         uc.onclick=function(ev){var bt=ev.target.closest?ev.target.closest('button[data-act]'):null;if(bt){ev.stopPropagation();doAct(bt.getAttribute('data-act'));}};}
@@ -4908,7 +4976,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(prev!==key&&!viv){if(!window.__net){try{jumpEtat(e0);try{var _fl=(mem&&mem.inc)||null;if(_fl){if(_fl.sec)S.sec=false;if(_fl.rri)S.rri=false;if(_fl.crf)S.crf=false;if(_fl.h3)S.h3=true;if(_fl.reseau)S.reseau=false;log('Reprise de quart : la tranche retrouve ses avaries mémorisées ('+['sec','rri','crf','h3','reseau'].filter(function(q){return _fl[q];}).join(', ').toUpperCase()+').','amber');}}catch(_e){}}catch(e){}}else if(e0!=='RP'){try{window.__net.jump(ukey(key),e0);}catch(e){}}}   
       var u0=PARC.unit(s.n,tr-1,s.p,S.t||0),PeT=mem?mem.Pe:((u0.etat==='RP'||u0.etat==='RD')?u0.Pe:0);   
       if(!mem){UNITMEM.store[key]={etat:e0,Pe:PeT,t:Date.now()};UNITMEM.save();}
-      if(prev!==key&&!viv&&e0==='RP'&&PeT>0){var ld=Math.max(20,Math.min(100,Math.round(PeT/(PN[s.p]||1300)*100)));             
+      if(prev!==key&&!viv&&e0==='RP'&&PeT>0){var ld=Math.max(20,Math.min(100,Math.round(PeT/(PN[s.p]||PAL.PEL)*100)));             
         if(!window.__net){try{S.turbSet=ld;S.turb=ld;}catch(e){}}else{try{window.__net.cmd({type:'set',k:'turbSet',v:ld,rgl:1});}catch(e){}}}   
       if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}
         if(window.__net&&prev!==key){try{['srcType','Tsrc','saison','gaine'].forEach(function(k){if(S[k]!==undefined)window.__net.cmd({type:'set',k:k,v:S[k]});});}catch(e){}}}   
@@ -4950,7 +5018,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(cur){var p=cur.split('|');units.push({key:cur,Pe:Math.round(S.Pelec||0),ref:refOf(p[0],+p[1])});}
       for(var k in UNITMEM.store){if(k===cur)continue;var q=k.split('|'),m=UNITMEM.store[k];if(!by[q[0]])continue;var Pe=(window.__net&&peekCache[k])?peekCache[k].Pelec:m.Pe,et=(window.__net&&peekCache[k])?peekCache[k].etat:m.etat;
         if(!PARC.differs(k,{Pe:Pe,etat:et}))continue;units.push({key:k,Pe:Math.round(Pe||0),ref:refOf(q[0],+q[1])});}   
-      L.forEach(function(s){if(!playable(s))return;var mg=0;for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===cur||(UNITMEM.store[key]&&PARC.differs(key,UNITMEM.store[key])))continue;var u=PARC.unit(s.n,i,s.p,S.t||0);if(u.etat==='RP'&&u.Pe>0)mg+=Math.max(0,(u.cap||PN[s.p]||1300)-u.Pe);}if(mg>=50)margins[s.n]=Math.round(mg);});   
+      L.forEach(function(s){if(!playable(s))return;var mg=0;for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===cur||(UNITMEM.store[key]&&PARC.differs(key,UNITMEM.store[key])))continue;var u=PARC.unit(s.n,i,s.p,S.t||0);if(u.etat==='RP'&&u.Pe>0)mg+=Math.max(0,(u.cap||PN[s.p]||PAL.PEL)-u.Pe);}if(mg>=50)margins[s.n]=Math.round(mg);});   
       return {units:units,margins:margins};};
     api.gridSites=function(){var m=(window.RESEAU&&RESEAU.G&&RESEAU.G.aideMax)||{};return Object.keys(m).map(function(n){return {n:n,m:m[n]};});};
     api.dispatch=function(S){var box=el('dispCard');if(!box||!window.RESEAU||!RESEAU.build)return;if(!PARC.live){box.style.display='none';return;}box.style.display='';
@@ -4979,7 +5047,7 @@ try{window.GEO400=GEO400;}catch(_e){}
   (function(){var b3=el('bCnpe');if(b3)b3.onclick=function(){CNPE.openMine();};
     var bs=el('bSuivre');if(bs)bs.onclick=function(){CNPE.setFollow(!CNPE.follow);};
     var tb=el('turb');if(tb)tb.addEventListener('input',function(){if(CNPE.follow)CNPE.setFollow(false);});
-    setInterval(function(){try{if(CNPE.follow&&!window.__net&&UNITMEM.key()&&CNPE.followOk(S)){var p=UNITMEM.key().split('|'),L=window.__SITES||[],s=null;for(var i=0;i<L.length;i++)if(L[i].n===p[0])s=L[i];if(s){var uu=PARC.unit(s.n,+p[1]-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||1300)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){S.turbSet=ld;var sl=el('turb');if(sl)sl.value=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}}}}catch(e){}},3000);})();
+    setInterval(function(){try{if(CNPE.follow&&!window.__net&&UNITMEM.key()&&CNPE.followOk(S)){var p=UNITMEM.key().split('|'),L=window.__SITES||[],s=null;for(var i=0;i<L.length;i++)if(L[i].n===p[0])s=L[i];if(s){var uu=PARC.unit(s.n,+p[1]-1,s.p,S.t||0),ld=Math.max(20,Math.min(100,Math.round((uu.Pe||0)/(PN[s.p]||PAL.PEL)*100)));if(Math.abs((S.turbSet||0)-ld)>=1){S.turbSet=ld;var sl=el('turb');if(sl)sl.value=ld;if(window.__net)window.__net.cmd({type:'set',k:'turbSet',v:ld});}}}}catch(e){}},3000);})();
   window.__carte={open:openCarte};
   (function(){function dragGuard(id,flag){var e2=document.getElementById(id);if(!e2)return;
     ['pointerdown','touchstart','mousedown'].forEach(function(t){e2.addEventListener(t,function(){window[flag]=1;});});
@@ -5107,6 +5175,6 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build d53d6ee16af420b3 · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build c2144d0345468af1 · contact@simurep.fr -->
 </body>
 </html>
