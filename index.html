@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.14.6</title>
+<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.14.7</title>
 <meta property="og:title" content="SIMUREP, le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 1300 MWe (palier P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc nucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 1300 MWe depuis ton navigateur.">
@@ -340,7 +340,7 @@ body.shake{animation:quake .9s linear;}
   <div>
     <h1>Tranche REP 1300 MWe <span style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub">Palier P4 · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.6</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.14.7</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -485,7 +485,7 @@ body.shake{animation:quake .9s linear;}
         <g id="pump">
           <path id="iGmppL" d="M245 412 L251 424 L245 436 L239 424 Z" fill="#3ae065"/>
         </g>
-        <text class="lblS" x="226" y="452" text-anchor="end">GMPP ×4</text>
+        <text class="lblS" x="226" y="452" text-anchor="end" id="lblNGmpp">GMPP ×4</text>
 
         <!-- ============ GV : boîte à eau en bas, faisceau en U, dôme vapeur élargi ============ -->
         <clipPath id="gvClip">
@@ -508,7 +508,7 @@ body.shake{animation:quake .9s linear;}
           <path d="M287 385 V276 A13 13 0 0 1 313 276 V385"/>
           <path d="M294 385 V284 A6 6 0 0 1 306 284 V385"/>
         </g>
-        <text class="lbl" x="246" y="122" text-anchor="end">GV ×4</text>
+        <text class="lbl" x="246" y="122" text-anchor="end" id="lblNGv">GV ×4</text>
         <text class="digitsG" x="246" y="138" text-anchor="end" font-size="13" id="gvTxt">NGV 50 %</text>
 
         <!-- ============ SECONDAIRE ============ -->
@@ -1215,6 +1215,8 @@ body.shake{animation:quake .9s linear;}
   
   
   var PAL1300={
+    ID:'1300',     
+                   
     PTH:3800,      
     PEL:1300,      
     PEB:1362,      
@@ -1318,13 +1320,69 @@ body.shake{animation:quake .9s linear;}
   
   
   
-  var PAL900={PEL:900};
+  var PAL900={PEL:915};
 
   
   
   
-  var PALIERS={'P4':PAL1300,"P'4":PAL1300,'CPY':PAL900};
+  
+  
+  
+  
+  
+  
+  var PAL900CP0=Object.assign({},PAL900,{
+    PEL:910,       
+                   
+    PEB:945,       
+    PAUX:35,       
+  });
+
+  
+  
+  
+  var PALIERS={'P4':PAL1300,"P'4":PAL1300,'CPY':PAL900,'CP0':PAL900CP0};
   var PAL=PALIERS['P4'];
+  var PALID='P4'; 
+                  
+                  
+
+  
+  
+  
+  
+  
+  function palPret(id){
+    var j=PALIERS[id], r=PALIERS['P4']; if(!j||!r) return false;
+    for(var k in r){ var v=j[k]; if(v===undefined||v===null) return false; }
+    return true;
+  }
+
+  
+  
+  
+  
+  
+  function setPalier(id){
+    if(id===S.pal) return true;
+    if(!palPret(id)){
+      try{ log('Palier '+id+' indisponible : son jeu de constantes est incomplet.','amber'); }catch(e){}
+      return false;
+    }
+    if(!PRESETS[id]||!Object.keys(PRESETS[id]).length){
+      try{ log('Palier '+id+' sans points d\u2019\u00e9quilibre : la conduite n\u2019a pas de r\u00e9f\u00e9rence.','amber'); }catch(e){}
+      return false;
+    }
+    S.pal=id; PALID=id;
+    PAL=PALIERS[id]; PRESET=PRESETS[id]; JUMP=JUMPS[id];
+    W_ROD=PAL.W_ROD; W_BORE=1; W_XE=0; A_MOD=PAL.A_MOD; DEF_PUI=PAL.DEF_PUI;
+    try{ var _g=document.getElementById('lblNGmpp'); if(_g)_g.textContent='GMPP \u00d7'+PAL.NB;
+         var _v=document.getElementById('lblNGv');   if(_v)_v.textContent='GV \u00d7'+PAL.NB; }catch(e){}
+    return true;
+  }
+  window.__setPalier=setPalier; window.__palPret=palPret; 
+  try{var _lg=document.getElementById('lblNGmpp');if(_lg)_lg.textContent='GMPP \u00d7'+PAL.NB;
+      var _lv=document.getElementById('lblNGv');if(_lv)_lv.textContent='GV \u00d7'+PAL.NB;}catch(_e){}
   var BETA=650, TAU=12;
   var W_ROD=PAL.W_ROD, W_BORE=1, W_XE=0; 
   var A_MOD=PAL.A_MOD, DEF_PUI=PAL.DEF_PUI;
@@ -1333,6 +1391,7 @@ body.shake{animation:quake .9s linear;}
   var F_FISS=0.935, F_RES=0.065; 
 
   var S={
+    pal:'P4',      
     Pn:1.0, Pr1:0.026, Pr2:0.024, Pr3:0.009, Pres:0.059, Ptot:1.0,
     rod:PAL.ROD0, Cb:0, I:1.0, Xe:1.0,
     Tavg:PAL.TM0+PAL.TMAMP, Psteam:PAL.PVAP, gv:PAL.GVN, Pelec:PAL.PEL, Ppzr:PAL.PPRIM,
@@ -1390,10 +1449,23 @@ body.shake{animation:quake .9s linear;}
     APR:'APR : arrêt pour rechargement',
     RCD:'RCD : réacteur complètement déchargé'
   };
-  var PRESET={};
+  var PRESET1300={};
   
-  var JUMP={};
-  function jumpEtat(e){var p=PRESET[e]||PRESET.RP,J=JUMP[e]||{},keep={t:S.t,srcType:S.srcType,Tsrc:S.Tsrc,saison:S.saison,accel:S.accel,mIdx:S.mIdx,easy:S.easy,mis:S.mis,gaine:S.gaine};
+  var JUMP1300={};
+  
+  
+  
+  
+  
+  
+  
+  
+  var PRESET900={}, JUMP900={};
+  var PRESETS={'P4':PRESET1300,"P'4":PRESET1300,'CPY':PRESET900,'CP0':PRESET900};
+  var JUMPS  ={'P4':JUMP1300,  "P'4":JUMP1300,  'CPY':JUMP900,  'CP0':JUMP900};
+  var PRESET=PRESETS[PALID]||{}, JUMP=JUMPS[PALID]||{};
+
+  function jumpEtat(e){var p=PRESET[e]||PRESET.RP,J=JUMP[e]||{},keep={pal:S.pal,t:S.t,srcType:S.srcType,Tsrc:S.Tsrc,saison:S.saison,accel:S.accel,mIdx:S.mIdx,easy:S.easy,mis:S.mis,gaine:S.gaine};
     for(var k in S0){var v=S0[k];S[k]=Array.isArray(v)?v.slice():((v&&typeof v==='object')?JSON.parse(JSON.stringify(v)):v);}   
     for(var k2 in keep)if(keep[k2]!==undefined)S[k2]=keep[k2];
     for(var k3 in p){if(k3==='gmpp')continue;S[k3]=p[k3];}                                                                     
@@ -1792,6 +1864,23 @@ body.shake{animation:quake .9s linear;}
 
 
 var ISO=(function(){
+  
+  
+  
+  
+  
+  
+  var GEO={'P4':{
+    GV:[[92,635],[118,520],[608,650],[630,535]],
+    PM:[[185,720],[250,415],[515,725],[545,435]],
+    FR:[1,0,1,0],                        
+    LBL:2,                               
+    NGV:0,                               
+    LGV:[[0,4.2,22,1],[2,4.2,22,1],[1,26,17,0],[3,26,17,0]],   
+    LPM:[[[185,720],6.2,16],[[515,725],6.2,16],[[250,415],6.2,16],[[520,435],6.2,16]]
+         
+  }};
+  var GEOP=GEO[(typeof PALID!=='undefined')?PALID:'P4']||GEO['P4'];
   var U=27, ER=0.38, ZS=U*Math.sqrt(1-ER*ER), D2R=Math.PI/180;
   function polAt(g,R,th){var a=th*D2R;return [g[0]+U*R*Math.sin(a),g[1]+U*R*Math.cos(a)*ER];}
   function P(g,z){return [g[0],g[1]-z*ZS];}
@@ -1849,7 +1938,7 @@ var ISO=(function(){
   var MOUTH=P(AG,AH);
   function build(){
     ops=[];seq=0;
-    var g0=[370,690],GVs=[[92,635],[118,520],[608,650],[630,535]],PMs=[[185,720],[250,415],[515,725],[545,435]],gZ=[780,628];
+    var g0=[370,690],GVs=GEOP.GV,PMs=GEOP.PM,gZ=[780,628];
     
     shadow(g0,2.6,-9.2);
     domeB(g0,2.6,-6.8,2.3,'cuve');cyl(g0,2.6,-6.8,3.0,'cuve');cyl(g0,2.95,3.0,3.6,'cuve');
@@ -1860,7 +1949,7 @@ var ISO=(function(){
       cyl(gg,0.11,zb,zb+2.6,'mot',dz,0,{g:'isoHead'});cyl(gg,0.16,zb+2.6,zb+3.4,'pmp',dz,1e-6,{g:'isoHead'});cyl(gg,0.2,zb,zb+0.4,'pmp',dz,2e-6,{g:'isoHead'});});
     
     var DF=g0[1]+0.5,HOTM=null,HOTZ=0,UM=null,CM=null;
-    GVs.forEach(function(gGV,li){var gP=PMs[li],front=(li===0||li===2);
+    GVs.forEach(function(gGV,li){var gP=PMs[li],front=!!GEOP.FR[li];
       shadow(gGV,1.75,-2.6);domeB(gGV,1.75,-1.4,1.2,'gv');cyl(gGV,1.75,-1.4,9.6,'gv');cone(gGV,2.25,11,1.75,9.6,'gv');cyl(gGV,2.25,11,17.4,'gv');domeT(gGV,2.25,17.4,1.5,'gv');cyl(gGV,0.45,18.7,20.2,'gv',gGV[1],1e-4);
       gauge(gGV,2.25,11.4,17,'isoGgv'+li);
       
@@ -1873,7 +1962,7 @@ var ISO=(function(){
       pipe([[gvOut,-1.9],[gvOut,-4.6],[gP,-4.6],[gP,-3.3]],0.36,COLD,COLDH,front?(gGV[1]+gP[1])/2:null);
       pipe([[pOut,-3.0],[cB,-0.4],[nC,0]],0.36,COLD,COLDH,d);
       pipe([[nH,0],[polAt(g0,3.1,aH),0]],0.5,ST.cuve[2],'#7fb389',d);pipe([[nC,0],[polAt(g0,3.1,aC),0]],0.5,ST.cuve[2],'#7fb389',d);
-      if(li===2){HOTM=[hB[0]*0.4+gvIn[0]*0.6,hB[1]*0.4+gvIn[1]*0.6];HOTZ=-1.4*0.6;UM=[gvOut,gP];CM=[pOut,cB];}
+      if(li===GEOP.LBL){HOTM=[hB[0]*0.4+gvIn[0]*0.6,hB[1]*0.4+gvIn[1]*0.6];HOTZ=-1.4*0.6;UM=[gvOut,gP];CM=[pOut,cB];}
       txt(P(gGV,22.6)[0],P(gGV,22.6)[1],'VVP',1e6,12,{a:'middle'});
     });
     
@@ -1931,8 +2020,9 @@ var ISO=(function(){
     poly(arc(MOUTH[0],MOUTH[1],AZ[5][1]*U,AZ[5][1]*U*ER,0,360,32),AG[1]+1e-3,'#0a120d','#0a120d',LN,0.9,{g:'isoAero'});
     txt(MOUTH[0],MOUTH[1]+AZ[5][1]*U*ER+16,'AÉRO',AG[1]+2e-3,12,{g:'isoAero'});
     
-    var LB=[[[92,635],4.2,'GV',22,'#0b160f',TX],[[608,650],4.2,'GV',22,'#0b160f',TX],[[118,520],26,'GV',17],[[630,535],26,'GV',17],[[185,720],6.2,'GMPP',16],[[515,725],6.2,'GMPP',16],[[250,415],6.2,'GMPP',16],[[520,435],6.2,'GMPP',16],[gZ,11.6,'PRESSURISEUR',17],[g0,-7.3,'CUVE',22,'#0b160f',TX],
-            [[999,GY],ZD+3.4,'HP',13],[[1239,GY],ZD+5.0,'CORPS BP',13],[[1072,624],5.6,'GSS',12],[[1072,788],-1.0,'GSS',12],[[1500,GY],ZD+3.9,'ALTERNATEUR',13],[[1245,755],-2.4,'CONDENSEUR',13],[[1099,830],-6.2,'CRF',12],[[1391,830],-6.2,'CRF',12],[[999,GY-16],ZD+4.6,'vannes GRE',11]];
+    var LB=[];GEOP.LGV.forEach(function(l){var g=GVs[l[0]];LB.push(l[3]?[g,l[1],'GV',l[2],'#0b160f',TX]:[g,l[1],'GV',l[2]]);});GEOP.LPM.forEach(function(l){LB.push([l[0],l[1],'GMPP',l[2]]);});
+    LB.push([gZ,11.6,'PRESSURISEUR',17],[g0,-7.3,'CUVE',22,'#0b160f',TX],
+            [[999,GY],ZD+3.4,'HP',13],[[1239,GY],ZD+5.0,'CORPS BP',13],[[1072,624],5.6,'GSS',12],[[1072,788],-1.0,'GSS',12],[[1500,GY],ZD+3.9,'ALTERNATEUR',13],[[1245,755],-2.4,'CONDENSEUR',13],[[1099,830],-6.2,'CRF',12],[[1391,830],-6.2,'CRF',12],[[999,GY-16],ZD+4.6,'vannes GRE',11]);
     LB.forEach(function(l){var c=P(l[0],l[1]);txt(c[0],c[1],l[2],1e6,l[3],{a:'middle',c:l[4]||TX,st:l[5]||BG});});
     var mh=P(HOTM,HOTZ-1.2);txt(mh[0],mh[1]+13,'branche chaude',1e6,12,{a:'middle',c:'#f0b3a8'});
     var cc=P([(CM[0][0]+CM[1][0])/2,(CM[0][1]+CM[1][1])/2],1.4);txt(cc[0]+6,cc[1]-6,'branche froide',1e6,12,{a:'start',c:'#b9d4f4'});
@@ -1941,8 +2031,8 @@ var ISO=(function(){
     txt(30,P(g0,-12.4)[1]+16,'P_THERM ___ MWth',1e6,21,{a:'start',id:'isoPth',c:CW,box:1});
     var CT='#d7f07a',CP='#7fe8d8',CN='#9ad0ff',CW='#c9ffd0';   
     var SEN=[['isoSpn',P(g0,9.0),'P_N ___ %','middle',CW],['isoSthot',P(HOTM,HOTZ+1.6),'T_BC ___ °C','middle',CT],['isoStcold',P([(CM[0][0]+CM[1][0])/2,(CM[0][1]+CM[1][1])/2],3.4),'T_BF ___ °C','start',CT],
-             ['isoSppzr',P(gZ,12.8),'P_PZR ___ bar','middle',CP],['isoSpgv',P([608,650],23.8),'P_GV ___ bar','middle',CP],['isoSngv',P([92,635],23.8),'N_GV ___ %','middle',CN],
-             ['isoStsrc',P([1245,830],-8.2),'T_CRF ___ °C','middle',CT],['isoSgre',P([XH,GY-16],ZD+6.2),'GRE ___ %','middle',CW],['isoStvap',P([608,650],25.6),'T_VAP ___ °C','middle',CT]];
+             ['isoSppzr',P(gZ,12.8),'P_PZR ___ bar','middle',CP],['isoSpgv',P(GVs[GEOP.LBL],23.8),'P_GV ___ bar','middle',CP],['isoSngv',P(GVs[GEOP.NGV],23.8),'N_GV ___ %','middle',CN],
+             ['isoStsrc',P([1245,830],-8.2),'T_CRF ___ °C','middle',CT],['isoSgre',P([XH,GY-16],ZD+6.2),'GRE ___ %','middle',CW],['isoStvap',P(GVs[GEOP.LBL],25.6),'T_VAP ___ °C','middle',CT]];
     SEN.forEach(function(s){txt(s[1][0],s[1][1],s[2],1e6+1,21,{a:s[3],id:s[0],c:s[4],box:1});});
     ops.sort(function(a,b){return (a.d-b.d)||(a.i-b.i);});
     var minx=1e9,miny=1e9,maxx=-1e9,maxy=-1e9;
@@ -1987,8 +2077,8 @@ var ISO=(function(){
   api.setCut=function(v){api.cut=!!v;var g=document.getElementById('isoCut');if(g)g.style.display=api.cut?'':'none';};
   api.update=function(S){if(!api.ready)return;var el=function(i){return document.getElementById(i);};
     var lp=Math.max(0,Math.min(1,(25+(S.Ppzr-PAL.PPRIM)*1.2)/43));
-    setG('isoGpzr',lp);setG('isoGcuve',Math.max(0,Math.min(1,(S.lvlCuve==null?100:S.lvlCuve)/100)));for(var i=0;i<4;i++)setG('isoGgv'+i,Math.max(0,Math.min(1,(S.gv||0)/100)));
-    for(var i=0;i<4;i++){var d=el('isoPmp'+i);if(d)d.setAttribute('fill',(S.gmppN||0)>i?'#3ad46a':'#22402a');}
+    setG('isoGpzr',lp);setG('isoGcuve',Math.max(0,Math.min(1,(S.lvlCuve==null?100:S.lvlCuve)/100)));for(var i=0;i<GEOP.GV.length;i++)setG('isoGgv'+i,Math.max(0,Math.min(1,(S.gv||0)/100)));
+    for(var i=0;i<GEOP.GV.length;i++){var d=el('isoPmp'+i);if(d)d.setAttribute('fill',(S.gmppN||0)>i?'#3ad46a':'#22402a');}
     var tour=S.srcType==='tour';var ae=el('isoAero');if(ae)ae.setAttribute('opacity',tour?1:0);var pn=el('isoPanache');if(pn)pn.setAttribute('opacity',tour&&(S.Ptot||0)>0.02?0.65:0);
     var hd=el('isoHead');if(hd)hd.style.display=(S.etat==='RCD')?'none':'';
     var pt=el('isoPth');if(pt)pt.textContent='P_THERM '+Math.round((S.Ptot||0)*PAL.PTH)+' MWth';
@@ -2332,6 +2422,26 @@ var ISO=(function(){
       log((S[cf[1]]?'INHIBITION EN SERVICE : ':'INHIBITION LEVÉE : ')+cf[2]+'.',S[cf[1]]?'amber':'cyan');
     };
   });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  var TXTPAL=/^@([0-9A-Za-z'|]+) /, TXTKEY=/@([0-9A-Za-z'|]+)$/;
+  function palOK(e){return !e||e.split('|').indexOf(PAL.ID)>=0;}
+  function txtOK(x){return palOK((typeof x==='string')?(TXTPAL.exec(x)||[])[1]:(x&&x.pal));}
+  function txtNu(x){return (typeof x==='string')?x.replace(TXTPAL,''):x;}
+  function txtPal(a){var o=[],i;for(i=0;i<a.length;i++)if(txtOK(a[i]))o.push(txtNu(a[i]));return o;}
+  function keyOK(k){return palOK((TXTKEY.exec(k)||[])[1]);}
+  function keyNu(k){return k.replace(TXTKEY,'');}
+
   var LEX={
    'Boremètre RCV':{d:'Mesure en continu la concentration en bore du fluide primaire, sur la ligne de décharge du RCV, sans jamais prélever d’échantillon.',
      p:'Le bore est le frein chimique du cœur : s’il se dilue sans qu’on le veuille, la réaction peut repartir alors que le réacteur est censé être à l’arrêt. Le problème, c’est qu’en arrêt pour rechargement les chaînes neutroniques de niveau source ne voient pas venir une dilution, et EDF l’a constaté en 2005. La parade est un second appareil de mesure, indépendant du premier : une source envoie un faisceau de neutrons à travers la tuyauterie, le bore 10 en absorbe une part proportionnelle à sa concentration, et des détecteurs comptent ce qui reste. Plus le signal est fort, moins il y a de bore. Deux voies redondantes A et B, deux alarmes en salle de commande, et l’entrée en conduite incidentelle. Sur les réacteurs de 900, l’appareil vient d’un fournisseur différent de celui des 1300 et des 1450.'},
@@ -2449,7 +2559,9 @@ var ISO=(function(){
      p:'À Saint-Denis, 24 h/24, les dispatcheurs de RTE surveillent le pays comme tu surveilles ta tranche : consommation qui monte à 19 h, soleil qui se couche, ligne en maintenance, tranche qui déclenche. Leurs leviers : demander à des centrales de monter ou baisser (le « réglage secondaire » puis tertiaire), modifier les programmes d’échange avec les pays voisins, appeler les réserves rapides (barrages et STEP), ou, en dernier recours, délester. Sur la carte de SIMUREP, tu prends leur place : tes tranches pèsent réellement sur l’équilibre calculé à partir des données RTE, et la fréquence te dit si tu fais bien ton travail.'},
    'Interconnexions et programmes d’échange':{d:'Les lignes qui relient la France à six voisins : on y exporte ou importe jusqu’à plusieurs milliers de MW par frontière, sur programme',
      p:'La France est reliée à l’Allemagne, la Belgique, le Royaume-Uni (par câbles sous la Manche : IFA, IFA2, ElecLink), l’Espagne, l’Italie et la Suisse. Chaque heure, des programmes d’échange fixent ce qui passe à chaque frontière, dans la limite de la capacité des lignes (la NTC). Exporter, c’est comme ajouter de la consommation ; importer, c’est ajouter de la production. Quand une tranche manque, modifier un programme d’échange est le levier le plus rapide du dispatcheur, à condition que le voisin ait de la marge. Sur la carte, import en vert, export en bleu, les flèches dans le sens du courant.'},
-   'Entraide entre centrales':{d:'Quand une tranche manque, les autres montent en charge, à 5 % de leur puissance par minute, pas plus vite',
+   'Entraide entre centrales@900':{d:'Quand une tranche manque, les autres montent en charge, à 5 % de leur puissance par minute, pas plus vite',
+     p:'Le réseau ne connaît pas les tranches, il connaît la production totale : si une unité déclenche, il faut que d’autres compensent, et vite. Une tranche de 900 qui tourne à charge réduite peut remonter vers ses 915 MW, mais pas d’un coup : la montée se fait à quelques pour cent par minute, parce que le combustible, les grosses tuyauteries et le xénon imposent tous leur rythme. C’est pourquoi le dispatching garde en permanence de la réserve tournante ailleurs : la marge d’une tranche n’est utile que si elle est déjà chaude.'},
+   'Entraide entre centrales@1300':{d:'Quand une tranche manque, les autres montent en charge, à 5 % de leur puissance par minute, pas plus vite',
      p:'Une tranche en production à 1 100 MW peut monter vers ses 1 300 MW nominaux, mais pas d’un coup : la turbine et le cœur suivent une rampe d’environ 5 % de la puissance nominale par minute, soit une vingtaine de minutes pour 100 %. Le dispatcheur appelle donc l’entraide tôt et sur plusieurs sites. Dans SIMUREP, la marge d’un CNPE est la somme de ce que ses tranches en production peuvent encore donner, calculée sur leur production réelle RTE.'},
    'Données réelles RTE':{d:'Ce que tu vois du parc est mesuré par RTE : production de chaque tranche, arrêts, consommation, échanges, et SIMUREP dit quand il extrapole',
      p:'Le serveur de SIMUREP interroge les API publiques de RTE (le gestionnaire du réseau de transport) : la production horaire de chaque groupe, les indisponibilités déclarées (arrêts programmés ou fortuits, avec leur date de retour), la consommation, le mix de production au quart d’heure, les flux physiques aux frontières, et éCO2mix en secours. Quand une source se tait, le serveur prolonge les dernières valeurs avec la saison, l’heure et le soleil, et l’affiche en ambre « extrapolé ». Quand tu prends une tranche, elle suit sa production réelle tant que tu ne touches pas à la turbine ; dès que tu la modifies, l’écart avec le réel devient ton empreinte sur le réseau. À côté des mesures en temps réel, RTE tient un registre national officiel des installations de production (article L142-9-1 du code de l’énergie) qui donne pour chaque tranche sa puissance installée, sa date de raccordement, sa tension et son code EIC. C’est lui qui a validé, valeur par valeur, la table des puissances par site que porte le serveur.'},
@@ -2460,20 +2572,26 @@ var ISO=(function(){
    'Xénon':{d:'Le poison qui naît de la fission et mange les neutrons : il suit la puissance avec des heures de retard et décide du redémarrage',
      p:'Chaque fission laisse des cendres ; l’une d’elles, le xénon 135, est le plus vorace des absorbeurs de neutrons connus. Il apparaît surtout par la désintégration de l’iode 135 (6,6 h de demi-vie), et disparaît de deux façons : en se désintégrant (9,2 h) ou en capturant un neutron, donc d’autant plus vite que le réacteur est puissant. À pleine puissance, production et destruction s’équilibrent : le xénon pèse environ −2 800 pcm, compensés par le bore et les grappes. Arrête le réacteur : plus de neutrons pour le brûler, mais l’iode continue d’en fabriquer : le xénon MONTE pendant 8 à 10 heures (le « pic xénon »), et le redémarrage peut devenir impossible faute de réactivité disponible : il faut attendre un à deux jours qu’il se désintègre (le « creux »), ou diluer du bore. Baisse la puissance : même histoire en plus doux ; remonte-la : le xénon se brûle et ajoute de la réactivité, qu’il faut reprendre avec le bore. Dans les grands cœurs, il peut même osciller d’une moitié à l’autre du cœur, sur une période d’une trentaine d’heures. Dans SIMUREP, l’iode et le xénon sont deux équations (I suit la puissance avec sa demi-vie ; Xe naît de I et de la fission, meurt par décroissance et par combustion proportionnelle à la puissance), normalisées à 1 à l’équilibre pleine puissance, et pèsent −2 800 pcm par unité. Et après un arrêt d’urgence, l’histoire a une fin : passé le pic, le xénon décroît jusqu’à disparaître complètement en quelques dizaines d’heures, et cette disparition INSÈRE de la réactivité, qu’il faut avoir compensée d’avance pour que le cœur reste sous-critique jusqu’au bout. L’invité qui arrive après la fête et qui ne veut plus partir.'},
    'RPE':'Réacteur Puisards et Évents : le circuit qui recueille les purges et évents du circuit primaire',
-   'GV':{d:'Générateur de Vapeur, la « bouilloire » : l’eau très chaude du réacteur y fait bouillir une autre eau, séparée',
+   'GV@900':{d:'Générateur de Vapeur, la « bouilloire » : l’eau très chaude du réacteur y fait bouillir une autre eau, séparée',
+     p:'Pourquoi deux eaux séparées ? Parce que l’eau qui traverse le cœur devient légèrement radioactive. Dans le GV, elle circule dans des milliers de tubes fins et chauffe l’eau du circuit secondaire à travers ce métal, sans jamais la toucher : la vapeur qui part vers la turbine est propre. Un 900 en compte trois, contre quatre sur le palier de 1 300 MWe. Chacun offre 4 746 m² de surface d’échange et vaporise 1 820 tonnes par heure, sous 58 bar et à 273 °C en sortie.'},
+   'GV@1300':{d:'Générateur de Vapeur, la « bouilloire » : l’eau très chaude du réacteur y fait bouillir une autre eau, séparée',
      p:'Pourquoi deux eaux séparées ? Parce que l’eau qui traverse le cœur devient légèrement radioactive. Dans le GV, elle circule dans plus de 5 000 tubes fins (19 mm de diamètre, moins de 1,1 mm d’épaisseur, le métal le plus mince entre le primaire et le secondaire) et chauffe l’eau du circuit secondaire à travers ce métal, sans jamais la toucher : la vapeur qui part vers la turbine est propre. Chaque tranche en a quatre, qui produisent ensemble plusieurs milliers de tonnes de vapeur par heure. Le faisceau, parlons-en : 5 342 tubes en U exactement, 22 m de haut, 465 tonnes, 6 936 m² d’échange, un terrain de football de surface de contact, plié dans une bouteille d’acier. Chaque GV vaporise 2 000 t/h. Génération suivante, autre échelle : un GV du palier 1450 (N4) porte 5 599 tubes, en Inconel 690 dès l’origine, quatre par réacteur, comme ici.'},
    'GCT':'Contournement Turbine : une grosse soupape pilotée qui envoie la vapeur directement au condenseur, sans passer par la turbine',
    'GCTa':{d:'Contournement à l’atmosphère : pareil, mais la vapeur part dans l’air (propre : elle n’a jamais touché le réacteur)',
      p:'Le cœur continue de chauffer même turbine déclenchée : il faut un puits de chaleur, toujours. Le premier est le GCT-condenseur, qui renvoie la vapeur au condenseur en circuit fermé. Si le condenseur est perdu (vide cassé, source froide partie), il ne reste que le ciel : le GCT-a. Sur un 900, l’arrêt brutal de la turbine fait monter la pression des trois GV jusqu’aux environs de 71 bars, la pression minimale d’ouverture de ces vannes de décharge : c’est le souffle qu’entendent les riverains. Et parce qu’il est le dernier exutoire, son indisponibilité même partielle impose le repli de la tranche (voir « État de repli »).'},
-   'ARE':{d:'Alimentation en eau normale des GV : les grosses pompes qui remplissent les bouilloires en fonctionnement',
+   'ARE@1300':{d:'Alimentation en eau normale des GV : les grosses pompes qui remplissent les bouilloires en fonctionnement',
      p:'Le voyage de l’eau alimentaire est une remontée en pression : la bâche ADG la garde à 180 °C sous 10 bar (450 m³, perchée au point haut de la salle des machines pour que ses pompes ne cavitent jamais) ; les deux turbopompes TPA la propulsent à 80 bar et 190 °C (chacune ~5 000 t/h, entraînée par sa propre petite turbine à vapeur) ; les réchauffeurs haute pression la portent à 230 °C ; et elle franchit enfin le clapet du GV à environ 70 bar. Les 10 bar perdus en route ne sont pas gaspillés : c’est la marge qui donne aux vannes réglantes leur autorité sur le niveau.'},
-   'ASG':{d:'Alimentation de Secours des GV : les pompes de secours qui prennent le relais si l’ARE tombe',
+   'ASG@900':{d:'Alimentation de Secours des GV : les pompes de secours qui prennent le relais si l’ARE tombe',
+     p:'Quand l’alimentation normale des générateurs de vapeur disparaît, l’ASG prend la main et continue de les remplir, parce que sans eau dans les GV il n’y a plus de puits de chaleur pour la résiduelle. Sur un 900, l’installation mêle des motopompes électriques et une turbopompe entraînée par la vapeur du secondaire, donc capable de tourner sans une seule source électrique. Particularité du palier : cette turbopompe débite deux fois plus qu’une motopompe et sa vitesse se règle, alors que sur les 1 300 et les 1 450 les deux débits sont identiques. La bâche qui l’alimente tient une vingtaine d’heures.'},
+   'ASG@1300':{d:'Alimentation de Secours des GV : les pompes de secours qui prennent le relais si l’ARE tombe',
      p:'Sans eau côté secondaire, les GV s’assèchent et le primaire n’a plus où déposer sa chaleur : l’ASG est le filet du refroidissement. Elle mêle deux natures de pompes : des motopompes électriques (MPS) et une turbopompe (TPS) entraînée par la vapeur des GV eux-mêmes, donc capable de tourner sans un volt. C’est ce qui explique le calibrage des règles d’exploitation d’un 900 : une motopompe indisponible est tolérée trois jours réacteur en puissance, la turbopompe seulement vingt-quatre heures : celle qui se passe d’électricité est celle qui manque le plus vite. Autre dissymétrie du 900 : sa turbopompe débite deux fois plus qu’une motopompe, et sa vitesse se règle ; sur le 1300 et le 1450, les deux machines ont le même débit nominal. Sur notre palier 1300, l’ASG compte quatre pompes et la règle se lit autrement (voir « État de repli »).'},
    'MPS':'Motopompe de secours (électrique) de l’ASG',
    'TPS':{d:'Turbopompe de secours de l’ASG : marche à la vapeur, même sans électricité',
      p:'C’est l’ultime recours : sa petite turbine est entraînée par la vapeur des GV eux-mêmes. Tant que le réacteur produit de la chaleur, elle a de quoi tourner, même si la centrale n’a plus un seul volt. Elle peut refroidir le réacteur toute seule.'},
    'TPA (APP)':{d:'Turbopompes Alimentaires Principales : les grosses pompes d’eau des GV, entraînées par de la vapeur',p:'Leur turbine d’entraînement tourne à la VAPEUR VIVE, piquée directement sur le barillet VVP, comme les GSS. La vapeur du palier a donc trois vies : le travail dans la turbine principale, les soutirages (vapeur déjà détendue) pour les réchauffeurs ABP/AHP et la bâche, et la vapeur vive pour la resurchauffe GSS et l’entraînement des TPA. C’est aussi pourquoi les TPA s’essoufflent quand la pression des GV descend : leur moteur, c’est la pression vapeur.'},
-   'GMPP':{d:'Groupes MotoPompes Primaires : les 4 énormes pompes qui font circuler l’eau du réacteur',
+   'GMPP@900':{d:'Groupes MotoPompes Primaires : les 3 énormes pompes qui font circuler l’eau du réacteur',
+     p:'Un 900 tourne sur trois boucles, donc trois pompes, là où le palier de 1 300 MWe en a quatre. Elles brassent le circuit en continu pour que la chaleur du cœur parte vers les générateurs de vapeur, et leur simple frottement réchauffe l’eau. Leur vitesse ne se règle pas : elles tournent à plein ou pas du tout, et le débit du primaire ne dépend donc pas de la charge. Quand une pompe s’arrête au-dessus d’un certain niveau de puissance, l’arrêt automatique part : avec une boucle en moins sur trois, le cœur perdrait trop de refroidissement.'},
+   'GMPP@1300':{d:'Groupes MotoPompes Primaires : les 4 énormes pompes qui font circuler l’eau du réacteur',
      p:'Chacune brasse environ 23 000 m³/h (près de 100 000 m³/h à quatre, une piscine olympique toutes les 100 secondes), consomme 5 à 6 MW, et leur simple frottement chauffe le circuit d’environ 20 MW au total. Si elles s’arrêtent toutes, l’eau continue de circuler doucement d’elle-même : l’eau chaude monte au cœur, refroidit dans les GV et redescend : c’est la circulation naturelle, un thermosiphon géant qui suffit à évacuer la chaleur résiduelle. Et une règle des RGE gravée par un événement réel (Penly 1, 2016) : sous 24 bars RELATIFS (25 absolus, exactement le plancher de notre figure), les quatre pompes doivent être À L’ARRÊT : plus assez de pression pour garantir leur aspiration.'},
    'Injection aux joints des GMPP':{d:'un filet d’eau propre envoyé en permanence dans les joints des pompes primaires pour les empêcher de brûler',
      p:'L’arbre d’une pompe primaire traverse la paroi d’un circuit à 155 bar et près de 290 °C : ce sont ses joints qui tiennent l’étanchéité, et ils ne le font que s’ils reçoivent en permanence un mince film d’eau propre, refoulé à contre-courant par les pompes de charge du RCV. Privés de cette injection et de leur réfrigération, ils se dégradent, et ce sont alors les joints eux-mêmes qui deviennent une brèche du circuit primaire. D’où l’acharnement à les alimenter quoi qu’il arrive : sur le CP0 du Bugey, la pompe dédiée doit être réalimentée en 120 secondes après une perte totale des alimentations électriques, et le noyau dur d’après-Fukushima comporte une pompe PIJ-ND qui ne sert qu’à cela.'},
@@ -2481,7 +2599,7 @@ var ISO=(function(){
      p:'La connexion se fait dans une FENÊTRE : entre 160 et 180 °C, à moins de 31 bar. Au-dessus de 180 °C, le RRA (un circuit basse pression) ne tiendrait pas ; et on ne descend pas sous 160 °C sans l’avoir connecté, car les GV s’essoufflent à basse température : ce serait se priver de moyen d’évacuation. Une fois connecté, le RRA descend la température jusqu’à 20-40 °C. Autre borne du même document : sous 120 °C, plus de matelas vapeur au pressuriseur : c’est la base de conception de sa ligne d’expansion. Et c’est sur un circuit RRA que le parc a appris la fatigue thermique : en 1998, à Civaux 1 (palier N4), une fissure de 180 mm courait le long de la soudure d’un coude, là où eau chaude et eau froide se mélangeaient des milliers de fois. Le tracé en cause était propre au N4, mais la surveillance a suivi partout : les tronçons remplacés se recontrôlent toutes les 450 heures de fonctionnement à fort écart de température.'},
    'RRI':'Réfrigération Intermédiaire : le circuit d’eau qui refroidit les équipements et emporte la chaleur vers la source froide',
    'SEC':'la source froide de secours (eau brute) qui refroidit le RRI',
-   'RIS':{d:'Injection de Secours : envoie de l’eau borée dans le réacteur en cas de fuite',
+   'RIS@1300':{d:'Injection de Secours : envoie de l’eau borée dans le réacteur en cas de fuite',
      p:'Trois étages selon la pression : les pompes haute pression (ISHP) injectent même contre 110 bar ; les accumulateurs se vident tout seuls sous 42 bar ; les pompes basse pression (ISBP) noient le cœur quand la pression est tombée. L’eau est borée pour garantir que le réacteur reste éteint pendant qu’on le remplit.'},
    'IS':{d:'signal d’Injection de Secours : l’alarme qui déclenche automatiquement le RIS',
      p:'Pourquoi ce signal existe : une brèche du circuit primaire fait fuir de l’eau, et qui dit perte de fluide dit chute de pression. L’automate surveille donc la pression du pressuriseur : sous ~118 bar, il conclut à une fuite et injecte de l’eau borée pour compenser la masse perdue et garder le cœur couvert. Mais lors d’un CHANGEMENT D’ÉTAT DE TRANCHE (la descente AN/GV → AN/RRA), l’opérateur baisse volontairement pression et température, sans la moindre fuite. Il doit alors BLOQUER le signal sous 139 bar (permissif P11) : sinon l’automate, trompé par la basse pression, injecterait et re-pressuriserait le circuit, stoppant net la descente. Le blocage se lève automatiquement quand la pression repasse au-dessus de 139 bar.'},
@@ -2498,23 +2616,35 @@ var ISO=(function(){
      p:'C’est de l’acide borique : le bore absorbe les neutrons. Les grappes sont le réglage RAPIDE (secondes), le bore le réglage LENT (heures) : on borique pour freiner, on dilue à l’eau claire pour accélérer. Chaque dilution produit des effluents envoyés au traitement (TEP) : même piloter a un coût chimique. Longtemps, borication et dilution furent des gestes manuels ; leur automatisation, engagée par le projet CASOAR d’EDF au début des années 1990, visait moins la vitesse que la répartition axiale de puissance : on règle le bore pour que les grappes restent là où elles ne déforment pas le flux.'},
    'Grappes noires et grises':{d:'deux familles de grappes de commande : les noires mordent fort, les grises à peine, et ce sont les grises qui suivent le réseau',
      p:'Une grappe de commande, c’est un bouquet de crayons absorbants que l’on descend dans le cœur. Toutes ne sont pas armées pareil : sur un 900, la grappe noire porte 24 crayons absorbants, la grise seulement 8 : les seize autres sont en acier inoxydable, neutres. Trois fois moins de mordant, et c’est délibéré : les grises, qui ne déforment presque pas le flux, compensent les variations de puissance EN BOUCLE OUVERTE (leur position suit la charge) et servent le réglage secondaire de la fréquence en limitant la fatigue des crayons ; les noires du groupe R, très absorbantes, rattrapent la température moyenne EN BOUCLE FERMÉE, au prix d’une déformation du flux. Le pilotage réussi garde le groupe R au milieu de sa plage, à toutes les puissances. Et l’étalonnage des grises est un rite réel : tous les deux mois, 48 heures de stabilisation à pleine puissance, puis une descente à mi-charge à 30 MW par minute (régulation de température coupée, bore figé) pour que tout ce qui bouge ne puisse venir que d’elles. Un cœur de 900 en compte entre 48 et 61 selon la gestion du combustible.'},
-   'Chaleur résiduelle':{d:'la chaleur que le combustible continue de produire après l’arrêt, impossible à « éteindre »',
+   'Chaleur résiduelle@900':{d:'la chaleur que le combustible continue de produire après l’arrêt, impossible à « éteindre »',
+     p:'Quand les grappes tombent, la réaction en chaîne s’arrête, mais pas la chaleur : les produits de fission accumulés continuent de se désintégrer. Sur un réacteur de 900, il reste 40 MW une heure après l’arrêt, et encore 16 MW le lendemain. C’est peu à côté des 2 785 MW de la pleine puissance, et c’est énorme si plus rien ne l’évacue : c’est pour elle que le GCT, l’ASG et le RRA existent, c’est elle qui impose de refroidir pendant des jours, et c’est elle qui rend un réacteur arrêté encore dangereux.'},
+   'Chaleur résiduelle@1300':{d:'la chaleur que le combustible continue de produire après l’arrêt, impossible à « éteindre »',
      p:'Elle vient de la radioactivité des produits de fission accumulés : ~6 % de la puissance à l’instant de l’arrêt (soit ~230 MW !), ~1 % après une heure, ~0,5 % le lendemain. C’est pour elle qu’existent l’ASG, le RRA, les diesels, la circulation naturelle : quoi qu’il arrive, il faut TOUJOURS refroidir, pendant des jours. Deux points sourcés sur un 900 donnent l’échelle du temps long : environ 12 MW trois jours après un arrêt en fin de cycle, et encore 4,5 MW au bout d’un mois.'},
-   'Accumulateurs':{d:'des réservoirs d’eau borée sous pression d’azote qui se vident tout seuls en cas de grosse fuite',
+   'Accumulateurs@1300':{d:'des réservoirs d’eau borée sous pression d’azote qui se vident tout seuls en cas de grosse fuite',
      p:'Purement passifs : pas de pompe, pas d’électricité, pas d’ordre à donner. L’azote comprimé à 42 bar pousse l’eau dès que la pression du circuit passe en dessous. Revers de la médaille : en descente volontaire, l’opérateur doit les ISOLER avant 42 bar, sinon ils se déversent dans un circuit qui n’a rien demandé. Sur le palier 900, la conduite d’une perte totale des alimentations électriques (H3) les isole dès 15 bar relatifs, pour que l’azote ne passe pas au primaire ; le tarage de 42 bar ci-dessus est celui du palier simulé (1300).'},
-   'Tmoy':{d:'la température moyenne de l’eau du réacteur (~310 °C à pleine puissance)',
+   'Tmoy@900':{d:'la température moyenne de l’eau du réacteur (304,6 °C à pleine puissance)',
+     p:'Elle suit un « programme » : une droite qui part de 286 °C à charge nulle et monte jusqu’à 304,6 °C à pleine puissance, bornes fixées par les règles générales d’exploitation du palier. C’est la clé du pilotage automatique : quand tu ouvres les vannes de la turbine, la vapeur soutirée refroidit le primaire, Tmoy passe sous son programme, et les barres se lèvent pour la rattraper. Le réacteur suit la turbine, pas l’inverse. Entre l’entrée et la sortie de la cuve, l’eau gagne 37 °C, de 286 à 323 °C.'},
+   'Tmoy@1300':{d:'la température moyenne de l’eau du réacteur (~310 °C à pleine puissance)',
      p:'Elle suit un « programme » : ~290 °C au ralenti, ~310 °C à pleine puissance. C’est la clé du pilotage automatique : quand tu ouvres les vannes de la turbine, la vapeur soutirée refroidit le primaire, Tmoy baisse sous son programme, et les barres se lèvent pour la rattraper. Le réacteur suit la turbine, pas l’inverse. Tmoy est aussi l’intermédiaire du pilotage axial : pour corriger la répartition de puissance entre haut et bas du cœur, on borique ou on dilue, ce qui la déplace, ce qui fait bouger le groupe R, et c’est ce déplacement-là qui corrige le ΔI (voir « Delta-I (ΔI) »).'},
-   'Pressuriseur':{d:'le « ballon » qui fixe la pression du circuit primaire (155 bar) avec des chaufferettes et une douche',
+   'Pressuriseur@900':{d:'le « ballon » qui fixe la pression du circuit primaire (155 bar) avec des chaufferettes et une douche',
+     p:'Le circuit primaire est à 155 bar pour une seule raison : à cette pression, l’eau reste liquide jusque bien au-delà des 323 °C qu’elle atteint en sortie de cuve. Le pressuriseur est le seul endroit du circuit où coexistent de l’eau et de la vapeur, et c’est ce qui lui permet de fixer la pression de tout le reste : des chauffages électriques font monter la pression en vaporisant, une aspersion d’eau plus froide la fait descendre en condensant. Sur un 900, il est protégé par six soupapes pilotées, montées par paires sur trois lignes.'},
+   'Pressuriseur@1300':{d:'le « ballon » qui fixe la pression du circuit primaire (155 bar) avec des chaufferettes et une douche',
      p:'C’est le seul endroit du circuit où eau et vapeur coexistent : moitié eau bouillante, moitié vapeur. Pour MONTER la pression, on chauffe l’eau (plus de vapeur = plus de pression) ; pour la BAISSER, on pulvérise de l’eau froide dans la vapeur (l’aspersion), qui la condense. Pourquoi 155 bar ? Pour qu’à 310 °C l’eau du circuit reste liquide : à cette pression, elle ne bout qu’à 345 °C, la marge s’appelle la sous-saturation. Au sommet, les soupapes SEBIM veillent. Détail d’orfèvre : 60 m³, et une aspersion CONTINUE d’environ 230 L/h, un mince filet d’eau froide qui coule en permanence pour homogénéiser la chimie entre le ballon et les boucles.'},
    'Vannes admission HP':{d:'les robinets géants entre les bouilloires (GV) et la turbine : plus ils sont ouverts, plus la vapeur pousse, plus on produit d’électricité',
      p:'C’est LA commande de puissance de la tranche. On ne pilote pas le réacteur directement : on ouvre les vannes, la turbine soutire plus de vapeur, le primaire se refroidit un peu, et la régulation de température lève les barres pour compenser. Ferme-les d’un coup (déclenchement turbine) et c’est l’inverse : la chaleur n’a plus de sortie, tout monte, d’où le GCT qui s’ouvre en secours.'},
-   'HP / BP':{d:'les corps Haute Pression puis Basse Pression de la turbine : la vapeur se détend dedans en cédant son énergie',
+   'HP / BP@900':{d:'les corps Haute Pression puis Basse Pression de la turbine : la vapeur se détend dedans en cédant son énergie',
+     p:'La vapeur entre à 58 bar dans le corps HP d’un 900, à 273 °C, et en ressort bien plus froide et bien plus volumineuse. Elle passe alors par les sécheurs-surchauffeurs, qui essorent les gouttelettes et la réchauffent, avant d’entrer dans les corps BP où elle finit sa détente jusqu’au vide du condenseur. Chaque étage récupère une part de l’énergie : c’est la détente complète qui fait le rendement, pas la seule pression d’entrée.'},
+   'HP / BP@1300':{d:'les corps Haute Pression puis Basse Pression de la turbine : la vapeur se détend dedans en cédant son énergie',
      p:'La vapeur entre à 71 bar dans le corps HP, en sort détendue et humide, passe par des sécheurs-surchauffeurs, puis finit sa détente dans les énormes corps BP jusqu’au vide du condenseur. Le tout tourne à 1 500 tours/minute exactement, verrouillé sur les 50 Hz du réseau. Les derniers étages BP sont géants car à très basse pression, la vapeur occupe un volume monstrueux.'},
    'Condenseur':{d:'le grand échangeur sous la turbine : la vapeur y redevient de l’eau au contact de tubes remplis d’eau froide du fleuve ou de la mer',
      p:'Un kilogramme de vapeur à 50 mbar occupe ~28 m³ ; condensé, il devient 1 litre d’eau. Cet effondrement de volume (28 000 contre 1 !) crée une aspiration permanente derrière la turbine : le condenseur FABRIQUE le vide lui-même. Les pompes à vide ne servent qu’à évacuer l’air qui s’infiltre : c’est le rôle du CVI.'},
-   'Vide condenseur':{d:'quand la vapeur se condense, son volume s’effondre : ça crée une aspiration derrière la turbine. Plus l’eau du fleuve est FROIDE, meilleur est le vide, plus la turbine produit',
+   'Vide condenseur@900':{d:'quand la vapeur se condense, son volume s’effondre : ça crée une aspiration derrière la turbine. Plus l’eau du fleuve est FROIDE, meilleur est le vide, plus la turbine produit',
+     p:'Ce qui fait tourner une turbine, ce n’est pas la pression d’entrée seule, c’est la chute de pression entre l’entrée et la sortie. Sur un 900, la vapeur entre à 58 bar et ressort dans un condenseur maintenu sous vide, à quelques centièmes de bar : c’est cette différence que la machine transforme en mégawatts. Le vide se fabrique par la condensation elle-même, et il se dégrade dès que l’eau de refroidissement se réchauffe ou que de l’air s’infiltre. D’où les mégawatts gagnés l’hiver, et perdus l’été.'},
+   'Vide condenseur@1300':{d:'quand la vapeur se condense, son volume s’effondre : ça crée une aspiration derrière la turbine. Plus l’eau du fleuve est FROIDE, meilleur est le vide, plus la turbine produit',
      p:'Le travail de la turbine, c’est la chute de pression entre l’entrée (71 bar) et la sortie. Sortir à 1 bar (l’atmosphère) gâcherait tout le bas de la détente ; sortir à 50 mbar la prolonge vingt fois plus bas et rapporte 20 à 25 % du travail total. Or la pression du condenseur est EXACTEMENT la pression d’ébullition de sa température : condenser à 25 °C donne ~32 mbar, à 35 °C ~56 mbar, à 45 °C ~96 mbar. Un fleuve plus froid = condensation plus froide = meilleur vide = détente plus longue = plus de MW avec la même chaleur : ~10 °C de source froide valent 30-40 MW. Et si le CVI tombe, l’air couvre les tubes, le vide se dégrade, les MW fondent jusqu’au déclenchement turbine.'},
-   'Source froide':{d:'le fleuve, la mer ou l’aéroréfrigérant : ils emportent la chaleur que la turbine n’a pas transformée (les deux tiers !)',
+   'Source froide@900':{d:'le fleuve, la mer ou l’aéroréfrigérant : ils emportent la chaleur que la turbine n’a pas transformée (les deux tiers !)',
+     p:'Une machine thermique a besoin de deux sources : une chaude, ici le cœur qui porte l’eau du primaire à 304,6 °C en moyenne à pleine puissance, et une froide, sans laquelle rien ne tourne. Sur un 900, le réacteur produit 2 785 MW de chaleur pour environ 900 MW d’électricité : près de 1 900 MW partent donc à la source froide, en pure perte, et ce n’est pas un défaut de conception mais la thermodynamique elle-même. Plus cette source est froide, meilleur est le vide au condenseur, et plus la même chaleur donne de mégawatts.'},
+   'Source froide@1300':{d:'le fleuve, la mer ou l’aéroréfrigérant : ils emportent la chaleur que la turbine n’a pas transformée (les deux tiers !)',
      p:'La thermodynamique est têtue : avec une source chaude à ~310 °C et une source froide à ~20 °C, on ne peut convertir qu’environ un tiers de la chaleur en électricité. Les 2 500 MW restants DOIVENT partir quelque part : fleuve, mer, ou l’évaporation dans la tour. Ce n’est pas une perte réparable, c’est la loi de Carnot.'},
    'Aéroréfrigérant':{d:'la grande tour au panache blanc : ce n’est QUE de la vapeur d’eau propre du circuit de refroidissement, jamais l’eau du réacteur',
      p:'Aucun ventilateur : sa forme crée un tirage naturel, comme une cheminée géante. L’eau tiède du condenseur y ruisselle, l’air qui monte en évapore ~2 %, et cette évaporation la refroidit : le panache, c’est cette vapeur propre qui se recondense dans l’air froid.'},
@@ -2537,7 +2667,9 @@ var ISO=(function(){
      p:'Pour chacun des six domaines d’exploitation (RP, AN/GV, AN/RRA, API, APR, RCD), les STE listent les matériels requis, les limites (dont notre chaussette P-T) et la CONDUITE À TENIR quand quelque chose manque. Leur logique : rester dans l’enveloppe des situations étudiées, pour que les protections dimensionnées couvrent toujours l’accident.'},
    'Événements groupe 1 / groupe 2':{d:'le classement des écarts aux STE selon leur gravité',
      p:'Groupe 1 : l’écart met en cause la démonstration de sûreté : interdit de le provoquer volontairement, repli du réacteur sous 1 heure à 7 jours. Groupe 2 : une fonction est fragilisée sans remise en cause directe : tolérable le temps d’une maintenance, règles de cumul à l’appui. Trois événements de groupe 1 sur des systèmes différents : repli sous une heure. Il existe aussi le groupe 1* : un écart de groupe 1 que la conduite à tenir permet, sous conditions écrites, de déclasser en groupe 2, mécanisme que l’IRSN a contesté en 2021 à propos de la réalimentation de la bâche ASG du N4, quand les conditions prêtaient à discussion.'},
-   'État de repli':{d:'l’état sûr vers lequel on replie la tranche quand un matériel requis manque',
+   'État de repli@900':{d:'l’état sûr vers lequel on replie la tranche quand un matériel requis manque',
+     p:'Chaque matériel requis a, dans les règles générales d’exploitation, son délai codifié et son état de repli désigné, celui où le matériel manquant n’est plus nécessaire. Sur un 900, la frontière qui compte se lit en deux nombres : moins de 190 °C et moins de 45 bar au primaire. En dessous, la tranche a quitté le domaine où les générateurs de vapeur sont l’outil de refroidissement, et le circuit de refroidissement à l’arrêt prend le relais. Se replier n’est pas subir : c’est aller chercher un état où l’exigence tombe.'},
+   'État de repli@1300':{d:'l’état sûr vers lequel on replie la tranche quand un matériel requis manque',
      p:'Chaque matériel requis a, dans les STE, son délai codifié et son état de repli désigné, celui où le matériel manquant n’est plus nécessaire, atteignable par les procédures normales. Exemple du palier 1300 : une pompe ASG (sur quatre) indisponible en puissance est tolérée TROIS JOURS, avec pour état de repli l’arrêt intermédiaire diphasique aux conditions du RRA, circuit connecté. Le calibrage est un équilibre : assez long pour réparer, assez court pour ne pas s’installer dans le dégradé. Et les cumuls raccourcissent tout : la même pompe ASG cumulée avec une pompe d’injection moyenne ou basse pression, c’est 24 heures maximum. Second exemple vécu, sur notre palier (Saint-Alban 1, 2026) : le GCT-a partiellement indisponible impose un repli sous 3 JOURS : il est resté 35 jours de trop, événement classé INES 1, débusqué par un simple essai périodique.'},
    'Gradient de refroidissement':{d:'la vitesse à laquelle on a le droit de refroidir le circuit primaire, en degrés par heure',
      p:'On ne refroidit pas un circuit primaire aussi vite qu’on veut : la cuve et les gros composants n’aiment pas les chocs thermiques, et l’acier vieilli encore moins (voir « Surpression à froid »). Les conduites de repli distinguent donc un refroidissement doux, à −14 ou −28 °C/h, d’un refroidissement dur à −56 °C/h que l’on ne s’autorise que si la situation l’exige. C’est une des raisons pour lesquelles un repli se compte en heures, pas en minutes.'},
@@ -2547,18 +2679,21 @@ var ISO=(function(){
      p:'L’eau condensée (~33 °C) ne repart pas froide vers les GV : elle traverse les réchauffeurs basse pression (ABP), la bâche dégazante, puis les réchauffeurs haute pression (AHP), chauffés par des SOUTIRAGES de vapeur prélevés sur la turbine. Réchauffer l’eau alimentaire avec de la vapeur déjà partiellement détendue coûte peu et améliore nettement le rendement du cycle : elle arrive à ~220 °C aux GV.'},
    'ADG (bâche alimentaire / dégazeur)':{d:'le grand réservoir tampon du poste d’eau, qui chasse aussi les gaz dissous',
      p:'Entre ABP et AHP, l’eau séjourne dans une bâche portée à ébullition par un soutirage : les gaz dissous (surtout l’oxygène, corrosif pour les tubes des GV) s’en échappent : c’est le dégazage thermique. La bâche donne aussi de la réserve d’eau et de la hauteur d’aspiration aux TPA.'},
-   'Trois barrières':{d:'les trois enveloppes successives entre le combustible et l’environnement',
+   'Trois barrières@900':{d:'les trois enveloppes successives entre le combustible et l’environnement',
+     p:'1) La gaine métallique de chaque crayon emprisonne le combustible et ses produits de fission. 2) Le circuit primaire en acier enferme l’eau activée, avec une cuve de 4 mètres de diamètre intérieur dont la paroi fait 20 centimètres au droit du cœur. 3) L’enceinte en béton confine tout le reste, et c’est ici qu’un 900 se distingue : une seule paroi, doublée à l’intérieur d’une peau d’acier qui assure l’étanchéité, là où le palier de 1 300 MWe a deux parois de béton et pas de peau. Toute la sûreté consiste à protéger ces trois barrières : les alarmes KRT surveillent chacune.'},
+   'Trois barrières@1300':{d:'les trois enveloppes successives entre le combustible et l’environnement',
      p:'1) La gaine métallique de chaque crayon emprisonne le combustible et ses produits de fission. 2) Le circuit primaire en acier (dont la cuve, 20 cm d’épaisseur) enferme l’eau activée. 3) L’enceinte en béton (double paroi sur ce palier : 120 cm de béton précontraint à l’intérieur, 55 cm de béton armé à l’extérieur) confine tout le reste. Toute la sûreté consiste à protéger ces trois barrières : les alarmes KRT surveillent chacune.'}
   };
   function renderLex(q,_tgt){
     var _lb=_tgt||el('lexBody');if(!_lb)return; 
     q=(q||'').toLowerCase();
     _lb.innerHTML=Object.keys(LEX).filter(function(k){
-      var v=LEX[k];var hay=(k+' '+((typeof v==='string')?v:v.d+' '+(v.p||''))).toLowerCase();
+      var v=LEX[k];if(!keyOK(k)||!txtOK(v))return false; 
+      var hay=(keyNu(k)+' '+((typeof v==='string')?txtNu(v):v.d+' '+(v.p||''))).toLowerCase();
       return !q||hay.indexOf(q)>=0;
     }).map(function(k){
-      var v=LEX[k],d=(typeof v==='string')?v:v.d,p=(typeof v==='string')?'':'<details class="lexD"><summary>en savoir plus</summary><div class="lexP">'+v.p+'</div></details>';
-      return '<div style="break-inside:avoid;margin-bottom:6px"><b>'+k+'</b> : '+d+p+'</div>';
+      var v=LEX[k],d=(typeof v==='string')?txtNu(v):v.d,p=(typeof v==='string')?'':'<details class="lexD"><summary>en savoir plus</summary><div class="lexP">'+v.p+'</div></details>';
+      return '<div style="break-inside:avoid;margin-bottom:6px"><b>'+keyNu(k)+'</b> : '+d+p+'</div>';
     }).join('')||'<i style="color:var(--dim)">aucune entrée ne correspond</i>';
   }
   el('easyLex').innerHTML='<input id="lexSearch" type="search" placeholder="&#128269; rechercher dans le lexique&#8230;" style="width:100%;box-sizing:border-box;column-span:all;margin-bottom:8px;padding:6px 8px;font-family:inherit;font-size:12.5px;background:#f2ecd8;color:#2b2318;border:1px solid #6e5c44;border-radius:4px">'
@@ -2584,7 +2719,8 @@ var ISO=(function(){
   };
   var MISSIONS=[
    {t:'Prendre la main',c:'Baisse la charge : mets le curseur « Vannes admission HP » (onglet Turbine) sur 80 %. Regarde les barres de contrôle descendre toutes seules pour suivre.',test:function(){return S.turb<83&&S.turb>74&&Math.abs(S.turbSet-80)<3;},b:'Tu viens de voir le cœur du pilotage : le réacteur SUIT la turbine. Tu as demandé moins de vapeur, la température a monté d’un poil, et la régulation a inséré les barres pour la ramener au programme.'},
-   {t:'Pleine puissance',c:'Remonte les vannes à 100 % : la tranche doit retrouver ses ~1 300 MW.',test:function(){return S.turb>97&&S.Pn>0.955;},b:'1 300 MW retrouvés. Monter est aussi simple que descendre, tant que le xénon ne s’en mêle pas… justement, parlons-en.'},
+   {pal:'1300',t:'Pleine puissance',c:'Remonte les vannes à 100 % : la tranche doit retrouver ses ~1 300 MW.',test:function(){return S.turb>97&&S.Pn>0.955;},b:'1 300 MW retrouvés. Monter est aussi simple que descendre, tant que le xénon ne s’en mêle pas… justement, parlons-en.'},
+   {pal:'900',t:'Pleine puissance',c:'Remonte les vannes à 100 % : la tranche doit retrouver ses ~900 MW.',test:function(){return S.turb>97&&S.Pn>0.955;},b:'900 MW retrouvés. Monter est aussi simple que descendre, tant que le xénon ne s’en mêle pas… justement, parlons-en.'},
    {t:'Réveiller le xénon',c:'Descends la charge à 50 % et LAISSE TOURNER (passe en ×60) : ouvre l’onglet Réactivité et regarde la courbe du xénon monter.',test:function(){return S.turb<56&&S.Xe>1.12;},b:'Tu le vois : le xénon, un poison produit par la fission elle-même, s’accumule après chaque baisse de charge. Il « mange » des neutrons et freine le réacteur.'},
    {t:'Compenser au bore',c:'Le xénon freine ? Compense à la chimie : clique DILUER (onglet Réactivité) plusieurs fois pour retirer du bore.',test:function(){return S._mW.cb0!==undefined&&S.Cb<S._mW.cb0-5;},watch:function(){if(S._mW.cb0===undefined)S._mW.cb0=S.Cb;},b:'Tu viens de piloter à l’acide borique ! Grappes = réglage rapide, bore = réglage lent : les deux mains du pilotage d’un REP.'},
    {t:'La revanche du fleuve',c:'Carte Source froide : baisse la température de l’eau (curseur, ou saison hiver). Regarde P ÉLECTRIQUE gagner des mégawatts, sans rien changer au réacteur.',test:function(){return S._mW.ts0!==undefined&&S.Tsrc<S._mW.ts0-3&&S.Pelec>S._mW.pe0+6;},watch:function(){if(S._mW.ts0===undefined){S._mW.ts0=S.Tsrc;S._mW.pe0=S.Pelec;}},b:'La magie du vide condenseur : eau plus froide → meilleure condensation → meilleur vide → détente plus longue → plus de MW avec la MÊME chaleur. (Tout est raconté au lexique, entrée « Vide condenseur ».)'},
@@ -2592,28 +2728,33 @@ var ISO=(function(){
    {t:'L’exutoire de secours (GCTa)',c:'Passe le GCTa en MANUEL (carte GCT) et ouvre-le vers 15-20 % : de la vapeur PROPRE part à l’atmosphère. Puis referme-le.',test:function(){return S._mW.sawGcta&&S.gctA<0.02;},watch:function(){if(S.gctA>0.10)S._mW.sawGcta=true;},b:'C’est la décharge de secours : si le condenseur disparaît (perte de vide, perte CRF), le GCTa évacue la chaleur directement à l’atmosphère. Vapeur du circuit secondaire : jamais en contact avec le réacteur.'},
    {t:'La première barrière',c:'Carte Incidents : monte le curseur « ruptures de gaine » à ~15 crayons. Ouvre KRT : l’activité du circuit primaire grimpe. Puis redescends-le à 0.',test:function(){return S._mW.sawGaine&&S.gaine<0.01;},watch:function(){if(S.gaine>=0.06)S._mW.sawGaine=true;},b:'Tu viens de percer la PREMIÈRE barrière : les produits de fission passent dans l’eau primaire, les chaînes KRT le voient immédiatement. Restent deux barrières (le circuit primaire et l’enceinte) et le RCV qui épure l’eau en continu.'},
    {t:'Le bouton rouge',c:'Le grand moment : appuie sur ARRÊT D’URGENCE (le bouton rouge). Observe : toutes les barres tombent en 2 secondes, la puissance s’effondre… mais pas à zéro.',test:function(){return S.scram&&S.Pn<0.05;},b:'Réaction stoppée net, mais regarde P THERMIQUE : la chaleur résiduelle continue (des dizaines de MW). C’est pour ELLE que tout le refroidissement de secours existe.'},
-   {t:'Surveiller le repli',c:'Laisse la tranche se stabiliser (×60) : vérifie que l’eau arrive aux GV (carte ASG) et que Tmoy se cale vers ~294 °C, l’arrêt à chaud.',test:function(){return S.scram&&Math.abs(S.Tavg-294)<7&&S.gv>28;},b:'Tranche stable en arrêt à chaud : le GCT évacue la résiduelle, l’ASG nourrit les GV. Une tranche arrêtée, ça se CONDUIT.'},
+   {pal:'1300',t:'Surveiller le repli',c:'Laisse la tranche se stabiliser (×60) : vérifie que l’eau arrive aux GV (carte ASG) et que Tmoy se cale vers ~294 °C, l’arrêt à chaud.',test:function(){return S.scram&&Math.abs(S.Tavg-294)<7&&S.gv>28;},b:'Tranche stable en arrêt à chaud : le GCT évacue la résiduelle, l’ASG nourrit les GV. Une tranche arrêtée, ça se CONDUIT.'},
+   {pal:'900',t:'Surveiller le repli',c:'Laisse la tranche se stabiliser (×60) : vérifie que l’eau arrive aux GV (carte ASG) et que Tmoy se cale vers ~286 °C, l’arrêt à chaud.',test:function(){return S.scram&&Math.abs(S.Tavg-286)<7&&S.gv>28;},b:'Tranche stable en arrêt à chaud : le GCT évacue la résiduelle, l’ASG nourrit les GV. Une tranche arrêtée, ça se CONDUIT.'},
    {t:'Le pic xénon',c:'Reste en arrêt à chaud, passe en ×300 et regarde l’onglet Réactivité : le xénon MONTE pendant des heures après l’arrêt. Attends qu’il dépasse ~150 % de l’équilibre (pic vers 9 h).',test:function(){return S.scram&&S.Xe>1.5;},b:'Voilà le fameux pic xénon : l’iode accumulé continue de se transformer en xénon alors que plus rien ne le brûle. Redémarrer maintenant serait très difficile : c’est LA contrainte de planning des vrais exploitants.'},
    {t:'Réarmer et re-diverger',c:'Laisse le xénon retomber (encore ×300, ~1 jour simulé), puis RÉARME (bouton Réarmer, panneau Arrêt d’urgence). Ensuite monte PAR PALIERS : vannes à 10 %, attends que les barres remontent et que Tmoy se stabilise, puis 20, puis 30 : la vapeur passe du GCT à la turbine sans coup de froid. Ouvrir 30 % d’un coup sur un cœur endormi glace le primaire et fait sortir du domaine !',test:function(){return !S.scram&&S.Pn>0.25;},b:'Tu viens de faire une re-divergence complète : réarmement des grappes, retour en puissance. En vrai il faudrait la chimie, les essais et l’accord du réseau, mais la physique, tu l’as.'},
    {t:'Changer d’état',c:'Passe officiellement à l’état AN/GV (bandeau des états, en haut de page).',test:function(){return S.etat==='ANGV';},b:'Te voilà en Arrêt Normal sur les GV. Prochaine étape : la vraie descente d’un exploitant.'},
-   {t:'La descente complète',c:'Objectif final : rejoins l’AN/RRA. Consigne GCT vers 6-8 bar, consigne pressuriseur à 27 bar, ×300, et SUIS LES RAPPELS du guide (blocage IS, isolement des accumulateurs). La chaussette est ton juge.',test:function(){return S.etat==='ANRRA';},b:'🏆 CHAPEAU ! Tu viens de conduire une tranche de 1 300 MW de la pleine puissance jusqu’au refroidissement à l’arrêt, dans les clous du domaine. Continue vers l’API/APR/RCD, remonte, ou casse tout pour voir, le guide reste là.'},
+   {t:'La descente complète',c:'Objectif final : rejoins l’AN/RRA. Consigne GCT vers 6-8 bar, consigne pressuriseur à 27 bar, ×300, et SUIS LES RAPPELS du guide (blocage IS, isolement des accumulateurs). La chaussette est ton juge.',test:function(){return S.etat==='ANRRA';},b:function(){return '🏆 CHAPEAU ! Tu viens de conduire une tranche de '+(PAL.ID==='900'?'900':'1 300')+' MW de la pleine puissance jusqu’au refroidissement à l’arrêt, dans les clous du domaine. Continue vers l’API/APR/RCD, remonte, ou casse tout pour voir, le guide reste là.';}},
    {t:'Perte du RRA',c:'En AN/RRA, déclenche la Perte RRA (carte Incidents) : plus rien n’évacue la chaleur, la température remonte toute seule. RÉPARE avant de repasser 180 °C !',test:function(){return S._mW.sawRraF&&!S.rraF&&S.etat==='ANRRA'&&S.Tavg<178;},watch:function(){if(S.rraF)S._mW.sawRraF=true;},b:'Tu as vu la tranche « morte » se réchauffer seule : la chaleur résiduelle n’attend personne, et la pression finit par décoller le long de la courbe de saturation. C’est LE scénario qui justifie les secours du RRA.'},
    {t:'La boucle complète',c:'Dernier défi : remonte TOUTE la tranche. AN/GV (les GMPP redémarrent), laisse réchauffer (×300), repasse RP, recouple la turbine et retrouve les 100 %. ATTENTION : après un long arrêt le xénon est retombé : le cœur est TRÈS réactif. Si les barres plongent sous 25 %, la montée se suspend : BORIQUE. Si elles sortent À FOND et que la puissance plafonne (le xénon se refait), elle se suspend aussi : DILUE. C’est le vrai métier du redémarrage.',test:function(){return S.etat==='RP'&&S.Pn>0.9;},b:'🏆 RP retrouvé après un cycle complet descente-remontée : tu as fait, en accéléré, ce qu’une équipe de conduite fait sur plusieurs jours. La tranche est à toi.'},
   ];
+  var MISSP=txtPal(MISSIONS); 
   S.mIdx=S.mIdx||0;S._mW=S._mW||{};
   function easyMission(){
-    if(S.mIdx>=MISSIONS.length)return null;
-    var M=MISSIONS[S.mIdx];
+    if(S.mIdx>=MISSP.length)return null;
+    var M=MISSP[S.mIdx];
     if(M.watch)M.watch();
     if(S._mBravo){
       if(Date.now()-S._mBravo>9000){S._mBravo=0;S.mIdx++;S._mW={};
-        if(S.mIdx>=MISSIONS.length)return '🎓 Formation terminée ! Le guide, le lexique et les alertes restent à ton service.';
-        var N=MISSIONS[S.mIdx];return 'MISSION '+(S.mIdx+1)+'/'+MISSIONS.length+', '+N.t+' : '+N.c;}
+        if(S.mIdx>=MISSP.length)return '🎓 Formation terminée ! Le guide, le lexique et les alertes restent à ton service.';
+        var N=MISSP[S.mIdx];return 'MISSION '+(S.mIdx+1)+'/'+MISSP.length+', '+N.t+' : '+N.c;}
       return '✅ '+((typeof M.b==='function')?M.b():M.b);}
     if(M.test()){S._mBravo=Date.now();return '✅ '+((typeof M.b==='function')?M.b():M.b);}
-    return 'MISSION '+(S.mIdx+1)+'/'+MISSIONS.length+', '+M.t+' : '+M.c;
+    return 'MISSION '+(S.mIdx+1)+'/'+MISSP.length+', '+M.t+' : '+M.c;
   }
-  el('bMSkip').onclick=function(){if(S.mis&&S.mIdx<MISSIONS.length){S._mBravo=0;S._mW={};S.mIdx++;log('Formation : mission passée.','dim');}};
+  el('bMSkip').onclick=function(){if(S.mis&&S.mIdx<MISSP.length){S._mBravo=0;S._mW={};S.mIdx++;log('Formation : mission passée.','dim');}};
+  
+  
+  function MWTXT(v){return (v>=1000)?String(v).replace(/(\d)(\d{3})$/,"$1 $2"):String(v);}
   function easyMsg(){
     var e=S.etat;
     if(S.dmg>0.05)return "🔴 Le cœur est endommagé : le combustible a trop chauffé. En vrai, ce serait un accident grave. Tu peux RÉINITIALISER la simulation, ou observer la suite.";
@@ -2621,13 +2762,13 @@ var ISO=(function(){
     if(S._ptBad)return "⚠ Le point pression/température est SORTI de la zone autorisée (onglet Chaussette). En général : refroidir moins vite, ou ajuster la consigne du pressuriseur.";
     if(S.sigIS)return "🚨 FUITE DÉTECTÉE : l’injection de secours envoie automatiquement de l’eau borée dans le réacteur. Laisse les automatismes travailler et surveille l’inventaire en eau.";
     if(S.easy&&S._blkDue)return "👉 Changement d’état de tranche : on baisse la pression volontairement, sans fuite. BLOQUE l’injection de secours (bouton BLOQUER IS, carte Signaux), sinon l’automate croira à une brèche et re-pressurisera le circuit.";
-    if(S.easy&&S._accDue)return "👉 ISOLE les accumulateurs (carte RIS) : ces réservoirs sous pression se videraient tout seuls dans le circuit en dessous de 42 bar.";
+    if(S.easy&&S._accDue)return "👉 ISOLE les accumulateurs (carte RIS) : ces réservoirs sous pression se videraient tout seuls dans le circuit"+(PAL.ACCU?" en dessous de "+PAL.ACCU+" bar":"")+".";
     if(S.easy&&S._reaDue)return "👉 La pression est revenue : RÉALIGNE les accumulateurs (carte RIS) pour qu’ils protègent à nouveau le réacteur.";
     if(S.easy&&S.gv<PAL.AU_GVB2&&e!=='ANRRA'&&S.Tavg>200)return "⚠ Le niveau d’eau baisse dans les générateurs de vapeur. Vérifie l’alimentation : ARE en marche, ou pompes de secours ASG.";
     if(S.mis){var _mm=easyMission();if(_mm)return _mm;}
     if(!S.easy)return S.mis?"🎓 Parcours terminé, bravo ! Active le MODE FACILE pour l’analyse d’état en continu.":"";
     if(S.scram&&S.Pn<0.02&&S.Tavg>250)return "🟠 ARRÊT D’URGENCE : toutes les barres sont tombées, la réaction est stoppée. Le réacteur chauffe encore (chaleur résiduelle) : vérifie que l’eau arrive aux générateurs de vapeur (pompes de secours ASG), la vapeur s’évacue par le GCT.";
-    if(e==='RP'&&S.Pn>0.97&&Math.abs(S.turbSet-100)<2)return "✅ Pleine puissance : la centrale produit ~1 300 MW. Pour t’entraîner : baisse doucement le curseur « Vannes admission HP » (les robinets de vapeur de la turbine) et regarde les barres de contrôle suivre toutes seules.";
+    if(e==='RP'&&S.Pn>0.97&&Math.abs(S.turbSet-100)<2)return "✅ Pleine puissance : la centrale produit ~"+MWTXT(PAL.PEL)+" MW. Pour t’entraîner : baisse doucement le curseur « Vannes admission HP » (les robinets de vapeur de la turbine) et regarde les barres de contrôle suivre toutes seules.";
     if(e==='RP'&&S.turbSet<S.turb-2)return "La turbine réduit sa charge : les barres s’enfoncent automatiquement pour suivre. Rien à faire, observe.";
     if(e==='RP'&&!S.scram&&S.Xe>1.35&&S.Pn<0.5)return "Le xénon (un poison naturel) freine le réacteur. Pour compenser : bouton DILUER (on retire du bore, le frein chimique).";
     if(e==='ANGV'&&S.Tavg>200)return "Arrêt sur les générateurs de vapeur. Pour refroidir : onglet Turbine, baisse la consigne GCT vers 6-8 bar. Mets aussi la consigne du pressuriseur à 27 bar : la pression suivra le domaine toute seule. Passe en ×300, ça prend quelques heures.";
@@ -2641,16 +2782,16 @@ var ISO=(function(){
     if(e==='RCD')return "Cœur déchargé : le combustible est en piscine. Tu peux refaire le chemin inverse !";
     var TIPS=[
      "Le saviez-vous ? Plus l’eau du fleuve est froide, plus la centrale produit : la vapeur se condense mieux, le « vide » derrière la turbine est plus fort, et la même chaleur donne jusqu’à ~30 MW de plus l’hiver.",
-     "Le saviez-vous ? Environ deux tiers de la chaleur du réacteur partent dans la source froide (fleuve, mer, tour) : 3 800 MW de chaleur pour ~1 300 MW d’électricité, c’est la thermodynamique, pas un défaut.",
+     "@1300 Le saviez-vous ? Environ deux tiers de la chaleur du réacteur partent dans la source froide (fleuve, mer, tour) : 3 800 MW de chaleur pour ~1 300 MW d’électricité, c’est la thermodynamique, pas un défaut.",
      "Le saviez-vous ? Le panache blanc de la tour, c’est uniquement de la vapeur d’eau propre du circuit de refroidissement, jamais l’eau du réacteur.",
      "Le saviez-vous ? Le circuit primaire est à 155 bar pour une seule raison : empêcher l’eau de bouillir à plus de 300 °C.",
-     "Le saviez-vous ? L’eau entre dans le cœur à ~293 °C et en ressort à ~329 °C : 36 °C gagnés en quelques secondes de traversée.",
-     "Le saviez-vous ? Les 4 pompes primaires (GMPP) brassent tout le circuit en continu, et leur simple frottement chauffe l’eau d’environ 20 MW, l’équivalent de milliers de radiateurs.",
+     "@1300 Le saviez-vous ? L’eau entre dans le cœur à ~293 °C et en ressort à ~329 °C : 36 °C gagnés en quelques secondes de traversée.",
+     "@1300 Le saviez-vous ? Les 4 pompes primaires (GMPP) brassent tout le circuit en continu, et leur simple frottement chauffe l’eau d’environ 20 MW, l’équivalent de milliers de radiateurs.",
      "Le saviez-vous ? En arrêt d’urgence, toutes les grappes tombent par gravité en ~2 secondes. Aucun moteur : on coupe le courant des électro-aimants et elles chutent.",
      "Le saviez-vous ? Après l’arrêt, le combustible chauffe encore : ~6 % de la puissance à l’instant même, ~1 % au bout d’une heure, ~0,5 % le lendemain. C’est pour ça qu’on refroidit pendant des jours.",
      "Le saviez-vous ? Le xénon, poison naturel du réacteur, atteint son maximum ~9 heures après un arrêt : redémarrer pendant ce « pic xénon » est très difficile. Il disparaît en 2-3 jours.",
      "Le saviez-vous ? On pilote aussi le réacteur… à la chimie : le bore dissous dans l’eau absorbe les neutrons. Plus de bore = moins de puissance. Diluer, c’est accélérer.",
-     "Le saviez-vous ? Le cœur contient 193 assemblages, soit environ 50 000 crayons remplis de petites pastilles d’uranium de la taille d’un dé à coudre.",
+     "@1300 Le saviez-vous ? Le cœur contient 193 assemblages, soit environ 50 000 crayons remplis de petites pastilles d’uranium de la taille d’un dé à coudre.",
      "Le saviez-vous ? Une seule pastille d’uranium (~7 g) libère autant d’énergie qu’environ une tonne de charbon.",
      "Le saviez-vous ? On ne recharge pas tout le cœur : tous les 12 à 18 mois, seul un tiers du combustible est remplacé.",
      "Le saviez-vous ? La turbine tourne à 1 500 tours/minute exactement, verrouillée sur les 50 Hz du réseau. Toutes les centrales du pays tournent « ensemble ».",
@@ -2658,25 +2799,35 @@ var ISO=(function(){
      "Le saviez-vous ? Dans chaque générateur de vapeur, l’eau du réacteur circule dans des milliers de tubes fins : elle chauffe l’autre eau à travers le métal, sans JAMAIS la toucher.",
      "Le saviez-vous ? Trois barrières séparent le combustible de l’environnement : la gaine métallique des crayons, le circuit primaire en acier, et l’enceinte en béton.",
      "Le saviez-vous ? L’enceinte du palier 1300 est à DOUBLE paroi de béton : la paroi interne encaisse la pression, l’externe protège des agressions.",
-     "Le saviez-vous ? 1 300 MW, c’est l’électricité d’environ un million de foyers.",
-     "Le saviez-vous ? Si la vapeur n’a plus aucune sortie, les soupapes des générateurs de vapeur crachent à l’atmosphère à partir de 90 bar : de la vapeur propre, jamais l’eau du réacteur.",
+     "@1300 Le saviez-vous ? 1 300 MW, c’est l’électricité d’environ un million de foyers.",
+     "@1300 Le saviez-vous ? Si la vapeur n’a plus aucune sortie, les soupapes des générateurs de vapeur crachent à l’atmosphère à partir de 90 bar : de la vapeur propre, jamais l’eau du réacteur.",
      "Le saviez-vous ? Le GCT (contournement) peut avaler la vapeur SANS la turbine : si le réseau disparaît, le réacteur peut continuer à tourner au ralenti. C’est l’îlotage : la centrale s’alimente elle-même.",
      "Le saviez-vous ? En cas de panne électrique totale, des moteurs diesel géants démarrent automatiquement en une quinzaine de secondes pour alimenter les systèmes de sûreté.",
      "Le saviez-vous ? Une des pompes de secours des générateurs de vapeur (la TPS) marche… à la vapeur. Même sans une seule source électrique, elle peut refroidir le réacteur.",
-     "Le saviez-vous ? La température moyenne du circuit suit un « programme » : ~290 °C au ralenti, ~310 °C à pleine puissance. Les barres de contrôle la tiennent automatiquement.",
+     "@1300 Le saviez-vous ? La température moyenne du circuit suit un « programme » : ~290 °C au ralenti, ~310 °C à pleine puissance. Les barres de contrôle la tiennent automatiquement.",
      "Le saviez-vous ? L’eau du circuit primaire devient légèrement radioactive en traversant le cœur ; celle du circuit secondaire, jamais. C’est toute la raison d’être des générateurs de vapeur.",
      "Le saviez-vous ? Le diagramme « chaussette » (onglet dédié) est un vrai document d’exploitation : les opérateurs doivent garder le point pression/température dans la zone autorisée, exactement comme toi ici.",
      "Le saviez-vous ? Les accumulateurs sont des réservoirs d’eau borée sous pression d’azote : en cas de grosse fuite, ils se vident TOUT SEULS dans le réacteur, sans pompe ni électricité ni ordre.",
      "Le saviez-vous ? Le réacteur répond à la turbine, pas l’inverse : ouvre plus les vannes d’admission et les barres se lèvent automatiquement pour fournir la puissance demandée.",
      "Le saviez-vous ? Les boutons ×60 et ×300 accélèrent le temps de simulation : un refroidissement de 4 heures se regarde en moins d’une minute. La physique reste exacte, seule l’attente disparaît.",
-     "Le saviez-vous ? La France exploite 20 tranches de 1 300 MW comme celle-ci : à elles seules, elles représentent environ 40 % de la puissance nucléaire du pays.",
-     "Le saviez-vous ? Chaque pompe primaire brasse ~23 000 m³/h. Les quatre ensemble font transiter l’équivalent d’une piscine olympique toutes les 100 secondes.",
+     "@1300 Le saviez-vous ? La France exploite 20 tranches de 1 300 MW comme celle-ci : à elles seules, elles représentent environ 40 % de la puissance nucléaire du pays.",
+     "@1300 Le saviez-vous ? Chaque pompe primaire brasse ~23 000 m³/h. Les quatre ensemble font transiter l’équivalent d’une piscine olympique toutes les 100 secondes.",
      "Le saviez-vous ? L’enceinte du palier 1300 a deux parois : 1,20 m de béton précontraint à l’intérieur, 55 cm de béton armé à l’extérieur : la première tient la pression, la seconde encaisse les agressions.",
      "Le saviez-vous ? Entre les corps HP et BP de la turbine, les sécheurs-surchauffeurs (GSS) essorent puis réchauffent la vapeur : sans eux, les gouttelettes éroderaient les ailettes BP.",
      "Le saviez-vous ? L’eau du condenseur ne repart pas froide vers les GV : une chaîne de réchauffeurs (le poste d’eau) la porte à ~220 °C avec de la vapeur soutirée de la turbine, un des secrets du rendement.",
      "Le saviez-vous ? La bâche alimentaire fait bouillir l’eau pour en chasser l’oxygène dissous : le dégazage protège les tubes des GV de la corrosion. Même l’eau se prépare.",
+     "@900 Le saviez-vous ? Environ deux tiers de la chaleur du réacteur partent dans la source froide (fleuve, mer, tour) : 2 785 MW de chaleur pour environ 900 MW d’électricité, c’est la thermodynamique, pas un défaut.",
+     "@900 Le saviez-vous ? L’eau entre dans la cuve à 286 °C et en ressort à 323 °C : 37 °C gagnés en quelques secondes de traversée.",
+     "@900 Le saviez-vous ? La température moyenne du circuit suit un « programme » : 286 °C à charge nulle, 304,6 °C à pleine puissance. Les barres de contrôle la tiennent automatiquement le long de cette droite.",
+     "@900 Le saviez-vous ? Le cœur compte 157 assemblages et 72,5 tonnes d’uranium enrichi, sous une cuve de 4 mètres de diamètre intérieur.",
+     "@900 Le saviez-vous ? Un 900 tourne sur trois boucles et trois générateurs de vapeur, là où le palier de 1 300 MWe en compte quatre.",
+     "@900 Le saviez-vous ? La vapeur sort des générateurs à 58 bar et 273 °C, à raison de 1 820 tonnes par heure et par générateur.",
+     "@900 Le saviez-vous ? Si la vapeur n’a plus aucune sortie, les soupapes des générateurs de vapeur crachent à l’atmosphère à partir de 76 bar : de la vapeur propre, jamais l’eau du réacteur.",
+     "@900 Le saviez-vous ? Tout le circuit primaire, pressuriseur compris, tient dans 271 m³ d’eau, l’équivalent d’un cube de six mètres et demi de côté, maintenu à 155 bar.",
+     "@900 Le saviez-vous ? Une heure après l’arrêt, le cœur dégage encore 40 MW de chaleur, et 16 MW le lendemain : c’est pour elle que tout le refroidissement de secours existe.",
      "Tout est stable. Explore, ou déclenche un incident (carte Incidents) pour t’entraîner, le guide t’aidera."];
-    return TIPS[Math.floor(Date.now()/30000)%TIPS.length];
+    var _tp=txtPal(TIPS); 
+    return _tp.length?_tp[Math.floor(Date.now()/30000)%_tp.length]:'';
   }
   window.__easyMsg=easyMsg;
   el('bInhib').onclick=function(){
@@ -4621,14 +4772,14 @@ try{window.GEO400=GEO400;}catch(_e){}
   try{window.carteLayers=carteLayers;}catch(_e){}
   var HIST=[
    "En 1974, après le premier choc pétrolier, le plan Messmer lance le plus grand programme nucléaire civil du monde : la France construira 58 réacteurs en une génération.",
-   "Les 20 tranches du palier 1300 MWe (P4 et P'4) sont entrées en service entre 1984 et 1993, celles que tu peux piloter ici en font partie.",
+   "@1300 Les 20 tranches du palier 1300 MWe (P4 et P'4) sont entrées en service entre 1984 et 1993, celles que tu peux piloter ici en font partie.",
    "Le 27 décembre 1999, la tempête inonde la centrale du Blayais : l'événement fonde la doctrine actuelle de protection contre les agressions externes.",
    "Superphénix, à Creys-Malville, fut le plus puissant surgénérateur du monde (1240 MWe au sodium liquide). Arrêté en 1997, il dort sur ta carte sous une petite tombe.",
-   "Un réacteur 1300 MWe évacue les deux tiers de sa chaleur par la source froide : c'est pour ça que choisir ta centrale change la température de ton condenseur.",
+   "@1300 Un réacteur 1300 MWe évacue les deux tiers de sa chaleur par la source froide : c'est pour ça que choisir ta centrale change la température de ton condenseur.",
    "Fessenheim, doyenne du parc (1977), a été arrêtée en 2020. Ses deux 900 MWe reposent en Alsace, au bord du grand canal.",
    "Gravelines est la plus grande centrale d'Europe de l'Ouest : six réacteurs 900 MWe refroidis par la mer du Nord.",
    "L'îlotage, se replier sur sa propre consommation en cas de perte du réseau, est un exercice réel du parc : SIMUREP te l'apprendra à l'étage CNPE.",
-   "SIMUREP est développé par un professionnel du nucléaire et une IA : la physique du palier P4 y est calée sur des références publiques (ASNR, RGE), et certifiée par une batterie de bancs automatiques avant chaque livraison.",
+   "@1300 SIMUREP est développé par un professionnel du nucléaire et une IA : la physique du palier P4 y est calée sur des références publiques (ASNR, RGE), et certifiée par une batterie de bancs automatiques avant chaque livraison.",
    "La régulation de température moyenne que tu utilises (grappes + bore) est la vraie boucle de pilotage du palier : Tmoy suit un programme fonction de la charge.",
    "Une seule pastille de combustible (7 grammes d'oxyde d'uranium, la taille d'un dé) libère autant d'énergie qu'environ une tonne de charbon.",
    "Le xénon-135 est le plus puissant absorbeur de neutrons connu : c'est lui qui complique les redémarrages, tu le vivras à la mission 16.",
@@ -4643,7 +4794,7 @@ try{window.GEO400=GEO400;}catch(_e){}
    "Le combustible se recharge par tiers ou par quart de cœur, lors d'arrêts programmés, d'où les états API, APR et RCD que tu peux explorer.",
    "Le réseau français tient à 50,00 Hz : chaque tranche ajuste sa puissance pour suivre la consommation du pays en temps réel.",
    "La cuve d'un 1300 pèse 418 tonnes à vide et ses parois d'acier font plus de 20 cm d'épaisseur : elle est conçue pour quarante ans... et au-delà.",
-   "Un cœur de 1300 MWe contient 193 assemblages combustibles, soit plus de 50 000 crayons : la carte du cœur que tu vois en suit chaque grappe.",
+   "@1300 Un cœur de 1300 MWe contient 193 assemblages combustibles, soit plus de 50 000 crayons : la carte du cœur que tu vois en suit chaque grappe.",
    "Le 1er juillet 2025, l'ASNR a autorisé les 20 réacteurs 1300 MWe à fonctionner au-delà de 40 ans : les quatrièmes visites décennales s'ouvrent avec Paluel 1 en 2026 et s'étaleront jusqu'en 2034.",
    "Depuis le 1er janvier 2025, l'IRSN (l'expert) et l'ASN (le gendarme) ne font plus qu'un : l'ASNR, Autorité de sûreté nucléaire et de radioprotection.",
    "Le pressuriseur d'un 1300 fait 60 m³, et une aspersion continue d'environ 230 litres par heure y homogénéise l'eau en permanence ; le circuit primaire entier contient quelque 290 m³.",
@@ -4651,8 +4802,8 @@ try{window.GEO400=GEO400;}catch(_e){}
    "La bâche alimentaire d'un 1300 (450 m³ d'eau à 180 °C sous 10 bar) est perchée au point haut de la salle des machines : c'est la hauteur qui donne aux turbopompes leur aspiration.",
    "Chaque turbopompe alimentaire (TPA) d'un 1300 refoule environ 5 000 tonnes d'eau par heure à 80 bar vers les générateurs de vapeur, et sa turbine tourne à la vapeur vive du barillet.",
    "Pour les réexamens au-delà de 40 ans, l'ASNR a fixé à chaque site 1300 une température extérieure extrême de référence comprise entre 39 et 46 °C : la canicule fait partie du dimensionnement.",
-   "En 2012, Penly 2 a subi un arrêt automatique réacteur sur la perte d'une seule pompe primaire : au-dessus d'une trentaine de pour cent de puissance, un bas débit boucle suffit à chuter les grappes.",
-   "Les règles générales d'exploitation ne pardonnent pas : un contournement vapeur à l'atmosphère partiellement indisponible impose le repli du réacteur sous trois jours ; Saint-Alban 1 l'a appris en 2026 (INES 1).",
+   "@1300 En 2012, Penly 2 a subi un arrêt automatique réacteur sur la perte d'une seule pompe primaire : au-dessus d'une trentaine de pour cent de puissance, un bas débit boucle suffit à chuter les grappes.",
+   "@1300 Les règles générales d'exploitation ne pardonnent pas : un contournement vapeur à l'atmosphère partiellement indisponible impose le repli du réacteur sous trois jours ; Saint-Alban 1 l'a appris en 2026 (INES 1).",
    "Les tubes des générateurs de vapeur sont surveillés au millilitre : la définition des fuites primaire-secondaire et les conduites à tenir ont été révisées pour tout le parc en 2026.",
    "Entre 1977 et 1987, la France a mis en service 34 réacteurs de 900 MWe : dix ans, une tranche tous les trois mois et demi en moyenne. C'est cette cadence qui a fabriqué le palier standardisé.",
    "La quatrième visite décennale du palier 900 a commencé en 2019 à Tricastin 1 ; la dernière est attendue en 2030 à Chinon B4. Onze ans pour repasser en revue, un par un, les réacteurs de la carte.",
@@ -4671,7 +4822,7 @@ try{window.GEO400=GEO400;}catch(_e){}
    "Turbine déclenchée sur un 900, la pression monte dans les trois générateurs de vapeur jusqu'aux environs de 71 bars : c'est la pression minimale d'ouverture des vannes de décharge à l'atmosphère. Le souffle que les riverains entendent, c'est ce seuil-là qui vient d'être franchi.",
    "Un seul tube de générateur de vapeur qui casse, c'est environ 45 kilos d'eau primaire par seconde qui passent côté secondaire : un tube parmi des milliers, et la seule brèche du circuit primaire qui sorte directement de l'enceinte de confinement.",
    "En cas de rupture induite de tubes de GV, la voie de rejet vers l'extérieur, ce sont les soupapes de sûreté du secondaire, et sur un 900, elles s'ouvrent à 76 bars. C'est le seul chiffre de tarage que l'IRSN donne « à titre d'exemple » : le confinement est court-circuité par une soupape qui fait exactement son travail.",
-   "Réacteur arrêté depuis trois jours, circuit primaire à la plage de travail basse : il reste 45 m³ d'eau autour du cœur, et 15 minutes pour passer de 40 à 100 °C. Quarante minutes de plus et le combustible commence à se découvrir. L'arrêt n'est pas un état de repos.",
+   "@900 Réacteur arrêté depuis trois jours, circuit primaire à la plage de travail basse : il reste 45 m³ d'eau autour du cœur, et 15 minutes pour passer de 40 à 100 °C. Quarante minutes de plus et le combustible commence à se découvrir. L'arrêt n'est pas un état de repos.",
    "Un mois après l'arrêt, un cœur de 900 MWe dégage encore 4,5 MW, de quoi chauffer 150 pavillons. Les délais passent alors à 40 minutes avant ébullition et 146 minutes avant dénoyage.",
    "Le pressuriseur d'un 900 CPY porte trois lignes de deux soupapes SEBIM® pilotées, six au total. Et depuis le troisième réexamen, sous 160 °C, un électroaimant peut les forcer à s'ouvrir sous leur tarage : mieux vaut dépressuriser que fissurer une cuve froide.",
    "Les diesels de secours du CPY s'appellent LHP et LHQ ; ceux du Bugey, LHG et LHH. Le CP0 ne partage même pas le repérage de ses groupes électrogènes avec le reste du palier 900. Depuis la VD4, ils doivent prouver 48 heures de marche continue.",
@@ -4753,7 +4904,8 @@ try{window.GEO400=GEO400;}catch(_e){}
    "Le réseau a un état intermédiaire entre « tout va bien » et « alerte rouge » : il passe en État d'Alerte si l'écart de fréquence dépasse 50 mHz pendant plus de 15 minutes, ou 100 mHz pendant plus de 5. Il n'en sort qu'en repassant sous 50 mHz.",
    "Le palier 900 n'a pas une puissance mais cinq : le registre national inscrit 880 MW à Bugey 4 et 5, 890 à Dampierre, 905 à Chinon B, 910 au Blayais, à Bugey 2-3 et à Gravelines, 915 à Cruas, Saint-Laurent et Tricastin. Même chaudière, mais chaque site a sa turbine, sa source froide et son histoire."
   ];
-  function histo(){var t=document.getElementById('histoTxt');if(t)t.textContent=HIST[(Math.random()*HIST.length)|0];}
+  var HISTP=txtPal(HIST); 
+  function histo(){var t=document.getElementById('histoTxt');if(t)t.textContent=HISTP.length?HISTP[(Math.random()*HISTP.length)|0]:'';}
   function openCarte(){try{document.body.classList.add('booted');}catch(_e){}var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';try{CNPE.homeTable(S);}catch(_e){}try{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';}catch(_e){}buildCarte();if(!openCarte._z){openCarte._z=1;try{mkPinch('carteWrap','svgFr','carteZr');}catch(_e){}}var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();
     var _bl=document.getElementById('bCarteLex');if(_bl&&!_bl._w){_bl._w=1;_bl.onclick=function(){var m=document.getElementById('carteLexM');m.style.display='block';renderLex('',document.getElementById('carteLexBody'));var q=document.getElementById('carteLexQ');if(q&&!q._w){q._w=1;q.addEventListener('input',function(){renderLex(this.value,document.getElementById('carteLexBody'));});}};}
     var _br=document.getElementById('bCarteReset');if(_br&&!_br._w){_br._w=1;_br.onclick=function(){CNPE.resetAll(true);};}
@@ -4771,7 +4923,7 @@ try{window.GEO400=GEO400;}catch(_e){}
   var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 (EPR)'}]},
     'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
     'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
-  var PN={'P4':PAL.PEL,"P'4":PAL.PEL,'CPY':PALIERS['CPY'].PEL,'CP0':900,'N4':1450,'EPR':1650}; 
+  var PN={'P4':PAL.PEL,"P'4":PAL.PEL,'CPY':PALIERS['CPY'].PEL,'CP0':PALIERS['CP0'].PEL,'N4':1450,'EPR':1650}; 
   var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'rechargement',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
   
   var PARC={hash:function(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h;},
@@ -4836,7 +4988,9 @@ try{window.GEO400=GEO400;}catch(_e){}
   var LOGRING=[];try{var _log0=log;log=function(txt,cls){try{LOGRING.push({t:Date.now(),txt:String(txt),cls:cls||''});if(LOGRING.length>40)LOGRING.shift();}catch(e){}return _log0(txt,cls);};}catch(_e){}   
   var CNPE=(function(){
     var cur=null,timer=null,api={},dusTest={};
-    function playable(s){return s.p==='P4'||s.p==="P'4";}
+    
+    
+    function playable(s){return (typeof palPret==='function')?palPret(s.p):(s.p==='P4'||s.p==="P'4");}
     function ukey(k){return k.replace(/[^A-Za-z0-9]/g,'_');}
     
     
@@ -5175,6 +5329,6 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build c2144d0345468af1 · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build cde1da48097b45d1 · contact@simurep.fr -->
 </body>
 </html>
