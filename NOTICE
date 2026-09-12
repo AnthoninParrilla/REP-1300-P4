@@ -1,6 +1,6 @@
 NOTICE — SIMUREP
 Sources et licences des données tierces incorporées
-Mise à jour : 2026-08-27
+Mise à jour : 2026-09-12
 
 ═══════════════════════════════════════════════════════════════════════════════
 1. L'ŒUVRE
@@ -20,6 +20,11 @@ système. Le code est écrit intégralement pour ce projet.
 
 Le présent fichier ne recense donc QUE des DONNÉES tierces, incorporées sous
 licence ouverte, et les obligations d'attribution qui les accompagnent.
+
+Les plans de site (plans/*.json, dessinés par siteplan.js, servis au public
+depuis la version 2.15.0) ne sont PAS des données tierces : ce sont des
+coordonnées placées à la main par l'auteur dans son atelier, versionnées avec
+le produit, et couvertes par le même « tous droits réservés » que le reste.
 
 ═══════════════════════════════════════════════════════════════════════════════
 2. RÉSEAU 400 kV DE LA CARTE DE FRANCE  ->  geo.js (généré par geo-rte.py)
