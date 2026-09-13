@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.15.1</title>
+<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.15.1a</title>
 <meta property="og:title" content="SIMUREP, le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc nucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
@@ -427,7 +427,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.15.1</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.15.1a</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1401,6 +1401,8 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     ROD_SB:25,     
     ROD_SD:92,     
     ROD_BH:96,     
+    WG:0,          
+                   
     
     PENC_I:1.25    
   };
@@ -1489,6 +1491,12 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     W_XE:-2800,    
     DEF_PUI:-1700, 
     ROD_SB:25, ROD_SD:92, ROD_BH:96, 
+    WG:1200,       
+                   
+                   
+                   
+                   
+                   
     PENC_I:1.25, 
   };
 
@@ -1562,7 +1570,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     peauPalier(id);
     PAL=PALIERS[id]; PRESET=PRESETS[id]; JUMP=JUMPS[id];
     S0=JSON.parse(JSON.stringify(nominal())); S0.pal=id;   
-    W_ROD=PAL.W_ROD; W_BORE=1; W_XE=0; A_MOD=PAL.A_MOD; DEF_PUI=PAL.DEF_PUI;
+    W_ROD=PAL.W_ROD; W_BORE=1; W_XE=0; A_MOD=PAL.A_MOD; DEF_PUI=PAL.DEF_PUI; WG=PAL.WG;
     if(S.gmppN>PAL.NB)S.gmppN=PAL.NB;   
     
     
@@ -1612,8 +1620,9 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   try{var _lg=document.getElementById('lblNGmpp');if(_lg)_lg.textContent='GMPP \u00d7'+PAL.NB;
       var _lv=document.getElementById('lblNGv');if(_lv)_lv.textContent='GV \u00d7'+PAL.NB;}catch(_e){}
   var BETA=650, TAU=12;
+  var gPos=0;   
   var W_ROD=PAL.W_ROD, W_BORE=1, W_XE=0; 
-  var A_MOD=PAL.A_MOD, DEF_PUI=PAL.DEF_PUI;
+  var A_MOD=PAL.A_MOD, DEF_PUI=PAL.DEF_PUI, WG=PAL.WG;
   var LAM_I=2.87e-5, LAM_XE=2.09e-5, SIG=8.5e-5; 
   var K1=0.95*(LAM_XE+SIG), K2=0.05*(LAM_XE+SIG);
   var F_FISS=0.935, F_RES=0.065; 
@@ -1719,6 +1728,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     S._rodTgt=null;S._turbTgt=null;S._cbTgt=null;S._rodFinal=null;S._rpHold=false;S._rpHold2=false;S._rpRamp=false;S._pzrFollow=false;S._fromIdx=undefined;
     S.tripMsg='';S.note='';S.asgLatch=false;S.ishp=false;S.isbp=false;S.eas=false;S.sigIS=false;S.easLatch=false;S.isoEnc=false;S.breche=0;S.inv=100;S.Penc=1;S.sebim=false;S.rdp=0;S.rdpBurst=false;
     ['_rtvIso','rejAtmMsg','_ptMsg','_flrMsg','_gradMsg','_grMsg','_cfMsg','_rwMsg','_blkDue','_accDue','_reaDue','_reaMsg','_accMsg','_blkMsg','_isAux','recircHot','asgOn'].forEach(function(f){if(S[f]===undefined)S[f]=false;});
+    gPos=S.scram?1:(1-clamp((S.viv?S.turb:0)/100,0,1));   
     S.etat=e;
     try{log('Prise de quart : la tranche est en '+e+', '+Math.round(S.Tavg)+' \u00b0C / '+Math.round(S.Ppzr)+' bar, '+Math.round(S.Pelec)+' MWe'+(e==='ANGV'?', groupes d\u2019arr\u00eat chut\u00e9s':'')+(J.isBlk?', IS bloqu\u00e9e, accus isol\u00e9s':'')+'.','dim');}catch(_e){}}
   function isHot(){return S.etat==='RP'||S.etat==='ANGV';}
@@ -1948,7 +1958,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
         
         var bez=document.getElementById('gvRodN');while(bez&&bez.parentElement&&bez.parentElement!==carte)bez=bez.parentElement;
         if(bez&&bez!==carte)bez.classList.add('rodEchelle');}}
-    if(led){var L=Math.max(0,Math.min(1,S.Pn||0)),au=!!S.scram,noir=(S.etat==='RCD'||S.etat==='APR');
+    if(led){var L=Math.max(0,Math.min(1,((S.viv?S.turb:0)||0)/100)),au=!!S.scram,noir=(S.etat==='RCD'||S.etat==='APR');   
       var cal=function(seuil,plage){return au?1:Math.max(0,Math.min(1,(seuil-L)/plage));};
       var ins=[cal(1.00,0.28),cal(0.86,0.28),cal(0.70,0.30),cal(0.50,0.30),au?1:Math.max(0,Math.min(1,(100-(S.rod||0))/100))];
       var cols=led.querySelectorAll('.rodCol');
@@ -2199,7 +2209,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   }
   var _xeSatF=0; 
   function xeSatWatch(){ 
-    if(S.auto&&!S.scram&&(S.ilote||S.Pn<0.15)&&S.rod>PAL.ROD_BH){if(!_xeSatF){_xeSatF=1;log('CONDUITE : grappes en butée haute : le xénon absorbe la réactivité à basse puissance. DILUE (onglet Réactivité) pour redonner de la marge aux grappes avant toute remontée : une montée de charge sur ce cœur finirait en surpuissance.','amber');}}
+    if(S.auto&&!S.scram&&(S.ilote||S.Pn<0.6)&&S.rod>PAL.ROD_BH){if(!_xeSatF){_xeSatF=1;log('CONDUITE : grappes en butée haute : le xénon absorbe la réactivité à basse puissance. DILUE (onglet Réactivité) pour redonner de la marge aux grappes avant toute remontée : une montée de charge sur ce cœur finirait en surpuissance.','amber');}}
     else if(S.rod<85&&_xeSatF)_xeSatF=0;}
   function scramReq(m){
     if(S.aarInhib){
@@ -6470,6 +6480,6 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 4605e05a02a2e7ae · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 986b4110c19388fe · contact@simurep.fr -->
 </body>
 </html>
