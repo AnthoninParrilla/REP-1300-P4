@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.15.0</title>
+<title>SIMUREP, le simulateur des réacteurs nucléaires français · version 2.15.1</title>
 <meta property="og:title" content="SIMUREP, le simulateur des réacteurs nucléaires français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc nucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
@@ -35,6 +35,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SIMUREP">
 <meta name="theme-color" content="#12171c">
+<meta name="color-scheme" content="light only"><!-- 2.15.1 : la page porte SA palette (beige de pupitre, écrans verts) ; sans cette ligne, le mode sombre forcé de certains téléphones inverse et fait baver textes et synoptiques -->
 <script>
   // ═══ SIMUREP — © 2026 AnthoninP — Tous droits réservés. Reproduction, copie, extraction ou réutilisation
   // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée.
@@ -50,6 +51,7 @@ if('serviceWorker' in navigator){
 </script>
 <style>
   :root{
+    color-scheme:light only;  /* 2.15.1 : jamais d'inversion automatique par le navigateur */
     --panel:#d8cfba;          /* beige panneau */
     --panel2:#c6bba1;         /* fond pupitre */
     --edge:#8a765a;           /* marron cadre */
@@ -425,7 +427,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le parc à trois niveaux</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.15.0</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.15.1</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -1663,8 +1665,8 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   var SRC={
     mer:{lbl:'Mer (Manche / Mer du Nord)',sites:'Gravelines · Paluel · Penly · Flamanville',t:{hiver:7,mi:12,ete:18}},
     estuaire:{lbl:'Estuaire',sites:'Blayais',t:{hiver:8,mi:14,ete:23}},
-    fleuve:{lbl:'Fleuve, circuit ouvert',sites:'Saint-Alban · Tricastin · Bugey',t:{hiver:8,mi:14,ete:24}},
-    tour:{lbl:'Fleuve + aéroréfrigérants',sites:'Cattenom · Golfech · Nogent · Cruas · Civaux',t:{hiver:15,mi:20,ete:26},aero:true}
+    fleuve:{lbl:'Fleuve, circuit ouvert',sites:'Saint-Alban · Tricastin · Bugey 2 et 3',t:{hiver:8,mi:14,ete:24}},
+    tour:{lbl:'Fleuve + aéroréfrigérants',sites:'Cattenom · Golfech · Nogent · Belleville · Chinon · Dampierre · Saint-Laurent · Cruas · Bugey 4 et 5 · Civaux',t:{hiver:15,mi:20,ete:26},aero:true}
   };
   function magnus(T){return 0.006112*Math.exp(17.62*T/(243.12+T));} 
 
@@ -1756,7 +1758,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     {id:'pth',  sh:'P TH',  lbl:'P thermique',       u:'MWth', d:0, get:function(){return S.Ptot*PAL.PTH;}},
     {id:'pe',   sh:'P EL',  lbl:'P électrique',      u:'MWe',  d:0, get:function(){return S.Pelec;}},
     {id:'krtv', sh:'VVP',   lbl:'KRT VVP fuite',     u:'L/h',  d:1, get:function(){return S.fuiteGV<=0?2.4:S.fuiteGV*(S.fuiteGV>=3?Math.max(0.15,Math.min(1,(S.Ppzr-Math.max(S.Psteam*0.5,S.Penc))/140)):Math.max(0,Math.min(1,(S.Ppzr-S.Psteam)/140)))*(S.fuiteGV>=3?9000:220);}},
-    {id:'krte', sh:'EBA',   lbl:'KRT EBA enceinte',  u:'mGy/h',d:2, get:function(){return Math.min(2e5,0.5*Math.pow(10,Math.min(Math.log10(1+S.actEnc*30),5.6)));}},
+    {id:'krte', sh:'EBA',   lbl:'KRT EBA enceinte',  u:'mGy/h',d:2, get:function(){var pn=Math.max(0,Math.min(1,S.Pn||0));return Math.min(2e5,0.5*(0.02+0.98*pn)+0.5*(Math.pow(10,Math.min(Math.log10(1+Math.max(0,S.actEnc-0.005)*30),5.6))-1));}},
     {id:'lvl',  sh:'N CUV', lbl:'Niveau cuve',       u:'%',    d:0, get:function(){return S.lvlCuve;}},
     {id:'h2',   sh:'H2',    lbl:'H2 enceinte',       u:'%vol', d:1, get:function(){return S.h2;}},
     {id:'rod',  sh:'GRAPP', lbl:'Position groupe R', u:'%',    d:1, get:function(){return S.rod;}},
@@ -3769,7 +3771,11 @@ var ISO=(function(){
     
     var bqP=Math.min(5e11,2e7*Math.pow(10,clamp(Math.log10(1+S.actP*50),0,4.4)));
     
-    var gyV=Math.min(50,0.01e-3*Math.pow(10,clamp(S.actGV,0,6.7)));
+    
+    
+    
+    var _pnK=clamp(S.Pn||0,0,1);
+    var gyV=Math.min(50,0.01e-3*(0.05+0.95*_pnK)+0.01e-3*(Math.pow(10,clamp(S.actGV,0,6.7))-1));
     
     
     
@@ -3780,7 +3786,8 @@ var ISO=(function(){
     
     var bqC=Math.min(1e9,1e5*Math.pow(10,clamp(S.actCvi*1.5,0,4)));
     
-    var gyE=Math.min(200,0.5e-3*Math.pow(10,clamp(Math.log10(1+S.actEnc*30),0,5.6)));
+    
+    var gyE=Math.min(200,0.5e-3*(0.02+0.98*_pnK)+0.5e-3*(Math.pow(10,clamp(Math.log10(1+Math.max(0,S.actEnc-0.005)*30),0,5.6))-1));
     function fk2(id,val,unit,seuilA,seuilR){
       el(id).textContent=eng(val,unit);
       el(id).style.color=val>seuilR?'var(--red)':(val>seuilA?'var(--amber)':'var(--green)');
@@ -5191,13 +5198,13 @@ try{window.GEO400=GEO400;}catch(_e){}
   try{window.ll2xy=ll2xy;}catch(_e){}
   
   var SITES=[
-   {n:'Gravelines',x:237,y:25,p:'CPY',t:6},{n:'Chooz',x:312,y:64,p:'N4',t:2},{n:'Penly',x:210,y:69,p:"P'4",t:2,src:'mer'},
+   {n:'Gravelines',x:237,y:25,p:'CPY',t:6,src:'mer'},{n:'Chooz',x:312,y:64,p:'N4',t:2},{n:'Penly',x:210,y:69,p:"P'4",t:2,src:'mer'},
    {n:'Paluel',x:193,y:76,p:'P4',t:4,g:1,dy:-9,dx:-2,src:'mer'},{n:'Cattenom',x:354,y:92,p:"P'4",t:4,src:'tour'},{n:'Flamanville',x:121,y:85,p:'P4',t:2,g:1,src:'mer',epr:1},
-   {n:'Nogent',x:276,y:134,p:"P'4",t:2,src:'tour'},{n:'Fessenheim',x:396,y:157,p:'\u2020',t:2,g:1},{n:'Saint-Laurent',x:219,y:169,p:'CPY',t:2,g:1},
-   {n:'Dampierre',x:247,y:169,p:'CPY',t:4},{n:'Belleville',x:257,y:179,p:"P'4",t:2,src:'tour'},{n:'Chinon',x:176,y:190,p:'CPY',t:4,g:1},
-   {n:'Civaux',x:189,y:224,p:'N4',t:2,g:1},{n:'Bugey',g:1,x:331,y:254,p:'CP0',t:4},{n:'Creys-Malville',x:338,y:255,p:'\u2020',t:1},
-   {n:'Saint-Alban',x:316,y:272,p:'P4',t:2,g:1,src:'fleuve'},{n:'Blayais',x:146,y:276,p:'CPY',t:4,g:1},{n:'Cruas',x:316,y:306,p:'CPY',t:4},
-   {n:'Tricastin',x:316,y:319,p:'CPY',t:4},{n:'Golfech',x:193,y:329,p:"P'4",t:2,g:1,src:'tour'}
+   {n:'Nogent',x:276,y:134,p:"P'4",t:2,src:'tour'},{n:'Fessenheim',x:396,y:157,p:'\u2020',t:2,g:1},{n:'Saint-Laurent',x:219,y:169,p:'CPY',t:2,g:1,src:'tour'},
+   {n:'Dampierre',x:247,y:169,p:'CPY',t:4,src:'tour'},{n:'Belleville',x:257,y:179,p:"P'4",t:2,src:'tour'},{n:'Chinon',x:176,y:190,p:'CPY',t:4,g:1,src:'tour'},
+   {n:'Civaux',x:189,y:224,p:'N4',t:2,g:1},{n:'Bugey',g:1,x:331,y:254,p:'CP0',t:4,src:'fleuve',srcs:['fleuve','fleuve','tour','tour']},{n:'Creys-Malville',x:338,y:255,p:'\u2020',t:1},
+   {n:'Saint-Alban',x:316,y:272,p:'P4',t:2,g:1,src:'fleuve'},{n:'Blayais',x:146,y:276,p:'CPY',t:4,g:1,src:'estuaire'},{n:'Cruas',x:316,y:306,p:'CPY',t:4,src:'tour'},
+   {n:'Tricastin',x:316,y:319,p:'CPY',t:4,src:'fleuve'},{n:'Golfech',x:193,y:329,p:"P'4",t:2,g:1,src:'tour'}
   ];
   try{window.__SITES=SITES;}catch(_e){}
   var FR='M243,22 L229,26 L221,29 L222,36 L220,50 L221,60 L215,65 L206,71 L196,74 L186,78 L179,85 L178,90 L183,92 L176,95 L167,98 L156,95 L144,93 L141,95 L139,88 L138,83 L139,80 L129,80 L119,76 L121,82 L121,85 L123,92 L128,107 L127,116 L129,125 L119,124 L114,124 L105,122 L98,125 L93,128 L87,122 L85,116 L73,113 L57,116 L47,117 L38,121 L33,126 L32,131 L39,134 L33,142 L32,145 L38,146 L42,156 L56,154 L72,161 L78,173 L89,171 L93,180 L95,183 L105,184 L106,192 L103,197 L111,210 L115,219 L126,228 L134,235 L138,245 L137,259 L144,270 L147,282 L144,284 L139,272 L135,262 L132,273 L129,287 L127,302 L124,322 L120,337 L118,346 L116,353 L107,358 L122,361 L139,374 L154,383 L170,386 L185,390 L202,395 L214,401 L227,399 L246,404 L267,404 L262,392 L262,383 L264,372 L284,361 L298,355 L307,358 L320,361 L324,359 L338,364 L343,368 L356,373 L363,373 L379,364 L382,357 L390,351 L398,344 L405,340 L406,326 L384,313 L379,301 L378,290 L378,283 L383,275 L379,263 L380,250 L378,241 L379,232 L377,226 L362,230 L357,235 L355,228 L357,219 L364,212 L365,204 L373,194 L381,183 L398,172 L397,158 L401,140 L402,126 L410,112 L413,109 L405,107 L390,107 L379,105 L368,97 L358,90 L352,89 L344,87 L341,88 L332,87 L317,81 L312,70 L313,62 L305,69 L298,68 L289,56 L276,53 L269,44 L266,37 L258,34 L250,28 L248,20 Z';
@@ -5414,7 +5421,7 @@ try{window.GEO400=GEO400;}catch(_e){}
   ];
   var HISTP=txtPal(HIST); 
   function histo(){var t=document.getElementById('histoTxt');if(t)t.textContent=HISTP.length?HISTP[(Math.random()*HISTP.length)|0]:'';}
-  function openCarte(){try{document.body.classList.add('booted');}catch(_e){}var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';try{CNPE.homeTable(S);}catch(_e){}try{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';}catch(_e){}buildCarte();if(!openCarte._z){openCarte._z=1;try{mkPinch('carteWrap','svgFr','carteZr');}catch(_e){}}var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}histo();
+  function openCarte(){try{document.body.classList.add('booted');}catch(_e){}var c=document.getElementById('carteFr');if(!c)return;c.style.display='block';try{CNPE.homeTable(S);}catch(_e){}try{document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';}catch(_e){}buildCarte();if(!openCarte._z){openCarte._z=1;try{mkPinch('carteWrap','svgFr','carteZr');}catch(_e){}}var _cv=document.getElementById('carteVer'),_vt=document.getElementById('verTag');if(_cv&&_vt)_cv.textContent=_vt.textContent.split('\u00b7')[0];var _hn=document.getElementById('histoNext');if(_hn&&!_hn._w){_hn._w=1;_hn.onclick=histo;}var _ht=document.getElementById('histoTous');if(_ht&&!_ht._w){_ht._w=1;_ht.onclick=function(){var m=document.getElementById('carteHistM'),b=document.getElementById('carteHistBody');if(!m||!b)return;b.innerHTML=HISTP.map(function(t){return '<p style="margin:0 0 8px">\u26a1 '+String(t).replace(/</g,'&lt;')+'</p>';}).join('');m.style.display='block';};}histo();
     var _bl=document.getElementById('bCarteLex');if(_bl&&!_bl._w){_bl._w=1;_bl.onclick=function(){var m=document.getElementById('carteLexM');m.style.display='block';renderLex('',document.getElementById('carteLexBody'));var q=document.getElementById('carteLexQ');if(q&&!q._w){q._w=1;q.addEventListener('input',function(){renderLex(this.value,document.getElementById('carteLexBody'));});}};}
     var _br=document.getElementById('bCarteReset');if(_br&&!_br._w){_br._w=1;_br.onclick=function(){CNPE.resetAll(true);};}
     var _ba=document.getElementById('bCarteApro');if(_ba&&!_ba._w){_ba._w=1;_ba.onclick=function(){document.getElementById('carteAproM').style.display='block';var av=document.getElementById('aproVer'),vt=document.getElementById('verTag');if(av&&vt)av.textContent=vt.textContent;};}}
@@ -5975,7 +5982,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       
       "Belleville":{"site":"Belleville","palier":"P'4","tranches":2,"src":"claude","maj":"2026-09-03","note":"tracé par Claude d’après le relevé OSM (entraxes, côté de la halle, tours POSÉES PAR MOI au sud, le relevé ne les avait pas — à placer), habillé à la manière des plans d’Anthonin ; à corriger à l’œil","eau":{"type":"fleuve","nom":"la Loire","bord":"est","lim":250},"objets":[{"t":"ilot","x":-80.3,"y":0,"r":0,"m":1,"u":1,"lab":"BR"},{"t":"sdm","x":-80.3,"y":-63.6,"r":180,"m":1,"n":1,"u0":1,"L":88,"l":105,"axe":"axe"},{"t":"transfo","x":-133.3,"y":-168.6,"r":180,"m":1,"u":1,"kv":"400"},{"t":"dus","x":-110.3,"y":100,"r":0,"m":1,"u":1},{"t":"ilot","x":80.3,"y":0,"r":0,"m":1,"u":0,"lab":"BR"},{"t":"sdm","x":80.3,"y":-63.6,"r":180,"m":1,"n":1,"u0":0,"L":88,"l":106,"axe":"axe"},{"t":"transfo","x":27.3,"y":-169.6,"r":180,"m":1,"u":0,"kv":"400"},{"t":"dus","x":50.3,"y":100,"r":0,"m":1,"u":0},{"t":"aero","x":-90,"y":240,"r":0,"m":1,"d":125,"u":0},{"t":"aero","x":90,"y":335,"r":0,"m":1,"d":125,"u":1},{"t":"ste","x":-230.3,"y":82.7,"r":0,"m":1,"L":64,"l":34}]},
       "Blayais":{"site":"Blayais","palier":"CPY","tranches":4,"src":"atelier","maj":"2026-09-03","eau":{"type":"mer","nom":"l'estuaire de la Gironde","bord":"nord","lim":-230},"objets":[{"t":"paire","x":-120,"y":0,"r":0,"m":1,"u":0},{"t":"paire","x":183,"y":0,"r":0,"m":1,"u":2},{"t":"sdp","x":-121,"y":-98,"r":0,"m":1,"n":2,"u0":0,"L":98,"l":26,"ent":1},{"t":"transfo","x":-148,"y":140,"r":0,"m":1,"u":0,"kv":"400"},{"t":"transfo","x":-60.6,"y":139.4,"r":0,"m":1,"u":1,"kv":"400"},{"t":"transfo","x":158,"y":140,"r":0,"m":1,"u":2,"kv":"400"},{"t":"transfo","x":239,"y":140,"r":0,"m":1,"u":3,"kv":"400"},{"t":"dus","x":-184.3,"y":211.4,"r":0,"m":1,"u":0},{"t":"dus","x":-100.3,"y":211.4,"r":0,"m":1,"u":1},{"t":"dus","x":55.7,"y":211.4,"r":0,"m":1,"u":2},{"t":"dus","x":139.7,"y":211.4,"r":0,"m":1,"u":3},{"t":"ste","x":32,"y":-122,"r":0,"m":1,"L":64,"l":36},{"t":"sdm","x":183,"y":44,"r":0,"m":1,"n":2,"u0":2,"L":173,"l":96,"axe":"file"},{"t":"sdm","x":-121,"y":44,"r":0,"m":1,"n":2,"u0":0,"L":173,"l":96,"axe":"file"},{"t":"ste","x":32,"y":-56,"r":0,"m":1,"L":64,"l":36},{"t":"bache","x":266,"y":247,"r":0,"m":1,"d":22},{"t":"bache","x":266,"y":269,"r":0,"m":1,"d":22},{"t":"sdp","x":183,"y":-98,"r":0,"m":1,"n":2,"u0":2,"L":98,"l":26,"ent":1}]},
-      "Bugey":{"site":"Bugey","palier":"CP0","tranches":4,"src":"claude","maj":"2026-09-03","note":"tracé par Claude sur le modèle de Blayais/Tricastin (CP1, halle transversale par paire) ; CP0 traité comme CP1 ; deux tours pour les tranches 4-5 supposées, à confirmer ; à corriger à l’œil","eau":{"type":"fleuve","nom":"le Rhône","bord":"nord","lim":-230},"objets":[{"t":"paire","x":-120,"y":0,"r":180,"m":1,"u":0,"us":[1,0]},{"t":"paire","x":120,"y":0,"r":180,"m":1,"u":2,"us":[3,2]},{"t":"sdm","x":-120,"y":42.8,"r":0,"m":1,"n":2,"u0":0,"us":[1,0],"L":173,"l":96,"axe":"file"},{"t":"sdm","x":120,"y":42.8,"r":0,"m":1,"n":2,"u0":2,"us":[3,2],"L":173,"l":96,"axe":"file"},{"t":"transfo","x":-162,"y":139,"r":0,"m":1,"u":1,"kv":"400"},{"t":"transfo","x":-78,"y":139,"r":0,"m":1,"u":0,"kv":"400"},{"t":"transfo","x":78,"y":139,"r":0,"m":1,"u":3,"kv":"400"},{"t":"transfo","x":162,"y":139,"r":0,"m":1,"u":2,"kv":"400"},{"t":"sdp","x":-120,"y":-98,"r":0,"m":1,"n":2,"u0":0,"us":[1,0],"L":98,"l":26},{"t":"sdp","x":120,"y":-98,"r":0,"m":1,"n":2,"u0":2,"us":[3,2],"L":98,"l":26},{"t":"dus","x":-275,"y":-27,"r":0,"m":1,"u":0},{"t":"dus","x":-275,"y":-5,"r":0,"m":1,"u":1},{"t":"dus","x":275,"y":-27,"r":0,"m":1,"u":2},{"t":"dus","x":275,"y":-5,"r":0,"m":1,"u":3},{"t":"ste","x":-292,"y":133,"r":0,"m":1,"L":64,"l":34},{"t":"canal","x":-374,"y":-253,"r":0,"m":1,"pts":[[0,0],[228,97],[773,98],[1004,8]],"w":40},{"t":"aero","x":-90,"y":330,"r":0,"m":1,"d":125,"u":2},{"t":"aero","x":90,"y":430,"r":0,"m":1,"d":125,"u":3}]},
+      "Bugey":{"site":"Bugey","palier":"CP0","tranches":4,"src":"claude","maj":"2026-09-13","note":"tracé par Claude sur le modèle de Blayais/Tricastin (CP1, halle transversale par paire) ; CP0 traité comme CP1 ; deux tours pour les tranches 4-5 supposées, à confirmer ; à corriger à l’œil","eau":{"type":"fleuve","nom":"le Rhône","bord":"nord","lim":-230},"objets":[{"t":"paire","x":-120,"y":0,"r":180,"m":1,"u":0,"us":[1,0]},{"t":"paire","x":120,"y":0,"r":180,"m":1,"u":2,"us":[3,2]},{"t":"sdm","x":-120,"y":42.8,"r":0,"m":1,"n":2,"u0":0,"us":[1,0],"L":173,"l":96,"axe":"file"},{"t":"sdm","x":120,"y":42.8,"r":0,"m":1,"n":2,"u0":2,"us":[3,2],"L":173,"l":96,"axe":"file"},{"t":"transfo","x":-162,"y":139,"r":0,"m":1,"u":1,"kv":"400"},{"t":"transfo","x":-78,"y":139,"r":0,"m":1,"u":0,"kv":"400"},{"t":"transfo","x":78,"y":139,"r":0,"m":1,"u":3,"kv":"400"},{"t":"transfo","x":162,"y":139,"r":0,"m":1,"u":2,"kv":"400"},{"t":"sdp","x":-120,"y":-98,"r":0,"m":1,"n":2,"u0":0,"us":[1,0],"L":98,"l":26},{"t":"sdp","x":120,"y":-98,"r":0,"m":1,"n":2,"u0":2,"us":[3,2],"L":98,"l":26},{"t":"dus","x":-275,"y":-27,"r":0,"m":1,"u":0},{"t":"dus","x":-275,"y":-5,"r":0,"m":1,"u":1},{"t":"dus","x":275,"y":-27,"r":0,"m":1,"u":2},{"t":"dus","x":275,"y":-5,"r":0,"m":1,"u":3},{"t":"ste","x":-292,"y":133,"r":0,"m":1,"L":64,"l":34},{"t":"canal","x":-374,"y":-253,"r":0,"m":1,"pts":[[0,0],[228,97],[773,98],[1004,8]],"w":40},{"t":"aero","x":-90,"y":330,"r":0,"m":1,"d":125,"u":2},{"t":"aero","x":90,"y":430,"r":0,"m":1,"d":125,"u":3},{"t":"aero","x":-240,"y":330,"r":0,"m":1,"d":125,"u":2},{"t":"aero","x":240,"y":430,"r":0,"m":1,"d":125,"u":3}]},
       "Cattenom":{"site":"Cattenom","palier":"P'4","tranches":4,"src":"claude","maj":"2026-09-03","note":"tracé par Claude d’après le relevé OSM (entraxes, côté de la halle, 4 tours aux positions relevées, station de pompage posée côté eau (pompes CRF/SEC)), habillé à la manière des plans d’Anthonin ; à corriger à l’œil","eau":{"type":"fleuve","nom":"la Moselle","bord":"nord","lim":-265.8},"objets":[{"t":"ilot","x":-395.3,"y":-18.5,"r":180,"m":1,"u":0,"lab":"BR"},{"t":"sdm","x":-395.3,"y":45.1,"r":0,"m":1,"n":1,"u0":0,"L":88,"l":105,"axe":"axe"},{"t":"transfo","x":-342.3,"y":150.1,"r":0,"m":1,"u":0,"kv":"400"},{"t":"dus","x":-365.3,"y":-118.5,"r":0,"m":1,"u":0},{"t":"ilot","x":-244.4,"y":17,"r":180,"m":1,"u":1,"lab":"BR"},{"t":"sdm","x":-244.4,"y":80.6,"r":0,"m":1,"n":1,"u0":1,"L":88,"l":105,"axe":"axe"},{"t":"transfo","x":-191.4,"y":185.6,"r":0,"m":1,"u":1,"kv":"400"},{"t":"dus","x":-214.4,"y":-83,"r":0,"m":1,"u":1},{"t":"ilot","x":242.4,"y":24.4,"r":180,"m":1,"u":2,"lab":"BR"},{"t":"sdm","x":242.4,"y":88,"r":0,"m":1,"n":1,"u0":2,"L":88,"l":105,"axe":"axe"},{"t":"transfo","x":295.4,"y":193,"r":0,"m":1,"u":2,"kv":"400"},{"t":"dus","x":272.4,"y":-75.6,"r":0,"m":1,"u":2},{"t":"ilot","x":397.2,"y":-22.8,"r":180,"m":1,"u":3,"lab":"BR"},{"t":"sdm","x":397.2,"y":40.8,"r":0,"m":1,"n":1,"u0":3,"L":88,"l":105,"axe":"axe"},{"t":"transfo","x":450.2,"y":145.8,"r":0,"m":1,"u":3,"kv":"400"},{"t":"dus","x":427.2,"y":-122.8,"r":0,"m":1,"u":3},{"t":"aero","x":562.4,"y":292.7,"r":0,"m":1,"d":125,"u":0},{"t":"aero","x":243.9,"y":385.9,"r":0,"m":1,"d":125,"u":1},{"t":"aero","x":-282.2,"y":368.4,"r":0,"m":1,"d":125,"u":2},{"t":"aero","x":-588.4,"y":287.7,"r":0,"m":1,"d":125,"u":3},{"t":"sdp","x":1,"y":-175.8,"r":0,"m":1,"n":4,"u0":0,"us":[0,1,2,3],"L":160,"l":26},{"t":"ste","x":-545.3,"y":105,"r":0,"m":1,"L":64,"l":34}]},
       "Chinon":{"site":"Chinon","palier":"CPY","tranches":4,"src":"claude","maj":"2026-09-03","note":"tracé par Claude sur le modèle de Cruas (CP2, halles dans l’axe) ; CP2 comme Cruas, aéros circulaires (dit par Anthonin) ; à corriger à l’œil","eau":{"type":"fleuve","nom":"la Loire","bord":"nord","lim":-230},"objets":[{"t":"paire","x":-120,"y":0,"r":180,"m":1,"u":0,"us":[1,0]},{"t":"paire","x":120,"y":0,"r":180,"m":1,"u":2,"us":[3,2]},{"t":"sdm","x":-162,"y":42.8,"r":0,"m":1,"n":1,"u0":1,"L":62,"l":96,"axe":"axe"},{"t":"sdm","x":-78,"y":42.8,"r":0,"m":1,"n":1,"u0":0,"L":62,"l":96,"axe":"axe"},{"t":"sdm","x":78,"y":42.8,"r":0,"m":1,"n":1,"u0":3,"L":62,"l":96,"axe":"axe"},{"t":"sdm","x":162,"y":42.8,"r":0,"m":1,"n":1,"u0":2,"L":62,"l":96,"axe":"axe"},{"t":"transfo","x":-162,"y":139,"r":0,"m":1,"u":1,"kv":"400"},{"t":"transfo","x":-78,"y":139,"r":0,"m":1,"u":0,"kv":"400"},{"t":"transfo","x":78,"y":139,"r":0,"m":1,"u":3,"kv":"400"},{"t":"transfo","x":162,"y":139,"r":0,"m":1,"u":2,"kv":"400"},{"t":"sdp","x":0,"y":-136,"r":0,"m":1,"n":4,"u0":0,"us":[1,0,3,2],"L":160,"l":26},{"t":"dus","x":-275,"y":-27,"r":0,"m":1,"u":0},{"t":"dus","x":-275,"y":-5,"r":0,"m":1,"u":1},{"t":"dus","x":275,"y":-27,"r":0,"m":1,"u":2},{"t":"dus","x":275,"y":-5,"r":0,"m":1,"u":3},{"t":"ste","x":-292,"y":133,"r":0,"m":1,"L":64,"l":34},{"t":"canal","x":-374,"y":-253,"r":0,"m":1,"pts":[[0,0],[228,97],[773,98],[1004,8]],"w":40},{"t":"aeroF","x":-360,"y":330,"r":0,"m":1,"d":130,"n":6,"u":1},{"t":"aeroF","x":-180,"y":430,"r":0,"m":1,"d":130,"n":6,"u":1},{"t":"aeroF","x":0,"y":330,"r":0,"m":1,"d":130,"n":6,"u":3},{"t":"aeroF","x":180,"y":430,"r":0,"m":1,"d":130,"n":6,"u":2}]},
       "Chooz":{"site":"Chooz","palier":"N4","tranches":2,"src":"claude","maj":"2026-09-03","note":"tracé par Claude sur le modèle de Saint-Alban avec l’îlot 1300 (pas d’asset N4) ; deux tours supposées, à confirmer ; à corriger à l’œil","eau":{"type":"fleuve","nom":"la Meuse","bord":"nord","lim":-330},"objets":[{"t":"ilot","x":-75,"y":-5,"r":180,"m":1,"u":0,"lab":"BR"},{"t":"sdm","x":-75,"y":58.6,"r":0,"m":1,"n":1,"u0":0,"L":88,"l":122,"axe":"axe"},{"t":"transfo","x":-128,"y":181,"r":0,"m":1,"u":0,"kv":"400"},{"t":"dus","x":-150,"y":-105,"r":0,"m":1,"u":0},{"t":"ilot","x":75,"y":-5,"r":180,"m":1,"u":1,"lab":"BR"},{"t":"sdm","x":75,"y":58.6,"r":0,"m":1,"n":1,"u0":1,"L":88,"l":122,"axe":"axe"},{"t":"transfo","x":22,"y":181,"r":0,"m":1,"u":1,"kv":"400"},{"t":"dus","x":0,"y":-105,"r":0,"m":1,"u":1},{"t":"sdp","x":0,"y":-231,"r":0,"m":1,"n":2,"u0":0,"L":80,"l":26},{"t":"ste","x":279,"y":17,"r":0,"m":1,"L":64,"l":34},{"t":"aero","x":-95,"y":330,"r":0,"m":1,"d":125,"u":0},{"t":"aero","x":95,"y":425,"r":0,"m":1,"d":125,"u":1}]},
@@ -6004,7 +6011,11 @@ try{window.GEO400=GEO400;}catch(_e){}
   
   var CNPE_DB={'Penly':{eau:'mer',nom:'la Manche',tours:0},'Paluel':{eau:'mer',nom:'la Manche',tours:0},'Flamanville':{eau:'mer',nom:'la Manche',tours:0,extra:[{p:'EPR',lab:'Flamanville 3 (EPR)'}]},
     'Cattenom':{eau:'fleuve',nom:'la Moselle',tours:1},'Nogent':{eau:'fleuve',nom:'la Seine',tours:1},'Belleville':{eau:'fleuve',nom:'la Loire',tours:1},
-    'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0}};
+    'Golfech':{eau:'fleuve',nom:'la Garonne',tours:1},'Saint-Alban':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0},'Blayais':{eau:'mer',nom:"l'estuaire de la Gironde",tours:0},
+    
+    'Gravelines':{eau:'mer',nom:'la mer du Nord',tours:0},'Tricastin':{eau:'fleuve',nom:'le Rh\u00f4ne (canal de Donz\u00e8re-Mondragon)',tours:0},
+    'Bugey':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:0,mixte:'tranches 2 et 3 en circuit ouvert, 4 et 5 sur a\u00e9ror\u00e9frig\u00e9rants'},'Cruas':{eau:'fleuve',nom:'le Rh\u00f4ne',tours:1},
+    'Chinon':{eau:'fleuve',nom:'la Loire',tours:1},'Dampierre':{eau:'fleuve',nom:'la Loire',tours:1},'Saint-Laurent':{eau:'fleuve',nom:'la Loire',tours:1}};
   
   var PN={'P4':PALIERS['P4'].PEL,"P'4":PALIERS["P'4"].PEL,'CPY':PALIERS['CPY'].PEL,'CP0':PALIERS['CP0'].PEL,'N4':1450,'EPR':1650}; 
   var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'rechargement',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
@@ -6153,7 +6164,7 @@ try{window.GEO400=GEO400;}catch(_e){}
     function stateOf(s,i,S){var key=s.n+'|'+(i+1);
       if(key===UNITMEM.key()){var dv=dispo(S.etat,Math.round(S.Pelec||0),!!S.scram,S.etat==='RP'&&!S.scram&&(S.turb||0)<1&&(S.Ptot||0)>0.1,!!S.ilote,KV(s));if(dv){dv.cur=true;return dv;}return {Pe:Math.round(S.Pelec||0),etat:S.etat||'RP',lab:ETLAB[S.etat]||'',cur:true};}
       if(i<s.t&&window.__net&&peekCache[key]){var pc={Pe:Math.round(peekCache[key].Pelec||0),etat:peekCache[key].etat||'RP',au:peekCache[key].au,gct:peekCache[key].gct,il:peekCache[key].il};if(PARC.differs(key,pc)){var dv2=dispo(pc.etat,pc.Pe,pc.au,pc.gct,pc.il,KV(s));if(dv2){dv2.mod=true;return dv2;}return {Pe:pc.Pe,etat:pc.etat,lab:ETLAB[pc.etat]||'',cur:false,mod:true};}}   
-      if(i<s.t&&UNITMEM.store[key]){var m=UNITMEM.store[key];if(PARC.differs(key,m)){var dv3=dispo(m.etat,m.Pe||0,m.au,m.gct,m.il,KV(s));if(dv3){dv3.mod=true;return dv3;}return {Pe:m.Pe||0,etat:m.etat||'RP',lab:ETLAB[m.etat]||'',cur:false,mod:true};}}   
+      if(i<s.t&&UNITMEM.store[key]){var m=UNITMEM.store[key];if(m.rare||PARC.differs(key,m)){var dv3=dispo(m.etat,m.Pe||0,m.au,m.gct,m.il,KV(s));if(dv3){dv3.mod=true;dv3.rare=m.rare;dv3.inc=m.inc;return dv3;}return {Pe:m.Pe||0,etat:m.etat||'RP',lab:ETLAB[m.etat]||'',cur:false,mod:true,rare:m.rare,inc:m.inc};}}   
       var pal=(i>=s.t)?'EPR':s.p;var u=PARC.unit(s.n,i,pal,S.t||0);u.cur=false;return u;}
     api.unitState=stateOf;
     function alive(key){var pc=peekCache[key];return !!(pc&&pc.ts&&Date.now()-pc.ts<20000);}   
@@ -6206,7 +6217,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(!api._w){api._w=1;var b1=el('bCnpeCarte');if(b1)b1.onclick=function(){api.close();try{openCarte();}catch(e){}};}   
       var svg=el('cnpeSvg');if(svg){svg.setAttribute('viewBox','0 0 '+b.W+' '+b.H);svg.innerHTML=b.h;}
       var db=CNPE_DB[s.n]||{};var ti=el('cnpeTitle');if(ti)ti.textContent='CNPE de '+s.n;
-      var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||PN.P4)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)');
+      var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||PN.P4)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.mixte?' ('+db.mixte+')':(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)'));
       var uc=el('cnpeUnits');if(uc){var hh='';for(var i=0;i<b.N;i++){var epr=i>=s.t;hh+='<div class="cnpeCard" id="cnC'+i+'"><div style="font-weight:800;font-size:15px">'+(epr?'Flamanville 3 (EPR)':'Tranche '+ULAB(s.n,i+1)+' \u00b7 '+s.p)+'</div><div class="cnpeVal" style="font-size:12.5px;color:#4a5c70;margin:4px 0 8px">\u2014</div>'+(epr?'<span style="font-size:11px;color:#8a99a8">EN CONSTRUCTION dans SIMUREP</span>':'<button class="cnpeBtn on" data-tr="'+(i+1)+'">Prendre le quart</button><div class="cnpeAct"></div>')+'</div>';}
         uc.innerHTML=hh;uc.querySelectorAll('button[data-tr]').forEach(function(bt){bt.onclick=function(){api.take(cur.s,+bt.getAttribute('data-tr'));};});
         uc.onclick=function(ev){var bt=ev.target.closest?ev.target.closest('button[data-act]'):null;if(bt){ev.stopPropagation();doAct(bt.getAttribute('data-act'));}};}
@@ -6221,12 +6232,14 @@ try{window.GEO400=GEO400;}catch(_e){}
       try{localStorage.setItem('rep_site',key);}catch(e){}
       var e0=mem?mem.etat:(function(){var u=PARC.unit(s.n,tr-1,s.p,S.t||0);return u.etat==='AT'?'RCD':'RP';})();       
       var viv=!!(window.__net&&alive(key));   
-      if(prev!==key&&!viv){if(!window.__net){try{if(s.p&&S.pal!==s.p&&typeof setPalier==='function')setPalier(s.p);}catch(_e){}try{jumpEtat(e0);try{var _fl=(mem&&mem.inc)||null;if(_fl){if(_fl.sec)S.sec=false;if(_fl.rri)S.rri=false;if(_fl.crf)S.crf=false;if(_fl.h3)S.h3=true;if(_fl.reseau)S.reseau=false;log('Reprise de quart : la tranche retrouve ses avaries mémorisées ('+['sec','rri','crf','h3','reseau'].filter(function(q){return _fl[q];}).join(', ').toUpperCase()+').','amber');}}catch(_e){}}catch(e){}}else if(e0!=='RP'){try{window.__net.jump(ukey(key),e0);}catch(e){}}}   
+      if(prev!==key&&!viv){if(!window.__net){try{if(s.p&&S.pal!==s.p&&typeof setPalier==='function')setPalier(s.p);}catch(_e){}try{jumpEtat(e0);try{var _fl=(mem&&mem.inc)||null;if(_fl){if(_fl.sec)S.sec=false;if(_fl.rri)S.rri=false;if(_fl.crf)S.crf=false;if(_fl.h3)S.h3=true;if(_fl.reseau)S.reseau=false;log('Reprise de quart : la tranche retrouve ses avaries mémorisées ('+['sec','rri','crf','h3','reseau'].filter(function(q){return _fl[q];}).join(', ').toUpperCase()+').','amber');}}catch(_e){}}catch(e){}}else{if(e0!=='RP'){try{window.__net.jump(ukey(key),e0);}catch(e){}}
+        
+        var _fl2=(mem&&mem.inc)||null;if(_fl2){try{[['sec','iSec'],['rri','iRri'],['crf','iCrf'],['h3','iH3'],['reseau','iLoop']].forEach(function(q){if(_fl2[q[0]])window.__net.cmd({type:'incident',id:q[1]});});log('Reprise de quart : la tranche retrouve ses avaries m\u00e9moris\u00e9es ('+['sec','rri','crf','h3','reseau'].filter(function(q){return _fl2[q];}).join(', ').toUpperCase()+').','amber');}catch(e){}}}}   
       var u0=PARC.unit(s.n,tr-1,s.p,S.t||0),PeT=mem?mem.Pe:((u0.etat==='RP'||u0.etat==='RD')?u0.Pe:0);   
       if(!mem){UNITMEM.store[key]={etat:e0,Pe:PeT,t:Date.now()};UNITMEM.save();}
       if(prev!==key&&!viv&&e0==='RP'&&PeT>0){var ld=Math.max(20,Math.min(100,Math.round(PeT/(PN[s.p]||PN.P4)*100)));             
         if(!window.__net){try{S.turbSet=ld;S.turb=ld;}catch(e){}}else{try{window.__net.cmd({type:'set',k:'turbSet',v:ld,rgl:1});}catch(e){}}}   
-      if(s.src){try{S.srcType=s.src;var _ss=el('srcSel');if(_ss)_ss.value=s.src;applySrc(true);}catch(e){}
+      var _sc=(s.srcs&&s.srcs[tr-1])||s.src;if(_sc){try{S.srcType=_sc;var _ss=el('srcSel');if(_ss)_ss.value=_sc;applySrc(true);}catch(e){}   
         if(window.__net&&prev!==key){try{['srcType','Tsrc','saison','gaine'].forEach(function(k){if(S[k]!==undefined)window.__net.cmd({type:'set',k:k,v:S[k]});});}catch(e){}}}   
       try{recRows=[];recNext=S.t;recRender(true);}catch(e){}   
       if(!viv)api.setFollow(true,true);   
@@ -6247,11 +6260,11 @@ try{window.GEO400=GEO400;}catch(_e){}
         var nX=(!dead&&CNPE_DB[s.n]&&CNPE_DB[s.n].extra)?CNPE_DB[s.n].extra.length:0,nT=s.t+nX;   
         if(!dead){for(var i=0;i<nT;i++){var u=stateOf(s,i,S);if(i>=s.t&&!(u&&u.real))continue;units.push(u);sum+=u.Pe||0;if((u.Pe||0)>0)np++;}}
         tot+=sum;var open=!!api.exp[s.n],pl=playable(s);
-        h+='<tr class="parcRow" data-s="'+si+'" style="border-top:1px solid #edf1f5;cursor:pointer'+(open?';background:#f4f7fa':'')+'"><td style="padding:6px;font-weight:700">'+(open?'\u25be':'\u25b8')+' '+s.n+(pl?' <span style="font-size:10px;color:#2f7a4f;font-weight:600">jouable</span>':'')+'</td><td style="color:#4a5c70">'+(dead?'arr\u00eat\u00e9e':s.p)+'</td><td style="text-align:center">'+(dead?'\u2014':np+'/'+units.length)+'</td><td style="text-align:right;font-weight:700">'+(dead?'0':sum)+' MW</td></tr>';
+        h+='<tr class="parcRow" data-s="'+si+'" style="border-top:1px solid #edf1f5;cursor:pointer'+(open?';background:#f4f7fa':'')+'"><td style="padding:6px;font-weight:700">'+(open?'\u25be':'\u25b8')+' '+s.n+(pl?' <span style="font-size:10px;color:#2f7a4f;font-weight:600">jouable</span>':'')+'</td><td style="color:#4a5c70">'+(dead?'arr\u00eat\u00e9e':s.p)+'</td><td style="text-align:center">'+(dead?'\u2014':np+'/'+units.length)+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(dead?'0':sum)+' MW</td></tr>';
         if(open&&!dead)units.forEach(function(u,i){var cc=u.etat==='AU'?'#c0392b':(u.etat==='RP'?'#2f7a4f':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8a99a8':'#e0a030')),epr=i>=s.t,key=s.n+'|'+(i+1),mem=!u.cur&&!epr&&!!u.mod;
-          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2f7a4f">\u25cf au pupitre</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':'')))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+(u.lab||'')+'</span></td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700">'+(u.Pe||0)+' MWe</td></tr>';});
+          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2f7a4f">\u25cf au pupitre</span>':(u.rare?' <span style="font-size:10px;color:#c0392b;font-weight:700">\u26a0 '+(RARE.lab[u.rare]||'avarie')+', \u00e0 toi</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':''))))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+(u.lab||'')+'</span></td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(u.Pe||0)+' MWe</td></tr>';});
         if(open&&pl)h+='<tr style="background:#fafbfc"><td colspan="4" style="padding:4px 6px 8px 26px"><button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-view="'+si+'">\ud83c\udfed vue du site</button></td></tr>';});
-      h+='<tr style="border-top:2px solid #dfe6ee"><td colspan="3" style="padding:6px;font-weight:800">Production du parc</td><td style="text-align:right;font-weight:800">'+tot+' MW</td></tr></table>';
+      h+='<tr style="border-top:2px solid #dfe6ee"><td colspan="3" style="padding:6px;font-weight:800">Production du parc</td><td style="text-align:right;font-weight:800;white-space:nowrap">'+tot+' MW</td></tr></table>';
       box.innerHTML=h;
       box.querySelectorAll('tr.parcRow').forEach(function(r){r.onclick=function(){var s=L[+r.getAttribute('data-s')];api.exp[s.n]=!api.exp[s.n];api.homeTable(S);};});
       box.querySelectorAll('button[data-take]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation();var p=b.getAttribute('data-take').split('|');api.take(L[+p[0]],+p[1]);};});
@@ -6282,6 +6295,27 @@ try{window.GEO400=GEO400;}catch(_e){}
       try{var L=['rep_site','rep_units','rep_sid','rep_parc','rep_layers','rep_view','rep_touched'];try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('rep_')===0&&L.indexOf(k)<0)L.push(k);}}catch(e){}L.forEach(function(k){try{localStorage.removeItem(k);}catch(e){}});}catch(e){}
       UNITMEM.store={};try{if(window.RESEAU&&RESEAU.cmd)RESEAU.cmd({k:'reset'});}catch(e){}
       try{setTimeout(function(){location.reload();},250);}catch(e){}return true;};
+    
+    
+    
+    
+    
+    
+    
+    var RARE={p:1/240,min:10*60000,inc:['sec','rri','crf'],lab:{sec:'perte SEC',rri:'perte RRI',crf:'perte CRF'},t0:Date.now()};
+    function rareEnCours(){for(var k in UNITMEM.store){var m=UNITMEM.store[k];if(m&&m.inc&&m.rare)return k;}return null;}
+    function rareTirer(force){var L=window.__SITES||[];if(!L.length||rareEnCours())return null;
+      if(!force&&(Date.now()-RARE.t0<RARE.min||Math.random()>RARE.p))return null;
+      var _S=(typeof S!=='undefined'&&S)||(window.__sim&&window.__sim.S)||{},cand=[];
+      L.forEach(function(s){if(!playable(s))return;for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1);if(key===UNITMEM.key()||UNITMEM.store[key])continue;var u=PARC.unit(s.n,i,s.p,_S.t||0);if(u.etat==='RP'&&u.Pe>0)cand.push({key:key,Pe:u.Pe});}});
+      if(!cand.length)return null;var c=cand[(Math.random()*cand.length)|0],inc=RARE.inc[(Math.random()*RARE.inc.length)|0];
+      var m={etat:'RP',Pe:c.Pe,t:Date.now(),inc:{},rare:inc};m.inc[inc]=true;UNITMEM.store[c.key]=m;UNITMEM.save();
+      rareAffiche();return c.key;}
+    function rareAffiche(){var k=rareEnCours(),msg=el('carteMsg');if(!msg)return;
+      if(!k){if(msg._rare){msg.textContent='';msg._rare=false;}return;}
+      var m=UNITMEM.store[k],p=k.split('|');msg._rare=true;msg.textContent='\u26a0 '+p[0]+', tranche '+ULAB(p[0],+p[1])+' : '+(RARE.lab[m.rare]||'avarie')+' signal\u00e9e par le site. Va prendre le quart pour la r\u00e9soudre.';}
+    api.rare=rareTirer;api.rareEnCours=rareEnCours;api.rareAffiche=rareAffiche;
+    try{setInterval(function(){try{rareTirer(false);rareAffiche();}catch(e){}},60000);}catch(_e){}
     return api;
   })();
   try{window.CNPE=CNPE;window.PARC=PARC;window.UNITMEM=UNITMEM;}catch(_e){}
@@ -6335,6 +6369,7 @@ function pull(){
     return r.json();
   }).then(function(d){
     try{
+      if(d&&d.err){var e0=document.getElementById('srvDot');if(e0){e0.textContent='\u25cf moteur satur\u00e9 ('+String(d.err)+'), r\u00e9essaie dans quelques minutes';e0.style.color='#a03030';}return;}   // 2.15.1 : un 503 « serveur plein » se LIT dans le bandeau au lieu de passer pour un moteur en ligne
       var logs=d._logs||[];delete d._logs;delete d._speed;
       if(d.pal&&d.pal!==S.pal&&window.__setPalier){try{window.__setPalier(d.pal);}catch(e){}}   // LE PALIER SUIT LA SESSION (2.15.0) : pal:"CPY" arrive du serveur ; la bascule pose tiroir, peau, planche et textes AVANT que le miroir n'ecrase S.pal
       if(d._follow!==undefined){try{var CN=window.CNPE;if(CN&&CN.follow!==d._follow){CN.follow=d._follow;var bf=document.getElementById('bSuivre');if(bf)bf.classList.toggle('on',d._follow);}}catch(e){}delete d._follow;}
@@ -6382,9 +6417,9 @@ document.querySelectorAll('button').forEach(function(b){
     <div id="carteMsg" style="min-height:22px;font-size:13px;color:#8a5a10;padding:4px 2px;font-weight:600"></div>
     <div style="font-size:11.5px;color:#8a99a8;padding:4px 2px 0;line-height:1.6"><span style="color:#2a7fa0">&#9679;</span> 900 MWe (CPY/CP0) · <span style="color:#2f7a4f">&#9679;</span> 1300 MWe (P4/P&#8217;4) · <span style="color:#8e5aa8">&#9679;</span> 1450 MWe (N4) · <span style="color:#d9782e">&#9679;</span> 1650 MWe (EPR) · &#129702; arrêtées · <span style="color:#a8404f">&#9644;</span> lignes 400 kV · <span style="color:#2f7a4f">&#10132;</span> import · <span style="color:#2a7fa0">&#10132;</span> export</div>
     <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:12px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#33465c;line-height:1.5">&#9432;&nbsp; <b>Clique un site vert</b> pour prendre ton quart : le simulateur s&#8217;ouvre sur cette centrale, avec sa source froide. Les sites gris arrivent aux prochains paliers. Le bouton &#128506;&#65039; en haut du simulateur te ram&egrave;ne ici.</div>
-    <div id="mesTr" class="cnpeCard" style="margin-top:10px;display:none;color:#243242"></div>
+    <div id="mesTr" class="cnpeCard" style="margin-top:10px;display:none;color:#243242;overflow-x:auto;-webkit-overflow-scrolling:touch"></div>
     <div id="dispCard" class="cnpeCard" style="margin-top:10px;display:none;color:#243242"></div>
-    <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:10px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#2f4256;line-height:1.5"><b>&#9889; Le savais-tu&nbsp;?</b> <span id="histoTxt"></span> <a id="histoNext" style="cursor:pointer;color:#2f7a4f;text-decoration:underline;white-space:nowrap">une autre&nbsp;!</a></div>
+    <div style="background:#fff;border-radius:14px;padding:12px 14px;margin-top:10px;box-shadow:0 1px 3px rgba(20,40,60,.08);font-size:13px;color:#2f4256;line-height:1.5"><b>&#9889; Le savais-tu&nbsp;?</b> <span id="histoTxt"></span> <a id="histoNext" style="cursor:pointer;color:#2f7a4f;text-decoration:underline;white-space:nowrap">une autre&nbsp;!</a> <a id="histoTous" style="cursor:pointer;color:#2f7a4f;text-decoration:underline;white-space:nowrap">tout voir</a></div>
     <div style="display:flex;gap:10px;margin-top:12px">
       <button id="bCarteLex" style="flex:1;background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:14px;padding:12px;font-size:14px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06)">&#128214;&nbsp; Lexique du nucl&eacute;aire</button>
       <button id="bCarteApro" style="flex:1;background:#fff;color:#1d2a38;border:1px solid #d5dee6;border-radius:14px;padding:12px;font-size:14px;font-weight:600;box-shadow:0 1px 3px rgba(20,40,60,.06)">&#8505;&#65039;&nbsp; &Agrave; propos</button>
@@ -6398,6 +6433,12 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="display:flex;gap:8px;align-items:center;flex:0 0 auto"><b style="font-size:16px">&#128214; Le lexique du nucléaire</b><button onclick="document.getElementById('carteLexM').style.display='none'" style="margin-left:auto;background:#2f4256;color:#fff;border:0;border-radius:8px;padding:4px 10px">Fermer</button></div>
     <input id="carteLexQ" placeholder="Chercher un terme (GV, bore, xénon…)" style="width:100%;margin:8px 0;padding:7px 9px;border:1px solid #b8c6d4;border-radius:8px;font-size:13px;flex:0 0 auto">
     <div id="carteLexBody" style="font-size:13px;overflow:auto;flex:1 1 auto;-webkit-overflow-scrolling:touch"></div>
+  </div>
+</div>
+<div id="carteHistM" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(20,28,38,.45)" onclick="if(event.target===this)this.style.display='none'">
+  <div style="max-width:560px;margin:6vh auto;background:#f5f8fb;border-radius:12px;padding:14px;max-height:84vh;overflow:auto;color:#243242;font-size:13.5px;line-height:1.5;display:flex;flex-direction:column">
+    <div style="display:flex;gap:8px;align-items:center;flex:0 0 auto"><b style="font-size:16px">&#9889; Le savais-tu&nbsp;? Toutes les anecdotes</b><button onclick="document.getElementById('carteHistM').style.display='none'" style="margin-left:auto;background:#2f4256;color:#fff;border:0;border-radius:8px;padding:4px 10px">Fermer</button></div>
+    <div id="carteHistBody" style="margin-top:8px;overflow:auto;flex:1 1 auto;-webkit-overflow-scrolling:touch"></div>
   </div>
 </div>
 <div id="carteAproM" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(20,28,38,.45)" onclick="if(event.target===this)this.style.display='none'">
@@ -6429,6 +6470,6 @@ document.querySelectorAll('button').forEach(function(b){
     <div style="text-align:right;font-size:10.5px;color:#8a99a8;padding:12px 4px 6px">by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</div>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 543492aa66e02bfd · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 4605e05a02a2e7ae · contact@simurep.fr -->
 </body>
 </html>

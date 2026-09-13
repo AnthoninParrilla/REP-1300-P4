@@ -2,7 +2,7 @@
 // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée. ═══
 // Service worker du châssis public — SIMUREP (paliers 900 et 1300)
 // Stratégie : réseau d'abord (version toujours fraîche), cache en secours (mode avion).
-var CACHE = 'rep1300-client-202609122140';
+var CACHE = 'rep1300-client-202609131519';
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
