@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.0</title>
+<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.0a</title>
 <meta property="og:title" content="SIMUREP, le simulateur du parc électronucléaire français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc électronucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
@@ -343,6 +343,9 @@ body.shake{animation:quake .9s linear;}
    Source embarquée par embed.py pour conserver le fonctionnement autonome. */
 #carteFr,#cnpeFr{--forest:#153f32;--ink:#203c32;--muted:#65786e;--line:#dbe3da;--paper:#f6f7f2;background:var(--paper)!important;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.5}
 #carteFr *,#cnpeFr *{box-sizing:border-box}
+/* Les vues fixes ne suivent pas les marges du body. Le cadre protège aussi
+   le contenu pendant le défilement, en portrait comme en paysage sur iPhone. */
+#carteFr,#cnpeFr{box-sizing:border-box;border:0 solid var(--paper);border-width:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 .parcShell{max-width:1480px;margin:auto;padding:0 36px 24px}
 .parcHeader{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:90px;border-bottom:1px solid var(--line)}
 .parcBrand{display:flex;align-items:center;gap:12px;color:var(--forest)}
@@ -582,7 +585,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le simulateur du parc électronucléaire français</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.0</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.0a</span></div>
   </div>
   <div class="spacer"></div>
   <div class="clock" id="etatChip" style="color:var(--green)">RP</div>
@@ -6980,6 +6983,6 @@ document.querySelectorAll('button').forEach(function(b){
     <footer class="parcFooter"><span>SIMUREP · Le simulateur du parc électronucléaire français</span><span>by AnthoninP · helped by AI · © 2026 tous droits réservés</span></footer>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build ffaafb26f90916ca · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build aabb1b7b29c39236 · contact@simurep.fr -->
 </body>
 </html>
