@@ -1,0 +1,3415 @@
+{
+ "site": "Bugey",
+ "palier": "CP0",
+ "tranches": 4,
+ "src": "releve",
+ "maj": "2026-09-14",
+ "note": "Recalage nord en haut : quatre enveloppes de production nommées Bugey2 à5, positions et emprises des quatre tours. Disposition générale corroborée par le plan IFARE2024. BR et SDM ne sont pas séparés par le relevé disponible : leurs fonctions restent dans le cartouche, sans faux centres. DUS2/3/4/5 explicitement identifiés par les repères161/162/163/164 du plan IFARE, mais sans localisation métrique certaine. L'ancien canal copié de Cruas est retiré ; hydrographie réelle distincte.",
+ "eau": {
+  "type": "fleuve",
+  "nom": "le Rhône",
+  "polygones": [
+   {
+    "anneaux": [
+     [
+      [
+       1066.3,
+       -583.5
+      ],
+      [
+       1086.8,
+       -565.5
+      ],
+      [
+       1119.2,
+       -602.4
+      ],
+      [
+       1098.7,
+       -620.4
+      ],
+      [
+       1066.3,
+       -583.5
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1494290369"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1086.8,
+       -532.3
+      ],
+      [
+       1133.8,
+       -587.3
+      ],
+      [
+       1156.8,
+       -567.6
+      ],
+      [
+       1109.8,
+       -512.6
+      ],
+      [
+       1086.8,
+       -532.3
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1494290370"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       75.9,
+       1072.7
+      ],
+      [
+       90.8,
+       1086.1
+      ],
+      [
+       110.2,
+       1093.6
+      ],
+      [
+       127.0,
+       1109.9
+      ],
+      [
+       134.0,
+       1156.6
+      ],
+      [
+       128.9,
+       1176.5
+      ],
+      [
+       118.2,
+       1188.6
+      ],
+      [
+       93.9,
+       1198.5
+      ],
+      [
+       70.1,
+       1198.5
+      ],
+      [
+       69.6,
+       1209.5
+      ],
+      [
+       86.6,
+       1222.4
+      ],
+      [
+       90.8,
+       1236.5
+      ],
+      [
+       105.1,
+       1244.1
+      ],
+      [
+       108.9,
+       1257.1
+      ],
+      [
+       130.0,
+       1274.8
+      ],
+      [
+       143.6,
+       1285.2
+      ],
+      [
+       188.8,
+       1250.8
+      ],
+      [
+       210.8,
+       1218.5
+      ],
+      [
+       218.7,
+       1177.6
+      ],
+      [
+       226.3,
+       1109.5
+      ],
+      [
+       208.2,
+       1071.6
+      ],
+      [
+       173.0,
+       1046.3
+      ],
+      [
+       139.2,
+       1040.9
+      ],
+      [
+       116.1,
+       1023.2
+      ],
+      [
+       102.8,
+       1028.1
+      ],
+      [
+       93.8,
+       1037.1
+      ],
+      [
+       81.4,
+       1057.6
+      ],
+      [
+       75.9,
+       1072.7
+      ]
+     ],
+     [
+      [
+       145.3,
+       1069.4
+      ],
+      [
+       145.6,
+       1078.7
+      ],
+      [
+       150.4,
+       1084.9
+      ],
+      [
+       168.9,
+       1081.6
+      ],
+      [
+       171.4,
+       1076.2
+      ],
+      [
+       164.5,
+       1068.4
+      ],
+      [
+       154.9,
+       1065.3
+      ],
+      [
+       145.3,
+       1069.4
+      ]
+     ]
+    ],
+    "nom": "Étang",
+    "source": "https://www.openstreetmap.org/relation/6359761"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1374.6,
+       -1600.0
+      ],
+      [
+       1366.8,
+       -1590.6
+      ],
+      [
+       1352.2,
+       -1558.5
+      ],
+      [
+       1328.3,
+       -1525.0
+      ],
+      [
+       1321.6,
+       -1504.2
+      ],
+      [
+       1264.4,
+       -1425.9
+      ],
+      [
+       1216.1,
+       -1370.6
+      ],
+      [
+       1150.7,
+       -1323.8
+      ],
+      [
+       989.7,
+       -1229.8
+      ],
+      [
+       810.4,
+       -1077.1
+      ],
+      [
+       547.2,
+       -747.9
+      ],
+      [
+       349.3,
+       -484.3
+      ],
+      [
+       267.1,
+       -310.0
+      ],
+      [
+       155.8,
+       -197.5
+      ],
+      [
+       148.9,
+       -158.5
+      ],
+      [
+       135.4,
+       -34.1
+      ],
+      [
+       164.5,
+       -30.8
+      ],
+      [
+       191.2,
+       -92.7
+      ],
+      [
+       197.3,
+       -89.2
+      ],
+      [
+       166.9,
+       36.3
+      ],
+      [
+       157.6,
+       30.8
+      ],
+      [
+       151.3,
+       38.9
+      ],
+      [
+       161.3,
+       57.0
+      ],
+      [
+       137.8,
+       171.2
+      ],
+      [
+       105.6,
+       284.0
+      ],
+      [
+       51.8,
+       402.4
+      ],
+      [
+       -39.1,
+       568.5
+      ],
+      [
+       -45.6,
+       568.9
+      ],
+      [
+       -49.8,
+       563.5
+      ],
+      [
+       -23.8,
+       481.7
+      ],
+      [
+       -85.2,
+       463.8
+      ],
+      [
+       -142.3,
+       645.8
+      ],
+      [
+       -252.6,
+       767.6
+      ],
+      [
+       -345.8,
+       863.6
+      ],
+      [
+       -540.7,
+       990.2
+      ],
+      [
+       -630.5,
+       1047.8
+      ],
+      [
+       -932.9,
+       1282.7
+      ],
+      [
+       -1363.7,
+       1538.7
+      ],
+      [
+       -1479.6,
+       1600.0
+      ],
+      [
+       -1232.4,
+       1600.0
+      ],
+      [
+       -1223.2,
+       1595.1
+      ],
+      [
+       -1125.4,
+       1535.6
+      ],
+      [
+       -958.3,
+       1452.0
+      ],
+      [
+       -898.9,
+       1407.5
+      ],
+      [
+       -821.3,
+       1354.0
+      ],
+      [
+       -749.5,
+       1294.7
+      ],
+      [
+       -674.3,
+       1244.7
+      ],
+      [
+       -580.9,
+       1179.3
+      ],
+      [
+       -530.5,
+       1148.2
+      ],
+      [
+       -482.8,
+       1116.2
+      ],
+      [
+       -431.3,
+       1074.3
+      ],
+      [
+       -158.9,
+       886.6
+      ],
+      [
+       -84.7,
+       810.5
+      ],
+      [
+       50.6,
+       644.7
+      ],
+      [
+       122.9,
+       543.7
+      ],
+      [
+       197.7,
+       457.9
+      ],
+      [
+       232.7,
+       390.5
+      ],
+      [
+       258.1,
+       323.0
+      ],
+      [
+       293.9,
+       201.4
+      ],
+      [
+       327.6,
+       97.3
+      ],
+      [
+       362.5,
+       -89.0
+      ],
+      [
+       372.7,
+       -136.3
+      ],
+      [
+       375.2,
+       -198.2
+      ],
+      [
+       399.9,
+       -283.3
+      ],
+      [
+       442.8,
+       -348.4
+      ],
+      [
+       524.9,
+       -512.8
+      ],
+      [
+       564.7,
+       -589.3
+      ],
+      [
+       669.3,
+       -714.1
+      ],
+      [
+       770.6,
+       -804.9
+      ],
+      [
+       858.7,
+       -950.0
+      ],
+      [
+       885.8,
+       -1001.2
+      ],
+      [
+       943.2,
+       -1050.6
+      ],
+      [
+       1019.0,
+       -1088.5
+      ],
+      [
+       1137.8,
+       -1146.5
+      ],
+      [
+       1202.9,
+       -1189.6
+      ],
+      [
+       1307.7,
+       -1274.1
+      ],
+      [
+       1348.5,
+       -1310.6
+      ],
+      [
+       1386.7,
+       -1348.8
+      ],
+      [
+       1423.9,
+       -1392.3
+      ],
+      [
+       1442.1,
+       -1426.5
+      ],
+      [
+       1450.1,
+       -1476.7
+      ],
+      [
+       1478.0,
+       -1501.9
+      ],
+      [
+       1501.9,
+       -1574.1
+      ],
+      [
+       1514.1,
+       -1600.0
+      ],
+      [
+       1374.6,
+       -1600.0
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/relation/11696009"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1551.1,
+       992.5
+      ],
+      [
+       1556.8,
+       991.3
+      ],
+      [
+       1561.8,
+       982.3
+      ],
+      [
+       1558.7,
+       970.8
+      ],
+      [
+       1561.8,
+       970.2
+      ],
+      [
+       1563.1,
+       963.7
+      ],
+      [
+       1569.7,
+       961.5
+      ],
+      [
+       1580.5,
+       949.1
+      ],
+      [
+       1583.0,
+       948.4
+      ],
+      [
+       1597.9,
+       952.6
+      ],
+      [
+       1600.0,
+       952.7
+      ],
+      [
+       1600.0,
+       857.8
+      ],
+      [
+       1596.7,
+       857.5
+      ],
+      [
+       1590.5,
+       852.8
+      ],
+      [
+       1573.6,
+       852.5
+      ],
+      [
+       1568.2,
+       849.5
+      ],
+      [
+       1562.5,
+       855.7
+      ],
+      [
+       1560.6,
+       863.7
+      ],
+      [
+       1555.1,
+       866.4
+      ],
+      [
+       1543.8,
+       866.6
+      ],
+      [
+       1533.9,
+       874.6
+      ],
+      [
+       1527.8,
+       886.9
+      ],
+      [
+       1527.3,
+       890.9
+      ],
+      [
+       1522.2,
+       890.0
+      ],
+      [
+       1512.7,
+       907.5
+      ],
+      [
+       1506.3,
+       916.7
+      ],
+      [
+       1499.5,
+       919.3
+      ],
+      [
+       1499.5,
+       925.7
+      ],
+      [
+       1492.3,
+       936.3
+      ],
+      [
+       1490.3,
+       945.0
+      ],
+      [
+       1491.4,
+       953.2
+      ],
+      [
+       1486.6,
+       962.7
+      ],
+      [
+       1489.9,
+       973.6
+      ],
+      [
+       1489.6,
+       983.4
+      ],
+      [
+       1491.9,
+       992.1
+      ],
+      [
+       1491.4,
+       997.8
+      ],
+      [
+       1491.9,
+       1002.5
+      ],
+      [
+       1496.3,
+       1005.3
+      ],
+      [
+       1496.9,
+       1006.3
+      ],
+      [
+       1497.1,
+       1009.2
+      ],
+      [
+       1498.4,
+       1011.0
+      ],
+      [
+       1505.5,
+       1014.7
+      ],
+      [
+       1515.7,
+       1012.6
+      ],
+      [
+       1528.8,
+       1013.0
+      ],
+      [
+       1538.5,
+       1006.6
+      ],
+      [
+       1543.1,
+       1002.1
+      ],
+      [
+       1547.9,
+       995.2
+      ],
+      [
+       1551.1,
+       992.5
+      ]
+     ]
+    ],
+    "nom": "Lac d'Hières",
+    "source": "https://www.openstreetmap.org/relation/20181972"
+   }
+  ],
+  "axes": [
+   {
+    "pts": [
+     [
+      1418.9,
+      -1600.0
+     ],
+     [
+      1409.2,
+      -1584.1
+     ],
+     [
+      1372.8,
+      -1536.2
+     ],
+     [
+      1361.5,
+      -1522.2
+     ],
+     [
+      1309.4,
+      -1462.9
+     ],
+     [
+      1299.7,
+      -1453.5
+     ],
+     [
+      1251.4,
+      -1402.4
+     ],
+     [
+      1227.0,
+      -1377.6
+     ],
+     [
+      1206.7,
+      -1360.0
+     ],
+     [
+      1181.0,
+      -1343.2
+     ],
+     [
+      1153.1,
+      -1326.9
+     ],
+     [
+      1114.3,
+      -1300.4
+     ],
+     [
+      1098.7,
+      -1287.7
+     ],
+     [
+      1075.2,
+      -1260.2
+     ],
+     [
+      1006.6,
+      -1184.9
+     ],
+     [
+      975.7,
+      -1151.8
+     ],
+     [
+      926.5,
+      -1102.8
+     ],
+     [
+      884.9,
+      -1057.2
+     ],
+     [
+      706.7,
+      -842.1
+     ],
+     [
+      619.8,
+      -730.7
+     ],
+     [
+      586.8,
+      -691.4
+     ],
+     [
+      578.9,
+      -682.9
+     ],
+     [
+      535.6,
+      -632.3
+     ],
+     [
+      528.3,
+      -624.5
+     ],
+     [
+      496.6,
+      -585.7
+     ],
+     [
+      478.8,
+      -563.1
+     ],
+     [
+      451.3,
+      -524.4
+     ],
+     [
+      423.4,
+      -483.0
+     ],
+     [
+      400.2,
+      -442.7
+     ],
+     [
+      373.4,
+      -394.3
+     ],
+     [
+      360.8,
+      -370.3
+     ],
+     [
+      344.5,
+      -336.8
+     ],
+     [
+      336.9,
+      -313.0
+     ],
+     [
+      330.1,
+      -295.2
+     ],
+     [
+      301.2,
+      -212.5
+     ],
+     [
+      289.9,
+      -182.7
+     ],
+     [
+      281.8,
+      -155.6
+     ],
+     [
+      277.3,
+      -138.0
+     ],
+     [
+      206.3,
+      170.5
+     ],
+     [
+      202.9,
+      188.2
+     ],
+     [
+      189.6,
+      248.2
+     ],
+     [
+      178.3,
+      294.2
+     ],
+     [
+      167.3,
+      331.8
+     ],
+     [
+      162.9,
+      344.9
+     ],
+     [
+      149.6,
+      376.6
+     ],
+     [
+      138.6,
+      398.0
+     ],
+     [
+      132.3,
+      408.2
+     ],
+     [
+      91.0,
+      468.0
+     ],
+     [
+      38.6,
+      546.6
+     ],
+     [
+      18.8,
+      574.9
+     ],
+     [
+      -2.9,
+      602.2
+     ],
+     [
+      -25.0,
+      627.9
+     ],
+     [
+      -52.3,
+      657.1
+     ],
+     [
+      -143.7,
+      746.7
+     ],
+     [
+      -172.2,
+      776.0
+     ],
+     [
+      -244.2,
+      852.2
+     ],
+     [
+      -280.2,
+      888.8
+     ],
+     [
+      -294.9,
+      901.4
+     ],
+     [
+      -343.3,
+      938.0
+     ]
+    ],
+    "nom": "Le Rhône",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/32542938"
+   },
+   {
+    "pts": [
+     [
+      -343.3,
+      938.0
+     ],
+     [
+      -375.0,
+      961.7
+     ],
+     [
+      -435.4,
+      1003.9
+     ],
+     [
+      -449.3,
+      1013.0
+     ],
+     [
+      -623.3,
+      1120.2
+     ],
+     [
+      -672.8,
+      1152.2
+     ],
+     [
+      -741.9,
+      1200.0
+     ],
+     [
+      -831.9,
+      1265.9
+     ],
+     [
+      -922.8,
+      1327.9
+     ],
+     [
+      -1021.1,
+      1393.1
+     ],
+     [
+      -1097.9,
+      1442.0
+     ],
+     [
+      -1152.0,
+      1477.2
+     ],
+     [
+      -1190.1,
+      1502.8
+     ]
+    ],
+    "nom": "Le Rhône",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/35002690"
+   },
+   {
+    "pts": [
+     [
+      1003.1,
+      -324.3
+     ],
+     [
+      999.0,
+      -328.9
+     ],
+     [
+      988.7,
+      -337.6
+     ]
+    ],
+    "nom": "Ruisseau d'Amby",
+    "souterrain": true,
+    "source": "https://www.openstreetmap.org/way/497771820"
+   },
+   {
+    "pts": [
+     [
+      1598.1,
+      -444.2
+     ],
+     [
+      1589.2,
+      -435.8
+     ],
+     [
+      1569.5,
+      -413.1
+     ],
+     [
+      1563.2,
+      -409.3
+     ],
+     [
+      1562.2,
+      -393.9
+     ],
+     [
+      1546.8,
+      -373.3
+     ],
+     [
+      1550.4,
+      -351.0
+     ],
+     [
+      1524.3,
+      -325.9
+     ],
+     [
+      1491.1,
+      -306.3
+     ],
+     [
+      1479.3,
+      -289.6
+     ],
+     [
+      1433.6,
+      -274.8
+     ],
+     [
+      1417.1,
+      -263.3
+     ],
+     [
+      1413.7,
+      -259.0
+     ],
+     [
+      1417.6,
+      -243.6
+     ],
+     [
+      1413.6,
+      -233.3
+     ],
+     [
+      1386.3,
+      -211.9
+     ],
+     [
+      1373.3,
+      -197.7
+     ],
+     [
+      1377.3,
+      -183.3
+     ],
+     [
+      1387.4,
+      -172.2
+     ],
+     [
+      1386.0,
+      -160.7
+     ],
+     [
+      1374.5,
+      -154.9
+     ],
+     [
+      1367.6,
+      -156.4
+     ],
+     [
+      1364.1,
+      -168.7
+     ],
+     [
+      1354.2,
+      -179.8
+     ],
+     [
+      1338.1,
+      -188.0
+     ],
+     [
+      1308.2,
+      -163.0
+     ],
+     [
+      1292.0,
+      -148.6
+     ],
+     [
+      1273.6,
+      -141.8
+     ],
+     [
+      1256.7,
+      -137.8
+     ],
+     [
+      1244.9,
+      -140.5
+     ],
+     [
+      1235.3,
+      -144.5
+     ],
+     [
+      1224.2,
+      -143.0
+     ],
+     [
+      1218.6,
+      -152.2
+     ],
+     [
+      1211.0,
+      -153.6
+     ],
+     [
+      1204.4,
+      -139.3
+     ],
+     [
+      1203.7,
+      -126.5
+     ],
+     [
+      1213.9,
+      -122.6
+     ],
+     [
+      1216.2,
+      -118.2
+     ],
+     [
+      1215.3,
+      -110.4
+     ],
+     [
+      1202.5,
+      -106.8
+     ],
+     [
+      1190.6,
+      -106.9
+     ],
+     [
+      1181.6,
+      -111.9
+     ],
+     [
+      1167.7,
+      -126.5
+     ],
+     [
+      1123.9,
+      -158.1
+     ],
+     [
+      1076.2,
+      -190.3
+     ],
+     [
+      1043.6,
+      -218.6
+     ],
+     [
+      1030.5,
+      -240.1
+     ],
+     [
+      1029.2,
+      -247.2
+     ],
+     [
+      1028.7,
+      -260.4
+     ],
+     [
+      1025.1,
+      -279.9
+     ],
+     [
+      1021.7,
+      -287.4
+     ],
+     [
+      1017.2,
+      -293.2
+     ],
+     [
+      1014.2,
+      -298.5
+     ],
+     [
+      1012.6,
+      -307.1
+     ],
+     [
+      1010.1,
+      -315.7
+     ],
+     [
+      1007.2,
+      -320.3
+     ],
+     [
+      1003.1,
+      -324.3
+     ]
+    ],
+    "nom": "Ruisseau d'Amby",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/497771822"
+   },
+   {
+    "pts": [
+     [
+      988.7,
+      -337.6
+     ],
+     [
+      981.4,
+      -346.9
+     ],
+     [
+      973.3,
+      -355.9
+     ],
+     [
+      963.5,
+      -371.1
+     ],
+     [
+      961.6,
+      -378.0
+     ],
+     [
+      960.1,
+      -388.0
+     ],
+     [
+      959.7,
+      -396.8
+     ],
+     [
+      961.0,
+      -421.1
+     ],
+     [
+      960.4,
+      -439.3
+     ],
+     [
+      952.6,
+      -440.7
+     ],
+     [
+      943.6,
+      -443.3
+     ],
+     [
+      934.2,
+      -444.4
+     ],
+     [
+      911.7,
+      -444.6
+     ],
+     [
+      912.8,
+      -468.5
+     ],
+     [
+      909.4,
+      -492.8
+     ],
+     [
+      907.4,
+      -499.8
+     ],
+     [
+      904.0,
+      -506.4
+     ],
+     [
+      904.2,
+      -514.9
+     ],
+     [
+      906.4,
+      -522.7
+     ],
+     [
+      906.8,
+      -532.5
+     ],
+     [
+      905.1,
+      -543.7
+     ],
+     [
+      902.6,
+      -551.8
+     ],
+     [
+      898.1,
+      -560.4
+     ],
+     [
+      882.4,
+      -577.2
+     ],
+     [
+      875.3,
+      -588.2
+     ],
+     [
+      875.0,
+      -592.9
+     ],
+     [
+      878.9,
+      -598.4
+     ],
+     [
+      884.3,
+      -602.2
+     ],
+     [
+      891.8,
+      -606.3
+     ],
+     [
+      906.3,
+      -616.9
+     ],
+     [
+      915.8,
+      -627.5
+     ],
+     [
+      918.0,
+      -632.3
+     ],
+     [
+      915.4,
+      -636.9
+     ],
+     [
+      899.2,
+      -651.7
+     ],
+     [
+      892.7,
+      -655.4
+     ],
+     [
+      878.2,
+      -662.1
+     ],
+     [
+      871.2,
+      -664.3
+     ],
+     [
+      866.0,
+      -664.4
+     ],
+     [
+      860.6,
+      -662.9
+     ],
+     [
+      856.6,
+      -661.0
+     ],
+     [
+      852.7,
+      -660.5
+     ],
+     [
+      848.8,
+      -661.3
+     ],
+     [
+      846.8,
+      -664.4
+     ],
+     [
+      847.6,
+      -669.8
+     ],
+     [
+      853.3,
+      -681.0
+     ],
+     [
+      854.7,
+      -687.6
+     ],
+     [
+      852.5,
+      -698.0
+     ],
+     [
+      847.8,
+      -705.3
+     ],
+     [
+      845.0,
+      -716.0
+     ],
+     [
+      840.2,
+      -724.0
+     ],
+     [
+      838.9,
+      -728.8
+     ],
+     [
+      839.8,
+      -740.3
+     ],
+     [
+      839.0,
+      -746.3
+     ],
+     [
+      835.1,
+      -757.6
+     ],
+     [
+      832.2,
+      -763.2
+     ],
+     [
+      826.5,
+      -771.3
+     ],
+     [
+      823.0,
+      -774.4
+     ],
+     [
+      818.4,
+      -776.4
+     ],
+     [
+      813.4,
+      -777.6
+     ],
+     [
+      800.1,
+      -778.7
+     ],
+     [
+      795.7,
+      -780.6
+     ],
+     [
+      762.2,
+      -797.0
+     ],
+     [
+      698.6,
+      -831.8
+     ]
+    ],
+    "nom": "Ruisseau d'Amby",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/497771824"
+   }
+  ],
+  "libelles": [
+   {
+    "x": 178.6,
+    "y": -174.5,
+    "texte": "Le Rhône",
+    "angle": -80.0,
+    "ancrage": "surface-verifiee",
+    "support": "surface",
+    "source": "https://www.openstreetmap.org/relation/11696009",
+    "distanceRiveMetres": 26.4,
+    "boiteMetres": [
+     [
+      161.4,
+      -140.6
+     ],
+     [
+      174.1,
+      -212.3
+     ],
+     [
+      195.8,
+      -208.5
+     ],
+     [
+      183.1,
+      -136.8
+     ]
+    ],
+    "alignement": "middle",
+    "largeurReserveeMetres": 72.8,
+    "hauteurReserveeMetres": 22.0
+   }
+  ],
+  "cadrage": [
+   [
+    101.4,
+    -200.6
+   ],
+   [
+    221.4,
+    -80.6
+   ],
+   [
+    114.1,
+    -272.3
+   ],
+   [
+    234.1,
+    -152.3
+   ],
+   [
+    135.8,
+    -268.5
+   ],
+   [
+    255.8,
+    -148.5
+   ],
+   [
+    123.1,
+    -196.8
+   ],
+   [
+    243.1,
+    -76.8
+   ]
+  ]
+ },
+ "objets": [
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 2,
+   "u0": 0,
+   "us": [
+    1,
+    0
+   ],
+   "L": 98,
+   "l": 26,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 2,
+   "u0": 2,
+   "us": [
+    3,
+    2
+   ],
+   "L": 98,
+   "l": 26,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "fonction-identifiee-position-non-relevee",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
+    "releve": "2026-09-14",
+    "millesime": "Publication dans le répertoire 2024/10 ; date du dessin non indiquée",
+    "description": "DUS 2, repère 161, nommé dans le plan IFARE. Le dessin en perspective place les quatre DUS sur une rangée commune mais ne fournit pas de coordonnées ; appariement métrique OSM non établi. Cartouche conservé."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "fonction-identifiee-position-non-relevee",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
+    "releve": "2026-09-14",
+    "millesime": "Publication dans le répertoire 2024/10 ; date du dessin non indiquée",
+    "description": "DUS 3, repère 162, nommé dans le plan IFARE. Le dessin en perspective place les quatre DUS sur une rangée commune mais ne fournit pas de coordonnées ; appariement métrique OSM non établi. Cartouche conservé."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "fonction-identifiee-position-non-relevee",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
+    "releve": "2026-09-14",
+    "millesime": "Publication dans le répertoire 2024/10 ; date du dessin non indiquée",
+    "description": "DUS 4, repère 163, nommé dans le plan IFARE. Le dessin en perspective place les quatre DUS sur une rangée commune mais ne fournit pas de coordonnées ; appariement métrique OSM non établi. Cartouche conservé."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "fonction-identifiee-position-non-relevee",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
+    "releve": "2026-09-14",
+    "millesime": "Publication dans le répertoire 2024/10 ; date du dessin non indiquée",
+    "description": "DUS 5, repère 164, nommé dans le plan IFARE. Le dessin en perspective place les quatre DUS sur une rangée commune mais ne fournit pas de coordonnées ; appariement métrique OSM non établi. Cartouche conservé."
+   }
+  },
+  {
+   "t": "ste",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "L": 64,
+   "l": 34,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "paire",
+   "x": 18.923497698085882,
+   "y": 91.15677742059049,
+   "r": 285.2,
+   "m": 1,
+   "u": 0,
+   "us": [
+    0,
+    1
+   ],
+   "localisation": "schematique-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue.",
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
+     "angleAvant": 0,
+     "angleApres": 285.2,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 0,
+    "y": 0,
+    "r": 0,
+    "m": 1,
+    "u": 0,
+    "us": [
+     1,
+     0
+    ],
+    "localisation": "non-documentee",
+    "preuve": {
+     "statut": "indetermine",
+     "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue."
+    }
+   }
+  },
+  {
+   "t": "paire",
+   "x": -13.768186404031937,
+   "y": -160.69032706314414,
+   "r": 285.3,
+   "m": 1,
+   "u": 2,
+   "us": [
+    2,
+    3
+   ],
+   "localisation": "schematique-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue.",
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
+     "angleAvant": 0,
+     "angleApres": 285.3,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 0,
+    "y": 0,
+    "r": 0,
+    "m": 1,
+    "u": 2,
+    "us": [
+     3,
+     2
+    ],
+    "localisation": "non-documentee",
+    "preuve": {
+     "statut": "indetermine",
+     "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue."
+    }
+   }
+  },
+  {
+   "t": "sdm",
+   "x": -22.37920826532905,
+   "y": 79.9350805747615,
+   "r": 105.19999999999999,
+   "m": 1,
+   "n": 2,
+   "u0": 0,
+   "us": [
+    1,
+    0
+   ],
+   "L": 202,
+   "l": 48,
+   "axe": "file",
+   "localisation": "schematique-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue.",
+    "restitutionHalle": {
+     "statut": "corps-rectangulaire-interprete",
+     "sources": [
+      "https://www.openstreetmap.org/way/194488056",
+      "https://www.openstreetmap.org/way/235373544"
+     ],
+     "concordance": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
+     "description": "Halle commune située à l’ouest des BR, deux unités par volume. Longueur et axe estimés des longs côtés ouest des deux complexes attribués ; profondeur48 m interprétée de leur bande rectangulaire. Le plan EDF/IFARE confirme BR côté Rhône et halles côté terre. Pas une cote constructeur."
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 83.009,
+     "angleAvant": 0,
+     "angleApres": 105.19999999999999,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "implantationAvantRaccord": {
+    "x": 0,
+    "y": 0,
+    "r": 0,
+    "m": 1,
+    "n": 2,
+    "u0": 0,
+    "us": [
+     1,
+     0
+    ],
+    "L": 173,
+    "l": 96,
+    "localisation": "non-documentee",
+    "preuve": {
+     "statut": "indetermine",
+     "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue."
+    }
+   },
+   "empreinteSource": [
+    [
+     -74.49899565498464,
+     69.84216799989497
+    ],
+    [
+     -75.0888408127904,
+     72.01290799995121
+    ],
+    [
+     -77.07568766012521,
+     79.32663199999467
+    ],
+    [
+     -79.08581786901767,
+     86.71828000015779
+    ],
+    [
+     -81.32878169272824,
+     94.94482800058591
+    ],
+    [
+     -98.05399636475669,
+     156.43799600020373
+    ],
+    [
+     -87.38245568075645,
+     158.67552800024953
+    ],
+    [
+     -89.4003470100992,
+     168.249047999808
+    ],
+    [
+     -49.50818765322532,
+     178.71312800028193
+    ],
+    [
+     -47.25746270892661,
+     170.03016800005696
+    ],
+    [
+     -45.23957137958387,
+     170.4754480005147
+    ],
+    [
+     -37.47845088215422,
+     142.8680879998197
+    ],
+    [
+     -34.2963914782384,
+     143.42468799999637
+    ],
+    [
+     -34.91728111798314,
+     146.0963680003698
+    ],
+    [
+     -28.863607130023855,
+     147.3208880004421
+    ],
+    [
+     -28.32032869519551,
+     145.31712799996427
+    ],
+    [
+     -26.069603750896793,
+     145.65108799991208
+    ],
+    [
+     -25.99199254591147,
+     144.98316800001646
+    ],
+    [
+     -12.48764288039491,
+     148.21144800056658
+    ],
+    [
+     -6.433968892366697,
+     155.11328800054258
+    ],
+    [
+     -8.607082631680086,
+     161.347207999832
+    ],
+    [
+     -20.24876337782456,
+     157.22836799994838
+    ],
+    [
+     -24.594990856382402,
+     169.13960799993248
+    ],
+    [
+     -1.6220741839658295,
+     178.15652800010525
+    ],
+    [
+     -2.3981862336812214,
+     181.4961280003743
+    ],
+    [
+     7.303214388105839,
+     183.72252800029003
+    ],
+    [
+     8.389771257762533,
+     180.04896800007316
+    ],
+    [
+     21.73889851337737,
+     183.2772479998323
+    ],
+    [
+     23.912012252621828,
+     175.37352800001287
+    ],
+    [
+     31.983577569992782,
+     177.3772880004907
+    ],
+    [
+     43.23720229127956,
+     133.29456800026122
+    ],
+    [
+     37.57158432817797,
+     124.61160800003626
+    ],
+    [
+     26.783626836665285,
+     121.71728800022493
+    ],
+    [
+     27.792572501336654,
+     117.82108800057017
+    ],
+    [
+     40.676032527108475,
+     121.60596800050598
+    ],
+    [
+     45.09987121065164,
+     104.57400800000386
+    ],
+    [
+     32.60446720980645,
+     100.56648799983918
+    ],
+    [
+     -74.49899565498464,
+     69.84216799989497
+    ]
+   ],
+   "geometrie": "rectangle-halle",
+   "empreinte": [
+    [
+     4.101898777398272,
+     -17.531585366941968
+    ],
+    [
+     -48.86031530805637,
+     177.40174651646498
+    ],
+    [
+     -95.18110704272733,
+     164.81666594170346
+    ],
+    [
+     -42.218892957272686,
+     -30.116665941703474
+    ],
+    [
+     4.101898777398272,
+     -17.531585366941968
+    ]
+   ]
+  },
+  {
+   "t": "sdm",
+   "x": -55.05124391402569,
+   "y": -171.9840936016621,
+   "r": 105.30000000000001,
+   "m": 1,
+   "n": 2,
+   "u0": 2,
+   "us": [
+    3,
+    2
+   ],
+   "L": 201,
+   "l": 48,
+   "axe": "file",
+   "localisation": "schematique-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue.",
+    "restitutionHalle": {
+     "statut": "corps-rectangulaire-interprete",
+     "sources": [
+      "https://www.openstreetmap.org/way/194488057",
+      "https://www.openstreetmap.org/way/235373545"
+     ],
+     "concordance": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
+     "description": "Halle commune située à l’ouest des BR, deux unités par volume. Longueur et axe estimés des longs côtés ouest des deux complexes attribués ; profondeur48 m interprétée de leur bande rectangulaire. Le plan EDF/IFARE confirme BR côté Rhône et halles côté terre. Pas une cote constructeur."
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 180.58,
+     "angleAvant": 0,
+     "angleApres": 105.30000000000001,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "implantationAvantRaccord": {
+    "x": 0,
+    "y": 0,
+    "r": 0,
+    "m": 1,
+    "n": 2,
+    "u0": 2,
+    "us": [
+     3,
+     2
+    ],
+    "L": 173,
+    "l": 96,
+    "localisation": "non-documentee",
+    "preuve": {
+     "statut": "indetermine",
+     "description": "Les complexes de production sont localisés séparément. La source OSM ne sépare pas BR et SDM ; leurs symboles fonctionnels restent hors échelle en attendant un relevé qui les attribue."
+    }
+   },
+   "empreinteSource": [
+    [
+     -107.75539698654374,
+     -182.34215999997843
+    ],
+    [
+     5.750990288606123,
+     -149.7587959996656
+    ],
+    [
+     9.709161742306273,
+     -148.42295599987438
+    ],
+    [
+     5.362934263748427,
+     -131.39099600016323
+    ],
+    [
+     -7.598136967008717,
+     -134.50795599941245
+    ],
+    [
+     -8.52947142669476,
+     -131.05703599942444
+    ],
+    [
+     2.180874859763669,
+     -128.38535599984198
+    ],
+    [
+     7.45843679807649,
+     -118.92315600000245
+    ],
+    [
+     -4.416077563023959,
+     -76.06495599984527
+    ],
+    [
+     -10.547362756037497,
+     -77.4007959996365
+    ],
+    [
+     -13.418977340080954,
+     -69.38575600009813
+    ],
+    [
+     -26.14721495588212,
+     -72.3913959996284
+    ],
+    [
+     -27.854661465352486,
+     -68.49519599997365
+    ],
+    [
+     -37.4008396771689,
+     -71.16687599955611
+    ],
+    [
+     -36.702338832438826,
+     -75.06307600000184
+    ],
+    [
+     -58.97675466012534,
+     -83.30075599976908
+    ],
+    [
+     -55.01858320642519,
+     -94.09879600019082
+    ],
+    [
+     -43.22168005031006,
+     -90.20259599974509
+    ],
+    [
+     -40.117231851310635,
+     -97.7723559996167
+    ],
+    [
+     -44.30823691989783,
+     -102.67043599990586
+    ],
+    [
+     -51.99174621241108,
+     -104.89683599982158
+    ],
+    [
+     -60.45136755463973,
+     -107.34587599996615
+    ],
+    [
+     -60.60658996454145,
+     -106.45531599984167
+    ],
+    [
+     -64.25431659836921,
+     -107.12323599973729
+    ],
+    [
+     -65.03042864808461,
+     -105.00815599954052
+    ],
+    [
+     -70.77365781624046,
+     -106.67795600007054
+    ],
+    [
+     -70.46321299629916,
+     -109.349635999653
+    ],
+    [
+     -73.02438276047025,
+     -110.24019599977748
+    ],
+    [
+     -80.31983602805687,
+     -82.18755599941574
+    ],
+    [
+     -82.02728253752724,
+     -82.4101959996446
+    ],
+    [
+     -84.58845230169833,
+     -74.17251599987736
+    ],
+    [
+     -124.86866768342988,
+     -85.19319599973699
+    ],
+    [
+     -122.46272032922944,
+     -92.98559599983747
+    ],
+    [
+     -130.76711926148744,
+     -95.21199599975319
+    ],
+    [
+     -114.90338896467894,
+     -155.2913999994601
+    ],
+    [
+     -112.68370850245707,
+     -163.68492799946665
+    ],
+    [
+     -110.40970019666966,
+     -172.30109599970206
+    ],
+    [
+     -108.0270362039579,
+     -181.31801599987483
+    ],
+    [
+     -107.75539698654374,
+     -182.34215999997843
+    ]
+   ],
+   "geometrie": "rectangle-halle",
+   "empreinte": [
+    [
+     -28.532002392505696,
+     -268.9221141566708
+    ],
+    [
+     -81.57048543554569,
+     -75.04607304665339
+    ],
+    [
+     -127.86924152152,
+     -87.7119794449913
+    ],
+    [
+     -74.83075847847999,
+     -281.5880205550087
+    ],
+    [
+     -28.532002392505696,
+     -268.9221141566708
+    ]
+   ]
+  },
+  {
+   "t": "bat",
+   "x": -24.3,
+   "y": 134.7,
+   "r": 15.2,
+   "m": 1,
+   "L": 131.0,
+   "l": 98.9,
+   "nom": "Tranche 2",
+   "u": 0,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/194488056",
+    "releve": "2026-09-14",
+    "description": "Complexe de production nommé Bugey-2. Cette enveloppe comprend plusieurs fonctions ; elle ne constitue pas le centre du BR. Concordance des paires et orientation générale examinées dans le plan public IFARE (2024).",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
+   },
+   "empreinte": [
+    [
+     -74.5,
+     69.8
+    ],
+    [
+     -75.1,
+     72.0
+    ],
+    [
+     -77.1,
+     79.3
+    ],
+    [
+     -79.1,
+     86.7
+    ],
+    [
+     -81.3,
+     94.9
+    ],
+    [
+     -98.1,
+     156.4
+    ],
+    [
+     -87.4,
+     158.7
+    ],
+    [
+     -89.4,
+     168.2
+    ],
+    [
+     -49.5,
+     178.7
+    ],
+    [
+     -47.3,
+     170.0
+    ],
+    [
+     -45.2,
+     170.5
+    ],
+    [
+     -37.5,
+     142.9
+    ],
+    [
+     -34.3,
+     143.4
+    ],
+    [
+     -34.9,
+     146.1
+    ],
+    [
+     -28.9,
+     147.3
+    ],
+    [
+     -28.3,
+     145.3
+    ],
+    [
+     -26.1,
+     145.7
+    ],
+    [
+     -26.0,
+     145.0
+    ],
+    [
+     -12.5,
+     148.2
+    ],
+    [
+     -6.4,
+     155.1
+    ],
+    [
+     -8.6,
+     161.3
+    ],
+    [
+     -20.2,
+     157.2
+    ],
+    [
+     -24.6,
+     169.1
+    ],
+    [
+     -1.6,
+     178.2
+    ],
+    [
+     -2.4,
+     181.5
+    ],
+    [
+     7.3,
+     183.7
+    ],
+    [
+     8.4,
+     180.0
+    ],
+    [
+     21.7,
+     183.3
+    ],
+    [
+     23.9,
+     175.4
+    ],
+    [
+     32.0,
+     177.4
+    ],
+    [
+     43.2,
+     133.3
+    ],
+    [
+     37.6,
+     124.6
+    ],
+    [
+     26.8,
+     121.7
+    ],
+    [
+     27.8,
+     117.8
+    ],
+    [
+     40.7,
+     121.6
+    ],
+    [
+     45.1,
+     104.6
+    ],
+    [
+     32.6,
+     100.6
+    ],
+    [
+     -74.5,
+     69.8
+    ]
+   ],
+   "localisation": "non-documentee",
+   "fonctionContexte": "enveloppe-source-remplacee-par-assets"
+  },
+  {
+   "t": "bat",
+   "x": 1.7,
+   "y": 35.3,
+   "r": 15.4,
+   "m": 1,
+   "L": 132.4,
+   "l": 109.4,
+   "nom": "Tranche 3",
+   "u": 1,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/235373544",
+    "releve": "2026-09-14",
+    "description": "Complexe de production nommé Bugey-3. Cette enveloppe comprend plusieurs fonctions ; elle ne constitue pas le centre du BR. Concordance des paires et orientation générale examinées dans le plan public IFARE (2024).",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
+   },
+   "empreinte": [
+    [
+     32.6,
+     100.6
+    ],
+    [
+     38.1,
+     79.4
+    ],
+    [
+     51.4,
+     83.0
+    ],
+    [
+     58.7,
+     77.9
+    ],
+    [
+     70.3,
+     33.0
+    ],
+    [
+     61.6,
+     30.7
+    ],
+    [
+     58.6,
+     42.1
+    ],
+    [
+     36.3,
+     35.9
+    ],
+    [
+     31.8,
+     33.8
+    ],
+    [
+     26.9,
+     33.2
+    ],
+    [
+     24.3,
+     28.0
+    ],
+    [
+     31.0,
+     24.6
+    ],
+    [
+     59.8,
+     32.2
+    ],
+    [
+     69.5,
+     -2.5
+    ],
+    [
+     29.0,
+     -13.9
+    ],
+    [
+     22.2,
+     11.1
+    ],
+    [
+     7.0,
+     20.3
+    ],
+    [
+     2.1,
+     38.2
+    ],
+    [
+     -8.7,
+     35.6
+    ],
+    [
+     4.0,
+     -10.9
+    ],
+    [
+     -6.4,
+     -14.0
+    ],
+    [
+     -4.6,
+     -23.1
+    ],
+    [
+     -48.0,
+     -33.5
+    ],
+    [
+     -53.4,
+     -12.6
+    ],
+    [
+     -55.4,
+     -4.7
+    ],
+    [
+     -57.4,
+     3.2
+    ],
+    [
+     -59.8,
+     12.6
+    ],
+    [
+     -74.5,
+     69.8
+    ],
+    [
+     32.6,
+     100.6
+    ]
+   ],
+   "localisation": "non-documentee",
+   "fonctionContexte": "enveloppe-source-remplacee-par-assets"
+  },
+  {
+   "t": "bat",
+   "x": -59.0,
+   "y": -118.1,
+   "r": 15.3,
+   "m": 1,
+   "L": 127.9,
+   "l": 98.2,
+   "nom": "Tranche 4",
+   "u": 2,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/194488057",
+    "releve": "2026-09-14",
+    "description": "Complexe de production nommé Bugey-4. Cette enveloppe comprend plusieurs fonctions ; elle ne constitue pas le centre du BR. Concordance des paires et orientation générale examinées dans le plan public IFARE (2024).",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
+   },
+   "empreinte": [
+    [
+     -107.8,
+     -182.3
+    ],
+    [
+     5.8,
+     -149.8
+    ],
+    [
+     9.7,
+     -148.4
+    ],
+    [
+     5.4,
+     -131.4
+    ],
+    [
+     -7.6,
+     -134.5
+    ],
+    [
+     -8.5,
+     -131.1
+    ],
+    [
+     2.2,
+     -128.4
+    ],
+    [
+     7.5,
+     -118.9
+    ],
+    [
+     -4.4,
+     -76.1
+    ],
+    [
+     -10.5,
+     -77.4
+    ],
+    [
+     -13.4,
+     -69.4
+    ],
+    [
+     -26.1,
+     -72.4
+    ],
+    [
+     -27.9,
+     -68.5
+    ],
+    [
+     -37.4,
+     -71.2
+    ],
+    [
+     -36.7,
+     -75.1
+    ],
+    [
+     -59.0,
+     -83.3
+    ],
+    [
+     -55.0,
+     -94.1
+    ],
+    [
+     -43.2,
+     -90.2
+    ],
+    [
+     -40.1,
+     -97.8
+    ],
+    [
+     -44.3,
+     -102.7
+    ],
+    [
+     -52.0,
+     -104.9
+    ],
+    [
+     -60.5,
+     -107.3
+    ],
+    [
+     -60.6,
+     -106.5
+    ],
+    [
+     -64.3,
+     -107.1
+    ],
+    [
+     -65.0,
+     -105.0
+    ],
+    [
+     -70.8,
+     -106.7
+    ],
+    [
+     -70.5,
+     -109.3
+    ],
+    [
+     -73.0,
+     -110.2
+    ],
+    [
+     -80.3,
+     -82.2
+    ],
+    [
+     -82.0,
+     -82.4
+    ],
+    [
+     -84.6,
+     -74.2
+    ],
+    [
+     -124.9,
+     -85.2
+    ],
+    [
+     -122.5,
+     -93.0
+    ],
+    [
+     -130.8,
+     -95.2
+    ],
+    [
+     -114.9,
+     -155.3
+    ],
+    [
+     -112.7,
+     -163.7
+    ],
+    [
+     -110.4,
+     -172.3
+    ],
+    [
+     -108.0,
+     -181.3
+    ],
+    [
+     -107.8,
+     -182.3
+    ]
+   ],
+   "localisation": "non-documentee",
+   "fonctionContexte": "enveloppe-source-remplacee-par-assets"
+  },
+  {
+   "t": "bat",
+   "x": -32.1,
+   "y": -215.4,
+   "r": 16.4,
+   "m": 1,
+   "L": 126.6,
+   "l": 106.1,
+   "nom": "Tranche 5",
+   "u": 3,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/235373545",
+    "releve": "2026-09-14",
+    "description": "Complexe de production nommé Bugey-5. Cette enveloppe comprend plusieurs fonctions ; elle ne constitue pas le centre du BR. Concordance des paires et orientation générale examinées dans le plan public IFARE (2024).",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
+   },
+   "empreinte": [
+    [
+     5.8,
+     -149.8
+    ],
+    [
+     7.5,
+     -157.3
+    ],
+    [
+     -1.0,
+     -159.9
+    ],
+    [
+     2.3,
+     -172.6
+    ],
+    [
+     14.0,
+     -170.1
+    ],
+    [
+     21.9,
+     -174.6
+    ],
+    [
+     33.8,
+     -218.3
+    ],
+    [
+     27.4,
+     -220.0
+    ],
+    [
+     23.8,
+     -208.1
+    ],
+    [
+     8.2,
+     -211.8
+    ],
+    [
+     7.4,
+     -210.5
+    ],
+    [
+     0.4,
+     -215.5
+    ],
+    [
+     -7.0,
+     -217.4
+    ],
+    [
+     -9.8,
+     -223.1
+    ],
+    [
+     -5.7,
+     -226.0
+    ],
+    [
+     6.0,
+     -223.1
+    ],
+    [
+     8.9,
+     -234.7
+    ],
+    [
+     3.6,
+     -236.7
+    ],
+    [
+     5.9,
+     -245.5
+    ],
+    [
+     -0.2,
+     -247.4
+    ],
+    [
+     -0.1,
+     -248.9
+    ],
+    [
+     -9.5,
+     -251.7
+    ],
+    [
+     -12.3,
+     -243.9
+    ],
+    [
+     -22.9,
+     -239.5
+    ],
+    [
+     -28.4,
+     -240.6
+    ],
+    [
+     -22.1,
+     -265.4
+    ],
+    [
+     -77.8,
+     -284.1
+    ],
+    [
+     -83.0,
+     -266.5
+    ],
+    [
+     -86.2,
+     -255.8
+    ],
+    [
+     -89.3,
+     -245.2
+    ],
+    [
+     -92.5,
+     -234.1
+    ],
+    [
+     -107.8,
+     -182.3
+    ],
+    [
+     5.8,
+     -149.8
+    ]
+   ],
+   "localisation": "non-documentee",
+   "fonctionContexte": "enveloppe-source-remplacee-par-assets"
+  },
+  {
+   "t": "aero",
+   "x": 34.6,
+   "y": -638.5,
+   "r": 0,
+   "m": 1,
+   "d": 106.5,
+   "u": 3,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/192923327",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+   },
+   "empreinte": [
+    [
+     71.1,
+     -598.8
+    ],
+    [
+     53.8,
+     -588.0
+    ],
+    [
+     32.4,
+     -584.5
+    ],
+    [
+     10.8,
+     -590.0
+    ],
+    [
+     -5.0,
+     -601.8
+    ],
+    [
+     -15.8,
+     -619.4
+    ],
+    [
+     -19.3,
+     -640.5
+    ],
+    [
+     -14.4,
+     -661.0
+    ],
+    [
+     -9.1,
+     -668.3
+    ],
+    [
+     -2.1,
+     -678.0
+    ],
+    [
+     14.9,
+     -688.8
+    ],
+    [
+     36.4,
+     -692.5
+    ],
+    [
+     36.7,
+     -692.5
+    ],
+    [
+     57.4,
+     -687.4
+    ],
+    [
+     74.0,
+     -675.3
+    ],
+    [
+     85.2,
+     -657.0
+    ],
+    [
+     88.4,
+     -636.5
+    ],
+    [
+     83.4,
+     -615.5
+    ],
+    [
+     71.1,
+     -598.8
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": 175.2,
+   "y": -536.6,
+   "r": 0,
+   "m": 1,
+   "d": 106.5,
+   "u": 3,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/192923324",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+   },
+   "empreinte": [
+    [
+     211.8,
+     -496.9
+    ],
+    [
+     194.5,
+     -486.1
+    ],
+    [
+     173.0,
+     -482.6
+    ],
+    [
+     151.4,
+     -488.1
+    ],
+    [
+     135.6,
+     -499.9
+    ],
+    [
+     124.8,
+     -517.5
+    ],
+    [
+     121.4,
+     -538.6
+    ],
+    [
+     126.2,
+     -559.1
+    ],
+    [
+     138.5,
+     -576.1
+    ],
+    [
+     155.5,
+     -586.9
+    ],
+    [
+     177.0,
+     -590.6
+    ],
+    [
+     177.3,
+     -590.6
+    ],
+    [
+     198.0,
+     -585.5
+    ],
+    [
+     214.6,
+     -573.4
+    ],
+    [
+     225.8,
+     -555.1
+    ],
+    [
+     229.0,
+     -534.6
+    ],
+    [
+     224.0,
+     -513.6
+    ],
+    [
+     211.8,
+     -496.9
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": -39.9,
+   "y": -487.1,
+   "r": 0,
+   "m": 1,
+   "d": 106.5,
+   "u": 2,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/192923325",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "millesime": "Millésime du tracé non renseigné dans cet objet"
+   },
+   "empreinte": [
+    [
+     -3.4,
+     -447.4
+    ],
+    [
+     -20.7,
+     -436.6
+    ],
+    [
+     -42.1,
+     -433.1
+    ],
+    [
+     -63.7,
+     -438.6
+    ],
+    [
+     -79.5,
+     -450.4
+    ],
+    [
+     -90.3,
+     -468.0
+    ],
+    [
+     -93.7,
+     -489.1
+    ],
+    [
+     -88.9,
+     -509.6
+    ],
+    [
+     -76.6,
+     -526.6
+    ],
+    [
+     -59.6,
+     -537.4
+    ],
+    [
+     -38.1,
+     -541.1
+    ],
+    [
+     -37.8,
+     -541.1
+    ],
+    [
+     -17.1,
+     -536.0
+    ],
+    [
+     -0.5,
+     -523.9
+    ],
+    [
+     10.7,
+     -505.6
+    ],
+    [
+     13.9,
+     -485.1
+    ],
+    [
+     8.9,
+     -464.1
+    ],
+    [
+     -3.4,
+     -447.4
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": 95.0,
+   "y": -380.3,
+   "r": 0,
+   "m": 1,
+   "d": 106.5,
+   "u": 2,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/192923326",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+   },
+   "empreinte": [
+    [
+     131.6,
+     -340.6
+    ],
+    [
+     114.3,
+     -329.8
+    ],
+    [
+     92.8,
+     -326.3
+    ],
+    [
+     71.2,
+     -331.8
+    ],
+    [
+     55.4,
+     -343.6
+    ],
+    [
+     44.6,
+     -361.2
+    ],
+    [
+     41.2,
+     -382.3
+    ],
+    [
+     46.0,
+     -402.7
+    ],
+    [
+     58.3,
+     -419.8
+    ],
+    [
+     75.3,
+     -430.6
+    ],
+    [
+     96.8,
+     -434.3
+    ],
+    [
+     97.1,
+     -434.3
+    ],
+    [
+     117.8,
+     -429.2
+    ],
+    [
+     134.4,
+     -417.1
+    ],
+    [
+     145.6,
+     -398.8
+    ],
+    [
+     148.8,
+     -378.2
+    ],
+    [
+     143.8,
+     -357.3
+    ],
+    [
+     131.6,
+     -340.6
+    ]
+   ]
+  }
+ ],
+ "auditVisuel": {
+  "date": "2026-09-14",
+  "reference": "references-cnpe/ign/bugey.jpg",
+  "source": "IGN — BD ORTHO, Licence ouverte 2.0",
+  "portee": "Paysage IGN observé mais emprise pixellisée ; recalage géographique sur OSM et références publiques complémentaires. Voir la preuve de chaque objet : une position schématique n'est pas un emplacement attesté."
+ },
+ "geographie": {
+  "origine": [
+   45.798,
+   5.271
+  ],
+  "rotationDeg": 0,
+  "source": "OpenStreetMap",
+  "date": "2026-09-14"
+ },
+ "reparationImplantations": {
+  "date": "2026-09-14",
+  "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."
+ }
+}

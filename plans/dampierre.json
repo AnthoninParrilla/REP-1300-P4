@@ -1,0 +1,3733 @@
+{
+ "site": "Dampierre",
+ "palier": "CPY",
+ "tranches": 4,
+ "src": "releve",
+ "maj": "2026-09-14",
+ "note": "Nord en haut. Quatre BR nommés OSM dans les ensembles Dampierre1…4 : centre et angle des deux paires recalés, formes nucléaires historiques figées ; entraxes source et écarts résiduels conservés. Une SDM transversale commune, contour partiellement interprété. Tours aux centres relevés et raccordement1…4 documenté par le plan public légendé de Roulex45 (2011), dérivé déclaré EDF, original non retrouvé : preuve secondaire, sans certification exploitant. Les équipements non localisés restent en cartouche.",
+ "eau": {
+  "type": "fleuve",
+  "nom": "la Loire",
+  "polygones": [
+   {
+    "anneaux": [
+     [
+      [
+       906.7,
+       987.9
+      ],
+      [
+       848.7,
+       963.7
+      ],
+      [
+       743.5,
+       905.9
+      ],
+      [
+       642.5,
+       851.9
+      ],
+      [
+       426.1,
+       676.9
+      ],
+      [
+       48.7,
+       376.1
+      ],
+      [
+       37.3,
+       386.7
+      ],
+      [
+       26.1,
+       399.0
+      ],
+      [
+       164.9,
+       513.1
+      ],
+      [
+       537.9,
+       808.7
+      ],
+      [
+       665.6,
+       913.9
+      ],
+      [
+       765.4,
+       1001.3
+      ],
+      [
+       779.5,
+       1015.1
+      ],
+      [
+       785.8,
+       1019.7
+      ],
+      [
+       833.6,
+       1006.4
+      ],
+      [
+       906.7,
+       987.9
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/168885993"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -665.8,
+       -84.0
+      ],
+      [
+       -622.6,
+       -69.9
+      ],
+      [
+       -593.0,
+       -18.5
+      ],
+      [
+       -614.1,
+       29.6
+      ],
+      [
+       -595.8,
+       70.5
+      ],
+      [
+       -550.9,
+       79.0
+      ],
+      [
+       -536.7,
+       77.2
+      ],
+      [
+       -527.5,
+       80.9
+      ],
+      [
+       -517.2,
+       86.9
+      ],
+      [
+       -514.4,
+       92.7
+      ],
+      [
+       -514.4,
+       106.0
+      ],
+      [
+       -499.4,
+       111.0
+      ],
+      [
+       -491.1,
+       111.2
+      ],
+      [
+       -485.1,
+       120.4
+      ],
+      [
+       -527.5,
+       178.2
+      ],
+      [
+       -545.5,
+       225.9
+      ],
+      [
+       -527.7,
+       283.2
+      ],
+      [
+       -503.0,
+       301.8
+      ],
+      [
+       -421.2,
+       269.9
+      ],
+      [
+       -400.2,
+       256.6
+      ],
+      [
+       -354.1,
+       320.4
+      ],
+      [
+       -391.6,
+       401.6
+      ],
+      [
+       -431.2,
+       444.3
+      ],
+      [
+       -465.2,
+       473.6
+      ],
+      [
+       -504.7,
+       449.2
+      ],
+      [
+       -733.7,
+       313.0
+      ],
+      [
+       -704.9,
+       239.9
+      ],
+      [
+       -718.3,
+       206.6
+      ],
+      [
+       -746.2,
+       192.3
+      ],
+      [
+       -758.9,
+       181.8
+      ],
+      [
+       -767.9,
+       151.6
+      ],
+      [
+       -665.8,
+       -84.0
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/189877371"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       640.9,
+       976.7
+      ],
+      [
+       650.9,
+       963.3
+      ],
+      [
+       650.6,
+       960.4
+      ],
+      [
+       602.3,
+       922.6
+      ],
+      [
+       -4.9,
+       432.5
+      ],
+      [
+       -9.2,
+       434.1
+      ],
+      [
+       -12.4,
+       434.1
+      ],
+      [
+       -23.4,
+       426.4
+      ],
+      [
+       -26.7,
+       431.1
+      ],
+      [
+       -18.0,
+       437.9
+      ],
+      [
+       -18.0,
+       446.4
+      ],
+      [
+       -14.0,
+       454.8
+      ],
+      [
+       422.6,
+       804.3
+      ],
+      [
+       640.9,
+       976.7
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/525616981"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       60.3,
+       -704.3
+      ],
+      [
+       47.5,
+       -683.0
+      ],
+      [
+       38.0,
+       -615.2
+      ],
+      [
+       42.7,
+       -607.9
+      ],
+      [
+       65.5,
+       -598.8
+      ],
+      [
+       79.6,
+       -601.1
+      ],
+      [
+       85.8,
+       -608.3
+      ],
+      [
+       95.3,
+       -627.8
+      ],
+      [
+       94.7,
+       -639.3
+      ],
+      [
+       82.4,
+       -684.6
+      ],
+      [
+       75.6,
+       -699.7
+      ],
+      [
+       70.6,
+       -703.7
+      ],
+      [
+       66.1,
+       -704.9
+      ],
+      [
+       60.3,
+       -704.3
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/525616982"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -1138.0,
+       -943.3
+      ],
+      [
+       -1148.0,
+       -926.0
+      ],
+      [
+       -1147.6,
+       -920.6
+      ],
+      [
+       -1141.4,
+       -913.5
+      ],
+      [
+       -1120.1,
+       -902.5
+      ],
+      [
+       -1114.5,
+       -896.1
+      ],
+      [
+       -1099.8,
+       -867.4
+      ],
+      [
+       -1092.4,
+       -858.3
+      ],
+      [
+       -1087.0,
+       -854.5
+      ],
+      [
+       -990.6,
+       -798.3
+      ],
+      [
+       -974.9,
+       -811.7
+      ],
+      [
+       -968.7,
+       -823.6
+      ],
+      [
+       -967.1,
+       -828.0
+      ],
+      [
+       -984.4,
+       -834.2
+      ],
+      [
+       -994.0,
+       -840.5
+      ],
+      [
+       -1043.8,
+       -878.6
+      ],
+      [
+       -1096.6,
+       -923.6
+      ],
+      [
+       -1110.7,
+       -932.8
+      ],
+      [
+       -1138.0,
+       -943.3
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/720313768"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -687.2,
+       1478.7
+      ],
+      [
+       -687.2,
+       1481.8
+      ],
+      [
+       -688.0,
+       1484.5
+      ],
+      [
+       -690.1,
+       1488.4
+      ],
+      [
+       -693.5,
+       1490.5
+      ],
+      [
+       -699.4,
+       1491.8
+      ],
+      [
+       -701.4,
+       1491.2
+      ],
+      [
+       -706.0,
+       1486.8
+      ],
+      [
+       -706.8,
+       1484.2
+      ],
+      [
+       -706.6,
+       1482.7
+      ],
+      [
+       -705.6,
+       1481.7
+      ],
+      [
+       -699.4,
+       1480.2
+      ],
+      [
+       -698.0,
+       1479.3
+      ],
+      [
+       -696.4,
+       1476.3
+      ],
+      [
+       -694.1,
+       1474.9
+      ],
+      [
+       -690.9,
+       1474.9
+      ],
+      [
+       -688.6,
+       1475.9
+      ],
+      [
+       -687.5,
+       1477.2
+      ],
+      [
+       -687.2,
+       1478.7
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/762068337"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1290.6,
+       816.5
+      ],
+      [
+       1302.2,
+       805.3
+      ],
+      [
+       1310.4,
+       800.1
+      ],
+      [
+       1316.9,
+       799.9
+      ],
+      [
+       1341.4,
+       823.0
+      ],
+      [
+       1339.4,
+       828.8
+      ],
+      [
+       1324.3,
+       834.0
+      ],
+      [
+       1317.5,
+       831.8
+      ],
+      [
+       1311.1,
+       823.0
+      ],
+      [
+       1306.2,
+       819.0
+      ],
+      [
+       1304.1,
+       818.7
+      ],
+      [
+       1296.2,
+       822.4
+      ],
+      [
+       1292.2,
+       822.1
+      ],
+      [
+       1290.5,
+       819.1
+      ],
+      [
+       1290.6,
+       816.5
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/768483671"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       886.9,
+       -394.5
+      ],
+      [
+       877.7,
+       -398.1
+      ],
+      [
+       851.2,
+       -415.4
+      ],
+      [
+       847.7,
+       -423.2
+      ],
+      [
+       851.2,
+       -430.4
+      ],
+      [
+       867.6,
+       -444.7
+      ],
+      [
+       875.5,
+       -447.1
+      ],
+      [
+       883.9,
+       -443.7
+      ],
+      [
+       908.0,
+       -427.4
+      ],
+      [
+       904.2,
+       -418.4
+      ],
+      [
+       891.7,
+       -397.5
+      ],
+      [
+       886.9,
+       -394.5
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/768483673"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1509.2,
+       1058.1
+      ],
+      [
+       1494.5,
+       1058.7
+      ],
+      [
+       1485.4,
+       1054.2
+      ],
+      [
+       1481.0,
+       1048.6
+      ],
+      [
+       1474.7,
+       1044.8
+      ],
+      [
+       1470.2,
+       1043.0
+      ],
+      [
+       1469.1,
+       1040.7
+      ],
+      [
+       1475.0,
+       1040.5
+      ],
+      [
+       1482.5,
+       1043.1
+      ],
+      [
+       1487.9,
+       1046.8
+      ],
+      [
+       1500.5,
+       1049.9
+      ],
+      [
+       1509.4,
+       1055.3
+      ],
+      [
+       1509.2,
+       1058.1
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/768483677"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1095.4,
+       -72.7
+      ],
+      [
+       1063.7,
+       -21.7
+      ],
+      [
+       1063.4,
+       -15.8
+      ],
+      [
+       1109.0,
+       14.9
+      ],
+      [
+       1115.9,
+       12.5
+      ],
+      [
+       1149.6,
+       -39.8
+      ],
+      [
+       1148.2,
+       -45.9
+      ],
+      [
+       1102.2,
+       -75.3
+      ],
+      [
+       1095.4,
+       -72.7
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1059202375"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1149.6,
+       8.7
+      ],
+      [
+       1157.2,
+       14.2
+      ],
+      [
+       1141.3,
+       36.9
+      ],
+      [
+       1134.4,
+       32.4
+      ],
+      [
+       1149.6,
+       8.7
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1094548370"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1050.1,
+       -5.5
+      ],
+      [
+       1061.4,
+       0.8
+      ],
+      [
+       1036.2,
+       41.1
+      ],
+      [
+       1025.5,
+       34.2
+      ],
+      [
+       1050.1,
+       -5.5
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1094548373"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1533.4,
+       -1132.3
+      ],
+      [
+       1521.6,
+       -1132.7
+      ],
+      [
+       1493.4,
+       -1126.5
+      ],
+      [
+       1481.1,
+       -1119.9
+      ],
+      [
+       1468.7,
+       -1097.3
+      ],
+      [
+       1462.6,
+       -1095.5
+      ],
+      [
+       1452.7,
+       -1085.0
+      ],
+      [
+       1449.6,
+       -1075.9
+      ],
+      [
+       1450.1,
+       -1064.6
+      ],
+      [
+       1462.3,
+       -1033.0
+      ],
+      [
+       1465.3,
+       -1031.3
+      ],
+      [
+       1468.9,
+       -1032.6
+      ],
+      [
+       1475.9,
+       -1053.0
+      ],
+      [
+       1496.0,
+       -1071.7
+      ],
+      [
+       1499.5,
+       -1081.8
+      ],
+      [
+       1500.7,
+       -1097.9
+      ],
+      [
+       1503.6,
+       -1105.6
+      ],
+      [
+       1509.7,
+       -1112.6
+      ],
+      [
+       1533.4,
+       -1132.3
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1544822646"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       1600.0,
+       1580.6
+      ],
+      [
+       1578.1,
+       1550.3
+      ],
+      [
+       1513.8,
+       1412.1
+      ],
+      [
+       1210.2,
+       1233.7
+      ],
+      [
+       1035.5,
+       1223.1
+      ],
+      [
+       959.4,
+       1213.9
+      ],
+      [
+       787.2,
+       1244.5
+      ],
+      [
+       746.9,
+       1250.7
+      ],
+      [
+       696.2,
+       1243.4
+      ],
+      [
+       593.3,
+       1257.8
+      ],
+      [
+       414.9,
+       1269.0
+      ],
+      [
+       364.7,
+       1260.9
+      ],
+      [
+       302.5,
+       1225.6
+      ],
+      [
+       239.8,
+       1222.4
+      ],
+      [
+       114.5,
+       1167.8
+      ],
+      [
+       -33.3,
+       1132.4
+      ],
+      [
+       -134.5,
+       1097.1
+      ],
+      [
+       -247.4,
+       1084.1
+      ],
+      [
+       -351.9,
+       1074.5
+      ],
+      [
+       -444.6,
+       1076.2
+      ],
+      [
+       -507.2,
+       1106.7
+      ],
+      [
+       -584.8,
+       1137.2
+      ],
+      [
+       -639.0,
+       1137.2
+      ],
+      [
+       -732.2,
+       1089.0
+      ],
+      [
+       -870.3,
+       960.5
+      ],
+      [
+       -972.0,
+       862.4
+      ],
+      [
+       -982.8,
+       847.6
+      ],
+      [
+       -1045.7,
+       767.7
+      ],
+      [
+       -1082.2,
+       718.8
+      ],
+      [
+       -1183.6,
+       589.3
+      ],
+      [
+       -1289.0,
+       498.6
+      ],
+      [
+       -1391.6,
+       389.3
+      ],
+      [
+       -1413.6,
+       371.5
+      ],
+      [
+       -1410.5,
+       353.9
+      ],
+      [
+       -1454.6,
+       326.3
+      ],
+      [
+       -1566.0,
+       224.6
+      ],
+      [
+       -1600.0,
+       191.4
+      ],
+      [
+       -1600.0,
+       -176.5
+      ],
+      [
+       -1533.8,
+       -112.6
+      ],
+      [
+       -1312.1,
+       105.7
+      ],
+      [
+       -1257.5,
+       141.1
+      ],
+      [
+       -1093.6,
+       259.9
+      ],
+      [
+       -940.5,
+       372.2
+      ],
+      [
+       -757.0,
+       464.2
+      ],
+      [
+       -639.0,
+       533.1
+      ],
+      [
+       -516.9,
+       626.3
+      ],
+      [
+       -409.2,
+       692.2
+      ],
+      [
+       -235.7,
+       756.4
+      ],
+      [
+       -160.2,
+       799.8
+      ],
+      [
+       -33.3,
+       859.3
+      ],
+      [
+       53.5,
+       894.6
+      ],
+      [
+       123.7,
+       946.0
+      ],
+      [
+       156.3,
+       989.4
+      ],
+      [
+       200.3,
+       1043.0
+      ],
+      [
+       252.8,
+       1057.9
+      ],
+      [
+       318.6,
+       1066.5
+      ],
+      [
+       496.9,
+       1058.5
+      ],
+      [
+       627.0,
+       1047.3
+      ],
+      [
+       722.2,
+       1036.3
+      ],
+      [
+       762.8,
+       1026.6
+      ],
+      [
+       781.6,
+       1020.5
+      ],
+      [
+       833.6,
+       1006.4
+      ],
+      [
+       928.0,
+       982.5
+      ],
+      [
+       1097.8,
+       942.8
+      ],
+      [
+       1160.2,
+       942.1
+      ],
+      [
+       1188.1,
+       928.2
+      ],
+      [
+       1242.4,
+       912.1
+      ],
+      [
+       1250.3,
+       912.2
+      ],
+      [
+       1252.6,
+       914.5
+      ],
+      [
+       1224.5,
+       934.8
+      ],
+      [
+       1213.9,
+       936.2
+      ],
+      [
+       1189.4,
+       940.7
+      ],
+      [
+       1177.3,
+       945.3
+      ],
+      [
+       1183.5,
+       954.7
+      ],
+      [
+       1350.1,
+       1016.3
+      ],
+      [
+       1468.2,
+       1075.6
+      ],
+      [
+       1600.0,
+       1196.9
+      ],
+      [
+       1600.0,
+       1580.6
+      ]
+     ],
+     [
+      [
+       771.8,
+       1041.7
+      ],
+      [
+       748.7,
+       1044.4
+      ],
+      [
+       736.6,
+       1044.8
+      ],
+      [
+       731.5,
+       1048.2
+      ],
+      [
+       730.9,
+       1054.1
+      ],
+      [
+       734.2,
+       1058.7
+      ],
+      [
+       739.5,
+       1058.1
+      ],
+      [
+       746.2,
+       1053.4
+      ],
+      [
+       753.7,
+       1051.5
+      ],
+      [
+       768.3,
+       1050.0
+      ],
+      [
+       772.9,
+       1049.0
+      ],
+      [
+       776.2,
+       1047.1
+      ],
+      [
+       776.8,
+       1043.7
+      ],
+      [
+       771.8,
+       1041.7
+      ]
+     ],
+     [
+      [
+       789.6,
+       1199.8
+      ],
+      [
+       765.8,
+       1199.4
+      ],
+      [
+       753.7,
+       1200.2
+      ],
+      [
+       747.6,
+       1203.8
+      ],
+      [
+       750.3,
+       1211.7
+      ],
+      [
+       770.0,
+       1208.4
+      ],
+      [
+       777.2,
+       1206.7
+      ],
+      [
+       787.6,
+       1208.9
+      ],
+      [
+       791.9,
+       1207.2
+      ],
+      [
+       792.9,
+       1204.0
+      ],
+      [
+       789.6,
+       1199.8
+      ]
+     ],
+     [
+      [
+       -1268.0,
+       401.5
+      ],
+      [
+       -1231.4,
+       459.6
+      ],
+      [
+       -1190.9,
+       505.9
+      ],
+      [
+       -1124.6,
+       564.4
+      ],
+      [
+       -1094.8,
+       585.4
+      ],
+      [
+       -1049.0,
+       595.6
+      ],
+      [
+       -1023.1,
+       609.3
+      ],
+      [
+       -963.2,
+       623.4
+      ],
+      [
+       -914.9,
+       623.9
+      ],
+      [
+       -892.0,
+       627.8
+      ],
+      [
+       -892.9,
+       615.1
+      ],
+      [
+       -941.7,
+       581.5
+      ],
+      [
+       -953.9,
+       547.3
+      ],
+      [
+       -993.9,
+       466.4
+      ],
+      [
+       -1083.1,
+       431.8
+      ],
+      [
+       -1142.6,
+       409.8
+      ],
+      [
+       -1268.0,
+       401.5
+      ]
+     ],
+     [
+      [
+       -203.1,
+       1058.4
+      ],
+      [
+       -219.4,
+       978.1
+      ],
+      [
+       -255.4,
+       938.6
+      ],
+      [
+       -296.3,
+       930.5
+      ],
+      [
+       -435.7,
+       874.7
+      ],
+      [
+       -725.5,
+       744.7
+      ],
+      [
+       -775.8,
+       694.4
+      ],
+      [
+       -860.8,
+       646.8
+      ],
+      [
+       -894.8,
+       654.3
+      ],
+      [
+       -919.3,
+       667.2
+      ],
+      [
+       -996.7,
+       635.7
+      ],
+      [
+       -1097.0,
+       612.2
+      ],
+      [
+       -1045.8,
+       686.5
+      ],
+      [
+       -953.3,
+       815.8
+      ],
+      [
+       -944.6,
+       816.6
+      ],
+      [
+       -919.1,
+       863.7
+      ],
+      [
+       -869.5,
+       895.9
+      ],
+      [
+       -767.9,
+       1012.4
+      ],
+      [
+       -715.9,
+       1059.9
+      ],
+      [
+       -648.6,
+       1096.2
+      ],
+      [
+       -611.8,
+       1107.8
+      ],
+      [
+       -483.4,
+       1054.5
+      ],
+      [
+       -414.4,
+       1040.5
+      ],
+      [
+       -312.4,
+       1051.2
+      ],
+      [
+       -266.2,
+       1062.8
+      ],
+      [
+       -203.1,
+       1058.4
+      ]
+     ],
+     [
+      [
+       -1508.6,
+       121.4
+      ],
+      [
+       -1444.9,
+       131.4
+      ],
+      [
+       -1392.4,
+       169.4
+      ],
+      [
+       -1345.8,
+       220.9
+      ],
+      [
+       -1321.7,
+       256.9
+      ],
+      [
+       -1373.5,
+       234.7
+      ],
+      [
+       -1418.5,
+       225.0
+      ],
+      [
+       -1447.8,
+       222.5
+      ],
+      [
+       -1459.4,
+       185.1
+      ],
+      [
+       -1443.3,
+       176.8
+      ],
+      [
+       -1508.6,
+       121.4
+      ]
+     ],
+     [
+      [
+       -1392.4,
+       169.4
+      ],
+      [
+       -1380.4,
+       162.7
+      ],
+      [
+       -1327.1,
+       205.6
+      ],
+      [
+       -1280.7,
+       267.7
+      ],
+      [
+       -1293.2,
+       271.8
+      ],
+      [
+       -1307.0,
+       268.6
+      ],
+      [
+       -1321.7,
+       256.9
+      ],
+      [
+       -1345.8,
+       220.9
+      ],
+      [
+       -1392.4,
+       169.4
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/relation/12364795"
+   }
+  ],
+  "axes": [
+   {
+    "pts": [
+     [
+      900.2,
+      1096.1
+     ],
+     [
+      833.6,
+      1006.4
+     ],
+     [
+      660.3,
+      880.1
+     ],
+     [
+      529.9,
+      781.3
+     ],
+     [
+      37.3,
+      386.7
+     ]
+    ],
+    "nom": "",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/208882358"
+   },
+   {
+    "pts": [
+     [
+      -224.1,
+      1600.0
+     ],
+     [
+      -225.7,
+      1596.2
+     ],
+     [
+      -236.4,
+      1579.7
+     ],
+     [
+      -252.9,
+      1564.2
+     ],
+     [
+      -287.4,
+      1547.2
+     ],
+     [
+      -313.1,
+      1543.3
+     ],
+     [
+      -351.4,
+      1533.1
+     ],
+     [
+      -384.0,
+      1506.4
+     ],
+     [
+      -395.6,
+      1487.0
+     ],
+     [
+      -410.2,
+      1464.1
+     ],
+     [
+      -433.9,
+      1444.8
+     ],
+     [
+      -473.7,
+      1425.7
+     ],
+     [
+      -556.7,
+      1353.2
+     ],
+     [
+      -597.7,
+      1268.8
+     ],
+     [
+      -626.9,
+      1226.2
+     ],
+     [
+      -681.9,
+      1181.6
+     ],
+     [
+      -707.1,
+      1141.6
+     ],
+     [
+      -748.9,
+      1100.7
+     ],
+     [
+      -784.0,
+      1057.7
+     ],
+     [
+      -779.2,
+      1037.6
+     ],
+     [
+      -768.0,
+      1032.0
+     ]
+    ],
+    "nom": "L'Aquiaulne",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/349258545"
+   },
+   {
+    "pts": [
+     [
+      1600.0,
+      1346.4
+     ],
+     [
+      1568.6,
+      1318.1
+     ],
+     [
+      1402.8,
+      1152.2
+     ],
+     [
+      1306.1,
+      1090.0
+     ],
+     [
+      1246.2,
+      1064.7
+     ],
+     [
+      1169.8,
+      1050.8
+     ],
+     [
+      1042.9,
+      1071.2
+     ],
+     [
+      900.2,
+      1096.1
+     ],
+     [
+      729.8,
+      1115.8
+     ],
+     [
+      696.2,
+      1127.9
+     ],
+     [
+      539.8,
+      1136.9
+     ],
+     [
+      388.0,
+      1127.9
+     ],
+     [
+      218.0,
+      1105.2
+     ],
+     [
+      118.3,
+      1062.1
+     ],
+     [
+      -35.8,
+      971.5
+     ],
+     [
+      -196.7,
+      862.7
+     ],
+     [
+      -436.9,
+      749.4
+     ],
+     [
+      -631.8,
+      617.9
+     ],
+     [
+      -901.5,
+      445.6
+     ],
+     [
+      -1110.0,
+      352.7
+     ],
+     [
+      -1259.6,
+      243.9
+     ],
+     [
+      -1420.5,
+      130.6
+     ],
+     [
+      -1585.8,
+      -21.8
+     ],
+     [
+      -1600.0,
+      -38.1
+     ]
+    ],
+    "nom": "La Loire",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/1063548205"
+   },
+   {
+    "pts": [
+     [
+      218.0,
+      1105.2
+     ],
+     [
+      9.6,
+      1107.3
+     ],
+     [
+      -123.7,
+      1063.1
+     ],
+     [
+      -198.4,
+      1076.0
+     ],
+     [
+      -290.0,
+      1068.7
+     ],
+     [
+      -404.1,
+      1051.1
+     ],
+     [
+      -465.1,
+      1061.5
+     ],
+     [
+      -624.2,
+      1124.2
+     ],
+     [
+      -680.4,
+      1103.3
+     ],
+     [
+      -739.9,
+      1063.9
+     ],
+     [
+      -768.0,
+      1032.0
+     ],
+     [
+      -813.7,
+      977.2
+     ],
+     [
+      -934.2,
+      867.9
+     ],
+     [
+      -1036.3,
+      715.3
+     ],
+     [
+      -1085.3,
+      667.9
+     ],
+     [
+      -1116.6,
+      593.9
+     ],
+     [
+      -1272.4,
+      479.9
+     ],
+     [
+      -1470.0,
+      239.7
+     ],
+     [
+      -1568.0,
+      111.1
+     ],
+     [
+      -1585.8,
+      -21.8
+     ]
+    ],
+    "nom": "La Loire",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/1155576977"
+   }
+  ],
+  "libelles": [
+   {
+    "x": -232.7,
+    "y": 783.5,
+    "texte": "La Loire",
+    "angle": 29.9,
+    "ancrage": "surface-verifiee",
+    "support": "surface",
+    "source": "https://www.openstreetmap.org/relation/12364795",
+    "distanceRiveMetres": 22.0,
+    "boiteMetres": [
+     [
+      -258.8,
+      755.8
+     ],
+     [
+      -195.7,
+      792.1
+     ],
+     [
+      -206.7,
+      811.2
+     ],
+     [
+      -269.8,
+      774.9
+     ]
+    ],
+    "alignement": "middle",
+    "largeurReserveeMetres": 72.8,
+    "hauteurReserveeMetres": 22.0
+   },
+   {
+    "x": 62.1,
+    "y": 412.1,
+    "texte": "Canal",
+    "angle": 39.4,
+    "ancrage": "surface-verifiee",
+    "support": "surface",
+    "source": "https://www.openstreetmap.org/way/168885993",
+    "distanceRiveMetres": 12.7,
+    "boiteMetres": [
+     [
+      49.8,
+      387.7
+     ],
+     [
+      88.4,
+      419.5
+     ],
+     [
+      74.4,
+      436.5
+     ],
+     [
+      35.8,
+      404.7
+     ]
+    ],
+    "alignement": "middle",
+    "largeurReserveeMetres": 50,
+    "hauteurReserveeMetres": 22.0
+   }
+  ],
+  "cadrage": [
+   [
+    -318.8,
+    695.8
+   ],
+   [
+    -198.8,
+    815.8
+   ],
+   [
+    -255.7,
+    732.1
+   ],
+   [
+    -135.7,
+    852.1
+   ],
+   [
+    -266.7,
+    751.2
+   ],
+   [
+    -146.7,
+    871.2
+   ],
+   [
+    -329.8,
+    714.9
+   ],
+   [
+    -209.8,
+    834.9
+   ],
+   [
+    -10.2,
+    327.7
+   ],
+   [
+    109.8,
+    447.7
+   ],
+   [
+    28.4,
+    359.5
+   ],
+   [
+    148.4,
+    479.5
+   ],
+   [
+    14.4,
+    376.5
+   ],
+   [
+    134.4,
+    496.5
+   ],
+   [
+    -24.2,
+    344.7
+   ],
+   [
+    95.8,
+    464.7
+   ]
+  ]
+ },
+ "objets": [
+  {
+   "t": "paire",
+   "x": -94.8,
+   "y": -81.6,
+   "r": 39.24000000000001,
+   "m": 1,
+   "u": 0,
+   "us": [
+    0,
+    1
+   ],
+   "localisation": "relevee-gabarit-fige",
+   "ecartReleve": 86.98,
+   "erreurCentreMax": 1.505,
+   "centresReleves": [
+    {
+     "u": 0,
+     "x": -128.46,
+     "y": -109.12,
+     "source": "https://www.openstreetmap.org/way/190127670",
+     "empreinte": [
+      [
+       -129.2,
+       -130.5
+      ],
+      [
+       -120.9,
+       -129.1
+      ],
+      [
+       -113.9,
+       -124.7
+      ],
+      [
+       -109.0,
+       -117.9
+      ],
+      [
+       -107.1,
+       -109.8
+      ],
+      [
+       -108.5,
+       -101.6
+      ],
+      [
+       -112.9,
+       -94.5
+      ],
+      [
+       -119.6,
+       -89.7
+      ],
+      [
+       -127.7,
+       -87.8
+      ],
+      [
+       -136.0,
+       -89.1
+      ],
+      [
+       -143.0,
+       -93.5
+      ],
+      [
+       -147.9,
+       -100.3
+      ],
+      [
+       -149.8,
+       -108.4
+      ],
+      [
+       -148.4,
+       -116.6
+      ],
+      [
+       -144.0,
+       -123.7
+      ],
+      [
+       -137.3,
+       -128.6
+      ],
+      [
+       -129.2,
+       -130.5
+      ]
+     ]
+    },
+    {
+     "u": 1,
+     "x": -61.09,
+     "y": -54.1,
+     "source": "https://www.openstreetmap.org/way/190127668",
+     "empreinte": [
+      [
+       -61.2,
+       -75.5
+      ],
+      [
+       -53.4,
+       -74.1
+      ],
+      [
+       -46.3,
+       -69.5
+      ],
+      [
+       -41.5,
+       -62.7
+      ],
+      [
+       -39.7,
+       -55.0
+      ],
+      [
+       -40.9,
+       -47.2
+      ],
+      [
+       -45.1,
+       -39.9
+      ],
+      [
+       -51.3,
+       -35.1
+      ],
+      [
+       -59.8,
+       -32.7
+      ],
+      [
+       -68.4,
+       -34.0
+      ],
+      [
+       -75.5,
+       -38.3
+      ],
+      [
+       -81.0,
+       -46.1
+      ],
+      [
+       -82.5,
+       -53.6
+      ],
+      [
+       -80.8,
+       -62.4
+      ],
+      [
+       -76.3,
+       -69.1
+      ],
+      [
+       -69.0,
+       -74.0
+      ],
+      [
+       -61.2,
+       -75.5
+      ]
+     ]
+    }
+   ],
+   "preuve": {
+    "statut": "centres-releves-gabarit-fige",
+    "source": "https://www.openstreetmap.org/way/190127670",
+    "releve": "2026-09-14",
+    "description": "Centres de référence issus des empreintes publiques liées à cet objet. Le gabarit nucléaire reste inchangé ; les positions dessinées sont celles du raccordement final avec la halle. Écart maximal calculé par rapport aux centres de référence : 1.505 m. La preuve initiale et le détail du relevé antérieur sont conservés dans implantationAvantRaccord.preuve. Cette différence numérique ne mesure pas l’incertitude topographique du relevé public.",
+    "millesime": "Millésime du tracé non renseigné dans cet objet",
+    "sources": [
+     "https://www.openstreetmap.org/way/190127670",
+     "https://www.openstreetmap.org/way/190127668",
+     "https://www.openstreetmap.org/way/350648143",
+     "https://www.openstreetmap.org/way/350648144"
+    ],
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 39.24,
+     "angleApres": 39.24000000000001,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    },
+    "ecartsCentresApresRaccord": {
+     "statut": "comparaison-dessin-releve",
+     "date": "2026-09-14",
+     "parTranche": [
+      {
+       "u": 0,
+       "ecartM": 1.478267763417898
+      },
+      {
+       "u": 1,
+       "ecartM": 1.504387117579726
+      }
+     ],
+     "maximumM": 1.505,
+     "borneAvantRaccordM": 1.57,
+     "methode": "Distance euclidienne entre les centres locaux (-42,0)/(42,0), après miroir, rotation et translation finales, et centresReleves. Borne arrondie vers le haut au millimètre.",
+     "portee": "Écart au relevé cartographique archivé seulement ; la précision géographique OSM reste non certifiée."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": -94.8,
+    "y": -81.6,
+    "r": 39.24,
+    "m": 1,
+    "u": 0,
+    "us": [
+     0,
+     1
+    ],
+    "localisation": "relevee-gabarit-fige",
+    "preuve": {
+     "statut": "centres-releves-gabarit-fige",
+     "source": "https://www.openstreetmap.org/way/190127670",
+     "releve": "2026-09-14",
+     "description": "Centres de deux empreintes explicitement nommées BR, contenues exclusivement dans les ensembles nommés Dampierre-1 et Dampierre-2. Centre et angle de la paire recalés ; gabarit nucléaire historique inchangé (entraxe84 m, BR39 m). Entraxe relevé 86.98 m ; écart résiduel théorique 1.49 m par BR, plus arrondis. Les auxiliaires internes du gabarit ne sont pas individuellement localisés par cette preuve.",
+     "millesime": "Millésime du tracé non renseigné dans cet objet",
+     "sources": [
+      "https://www.openstreetmap.org/way/190127670",
+      "https://www.openstreetmap.org/way/190127668",
+      "https://www.openstreetmap.org/way/350648143",
+      "https://www.openstreetmap.org/way/350648144"
+     ]
+    }
+   },
+   "erreurCentreMaxAvantRaccord": 1.57
+  },
+  {
+   "t": "paire",
+   "x": 65.01435510398629,
+   "y": 48.92729896022609,
+   "r": 39.24000000000001,
+   "m": 1,
+   "u": 2,
+   "us": [
+    2,
+    3
+   ],
+   "localisation": "relevee-gabarit-fige",
+   "ecartReleve": 89.53,
+   "erreurCentreMax": 2.891,
+   "centresReleves": [
+    {
+     "u": 2,
+     "x": 30.76,
+     "y": 20.04,
+     "source": "https://www.openstreetmap.org/way/190127669",
+     "empreinte": [
+      [
+       30.6,
+       -1.3
+      ],
+      [
+       38.8,
+       0.3
+      ],
+      [
+       45.7,
+       4.8
+      ],
+      [
+       50.4,
+       11.7
+      ],
+      [
+       52.1,
+       19.9
+      ],
+      [
+       50.5,
+       28.1
+      ],
+      [
+       46.0,
+       35.0
+      ],
+      [
+       39.1,
+       39.7
+      ],
+      [
+       30.9,
+       41.4
+      ],
+      [
+       22.7,
+       39.8
+      ],
+      [
+       15.8,
+       35.3
+      ],
+      [
+       11.1,
+       28.4
+      ],
+      [
+       9.4,
+       20.2
+      ],
+      [
+       11.0,
+       12.0
+      ],
+      [
+       15.5,
+       5.1
+      ],
+      [
+       22.4,
+       0.4
+      ],
+      [
+       30.6,
+       -1.3
+      ]
+     ]
+    },
+    {
+     "u": 3,
+     "x": 99.57,
+     "y": 77.32,
+     "source": "https://www.openstreetmap.org/way/190127667",
+     "empreinte": [
+      [
+       99.0,
+       56.0
+      ],
+      [
+       106.8,
+       57.3
+      ],
+      [
+       114.1,
+       61.7
+      ],
+      [
+       118.8,
+       68.2
+      ],
+      [
+       120.8,
+       76.4
+      ],
+      [
+       119.8,
+       84.1
+      ],
+      [
+       115.3,
+       91.6
+      ],
+      [
+       108.9,
+       96.5
+      ],
+      [
+       100.4,
+       98.6
+      ],
+      [
+       92.2,
+       97.3
+      ],
+      [
+       85.0,
+       92.8
+      ],
+      [
+       80.1,
+       85.9
+      ],
+      [
+       78.3,
+       77.8
+      ],
+      [
+       79.8,
+       69.4
+      ],
+      [
+       84.2,
+       62.6
+      ],
+      [
+       91.2,
+       57.7
+      ],
+      [
+       99.0,
+       56.0
+      ]
+     ]
+    }
+   ],
+   "preuve": {
+    "statut": "centres-releves-gabarit-fige",
+    "source": "https://www.openstreetmap.org/way/190127669",
+    "releve": "2026-09-14",
+    "description": "Centres de référence issus des empreintes publiques liées à cet objet. Le gabarit nucléaire reste inchangé ; les positions dessinées sont celles du raccordement final avec la halle. Écart maximal calculé par rapport aux centres de référence : 2.891 m. La preuve initiale et le détail du relevé antérieur sont conservés dans implantationAvantRaccord.preuve. Cette différence numérique ne mesure pas l’incertitude topographique du relevé public.",
+    "millesime": "Millésime du tracé non renseigné dans cet objet",
+    "sources": [
+     "https://www.openstreetmap.org/way/190127669",
+     "https://www.openstreetmap.org/way/190127667",
+     "https://www.openstreetmap.org/way/350648146",
+     "https://www.openstreetmap.org/way/350648147"
+    ],
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 39.77,
+     "angleApres": 39.24000000000001,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale.",
+     "ajustementHalleCommune": {
+      "translationM": 0.2934771622048373,
+      "centreAvant": [
+       65.2,
+       48.7
+      ],
+      "centreApres": [
+       65.01435510398629,
+       48.92729896022609
+      ],
+      "description": "Seule la composante normale est corrigée pour aligner la face du gabarit avec la façade plane de la halle commune. Centre relevé conservé en mémoire documentaire."
+     }
+    },
+    "ecartsCentresApresRaccord": {
+     "statut": "comparaison-dessin-releve",
+     "date": "2026-09-14",
+     "parTranche": [
+      {
+       "u": 2,
+       "ecartM": 2.890640271429303
+      },
+      {
+       "u": 3,
+       "ecartM": 2.726994063563911
+      }
+     ],
+     "maximumM": 2.891,
+     "borneAvantRaccordM": 2.85,
+     "methode": "Distance euclidienne entre les centres locaux (-42,0)/(42,0), après miroir, rotation et translation finales, et centresReleves. Borne arrondie vers le haut au millimètre.",
+     "portee": "Écart au relevé cartographique archivé seulement ; la précision géographique OSM reste non certifiée."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 65.2,
+    "y": 48.7,
+    "r": 39.77,
+    "m": 1,
+    "u": 2,
+    "us": [
+     2,
+     3
+    ],
+    "localisation": "relevee-gabarit-fige",
+    "preuve": {
+     "statut": "centres-releves-gabarit-fige",
+     "source": "https://www.openstreetmap.org/way/190127669",
+     "releve": "2026-09-14",
+     "description": "Centres de deux empreintes explicitement nommées BR, contenues exclusivement dans les ensembles nommés Dampierre-3 et Dampierre-4. Centre et angle de la paire recalés ; gabarit nucléaire historique inchangé (entraxe84 m, BR39 m). Entraxe relevé 89.53 m ; écart résiduel théorique 2.77 m par BR, plus arrondis. Les auxiliaires internes du gabarit ne sont pas individuellement localisés par cette preuve.",
+     "millesime": "Millésime du tracé non renseigné dans cet objet",
+     "sources": [
+      "https://www.openstreetmap.org/way/190127669",
+      "https://www.openstreetmap.org/way/190127667",
+      "https://www.openstreetmap.org/way/350648146",
+      "https://www.openstreetmap.org/way/350648147"
+     ]
+    }
+   },
+   "erreurCentreMaxAvantRaccord": 2.85
+  },
+  {
+   "t": "sdm",
+   "x": 7.8475097895685195,
+   "y": -53.024577868178504,
+   "r": 219.24,
+   "m": 1,
+   "n": 4,
+   "u0": 0,
+   "us": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "L": 401.11063431950095,
+   "l": 50.59109419613499,
+   "axe": "file",
+   "empreinte": [
+    [
+     163.17821666892291,
+     73.84073158010284
+    ],
+    [
+     -147.4831970897859,
+     -179.88988731645986
+    ],
+    [
+     -115.48078044277466,
+     -219.0728445901688
+    ],
+    [
+     195.18063331593413,
+     34.6577743063939
+    ],
+    [
+     163.17821666892291,
+     73.84073158010284
+    ]
+   ],
+   "preuve": {
+    "statut": "contour-partiel-interprete",
+    "releve": "2026-09-14",
+    "source": "https://commons.wikimedia.org/wiki/File:Plan-Dampierre.svg",
+    "auteur": "Roulex45",
+    "millesime": "2011-10-06",
+    "licence": "CC BY-SA 3.0",
+    "description": "Salle des machines commune explicitement légendée SdM sur le plan public, au nord-est des quatre BR. Enveloppe géographique dérivée des sommets du long corps rectangulaire des quatre complexes OSM ; la séparation intérieure avec les auxiliaires est interprétée. Le contour power=generator complet ne désigne pas la seule SDM. Travées et turbines schématiques, dimensions non certifiées.",
+    "origineDocumentaire": "Le fichier est déclaré dérivé du Rapport Evaluation de sûreté EDF ; cet original précis n’a pas été retrouvé. Source secondaire explicite, sans validation exploitant.",
+    "sourcesGeometrie": [
+     "https://www.openstreetmap.org/way/350648143",
+     "https://www.openstreetmap.org/way/350648144",
+     "https://www.openstreetmap.org/way/350648146",
+     "https://www.openstreetmap.org/way/350648147"
+    ],
+    "rectangleHalle": {
+     "statut": "dimensions-interpretees",
+     "releve": "2026-09-14",
+     "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+     "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+     "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+     "dimensionsAvant": [
+      402.0,
+      59.2
+     ],
+     "dimensionsApres": [
+      401.11063431950095,
+      50.59109419613499
+     ]
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 4.238,
+     "angleAvant": 219.24,
+     "angleApres": 219.24,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "empreinteSource": [
+    [
+     -147.5,
+     -180.0
+    ],
+    [
+     -112.6,
+     -222.6
+    ],
+    [
+     -107.1,
+     -217.7
+    ],
+    [
+     -23.3,
+     -152.2
+    ],
+    [
+     53.3,
+     -89.6
+    ],
+    [
+     98.7,
+     -53.4
+    ],
+    [
+     134.9,
+     -23.8
+    ],
+    [
+     200.7,
+     27.9
+    ],
+    [
+     166.4,
+     71.0
+    ],
+    [
+     143.1,
+     52.4
+    ]
+   ],
+   "releveHalleInitial": {
+    "x": 8.1,
+    "y": -52.9,
+    "r": 219.24,
+    "L": 402.0,
+    "l": 59.2
+   },
+   "geometrie": "rectangle-halle",
+   "implantationAvantRaccord": {
+    "x": 10.528442907587163,
+    "y": -56.30704521980604,
+    "r": 219.24,
+    "m": 1,
+    "n": 4,
+    "u0": 0,
+    "us": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "L": 401.11063431950095,
+    "l": 50.59109419613499,
+    "empreinte": [
+     [
+      165.85914978694157,
+      70.55826422847532
+     ],
+     [
+      -144.80226397176722,
+      -183.17235466808742
+     ],
+     [
+      -112.799847324756,
+      -222.35531194179637
+     ],
+     [
+      197.8615664339528,
+      31.375306954766366
+     ],
+     [
+      165.85914978694157,
+      70.55826422847532
+     ]
+    ],
+    "preuve": {
+     "statut": "contour-partiel-interprete",
+     "releve": "2026-09-14",
+     "source": "https://commons.wikimedia.org/wiki/File:Plan-Dampierre.svg",
+     "auteur": "Roulex45",
+     "millesime": "2011-10-06",
+     "licence": "CC BY-SA 3.0",
+     "description": "Salle des machines commune explicitement légendée SdM sur le plan public, au nord-est des quatre BR. Enveloppe géographique dérivée des sommets du long corps rectangulaire des quatre complexes OSM ; la séparation intérieure avec les auxiliaires est interprétée. Le contour power=generator complet ne désigne pas la seule SDM. Travées et turbines schématiques, dimensions non certifiées.",
+     "origineDocumentaire": "Le fichier est déclaré dérivé du Rapport Evaluation de sûreté EDF ; cet original précis n’a pas été retrouvé. Source secondaire explicite, sans validation exploitant.",
+     "sourcesGeometrie": [
+      "https://www.openstreetmap.org/way/350648143",
+      "https://www.openstreetmap.org/way/350648144",
+      "https://www.openstreetmap.org/way/350648146",
+      "https://www.openstreetmap.org/way/350648147"
+     ],
+     "rectangleHalle": {
+      "statut": "dimensions-interpretees",
+      "releve": "2026-09-14",
+      "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+      "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+      "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+      "dimensionsAvant": [
+       402.0,
+       59.2
+      ],
+      "dimensionsApres": [
+       401.11063431950095,
+       50.59109419613499
+      ]
+     }
+    }
+   },
+   "localisation": "schematique-documentee"
+  },
+  {
+   "t": "aero",
+   "x": -336.4,
+   "y": -239.1,
+   "r": 0,
+   "m": 1,
+   "d": 129.9,
+   "empreinte": [
+    [
+     -343.9,
+     -303.9
+    ],
+    [
+     -351.9,
+     -302.5
+    ],
+    [
+     -359.8,
+     -300.0
+    ],
+    [
+     -367.1,
+     -296.6
+    ],
+    [
+     -374.1,
+     -292.2
+    ],
+    [
+     -380.4,
+     -287.1
+    ],
+    [
+     -386.0,
+     -281.2
+    ],
+    [
+     -390.9,
+     -274.6
+    ],
+    [
+     -394.9,
+     -267.5
+    ],
+    [
+     -397.9,
+     -259.8
+    ],
+    [
+     -400.0,
+     -251.9
+    ],
+    [
+     -401.1,
+     -243.8
+    ],
+    [
+     -401.2,
+     -235.7
+    ],
+    [
+     -400.3,
+     -227.5
+    ],
+    [
+     -398.4,
+     -219.6
+    ],
+    [
+     -395.4,
+     -212.0
+    ],
+    [
+     -391.6,
+     -204.7
+    ],
+    [
+     -386.9,
+     -198.1
+    ],
+    [
+     -381.4,
+     -192.0
+    ],
+    [
+     -375.1,
+     -186.8
+    ],
+    [
+     -368.3,
+     -182.3
+    ],
+    [
+     -361.0,
+     -178.8
+    ],
+    [
+     -353.2,
+     -176.2
+    ],
+    [
+     -345.2,
+     -174.5
+    ],
+    [
+     -337.2,
+     -174.0
+    ],
+    [
+     -329.0,
+     -174.3
+    ],
+    [
+     -321.0,
+     -175.9
+    ],
+    [
+     -313.2,
+     -178.3
+    ],
+    [
+     -305.8,
+     -181.7
+    ],
+    [
+     -298.8,
+     -186.0
+    ],
+    [
+     -292.5,
+     -191.1
+    ],
+    [
+     -286.8,
+     -197.0
+    ],
+    [
+     -282.0,
+     -203.6
+    ],
+    [
+     -278.0,
+     -210.7
+    ],
+    [
+     -274.9,
+     -218.3
+    ],
+    [
+     -272.8,
+     -226.2
+    ],
+    [
+     -271.7,
+     -234.3
+    ],
+    [
+     -271.6,
+     -242.5
+    ],
+    [
+     -272.5,
+     -250.6
+    ],
+    [
+     -274.5,
+     -258.6
+    ],
+    [
+     -277.4,
+     -266.3
+    ],
+    [
+     -281.2,
+     -273.4
+    ],
+    [
+     -286.0,
+     -280.1
+    ],
+    [
+     -291.5,
+     -286.2
+    ],
+    [
+     -297.7,
+     -291.4
+    ],
+    [
+     -304.5,
+     -295.9
+    ],
+    [
+     -311.9,
+     -299.5
+    ],
+    [
+     -319.6,
+     -302.1
+    ],
+    [
+     -327.6,
+     -303.7
+    ],
+    [
+     -335.7,
+     -304.3
+    ],
+    [
+     -343.9,
+     -303.9
+    ]
+   ],
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/350649559",
+    "releve": "2026-09-14",
+    "description": "Tour explicitement taguée tower:type=cooling. Centre surfacique et empreinte source ; diamètre équivalent 2*sqrt(aire/pi), emprise cartographique et non cote constructeur. Aucune hauteur déduite de cette aire.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2015",
+    "identification": {
+     "source": "https://commons.wikimedia.org/wiki/File:Plan-Dampierre.svg",
+     "auteur": "Roulex45",
+     "date": "2011-10-06",
+     "licence": "CC BY-SA 3.0",
+     "repere": "Aéro1",
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+    }
+   },
+   "u": 0,
+   "raccordement": "source-secondaire-documentee"
+  },
+  {
+   "t": "aero",
+   "x": -213.1,
+   "y": -393.0,
+   "r": 0,
+   "m": 1,
+   "d": 129.6,
+   "empreinte": [
+    [
+     -240.0,
+     -452.4
+    ],
+    [
+     -251.8,
+     -445.4
+    ],
+    [
+     -261.8,
+     -436.2
+    ],
+    [
+     -269.8,
+     -424.9
+    ],
+    [
+     -275.2,
+     -412.2
+    ],
+    [
+     -277.8,
+     -398.7
+    ],
+    [
+     -277.6,
+     -385.1
+    ],
+    [
+     -274.4,
+     -371.7
+    ],
+    [
+     -268.5,
+     -359.2
+    ],
+    [
+     -260.2,
+     -348.3
+    ],
+    [
+     -249.8,
+     -339.4
+    ],
+    [
+     -237.9,
+     -333.0
+    ],
+    [
+     -225.1,
+     -329.1
+    ],
+    [
+     -211.7,
+     -327.9
+    ],
+    [
+     -198.3,
+     -329.6
+    ],
+    [
+     -185.5,
+     -334.0
+    ],
+    [
+     -174.0,
+     -341.0
+    ],
+    [
+     -164.1,
+     -350.1
+    ],
+    [
+     -156.4,
+     -361.1
+    ],
+    [
+     -151.0,
+     -373.5
+    ],
+    [
+     -148.4,
+     -386.7
+    ],
+    [
+     -148.5,
+     -400.3
+    ],
+    [
+     -151.4,
+     -413.4
+    ],
+    [
+     -156.9,
+     -425.8
+    ],
+    [
+     -164.9,
+     -436.6
+    ],
+    [
+     -174.9,
+     -445.6
+    ],
+    [
+     -186.7,
+     -452.5
+    ],
+    [
+     -199.8,
+     -456.7
+    ],
+    [
+     -213.4,
+     -458.2
+    ],
+    [
+     -226.9,
+     -456.7
+    ],
+    [
+     -240.0,
+     -452.4
+    ]
+   ],
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/350648393",
+    "releve": "2026-09-14",
+    "description": "Tour explicitement taguée tower:type=cooling. Centre surfacique et empreinte source ; diamètre équivalent 2*sqrt(aire/pi), emprise cartographique et non cote constructeur. Aucune hauteur déduite de cette aire.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2015",
+    "identification": {
+     "source": "https://commons.wikimedia.org/wiki/File:Plan-Dampierre.svg",
+     "auteur": "Roulex45",
+     "date": "2011-10-06",
+     "licence": "CC BY-SA 3.0",
+     "repere": "Aéro2",
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+    }
+   },
+   "u": 1,
+   "raccordement": "source-secondaire-documentee"
+  },
+  {
+   "t": "aero",
+   "x": 359.2,
+   "y": 61.0,
+   "r": 0,
+   "m": 1,
+   "d": 129.9,
+   "empreinte": [
+    [
+     399.4,
+     112.2
+    ],
+    [
+     405.4,
+     106.9
+    ],
+    [
+     410.7,
+     100.7
+    ],
+    [
+     415.2,
+     94.2
+    ],
+    [
+     418.9,
+     86.9
+    ],
+    [
+     421.6,
+     79.4
+    ],
+    [
+     423.4,
+     71.6
+    ],
+    [
+     424.2,
+     63.6
+    ],
+    [
+     424.0,
+     55.2
+    ],
+    [
+     422.7,
+     47.0
+    ],
+    [
+     420.4,
+     39.1
+    ],
+    [
+     417.1,
+     31.4
+    ],
+    [
+     412.8,
+     24.3
+    ],
+    [
+     407.8,
+     17.7
+    ],
+    [
+     401.9,
+     11.9
+    ],
+    [
+     395.3,
+     6.8
+    ],
+    [
+     388.1,
+     2.7
+    ],
+    [
+     380.5,
+     -0.6
+    ],
+    [
+     372.5,
+     -2.8
+    ],
+    [
+     364.3,
+     -3.9
+    ],
+    [
+     355.9,
+     -4.0
+    ],
+    [
+     347.7,
+     -3.1
+    ],
+    [
+     339.7,
+     -1.1
+    ],
+    [
+     331.9,
+     1.9
+    ],
+    [
+     324.6,
+     5.9
+    ],
+    [
+     317.9,
+     10.7
+    ],
+    [
+     311.9,
+     16.5
+    ],
+    [
+     306.6,
+     22.8
+    ],
+    [
+     302.2,
+     29.8
+    ],
+    [
+     298.6,
+     37.4
+    ],
+    [
+     296.1,
+     45.3
+    ],
+    [
+     294.7,
+     53.5
+    ],
+    [
+     294.2,
+     61.8
+    ],
+    [
+     294.8,
+     69.8
+    ],
+    [
+     296.4,
+     77.7
+    ],
+    [
+     299.0,
+     85.4
+    ],
+    [
+     302.4,
+     92.6
+    ],
+    [
+     306.8,
+     99.4
+    ],
+    [
+     311.8,
+     105.6
+    ],
+    [
+     317.8,
+     111.1
+    ],
+    [
+     324.2,
+     115.9
+    ],
+    [
+     331.2,
+     119.8
+    ],
+    [
+     338.7,
+     122.8
+    ],
+    [
+     346.4,
+     124.8
+    ],
+    [
+     354.4,
+     125.9
+    ],
+    [
+     362.4,
+     126.0
+    ],
+    [
+     370.4,
+     125.1
+    ],
+    [
+     378.2,
+     123.2
+    ],
+    [
+     385.7,
+     120.4
+    ],
+    [
+     392.8,
+     116.8
+    ],
+    [
+     399.4,
+     112.2
+    ]
+   ],
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/350649556",
+    "releve": "2026-09-14",
+    "description": "Tour explicitement taguée tower:type=cooling. Centre surfacique et empreinte source ; diamètre équivalent 2*sqrt(aire/pi), emprise cartographique et non cote constructeur. Aucune hauteur déduite de cette aire.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2015",
+    "identification": {
+     "source": "https://commons.wikimedia.org/wiki/File:Plan-Dampierre.svg",
+     "auteur": "Roulex45",
+     "date": "2011-10-06",
+     "licence": "CC BY-SA 3.0",
+     "repere": "Aéro3",
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+    }
+   },
+   "u": 2,
+   "raccordement": "source-secondaire-documentee"
+  },
+  {
+   "t": "aero",
+   "x": 512.2,
+   "y": 185.3,
+   "r": 0,
+   "m": 1,
+   "d": 129.9,
+   "empreinte": [
+    [
+     501.9,
+     120.9
+    ],
+    [
+     493.9,
+     122.8
+    ],
+    [
+     486.1,
+     125.6
+    ],
+    [
+     478.7,
+     129.5
+    ],
+    [
+     471.9,
+     134.1
+    ],
+    [
+     465.8,
+     139.7
+    ],
+    [
+     460.4,
+     146.1
+    ],
+    [
+     455.9,
+     153.0
+    ],
+    [
+     452.2,
+     160.4
+    ],
+    [
+     449.6,
+     168.3
+    ],
+    [
+     448.0,
+     176.4
+    ],
+    [
+     447.4,
+     184.8
+    ],
+    [
+     447.8,
+     193.0
+    ],
+    [
+     449.2,
+     200.9
+    ],
+    [
+     451.6,
+     208.6
+    ],
+    [
+     455.0,
+     216.0
+    ],
+    [
+     459.2,
+     222.9
+    ],
+    [
+     464.2,
+     229.2
+    ],
+    [
+     470.0,
+     234.8
+    ],
+    [
+     476.3,
+     239.7
+    ],
+    [
+     483.3,
+     243.7
+    ],
+    [
+     490.7,
+     246.8
+    ],
+    [
+     498.4,
+     249.0
+    ],
+    [
+     506.4,
+     250.2
+    ],
+    [
+     514.4,
+     250.5
+    ],
+    [
+     522.5,
+     249.7
+    ],
+    [
+     530.2,
+     247.9
+    ],
+    [
+     537.8,
+     245.2
+    ],
+    [
+     545.0,
+     241.6
+    ],
+    [
+     551.7,
+     237.1
+    ],
+    [
+     557.7,
+     231.9
+    ],
+    [
+     563.1,
+     225.9
+    ],
+    [
+     567.7,
+     219.2
+    ],
+    [
+     571.4,
+     212.1
+    ],
+    [
+     574.3,
+     204.5
+    ],
+    [
+     576.1,
+     196.7
+    ],
+    [
+     577.0,
+     188.7
+    ],
+    [
+     577.0,
+     180.7
+    ],
+    [
+     575.8,
+     172.4
+    ],
+    [
+     573.7,
+     164.4
+    ],
+    [
+     570.5,
+     156.7
+    ],
+    [
+     566.5,
+     149.5
+    ],
+    [
+     561.5,
+     142.8
+    ],
+    [
+     555.7,
+     136.9
+    ],
+    [
+     549.3,
+     131.7
+    ],
+    [
+     542.2,
+     127.5
+    ],
+    [
+     534.6,
+     124.1
+    ],
+    [
+     526.7,
+     121.8
+    ],
+    [
+     518.5,
+     120.4
+    ],
+    [
+     510.2,
+     120.1
+    ],
+    [
+     501.9,
+     120.9
+    ]
+   ],
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/350649558",
+    "releve": "2026-09-14",
+    "description": "Tour explicitement taguée tower:type=cooling. Centre surfacique et empreinte source ; diamètre équivalent 2*sqrt(aire/pi), emprise cartographique et non cote constructeur. Aucune hauteur déduite de cette aire.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2015",
+    "identification": {
+     "source": "https://commons.wikimedia.org/wiki/File:Plan-Dampierre.svg",
+     "auteur": "Roulex45",
+     "date": "2011-10-06",
+     "licence": "CC BY-SA 3.0",
+     "repere": "Aéro4",
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+    }
+   },
+   "u": 3,
+   "raccordement": "source-secondaire-documentee"
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 2,
+   "u0": 0,
+   "us": [
+    1,
+    0
+   ],
+   "L": 98,
+   "l": 26,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 2,
+   "u0": 2,
+   "us": [
+    3,
+    2
+   ],
+   "L": 98,
+   "l": 26,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  },
+  {
+   "t": "ste",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "L": 64,
+   "l": 34,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; les sources consultées ne permettent pas de localiser cet équipement individuellement."
+   }
+  }
+ ],
+ "auditVisuel": {
+  "date": "2026-09-14",
+  "reference": "references-cnpe/ign/dampierre.jpg",
+  "source": "IGN — BD ORTHO, Licence ouverte 2.0",
+  "portee": "Paysage IGN observé, emprise pixellisée par le fournisseur. Géométrie établie uniquement depuis les données publiques OSM ; preuves et limites d’identité par objet. Aucun bâtiment extrapolé depuis les pixels masqués."
+ },
+ "geographie": {
+  "origine": [
+   47.733,
+   2.517
+  ],
+  "rotationDeg": 0,
+  "source": "OpenStreetMap",
+  "date": "2026-09-14",
+  "projection": "x=(lon-lon0)*111320*cos(lat0); y=(lat0-lat)*111320",
+  "unite": "m",
+  "licence": "ODbL 1.0",
+  "portee": "Empreintes cartographiques publiques ; aucun levé topographique certifié."
+ },
+ "reparationImplantations": {
+  "date": "2026-09-14",
+  "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."
+ }
+}

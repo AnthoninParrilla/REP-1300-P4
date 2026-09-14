@@ -1,0 +1,3170 @@
+{
+ "site": "Tricastin",
+ "palier": "CPY",
+ "tranches": 4,
+ "src": "releve",
+ "maj": "2026-09-14",
+ "eau": {
+  "type": "fleuve",
+  "nom": "le canal de Donzère-Mondragon",
+  "polygones": [
+   {
+    "anneaux": [
+     [
+      [
+       -417.8,
+       1205.0
+      ],
+      [
+       -432.5,
+       1251.8
+      ],
+      [
+       -460.6,
+       1362.4
+      ],
+      [
+       -474.7,
+       1455.0
+      ],
+      [
+       -495.2,
+       1562.4
+      ],
+      [
+       -511.6,
+       1600.0
+      ],
+      [
+       -980.6,
+       1600.0
+      ],
+      [
+       -914.4,
+       1542.7
+      ],
+      [
+       -887.5,
+       1532.9
+      ],
+      [
+       -853.4,
+       1535.4
+      ],
+      [
+       -820.0,
+       1530.4
+      ],
+      [
+       -799.5,
+       1512.4
+      ],
+      [
+       -780.2,
+       1500.9
+      ],
+      [
+       -770.8,
+       1509.1
+      ],
+      [
+       -749.1,
+       1518.1
+      ],
+      [
+       -741.5,
+       1488.6
+      ],
+      [
+       -762.0,
+       1470.6
+      ],
+      [
+       -787.2,
+       1453.4
+      ],
+      [
+       -820.0,
+       1445.2
+      ],
+      [
+       -834.7,
+       1432.1
+      ],
+      [
+       -820.6,
+       1323.9
+      ],
+      [
+       -812.4,
+       1311.6
+      ],
+      [
+       -795.4,
+       1317.3
+      ],
+      [
+       -791.9,
+       1344.4
+      ],
+      [
+       -772.5,
+       1364.0
+      ],
+      [
+       -748.5,
+       1358.3
+      ],
+      [
+       -729.7,
+       1360.8
+      ],
+      [
+       -719.2,
+       1368.1
+      ],
+      [
+       -711.6,
+       1352.6
+      ],
+      [
+       -711.0,
+       1339.5
+      ],
+      [
+       -729.1,
+       1332.1
+      ],
+      [
+       -739.7,
+       1310.8
+      ],
+      [
+       -750.3,
+       1286.2
+      ],
+      [
+       -749.7,
+       1268.1
+      ],
+      [
+       -743.2,
+       1248.5
+      ],
+      [
+       -733.8,
+       1263.2
+      ],
+      [
+       -716.2,
+       1274.7
+      ],
+      [
+       -684.0,
+       1283.7
+      ],
+      [
+       -667.6,
+       1295.2
+      ],
+      [
+       -645.3,
+       1292.7
+      ],
+      [
+       -643.0,
+       1268.1
+      ],
+      [
+       -635.3,
+       1229.6
+      ],
+      [
+       -626.5,
+       1205.0
+      ],
+      [
+       -604.3,
+       1189.5
+      ],
+      [
+       -558.5,
+       1188.6
+      ],
+      [
+       -433.1,
+       1195.2
+      ],
+      [
+       -417.8,
+       1205.0
+      ]
+     ]
+    ],
+    "nom": "Le Trop Long",
+    "source": "https://www.openstreetmap.org/way/104018850"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -375.5,
+       1291.2
+      ],
+      [
+       -398.6,
+       1302.1
+      ],
+      [
+       -409.4,
+       1323.1
+      ],
+      [
+       -421.7,
+       1360.1
+      ],
+      [
+       -421.7,
+       1386.4
+      ],
+      [
+       -375.5,
+       1410.7
+      ],
+      [
+       -358.6,
+       1418.7
+      ],
+      [
+       -358.8,
+       1434.6
+      ],
+      [
+       -369.7,
+       1442.7
+      ],
+      [
+       -382.6,
+       1443.9
+      ],
+      [
+       -428.3,
+       1444.8
+      ],
+      [
+       -444.2,
+       1513.2
+      ],
+      [
+       -454.6,
+       1581.4
+      ],
+      [
+       -462.5,
+       1600.0
+      ],
+      [
+       -376.5,
+       1600.0
+      ],
+      [
+       -375.1,
+       1597.5
+      ],
+      [
+       -362.4,
+       1581.6
+      ],
+      [
+       -355.0,
+       1575.9
+      ],
+      [
+       -323.0,
+       1578.4
+      ],
+      [
+       -315.0,
+       1581.0
+      ],
+      [
+       -298.3,
+       1580.6
+      ],
+      [
+       -271.9,
+       1550.4
+      ],
+      [
+       -235.5,
+       1511.4
+      ],
+      [
+       -190.2,
+       1475.2
+      ],
+      [
+       -178.0,
+       1466.5
+      ],
+      [
+       -148.6,
+       1453.2
+      ],
+      [
+       -119.1,
+       1435.2
+      ],
+      [
+       -102.2,
+       1416.2
+      ],
+      [
+       -85.2,
+       1405.1
+      ],
+      [
+       -72.4,
+       1394.4
+      ],
+      [
+       -54.1,
+       1373.7
+      ],
+      [
+       -48.8,
+       1364.1
+      ],
+      [
+       -49.3,
+       1335.6
+      ],
+      [
+       -46.1,
+       1325.5
+      ],
+      [
+       -46.1,
+       1303.7
+      ],
+      [
+       -42.8,
+       1288.6
+      ],
+      [
+       -47.4,
+       1280.3
+      ],
+      [
+       -66.3,
+       1283.2
+      ],
+      [
+       -77.1,
+       1287.3
+      ],
+      [
+       -92.8,
+       1300.7
+      ],
+      [
+       -107.9,
+       1325.7
+      ],
+      [
+       -134.8,
+       1358.3
+      ],
+      [
+       -143.7,
+       1362.4
+      ],
+      [
+       -155.9,
+       1361.3
+      ],
+      [
+       -162.9,
+       1353.1
+      ],
+      [
+       -165.4,
+       1346.1
+      ],
+      [
+       -160.3,
+       1336.2
+      ],
+      [
+       -146.8,
+       1318.9
+      ],
+      [
+       -143.7,
+       1308.8
+      ],
+      [
+       -142.8,
+       1298.9
+      ],
+      [
+       -133.3,
+       1291.2
+      ],
+      [
+       -121.4,
+       1283.8
+      ],
+      [
+       -61.7,
+       1235.0
+      ],
+      [
+       -53.0,
+       1230.2
+      ],
+      [
+       -52.7,
+       1219.5
+      ],
+      [
+       -58.1,
+       1210.5
+      ],
+      [
+       -54.4,
+       1186.7
+      ],
+      [
+       -55.3,
+       1169.4
+      ],
+      [
+       -62.9,
+       1163.9
+      ],
+      [
+       -87.3,
+       1153.5
+      ],
+      [
+       -147.0,
+       1147.0
+      ],
+      [
+       -195.6,
+       1144.9
+      ],
+      [
+       -205.5,
+       1160.2
+      ],
+      [
+       -217.0,
+       1260.5
+      ],
+      [
+       -215.4,
+       1282.4
+      ],
+      [
+       -219.1,
+       1289.5
+      ],
+      [
+       -231.7,
+       1290.8
+      ],
+      [
+       -265.0,
+       1290.2
+      ],
+      [
+       -281.1,
+       1291.8
+      ],
+      [
+       -344.3,
+       1289.8
+      ],
+      [
+       -375.5,
+       1291.2
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/104018855"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -1493.7,
+       -1300.8
+      ],
+      [
+       -1328.6,
+       -1333.7
+      ],
+      [
+       -1317.6,
+       -1330.5
+      ],
+      [
+       -1311.3,
+       -1311.7
+      ],
+      [
+       -1307.2,
+       -1228.5
+      ],
+      [
+       -1301.1,
+       -1199.4
+      ],
+      [
+       -1296.7,
+       -1150.0
+      ],
+      [
+       -1300.9,
+       -1128.3
+      ],
+      [
+       -1317.5,
+       -1122.8
+      ],
+      [
+       -1349.3,
+       -1126.1
+      ],
+      [
+       -1382.0,
+       -1122.9
+      ],
+      [
+       -1391.3,
+       -1097.7
+      ],
+      [
+       -1394.4,
+       -1074.3
+      ],
+      [
+       -1400.1,
+       -1058.4
+      ],
+      [
+       -1427.0,
+       -1055.3
+      ],
+      [
+       -1453.2,
+       -1062.3
+      ],
+      [
+       -1498.5,
+       -1079.2
+      ],
+      [
+       -1503.2,
+       -1095.2
+      ],
+      [
+       -1468.3,
+       -1189.0
+      ],
+      [
+       -1469.5,
+       -1206.2
+      ],
+      [
+       -1509.3,
+       -1266.0
+      ],
+      [
+       -1512.4,
+       -1291.0
+      ],
+      [
+       -1493.7,
+       -1300.8
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/104030480"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -1522.7,
+       -1029.6
+      ],
+      [
+       -1496.5,
+       -1028.2
+      ],
+      [
+       -1424.0,
+       -1018.1
+      ],
+      [
+       -1412.6,
+       -1004.6
+      ],
+      [
+       -1412.9,
+       -970.4
+      ],
+      [
+       -1420.4,
+       -933.0
+      ],
+      [
+       -1422.8,
+       -890.2
+      ],
+      [
+       -1375.5,
+       -864.5
+      ],
+      [
+       -1358.7,
+       -850.2
+      ],
+      [
+       -1372.9,
+       -776.4
+      ],
+      [
+       -1391.6,
+       -714.5
+      ],
+      [
+       -1405.6,
+       -703.6
+      ],
+      [
+       -1436.6,
+       -704.6
+      ],
+      [
+       -1466.4,
+       -717.8
+      ],
+      [
+       -1495.5,
+       -734.0
+      ],
+      [
+       -1546.5,
+       -777.9
+      ],
+      [
+       -1581.4,
+       -816.7
+      ],
+      [
+       -1579.6,
+       -842.7
+      ],
+      [
+       -1575.0,
+       -868.3
+      ],
+      [
+       -1554.1,
+       -942.1
+      ],
+      [
+       -1539.6,
+       -1002.0
+      ],
+      [
+       -1522.7,
+       -1029.6
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/104030485"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -346.0,
+       -153.9
+      ],
+      [
+       -333.9,
+       -161.5
+      ],
+      [
+       -322.3,
+       -180.1
+      ],
+      [
+       -312.8,
+       -182.6
+      ],
+      [
+       -303.7,
+       -165.0
+      ],
+      [
+       -280.6,
+       -162.5
+      ],
+      [
+       -278.6,
+       -145.4
+      ],
+      [
+       -287.1,
+       -125.2
+      ],
+      [
+       -305.2,
+       -117.2
+      ],
+      [
+       -300.2,
+       -97.1
+      ],
+      [
+       -292.1,
+       -77.4
+      ],
+      [
+       -281.1,
+       -14.0
+      ],
+      [
+       -266.5,
+       32.3
+      ],
+      [
+       -257.4,
+       76.6
+      ],
+      [
+       -254.4,
+       130.4
+      ],
+      [
+       -255.9,
+       180.2
+      ],
+      [
+       -277.6,
+       221.5
+      ],
+      [
+       -267.5,
+       248.2
+      ],
+      [
+       -254.4,
+       269.3
+      ],
+      [
+       -263.0,
+       277.9
+      ],
+      [
+       -288.1,
+       259.8
+      ],
+      [
+       -298.2,
+       240.1
+      ],
+      [
+       -299.2,
+       203.9
+      ],
+      [
+       -297.7,
+       72.5
+      ],
+      [
+       -303.7,
+       21.7
+      ],
+      [
+       -309.3,
+       -5.5
+      ],
+      [
+       -311.8,
+       -39.7
+      ],
+      [
+       -325.9,
+       -78.4
+      ],
+      [
+       -337.4,
+       -132.8
+      ],
+      [
+       -346.0,
+       -153.9
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/129472246"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -529.0,
+       -700.7
+      ],
+      [
+       -531.1,
+       -630.0
+      ],
+      [
+       -351.5,
+       -625.5
+      ],
+      [
+       -339.5,
+       -634.5
+      ],
+      [
+       -335.9,
+       -653.3
+      ],
+      [
+       -336.4,
+       -667.6
+      ],
+      [
+       -343.7,
+       -667.8
+      ],
+      [
+       -343.5,
+       -695.7
+      ],
+      [
+       -529.0,
+       -700.7
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/575284544"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       307.1,
+       -1600.0
+      ],
+      [
+       344.2,
+       -1221.3
+      ],
+      [
+       356.4,
+       -1077.7
+      ],
+      [
+       374.4,
+       -851.7
+      ],
+      [
+       390.2,
+       -716.5
+      ],
+      [
+       420.0,
+       -396.5
+      ],
+      [
+       453.4,
+       -93.9
+      ],
+      [
+       480.0,
+       84.9
+      ],
+      [
+       614.5,
+       827.2
+      ],
+      [
+       667.9,
+       1113.5
+      ],
+      [
+       715.5,
+       1290.6
+      ],
+      [
+       806.2,
+       1507.2
+      ],
+      [
+       850.8,
+       1600.0
+      ],
+      [
+       604.2,
+       1600.0
+      ],
+      [
+       566.9,
+       1414.8
+      ],
+      [
+       471.1,
+       921.1
+      ],
+      [
+       345.8,
+       205.9
+      ],
+      [
+       217.2,
+       17.4
+      ],
+      [
+       197.4,
+       -173.2
+      ],
+      [
+       207.0,
+       -187.5
+      ],
+      [
+       248.7,
+       -194.7
+      ],
+      [
+       264.1,
+       -174.2
+      ],
+      [
+       278.8,
+       -56.4
+      ],
+      [
+       289.0,
+       -37.9
+      ],
+      [
+       308.8,
+       -47.1
+      ],
+      [
+       281.0,
+       -321.7
+      ],
+      [
+       257.3,
+       -333.1
+      ],
+      [
+       201.0,
+       -253.7
+      ],
+      [
+       185.6,
+       -224.2
+      ],
+      [
+       178.0,
+       -185.5
+      ],
+      [
+       197.3,
+       17.7
+      ],
+      [
+       147.6,
+       24.9
+      ],
+      [
+       118.0,
+       -287.8
+      ],
+      [
+       221.2,
+       -439.3
+      ],
+      [
+       241.8,
+       -486.5
+      ],
+      [
+       254.1,
+       -530.1
+      ],
+      [
+       255.2,
+       -566.0
+      ],
+      [
+       252.4,
+       -601.1
+      ],
+      [
+       239.6,
+       -644.3
+      ],
+      [
+       237.7,
+       -722.2
+      ],
+      [
+       200.2,
+       -1053.0
+      ],
+      [
+       174.7,
+       -1228.2
+      ],
+      [
+       137.0,
+       -1600.0
+      ],
+      [
+       307.1,
+       -1600.0
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/601752392"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -52.3,
+       811.3
+      ],
+      [
+       -48.0,
+       809.9
+      ],
+      [
+       -29.2,
+       808.0
+      ],
+      [
+       -25.8,
+       808.3
+      ],
+      [
+       -23.5,
+       809.5
+      ],
+      [
+       -21.9,
+       812.2
+      ],
+      [
+       -20.6,
+       818.3
+      ],
+      [
+       -20.1,
+       825.3
+      ],
+      [
+       -21.6,
+       845.4
+      ],
+      [
+       -23.3,
+       847.6
+      ],
+      [
+       -26.1,
+       849.1
+      ],
+      [
+       -27.8,
+       849.4
+      ],
+      [
+       -31.3,
+       848.5
+      ],
+      [
+       -51.5,
+       838.4
+      ],
+      [
+       -53.9,
+       835.6
+      ],
+      [
+       -55.6,
+       832.5
+      ],
+      [
+       -58.2,
+       824.0
+      ],
+      [
+       -58.0,
+       819.3
+      ],
+      [
+       -57.1,
+       815.1
+      ],
+      [
+       -55.1,
+       812.8
+      ],
+      [
+       -52.3,
+       811.3
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/672758728"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       130.7,
+       1257.0
+      ],
+      [
+       140.8,
+       1234.6
+      ],
+      [
+       148.4,
+       1228.2
+      ],
+      [
+       174.6,
+       1227.8
+      ],
+      [
+       177.3,
+       1231.1
+      ],
+      [
+       172.4,
+       1251.1
+      ],
+      [
+       167.6,
+       1255.3
+      ],
+      [
+       130.7,
+       1257.0
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/688290150"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       489.5,
+       -943.5
+      ],
+      [
+       486.3,
+       -945.4
+      ],
+      [
+       482.7,
+       -946.2
+      ],
+      [
+       479.0,
+       -945.8
+      ],
+      [
+       475.5,
+       -944.1
+      ],
+      [
+       472.7,
+       -941.3
+      ],
+      [
+       471.0,
+       -937.8
+      ],
+      [
+       470.5,
+       -933.9
+      ],
+      [
+       471.5,
+       -930.0
+      ],
+      [
+       473.6,
+       -926.7
+      ],
+      [
+       476.7,
+       -924.3
+      ],
+      [
+       480.5,
+       -923.1
+      ],
+      [
+       484.4,
+       -923.3
+      ],
+      [
+       487.9,
+       -924.6
+      ],
+      [
+       490.7,
+       -926.9
+      ],
+      [
+       492.7,
+       -930.0
+      ],
+      [
+       493.6,
+       -933.6
+      ],
+      [
+       493.4,
+       -937.3
+      ],
+      [
+       491.9,
+       -940.7
+      ],
+      [
+       489.5,
+       -943.5
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/862153819"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       489.4,
+       -973.4
+      ],
+      [
+       485.6,
+       -975.6
+      ],
+      [
+       481.4,
+       -976.4
+      ],
+      [
+       477.1,
+       -975.7
+      ],
+      [
+       473.3,
+       -973.7
+      ],
+      [
+       470.3,
+       -970.6
+      ],
+      [
+       468.5,
+       -966.7
+      ],
+      [
+       468.0,
+       -962.4
+      ],
+      [
+       469.0,
+       -958.2
+      ],
+      [
+       471.2,
+       -954.5
+      ],
+      [
+       474.6,
+       -951.8
+      ],
+      [
+       478.7,
+       -950.2
+      ],
+      [
+       483.0,
+       -950.1
+      ],
+      [
+       487.2,
+       -951.5
+      ],
+      [
+       490.7,
+       -954.0
+      ],
+      [
+       493.1,
+       -957.6
+      ],
+      [
+       494.3,
+       -961.8
+      ],
+      [
+       494.0,
+       -966.2
+      ],
+      [
+       492.3,
+       -970.2
+      ],
+      [
+       489.4,
+       -973.4
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/862153820"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       487.2,
+       -1001.9
+      ],
+      [
+       483.5,
+       -1003.8
+      ],
+      [
+       479.4,
+       -1004.4
+      ],
+      [
+       475.3,
+       -1003.7
+      ],
+      [
+       471.7,
+       -1001.6
+      ],
+      [
+       468.9,
+       -998.5
+      ],
+      [
+       467.3,
+       -994.7
+      ],
+      [
+       467.1,
+       -990.5
+      ],
+      [
+       468.2,
+       -986.5
+      ],
+      [
+       470.5,
+       -983.1
+      ],
+      [
+       473.9,
+       -980.6
+      ],
+      [
+       477.8,
+       -979.3
+      ],
+      [
+       482.0,
+       -979.4
+      ],
+      [
+       485.9,
+       -980.8
+      ],
+      [
+       489.1,
+       -983.4
+      ],
+      [
+       491.3,
+       -987.0
+      ],
+      [
+       492.2,
+       -991.0
+      ],
+      [
+       491.8,
+       -995.1
+      ],
+      [
+       490.1,
+       -998.9
+      ],
+      [
+       487.2,
+       -1001.9
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/862153821"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       354.4,
+       -1503.3
+      ],
+      [
+       362.9,
+       -1501.2
+      ],
+      [
+       382.8,
+       -1502.9
+      ],
+      [
+       382.4,
+       -1499.3
+      ],
+      [
+       387.3,
+       -1499.1
+      ],
+      [
+       386.9,
+       -1502.9
+      ],
+      [
+       389.6,
+       -1508.7
+      ],
+      [
+       389.6,
+       -1513.2
+      ],
+      [
+       380.4,
+       -1520.9
+      ],
+      [
+       379.0,
+       -1533.9
+      ],
+      [
+       371.0,
+       -1535.2
+      ],
+      [
+       368.7,
+       -1517.9
+      ],
+      [
+       366.1,
+       -1516.4
+      ],
+      [
+       354.2,
+       -1513.0
+      ],
+      [
+       354.4,
+       -1503.3
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1181808147"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -222.8,
+       1109.0
+      ],
+      [
+       -225.7,
+       1105.4
+      ],
+      [
+       -223.5,
+       1095.1
+      ],
+      [
+       -170.3,
+       1087.9
+      ],
+      [
+       -136.2,
+       1078.9
+      ],
+      [
+       -102.1,
+       1061.9
+      ],
+      [
+       -87.1,
+       1061.2
+      ],
+      [
+       -73.3,
+       1061.9
+      ],
+      [
+       -61.1,
+       1068.8
+      ],
+      [
+       -42.2,
+       1086.7
+      ],
+      [
+       -25.0,
+       1108.1
+      ],
+      [
+       -4.2,
+       1128.7
+      ],
+      [
+       -12.5,
+       1134.6
+      ],
+      [
+       -29.9,
+       1133.6
+      ],
+      [
+       -58.1,
+       1135.6
+      ],
+      [
+       -87.8,
+       1135.6
+      ],
+      [
+       -155.0,
+       1129.4
+      ],
+      [
+       -190.4,
+       1121.6
+      ],
+      [
+       -211.2,
+       1115.7
+      ],
+      [
+       -222.8,
+       1109.0
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1259062165"
+   }
+  ],
+  "axes": [
+   {
+    "pts": [
+     [
+      211.5,
+      -1600.0
+     ],
+     [
+      232.1,
+      -1398.3
+     ],
+     [
+      377.5,
+      -52.7
+     ],
+     [
+      531.3,
+      814.2
+     ],
+     [
+      590.2,
+      1105.6
+     ],
+     [
+      701.5,
+      1600.0
+     ]
+    ],
+    "nom": "Canal de Donzère-Mondragon",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/139539922"
+   },
+   {
+    "pts": [
+     [
+      -1435.3,
+      992.7
+     ],
+     [
+      -1439.9,
+      971.2
+     ],
+     [
+      -1459.3,
+      869.4
+     ],
+     [
+      -1483.7,
+      688.9
+     ]
+    ],
+    "nom": "",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/219229676"
+   },
+   {
+    "pts": [
+     [
+      -1483.7,
+      688.9
+     ],
+     [
+      -1485.2,
+      680.1
+     ],
+     [
+      -1523.3,
+      605.1
+     ],
+     [
+      -1563.5,
+      578.8
+     ]
+    ],
+    "nom": "",
+    "souterrain": true,
+    "source": "https://www.openstreetmap.org/way/219229681"
+   },
+   {
+    "pts": [
+     [
+      1600.0,
+      -1326.1
+     ],
+     [
+      1570.4,
+      -1322.6
+     ],
+     [
+      1484.5,
+      -1300.6
+     ],
+     [
+      1300.8,
+      -1251.7
+     ],
+     [
+      1118.4,
+      -1197.4
+     ],
+     [
+      966.6,
+      -1150.9
+     ],
+     [
+      892.7,
+      -1100.9
+     ],
+     [
+      746.6,
+      -991.1
+     ],
+     [
+      681.9,
+      -949.5
+     ],
+     [
+      644.1,
+      -935.0
+     ],
+     [
+      577.1,
+      -915.5
+     ]
+    ],
+    "nom": "La Roubine",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/367712567"
+   },
+   {
+    "pts": [
+     [
+      15.5,
+      -1472.9
+     ],
+     [
+      0.1,
+      -1462.7
+     ],
+     [
+      -7.6,
+      -1446.5
+     ],
+     [
+      -11.0,
+      -1420.8
+     ],
+     [
+      -11.0,
+      -1356.8
+     ],
+     [
+      -15.7,
+      -1230.4
+     ],
+     [
+      -21.7,
+      -1184.7
+     ],
+     [
+      -31.5,
+      -1121.0
+     ],
+     [
+      -49.5,
+      -1015.5
+     ],
+     [
+      -66.1,
+      -911.7
+     ],
+     [
+      -73.8,
+      -868.2
+     ],
+     [
+      -94.3,
+      -829.7
+     ],
+     [
+      -139.2,
+      -772.9
+     ],
+     [
+      -183.2,
+      -720.4
+     ],
+     [
+      -265.6,
+      -625.1
+     ],
+     [
+      -311.8,
+      -577.3
+     ],
+     [
+      -338.2,
+      -532.5
+     ],
+     [
+      -357.9,
+      -447.9
+     ],
+     [
+      -366.0,
+      -368.9
+     ],
+     [
+      -368.6,
+      -307.8
+     ],
+     [
+      -367.3,
+      -234.3
+     ],
+     [
+      -362.2,
+      -195.9
+     ],
+     [
+      -333.9,
+      -161.5
+     ],
+     [
+      -311.3,
+      -82.7
+     ],
+     [
+      -280.1,
+      54.9
+     ],
+     [
+      -276.3,
+      116.4
+     ],
+     [
+      -283.6,
+      197.6
+     ],
+     [
+      -283.1,
+      242.4
+     ],
+     [
+      -254.4,
+      269.3
+     ],
+     [
+      -209.7,
+      301.8
+     ],
+     [
+      -184.0,
+      337.7
+     ],
+     [
+      -177.2,
+      385.5
+     ],
+     [
+      -164.4,
+      573.5
+     ],
+     [
+      -166.9,
+      649.5
+     ],
+     [
+      -202.0,
+      711.1
+     ],
+     [
+      -239.6,
+      750.4
+     ],
+     [
+      -285.7,
+      767.5
+     ],
+     [
+      -363.2,
+      763.2
+     ],
+     [
+      -402.4,
+      770.8
+     ],
+     [
+      -429.2,
+      787.1
+     ],
+     [
+      -461.8,
+      834.4
+     ],
+     [
+      -482.4,
+      866.2
+     ],
+     [
+      -506.4,
+      883.4
+     ],
+     [
+      -573.6,
+      909.9
+     ],
+     [
+      -624.4,
+      921.2
+     ],
+     [
+      -646.3,
+      931.0
+     ],
+     [
+      -657.8,
+      948.6
+     ],
+     [
+      -671.9,
+      995.6
+     ],
+     [
+      -693.0,
+      1073.1
+     ]
+    ],
+    "nom": "Le Lauzon",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/477901143"
+   },
+   {
+    "pts": [
+     [
+      538.5,
+      -905.1
+     ],
+     [
+      506.3,
+      -894.6
+     ],
+     [
+      458.9,
+      -886.1
+     ]
+    ],
+    "nom": "La Roubine",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/526715126"
+   },
+   {
+    "pts": [
+     [
+      577.1,
+      -915.5
+     ],
+     [
+      538.5,
+      -905.1
+     ]
+    ],
+    "nom": "La Roubine",
+    "souterrain": true,
+    "source": "https://www.openstreetmap.org/way/526715127"
+   },
+   {
+    "pts": [
+     [
+      47.9,
+      -1475.5
+     ],
+     [
+      15.5,
+      -1472.9
+     ]
+    ],
+    "nom": "Le Lauzon",
+    "souterrain": true,
+    "source": "https://www.openstreetmap.org/way/704290103"
+   },
+   {
+    "pts": [
+     [
+      -701.8,
+      1102.0
+     ],
+     [
+      -708.8,
+      1126.1
+     ],
+     [
+      -716.5,
+      1134.7
+     ],
+     [
+      -728.5,
+      1139.1
+     ],
+     [
+      -769.3,
+      1141.9
+     ],
+     [
+      -819.9,
+      1146.6
+     ],
+     [
+      -841.7,
+      1152.8
+     ]
+    ],
+    "nom": "Le Lauzon",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/704290208"
+   },
+   {
+    "pts": [
+     [
+      -693.0,
+      1073.1
+     ],
+     [
+      -701.8,
+      1102.0
+     ]
+    ],
+    "nom": "Le Lauzon",
+    "souterrain": true,
+    "source": "https://www.openstreetmap.org/way/704290209"
+   },
+   {
+    "pts": [
+     [
+      -841.7,
+      1152.8
+     ],
+     [
+      -850.8,
+      1169.7
+     ],
+     [
+      -861.5,
+      1229.1
+     ],
+     [
+      -883.3,
+      1432.4
+     ],
+     [
+      -890.4,
+      1461.2
+     ],
+     [
+      -902.1,
+      1489.9
+     ],
+     [
+      -918.3,
+      1512.4
+     ],
+     [
+      -936.1,
+      1532.2
+     ],
+     [
+      -1022.1,
+      1600.0
+     ]
+    ],
+    "nom": "Le Lauzon",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/704290214"
+   }
+  ],
+  "libelles": [
+   {
+    "x": 147.1,
+    "y": -116.4,
+    "texte": "Canal de Donzère-Mondragon",
+    "angle": 84.6,
+    "ancrage": "surface-verifiee",
+    "support": "surface",
+    "source": "https://www.openstreetmap.org/way/601752392",
+    "distanceRiveMetres": 12.8,
+    "boiteMetres": [
+     [
+      148.2,
+      -221.7
+     ],
+     [
+      167.9,
+      -13.1
+     ],
+     [
+      146.0,
+      -11.0
+     ],
+     [
+      126.3,
+      -219.7
+     ]
+    ],
+    "alignement": "middle",
+    "largeurReserveeMetres": 209.6,
+    "hauteurReserveeMetres": 22.0
+   }
+  ],
+  "cadrage": [
+   [
+    88.2,
+    -281.7
+   ],
+   [
+    208.2,
+    -161.7
+   ],
+   [
+    107.9,
+    -73.1
+   ],
+   [
+    227.9,
+    46.9
+   ],
+   [
+    86.0,
+    -71.0
+   ],
+   [
+    206.0,
+    49.0
+   ],
+   [
+    66.3,
+    -279.7
+   ],
+   [
+    186.3,
+    -159.7
+   ]
+  ]
+ },
+ "objets": [
+  {
+   "t": "paire",
+   "x": 42.3,
+   "y": -16.7,
+   "r": 264.9923182947186,
+   "m": 1,
+   "u": 0,
+   "us": [
+    0,
+    1
+   ],
+   "ecartReleve": 87.58,
+   "erreurCentreMax": 1.801,
+   "centresReleves": [
+    {
+     "u": 0,
+     "x": 46.16,
+     "y": 26.93,
+     "source": "https://www.openstreetmap.org/way/424725797"
+    },
+    {
+     "u": 1,
+     "x": 38.38,
+     "y": -60.3,
+     "source": "https://www.openstreetmap.org/way/424725798"
+    }
+   ],
+   "localisation": "relevee-gabarit-fige",
+   "preuve": {
+    "statut": "centres-releves-gabarit-fige",
+    "source": "https://www.openstreetmap.org/way/424725797",
+    "releve": "2026-09-14",
+    "description": "Centres de référence issus des empreintes publiques liées à cet objet. Le gabarit nucléaire reste inchangé ; les positions dessinées sont celles du raccordement final avec la halle. Écart maximal calculé par rapport aux centres de référence : 1.801 m. La preuve initiale et le détail du relevé antérieur sont conservés dans implantationAvantRaccord.preuve. Cette différence numérique ne mesure pas l’incertitude topographique du relevé public.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+    "sources": [
+     "https://www.openstreetmap.org/way/424725797",
+     "https://www.openstreetmap.org/way/424725798"
+    ],
+    "identification": {
+     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+     "millesime": "janvier 2017, en-tête PROJET",
+     "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+    },
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 264.9,
+     "angleApres": 264.9923182947186,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    },
+    "ecartsCentresApresRaccord": {
+     "statut": "comparaison-dessin-releve",
+     "date": "2026-09-14",
+     "parTranche": [
+      {
+       "u": 0,
+       "ecartM": 1.8007779289222827
+      },
+      {
+       "u": 1,
+       "ecartM": 1.7785230482878231
+      }
+     ],
+     "maximumM": 1.801,
+     "borneAvantRaccordM": 1.87,
+     "methode": "Distance euclidienne entre les centres locaux (-42,0)/(42,0), après miroir, rotation et translation finales, et centresReleves. Borne arrondie vers le haut au millimètre.",
+     "portee": "Écart au relevé cartographique archivé seulement ; la précision géographique OSM reste non certifiée."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 42.3,
+    "y": -16.7,
+    "r": 264.9,
+    "m": 1,
+    "u": 0,
+    "us": [
+     0,
+     1
+    ],
+    "localisation": "relevee-gabarit-fige",
+    "preuve": {
+     "statut": "centres-releves-gabarit-fige",
+     "source": "https://www.openstreetmap.org/way/424725797",
+     "releve": "2026-09-14",
+     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR1 et BR2. Entraxe OSM 87.58 m, contre 84 m dans l'asset figé ; décalage théorique de 1.79 m par centre après centrage symétrique, plus arrondi inférieur à0,08 m. Le BR reste au diamètre nominal39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+     "sources": [
+      "https://www.openstreetmap.org/way/424725797",
+      "https://www.openstreetmap.org/way/424725798"
+     ],
+     "identification": {
+      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+      "millesime": "janvier 2017, en-tête PROJET",
+      "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+     }
+    }
+   },
+   "erreurCentreMaxAvantRaccord": 1.87
+  },
+  {
+   "t": "paire",
+   "x": 24.599999999999948,
+   "y": -218.7,
+   "r": 264.9923182947186,
+   "m": 1,
+   "u": 2,
+   "us": [
+    2,
+    3
+   ],
+   "ecartReleve": 83.84,
+   "erreurCentreMax": 0.239,
+   "centresReleves": [
+    {
+     "u": 2,
+     "x": 28.05,
+     "y": -176.96,
+     "source": "https://www.openstreetmap.org/way/75707945"
+    },
+    {
+     "u": 3,
+     "x": 21.12,
+     "y": -260.51,
+     "source": "https://www.openstreetmap.org/way/75710066"
+    }
+   ],
+   "localisation": "relevee-gabarit-fige",
+   "preuve": {
+    "statut": "centres-releves-gabarit-fige",
+    "source": "https://www.openstreetmap.org/way/75707945",
+    "releve": "2026-09-14",
+    "description": "Centres de référence issus des empreintes publiques liées à cet objet. Le gabarit nucléaire reste inchangé ; les positions dessinées sont celles du raccordement final avec la halle. Écart maximal calculé par rapport aux centres de référence : 0.239 m. La preuve initiale et le détail du relevé antérieur sont conservés dans implantationAvantRaccord.preuve. Cette différence numérique ne mesure pas l’incertitude topographique du relevé public.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+    "sources": [
+     "https://www.openstreetmap.org/way/75707945",
+     "https://www.openstreetmap.org/way/75710066"
+    ],
+    "identification": {
+     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+     "millesime": "janvier 2017, en-tête PROJET",
+     "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+    },
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 265.26,
+     "angleApres": 264.9923182947186,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale.",
+     "ajustementHalleCommune": {
+      "translationM": 5.3290705182007514e-14,
+      "centreAvant": [
+       24.6,
+       -218.7
+      ],
+      "centreApres": [
+       24.599999999999948,
+       -218.7
+      ],
+      "description": "Seule la composante normale est corrigée pour aligner la face du gabarit avec la façade plane de la halle commune. Centre relevé conservé en mémoire documentaire."
+     }
+    },
+    "ecartsCentresApresRaccord": {
+     "statut": "comparaison-dessin-releve",
+     "date": "2026-09-14",
+     "parTranche": [
+      {
+       "u": 2,
+       "ecartM": 0.23803038890006387
+      },
+      {
+       "u": 3,
+       "ecartM": 0.18850294144105045
+      }
+     ],
+     "maximumM": 0.239,
+     "borneAvantRaccordM": 0.16,
+     "methode": "Distance euclidienne entre les centres locaux (-42,0)/(42,0), après miroir, rotation et translation finales, et centresReleves. Borne arrondie vers le haut au millimètre.",
+     "portee": "Écart au relevé cartographique archivé seulement ; la précision géographique OSM reste non certifiée."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 24.6,
+    "y": -218.7,
+    "r": 265.26,
+    "m": 1,
+    "u": 2,
+    "us": [
+     2,
+     3
+    ],
+    "localisation": "relevee-gabarit-fige",
+    "preuve": {
+     "statut": "centres-releves-gabarit-fige",
+     "source": "https://www.openstreetmap.org/way/75707945",
+     "releve": "2026-09-14",
+     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR3 et BR4. Entraxe OSM 83.84 m, contre 84 m dans l'asset figé ; décalage théorique de 0.08 m par centre après centrage symétrique, plus arrondi inférieur à0,08 m. Le BR reste au diamètre nominal39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+     "sources": [
+      "https://www.openstreetmap.org/way/75707945",
+      "https://www.openstreetmap.org/way/75710066"
+     ],
+     "identification": {
+      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+      "millesime": "janvier 2017, en-tête PROJET",
+      "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+     }
+    }
+   },
+   "erreurCentreMaxAvantRaccord": 0.16
+  },
+  {
+   "t": "sdm",
+   "x": -9.17588606656914,
+   "y": -113.84137407620304,
+   "r": 84.99231829471859,
+   "m": 1,
+   "L": 382.0303551650278,
+   "l": 64.23976987252725,
+   "n": 4,
+   "u0": 0,
+   "us": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "axe": "file",
+   "localisation": "schematique-documentee",
+   "empreinteSource": [
+    [
+     3.3,
+     -13.6
+    ],
+    [
+     -59.5,
+     -7.3
+    ],
+    [
+     -59.1,
+     -1.5
+    ],
+    [
+     -56.4,
+     20.6
+    ],
+    [
+     -55.0,
+     36.8
+    ],
+    [
+     -75.8,
+     38.8
+    ],
+    [
+     -71.9,
+     76.7
+    ],
+    [
+     -51.3,
+     74.4
+    ],
+    [
+     -51.3,
+     81.9
+    ],
+    [
+     12.9,
+     74.6
+    ],
+    [
+     3.3,
+     -13.6
+    ]
+   ],
+   "preuve": {
+    "halleContinue": {
+     "date": "2026-09-14",
+     "statut": "continuite-confirmee-par-auteur",
+     "description": "Quatre travées reliées selon la correction explicite de l’auteur. Une halle rectangulaire continue ; axe commun des deux paires conservées, extrémités projetées depuis les quatre relevés antérieurs. Dimensions de dessin, pas de nouvelle cote constructeur.",
+     "hallesSources": [
+      {
+       "x": 8.070616929752674,
+       "y": 30.503217969554026,
+       "r": 83.75,
+       "m": 1,
+       "n": 1,
+       "u0": 0,
+       "L": 88.72089102978745,
+       "l": 63.00929299680067,
+       "empreinte": [
+        [
+         3.2412338595053494,
+         -13.593564060891959
+        ],
+        [
+         12.9,
+         74.60000000000001
+        ],
+        [
+         -49.73478707037691,
+         81.45962481519348
+        ],
+        [
+         -59.393553210871566,
+         -6.733939245698497
+        ],
+        [
+         3.2412338595053494,
+         -13.593564060891959
+        ]
+       ],
+       "preuve": {
+        "statut": "empreinte-cartographique",
+        "source": "https://www.openstreetmap.org/way/672758782",
+        "releve": "2026-09-14",
+        "description": "Contour OSM nommé Tricastin 1 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+        "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+        "identification": {
+         "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+         "millesime": "janvier 2017, en-tête PROJET",
+         "description": "Salle des machines 1 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+        },
+        "rectangleHalle": {
+         "statut": "dimensions-interpretees",
+         "releve": "2026-09-14",
+         "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+         "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+         "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+         "dimensionsAvant": [
+          89.5,
+          84.6
+         ],
+         "dimensionsApres": [
+          88.72089102978745,
+          63.00929299680067
+         ]
+        }
+       }
+      },
+      {
+       "x": -1.19171548498368,
+       "y": -58.207265861706176,
+       "r": 84.25,
+       "m": 1,
+       "n": 1,
+       "u0": 1,
+       "L": 89.61866576228418,
+       "l": 63.095846388777616,
+       "empreinte": [
+        [
+         -5.68107568847558,
+         -102.79114140226797
+        ],
+        [
+         3.297644718508221,
+         -13.62339032114438
+        ],
+        [
+         -59.48073607072099,
+         -7.301939775679425
+        ],
+        [
+         -68.45945647770479,
+         -96.46969085680301
+        ],
+        [
+         -5.68107568847558,
+         -102.79114140226797
+        ]
+       ],
+       "preuve": {
+        "statut": "empreinte-cartographique",
+        "source": "https://www.openstreetmap.org/way/672758781",
+        "releve": "2026-09-14",
+        "description": "Contour OSM nommé Tricastin 2 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+        "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+        "identification": {
+         "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+         "millesime": "janvier 2017, en-tête PROJET",
+         "description": "Salle des machines 2 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+        },
+        "rectangleHalle": {
+         "statut": "dimensions-interpretees",
+         "releve": "2026-09-14",
+         "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+         "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+         "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+         "dimensionsAvant": [
+          98.8,
+          64.7
+         ],
+         "dimensionsApres": [
+          89.61866576228418,
+          63.095846388777616
+         ]
+        }
+       }
+      },
+      {
+       "x": -11.862209776450376,
+       "y": -170.32898695255457,
+       "r": 83.97,
+       "m": 1,
+       "n": 1,
+       "u0": 2,
+       "L": 92.5701620132243,
+       "l": 64.23976987252725,
+       "empreinte": [
+        [
+         -16.724419552900756,
+         -216.35797390510913
+        ],
+        [
+         -7.0,
+         -124.3
+        ],
+        [
+         -70.88433302893544,
+         -117.5516648924844
+        ],
+        [
+         -80.6087525818362,
+         -209.60963879759353
+        ],
+        [
+         -16.724419552900756,
+         -216.35797390510913
+        ]
+       ],
+       "preuve": {
+        "statut": "empreinte-cartographique",
+        "source": "https://www.openstreetmap.org/way/672758784",
+        "releve": "2026-09-14",
+        "description": "Contour OSM nommé Tricastin 3 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+        "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+        "identification": {
+         "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+         "millesime": "janvier 2017, en-tête PROJET",
+         "description": "Salle des machines 3 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+        },
+        "rectangleHalle": {
+         "statut": "dimensions-interpretees",
+         "releve": "2026-09-14",
+         "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+         "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+         "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+         "dimensionsAvant": [
+          106.0,
+          85.4
+         ],
+         "dimensionsApres": [
+          92.5701620132243,
+          64.23976987252725
+         ]
+        }
+       }
+      },
+      {
+       "x": -21.49655713013791,
+       "y": -260.44290549886523,
+       "r": 83.92,
+       "m": 1,
+       "n": 1,
+       "u0": 3,
+       "L": 87.81089992577415,
+       "l": 63.71849646619192,
+       "empreinte": [
+        [
+         -26.146889595945368,
+         -304.10138628325626
+        ],
+        [
+         -16.84622466433045,
+         -216.78442471447426
+        ],
+        [
+         -80.20630310404587,
+         -210.03555428860136
+        ],
+        [
+         -89.50696803566078,
+         -297.3525158573834
+        ],
+        [
+         -26.146889595945368,
+         -304.10138628325626
+        ]
+       ],
+       "preuve": {
+        "statut": "empreinte-cartographique",
+        "source": "https://www.openstreetmap.org/way/672758780",
+        "releve": "2026-09-14",
+        "description": "Contour OSM nommé Tricastin 4 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+        "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+        "identification": {
+         "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+         "millesime": "janvier 2017, en-tête PROJET",
+         "description": "Salle des machines 4 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+        },
+        "rectangleHalle": {
+         "statut": "dimensions-interpretees",
+         "releve": "2026-09-14",
+         "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+         "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+         "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+         "dimensionsAvant": [
+          88.6,
+          64.4
+         ],
+         "dimensionsApres": [
+          87.81089992577415,
+          63.71849646619192
+         ]
+        }
+       }
+      }
+     ]
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 0.0,
+     "angleAvant": 84.9923182947186,
+     "angleApres": 84.99231829471859,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "empreinte": [
+    [
+     -25.849467748163867,
+     -304.1274475045717
+    ],
+    [
+     7.49769561502559,
+     76.44469935216563
+    ],
+    [
+     -56.496871317776304,
+     82.05214407845571
+    ],
+    [
+     -89.84403468096575,
+     -298.52000277828165
+    ],
+    [
+     -25.849467748163867,
+     -304.1274475045717
+    ]
+   ],
+   "geometrie": "rectangle-halle",
+   "implantationAvantRaccord": {
+    "x": -9.175886066569117,
+    "y": -113.84137407620304,
+    "r": 84.9923182947186,
+    "m": 1,
+    "L": 382.0303551650278,
+    "l": 64.23976987252725,
+    "n": 4,
+    "u0": 0,
+    "us": [
+     3,
+     2,
+     1,
+     0
+    ],
+    "localisation": "schematique-documentee",
+    "preuve": {
+     "halleContinue": {
+      "date": "2026-09-14",
+      "statut": "continuite-confirmee-par-auteur",
+      "description": "Quatre travées reliées selon la correction explicite de l’auteur. Une halle rectangulaire continue ; axe commun des deux paires conservées, extrémités projetées depuis les quatre relevés antérieurs. Dimensions de dessin, pas de nouvelle cote constructeur.",
+      "hallesSources": [
+       {
+        "x": 8.070616929752674,
+        "y": 30.503217969554026,
+        "r": 83.75,
+        "m": 1,
+        "n": 1,
+        "u0": 0,
+        "L": 88.72089102978745,
+        "l": 63.00929299680067,
+        "empreinte": [
+         [
+          3.2412338595053494,
+          -13.593564060891959
+         ],
+         [
+          12.9,
+          74.60000000000001
+         ],
+         [
+          -49.73478707037691,
+          81.45962481519348
+         ],
+         [
+          -59.393553210871566,
+          -6.733939245698497
+         ],
+         [
+          3.2412338595053494,
+          -13.593564060891959
+         ]
+        ],
+        "preuve": {
+         "statut": "empreinte-cartographique",
+         "source": "https://www.openstreetmap.org/way/672758782",
+         "releve": "2026-09-14",
+         "description": "Contour OSM nommé Tricastin 1 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+         "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+         "identification": {
+          "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+          "millesime": "janvier 2017, en-tête PROJET",
+          "description": "Salle des machines 1 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+         },
+         "rectangleHalle": {
+          "statut": "dimensions-interpretees",
+          "releve": "2026-09-14",
+          "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+          "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+          "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+          "dimensionsAvant": [
+           89.5,
+           84.6
+          ],
+          "dimensionsApres": [
+           88.72089102978745,
+           63.00929299680067
+          ]
+         }
+        }
+       },
+       {
+        "x": -1.19171548498368,
+        "y": -58.207265861706176,
+        "r": 84.25,
+        "m": 1,
+        "n": 1,
+        "u0": 1,
+        "L": 89.61866576228418,
+        "l": 63.095846388777616,
+        "empreinte": [
+         [
+          -5.68107568847558,
+          -102.79114140226797
+         ],
+         [
+          3.297644718508221,
+          -13.62339032114438
+         ],
+         [
+          -59.48073607072099,
+          -7.301939775679425
+         ],
+         [
+          -68.45945647770479,
+          -96.46969085680301
+         ],
+         [
+          -5.68107568847558,
+          -102.79114140226797
+         ]
+        ],
+        "preuve": {
+         "statut": "empreinte-cartographique",
+         "source": "https://www.openstreetmap.org/way/672758781",
+         "releve": "2026-09-14",
+         "description": "Contour OSM nommé Tricastin 2 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+         "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+         "identification": {
+          "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+          "millesime": "janvier 2017, en-tête PROJET",
+          "description": "Salle des machines 2 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+         },
+         "rectangleHalle": {
+          "statut": "dimensions-interpretees",
+          "releve": "2026-09-14",
+          "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+          "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+          "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+          "dimensionsAvant": [
+           98.8,
+           64.7
+          ],
+          "dimensionsApres": [
+           89.61866576228418,
+           63.095846388777616
+          ]
+         }
+        }
+       },
+       {
+        "x": -11.862209776450376,
+        "y": -170.32898695255457,
+        "r": 83.97,
+        "m": 1,
+        "n": 1,
+        "u0": 2,
+        "L": 92.5701620132243,
+        "l": 64.23976987252725,
+        "empreinte": [
+         [
+          -16.724419552900756,
+          -216.35797390510913
+         ],
+         [
+          -7.0,
+          -124.3
+         ],
+         [
+          -70.88433302893544,
+          -117.5516648924844
+         ],
+         [
+          -80.6087525818362,
+          -209.60963879759353
+         ],
+         [
+          -16.724419552900756,
+          -216.35797390510913
+         ]
+        ],
+        "preuve": {
+         "statut": "empreinte-cartographique",
+         "source": "https://www.openstreetmap.org/way/672758784",
+         "releve": "2026-09-14",
+         "description": "Contour OSM nommé Tricastin 3 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+         "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+         "identification": {
+          "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+          "millesime": "janvier 2017, en-tête PROJET",
+          "description": "Salle des machines 3 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+         },
+         "rectangleHalle": {
+          "statut": "dimensions-interpretees",
+          "releve": "2026-09-14",
+          "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+          "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+          "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+          "dimensionsAvant": [
+           106.0,
+           85.4
+          ],
+          "dimensionsApres": [
+           92.5701620132243,
+           64.23976987252725
+          ]
+         }
+        }
+       },
+       {
+        "x": -21.49655713013791,
+        "y": -260.44290549886523,
+        "r": 83.92,
+        "m": 1,
+        "n": 1,
+        "u0": 3,
+        "L": 87.81089992577415,
+        "l": 63.71849646619192,
+        "empreinte": [
+         [
+          -26.146889595945368,
+          -304.10138628325626
+         ],
+         [
+          -16.84622466433045,
+          -216.78442471447426
+         ],
+         [
+          -80.20630310404587,
+          -210.03555428860136
+         ],
+         [
+          -89.50696803566078,
+          -297.3525158573834
+         ],
+         [
+          -26.146889595945368,
+          -304.10138628325626
+         ]
+        ],
+        "preuve": {
+         "statut": "empreinte-cartographique",
+         "source": "https://www.openstreetmap.org/way/672758780",
+         "releve": "2026-09-14",
+         "description": "Contour OSM nommé Tricastin 4 ; le tag power=generator porte ici sur la salle des machines, pas sur le BR. Position, contour et rectangle orienté relevés dans cette géométrie. L'intérieur turbine du simulateur reste schématique, sans mesure des machines. Les quatre polygones OSM délimitent des travées contiguës d'une halle commune ; ils ne démontrent pas quatre bâtiments indépendants.",
+         "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+         "identification": {
+          "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+          "millesime": "janvier 2017, en-tête PROJET",
+          "description": "Salle des machines 4 explicitement repérée ; concordance de la rangée et de sa position relativement au réacteur. Le PDF ne fournit pas les coordonnées métriques utilisées ici."
+         },
+         "rectangleHalle": {
+          "statut": "dimensions-interpretees",
+          "releve": "2026-09-14",
+          "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+          "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+          "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+          "dimensionsAvant": [
+           88.6,
+           64.4
+          ],
+          "dimensionsApres": [
+           87.81089992577415,
+           63.71849646619192
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    "empreinte": [
+     [
+      -25.849467748163804,
+      -304.1274475045717
+     ],
+     [
+      7.49769561502557,
+      76.44469935216563
+     ],
+     [
+      -56.496871317776325,
+      82.05214407845571
+     ],
+     [
+      -89.84403468096569,
+      -298.52000277828165
+     ],
+     [
+      -25.849467748163804,
+      -304.1274475045717
+     ]
+    ]
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 4,
+   "u0": 0,
+   "L": 94,
+   "l": 19,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Le cartouche ne constitue pas une position dans le site."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "kv": "225",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Le cartouche ne constitue pas une position dans le site."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "kv": "225",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Le cartouche ne constitue pas une position dans le site."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "kv": "225",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Le cartouche ne constitue pas une position dans le site."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "kv": "225",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Le cartouche ne constitue pas une position dans le site."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "projet-groupe-non-geolocalise",
+    "releve": "2026-09-14",
+    "description": "Le projet2017 indique le groupe DUS 1/2 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+    "millesime": "janvier 2017, en-tête PROJET"
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "projet-groupe-non-geolocalise",
+    "releve": "2026-09-14",
+    "description": "Le projet2017 indique le groupe DUS 3/4 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+    "millesime": "janvier 2017, en-tête PROJET"
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "projet-groupe-non-geolocalise",
+    "releve": "2026-09-14",
+    "description": "Le projet2017 indique le groupe DUS 3/4 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+    "millesime": "janvier 2017, en-tête PROJET"
+   }
+  },
+  {
+   "t": "ste",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "L": 64,
+   "l": 34,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Le cartouche ne constitue pas une position dans le site."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "L": 24,
+   "l": 16,
+   "u": 0,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "projet-groupe-non-geolocalise",
+    "releve": "2026-09-14",
+    "description": "Le projet2017 indique le groupe DUS 1/2 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
+    "millesime": "janvier 2017, en-tête PROJET"
+   }
+  }
+ ],
+ "auditVisuel": {
+  "date": "2026-09-14",
+  "reference": "references-cnpe/ign/tricastin.jpg",
+  "source": "IGN — BD ORTHO, Licence ouverte 2.0",
+  "portee": "Paysage IGN observé, emprise pixellisée par le fournisseur. Bâtiments et tours recalés uniquement sur données publiques OSM et concordance des identités dans le plan IFARE référencé par objet. Aucune géométrie n'est déduite des pixels masqués."
+ },
+ "geographie": {
+  "origine": [
+   44.33,
+   4.731
+  ],
+  "rotationDeg": 0,
+  "source": "OpenStreetMap",
+  "date": "2026-09-14",
+  "projection": "x=(lon-lon0)*111320*cos(lat0); y=(lat0-lat)*111320",
+  "unite": "m",
+  "licence": "ODbL 1.0",
+  "portee": "Empreintes cartographiques publiques ; précision topographique non certifiée."
+ },
+ "note": "Recalage nord en haut sur données publiques OSM. Les paires nucléaires historiques sont figées : centre et axe recalés sur les BR, entraxe84 m et diamètre39 m conservés, écart résiduel documenté par paire. Les contours des salles des machines sont relevés ; leurs machines restent schématiques. Les quatre salles des machines forment des travées contiguës à l'ouest des BR. Le projet2017 nomme deux groupes DUS futurs sans preuve d'exécution ni attribution individuelle : aucun emplacement DUS n'en est déduit. Pompage, transformateurs, STE et DUS restent dans le cartouche fonctionnel faute de localisation documentaire suffisante.",
+ "reparationImplantations": {
+  "date": "2026-09-14",
+  "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."
+ }
+}

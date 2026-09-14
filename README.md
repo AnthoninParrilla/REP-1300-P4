@@ -12,7 +12,8 @@ Ce dépôt sert **uniquement** à publier le site. Il ne contient pas le logicie
 ## Ce qu'il y a ici
 
 `index.html` est un **châssis d'affichage** : les fonctions du moteur physique
-(`physStep`, `slowStep`, `trips`, `applyEtat`, `gridStep`, `ptrStep`) y sont
+(`physStep`, `slowStep`, `trips`, `applyEtat`, `gridStep`, `ptrStep`,
+`initOperatingPoint`, `electricalSetpoint`) y sont
 **vides**, et `setEtat` et `doScram` se bornent à relayer la commande au serveur.
 Elles sont retirées à la construction, avant publication.
 

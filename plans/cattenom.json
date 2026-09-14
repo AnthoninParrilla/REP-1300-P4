@@ -1,0 +1,4651 @@
+{
+ "site": "Cattenom",
+ "palier": "P'4",
+ "tranches": 4,
+ "src": "releve",
+ "maj": "2026-09-14",
+ "note": "Recalage nord en haut sur empreintes publiques OSM : halles 1/2 à environ 25,8° et 3/4 à 57,1° par rapport à l'est (axes non orientés), correction de l'inversion géographique 1/2 et des quatre tours. Le plan Commons JKremona 2024 confirme les deux familles d'axes. Contours de halles et tours documentés ; centre BR et détail interne de l'îlot encore schématiques. DUS, pompage, transformateurs et STE non localisés : cartouche séparé.",
+ "eau": {
+  "type": "fleuve",
+  "nom": "la Moselle",
+  "polygones": [
+   {
+    "anneaux": [
+     [
+      [
+       902.0,
+       -625.1
+      ],
+      [
+       881.9,
+       -651.3
+      ],
+      [
+       868.0,
+       -673.1
+      ],
+      [
+       859.5,
+       -696.0
+      ],
+      [
+       855.9,
+       -720.9
+      ],
+      [
+       862.2,
+       -737.8
+      ],
+      [
+       871.5,
+       -757.0
+      ],
+      [
+       875.7,
+       -755.0
+      ],
+      [
+       891.3,
+       -769.9
+      ],
+      [
+       889.8,
+       -786.5
+      ],
+      [
+       880.8,
+       -796.1
+      ],
+      [
+       877.0,
+       -813.3
+      ],
+      [
+       869.9,
+       -826.4
+      ],
+      [
+       865.0,
+       -843.9
+      ],
+      [
+       861.1,
+       -874.4
+      ],
+      [
+       864.6,
+       -882.9
+      ],
+      [
+       861.3,
+       -904.9
+      ],
+      [
+       853.4,
+       -925.8
+      ],
+      [
+       842.8,
+       -932.9
+      ],
+      [
+       809.1,
+       -952.7
+      ],
+      [
+       760.5,
+       -965.8
+      ],
+      [
+       730.1,
+       -970.6
+      ],
+      [
+       715.8,
+       -970.3
+      ],
+      [
+       704.1,
+       -978.3
+      ],
+      [
+       693.4,
+       -987.8
+      ],
+      [
+       682.7,
+       -1005.2
+      ],
+      [
+       673.8,
+       -1029.3
+      ],
+      [
+       667.3,
+       -1043.4
+      ],
+      [
+       647.5,
+       -1076.8
+      ],
+      [
+       636.1,
+       -1088.5
+      ],
+      [
+       632.3,
+       -1102.5
+      ],
+      [
+       634.7,
+       -1115.9
+      ],
+      [
+       634.1,
+       -1128.7
+      ],
+      [
+       628.7,
+       -1139.2
+      ],
+      [
+       625.5,
+       -1152.6
+      ],
+      [
+       620.0,
+       -1159.4
+      ],
+      [
+       614.4,
+       -1155.6
+      ],
+      [
+       606.5,
+       -1158.2
+      ],
+      [
+       605.4,
+       -1166.9
+      ],
+      [
+       610.2,
+       -1172.0
+      ],
+      [
+       618.3,
+       -1185.3
+      ],
+      [
+       625.1,
+       -1201.3
+      ],
+      [
+       624.1,
+       -1214.9
+      ],
+      [
+       629.2,
+       -1226.2
+      ],
+      [
+       638.1,
+       -1232.3
+      ],
+      [
+       649.0,
+       -1229.9
+      ],
+      [
+       652.0,
+       -1224.5
+      ],
+      [
+       659.2,
+       -1206.4
+      ],
+      [
+       667.0,
+       -1197.2
+      ],
+      [
+       680.0,
+       -1191.1
+      ],
+      [
+       697.0,
+       -1192.8
+      ],
+      [
+       710.3,
+       -1200.3
+      ],
+      [
+       726.3,
+       -1218.0
+      ],
+      [
+       742.6,
+       -1232.3
+      ],
+      [
+       753.9,
+       -1239.4
+      ],
+      [
+       761.4,
+       -1240.5
+      ],
+      [
+       768.5,
+       -1235.4
+      ],
+      [
+       774.0,
+       -1225.5
+      ],
+      [
+       776.0,
+       -1205.7
+      ],
+      [
+       775.3,
+       -1185.0
+      ],
+      [
+       776.0,
+       -1163.5
+      ],
+      [
+       782.1,
+       -1153.3
+      ],
+      [
+       790.7,
+       -1145.1
+      ],
+      [
+       808.7,
+       -1143.8
+      ],
+      [
+       822.7,
+       -1147.2
+      ],
+      [
+       837.7,
+       -1157.0
+      ],
+      [
+       900.7,
+       -1189.4
+      ],
+      [
+       926.9,
+       -1206.1
+      ],
+      [
+       955.2,
+       -1230.6
+      ],
+      [
+       969.5,
+       -1245.9
+      ],
+      [
+       977.0,
+       -1261.6
+      ],
+      [
+       976.3,
+       -1277.6
+      ],
+      [
+       982.8,
+       -1286.4
+      ],
+      [
+       997.1,
+       -1288.1
+      ],
+      [
+       1008.3,
+       -1283.4
+      ],
+      [
+       1024.3,
+       -1282.4
+      ],
+      [
+       1043.0,
+       -1284.4
+      ],
+      [
+       1064.5,
+       -1320.8
+      ],
+      [
+       1072.7,
+       -1349.1
+      ],
+      [
+       1074.0,
+       -1399.8
+      ],
+      [
+       1050.9,
+       -1413.5
+      ],
+      [
+       1048.2,
+       -1433.2
+      ],
+      [
+       1042.7,
+       -1447.8
+      ],
+      [
+       1042.0,
+       -1461.8
+      ],
+      [
+       1057.7,
+       -1481.6
+      ],
+      [
+       1061.4,
+       -1499.5
+      ],
+      [
+       1072.5,
+       -1507.2
+      ],
+      [
+       1090.4,
+       -1513.4
+      ],
+      [
+       1099.2,
+       -1514.9
+      ],
+      [
+       1112.5,
+       -1523.4
+      ],
+      [
+       1149.0,
+       -1517.0
+      ],
+      [
+       1162.6,
+       -1513.6
+      ],
+      [
+       1184.7,
+       -1528.9
+      ],
+      [
+       1220.8,
+       -1550.0
+      ],
+      [
+       1234.8,
+       -1550.7
+      ],
+      [
+       1265.5,
+       -1572.7
+      ],
+      [
+       1267.3,
+       -1598.1
+      ],
+      [
+       1269.4,
+       -1600.0
+      ],
+      [
+       1277.5,
+       -1600.0
+      ],
+      [
+       1288.8,
+       -1594.1
+      ],
+      [
+       1305.8,
+       -1592.8
+      ],
+      [
+       1331.3,
+       -1598.7
+      ],
+      [
+       1347.3,
+       -1597.8
+      ],
+      [
+       1331.2,
+       -1576.9
+      ],
+      [
+       1312.9,
+       -1571.9
+      ],
+      [
+       1283.1,
+       -1553.1
+      ],
+      [
+       1291.1,
+       -1545.1
+      ],
+      [
+       1272.9,
+       -1518.9
+      ],
+      [
+       1269.8,
+       -1505.8
+      ],
+      [
+       1275.5,
+       -1490.8
+      ],
+      [
+       1296.8,
+       -1483.9
+      ],
+      [
+       1314.9,
+       -1486.0
+      ],
+      [
+       1361.7,
+       -1484.5
+      ],
+      [
+       1403.2,
+       -1479.4
+      ],
+      [
+       1371.7,
+       -1474.3
+      ],
+      [
+       1367.4,
+       -1470.1
+      ],
+      [
+       1348.0,
+       -1468.3
+      ],
+      [
+       1330.6,
+       -1457.3
+      ],
+      [
+       1302.6,
+       -1435.3
+      ],
+      [
+       1292.4,
+       -1431.2
+      ],
+      [
+       1281.5,
+       -1414.8
+      ],
+      [
+       1271.6,
+       -1388.9
+      ],
+      [
+       1284.5,
+       -1376.6
+      ],
+      [
+       1289.8,
+       -1368.0
+      ],
+      [
+       1304.6,
+       -1365.1
+      ],
+      [
+       1320.3,
+       -1338.9
+      ],
+      [
+       1322.2,
+       -1313.0
+      ],
+      [
+       1317.3,
+       -1297.5
+      ],
+      [
+       1285.6,
+       -1261.0
+      ],
+      [
+       1286.6,
+       -1250.7
+      ],
+      [
+       1288.3,
+       -1245.0
+      ],
+      [
+       1299.0,
+       -1240.8
+      ],
+      [
+       1309.4,
+       -1221.8
+      ],
+      [
+       1291.2,
+       -1198.0
+      ],
+      [
+       1272.6,
+       -1159.1
+      ],
+      [
+       1258.6,
+       -1135.6
+      ],
+      [
+       1247.7,
+       -1120.3
+      ],
+      [
+       1242.3,
+       -1070.2
+      ],
+      [
+       1246.4,
+       -1031.4
+      ],
+      [
+       1243.7,
+       -1002.8
+      ],
+      [
+       1239.2,
+       -975.2
+      ],
+      [
+       1243.0,
+       -957.8
+      ],
+      [
+       1252.2,
+       -936.0
+      ],
+      [
+       1261.7,
+       -929.9
+      ],
+      [
+       1280.4,
+       -934.7
+      ],
+      [
+       1296.8,
+       -952.4
+      ],
+      [
+       1322.3,
+       -964.3
+      ],
+      [
+       1343.5,
+       -971.5
+      ],
+      [
+       1388.8,
+       -955.1
+      ],
+      [
+       1404.4,
+       -943.9
+      ],
+      [
+       1410.6,
+       -926.1
+      ],
+      [
+       1413.3,
+       -908.2
+      ],
+      [
+       1408.3,
+       -881.4
+      ],
+      [
+       1409.8,
+       -855.7
+      ],
+      [
+       1419.2,
+       -849.2
+      ],
+      [
+       1469.1,
+       -854.7
+      ],
+      [
+       1497.2,
+       -856.6
+      ],
+      [
+       1518.8,
+       -854.4
+      ],
+      [
+       1571.6,
+       -842.7
+      ],
+      [
+       1589.2,
+       -847.1
+      ],
+      [
+       1600.0,
+       -861.3
+      ],
+      [
+       1600.0,
+       -58.7
+      ],
+      [
+       1593.8,
+       -58.1
+      ],
+      [
+       1580.1,
+       -58.3
+      ],
+      [
+       1572.7,
+       -62.5
+      ],
+      [
+       1535.6,
+       -60.8
+      ],
+      [
+       1508.3,
+       -68.3
+      ],
+      [
+       1474.6,
+       -80.9
+      ],
+      [
+       1450.7,
+       -94.2
+      ],
+      [
+       1427.9,
+       -110.5
+      ],
+      [
+       1406.1,
+       -131.6
+      ],
+      [
+       1384.7,
+       -153.4
+      ],
+      [
+       1370.7,
+       -169.1
+      ],
+      [
+       1366.3,
+       -180.0
+      ],
+      [
+       1361.5,
+       -197.0
+      ],
+      [
+       1347.9,
+       -197.7
+      ],
+      [
+       1334.3,
+       -197.4
+      ],
+      [
+       1325.1,
+       -190.9
+      ],
+      [
+       1307.7,
+       -187.1
+      ],
+      [
+       1267.5,
+       -188.8
+      ],
+      [
+       1237.9,
+       -197.7
+      ],
+      [
+       1208.9,
+       -211.0
+      ],
+      [
+       1191.2,
+       -227.0
+      ],
+      [
+       1178.3,
+       -243.3
+      ],
+      [
+       1172.5,
+       -252.2
+      ],
+      [
+       1165.1,
+       -269.2
+      ],
+      [
+       1144.9,
+       -294.4
+      ],
+      [
+       1136.0,
+       -307.0
+      ],
+      [
+       1112.2,
+       -321.0
+      ],
+      [
+       1089.4,
+       -340.1
+      ],
+      [
+       1058.7,
+       -370.7
+      ],
+      [
+       1037.9,
+       -404.8
+      ],
+      [
+       1026.7,
+       -424.9
+      ],
+      [
+       1004.2,
+       -443.3
+      ],
+      [
+       979.7,
+       -470.2
+      ],
+      [
+       963.0,
+       -500.5
+      ],
+      [
+       954.5,
+       -524.7
+      ],
+      [
+       955.2,
+       -546.1
+      ],
+      [
+       954.5,
+       -565.1
+      ],
+      [
+       952.3,
+       -572.9
+      ],
+      [
+       926.4,
+       -586.3
+      ],
+      [
+       924.2,
+       -594.7
+      ],
+      [
+       910.2,
+       -619.4
+      ],
+      [
+       902.0,
+       -625.1
+      ]
+     ]
+    ],
+    "nom": "Lac du Mirgenbach",
+    "source": "https://www.openstreetmap.org/way/5019034"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       -452.3,
+       -1273.1
+      ],
+      [
+       -451.9,
+       -1262.2
+      ],
+      [
+       -420.1,
+       -1205.9
+      ],
+      [
+       -373.5,
+       -1242.8
+      ],
+      [
+       -348.2,
+       -1263.8
+      ],
+      [
+       -358.3,
+       -1291.0
+      ],
+      [
+       -380.1,
+       -1313.9
+      ],
+      [
+       -408.4,
+       -1302.6
+      ],
+      [
+       -445.3,
+       -1280.1
+      ],
+      [
+       -452.3,
+       -1273.1
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/257237038"
+   },
+   {
+    "anneaux": [
+     [
+      [
+       480.4,
+       148.7
+      ],
+      [
+       479.7,
+       151.3
+      ],
+      [
+       479.9,
+       154.3
+      ],
+      [
+       493.8,
+       166.7
+      ],
+      [
+       495.1,
+       167.3
+      ],
+      [
+       497.0,
+       167.3
+      ],
+      [
+       499.4,
+       166.2
+      ],
+      [
+       500.4,
+       164.0
+      ],
+      [
+       500.4,
+       160.9
+      ],
+      [
+       485.7,
+       147.9
+      ],
+      [
+       484.1,
+       147.4
+      ],
+      [
+       480.4,
+       148.7
+      ]
+     ]
+    ],
+    "nom": "",
+    "source": "https://www.openstreetmap.org/way/1033308531"
+   }
+  ],
+  "axes": [
+   {
+    "pts": [
+     [
+      525.0,
+      147.2
+     ],
+     [
+      535.2,
+      167.6
+     ],
+     [
+      555.1,
+      197.7
+     ],
+     [
+      611.0,
+      251.3
+     ],
+     [
+      659.6,
+      293.9
+     ],
+     [
+      684.3,
+      353.7
+     ],
+     [
+      691.5,
+      419.4
+     ],
+     [
+      717.5,
+      498.0
+     ],
+     [
+      724.2,
+      563.4
+     ],
+     [
+      733.3,
+      583.8
+     ],
+     [
+      780.6,
+      636.3
+     ],
+     [
+      833.9,
+      669.0
+     ],
+     [
+      847.6,
+      684.9
+     ],
+     [
+      872.3,
+      682.1
+     ],
+     [
+      900.1,
+      667.8
+     ],
+     [
+      1025.6,
+      679.4
+     ],
+     [
+      1070.1,
+      695.5
+     ],
+     [
+      1131.9,
+      708.6
+     ],
+     [
+      1195.9,
+      735.3
+     ],
+     [
+      1211.9,
+      762.4
+     ],
+     [
+      1256.9,
+      781.9
+     ],
+     [
+      1311.2,
+      793.1
+     ],
+     [
+      1363.1,
+      818.0
+     ],
+     [
+      1393.0,
+      809.1
+     ],
+     [
+      1414.6,
+      810.8
+     ],
+     [
+      1435.9,
+      824.8
+     ],
+     [
+      1475.2,
+      839.0
+     ],
+     [
+      1503.3,
+      832.6
+     ],
+     [
+      1533.9,
+      809.4
+     ],
+     [
+      1575.8,
+      810.2
+     ],
+     [
+      1600.0,
+      803.3
+     ]
+    ],
+    "nom": "Ruisseau le Tenchebach",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/178177748"
+   },
+   {
+    "pts": [
+     [
+      -1110.8,
+      1358.6
+     ],
+     [
+      -1068.0,
+      1387.4
+     ],
+     [
+      -999.6,
+      1435.7
+     ],
+     [
+      -963.7,
+      1441.6
+     ],
+     [
+      -927.1,
+      1421.1
+     ],
+     [
+      -826.3,
+      1463.9
+     ],
+     [
+      -797.8,
+      1487.1
+     ],
+     [
+      -685.1,
+      1542.2
+     ],
+     [
+      -672.0,
+      1565.5
+     ],
+     [
+      -629.9,
+      1550.4
+     ],
+     [
+      -589.9,
+      1547.1
+     ],
+     [
+      -561.5,
+      1552.7
+     ]
+    ],
+    "nom": "Ruisseau de Warpich",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/236541092"
+   },
+   {
+    "pts": [
+     [
+      -1136.8,
+      1356.5
+     ],
+     [
+      -1110.8,
+      1358.6
+     ]
+    ],
+    "nom": "Ruisseau de Warpich",
+    "souterrain": true,
+    "source": "https://www.openstreetmap.org/way/236541093"
+   },
+   {
+    "pts": [
+     [
+      -1600.0,
+      1281.7
+     ],
+     [
+      -1501.0,
+      1295.5
+     ],
+     [
+      -1419.5,
+      1295.8
+     ],
+     [
+      -1297.5,
+      1310.1
+     ],
+     [
+      -1179.3,
+      1336.8
+     ],
+     [
+      -1136.8,
+      1356.5
+     ]
+    ],
+    "nom": "Ruisseau de Warpich",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/236541095"
+   },
+   {
+    "pts": [
+     [
+      -1600.0,
+      -1412.6
+     ],
+     [
+      -1548.1,
+      -1403.5
+     ],
+     [
+      -1498.0,
+      -1406.0
+     ],
+     [
+      -1477.6,
+      -1415.2
+     ],
+     [
+      -1461.2,
+      -1444.0
+     ],
+     [
+      -1455.2,
+      -1463.8
+     ],
+     [
+      -1372.9,
+      -1515.0
+     ],
+     [
+      -1337.6,
+      -1564.7
+     ],
+     [
+      -1321.6,
+      -1600.0
+     ]
+    ],
+    "nom": "Ruisseau de Weihergraben",
+    "souterrain": false,
+    "source": "https://www.openstreetmap.org/way/461906219"
+   }
+  ],
+  "libelles": [
+   {
+    "x": 927.8,
+    "y": -660.8,
+    "texte": "Retenue du Mirgenbach",
+    "angle": 52.5,
+    "ancrage": "surface-verifiee",
+    "support": "surface",
+    "source": "https://www.openstreetmap.org/way/5019034",
+    "distanceRiveMetres": 42.2,
+    "boiteMetres": [
+     [
+      884.3,
+      -735.6
+     ],
+     [
+      988.8,
+      -599.5
+     ],
+     [
+      971.3,
+      -586.1
+     ],
+     [
+      866.8,
+      -722.2
+     ]
+    ],
+    "alignement": "middle",
+    "largeurReserveeMetres": 171.6,
+    "hauteurReserveeMetres": 22.0
+   }
+  ],
+  "cadrage": [
+   [
+    824.3,
+    -795.6
+   ],
+   [
+    944.3,
+    -675.6
+   ],
+   [
+    928.8,
+    -659.5
+   ],
+   [
+    1048.8,
+    -539.5
+   ],
+   [
+    911.3,
+    -646.1
+   ],
+   [
+    1031.3,
+    -526.1
+   ],
+   [
+    806.8,
+    -782.2
+   ],
+   [
+    926.8,
+    -662.2
+   ]
+  ]
+ },
+ "objets": [
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 2,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 3,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 4,
+   "u0": 0,
+   "us": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "L": 160,
+   "l": 26,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "ste",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "L": 64,
+   "l": 34,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "description": "Fonction conservée dans le simulateur ; emplacement non attribué par les sources examinées. Aucun décalage arbitraire autour du BR."
+   }
+  },
+  {
+   "t": "sdm",
+   "x": -204.46027386117947,
+   "y": 255.81930207991996,
+   "r": 115.80000000000001,
+   "m": 1,
+   "n": 1,
+   "u0": 0,
+   "L": 58.28645239691098,
+   "l": 103.04793523800384,
+   "axe": "axe",
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/1389508749",
+    "releve": "2026-09-14",
+    "description": "Halle identifiée par le nom Cattenom-1 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+    "rectangleHalle": {
+     "statut": "dimensions-interpretees",
+     "releve": "2026-09-14",
+     "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+     "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+     "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+     "dimensionsAvant": [
+      58.6,
+      103.5
+     ],
+     "dimensionsApres": [
+      58.28645239691098,
+      103.04793523800384
+     ]
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 0.401,
+     "angleAvant": 115.8,
+     "angleApres": 115.80000000000001,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "empreinte": [
+    [
+     -191.77623548356925,
+     229.5811084742303
+    ],
+    [
+     -217.1443122387897,
+     282.05749568560964
+    ],
+    [
+     -309.92030268780206,
+     237.2078295439248
+    ],
+    [
+     -284.5522259325817,
+     184.73144233254544
+    ],
+    [
+     -191.77623548356925,
+     229.5811084742303
+    ]
+   ],
+   "empreinteSource": [
+    [
+     -214.0,
+     275.3
+    ],
+    [
+     -192.6,
+     230.9
+    ],
+    [
+     -192.0,
+     229.4
+    ],
+    [
+     -219.7,
+     216.4
+    ],
+    [
+     -284.8,
+     184.6
+    ],
+    [
+     -297.2,
+     209.9
+    ],
+    [
+     -310.4,
+     237.3
+    ],
+    [
+     -217.3,
+     282.3
+    ],
+    [
+     -216.2,
+     279.6
+    ],
+    [
+     -214.0,
+     275.3
+    ]
+   ],
+   "releveHalleInitial": {
+    "x": -204.5,
+    "y": 255.9,
+    "r": 115.8,
+    "L": 58.6,
+    "l": 103.5
+   },
+   "geometrie": "rectangle-halle",
+   "implantationAvantRaccord": {
+    "x": -204.83713414813764,
+    "y": 255.95488741784354,
+    "r": 115.8,
+    "m": 1,
+    "n": 1,
+    "u0": 0,
+    "L": 58.28645239691098,
+    "l": 103.04793523800384,
+    "preuve": {
+     "statut": "empreinte-cartographique",
+     "source": "https://www.openstreetmap.org/way/1389508749",
+     "releve": "2026-09-14",
+     "description": "Halle identifiée par le nom Cattenom-1 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+     "rectangleHalle": {
+      "statut": "dimensions-interpretees",
+      "releve": "2026-09-14",
+      "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+      "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+      "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+      "dimensionsAvant": [
+       58.6,
+       103.5
+      ],
+      "dimensionsApres": [
+       58.28645239691098,
+       103.04793523800384
+      ]
+     }
+    },
+    "empreinte": [
+     [
+      -192.15309577052744,
+      229.71669381215386
+     ],
+     [
+      -217.52117252574783,
+      282.1930810235332
+     ],
+     [
+      -310.2971629747602,
+      237.3434148818484
+     ],
+     [
+      -284.92908621953984,
+      184.86702767046904
+     ],
+     [
+      -192.15309577052744,
+      229.71669381215386
+     ]
+    ]
+   },
+   "localisation": "schematique-documentee"
+  },
+  {
+   "t": "ilot",
+   "x": -147.2,
+   "y": 283.5,
+   "r": 295.8,
+   "m": 1,
+   "u": 0,
+   "lab": "BR",
+   "localisation": "approximative",
+   "preuve": {
+    "statut": "schema-raccorde",
+    "source": "https://www.openstreetmap.org/way/58650494",
+    "releve": "2026-09-14",
+    "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 295.8,
+     "angleApres": 295.8,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": -147.2,
+    "y": 283.5,
+    "r": 295.8,
+    "m": 1,
+    "u": 0,
+    "localisation": "approximative",
+    "preuve": {
+     "statut": "schema-raccorde",
+     "source": "https://www.openstreetmap.org/way/58650494",
+     "releve": "2026-09-14",
+     "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+    },
+    "empreinte": [
+     [
+      -214.0,
+      275.3
+     ],
+     [
+      -191.3,
+      286.4
+     ],
+     [
+      -197.0,
+      298.2
+     ],
+     [
+      -178.2,
+      307.3
+     ],
+     [
+      -175.1,
+      314.8
+     ],
+     [
+      -167.9,
+      318.2
+     ],
+     [
+      -158.8,
+      315.9
+     ],
+     [
+      -155.2,
+      308.1
+     ],
+     [
+      -158.4,
+      300.3
+     ],
+     [
+      -172.9,
+      293.2
+     ],
+     [
+      -171.0,
+      289.2
+     ],
+     [
+      -167.2,
+      293.0
+     ],
+     [
+      -164.6,
+      294.8
+     ],
+     [
+      -159.9,
+      297.4
+     ],
+     [
+      -155.0,
+      298.9
+     ],
+     [
+      -149.2,
+      299.0
+     ],
+     [
+      -141.3,
+      297.5
+     ],
+     [
+      -128.9,
+      316.1
+     ],
+     [
+      -121.8,
+      311.7
+     ],
+     [
+      -130.1,
+      298.1
+     ],
+     [
+      -106.0,
+      309.3
+     ],
+     [
+      -95.0,
+      286.6
+     ],
+     [
+      -98.6,
+      284.5
+     ],
+     [
+      -91.6,
+      269.1
+     ],
+     [
+      -95.4,
+      267.0
+     ],
+     [
+      -79.3,
+      233.0
+     ],
+     [
+      -151.8,
+      198.1
+     ],
+     [
+      -160.4,
+      215.2
+     ],
+     [
+      -177.7,
+      206.8
+     ],
+     [
+      -183.5,
+      218.9
+     ],
+     [
+      -185.9,
+      218.0
+     ],
+     [
+      -188.7,
+      223.9
+     ],
+     [
+      -186.8,
+      225.0
+     ],
+     [
+      -190.1,
+      232.1
+     ],
+     [
+      -192.6,
+      230.9
+     ],
+     [
+      -214.0,
+      275.3
+     ]
+    ]
+   },
+   "empreinteSource": [
+    [
+     -214.0,
+     275.3
+    ],
+    [
+     -191.3,
+     286.4
+    ],
+    [
+     -197.0,
+     298.2
+    ],
+    [
+     -178.2,
+     307.3
+    ],
+    [
+     -175.1,
+     314.8
+    ],
+    [
+     -167.9,
+     318.2
+    ],
+    [
+     -158.8,
+     315.9
+    ],
+    [
+     -155.2,
+     308.1
+    ],
+    [
+     -158.4,
+     300.3
+    ],
+    [
+     -172.9,
+     293.2
+    ],
+    [
+     -171.0,
+     289.2
+    ],
+    [
+     -167.2,
+     293.0
+    ],
+    [
+     -164.6,
+     294.8
+    ],
+    [
+     -159.9,
+     297.4
+    ],
+    [
+     -155.0,
+     298.9
+    ],
+    [
+     -149.2,
+     299.0
+    ],
+    [
+     -141.3,
+     297.5
+    ],
+    [
+     -128.9,
+     316.1
+    ],
+    [
+     -121.8,
+     311.7
+    ],
+    [
+     -130.1,
+     298.1
+    ],
+    [
+     -106.0,
+     309.3
+    ],
+    [
+     -95.0,
+     286.6
+    ],
+    [
+     -98.6,
+     284.5
+    ],
+    [
+     -91.6,
+     269.1
+    ],
+    [
+     -95.4,
+     267.0
+    ],
+    [
+     -79.3,
+     233.0
+    ],
+    [
+     -151.8,
+     198.1
+    ],
+    [
+     -160.4,
+     215.2
+    ],
+    [
+     -177.7,
+     206.8
+    ],
+    [
+     -183.5,
+     218.9
+    ],
+    [
+     -185.9,
+     218.0
+    ],
+    [
+     -188.7,
+     223.9
+    ],
+    [
+     -186.8,
+     225.0
+    ],
+    [
+     -190.1,
+     232.1
+    ],
+    [
+     -192.6,
+     230.9
+    ],
+    [
+     -214.0,
+     275.3
+    ]
+   ]
+  },
+  {
+   "t": "sdm",
+   "x": -274.80849855608506,
+   "y": 405.21928222023223,
+   "r": 115.69999999999999,
+   "m": 1,
+   "n": 1,
+   "u0": 1,
+   "L": 58.00576101842205,
+   "l": 103.20939645918534,
+   "axe": "axe",
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/1389508748",
+    "releve": "2026-09-14",
+    "description": "Halle identifiée par le nom Cattenom-2 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "rectangleHalle": {
+     "statut": "dimensions-interpretees",
+     "releve": "2026-09-14",
+     "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+     "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+     "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+     "dimensionsAvant": [
+      58.7,
+      103.4
+     ],
+     "dimensionsApres": [
+      58.00576101842205,
+      103.20939645918534
+     ]
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 0.206,
+     "angleAvant": 115.7,
+     "angleApres": 115.69999999999999,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "empreinte": [
+    [
+     -262.2311359440587,
+     379.0854530412318
+    ],
+    [
+     -287.38586116811143,
+     431.35311139923266
+    ],
+    [
+     -380.385476702005,
+     386.59541900990945
+    ],
+    [
+     -355.23075147795225,
+     334.3277606519086
+    ],
+    [
+     -262.2311359440587,
+     379.0854530412318
+    ]
+   ],
+   "empreinteSource": [
+    [
+     -262.6,
+     379.9
+    ],
+    [
+     -262.2,
+     378.8
+    ],
+    [
+     -350.4,
+     336.4
+    ],
+    [
+     -355.3,
+     334.1
+    ],
+    [
+     -380.7,
+     387.0
+    ],
+    [
+     -287.3,
+     431.2
+    ],
+    [
+     -284.4,
+     424.9
+    ],
+    [
+     -262.6,
+     379.9
+    ]
+   ],
+   "releveHalleInitial": {
+    "x": -274.8,
+    "y": 405.3,
+    "r": 115.7,
+    "L": 58.7,
+    "l": 103.4
+   },
+   "geometrie": "rectangle-halle",
+   "implantationAvantRaccord": {
+    "x": -274.8298014608643,
+    "y": 405.0145962356414,
+    "r": 115.7,
+    "m": 1,
+    "n": 1,
+    "u0": 1,
+    "L": 58.00576101842205,
+    "l": 103.20939645918534,
+    "preuve": {
+     "statut": "empreinte-cartographique",
+     "source": "https://www.openstreetmap.org/way/1389508748",
+     "releve": "2026-09-14",
+     "description": "Halle identifiée par le nom Cattenom-2 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+     "rectangleHalle": {
+      "statut": "dimensions-interpretees",
+      "releve": "2026-09-14",
+      "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+      "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+      "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+      "dimensionsAvant": [
+       58.7,
+       103.4
+      ],
+      "dimensionsApres": [
+       58.00576101842205,
+       103.20939645918534
+      ]
+     }
+    },
+    "empreinte": [
+     [
+      -262.25243884883787,
+      378.880767056641
+     ],
+     [
+      -287.4071640728907,
+      431.14842541464185
+     ],
+     [
+      -380.4067796067842,
+      386.39073302531864
+     ],
+     [
+      -355.2520543827314,
+      334.1230746673178
+     ],
+     [
+      -262.25243884883787,
+      378.880767056641
+     ]
+    ]
+   },
+   "localisation": "schematique-documentee"
+  },
+  {
+   "t": "ilot",
+   "x": -217.5,
+   "y": 432.8,
+   "r": 295.7,
+   "m": 1,
+   "u": 1,
+   "lab": "BR",
+   "localisation": "approximative",
+   "preuve": {
+    "statut": "schema-raccorde",
+    "source": "https://www.openstreetmap.org/way/58650478",
+    "releve": "2026-09-14",
+    "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 295.7,
+     "angleApres": 295.7,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": -217.5,
+    "y": 432.8,
+    "r": 295.7,
+    "m": 1,
+    "u": 1,
+    "localisation": "approximative",
+    "preuve": {
+     "statut": "schema-raccorde",
+     "source": "https://www.openstreetmap.org/way/58650478",
+     "releve": "2026-09-14",
+     "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+    },
+    "empreinte": [
+     [
+      -262.6,
+      379.9
+     ],
+     [
+      -284.4,
+      424.9
+     ],
+     [
+      -261.6,
+      436.0
+     ],
+     [
+      -267.0,
+      447.9
+     ],
+     [
+      -249.4,
+      456.0
+     ],
+     [
+      -246.7,
+      464.6
+     ],
+     [
+      -239.0,
+      468.5
+     ],
+     [
+      -230.1,
+      465.3
+     ],
+     [
+      -226.7,
+      458.3
+     ],
+     [
+      -230.3,
+      449.2
+     ],
+     [
+      -243.6,
+      442.8
+     ],
+     [
+      -241.9,
+      439.1
+     ],
+     [
+      -238.7,
+      442.3
+     ],
+     [
+      -236.7,
+      443.8
+     ],
+     [
+      -234.3,
+      445.1
+     ],
+     [
+      -232.0,
+      446.6
+     ],
+     [
+      -230.1,
+      447.2
+     ],
+     [
+      -228.1,
+      448.1
+     ],
+     [
+      -224.4,
+      448.5
+     ],
+     [
+      -221.9,
+      448.7
+     ],
+     [
+      -212.2,
+      447.5
+     ],
+     [
+      -200.7,
+      465.3
+     ],
+     [
+      -192.9,
+      460.3
+     ],
+     [
+      -200.6,
+      447.7
+     ],
+     [
+      -185.9,
+      454.3
+     ],
+     [
+      -177.1,
+      458.3
+     ],
+     [
+      -165.7,
+      434.6
+     ],
+     [
+      -169.1,
+      432.7
+     ],
+     [
+      -161.7,
+      417.5
+     ],
+     [
+      -165.6,
+      415.5
+     ],
+     [
+      -149.2,
+      381.4
+     ],
+     [
+      -221.1,
+      346.3
+     ],
+     [
+      -230.5,
+      365.4
+     ],
+     [
+      -248.8,
+      356.9
+     ],
+     [
+      -254.3,
+      367.8
+     ],
+     [
+      -256.7,
+      366.8
+     ],
+     [
+      -259.8,
+      373.5
+     ],
+     [
+      -257.3,
+      374.7
+     ],
+     [
+      -260.6,
+      380.9
+     ],
+     [
+      -262.6,
+      379.9
+     ]
+    ]
+   },
+   "empreinteSource": [
+    [
+     -262.6,
+     379.9
+    ],
+    [
+     -284.4,
+     424.9
+    ],
+    [
+     -261.6,
+     436.0
+    ],
+    [
+     -267.0,
+     447.9
+    ],
+    [
+     -249.4,
+     456.0
+    ],
+    [
+     -246.7,
+     464.6
+    ],
+    [
+     -239.0,
+     468.5
+    ],
+    [
+     -230.1,
+     465.3
+    ],
+    [
+     -226.7,
+     458.3
+    ],
+    [
+     -230.3,
+     449.2
+    ],
+    [
+     -243.6,
+     442.8
+    ],
+    [
+     -241.9,
+     439.1
+    ],
+    [
+     -238.7,
+     442.3
+    ],
+    [
+     -236.7,
+     443.8
+    ],
+    [
+     -234.3,
+     445.1
+    ],
+    [
+     -232.0,
+     446.6
+    ],
+    [
+     -230.1,
+     447.2
+    ],
+    [
+     -228.1,
+     448.1
+    ],
+    [
+     -224.4,
+     448.5
+    ],
+    [
+     -221.9,
+     448.7
+    ],
+    [
+     -212.2,
+     447.5
+    ],
+    [
+     -200.7,
+     465.3
+    ],
+    [
+     -192.9,
+     460.3
+    ],
+    [
+     -200.6,
+     447.7
+    ],
+    [
+     -185.9,
+     454.3
+    ],
+    [
+     -177.1,
+     458.3
+    ],
+    [
+     -165.7,
+     434.6
+    ],
+    [
+     -169.1,
+     432.7
+    ],
+    [
+     -161.7,
+     417.5
+    ],
+    [
+     -165.6,
+     415.5
+    ],
+    [
+     -149.2,
+     381.4
+    ],
+    [
+     -221.1,
+     346.3
+    ],
+    [
+     -230.5,
+     365.4
+    ],
+    [
+     -248.8,
+     356.9
+    ],
+    [
+     -254.3,
+     367.8
+    ],
+    [
+     -256.7,
+     366.8
+    ],
+    [
+     -259.8,
+     373.5
+    ],
+    [
+     -257.3,
+     374.7
+    ],
+    [
+     -260.6,
+     380.9
+    ],
+    [
+     -262.6,
+     379.9
+    ]
+   ]
+  },
+  {
+   "t": "sdm",
+   "x": 129.05410498313734,
+   "y": -159.69982338438868,
+   "r": 147.10000000000002,
+   "m": 1,
+   "n": 1,
+   "u0": 2,
+   "L": 56.85365930738225,
+   "l": 102.68933826803551,
+   "axe": "axe",
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/1389508750",
+    "releve": "2026-09-14",
+    "description": "Halle identifiée par le nom Cattenom-3 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+    "rectangleHalle": {
+     "statut": "dimensions-interpretees",
+     "releve": "2026-09-14",
+     "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+     "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+     "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+     "dimensionsAvant": [
+      57.9,
+      103.3
+     ],
+     "dimensionsApres": [
+      56.85365930738225,
+      102.68933826803551
+     ]
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 0.671,
+     "angleAvant": 147.1,
+     "angleApres": 147.10000000000002,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "empreinte": [
+    [
+     152.92183584611232,
+     -175.14055094537375
+    ],
+    [
+     105.18637412016234,
+     -144.2590958234036
+    ],
+    [
+     49.40814929062384,
+     -230.47910410914014
+    ],
+    [
+     97.14361101657383,
+     -261.3605592311103
+    ],
+    [
+     152.92183584611232,
+     -175.14055094537375
+    ]
+   ],
+   "empreinteSource": [
+    [
+     110.7,
+     -147.8
+    ],
+    [
+     152.1,
+     -175.2
+    ],
+    [
+     152.8,
+     -175.8
+    ],
+    [
+     97.3,
+     -262.2
+    ],
+    [
+     48.6,
+     -230.8
+    ],
+    [
+     105.4,
+     -144.4
+    ],
+    [
+     110.7,
+     -147.8
+    ]
+   ],
+   "releveHalleInitial": {
+    "x": 129.1,
+    "y": -159.7,
+    "r": 147.1,
+    "L": 57.9,
+    "l": 103.3
+   },
+   "geometrie": "rectangle-halle",
+   "implantationAvantRaccord": {
+    "x": 128.93226913702503,
+    "y": -160.35927243901492,
+    "r": 147.1,
+    "m": 1,
+    "n": 1,
+    "u0": 2,
+    "L": 56.85365930738225,
+    "l": 102.68933826803551,
+    "preuve": {
+     "statut": "empreinte-cartographique",
+     "source": "https://www.openstreetmap.org/way/1389508750",
+     "releve": "2026-09-14",
+     "description": "Halle identifiée par le nom Cattenom-3 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+     "rectangleHalle": {
+      "statut": "dimensions-interpretees",
+      "releve": "2026-09-14",
+      "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+      "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+      "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+      "dimensionsAvant": [
+       57.9,
+       103.3
+      ],
+      "dimensionsApres": [
+       56.85365930738225,
+       102.68933826803551
+      ]
+     }
+    },
+    "empreinte": [
+     [
+      152.8,
+      -175.8
+     ],
+     [
+      105.06453827405005,
+      -144.91854487802982
+     ],
+     [
+      49.28631344451148,
+      -231.1385531637663
+     ],
+     [
+      97.02177517046142,
+      -262.0200082857365
+     ],
+     [
+      152.8,
+      -175.8
+     ]
+    ]
+   },
+   "localisation": "schematique-documentee"
+  },
+  {
+   "t": "ilot",
+   "x": 163.6,
+   "y": -106.3,
+   "r": 327.1,
+   "m": 1,
+   "u": 2,
+   "lab": "BR",
+   "localisation": "approximative",
+   "preuve": {
+    "statut": "schema-raccorde",
+    "source": "https://www.openstreetmap.org/way/58650486",
+    "releve": "2026-09-14",
+    "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 327.1,
+     "angleApres": 327.1,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 163.6,
+    "y": -106.3,
+    "r": 327.1,
+    "m": 1,
+    "u": 2,
+    "localisation": "approximative",
+    "preuve": {
+     "statut": "schema-raccorde",
+     "source": "https://www.openstreetmap.org/way/58650486",
+     "releve": "2026-09-14",
+     "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+    },
+    "empreinte": [
+     [
+      110.7,
+      -147.8
+     ],
+     [
+      124.5,
+      -126.3
+     ],
+     [
+      114.0,
+      -119.4
+     ],
+     [
+      125.0,
+      -102.1
+     ],
+     [
+      122.7,
+      -91.9
+     ],
+     [
+      126.1,
+      -86.4
+     ],
+     [
+      134.8,
+      -85.1
+     ],
+     [
+      135.6,
+      -84.3
+     ],
+     [
+      142.8,
+      -88.6
+     ],
+     [
+      144.4,
+      -98.5
+     ],
+     [
+      136.6,
+      -111.2
+     ],
+     [
+      140.3,
+      -113.7
+     ],
+     [
+      142.3,
+      -106.5
+     ],
+     [
+      145.4,
+      -100.9
+     ],
+     [
+      148.5,
+      -97.6
+     ],
+     [
+      152.0,
+      -95.0
+     ],
+     [
+      160.9,
+      -91.5
+     ],
+     [
+      161.5,
+      -69.6
+     ],
+     [
+      170.3,
+      -69.6
+     ],
+     [
+      170.3,
+      -85.5
+     ],
+     [
+      184.4,
+      -63.4
+     ],
+     [
+      206.0,
+      -77.5
+     ],
+     [
+      204.1,
+      -80.7
+     ],
+     [
+      211.4,
+      -85.3
+     ],
+     [
+      217.9,
+      -89.3
+     ],
+     [
+      215.4,
+      -93.4
+     ],
+     [
+      247.0,
+      -114.4
+     ],
+     [
+      227.1,
+      -146.4
+     ],
+     [
+      205.4,
+      -181.0
+     ],
+     [
+      187.1,
+      -169.4
+     ],
+     [
+      176.1,
+      -186.6
+     ],
+     [
+      166.2,
+      -180.1
+     ],
+     [
+      164.7,
+      -182.2
+     ],
+     [
+      158.2,
+      -178.0
+     ],
+     [
+      159.4,
+      -176.3
+     ],
+     [
+      153.8,
+      -172.6
+     ],
+     [
+      152.1,
+      -175.2
+     ],
+     [
+      110.7,
+      -147.8
+     ]
+    ]
+   },
+   "empreinteSource": [
+    [
+     110.7,
+     -147.8
+    ],
+    [
+     124.5,
+     -126.3
+    ],
+    [
+     114.0,
+     -119.4
+    ],
+    [
+     125.0,
+     -102.1
+    ],
+    [
+     122.7,
+     -91.9
+    ],
+    [
+     126.1,
+     -86.4
+    ],
+    [
+     134.8,
+     -85.1
+    ],
+    [
+     135.6,
+     -84.3
+    ],
+    [
+     142.8,
+     -88.6
+    ],
+    [
+     144.4,
+     -98.5
+    ],
+    [
+     136.6,
+     -111.2
+    ],
+    [
+     140.3,
+     -113.7
+    ],
+    [
+     142.3,
+     -106.5
+    ],
+    [
+     145.4,
+     -100.9
+    ],
+    [
+     148.5,
+     -97.6
+    ],
+    [
+     152.0,
+     -95.0
+    ],
+    [
+     160.9,
+     -91.5
+    ],
+    [
+     161.5,
+     -69.6
+    ],
+    [
+     170.3,
+     -69.6
+    ],
+    [
+     170.3,
+     -85.5
+    ],
+    [
+     184.4,
+     -63.4
+    ],
+    [
+     206.0,
+     -77.5
+    ],
+    [
+     204.1,
+     -80.7
+    ],
+    [
+     211.4,
+     -85.3
+    ],
+    [
+     217.9,
+     -89.3
+    ],
+    [
+     215.4,
+     -93.4
+    ],
+    [
+     247.0,
+     -114.4
+    ],
+    [
+     227.1,
+     -146.4
+    ],
+    [
+     205.4,
+     -181.0
+    ],
+    [
+     187.1,
+     -169.4
+    ],
+    [
+     176.1,
+     -186.6
+    ],
+    [
+     166.2,
+     -180.1
+    ],
+    [
+     164.7,
+     -182.2
+    ],
+    [
+     158.2,
+     -178.0
+    ],
+    [
+     159.4,
+     -176.3
+    ],
+    [
+     153.8,
+     -172.6
+    ],
+    [
+     152.1,
+     -175.2
+    ],
+    [
+     110.7,
+     -147.8
+    ]
+   ]
+  },
+  {
+   "t": "sdm",
+   "x": 265.45410498313737,
+   "y": -249.1998233843887,
+   "r": 147.10000000000002,
+   "m": 1,
+   "n": 1,
+   "u0": 3,
+   "L": 56.20184996744142,
+   "l": 101.88952259288914,
+   "axe": "axe",
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/1389508751",
+    "releve": "2026-09-14",
+    "description": "Halle identifiée par le nom Cattenom-4 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+    "rectangleHalle": {
+     "statut": "dimensions-interpretees",
+     "releve": "2026-09-14",
+     "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+     "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+     "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+     "dimensionsAvant": [
+      58.0,
+      102.4
+     ],
+     "dimensionsApres": [
+      56.20184996744142,
+      101.88952259288914
+     ]
+    },
+    "raccordementGeometrique": {
+     "statut": "rectangle-dessine-raccorde",
+     "date": "2026-09-14",
+     "distanceDeplacementM": 0.567,
+     "angleAvant": 147.1,
+     "angleApres": 147.10000000000002,
+     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    }
+   },
+   "empreinte": [
+    [
+     289.04819981126064,
+     -264.46352785552625
+    ],
+    [
+     241.86001015501407,
+     -233.93611891325116
+    ],
+    [
+     186.51622476488512,
+     -319.4845860701688
+    ],
+    [
+     233.70441442113173,
+     -350.0119950124439
+    ],
+    [
+     289.04819981126064,
+     -264.46352785552625
+    ]
+   ],
+   "empreinteSource": [
+    [
+     245.6,
+     -236.9
+    ],
+    [
+     288.1,
+     -263.8
+    ],
+    [
+     289.2,
+     -264.7
+    ],
+    [
+     234.3,
+     -351.0
+    ],
+    [
+     185.5,
+     -319.5
+    ],
+    [
+     241.8,
+     -234.5
+    ],
+    [
+     245.6,
+     -236.9
+    ]
+   ],
+   "releveHalleInitial": {
+    "x": 265.5,
+    "y": -249.2,
+    "r": 147.1,
+    "L": 58.0,
+    "l": 102.4
+   },
+   "geometrie": "rectangle-halle",
+   "implantationAvantRaccord": {
+    "x": 265.3940948281233,
+    "y": -249.76370447113757,
+    "r": 147.1,
+    "m": 1,
+    "n": 1,
+    "u0": 3,
+    "L": 56.20184996744142,
+    "l": 101.88952259288914,
+    "preuve": {
+     "statut": "empreinte-cartographique",
+     "source": "https://www.openstreetmap.org/way/1389508751",
+     "releve": "2026-09-14",
+     "description": "Halle identifiée par le nom Cattenom-4 et son empreinte ; axe mesuré sur le rectangle orienté. Deux familles d'axes également visibles dans le plan Commons de JKremona, 2024.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+     "rectangleHalle": {
+      "statut": "dimensions-interpretees",
+      "releve": "2026-09-14",
+      "methode": "Rectangle principal intérieur, côtés candidats issus des sommets du contour source dans le repère de l’axe documenté ; coins et centre de chaque cellule contrôlés.",
+      "precisionCalcul": "Coordonnées calculées conservées sans nouvel arrondi pour respecter les limites partagées ; précision du terrain non certifiée.",
+      "description": "Halle principale rectangulaire. Les appendices du contour source ne sont pas intégrés au dessin SDM et leur fonction n’est pas attribuée. Dimensions interprétées, pas des cotes constructeur ; axe conservé.",
+      "dimensionsAvant": [
+       58.0,
+       102.4
+      ],
+      "dimensionsApres": [
+       56.20184996744142,
+       101.88952259288914
+      ]
+     }
+    },
+    "empreinte": [
+     [
+      288.9881896562466,
+      -265.02740894227514
+     ],
+     [
+      241.8,
+      -234.5
+     ],
+     [
+      186.45621460987098,
+      -320.0484671569176
+     ],
+     [
+      233.6444042661176,
+      -350.5758760991927
+     ],
+     [
+      288.9881896562466,
+      -265.02740894227514
+     ]
+    ]
+   },
+   "localisation": "schematique-documentee"
+  },
+  {
+   "t": "ilot",
+   "x": 300.0,
+   "y": -195.8,
+   "r": 327.1,
+   "m": 1,
+   "u": 3,
+   "lab": "BR",
+   "localisation": "approximative",
+   "preuve": {
+    "statut": "schema-raccorde",
+    "source": "https://www.openstreetmap.org/way/58650470",
+    "releve": "2026-09-14",
+    "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022",
+    "raccordementGeometrique": {
+     "statut": "implantation-schematique-raccordee",
+     "date": "2026-09-14",
+     "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
+     "angleAvant": 327.1,
+     "angleApres": 327.1,
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+    }
+   },
+   "geometrie": "gabarit-conserve",
+   "implantationAvantRaccord": {
+    "x": 300.0,
+    "y": -195.8,
+    "r": 327.1,
+    "m": 1,
+    "u": 3,
+    "localisation": "approximative",
+    "preuve": {
+     "statut": "schema-raccorde",
+     "source": "https://www.openstreetmap.org/way/58650470",
+     "releve": "2026-09-14",
+     "description": "Emprise de l'îlot adjacente à la halle identifiée. Le symbole BR et les sous-bâtiments sont raccordés par le gabarit pédagogique P'4 : centre BR non isolé dans la source, emplacement approximatif.",
+     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+    },
+    "empreinte": [
+     [
+      245.6,
+      -236.9
+     ],
+     [
+      259.3,
+      -215.5
+     ],
+     [
+      249.0,
+      -208.8
+     ],
+     [
+      259.9,
+      -191.8
+     ],
+     [
+      258.0,
+      -183.5
+     ],
+     [
+      262.2,
+      -176.7
+     ],
+     [
+      271.8,
+      -174.4
+     ],
+     [
+      278.4,
+      -178.6
+     ],
+     [
+      279.9,
+      -187.0
+     ],
+     [
+      271.4,
+      -200.2
+     ],
+     [
+      275.3,
+      -202.5
+     ],
+     [
+      277.7,
+      -194.9
+     ],
+     [
+      279.5,
+      -191.8
+     ],
+     [
+      282.6,
+      -187.8
+     ],
+     [
+      285.0,
+      -185.5
+     ],
+     [
+      289.3,
+      -182.4
+     ],
+     [
+      292.8,
+      -181.0
+     ],
+     [
+      296.0,
+      -180.1
+     ],
+     [
+      296.5,
+      -159.0
+     ],
+     [
+      305.4,
+      -159.0
+     ],
+     [
+      305.1,
+      -174.7
+     ],
+     [
+      319.9,
+      -152.0
+     ],
+     [
+      341.7,
+      -166.1
+     ],
+     [
+      339.8,
+      -169.3
+     ],
+     [
+      354.5,
+      -178.9
+     ],
+     [
+      352.3,
+      -182.4
+     ],
+     [
+      384.2,
+      -203.2
+     ],
+     [
+      340.6,
+      -270.5
+     ],
+     [
+      322.5,
+      -259.1
+     ],
+     [
+      311.4,
+      -276.3
+     ],
+     [
+      301.1,
+      -270.0
+     ],
+     [
+      299.8,
+      -271.5
+     ],
+     [
+      294.2,
+      -268.1
+     ],
+     [
+      295.4,
+      -266.1
+     ],
+     [
+      289.2,
+      -262.2
+     ],
+     [
+      288.1,
+      -263.8
+     ],
+     [
+      245.6,
+      -236.9
+     ]
+    ]
+   },
+   "empreinteSource": [
+    [
+     245.6,
+     -236.9
+    ],
+    [
+     259.3,
+     -215.5
+    ],
+    [
+     249.0,
+     -208.8
+    ],
+    [
+     259.9,
+     -191.8
+    ],
+    [
+     258.0,
+     -183.5
+    ],
+    [
+     262.2,
+     -176.7
+    ],
+    [
+     271.8,
+     -174.4
+    ],
+    [
+     278.4,
+     -178.6
+    ],
+    [
+     279.9,
+     -187.0
+    ],
+    [
+     271.4,
+     -200.2
+    ],
+    [
+     275.3,
+     -202.5
+    ],
+    [
+     277.7,
+     -194.9
+    ],
+    [
+     279.5,
+     -191.8
+    ],
+    [
+     282.6,
+     -187.8
+    ],
+    [
+     285.0,
+     -185.5
+    ],
+    [
+     289.3,
+     -182.4
+    ],
+    [
+     292.8,
+     -181.0
+    ],
+    [
+     296.0,
+     -180.1
+    ],
+    [
+     296.5,
+     -159.0
+    ],
+    [
+     305.4,
+     -159.0
+    ],
+    [
+     305.1,
+     -174.7
+    ],
+    [
+     319.9,
+     -152.0
+    ],
+    [
+     341.7,
+     -166.1
+    ],
+    [
+     339.8,
+     -169.3
+    ],
+    [
+     354.5,
+     -178.9
+    ],
+    [
+     352.3,
+     -182.4
+    ],
+    [
+     384.2,
+     -203.2
+    ],
+    [
+     340.6,
+     -270.5
+    ],
+    [
+     322.5,
+     -259.1
+    ],
+    [
+     311.4,
+     -276.3
+    ],
+    [
+     301.1,
+     -270.0
+    ],
+    [
+     299.8,
+     -271.5
+    ],
+    [
+     294.2,
+     -268.1
+    ],
+    [
+     295.4,
+     -266.1
+    ],
+    [
+     289.2,
+     -262.2
+    ],
+    [
+     288.1,
+     -263.8
+    ],
+    [
+     245.6,
+     -236.9
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": -425.0,
+   "y": 81.1,
+   "r": 0,
+   "m": 1,
+   "d": 216.3,
+   "u": 0,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/133299579",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+   },
+   "empreinte": [
+    [
+     -357.4,
+     165.5
+    ],
+    [
+     -351.1,
+     159.7
+    ],
+    [
+     -343.6,
+     152.1
+    ],
+    [
+     -335.9,
+     142.3
+    ],
+    [
+     -330.1,
+     132.7
+    ],
+    [
+     -325.1,
+     122.1
+    ],
+    [
+     -320.8,
+     110.0
+    ],
+    [
+     -317.9,
+     95.9
+    ],
+    [
+     -317.1,
+     85.9
+    ],
+    [
+     -317.5,
+     70.4
+    ],
+    [
+     -320.1,
+     55.0
+    ],
+    [
+     -325.5,
+     38.7
+    ],
+    [
+     -331.3,
+     27.0
+    ],
+    [
+     -337.8,
+     17.0
+    ],
+    [
+     -346.4,
+     6.7
+    ],
+    [
+     -353.1,
+     0.2
+    ],
+    [
+     -363.5,
+     -8.1
+    ],
+    [
+     -374.3,
+     -14.7
+    ],
+    [
+     -387.6,
+     -20.7
+    ],
+    [
+     -398.8,
+     -24.1
+    ],
+    [
+     -407.3,
+     -25.9
+    ],
+    [
+     -419.4,
+     -27.3
+    ],
+    [
+     -431.9,
+     -27.1
+    ],
+    [
+     -446.8,
+     -25.2
+    ],
+    [
+     -458.9,
+     -22.0
+    ],
+    [
+     -471.3,
+     -16.9
+    ],
+    [
+     -479.5,
+     -12.5
+    ],
+    [
+     -488.0,
+     -7.1
+    ],
+    [
+     -497.2,
+     0.0
+    ],
+    [
+     -506.5,
+     9.7
+    ],
+    [
+     -511.1,
+     15.5
+    ],
+    [
+     -516.2,
+     22.9
+    ],
+    [
+     -519.6,
+     28.6
+    ],
+    [
+     -523.9,
+     37.0
+    ],
+    [
+     -526.2,
+     43.2
+    ],
+    [
+     -529.5,
+     53.5
+    ],
+    [
+     -531.7,
+     64.1
+    ],
+    [
+     -533.0,
+     76.8
+    ],
+    [
+     -532.8,
+     88.1
+    ],
+    [
+     -531.7,
+     98.3
+    ],
+    [
+     -528.7,
+     111.4
+    ],
+    [
+     -523.8,
+     124.5
+    ],
+    [
+     -520.5,
+     131.8
+    ],
+    [
+     -518.7,
+     135.2
+    ],
+    [
+     -514.7,
+     141.7
+    ],
+    [
+     -506.6,
+     152.2
+    ],
+    [
+     -501.5,
+     157.8
+    ],
+    [
+     -495.9,
+     162.9
+    ],
+    [
+     -490.0,
+     167.7
+    ],
+    [
+     -482.2,
+     173.1
+    ],
+    [
+     -475.7,
+     176.8
+    ],
+    [
+     -468.9,
+     180.2
+    ],
+    [
+     -461.8,
+     183.0
+    ],
+    [
+     -454.6,
+     185.4
+    ],
+    [
+     -443.6,
+     187.9
+    ],
+    [
+     -430.4,
+     189.4
+    ],
+    [
+     -417.1,
+     189.3
+    ],
+    [
+     -411.5,
+     188.7
+    ],
+    [
+     -404.0,
+     187.5
+    ],
+    [
+     -391.2,
+     184.2
+    ],
+    [
+     -385.8,
+     182.3
+    ],
+    [
+     -378.9,
+     179.3
+    ],
+    [
+     -372.1,
+     175.9
+    ],
+    [
+     -367.2,
+     172.9
+    ],
+    [
+     -359.5,
+     167.6
+    ],
+    [
+     -357.4,
+     165.5
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": -565.5,
+   "y": 376.0,
+   "r": 0,
+   "m": 1,
+   "d": 213.8,
+   "u": 1,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/133299580",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+   },
+   "empreinte": [
+    [
+     -617.5,
+     280.5
+    ],
+    [
+     -627.3,
+     287.8
+    ],
+    [
+     -636.6,
+     296.7
+    ],
+    [
+     -645.8,
+     307.2
+    ],
+    [
+     -649.9,
+     312.5
+    ],
+    [
+     -654.3,
+     318.9
+    ],
+    [
+     -659.9,
+     329.1
+    ],
+    [
+     -663.1,
+     336.4
+    ],
+    [
+     -666.1,
+     344.7
+    ],
+    [
+     -668.4,
+     354.1
+    ],
+    [
+     -670.9,
+     370.8
+    ],
+    [
+     -670.6,
+     382.9
+    ],
+    [
+     -668.9,
+     396.2
+    ],
+    [
+     -666.9,
+     407.6
+    ],
+    [
+     -663.0,
+     420.2
+    ],
+    [
+     -658.4,
+     432.4
+    ],
+    [
+     -650.2,
+     444.0
+    ],
+    [
+     -645.3,
+     449.5
+    ],
+    [
+     -639.3,
+     455.4
+    ],
+    [
+     -633.4,
+     460.4
+    ],
+    [
+     -626.8,
+     465.2
+    ],
+    [
+     -619.7,
+     469.5
+    ],
+    [
+     -610.5,
+     474.1
+    ],
+    [
+     -602.3,
+     477.5
+    ],
+    [
+     -593.4,
+     480.2
+    ],
+    [
+     -585.6,
+     481.8
+    ],
+    [
+     -577.2,
+     483.0
+    ],
+    [
+     -568.5,
+     483.5
+    ],
+    [
+     -561.0,
+     483.4
+    ],
+    [
+     -553.5,
+     482.7
+    ],
+    [
+     -546.1,
+     481.5
+    ],
+    [
+     -538.8,
+     479.8
+    ],
+    [
+     -531.7,
+     477.6
+    ],
+    [
+     -524.6,
+     474.9
+    ],
+    [
+     -516.2,
+     470.9
+    ],
+    [
+     -506.6,
+     465.1
+    ],
+    [
+     -499.0,
+     459.4
+    ],
+    [
+     -490.7,
+     451.9
+    ],
+    [
+     -484.3,
+     444.9
+    ],
+    [
+     -478.6,
+     437.5
+    ],
+    [
+     -472.7,
+     427.9
+    ],
+    [
+     -467.8,
+     417.8
+    ],
+    [
+     -463.9,
+     407.1
+    ],
+    [
+     -461.2,
+     396.2
+    ],
+    [
+     -459.8,
+     386.9
+    ],
+    [
+     -459.2,
+     375.6
+    ],
+    [
+     -459.6,
+     366.2
+    ],
+    [
+     -460.9,
+     356.9
+    ],
+    [
+     -463.4,
+     345.9
+    ],
+    [
+     -467.1,
+     335.2
+    ],
+    [
+     -471.9,
+     325.0
+    ],
+    [
+     -476.6,
+     316.9
+    ],
+    [
+     -483.3,
+     307.8
+    ],
+    [
+     -490.8,
+     299.4
+    ],
+    [
+     -499.2,
+     291.8
+    ],
+    [
+     -506.7,
+     286.3
+    ],
+    [
+     -516.4,
+     280.4
+    ],
+    [
+     -526.6,
+     275.7
+    ],
+    [
+     -535.4,
+     272.6
+    ],
+    [
+     -546.3,
+     269.9
+    ],
+    [
+     -555.6,
+     268.5
+    ],
+    [
+     -566.9,
+     267.9
+    ],
+    [
+     -576.2,
+     268.3
+    ],
+    [
+     -585.5,
+     269.5
+    ],
+    [
+     -596.5,
+     272.1
+    ],
+    [
+     -607.1,
+     275.8
+    ],
+    [
+     -617.5,
+     280.5
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": -109.0,
+   "y": -330.6,
+   "r": 0,
+   "m": 1,
+   "d": 209.3,
+   "u": 2,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/133299578",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+   },
+   "empreinte": [
+    [
+     -68.3,
+     -233.6
+    ],
+    [
+     -63.0,
+     -235.7
+    ],
+    [
+     -59.0,
+     -237.8
+    ],
+    [
+     -50.3,
+     -243.4
+    ],
+    [
+     -44.5,
+     -247.4
+    ],
+    [
+     -40.8,
+     -250.5
+    ],
+    [
+     -33.4,
+     -257.7
+    ],
+    [
+     -28.5,
+     -263.0
+    ],
+    [
+     -21.8,
+     -271.9
+    ],
+    [
+     -16.1,
+     -281.6
+    ],
+    [
+     -14.4,
+     -285.3
+    ],
+    [
+     -9.6,
+     -297.4
+    ],
+    [
+     -8.0,
+     -302.5
+    ],
+    [
+     -5.4,
+     -314.0
+    ],
+    [
+     -4.6,
+     -320.3
+    ],
+    [
+     -4.3,
+     -325.8
+    ],
+    [
+     -4.4,
+     -339.1
+    ],
+    [
+     -8.0,
+     -357.3
+    ],
+    [
+     -9.5,
+     -362.7
+    ],
+    [
+     -13.9,
+     -373.7
+    ],
+    [
+     -15.4,
+     -377.3
+    ],
+    [
+     -21.2,
+     -387.5
+    ],
+    [
+     -24.1,
+     -391.7
+    ],
+    [
+     -30.6,
+     -399.5
+    ],
+    [
+     -39.7,
+     -408.9
+    ],
+    [
+     -49.4,
+     -416.5
+    ],
+    [
+     -53.8,
+     -419.4
+    ],
+    [
+     -64.3,
+     -425.1
+    ],
+    [
+     -73.5,
+     -428.9
+    ],
+    [
+     -83.9,
+     -432.2
+    ],
+    [
+     -96.7,
+     -434.9
+    ],
+    [
+     -111.8,
+     -435.4
+    ],
+    [
+     -129.2,
+     -433.7
+    ],
+    [
+     -143.5,
+     -429.6
+    ],
+    [
+     -150.4,
+     -427.0
+    ],
+    [
+     -164.1,
+     -419.9
+    ],
+    [
+     -168.9,
+     -416.9
+    ],
+    [
+     -181.4,
+     -406.8
+    ],
+    [
+     -187.8,
+     -400.2
+    ],
+    [
+     -192.3,
+     -394.5
+    ],
+    [
+     -197.0,
+     -387.9
+    ],
+    [
+     -202.2,
+     -379.0
+    ],
+    [
+     -205.7,
+     -371.9
+    ],
+    [
+     -209.8,
+     -360.3
+    ],
+    [
+     -211.5,
+     -354.0
+    ],
+    [
+     -212.5,
+     -347.3
+    ],
+    [
+     -213.2,
+     -337.4
+    ],
+    [
+     -213.2,
+     -328.3
+    ],
+    [
+     -212.4,
+     -316.1
+    ],
+    [
+     -210.6,
+     -306.1
+    ],
+    [
+     -207.7,
+     -296.3
+    ],
+    [
+     -200.0,
+     -279.1
+    ],
+    [
+     -190.9,
+     -265.6
+    ],
+    [
+     -184.3,
+     -258.3
+    ],
+    [
+     -178.4,
+     -252.4
+    ],
+    [
+     -170.4,
+     -245.9
+    ],
+    [
+     -164.5,
+     -241.9
+    ],
+    [
+     -157.3,
+     -237.8
+    ],
+    [
+     -150.3,
+     -234.4
+    ],
+    [
+     -141.5,
+     -231.1
+    ],
+    [
+     -132.3,
+     -228.6
+    ],
+    [
+     -122.9,
+     -226.8
+    ],
+    [
+     -107.5,
+     -225.8
+    ],
+    [
+     -97.1,
+     -226.6
+    ],
+    [
+     -86.8,
+     -228.1
+    ],
+    [
+     -68.3,
+     -233.6
+    ]
+   ]
+  },
+  {
+   "t": "aero",
+   "x": 164.7,
+   "y": -517.3,
+   "r": 0,
+   "m": 1,
+   "d": 209.1,
+   "u": 3,
+   "preuve": {
+    "statut": "empreinte-cartographique",
+    "source": "https://www.openstreetmap.org/way/58650483",
+    "releve": "2026-09-14",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur.",
+    "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2022"
+   },
+   "empreinte": [
+    [
+     228.9,
+     -434.8
+    ],
+    [
+     239.7,
+     -444.7
+    ],
+    [
+     246.0,
+     -452.0
+    ],
+    [
+     251.7,
+     -459.9
+    ],
+    [
+     256.2,
+     -467.3
+    ],
+    [
+     259.4,
+     -473.5
+    ],
+    [
+     263.2,
+     -483.0
+    ],
+    [
+     265.6,
+     -490.4
+    ],
+    [
+     267.3,
+     -497.1
+    ],
+    [
+     268.2,
+     -502.8
+    ],
+    [
+     268.9,
+     -510.3
+    ],
+    [
+     269.2,
+     -520.3
+    ],
+    [
+     268.6,
+     -528.9
+    ],
+    [
+     267.4,
+     -536.4
+    ],
+    [
+     265.3,
+     -545.8
+    ],
+    [
+     262.2,
+     -555.4
+    ],
+    [
+     260.2,
+     -560.1
+    ],
+    [
+     256.0,
+     -568.4
+    ],
+    [
+     253.4,
+     -572.9
+    ],
+    [
+     250.0,
+     -578.0
+    ],
+    [
+     242.2,
+     -587.7
+    ],
+    [
+     235.4,
+     -594.5
+    ],
+    [
+     228.9,
+     -600.0
+    ],
+    [
+     220.8,
+     -605.7
+    ],
+    [
+     212.3,
+     -610.5
+    ],
+    [
+     203.4,
+     -614.6
+    ],
+    [
+     192.6,
+     -618.2
+    ],
+    [
+     186.2,
+     -619.7
+    ],
+    [
+     176.8,
+     -621.2
+    ],
+    [
+     168.7,
+     -621.7
+    ],
+    [
+     160.0,
+     -621.7
+    ],
+    [
+     145.6,
+     -620.1
+    ],
+    [
+     138.9,
+     -618.7
+    ],
+    [
+     132.8,
+     -617.1
+    ],
+    [
+     125.9,
+     -614.7
+    ],
+    [
+     115.3,
+     -609.8
+    ],
+    [
+     110.7,
+     -607.1
+    ],
+    [
+     100.7,
+     -600.3
+    ],
+    [
+     95.1,
+     -595.7
+    ],
+    [
+     86.0,
+     -586.3
+    ],
+    [
+     77.7,
+     -575.3
+    ],
+    [
+     73.1,
+     -567.8
+    ],
+    [
+     69.5,
+     -560.6
+    ],
+    [
+     64.3,
+     -546.9
+    ],
+    [
+     60.8,
+     -530.9
+    ],
+    [
+     60.3,
+     -516.6
+    ],
+    [
+     60.6,
+     -508.6
+    ],
+    [
+     61.5,
+     -501.5
+    ],
+    [
+     64.2,
+     -489.2
+    ],
+    [
+     65.6,
+     -484.0
+    ],
+    [
+     71.6,
+     -469.6
+    ],
+    [
+     76.2,
+     -461.8
+    ],
+    [
+     82.0,
+     -453.1
+    ],
+    [
+     91.1,
+     -442.8
+    ],
+    [
+     99.0,
+     -435.7
+    ],
+    [
+     107.7,
+     -429.4
+    ],
+    [
+     113.0,
+     -426.2
+    ],
+    [
+     118.0,
+     -423.6
+    ],
+    [
+     122.6,
+     -421.3
+    ],
+    [
+     126.9,
+     -419.5
+    ],
+    [
+     131.3,
+     -418.0
+    ],
+    [
+     137.6,
+     -416.1
+    ],
+    [
+     146.1,
+     -414.1
+    ],
+    [
+     151.8,
+     -413.2
+    ],
+    [
+     157.5,
+     -412.7
+    ],
+    [
+     163.9,
+     -412.6
+    ],
+    [
+     169.2,
+     -412.7
+    ],
+    [
+     177.2,
+     -413.2
+    ],
+    [
+     185.7,
+     -414.9
+    ],
+    [
+     196.3,
+     -417.5
+    ],
+    [
+     207.8,
+     -421.7
+    ],
+    [
+     213.1,
+     -424.5
+    ],
+    [
+     221.7,
+     -429.5
+    ],
+    [
+     225.2,
+     -432.0
+    ],
+    [
+     228.9,
+     -434.8
+    ]
+   ]
+  }
+ ],
+ "auditVisuel": {
+  "date": "2026-09-14",
+  "reference": "references-cnpe/ign/cattenom.jpg",
+  "source": "IGN — BD ORTHO, Licence ouverte 2.0",
+  "portee": "Paysage IGN observé mais emprise pixellisée ; recalage géographique sur OSM et références publiques complémentaires. Voir la preuve de chaque objet : une position schématique n'est pas un emplacement attesté."
+ },
+ "geographie": {
+  "origine": [
+   49.416,
+   6.218
+  ],
+  "rotationDeg": 0,
+  "source": "OpenStreetMap",
+  "date": "2026-09-14"
+ },
+ "reparationImplantations": {
+  "date": "2026-09-14",
+  "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."
+ }
+}

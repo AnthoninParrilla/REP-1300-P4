@@ -1,6 +1,6 @@
 NOTICE — SIMUREP
 Sources et licences des données tierces incorporées
-Mise à jour : 2026-09-12
+Mise à jour : 2026-09-14 — branche de revue
 
 ═══════════════════════════════════════════════════════════════════════════════
 1. L'ŒUVRE
@@ -21,10 +21,17 @@ système. Le code est écrit intégralement pour ce projet.
 Le présent fichier ne recense donc QUE des DONNÉES tierces, incorporées sous
 licence ouverte, et les obligations d'attribution qui les accompagnent.
 
-Les plans de site (plans/*.json, dessinés par siteplan.js, servis au public
-depuis la version 2.15.0) ne sont PAS des données tierces : ce sont des
-coordonnées placées à la main par l'auteur dans son atelier, versionnées avec
-le produit, et couvertes par le même « tous droits réservés » que le reste.
+Les 18 plans de site de la branche de revue incorporent désormais des données
+OpenStreetMap (empreintes, centres, orientations et hydrographie), extraites le
+14 septembre 2026. Ces données et leurs transformations géographiques sont
+sous ODbL 1.0 : © les contributeurs d'OpenStreetMap.
+https://www.openstreetmap.org/copyright
+https://opendatacommons.org/licenses/odbl/1-0/
+Voir plans/LICENCE-DONNEES.md et les champs de provenance des plans/*.json.
+Les relevés sont téléchargeables depuis les références de chaque vue CNPE.
+Le code du simulateur et les dessins originaux restent distincts de cette base.
+Les photographies de référence ne sont pas intégrées au produit ; leurs droits
+propres sont consignés dans le dossier de revue local references-cnpe/.
 
 ═══════════════════════════════════════════════════════════════════════════════
 2. RÉSEAU 400 kV DE LA CARTE DE FRANCE  ->  geo.js (généré par geo-rte.py)
