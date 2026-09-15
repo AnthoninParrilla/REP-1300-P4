@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.1a</title>
+<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.1b</title>
 <meta property="og:title" content="SIMUREP, le simulateur du parc électronucléaire français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc électronucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
@@ -631,7 +631,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le simulateur du parc électronucléaire français</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.1a</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.1b</span></div>
     <div class="stageSteps" role="group" aria-label="Niveaux du simulateur · vue Tranche"><span>01 France</span><i aria-hidden="true">›</i><span>02 CNPE</span><i aria-hidden="true">›</i><b aria-current="step">03 Tranche</b></div>
   </div>
   <div class="spacer"></div>
@@ -1922,7 +1922,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   var JUMPS  ={'P4':JUMP1300,  "P'4":JUMP1300,  'CPY':JUMP900,  'CP0':JUMP900};
   var PRESET=PRESETS[PALID]||{}, JUMP=JUMPS[PALID]||{};
 
-  function jumpEtat(e){var p=PRESET[e]||PRESET.RP,J=JUMP[e]||{},keep={pal:S.pal,t:S.t,srcType:S.srcType,Tsrc:S.Tsrc,saison:S.saison,accel:S.accel,mIdx:S.mIdx,easy:S.easy,mis:S.mis,gaine:S.gaine};
+  function jumpEtat(e,quiet){var p=PRESET[e]||PRESET.RP,J=JUMP[e]||{},keep={pal:S.pal,t:S.t,srcType:S.srcType,Tsrc:S.Tsrc,saison:S.saison,accel:S.accel,mIdx:S.mIdx,easy:S.easy,mis:S.mis,gaine:S.gaine};
     for(var k in S0){var v=S0[k];S[k]=Array.isArray(v)?v.slice():((v&&typeof v==='object')?JSON.parse(JSON.stringify(v)):v);}   
     for(var k2 in keep)if(keep[k2]!==undefined)S[k2]=keep[k2];
     for(var k3 in p){if(k3==='gmpp')continue;S[k3]=p[k3];}                                                                     
@@ -1936,7 +1936,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     ['_rtvIso','rejAtmMsg','_ptMsg','_flrMsg','_gradMsg','_grMsg','_cfMsg','_rwMsg','_blkDue','_accDue','_reaDue','_reaMsg','_accMsg','_blkMsg','_isAux','recircHot','asgOn'].forEach(function(f){if(S[f]===undefined)S[f]=false;});
     gPos=S.scram?1:(1-clamp((S.viv?S.turb:0)/100,0,1));   
     S.etat=e;
-    try{log('Prise de quart : la tranche est en '+e+', '+Math.round(S.Tavg)+' \u00b0C / '+Math.round(S.Ppzr)+' bar, '+Math.round(S.Pelec)+' MWe'+(e==='ANGV'?', groupes d\u2019arr\u00eat chut\u00e9s':'')+(J.isBlk?', IS bloqu\u00e9e, accus isol\u00e9s':'')+'.','dim');}catch(_e){}}
+    if(!quiet)try{log('Prise de quart : la tranche est en '+e+', '+Math.round(S.Tavg)+' \u00b0C / '+Math.round(S.Ppzr)+' bar, '+Math.round(S.Pelec)+' MWe'+(e==='ANGV'?', groupes d\u2019arr\u00eat chut\u00e9s':'')+(J.isBlk?', IS bloqu\u00e9e, accus isol\u00e9s':'')+'.','dim');}catch(_e){}}
   
   
   
@@ -6591,10 +6591,12 @@ try{window.GEO400=GEO400;}catch(_e){}
     
     
     differs:function(key,mem){var r=this.live&&this.live.units&&this.live.units[key];if(!r||r.x||!mem)return true;var cap=r.cap||PN.P4;
-      if(mem.il)return true;   
-      var mp=(mem.etat==='RP'||mem.etat==='RD')&&!mem.au,rp=(r.etat==='RP'||r.etat==='RD');if(mp!==rp)return true;return Math.abs((mem.Pe||0)-(r.Pe||0))>Math.max(100,0.08*cap);},
+      if(mem.il||mem.au)return true;   
+      var mp=(mem.etat==='RP'||mem.etat==='RD')&&!mem.au,rp=(r.etat==='RP'||r.etat==='RD');if(mp!==rp)return true;
+      if(!mp&&r.initialEtat&&mem.etat!=='AT'&&mem.etat!==r.initialEtat)return true; 
+      return Math.abs((mem.Pe||0)-(r.Pe||0))>Math.max(100,0.08*cap);},
     nucSum:function(){var L=this.live;if(!L||!L.units)return null;var n=0,s=0;for(var k in L.units){var u=L.units[k];if(u&&typeof u.Pe==='number'&&!u.x){s+=u.Pe;n++;}}return n>=40?{sum:s,n:n,t:(L.meta&&L.meta.units&&L.meta.units.data)||0}:null;},   
-    provider:function(site,idx,pal,t){var u=this.real(site,idx);if(!u)return null;return {Pe:Math.round(u.Pe||0),etat:u.etat||'RP',lab:u.lab||ETLAB[u.etat]||'',real:true,x:!!u.x,ind:u.ind||null,cap:u.cap};},   
+    provider:function(site,idx,pal,t){var u=this.real(site,idx);if(!u)return null;var e=u.initialEtat||u.etat||'RP';return {Pe:Math.round(u.Pe||0),etat:e,lab:u.initialEtat&&e!=='RP'?ETLAB[e]:(u.lab||ETLAB[e]||''),real:true,x:!!u.x,ind:u.ind||null,cap:u.cap};},   
     demande:function(t){var s=(typeof S!=='undefined'&&S.saison)||'mi',base=(s==='hiver'?1.0:(s==='ete'?0.86:0.93)),hh=((t||0)/3600)%24,   
       jour=(hh<6?0.90:(hh<9?0.97:(hh<13?1.0:(hh<18?0.96:(hh<22?1.0:0.93)))));return base*jour;},
     unit:function(site,idx,pal,t){if(this.provider){try{var rp=this.provider(site,idx,pal,t);if(rp)return rp;}catch(e){}}
@@ -6781,7 +6783,7 @@ try{window.GEO400=GEO400;}catch(_e){}
         var plumes=document.querySelectorAll('#cnpeSvg [data-plume-u="'+i+'"]');
         if(plumes.length)plumes.forEach(function(v){v.setAttribute('opacity',0.9*f);});
         else{var v=el('cnV'+i);if(v)v.setAttribute('opacity',0.9*f);}
-        var c=el('cnC'+i);if(c){var li=u.cur?incidentsOf(S):(peekCache[s.n+'|'+(i+1)]&&peekCache[s.n+'|'+(i+1)].incs)||[],pct=Math.round(f*100),origin=u.cur?'Au pupitre':u.mod?'Tranche pilotée':(u.real&&!u.x&&!PARC.source().x?'Mesure RTE':'Estimation du parc');
+        var c=el('cnC'+i);if(c){var li=u.cur?incidentsOf(S):(peekCache[s.n+'|'+(i+1)]&&peekCache[s.n+'|'+(i+1)].incs)||[],pct=Math.round(f*100),origin=u.cur?'Au pupitre':u.mod?'Tranche pilotée':(u.real&&!u.x&&!PARC.source().x?'Production RTE':'Estimation du parc');
           c.classList.toggle('is-current',!!u.cur);c.setAttribute('data-state',u.etat);c.setAttribute('style','--cnpe-state:'+col(u));
           c.querySelector('.cnpeVal').innerHTML='<div class="cnpeStateRow"><span class="cnpeState">'+uiEsc(u.etat)+'</span><span class="cnpeOrigin">'+origin+'</span></div>'
             +'<div class="cnpePower"><strong>'+u.Pe.toLocaleString('fr-FR')+'</strong><span>MWe</span></div>'
@@ -6872,7 +6874,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       }
       if(prev&&prev!==key)UNITMEM.park();   
       try{localStorage.setItem('rep_site',key);}catch(e){}
-      var e0=mem?mem.etat:(function(){var u=PARC.unit(s.n,tr-1,s.p,S.t||0);return u.etat==='AT'?'ANGV':'RP';})();       
+      var e0=mem?mem.etat:(function(){var u=PARC.unit(s.n,tr-1,s.p,S.t||0);return u.etat==='AT'?'ANGV':(u.etat==='RD'?'RP':u.etat);})();       
       var viv=!!(window.__net&&alive(key)),restored=false;   
       if(prev!==key&&!viv){if(!window.__net){try{if(s.p&&S.pal!==s.p&&typeof setPalier==='function')setPalier(s.p);
         restored=api.restoreLocal(s,tr,mem);if(!restored){QUART_KEYS.forEach(function(k){if(!Object.prototype.hasOwnProperty.call(S0,k))delete S[k];});S.gaine=0;if(typeof initOperatingPoint!=='function'||(mem&&(mem.au||mem.il)))jumpEtat(e0);}}catch(e){}}else{if(e0!=='RP'){try{window.__net.jump(ukey(key),e0);}catch(e){}}
@@ -7187,7 +7189,7 @@ document.querySelectorAll('button').forEach(function(b){
     <p>SIMUREP est un simulateur pédagogique <b>du parc nucléaire français</b>, à trois niveaux : la <b>France</b> (la carte du parc, production et état de toutes les tranches), le <b>CNPE</b> (l'étage du site : communs, production, état, incidents) et la <b>tranche</b> (le pupitre complet). Deux paliers se pilotent : le <b>REP 900 MWe</b> (CPY et CP0, trois boucles) et le <b>REP 1300 MWe</b> (P4/P'4, quatre boucles), chacun avec sa salle de commande, la vraie nomenclature du parc, des ordres de grandeur réels et les protections câblées comme sur site ; le N4 et l'EPR viendront.</p>
     <p>Choisis ta centrale sur la carte, prends ton quart, et pilote : réactivité, grappes, bore, générateurs de vapeur, turbine, source froide, du fonctionnement normal aux transitoires accidentels, avec un <b>mode facile</b> guidé, seize missions et un lexique.</p>
     <p>L'interface tourne dans ton navigateur ; le cœur de calcul physique tourne sur un serveur dédié. Aucune donnée personnelle, aucune inscription.</p>
-    <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur les relit toutes les quinze minutes et indique clairement quand il extrapole. Réseau 400 kV de la carte : tracés des lignes issus de la BD TOPO® v3, © IGN, Licence Etalab 2.0 (Géoplateforme) ; localisation des postes © les contributeurs d'OpenStreetMap (ODbL) ; liste et noms officiels des postes : RTE, jeu « Postes électriques RTE » (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
+    <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur actualise les mesures toutes les quinze minutes, les indisponibilités toutes les heures, et indique quand il extrapole. <b>États à l’arrêt :</b> RTE ne fournit ni la température ni l’état de chargement du réacteur. SIMUREP choisit un état initial pédagogique selon le motif documenté et le calendrier : arrêt chaud, refroidissement ou rechargement. Cet état n’est pas une télémesure ; un quart déjà joué conserve sa mémoire. Réseau 400 kV de la carte : tracés des lignes issus de la BD TOPO® v3, © IGN, Licence Etalab 2.0 (Géoplateforme) ; localisation des postes © les contributeurs d'OpenStreetMap (ODbL) ; liste et noms officiels des postes : RTE, jeu « Postes électriques RTE » (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
     <p style="font-size:12px;color:#5a6b7c"><b>Plans des centrales et sources froides.</b> Empreintes, rives et canaux issus des données d’<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap — © les contributeurs, ODbL</a>, complétés par les documents publics des exploitants et les références fournies par l’auteur. Les dessins d’équipements restent schématiques. La provenance est conservée dans les relevés de chaque site ; <a href="plans/LICENCE-DONNEES.md" target="_blank" rel="noopener">licence et attribution des données géographiques</a>.</p>
     <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR : un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span> · <a href="mailto:contact@simurep.fr" style="color:#2f7a4f">contact@simurep.fr</a></p>
     <p style="font-size:11.5px;color:#7a8a99;border-top:1px solid #e3e9ef;padding-top:8px">© 2026 AnthoninP, <b>tous droits réservés</b>. SIMUREP (code, moteur physique, figures et textes originaux) est une œuvre originale protégée : toute reproduction, copie, extraction ou réutilisation, même partielle, est interdite sans autorisation écrite de l'auteur. Le moteur de calcul tourne sur un serveur privé ; le code visible dans le navigateur n'est qu'un châssis d'affichage.<br><b>Œuvre déposée</b> à l'Agence pour la Protection des Programmes, répertoire IDDN : <span style="font-family:ui-monospace,Menlo,Consolas,monospace">IDDN.FR.001.350014.000.S.P.2026.000.21100</span></p>
@@ -7207,6 +7209,6 @@ document.querySelectorAll('button').forEach(function(b){
     <footer class="parcFooter"><span>SIMUREP · Le simulateur du parc électronucléaire français</span><span>by AnthoninP · helped by AI · © 2026 tous droits réservés</span></footer>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 80b56dc85095ca30 · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 531f99320572acd1 · contact@simurep.fr -->
 </body>
 </html>
