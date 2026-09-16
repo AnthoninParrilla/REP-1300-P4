@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.1c</title>
+<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.1d</title>
 <meta property="og:title" content="SIMUREP, le simulateur du parc électronucléaire français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc électronucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
@@ -323,19 +323,6 @@ if('serviceWorker' in navigator){
   .anim .fdash{animation:dashmove 1.2s linear infinite}
   @keyframes dashmove{to{stroke-dashoffset:-18}}
   @media (prefers-reduced-motion:reduce){.anim .fdash{animation-duration:3.6s}}  /* le sens du débit est une info : on ralentit, on ne fige pas (réglage « réduire le mouvement » des PC) */
-#boomFx{position:fixed;inset:0;pointer-events:none;z-index:99;opacity:0;
-  background:radial-gradient(circle at 42% 38%,#fff 0%,#ffd27a 22%,#ff8c3b 45%,#e6483d 65%,transparent 82%);}
-#boomFx.go{animation:boomFlash 2.4s ease-out;}
-@keyframes boomFlash{0%{opacity:0}4%{opacity:1}18%{opacity:.95}45%{opacity:.55}100%{opacity:0}}
-body.shake{animation:quake .9s linear;}
-@keyframes quake{
-  0%,100%{transform:translate(0,0)}10%{transform:translate(-7px,4px)}20%{transform:translate(8px,-5px)}
-  30%{transform:translate(-6px,-6px)}40%{transform:translate(7px,5px)}50%{transform:translate(-8px,2px)}
-  60%{transform:translate(6px,-4px)}70%{transform:translate(-4px,5px)}80%{transform:translate(5px,-2px)}
-  90%{transform:translate(-3px,1px)}}
-#iBoom{background:#3a1010;border-color:#ff5548;color:#ff8c7a;font-weight:700;letter-spacing:1px;
-  animation:boomPulse 1.6s ease-in-out infinite;}
-@keyframes boomPulse{0%,100%{box-shadow:0 0 0 0 rgba(230,72,61,.0)}50%{box-shadow:0 0 14px 2px rgba(230,72,61,.55)}}
 </style>
 <style id="parcTheme">
 /* PARC_THEME_START */
@@ -631,7 +618,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le simulateur du parc électronucléaire français</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.1c</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.1d</span></div>
     <div class="stageSteps" role="group" aria-label="Niveaux du simulateur · vue Tranche"><span>01 France</span><i aria-hidden="true">›</i><span>02 CNPE</span><i aria-hidden="true">›</i><b aria-current="step">03 Tranche</b></div>
   </div>
   <div class="spacer"></div>
@@ -1346,7 +1333,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
       <h2>Bilan de réactivité</h2>
       <table class="bilan">
         <tr><td>Grappes R</td><td id="rRod">+0 pcm</td></tr>
-        <tr><td>Groupes G (900)</td><td id="rG">0 pcm</td></tr>
+        <tr><td id="rGLabel">Groupes de compensation (mode G)</td><td id="rG">non modélisés</td></tr>
         <tr><td>Bore</td><td id="rBore">+0 pcm</td></tr>
         <tr><td>Xénon</td><td id="rXe">+0 pcm</td></tr>
         <tr><td>Défaut de puissance (Doppler)</td><td id="rPow">+0 pcm</td></tr>
@@ -1355,6 +1342,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
         <tr><td>Grappes d'arrêt (AU)</td><td id="rAu">0 pcm</td></tr>
         <tr class="tot"><td>ρ total</td><td id="rTot">+0 pcm</td></tr>
       </table>
+      <p class="note" id="rGNote">Le mode G équipe aussi les 1300 MWe. Ici, le groupe R est représenté ; la contribution des groupes de compensation n’est pas simulée.</p>
     </div>
 
     <div data-sys="alarme" class="card">
@@ -1404,7 +1392,6 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
         <button class="inc" id="iReset" style="border-color:#4fc57a;color:#4fc57a">⟲ RÉINITIALISER LA SIMULATION</button>
       </div>
       <div class="row">
-        <button class="inc" id="iBoom">☢ TOUT FAIRE PÉTER (démo)</button>
       </div>
       <div class="row">
         <button class="inc" id="iTrip">Déclenchement turbine</button>
@@ -1456,7 +1443,6 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   </div>
 </div>
 
-<div id="boomFx"></div>
 <div id="coreModal" style="display:none;position:fixed;inset:0;background:rgba(4,7,9,.85);z-index:50;padding:12px;overflow:auto">
   <div data-sys="neutro" class="card" style="max-width:min(760px,96vw);margin:3vh auto">
     <h2 id="coreTitre" style="display:flex;align-items:center;gap:8px">Carte du cœur : 193 assemblages
@@ -1799,6 +1785,15 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
       if(eT&&tir&&tir.PEL)eT.textContent='Tranche REP '+tir.PEL+' MWe';
       if(eP)eP.textContent='\u00b7 palier '+lib+' \u00b7 SIMUREP, le simulateur du parc électronucléaire français';
       if(eS)eS.textContent='Palier '+((id==='P4'||id==="P'4")?'P4':id);}catch(e){}
+    
+    
+    var gLabel=document.getElementById('rGLabel'),gNote=document.getElementById('rGNote');
+    if(gLabel)gLabel.textContent=id==='CP0'?'Compensation de charge (modèle)':'Groupes de compensation (mode G)';
+    if(gNote)gNote.textContent=id==='CP0'
+      ?'Le CP0 ne possède pas de grappes grises. Cette contribution est une approximation globale du modèle, pas la représentation de groupes gris réels.'
+      :(/^CP/.test(id)
+        ?'La compensation du mode G est représentée globalement ; les positions de chaque groupe ne sont pas simulées séparément.'
+        :'Le mode G équipe aussi les 1300 MWe. Ici, le groupe R est représenté ; la contribution des groupes de compensation n’est pas simulée.');
     try{document.body.classList.toggle('pal-900',/^CP/.test(id));}catch(e){}
     try{recMode=/^CP/.test(id)?'papier':'texte';recRender(true);}catch(e){}
     try{var _iv=document.getElementById('isoSvg');if(window.ISO&&ISO.ready&&_iv)ISO.mount(_iv);}catch(e){}   
@@ -2921,35 +2916,6 @@ var ISO=(function(){
   bindHold(el('bDilu'),'dilu','dilution RCV');
 
   el('iReset').onclick=function(){location.reload();};
-  el('iBoom').onclick=function(){
-    try{el('viewBar').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
-    log('☢ SÉQUENCE DÉMONSTRATION : toutes les protections inhibées, cumul d’initiateurs. Ne pas reproduire sur une vraie tranche.','red');
-    S.aarInhib=true;S.inhIsoE=true;S.inhIsoV=true;S.inhIS=true;S.inhEAS=true;S.inhASG=true;S.inhKrt=true;
-    S.breche=1;S.gaine=0.3;el('iApr').textContent='Isoler la brèche';
-    var fx=el('boomFx');
-    
-    setTimeout(function(){
-      S.dmg=Math.max(S.dmg,0.6);S.h2=9.4;S.actP=20;
-      S.inv=48;S.Ppzr=60;
-      log('Fusion du cœur en cours, dépressurisation primaire, hydrogène en accumulation rapide','red');
-    },1200);
-    
-    setTimeout(function(){
-      fx.classList.remove('go');void fx.offsetWidth;fx.classList.add('go');
-      document.body.classList.add('shake');
-      setTimeout(function(){document.body.classList.remove('shake');},950);
-      S.turb=0;S.turbSet=0;el('turb').value=0;S.Pelec=0;
-      S.viv=false;S.gmpp=false;S.gmppTimer=-1;
-      S.gv=12;S.Psteam=28;S.Ppzr=25;S.inv=25;
-      S.Penc=4.2;S.h2=12; 
-      log('DÉFLAGRATION : salle des machines et lignes vapeur dévastées, perte totale de la production','red');
-    },2600);
-    
-    setTimeout(function(){
-      S.inv=12;S.dmg=1;S.gaine=1;
-      log('Découvrement complet du cœur : la tranche est perdue. Réinitialiser pour rejouer.','red');
-    },3800);
-  };
   el('iTrip').onclick=function(){
     if(S.turb>1){
       log('INCIDENT injecté : déclenchement turbine','amber');
@@ -4222,7 +4188,7 @@ var ISO=(function(){
       el('rTot').textContent='cuve déchargée';
     }else{
     el('rRod').textContent=pcm(b[0]);
-    el('rG').textContent=pcm(b[7]||0);
+    el('rG').textContent=(PALID==='P4'||PALID==="P'4")?'non modélisés':pcm(b[7]||0);
     el('rBore').textContent=pcm(b[1]);
     el('rXe').textContent=pcm(b[2]);
     el('rPow').textContent=pcm(b[3]);
@@ -5571,14 +5537,14 @@ try{window.GEO400=GEO400;}catch(_e){}
     var jouable=function(s){return (typeof palPret==='function')?palPret(s.p):(s.p==='P4'||s.p==="P'4");};
     var COUL={CPY:'#2a7fa0',CP0:'#2a7fa0',N4:'#8e5aa8',EPR:'#d9782e',P4:'#2f7a4f'};COUL["P'4"]='#2f7a4f';
     for(var i=0;i<SITES.length;i++){var s=SITES[i];var ok=jouable(s);var mort=(s.p==='\u2020');
-      h+='<g class="stG" data-i="'+i+'" role="button" tabindex="0" aria-label="'+s.n+' · '+(mort?'site arrêté':s.t+' tranches '+s.p)+'" style="cursor:pointer">';
+      h+='<g class="stG" data-i="'+i+'" role="button" tabindex="0" aria-label="'+s.n+' · '+(mort?'site arrêté':s.t+' tranches '+s.p+(s.epr?' + 1 tranche EPR':''))+'" style="cursor:pointer">';
       if(mort){h+='<text x="'+s.x+'" y="'+(s.y+5)+'" font-size="13" text-anchor="middle">\ud83e\udea6</text>';}
       else{
         if(ok)h+='<circle cx="'+s.x+'" cy="'+s.y+'" r="11" fill="none" stroke="#2f7a4f66" stroke-width="3"/>';
         h+='<circle cx="'+s.x+'" cy="'+s.y+'" r="6.5" fill="'+(COUL[s.p]||'#888')+'" stroke="#ffffff" stroke-width="2" opacity="'+(ok?'1':'0.8')+'"/>';
         if(s.epr)h+='<circle cx="'+(s.x+9)+'" cy="'+(s.y-7)+'" r="4" fill="#d9782e" stroke="#ffffff" stroke-width="1.5"/>';
       }
-      h+='<text x="'+((s.g?(s.x-10):(s.x+10))+(s.dx||0))+'" y="'+(s.y+4+(s.dy||0))+'" text-anchor="'+(s.g?'end':'start')+'" font-size="11" font-weight="'+(ok?'700':'400')+'" fill="'+(mort?'#8f958f':(ok?'#1f4d3a':'#5c6e64'))+'" stroke="#e8eef4" stroke-width="3" paint-order="stroke">'+s.n+(mort?'':' <tspan fill="#6a7b8c" font-size="9">'+s.t+'\u00d7'+s.p+(s.epr?' + EPR':'')+'</tspan>')+'</text></g>';
+      h+='<text x="'+((s.g?(s.x-10):(s.x+10))+(s.dx||0))+'" y="'+(s.y+4+(s.dy||0))+'" text-anchor="'+(s.g?'end':'start')+'" font-size="11" font-weight="'+(ok?'700':'400')+'" fill="'+(mort?'#8f958f':(ok?'#1f4d3a':'#5c6e64'))+'" stroke="#e8eef4" stroke-width="3" paint-order="stroke">'+s.n+(mort?'':' <tspan fill="#6a7b8c" font-size="9">'+s.t+'\u00d7'+s.p+(s.epr?' + 1\u00d7EPR':'')+'</tspan>')+'</text></g>';
     }
     h+='</g><g id="gFlux"></g>';
     svg.innerHTML=h;
@@ -6515,7 +6481,7 @@ try{window.GEO400=GEO400;}catch(_e){}
         +'<text x="'+(W-82)+'" y="31.5" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.1" fill="#395640">PLAN DU SITE</text>'
         +'<rect x="0" y="'+(H-40)+'" width="'+W+'" height="40" fill="#f6f8ef" fill-opacity=".95"/>'
         +'<line x1="0" y1="'+(H-40)+'" x2="'+W+'" y2="'+(H-40)+'" stroke="#c1ceb8"/>'
-        +'<text x="'+(W-18)+'" y="'+(H-15)+'" text-anchor="end" font-size="10" font-weight="600" fill="#52664f">'+esc(plan.site||'')+(plan.palier?' · '+esc(plan.palier):'')+'</text></g>';
+        +'<text x="'+(W-18)+'" y="'+(H-15)+'" text-anchor="end" font-size="10" font-weight="600" fill="#52664f">'+esc(plan.site||'')+((opt.palierLabel||plan.palier)?' · '+esc(opt.palierLabel||plan.palier):'')+'</text></g>';
       
       var e100=Math.round(100*K);
       h+='<g transform="translate(20,'+(H-12)+')" fill="#40573e"><rect width="'+(e100/2)+'" height="3"/>'
@@ -6670,6 +6636,13 @@ try{window.GEO400=GEO400;}catch(_e){}
       S.gaine=0;jumpEtat(d.etat);QUART_KEYS.forEach(function(k){if(!Object.prototype.hasOwnProperty.call(S0,k))delete S[k];});
       keys.forEach(function(k){S[k]=Array.isArray(d[k])?d[k].slice():d[k];});gPos=q.gPos;
       api.setFollow(!!q.follow,true);api.syncSource();return true;};
+    
+    
+    function siteGroups(s){var groups=[{p:s.p,n:s.t}];((CNPE_DB[s.n]||{}).extra||[]).forEach(function(u){var g=groups.filter(function(v){return v.p===u.p;})[0];if(g)g.n++;else groups.push({p:u.p,n:1});});return groups;}
+    function palierLabel(s){return siteGroups(s).map(function(g){return g.p;}).join(' + ');}
+    function siteDescription(s,power){return siteGroups(s).map(function(g){return g.n+' tranche'+(g.n>1?'s':'')+' '+g.p+(power&&PN[g.p]?' · '+PN[g.p].toLocaleString('fr-FR')+' MWe':'');}).join(' + ');}
+    function etatLabel(e){return e==='ANGV'?'AN/GV':e==='ANRRA'?'AN/RRA':e;}
+    api.palierLabel=palierLabel;api.siteDescription=siteDescription;
     function uiEsc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
     // Un site est jouable si SON palier est prêt : plus de liste en dur, le critère est unique
     // (31/08). Le jour où le tiroir 900 sera complet, la carte s'ouvrira d'elle-même, sans code.
@@ -6706,7 +6679,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       
       
       
-      try{if(typeof SITEPLAN!=='undefined'&&SITEPLAN.a(s.n))return SITEPLAN.build(SITEPLAN.get(s.n),s);}catch(_e){}
+      try{if(typeof SITEPLAN!=='undefined'&&SITEPLAN.a(s.n))return SITEPLAN.build(SITEPLAN.get(s.n),s,{palierLabel:palierLabel(s)});}catch(_e){}
       var db=CNPE_DB[s.n]||{eau:s.src==='mer'?'mer':'fleuve',nom:'',tours:0};var n=s.t,ex=(db.extra||[]),N=n+ex.length,W=Math.max(900,N*190+90),tours=db.tours?n:0,H=tours?676:576;   
       var h='<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#eef2ea"/>';
       if(db.eau==='mer'){h+='<path d="M0,0 L'+W+',0 L'+W+',72 Q'+(W*0.75)+',86 '+(W*0.5)+',74 Q'+(W*0.25)+',62 0,76 Z" fill="#cfe3f0"/>';}
@@ -6772,8 +6745,8 @@ try{window.GEO400=GEO400;}catch(_e){}
     api.peekTouched=peekTouched;
     function col(u){return u.etat==='AU'?'#bc4635':(u.etat==='RP'?'#3e8561':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#87988e':'#b47e29'));}
     function actionsFor(u){var b='<div class="cnpeActionLabel">Pilotage rapide</div>';
-      if(u.etat==='RP')b+='<button class="cnpeBtn'+(api.follow?' on':'')+'" data-act="follow" style="padding:3px 8px;font-size:11px">\u21c4 suivre le r\u00e9seau</button> <button class="cnpeBtn" data-act="load|100" style="padding:3px 8px;font-size:11px">100 %</button> <button class="cnpeBtn" data-act="load|75" style="padding:3px 8px;font-size:11px">75 %</button> <button class="cnpeBtn" data-act="load|50" style="padding:3px 8px;font-size:11px">50 %</button> <button class="cnpeBtn" data-act="etat|ANGV" style="padding:3px 8px;font-size:11px">\u2192 ANGV</button>';
-      else if(u.etat==='ANGV')b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button> <button class="cnpeBtn" data-act="etat|ANRRA" style="padding:3px 8px;font-size:11px">\u2192 ANRRA</button>';
+      if(u.etat==='RP')b+='<button class="cnpeBtn'+(api.follow?' on':'')+'" data-act="follow" style="padding:3px 8px;font-size:11px">\u21c4 suivre le r\u00e9seau</button> <button class="cnpeBtn" data-act="load|100" style="padding:3px 8px;font-size:11px">100 %</button> <button class="cnpeBtn" data-act="load|75" style="padding:3px 8px;font-size:11px">75 %</button> <button class="cnpeBtn" data-act="load|50" style="padding:3px 8px;font-size:11px">50 %</button> <button class="cnpeBtn" data-act="etat|ANGV" style="padding:3px 8px;font-size:11px">\u2192 AN/GV</button>';
+      else if(u.etat==='ANGV')b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button> <button class="cnpeBtn" data-act="etat|ANRRA" style="padding:3px 8px;font-size:11px">\u2192 AN/RRA</button>';
       else b+='<button class="cnpeBtn on" data-act="etat|RP" style="padding:3px 8px;font-size:11px">d\u00e9marrer \u2192 RP</button>';
       return b;}
     function doAct(a){var p=a.split('|');
@@ -6791,7 +6764,7 @@ try{window.GEO400=GEO400;}catch(_e){}
         else{var v=el('cnV'+i);if(v)v.setAttribute('opacity',0.9*f);}
         var c=el('cnC'+i);if(c){var li=u.cur?incidentsOf(S):(peekCache[s.n+'|'+(i+1)]&&peekCache[s.n+'|'+(i+1)].incs)||[],pct=Math.round(f*100),origin=u.cur?'Au pupitre':u.mod?'Tranche pilotée':(u.real&&!u.x&&!PARC.source().x?'Production RTE':'Estimation du parc');
           c.classList.toggle('is-current',!!u.cur);c.setAttribute('data-state',u.etat);c.setAttribute('style','--cnpe-state:'+col(u));
-          c.querySelector('.cnpeVal').innerHTML='<div class="cnpeStateRow"><span class="cnpeState">'+uiEsc(u.etat)+'</span><span class="cnpeOrigin">'+origin+'</span></div>'
+          c.querySelector('.cnpeVal').innerHTML='<div class="cnpeStateRow"><span class="cnpeState">'+uiEsc(etatLabel(u.etat))+'</span><span class="cnpeOrigin">'+origin+'</span></div>'
             +'<div class="cnpePower"><strong>'+u.Pe.toLocaleString('fr-FR')+'</strong><span>MWe</span></div>'
             +'<div class="cnpeLoad" role="meter" aria-label="Production par rapport à la puissance nominale" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><i style="width:'+pct+'%"></i></div>'
             +'<div class="cnpeLoadCaption"><span>'+pct+' %</span><span>'+Pn.toLocaleString('fr-FR')+' MWe nominal</span></div>'
@@ -6806,9 +6779,9 @@ try{window.GEO400=GEO400;}catch(_e){}
       var incs=me?incidentsOf(S):[];for(var i=0;i<s.t;i++){var key=s.n+'|'+(i+1),mm=UNITMEM.store[key],pc=peekCache[key];
         if(key!==kk&&pc&&pc.incs&&pc.incs.length)pc.incs.forEach(function(x){incs.push('tranche '+ULAB(s.n,i+1)+' : '+x);});
         else if(key!==kk&&mm&&mm.inc)incs.push('tranche '+ULAB(s.n,i+1)+' : '+['SEC','RRI','CRF','H3','réseau'].filter(function(q,qi){return mm.inc[['sec','rri','crf','h3','reseau'][qi]];}).join(' + ')+' perdu(s)');
-        else if(key!==kk&&mm&&mm.etat&&mm.etat!=='RP'&&mm.etat!=='AT'&&mm.etat!=='RCD')incs.push('tranche '+ULAB(s.n,i+1)+' en transitoire ('+mm.etat+')');}
+        else if(key!==kk&&mm&&mm.etat&&mm.etat!=='RP'&&mm.etat!=='AT'&&mm.etat!=='RCD')incs.push('tranche '+ULAB(s.n,i+1)+' en transitoire ('+etatLabel(mm.etat)+')');}
       if(me&&incs.length){var b0=el('cnB'+(myTr-1));if(b0&&incidentsOf(S).length)b0.setAttribute('fill','#c0392b');}
-      var cm=el('cnpeCom');if(cm){var tsrc=siteTemperature(s,S),sum=0;for(var i=0;i<s.t;i++)sum+=stateOf(s,i,S).Pe||0;
+      var cm=el('cnpeCom');if(cm){var tsrc=siteTemperature(s,S),sum=0,nSite=s.t+((CNPE_DB[s.n]||{}).extra||[]).length;for(var i=0;i<nSite;i++){var su=stateOf(s,i,S);if(i>=s.t&&!(su&&su.real))continue;sum+=su.Pe||0;}
         cm.innerHTML='<b>Communs</b> \u00b7 source froide '+tsrc+' \u00b0C'+(me?(S.crf?' \u00b7 CRF en service':' \u00b7 <span style="color:#c0392b">CRF \u00e0 l\u2019arr\u00eat</span>'):'')+' \u00b7 '+(me&&S.reseau===false?'<span style="color:#c0392b;font-weight:700">R\u00c9SEAU '+KV(s)+' kV PERDU</span>':'r\u00e9seau '+KV(s)+' kV coupl\u00e9 \u00b7 50,00 Hz')+' \u00b7 production du site <b>'+sum+' MW</b>'
           +'<div style="margin-top:3px">incidents en cours : '+(incs.length?'<span style="color:#c0392b;font-weight:700">'+incs.join(' \u00b7 ')+'</span>':'aucun')+'</div>';}
       var ste=(function(){var ef=0,rc=0,eba=false;for(var i2=0;i2<s.t;i2++){var k2=s.n+'|'+(i2+1);
@@ -6848,7 +6821,7 @@ try{window.GEO400=GEO400;}catch(_e){}
           var card=el('cnC'+i);if(card){card.scrollIntoView({behavior:'smooth',block:'nearest'});card.focus({preventScroll:true});}};
         svg.onclick=takeUnit;svg.onkeydown=takeUnit;}
       var db=CNPE_DB[s.n]||{};var ti=el('cnpeTitle');if(ti)ti.textContent='CNPE de '+s.n;
-      var sub=el('cnpeSub');if(sub)sub.textContent=s.t+' tranches '+s.p+' \u00b7 '+(PN[s.p]||PN.P4)+' MWe'+(db.extra?' + EPR':'')+' \u00b7 source froide : '+(db.nom||'')+(db.mixte?' ('+db.mixte+')':(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)'));
+      var sub=el('cnpeSub');if(sub)sub.textContent=siteDescription(s,true)+' \u00b7 source froide : '+(db.nom||'')+(db.mixte?' ('+db.mixte+')':(db.tours?' (a\u00e9ror\u00e9frig\u00e9rants)':' (circuit ouvert)'));
       var uc=el('cnpeUnits');if(uc){var hh='';for(var i=0;i<b.N;i++){var epr=i>=s.t,reason=quartUnavailable(s,i);hh+='<article class="cnpeCard" id="cnC'+i+'" tabindex="-1" aria-label="'+uiEsc(reason?quartLabel(s,i):'Tranche '+ULAB(s.n,i+1))+'"><div class="cnpeCardHead"><span class="cnpeUnitNo">'+(epr?'03':String(ULAB(s.n,i+1)).padStart(2,'0'))+'</span><div><div class="cnpeEyebrow">'+uiEsc(epr?'EPR':s.p)+'</div><div class="cnpeCardTitle">'+(epr?'Flamanville 3':'Tranche '+ULAB(s.n,i+1))+'</div></div></div><div class="cnpeVal">\u2014</div>'+(reason?'<span class="cnpeUnavailable">'+uiEsc(reason)+'</span>':'<button class="cnpeBtn on" data-tr="'+(i+1)+'">Prendre le quart</button><div class="cnpeAct"></div>')+'</article>';}
         uc.innerHTML=hh;uc.querySelectorAll('button[data-tr]').forEach(function(bt){bt.onclick=function(){api.take(cur.s,+bt.getAttribute('data-tr'));};});
         uc.onclick=function(ev){var bt=ev.target.closest?ev.target.closest('button[data-act]'):null;if(bt){ev.stopPropagation();doAct(bt.getAttribute('data-act'));}};}
@@ -6913,11 +6886,11 @@ try{window.GEO400=GEO400;}catch(_e){}
         var nX=(!dead&&CNPE_DB[s.n]&&CNPE_DB[s.n].extra)?CNPE_DB[s.n].extra.length:0,nT=s.t+nX;   
         if(!dead){for(var i=0;i<nT;i++){var u=stateOf(s,i,S);if(i>=s.t&&!(u&&u.real))continue;units.push(u);sum+=u.Pe||0;if((u.Pe||0)>0)np++;}}
         tot+=sum;nProd+=np;var open=!!api.exp[s.n],pl=playable(s);if(pl&&!dead)nPlayable++;
-        h+='<tr class="parcRow" data-s="'+si+'" style="border-top:1px solid #edf1f5;cursor:pointer'+(open?';background:#f4f7fa':'')+'"><td style="padding:6px;font-weight:700"><button type="button" class="parcSiteToggle" aria-expanded="'+open+'" aria-label="'+(open?'Replier':'Développer')+' '+uiEsc(s.n)+'">'+(open?'\u25be':'\u25b8')+' '+uiEsc(s.n)+'</button>'+(pl?' <span style="font-size:10px;color:#2f7a4f;font-weight:600">jouable</span>':'')+'</td><td style="color:#4a5c70">'+(dead?'arr\u00eat\u00e9e':s.p)+'</td><td style="text-align:center">'+(dead?'\u2014':np+'/'+units.length)+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(dead?'0':sum)+' MW</td></tr>';
+        h+='<tr class="parcRow" data-s="'+si+'" style="border-top:1px solid #edf1f5;cursor:pointer'+(open?';background:#f4f7fa':'')+'"><td style="padding:6px;font-weight:700"><button type="button" class="parcSiteToggle" aria-expanded="'+open+'" aria-label="'+(open?'Replier':'Développer')+' '+uiEsc(s.n)+'">'+(open?'\u25be':'\u25b8')+' '+uiEsc(s.n)+'</button>'+(pl?' <span style="font-size:10px;color:#2f7a4f;font-weight:600">jouable</span>':'')+'</td><td style="color:#4a5c70">'+(dead?'arr\u00eat\u00e9e':uiEsc(palierLabel(s)))+'</td><td style="text-align:center">'+(dead?'\u2014':np+'/'+units.length)+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(dead?'0':sum)+' MW</td></tr>';
         
         if(open&&!dead)h+='<tr class="parcSiteAction"><td colspan="4"><button type="button" class="cnpeBtn parcSiteButton" data-view="'+si+'" aria-label="Vue du site de '+uiEsc(s.n)+'"><span>Vue du site</span><span aria-hidden="true">&#8594;</span></button></td></tr>';
         if(open&&!dead)units.forEach(function(u,i){var cc=u.etat==='AU'?'#c0392b':(u.etat==='RP'?'#2f7a4f':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8a99a8':'#e0a030')),epr=i>=s.t,key=s.n+'|'+(i+1),mem=!u.cur&&!epr&&!!u.mod;
-          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2f7a4f">\u25cf au pupitre</span>':(u.rare?' <span style="font-size:10px;color:#c0392b;font-weight:700">\u26a0 '+(RARE.lab[u.rare]||'avarie')+', \u00e0 toi</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':''))))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+uiEsc(u.lab||'')+'</span>'+(u.outage?'<div class="cnpeRteOutage" title="'+uiEsc(u.outage.remarks||'')+'" style="font-size:12px;line-height:1.5;margin:4px 0">'+uiEsc(outageText(u))+'</div>':'')+'</td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(u.Pe||0)+' MWe</td></tr>';});
+          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2f7a4f">\u25cf au pupitre</span>':(u.rare?' <span style="font-size:10px;color:#c0392b;font-weight:700">\u26a0 '+(RARE.lab[u.rare]||'avarie')+', \u00e0 toi</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':''))))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+uiEsc(etatLabel(u.etat))+'</span> <span style="color:#7a8a99;font-size:11px">'+uiEsc(u.lab||'')+'</span>'+(u.outage?'<div class="cnpeRteOutage" title="'+uiEsc(u.outage.remarks||'')+'" style="font-size:12px;line-height:1.5;margin:4px 0">'+uiEsc(outageText(u))+'</div>':'')+'</td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(u.Pe||0)+' MWe</td></tr>';});
       });
       h+='<tr style="border-top:2px solid #dfe6ee"><td colspan="3" style="padding:6px;font-weight:800">Production du parc</td><td style="text-align:right;font-weight:800;white-space:nowrap">'+tot+' MW</td></tr></table>';
       box.innerHTML=h;
@@ -7219,6 +7192,6 @@ document.querySelectorAll('button').forEach(function(b){
     <footer class="parcFooter"><span>SIMUREP · Le simulateur du parc électronucléaire français</span><span>by AnthoninP · helped by AI · © 2026 tous droits réservés</span></footer>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build bce214e1b6b54724 · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build b2bcf8ed2b5f2440 · contact@simurep.fr -->
 </body>
 </html>
