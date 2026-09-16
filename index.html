@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.1b</title>
+<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.16.1c</title>
 <meta property="og:title" content="SIMUREP, le simulateur du parc électronucléaire français">
 <meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
 <meta name="description" content="SIMUREP, le simulateur du parc électronucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
@@ -631,7 +631,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le simulateur du parc électronucléaire français</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.1b</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.16.1c</span></div>
     <div class="stageSteps" role="group" aria-label="Niveaux du simulateur · vue Tranche"><span>01 France</span><i aria-hidden="true">›</i><span>02 CNPE</span><i aria-hidden="true">›</i><b aria-current="step">03 Tranche</b></div>
   </div>
   <div class="spacer"></div>
@@ -6572,7 +6572,7 @@ try{window.GEO400=GEO400;}catch(_e){}
     'Chinon':{eau:'fleuve',nom:'la Loire',tours:1},'Dampierre':{eau:'fleuve',nom:'la Loire',tours:1},'Saint-Laurent':{eau:'fleuve',nom:'la Loire',tours:1}};
   
   var PN={'P4':PALIERS['P4'].PEL,"P'4":PALIERS["P'4"].PEL,'CPY':PALIERS['CPY'].PEL,'CP0':PALIERS['CP0'].PEL,'N4':1450,'EPR':1650}; 
-  var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'rechargement',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
+  var ETLAB={RP:'r\u00e9acteur en production',ANGV:'arr\u00eat normal sur GV',ANRRA:'arr\u00eat normal sur RRA',APIF:'arr\u00eat pour intervention (ferm\u00e9)',APIO:'arr\u00eat pour intervention (ouvert)',APR:'arr\u00eat pour rechargement',RCD:'r\u00e9acteur compl\u00e8tement d\u00e9charg\u00e9',AT:'arr\u00eat de tranche',RD:'red\u00e9marrage'};
   
   var PARC={hash:function(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h;},
     
@@ -6596,7 +6596,7 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(!mp&&r.initialEtat&&mem.etat!=='AT'&&mem.etat!==r.initialEtat)return true; 
       return Math.abs((mem.Pe||0)-(r.Pe||0))>Math.max(100,0.08*cap);},
     nucSum:function(){var L=this.live;if(!L||!L.units)return null;var n=0,s=0;for(var k in L.units){var u=L.units[k];if(u&&typeof u.Pe==='number'&&!u.x){s+=u.Pe;n++;}}return n>=40?{sum:s,n:n,t:(L.meta&&L.meta.units&&L.meta.units.data)||0}:null;},   
-    provider:function(site,idx,pal,t){var u=this.real(site,idx);if(!u)return null;var e=u.initialEtat||u.etat||'RP';return {Pe:Math.round(u.Pe||0),etat:e,lab:u.initialEtat&&e!=='RP'?ETLAB[e]:(u.lab||ETLAB[e]||''),real:true,x:!!u.x,ind:u.ind||null,cap:u.cap};},   
+    provider:function(site,idx,pal,t){var u=this.real(site,idx);if(!u)return null;var e=u.initialEtat||u.etat||'RP';return {Pe:Math.round(u.Pe||0),etat:e,lab:u.initialEtat&&e!=='RP'?ETLAB[e]:(u.lab||ETLAB[e]||''),real:true,x:!!u.x,ind:u.ind||null,outage:u.outage||null,cap:u.cap};},   
     demande:function(t){var s=(typeof S!=='undefined'&&S.saison)||'mi',base=(s==='hiver'?1.0:(s==='ete'?0.86:0.93)),hh=((t||0)/3600)%24,   
       jour=(hh<6?0.90:(hh<9?0.97:(hh<13?1.0:(hh<18?0.96:(hh<22?1.0:0.93)))));return base*jour;},
     unit:function(site,idx,pal,t){if(this.provider){try{var rp=this.provider(site,idx,pal,t);if(rp)return rp;}catch(e){}}
@@ -6747,11 +6747,17 @@ try{window.GEO400=GEO400;}catch(_e){}
       if(ilo)return {Pe:0,etat:'ÎLOT',lab:'îlotée : '+(kv||'400')+' kV découplé, l’alternateur ne porte que ses auxiliaires',cur:false};
       if(gct)return {Pe:Pe,etat:base||'RP',lab:'turbine déclenchée : réacteur sur GCT',cur:false};
       return null;}
-    function stateOf(s,i,S){var key=s.n+'|'+(i+1);
+    function simulatedStateOf(s,i,S){var key=s.n+'|'+(i+1);
       if(key===UNITMEM.key()){var dv=dispo(S.etat,Math.round(S.Pelec||0),!!S.scram,S.etat==='RP'&&!S.scram&&(S.turb||0)<1&&(S.Ptot||0)>0.1,!!S.ilote,KV(s));if(dv){dv.cur=true;return dv;}return {Pe:Math.round(S.Pelec||0),etat:S.etat||'RP',lab:ETLAB[S.etat]||'',cur:true};}
       if(i<s.t&&window.__net&&peekCache[key]){var pc={Pe:Math.round(peekCache[key].Pelec||0),etat:peekCache[key].etat||'RP',au:peekCache[key].au,gct:peekCache[key].gct,il:peekCache[key].il};if(PARC.differs(key,pc)){var dv2=dispo(pc.etat,pc.Pe,pc.au,pc.gct,pc.il,KV(s));if(dv2){dv2.mod=true;return dv2;}return {Pe:pc.Pe,etat:pc.etat,lab:ETLAB[pc.etat]||'',cur:false,mod:true};}}   
       if(i<s.t&&UNITMEM.store[key]){var m=UNITMEM.store[key];if(m.rare||PARC.differs(key,m)){var dv3=dispo(m.etat,m.Pe||0,m.au,m.gct,m.il,KV(s));if(dv3){dv3.mod=true;dv3.rare=m.rare;dv3.inc=m.inc;return dv3;}return {Pe:m.Pe||0,etat:m.etat||'RP',lab:ETLAB[m.etat]||'',cur:false,mod:true,rare:m.rare,inc:m.inc};}}   
       var pal=(i>=s.t)?'EPR':s.p;var u=PARC.unit(s.n,i,pal,S.t||0);u.cur=false;return u;}
+    function stateOf(s,i,S){var u=simulatedStateOf(s,i,S),r=PARC.real(s.n,i);u.outage=r&&r.outage||null;return u;}
+    function outageText(u){var o=u&&u.outage;if(!o)return '';var text='RTE : '+o.label;
+      var date=function(t){return new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',day:'2-digit',month:'2-digit',year:'numeric'}).format(t);};
+      if(Number.isFinite(o.start))text+=' · depuis le '+date(o.start);
+      if(Number.isFinite(o.end))text+=' · retour prévu le '+date(o.end);
+      return text;}
     api.unitState=stateOf;
     function alive(key){var pc=peekCache[key];return !!(pc&&pc.ts&&Date.now()-pc.ts<20000);}   
     api.alive=alive;
@@ -6789,7 +6795,7 @@ try{window.GEO400=GEO400;}catch(_e){}
             +'<div class="cnpePower"><strong>'+u.Pe.toLocaleString('fr-FR')+'</strong><span>MWe</span></div>'
             +'<div class="cnpeLoad" role="meter" aria-label="Production par rapport à la puissance nominale" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><i style="width:'+pct+'%"></i></div>'
             +'<div class="cnpeLoadCaption"><span>'+pct+' %</span><span>'+Pn.toLocaleString('fr-FR')+' MWe nominal</span></div>'
-            +'<div class="cnpeStateLabel">'+uiEsc(u.lab)+'</div>'+(li.length?'<div class="cnpeIncident">\u26a0 '+uiEsc(li.join(' \u00b7 '))+'</div>':'');
+            +'<div class="cnpeStateLabel">'+uiEsc(u.lab)+'</div>'+(u.outage?'<div class="cnpeStateLabel cnpeRteOutage" title="'+uiEsc(u.outage.remarks||'')+'">'+uiEsc(outageText(u))+'</div>':'')+(li.length?'<div class="cnpeIncident">\u26a0 '+uiEsc(li.join(' \u00b7 '))+'</div>':'');
           var take=c.querySelector('button[data-tr]');if(take)take.textContent=u.cur?'Reprendre le quart':'Prendre le quart';
           var act=c.querySelector('.cnpeAct'),actHtml=(u.cur?actionsFor(u):'')+(cur.dus&&cur.dus[i]?'<div class="cnpeTest"><button class="cnpeBtn" data-act="dus|'+(i+1)+'" title="Illustration de 90 s, sans action sur les sources électriques simulées" style="padding:3px 8px;font-size:11px">\u25b6 Animation DUS '+ULAB(s.n,i+1)+'</button></div>':'');if(act&&act.innerHTML!==actHtml)act.innerHTML=actHtml;}}
       var kk=UNITMEM.key(),me=kk.split('|')[0]===s.n,myTr=me?+kk.split('|')[1]:0,now=Date.now();
@@ -6911,7 +6917,7 @@ try{window.GEO400=GEO400;}catch(_e){}
         
         if(open&&!dead)h+='<tr class="parcSiteAction"><td colspan="4"><button type="button" class="cnpeBtn parcSiteButton" data-view="'+si+'" aria-label="Vue du site de '+uiEsc(s.n)+'"><span>Vue du site</span><span aria-hidden="true">&#8594;</span></button></td></tr>';
         if(open&&!dead)units.forEach(function(u,i){var cc=u.etat==='AU'?'#c0392b':(u.etat==='RP'?'#2f7a4f':(u.etat==='AT'||u.etat==='RCD'||u.etat==='APR'?'#8a99a8':'#e0a030')),epr=i>=s.t,key=s.n+'|'+(i+1),mem=!u.cur&&!epr&&!!u.mod;
-          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2f7a4f">\u25cf au pupitre</span>':(u.rare?' <span style="font-size:10px;color:#c0392b;font-weight:700">\u26a0 '+(RARE.lab[u.rare]||'avarie')+', \u00e0 toi</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':''))))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+(u.lab||'')+'</span></td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(u.Pe||0)+' MWe</td></tr>';});
+          h+='<tr style="background:#fafbfc"><td style="padding:4px 6px 4px 26px;color:#33465c">'+(epr?'Flamanville 3 <span style="font-size:10px;color:#c8743a;font-weight:700">EPR</span>':'tranche '+ULAB(s.n,i+1))+(u.cur?' <span style="font-size:10px;color:#2f7a4f">\u25cf au pupitre</span>':(u.rare?' <span style="font-size:10px;color:#c0392b;font-weight:700">\u26a0 '+(RARE.lab[u.rare]||'avarie')+', \u00e0 toi</span>':(mem?' <span style="font-size:10px;color:#b07010">\u25cf pilot\u00e9e</span>':(u.real&&!u.x?' <span style="font-size:10px;color:#7a8a99">RTE</span>':''))))+'</td><td><span style="display:inline-block;padding:1px 8px;border-radius:9px;background:'+cc+';color:#fff;font-size:11px;font-weight:700">'+u.etat+'</span> <span style="color:#7a8a99;font-size:11px">'+uiEsc(u.lab||'')+'</span>'+(u.outage?'<div class="cnpeRteOutage" title="'+uiEsc(u.outage.remarks||'')+'" style="font-size:12px;line-height:1.5;margin:4px 0">'+uiEsc(outageText(u))+'</div>':'')+'</td><td style="text-align:center;white-space:nowrap">'+(pl&&!epr?'<button class="cnpeBtn" style="padding:3px 8px;font-size:11px" data-take="'+si+'|'+(i+1)+'">'+(u.cur?'reprendre':'prendre le quart')+'</button>'+(mem?' <button class="cnpeBtn" style="padding:3px 8px;font-size:11px" title="oublier mon pilotage : la tranche reprend ses valeurs r\u00e9elles RTE" data-free="'+si+'|'+(i+1)+'">\u21a9 r\u00e9seau</button>':''):'')+'</td><td style="text-align:right;font-weight:700;white-space:nowrap">'+(u.Pe||0)+' MWe</td></tr>';});
       });
       h+='<tr style="border-top:2px solid #dfe6ee"><td colspan="3" style="padding:6px;font-weight:800">Production du parc</td><td style="text-align:right;font-weight:800;white-space:nowrap">'+tot+' MW</td></tr></table>';
       box.innerHTML=h;
@@ -7069,7 +7075,7 @@ function take(u,resume){
     var result=ordered(u,function(){return requestJSON(SRV+'/take',{method:'POST',headers:headers,body:body});});revision=commandRev[u];return result;
   }).then(function(d){if(!d||!d.state||!d.state.etat)throw new Error('état de tranche absent');return drain(ukey()).then(function(){if(commandRev[u]!==revision)throw new Error('prise dépassée par une nouvelle commande de cette tranche');return d;});});
 }
-function select(u,key,d){flushLocal(ukey());localStorage.setItem('rep_site',key);onSwitch();selectionRev++;acceptedSeq=++stateSeq;prev=null;lastLogT=-1;acceptState(d,u);}
+function select(u,key,d){flushLocal(ukey());localStorage.setItem('rep_site',key);onSwitch();selectionRev++;acceptedSeq=++stateSeq;prev=null;acceptState(d,u);}
 window.__net={cmd:cmd,peek:peek,jump:jumpOf,release:release,ukey:ukey,grid:grid,srv:SRV,take:take,select:select,ready:function(){return !freeze&&curU===ukey();}};
 setInterval(function(){fetch(SRV+'/grid',{headers:hdr()}).then(function(r){return r.json();}).then(function(d){if(d&&d.state&&window.RESEAU&&RESEAU.apply)RESEAU.apply(d.state);}).catch(function(){});},2000);   // la grille vient du serveur (2 s)
 var curU=ukey();
@@ -7077,7 +7083,11 @@ var S=(window.__sim&&window.__sim.S)||{};var log=(window.__sim&&window.__sim.log
 var CMD=['turbSet','gctSet','gctMode','gctM','gctaM','gctaMode','sebimM','pzrSet','pzrAuto','rod','auto','areAuto','heatM','dilu','bori','mpsA','mpsB','tpsA','tpsB','ishp','isbp','eas','isBlk','accIso','inhASG','inhIS','inhEAS','inhIsoE','inhIsoV','inhKrt','aarInhib','gaine','gctTgt','srcType','Tsrc','saison','speed'];
 var CLIENT_ONLY={mIdx:1,easy:1,mis:1,accel:1}; // accel = la vitesse COTE CLIENT (timers, missions) ; le serveur a la sienne (session)
 var prev=null,lastLogT=-1,freeze=true; // GELÉ au chargement : le watcher n envoie RIEN avant le premier état reçu (sinon il pousse les valeurs par défaut du boot sur la session — leçon 2.12.1a étendue au chargement initial)
-function onSwitch(){var u=ukey();if(u===curU)return;curU=u;selectionRev++;prev=null;freeze=true;for(var i=0;i<CMD.length;i++)lastSent[CMD[i]]=S[CMD[i]];}   // changement de tranche : le watcher est GELÉ jusqu'au premier état de la nouvelle session, et rien du miroir de l'ancienne n'est « nouveau »
+function onSwitch(){var u=ukey();if(u===curU)return;curU=u;selectionRev++;prev=null;freeze=true;lastLogT=-1;
+  // Le journal affiché appartient au quart sélectionné. Son historique serveur
+  // sera relu à réception ; reprendre le même quart ne vide ni ne répète ses lignes.
+  var journal=document.getElementById('log');if(journal)journal.textContent='';
+  for(var i=0;i<CMD.length;i++)lastSent[CMD[i]]=S[CMD[i]];}   // changement de tranche : le watcher est GELÉ jusqu'au premier état de la nouvelle session, et rien du miroir de l'ancienne n'est « nouveau »
 function pull(){
   onSwitch();var uReq=curU;flushLocal(uReq);if(pending[uReq])return;var tag={selection:selectionRev,command:commandRev[uReq]||0,seq:++stateSeq};
   fetch(SRV+'/state',{headers:hdr()}).then(function(r){
@@ -7189,7 +7199,7 @@ document.querySelectorAll('button').forEach(function(b){
     <p>SIMUREP est un simulateur pédagogique <b>du parc nucléaire français</b>, à trois niveaux : la <b>France</b> (la carte du parc, production et état de toutes les tranches), le <b>CNPE</b> (l'étage du site : communs, production, état, incidents) et la <b>tranche</b> (le pupitre complet). Deux paliers se pilotent : le <b>REP 900 MWe</b> (CPY et CP0, trois boucles) et le <b>REP 1300 MWe</b> (P4/P'4, quatre boucles), chacun avec sa salle de commande, la vraie nomenclature du parc, des ordres de grandeur réels et les protections câblées comme sur site ; le N4 et l'EPR viendront.</p>
     <p>Choisis ta centrale sur la carte, prends ton quart, et pilote : réactivité, grappes, bore, générateurs de vapeur, turbine, source froide, du fonctionnement normal aux transitoires accidentels, avec un <b>mode facile</b> guidé, seize missions et un lexique.</p>
     <p>L'interface tourne dans ton navigateur ; le cœur de calcul physique tourne sur un serveur dédié. Aucune donnée personnelle, aucune inscription.</p>
-    <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur actualise les mesures toutes les quinze minutes, les indisponibilités toutes les heures, et indique quand il extrapole. <b>États à l’arrêt :</b> RTE ne fournit ni la température ni l’état de chargement du réacteur. SIMUREP choisit un état initial pédagogique selon le motif documenté et le calendrier : arrêt chaud, refroidissement ou rechargement. Cet état n’est pas une télémesure ; un quart déjà joué conserve sa mémoire. Réseau 400 kV de la carte : tracés des lignes issus de la BD TOPO® v3, © IGN, Licence Etalab 2.0 (Géoplateforme) ; localisation des postes © les contributeurs d'OpenStreetMap (ODbL) ; liste et noms officiels des postes : RTE, jeu « Postes électriques RTE » (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
+    <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur actualise les mesures toutes les quinze minutes, les indisponibilités toutes les heures, et indique quand il extrapole. <b>États à l’arrêt :</b> RTE ne fournit ni la température ni l’état de chargement du réacteur. SIMUREP déduit un état initial selon les seuls motifs et dates RTE, avec les mêmes règles pour toutes les tranches : arrêt chaud, rechargement ou cuve déchargée. Les arrêts totaux programmés de quatre semaines ou plus suivent ce cycle ; le début et la fin d’arrêt préparent les transitions. Une économie de combustible conserve un arrêt chaud. Les catégories visite décennale ou visite partielle ne sont affichées que si RTE les mentionne. Cet état n’est pas une télémesure ; un quart déjà joué conserve sa mémoire. Réseau 400 kV de la carte : tracés des lignes issus de la BD TOPO® v3, © IGN, Licence Etalab 2.0 (Géoplateforme) ; localisation des postes © les contributeurs d'OpenStreetMap (ODbL) ; liste et noms officiels des postes : RTE, jeu « Postes électriques RTE » (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
     <p style="font-size:12px;color:#5a6b7c"><b>Plans des centrales et sources froides.</b> Empreintes, rives et canaux issus des données d’<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap — © les contributeurs, ODbL</a>, complétés par les documents publics des exploitants et les références fournies par l’auteur. Les dessins d’équipements restent schématiques. La provenance est conservée dans les relevés de chaque site ; <a href="plans/LICENCE-DONNEES.md" target="_blank" rel="noopener">licence et attribution des données géographiques</a>.</p>
     <p style="color:#5a6b7c">Ni affiliation ni approbation d'EDF ou de l'ASNR : un projet indépendant de passionné, à but pédagogique.<br><b>by AnthoninP · helped by AI</b> · <span id="aproVer"></span> · <a href="mailto:contact@simurep.fr" style="color:#2f7a4f">contact@simurep.fr</a></p>
     <p style="font-size:11.5px;color:#7a8a99;border-top:1px solid #e3e9ef;padding-top:8px">© 2026 AnthoninP, <b>tous droits réservés</b>. SIMUREP (code, moteur physique, figures et textes originaux) est une œuvre originale protégée : toute reproduction, copie, extraction ou réutilisation, même partielle, est interdite sans autorisation écrite de l'auteur. Le moteur de calcul tourne sur un serveur privé ; le code visible dans le navigateur n'est qu'un châssis d'affichage.<br><b>Œuvre déposée</b> à l'Agence pour la Protection des Programmes, répertoire IDDN : <span style="font-family:ui-monospace,Menlo,Consolas,monospace">IDDN.FR.001.350014.000.S.P.2026.000.21100</span></p>
@@ -7209,6 +7219,6 @@ document.querySelectorAll('button').forEach(function(b){
     <footer class="parcFooter"><span>SIMUREP · Le simulateur du parc électronucléaire français</span><span>by AnthoninP · helped by AI · © 2026 tous droits réservés</span></footer>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 531f99320572acd1 · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build bce214e1b6b54724 · contact@simurep.fr -->
 </body>
 </html>
