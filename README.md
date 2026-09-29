@@ -2,7 +2,7 @@
 
 **→ [simurep.fr](https://simurep.fr)**
 
-La version **2.17.0c** permet de piloter les paliers **900 MWe** (CPY et CP0, trois
+La version **2.17.0d** permet de piloter les paliers **900 MWe** (CPY et CP0, trois
 boucles), **1300 MWe** (P4 et P'4), **N4** et **EPR**, chacun dans sa salle de
 commande, depuis la carte de France et le plan de chacun des dix-huit sites en
 exploitation.

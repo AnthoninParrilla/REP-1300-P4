@@ -25,10 +25,26 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.17.0c</title>
+<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.17.0d</title>
+<!-- IDENTITE_PARTAGE_DEBUT : reprise par le générateur sur la page racine, lisible sans JavaScript. -->
 <meta property="og:title" content="SIMUREP, le simulateur du parc électronucléaire français">
-<meta property="og:description" content="Choisis ta centrale sur la carte du parc et prends ton quart : pilote une tranche REP 900 MWe (paliers CPY et CP0) ou 1300 MWe (P4/P&#8217;4), physique réaliste, missions et mode facile.">
-<meta name="description" content="SIMUREP, le simulateur du parc électronucléaire français : la France, le CNPE, la tranche. Choisis ta centrale sur la carte, prends le quart et pilote un réacteur REP 900 ou 1300 MWe depuis ton navigateur.">
+<meta property="og:description" content="Explore la carte de France, choisis une centrale et prends le quart sur ses tranches. Paliers 900, 1300, N4 et EPR, missions et mode facile.">
+<meta name="description" content="Explore la carte de France, choisis une centrale et prends le quart sur ses tranches. Paliers 900, 1300, N4 et EPR, missions et mode facile.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://simurep.fr/">
+<meta property="og:site_name" content="SIMUREP">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://simurep.fr/assets/identite/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Logo SIMUREP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SIMUREP, le simulateur du parc électronucléaire français">
+<meta name="twitter:description" content="Explore la carte de France, choisis une centrale et prends le quart sur ses tranches. Paliers 900, 1300, N4 et EPR, missions et mode facile.">
+<meta name="twitter:image" content="https://simurep.fr/assets/identite/icon-512.png">
+<meta name="twitter:image:alt" content="Logo SIMUREP">
+<link rel="canonical" href="https://simurep.fr/">
+<!-- IDENTITE_PARTAGE_FIN -->
 <!-- mode application plein écran quand ajouté à l'écran d'accueil iOS/Android -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -623,7 +639,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le simulateur du parc électronucléaire français</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.17.0c</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.17.0d</span></div>
     <div class="stageSteps" role="group" aria-label="Niveaux du simulateur · vue Tranche"><span>01 France</span><i aria-hidden="true">›</i><span>02 CNPE</span><i aria-hidden="true">›</i><b aria-current="step">03 Tranche</b></div>
   </div>
   <div class="spacer"></div>
@@ -7636,7 +7652,7 @@ document.querySelectorAll('button').forEach(function(b){
 <div id="carteAproM" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(20,28,38,.45)" onclick="if(event.target===this)this.style.display='none'">
   <div style="max-width:520px;margin:8vh auto;background:#f5f8fb;border-radius:12px;padding:16px;max-height:78vh;overflow:auto;color:#243242;font-size:13.5px;line-height:1.5">
     <div style="display:flex;gap:8px;align-items:center"><b style="font-size:16px">&#8505;&#65039; À propos de SIMUREP</b><button onclick="document.getElementById('carteAproM').style.display='none'" style="margin-left:auto;background:#2f4256;color:#fff;border:0;border-radius:8px;padding:4px 10px">Fermer</button></div>
-    <p>SIMUREP est un simulateur pédagogique <b>du parc nucléaire français</b>, à trois niveaux : la <b>France</b> (la carte du parc, production et état de toutes les tranches), le <b>CNPE</b> (l'étage du site : communs, production, état, incidents) et la <b>tranche</b> (le pupitre complet). Les paliers <b>REP 900 MWe</b> (CPY et CP0, trois boucles), <b>REP 1300 MWe</b> (P4/P'4, quatre boucles), <b>N4</b> et <b>EPR</b> se pilotent, chacun avec sa salle de commande, la vraie nomenclature du parc, des ordres de grandeur réels et les protections câblées comme sur site.</p>
+    <p>SIMUREP, <b>le simulateur du parc électronucléaire français</b>, propose trois niveaux : la <b>France</b> (la carte du parc, production et état de toutes les tranches), le <b>CNPE</b> (l'étage du site : communs, production, état, incidents) et la <b>tranche</b> (le pupitre complet). Les paliers <b>REP 900 MWe</b> (CPY et CP0, trois boucles), <b>REP 1300 MWe</b> (P4/P'4, quatre boucles), <b>N4</b> et <b>EPR</b> se pilotent, chacun avec sa salle de commande, la vraie nomenclature du parc, des ordres de grandeur réels et les protections câblées comme sur site.</p>
     <p>Choisis ta centrale sur la carte, prends ton quart, et pilote : réactivité, grappes, bore, générateurs de vapeur, turbine, source froide, du fonctionnement normal aux transitoires accidentels, avec un <b>mode facile</b> guidé, seize missions et un lexique.</p>
     <p>L'interface tourne dans ton navigateur ; le cœur de calcul physique tourne sur un serveur dédié. Aucune donnée personnelle, aucune inscription.</p>
     <p style="font-size:12px;color:#5a6b7c"><b>Données réelles.</b> La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières proviennent des <b>API de RTE</b> (data.rte-france.com) et d'éCO2mix (ODRÉ, Licence Ouverte) ; le serveur actualise les mesures toutes les quinze minutes, les indisponibilités toutes les heures, et indique quand il extrapole. <b>États à l’arrêt :</b> RTE ne fournit ni la température ni l’état de chargement du réacteur. SIMUREP déduit un état initial selon les seuls motifs et dates RTE, avec les mêmes règles pour toutes les tranches : arrêt chaud, rechargement ou cuve déchargée. Les arrêts totaux programmés de quatre semaines ou plus suivent ce cycle ; le début et la fin d’arrêt préparent les transitions. Une économie de combustible conserve un arrêt chaud. Les catégories visite décennale ou visite partielle ne sont affichées que si RTE les mentionne. Cet état n’est pas une télémesure ; un quart déjà joué conserve sa mémoire. Réseau 400 kV de la carte : tracés des lignes issus de la BD TOPO® v3, © IGN, Licence Etalab 2.0 (Géoplateforme) ; localisation des postes © les contributeurs d'OpenStreetMap (ODbL) ; liste et noms officiels des postes : RTE, jeu « Postes électriques RTE » (ODRÉ), Licence Ouverte. Données extraites le 21/08/2026, simplifiées pour l'affichage.</p>
@@ -7660,6 +7676,6 @@ document.querySelectorAll('button').forEach(function(b){
     <footer class="parcFooter"><span>SIMUREP · Le simulateur du parc électronucléaire français</span><span>by AnthoninP · helped by AI · © 2026 tous droits réservés</span></footer>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 6f4eade10558ba5f · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 75e366a49201d609 · contact@simurep.fr -->
 </body>
 </html>
