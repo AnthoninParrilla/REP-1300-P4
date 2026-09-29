@@ -8,9 +8,9 @@
     S=S||{};PAL=PAL||{};
     const d=PAL.DTB*S.Ptot*(S.gmppN>0?PAL.NB/S.gmppN:3);
     // État d’exploitation affiché comme à la vue CNPE : l’AU puis l’îlotage priment sur l’état visé (targetState).
-    return {state:Object.assign(copy(S),{residualMW:finite(S.Pres*PAL.PTH),boreTotal:Number.isFinite(S.Cb)&&Number.isFinite(PAL.CB0)?S.Cb+PAL.CB0:null,gainePct:Number.isFinite(S.gaine)?Math.round(S.gaine*100000)/1000:null,dus:S.dus===true}),pal:copy(PAL),stateLabel:S.scram?'AU':S.ilote?'ÎLOT':(S.etat||'—'),targetState:S.etat||null,nominalElectric:PAL.ID==='EPR'?1650:1450,simulationTime:finite(S.t),
+    return {state:Object.assign(copy(S),{residualMW:finite(S.Pres*PAL.PTH),boreTotal:Number.isFinite(S.Cb)&&Number.isFinite(PAL.CB0)?S.Cb+PAL.CB0:null,gainePct:Number.isFinite(S.gaine)?Math.round(S.gaine*100000)/1000:null,dus:S.dus===true,tVapGV:finite(options.steamTemperature)}),pal:copy(PAL),stateLabel:S.scram?'AU':S.ilote?'ÎLOT':(S.etat||'—'),targetState:S.etat||null,nominalElectric:PAL.ID==='EPR'?1650:1450,simulationTime:finite(S.t),
       powerThermal:finite(PAL.PTH*S.Ptot),powerElectric:finite(S.Pelec),powerGross:finite(S.Pbrut),powerAuxiliary:finite(S.Paux),
-      pressurePrimary:finite(S.Ppzr),pressureSteam:finite(S.Psteam),tempAverage:finite(S.Tavg),
+      pressurePrimary:finite(S.Ppzr),pressureSteam:finite(S.Psteam),steamTemperature:finite(options.steamTemperature),tempAverage:finite(S.Tavg),
       tempHot:finite(Number.isFinite(S.Thot)?S.Thot:S.Tavg+d),tempCold:finite(Number.isFinite(S.Tcold)?S.Tcold:S.Tavg-d),
       // Le moteur ne fournit ni niveau pressuriseur mesuré ni débit ARE massique.
       levelPzr:finite(S.levelPzr),levelGV:finite(S.gv),flowFeedwater:finite(S.flowFeedwater),feedwaterPercent:finite(S.areOut),setPressure:finite(S.pzrSet),
@@ -18,7 +18,7 @@
       // ne désigne aucune pompe ; les vues N4 et EPR n'en lisent que le nombre (D12, D16).
       pumps:Array.from({length:Number.isInteger(PAL.NB)?PAL.NB:4},(_,i)=>Number.isFinite(S.gmppN)?i<S.gmppN:null),
       alarms:copy(options.alarms||[]),journal:copy(options.journal||[]),nativeViews:copy(options.nativeViews||{}),
-      pressureHistory:copy(options.pressureHistory||[]),temperatureHistory:copy(options.temperatureHistory||[]),powerHistory:copy(options.powerHistory||[])};
+      pressureHistory:copy(options.pressureHistory||[]),temperatureHistory:copy(options.temperatureHistory||[]),powerHistory:copy(options.powerHistory||[]),histories:copy(options.histories||{}),mission:copy(options.mission||null)};
   }
   const modes={auto:['bManu','bAuto'],areAuto:['bAreManu','bAreAuto'],pzrAuto:['bPzrM','bPzrA'],gctMode:['bGctM','bGctA'],gctaMode:['bGctaM','bGctaA'],viv:['bVivF','bVivO']};
   const toggles={mpsA:'bMpsA',mpsB:'bMpsB',tpsA:'bTpsA',tpsB:'bTpsB',heatM:'bHeatM',sprayM:'bSprayM',sebimM:'bSebimM',ishp:'bIshp',isbp:'bIsbp',eas:'bEas',isBlk:'bIsBlk',accIso:'bAccIso',inhASG:'bInhASG',inhIS:'bInhIS',inhEAS:'bInhEAS',inhIsoE:'bInhIsoE',inhIsoV:'bInhIsoV',inhKrt:'bInhKrt',aarInhib:'bInhib',easy:'bEasy',mis:'bMis'};

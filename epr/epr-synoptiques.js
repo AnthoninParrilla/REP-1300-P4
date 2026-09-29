@@ -32,16 +32,23 @@
   function vessel(x, y, w, h, color) {
     return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + Math.min(w / 2, 15) + '" fill="' + C.bg + '" stroke="' + color + '" stroke-width="1.6"/>';
   }
-  // GMPP (D16, principe D12 du N4) : le moteur ne donne que leur nombre en marche. Toutes en marche (disque plein)
-  // ou toutes arrêtées (contour gris pointillé) : l'état de chaque pompe s'en déduit ; état partiel : dessin neutre,
-  // sans désigner les pompes arrêtées. Sans état (CVI, ARE, données absentes) : dessin neutre.
+  // GMPP (D16, H07) : même lecture que le N4 ; partiel = hachure neutre et compteur encadré, aucune pompe désignée.
+  // Sans état (CVI, ARE, données absentes) : dessin neutre.
   function pump(id, name, x, y, selected, labelY, direction, etat) {
     var sign = direction === 'left' ? -1 : 1, on = etat === 'marche', off = etat === 'arret', partiel = etat === 'partiel';
     var suffixe = on ? ' · en marche' : off ? ' · à l’arrêt' : partiel ? ' · état de la pompe non indiqué' : '';
     return equipment(id, name + suffixe + ' · ouvrir la fiche', selected, [x - 41, Math.min(y - 18, labelY - 17), 82, Math.max(y + 19, labelY + 5) - Math.min(y - 18, labelY - 17)],
-      '<circle data-epr-gmpp="' + (on ? 'marche' : off ? 'arret' : partiel ? 'partiel' : 'inconnu') + '" cx="' + x + '" cy="' + y + '" r="13" fill="' + (on ? C.cold : C.bg) + '" stroke="' + (off ? C.dim : C.cold) + '" stroke-width="2"' + (off ? ' stroke-dasharray="3 2"' : '') + '/>' +
-      '<path d="M' + (x - 5 * sign) + ' ' + (y - 8) + ' L' + (x + 8 * sign) + ' ' + y + ' L' + (x - 5 * sign) + ' ' + (y + 8) + ' Z" fill="' + (on ? C.bg : off ? 'none' : C.cold) + '" stroke="' + (off ? C.dim : on ? C.bg : C.cold) + '" stroke-width="1.5"/>' +
+      '<circle data-epr-gmpp="' + (on ? 'marche' : off ? 'arret' : partiel ? 'partiel' : 'inconnu') + '" cx="' + x + '" cy="' + y + '" r="13" fill="' + (on ? C.cold : partiel ? 'url(#epr-gmpp-partiel)' : C.bg) + '" stroke="' + (off ? C.dim : C.cold) + '" stroke-width="2"' + (off ? ' stroke-dasharray="3 2"' : '') + '/>' +
+      '<path d="M' + (x - 5 * sign) + ' ' + (y - 8) + ' L' + (x + 8 * sign) + ' ' + y + ' L' + (x - 5 * sign) + ' ' + (y + 8) + ' Z" fill="' + (on || partiel ? C.bg : off ? 'none' : C.cold) + '" stroke="' + (off ? C.dim : on ? C.bg : C.cold) + '" stroke-width="1.5"/>' +
       text(x, labelY, name, { size: 13, color: off ? C.dim : C.text }));
+  }
+  function compteGmpp(n) {
+    if (n === null) return '';
+    var arret = 4 - n, partiel = n > 0 && arret > 0;
+    var ligne = 'GMPP : ' + n + ' en service' + (arret ? ' / ' + arret + ' arrêtée' + (arret > 1 ? 's' : '') : '');
+    return (partiel ? '<rect data-epr-gmpp-compte="partiel" pointer-events="none" x="10" y="55" width="272" height="36" rx="3" fill="' + C.bg + '" stroke="#84610c" stroke-width="1.5"/>' : '') +
+      text(18, 69, ligne, { anchor: 'start', color: partiel ? '#84610c' : C.dim, size: 13 }) +
+      (partiel ? text(18, 85, arret > 1 ? 'pompes arrêtées non identifiées' : 'pompe arrêtée non identifiée', { anchor: 'start', color: C.text, size: 12 }) : '');
   }
   function gv(id, x, y, selected, secondary) {
     var w = 58, h = secondary ? 72 : 94, n = id.slice(2);
@@ -62,8 +69,9 @@
     var shape = vertical
       ? 'M' + (x - 10) + ' ' + (y - 10) + ' H' + (x + 10) + ' L' + (x - 10) + ' ' + (y + 10) + ' H' + (x + 10) + ' Z'
       : 'M' + (x - 10) + ' ' + (y - 10) + ' V' + (y + 10) + ' L' + (x + 10) + ' ' + (y - 10) + ' V' + (y + 10) + ' Z';
-    var left = Math.min(x - 16, labelX - 33), top = Math.min(y - 16, labelY - 17);
-    var right = Math.max(x + 16, labelX + 33), bottom = Math.max(y + 16, labelY + 5);
+    // Cible tactile d'au moins 48 u autour du robinet, étiquette comprise (H06 : GCT-C touché sans viser au pixel).
+    var left = Math.min(x - 24, labelX - 33), top = Math.min(y - 24, labelY - 17);
+    var right = Math.max(x + 24, labelX + 33), bottom = Math.max(y + 24, labelY + 5);
     return equipment(id, label + ' · ouvrir la fiche', selected, [left, top, right - left, bottom - top],
       '<path d="' + shape + '" fill="' + C.bg + '" stroke="' + C.steam + '" stroke-width="1.8"/>' + text(labelX, labelY, label, { size: 13 }));
   }
@@ -105,8 +113,7 @@
       text(460, 290, 'MWth', { size: 13, color: C.dim }));
     h += text(460, 374, 'Cuve → GV → GMPP → cuve', { color: C.dim, size: 13 });
     // Sous « Branche chaude » : lisible sans glisser dans la vue agrandie du téléphone (comme le N4, D12).
-    if (enMarche !== null) h += text(18, 69, 'GMPP en marche : ' + enMarche + ' / 4', { anchor: 'start', color: etat === 'partiel' ? C.text : C.dim, size: 13 }) +
-      (etat === 'partiel' ? text(18, 85, 'répartition par boucle non indiquée', { anchor: 'start', color: C.dim, size: 12 }) : '');
+    h += compteGmpp(enMarche);
     h += text(460, 438, 'Températures et niveau GV agrégés · aucune mesure indépendante par boucle', { color: C.dim, size: 12 });
     return h;
   }
@@ -125,18 +132,26 @@
       var id=['mpsa','mpsb','mpsc','mpsd'][i],name='MPS '+['A','B','C','D'][i];
       h+=equipment(id,name+' · motopompe ASG électrique · ouvrir la fiche',selected,[x-9,231,92,74],
         '<circle cx="'+(x+15)+'" cy="250" r="15" fill="'+C.bg+'" stroke="'+C.asg+'" stroke-width="2"/>'+path('M'+(x+7)+' 256 L'+(x+15)+' 240 L'+(x+23)+' 256 Z','asg')+text(x+27,285,name,{color:C.asg,size:13})+text(x+27,301,'ÉLECTRIQUE',{color:C.dim,size:10}));
-      h+=equipment('asg'+(i+1),'Réserve ASG '+(i+1)+' · inventaire agrégé du modèle',selected,[x-13,333,98,61],
+      h+=equipment('asg'+(i+1),'Réserve ASG '+(i+1)+' · inventaire commun aux quatre réserves',selected,[x-13,333,98,61],
         '<rect x="'+(x-7)+'" y="340" width="86" height="45" rx="3" fill="'+C.bg+'" stroke="'+C.asg+'"/>'+text(x+36,359,'RÉSERVE '+(i+1),{size:11,color:C.asg})+text(x+36,376,'ASG',{size:12,color:C.asg}));
     });
     h+=path('M87 65 H862 V37','steam','steam');
-    h+=path('M515 65 V129 H567','steam','steam');
-    h+=path('M621 181 V277','steam','steam');
+    // Turbine ARABELLE de Flamanville 3 (H17 ; [ALS09] § A.1/A.1 bis, [RPS06] § 10.2, veille/epr-fla3.md) : corps
+    // combiné HP/MP à simple flux ; la vapeur sortie HP passe par les deux GSS avant l'admission MP, puis trois BP
+    // double flux vers le condenseur. Dessin propre à l'EPR, pas la géométrie N4 ; BP alimentés en parallèle.
+    h+=path('M515 65 V150 H560','steam','steam');
+    h+=path('M576 126 V101','steam','steam');h+=path('M600 101 V122','steam','steam');
+    h+=path('M612 112 H727','steam');
+    [639,683,727].forEach(function(x){h+=path('M'+x+' 112 V130','steam','steam');h+=path('M'+x+' 190 V210','steam');});
+    h+=path('M639 210 H727 M708 210 V277','steam','steam');
+    h+=path('M562 152 H773','metal');
     h+=path('M488 65 V286 H554','steam','steam');
     h+=path('M621 336 V409 H459 V205 H103','cold','cold');
-    // Turbine fonctionnelle : ne pas importer la géométrie HP/MP/3BP du N4.
-    h+=equipment('turbine','Turbine · conversion vapeur vers arbre',selected,[558,91,154,101],
-      '<path d="M568 120 L701 99 V179 L568 158 Z" fill="'+C.bg+'" stroke="'+C.metal+'" stroke-width="2"/>'+text(635,144,'TURBINE',{size:15}));
-    h+=path('M701 148 H784','metal');
+    var corps='<path d="M562 136 L612 118 V186 L562 168 Z" fill="'+C.bg+'" stroke="'+C.metal+'" stroke-width="2"/><path d="M588 128 V176" stroke="'+C.dim+'" stroke-dasharray="3 3"/>'+text(575,157,'HP',{size:10})+text(600,157,'MP',{size:10});
+    [620,664,708].forEach(function(x){corps+='<path d="M'+x+' 116 L'+(x+19)+' 134 L'+(x+38)+' 116 V190 L'+(x+19)+' 172 L'+x+' 190 Z" fill="'+C.bg+'" stroke="'+C.metal+'" stroke-width="2"/>'+text(x+19,157,'BP',{size:11});});
+    corps+='<rect x="556" y="83" width="64" height="18" rx="3" fill="'+C.bg+'" stroke="'+C.steam+'" stroke-width="1.6"/>'+text(588,96,'GSS ×2',{size:10,color:C.steam});
+    corps+=text(636,240,'TURBINE · HP/MP + 3 BP',{size:10});
+    h+=equipment('turbine','Turbine ARABELLE : un corps combiné haute et moyenne pression, deux sécheurs-surchauffeurs et trois corps basse pression · ouvrir la fiche',selected,[556,78,195,170],corps);
     h+=equipment('alternateur','Alternateur · bilan électrique calculé',selected,[751,109,151,115],
       '<circle cx="802" cy="148" r="29" fill="'+C.bg+'" stroke="'+C.metal+'" stroke-width="2"/>'+text(802,157,'~',{size:28})+text(814,197,'ALTERNATEUR',{size:12})+text(814,218,number(data.powerElectric,0)+' MWe',{color:C.dim,size:13}));
     h+=equipment('condenseur','Condenseur · ouvrir la fiche',selected,[550,270,173,72],
@@ -144,7 +159,7 @@
     h+=path('M715 307 H788','cold');
     h+=pump('cvi','CVI',811,307,selected,344);
     h+=pump('are','ARE',530,409,selected,438,'left');
-    h+=valve('gctc','GCT',488,241,selected,true,522,247);
+    h+=valve('gctc','GCT-C',488,241,selected,true,522,247);
     h+=valve('gcta','VDA',819,65,selected,false,819,91);
     h+=text(787,37,'ATMOSPHÈRE',{size:12,color:C.dim});
     h+='<path d="M94 385 V404 H424 V385 M204 385 V404 M314 385 V404" fill="none" stroke="'+C.asg+'" stroke-dasharray="4 4"/>';
@@ -184,6 +199,7 @@
     if(!['primaire','eauvapeur','sourcefroide'].includes(page))throw new RangeError('Page de synoptique EPR inconnue : '+page);
     data=data&&typeof data==='object'?data:{};
     var definitions=['hot','cold','steam','asg'].map(function(k){return '<marker id="epr-'+page+'-'+k+'" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L5 2.5 L0 5 Z" fill="'+C[k]+'"/></marker>';}).join('');
+    definitions+='<pattern id="epr-'+page+'-gmpp-partiel" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="'+C.bg+'"/><path d="M1.5 0V6" stroke="'+C.cold+'" stroke-width="2.2"/></pattern>';
     var title={primaire:'EPR : quatre boucles primaires',eauvapeur:'EPR : quatre GV, quatre motopompes ASG électriques et circuit eau-vapeur',sourcefroide:'EPR : refroidissement maritime et quatre chaînes RRI / SEC'}[page];
     var body=(page==='primaire'?primary(data,selected):page==='eauvapeur'?secondary(data,selected):sourceCooling(data,selected)).replace(/url\(#epr-/g,'url(#epr-'+page+'-');
     return '<svg class="n4-svg epr-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500" role="group" aria-label="'+esc(title)+'" font-family="Consolas, Liberation Mono, monospace"><defs>'+definitions+'</defs><style>.n4-svg .n4-equipment{cursor:pointer;outline:none}.n4-svg .n4-equipment:hover .n4-hit,.n4-svg .n4-equipment:focus .n4-hit,.n4-svg .n4-selected .n4-hit{stroke:#865e09;stroke-width:1.5;stroke-dasharray:4 3}.n4-svg text{pointer-events:none}</style><rect width="920" height="500" fill="'+C.bg+'"/>'+body+text(18,481,'Schéma fonctionnel · sélectionner un équipement pour sa fiche',{anchor:'start',size:12,color:C.dim})+'</svg>';

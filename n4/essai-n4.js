@@ -9,15 +9,24 @@
     frame.hidden=true;frame.style.cssText='';
     try{
       const win=frame.contentWindow,doc=win.document,sim=win.__sim;
-      if(!sim)throw Error('Moteur privé indisponible');
+      if(!sim)throw Error('état de la tranche non reçu');
       const transport=config.transport?await SDCTransportPrive.connect(win,config):null;
       // Ordre de la prise de quart : palier, source froide du site (saison et température), puis point de fonctionnement.
       if(!transport){if(!win.__setPalier(palier))throw Error('Palier privé indisponible');
         const unit=config.unit||(epr?3:1),base=(win.__SITES||[]).find(s=>s.n===(config.site||(epr?'Flamanville':'Civaux'))),site=base&&win.CNPE.unitSite?win.CNPE.unitSite(base,unit):base;
         if(!site||!win.CNPE.initSource(site,unit))throw Error('Source froide du site indisponible');
         sim.initOperatingPoint(win.__PALIERS[palier].PEL,'RP');sim.S.accel=1;}
+      // H18 : progression de mission mémorisée pour cette tranche, restituée après la prise de quart (même parcours) ;
+      // l’état vit dans le châssis (S.mis, S.mIdx : clés locales jamais écrasées par le serveur).
+      let storage;try{storage=window.localStorage;}catch(e){}
+      const siteId=config.site||(epr?'Flamanville':'Civaux'),unitId=config.unit||(epr?3:1),m0=SDCN4Preferences.readMission?.(storage,palier,siteId,unitId);
+      if(m0&&win.__missionPoser)win.__missionPoser(m0);
+      let memoire=m0?JSON.stringify(m0):'',ouvert=m0?.ouvert===true;
+      // Mission réussie pendant son bravo (9 s) : c’est la suivante qui est mémorisée ; quitter ou réinitialiser ne la fait pas refaire.
+      const aGarder=m=>({actif:m.actif,index:m.reussie?Math.min(m.index+1,m.total):m.index,total:m.total});
+      const memo=()=>{const m=win.__missionEtat?.();if(!m||!m.total)return;const v={...aGarder(m),ouvert},j=JSON.stringify(v);if(j!==memoire&&SDCN4Preferences.writeMission?.(storage,palier,siteId,unitId,v))memoire=j;};
       sim.render();
-      const note=doc.getElementById('rGNote');if(note)note.textContent='Le groupe R porte ici la régulation neutronique simulée.';
+      const note=doc.getElementById('rGNote');if(note)note.textContent='Le groupe R représente seul la régulation neutronique (modes X et T simplifiés).';
       const label=doc.getElementById('rGLabel');if(label)label.textContent='Autres groupes de grappes';
       const core=doc.getElementById('coreOpen');
       const nativeRoot=doc.createElement('main');nativeRoot.id='n4-native-root';doc.body.appendChild(nativeRoot);
@@ -38,7 +47,7 @@
         #n4-native-root button:focus-visible,#n4-native-root summary:focus-visible{outline:3px solid #80cfe0;outline-offset:2px}
         #n4-native-root input[type=checkbox]{width:20px;height:20px}#n4-native-root #recSel label{display:flex;align-items:center;min-height:44px}
         #n4-native-root #coreModal{display:block!important;position:static!important;padding:0!important;background:transparent!important;overflow:auto!important}
-        #n4-native-root #coreGrid{min-width:660px;max-width:100%!important}#n4-native-root #coreGrid>*{min-height:48px}#n4-native-root #coreGrid>[data-picked]{outline:3px solid #faf2b8!important;outline-offset:-3px}#n4-native-root #coreGrid>:focus-visible{outline:3px solid #fff!important}#n4-native-root #coreDetail{position:sticky;top:0;z-index:2;background:#152c2a;color:#e4f5de;padding:12px;margin:8px 0;line-height:1.5;border:1px solid #6a9585}
+        #n4-native-root #coreGrid{min-width:0!important;width:100%;max-width:min(100%,520px,max(260px,calc(var(--n4-vue-h,9999px) - 150px)))!important;gap:1px!important;margin:6px auto!important}#n4-native-root #coreGrid>[data-picked]{outline:3px solid #faf2b8!important;outline-offset:-3px}#n4-native-root #coreGrid>:focus-visible{outline:3px solid #fff!important}#n4-native-root #coreDetail{background:#152c2a;color:#e4f5de;padding:6px 8px;margin:6px 0;min-height:calc(2*1.35em + 12px)!important;font-size:13px!important;line-height:1.35;border:1px solid #6a9585}
         #n4-native-root #coreModal>.card{overflow-x:auto}#n4-native-root #coreModes{position:sticky;left:0}
         #n4-native-root #secSock{display:block!important;padding-bottom:16px!important}#n4-native-root #sockWrap{max-width:100%;overflow:auto}
         #n4-native-root #easyCard,#n4-native-root #easyLex{display:block!important}#n4-native-root #bEasyLex,#n4-native-root #coreClose{display:none!important}
@@ -51,7 +60,14 @@
         #n4-native-root #recHead{background:#15262e!important;color:#b9e7f1!important;border-color:#3b555e!important}
         #n4-native-root #recTxt{color:#b9d9e1!important}#n4-native-root #easyLex b{color:#b9e7f1!important}
         #n4-native-root .card:first-child{margin-top:0!important}#n4-native-root #easyCard span,#n4-native-root #easyMsg{color:#c6e4e8!important}
-        @media(max-width:600px){body.n4-native{padding:8px!important}#n4-native-root .card{padding:10px!important}#n4-native-root .row>label{min-width:0;flex:1 1 145px}#n4-native-root #recSel{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+        #n4-native-root details.n4-rec-voies{margin:6px 0 8px;border:1px solid #3b555e;border-radius:6px;background:#101b20}
+        #n4-native-root details.n4-rec-voies>summary{min-height:44px;display:flex;align-items:center;gap:8px;padding:6px 10px;cursor:pointer;color:#b9e7f1;font-weight:600;line-height:1.35;list-style:none}
+        #n4-native-root details.n4-rec-voies>summary::-webkit-details-marker{display:none}#n4-native-root details.n4-rec-voies>summary::before{content:'▸';flex:none}#n4-native-root details.n4-rec-voies[open]>summary::before{content:'▾'}
+        #n4-native-root details.n4-rec-voies #recSel{margin:0!important;border-width:1px 0 0!important;border-radius:0 0 6px 6px!important;grid-template-columns:repeat(auto-fill,minmax(96px,1fr))!important;gap:4px!important;padding:6px!important}
+        #n4-native-root #recSel label{padding:0 6px;border:1px solid transparent;border-radius:4px;font-size:12px!important;gap:8px!important}
+        #n4-native-root #recSel label:has(input:checked){background:#3a6355;border-color:#89b6a2;font-weight:700}#n4-native-root #recSel input[type=checkbox]{width:18px!important;height:18px!important}
+        @media(max-width:600px){#n4-native-root #coreDetail{min-height:calc(3*1.35em + 12px)!important}#n4-native-root #coreGrid>[data-picked]{outline-width:2px!important;outline-offset:-2px!important}body.n4-native{padding:8px!important}#n4-native-root .card{padding:10px!important}#n4-native-root .row>label{min-width:0;flex:1 1 145px}#n4-native-root details.n4-rec-voies #recSel{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+        @media(max-width:420px){#n4-native-root #coreDetail{min-height:calc(4*1.35em + 12px)!important}}
       `;
       // Palette EPR distincte ; les styles N4 restent strictement identiques.
       if(epr){const light={'#10181b':'#f1f5f6','#dce7e5':'#294754','#172428':'#e5edf1','#a1b6b9':'#526e7b','#486066':'#afc0c8','#10191d':'#f1f5f6','#081115':'#fff','#344e53':'#b2c6cf','#203037':'#dce7ec','#405860':'#a5bbc6','#a8cbd1':'#375b70','#b2c3c5':'#4c6978','#22383d':'#e1eaf0','#e1eeee':'#2b4c5d','#577078':'#9aafbc','#3a6355':'#c4ddce','#89b6a2':'#6b9a82','#152c2a':'#e1eee6','#e4f5de':'#2c5240','#101b20':'#edf3f6','#3b555e':'#a4bac6','#d0e4e9':'#345767','#0a151a':'#f7fafb','#15262e':'#dce8ee','#b9e7f1':'#245a74','#b9d9e1':'#375b6c','#c6e4e8':'#315f72','#a6d6df':'#275d77'};skin.textContent=skin.textContent.replace(/#[0-9a-f]{6}/g,c=>light[c]||c);skin.textContent+="#n4-native-root summary,#n4-native-root a{color:#255d78!important}#n4-native-root summary{min-height:44px;display:flex;align-items:center}";}
@@ -72,11 +88,12 @@
       `;
       doc.head.appendChild(skin);
       const moved=[];let activeSlot=null,activeKind=null,layoutPending=false;
-      function restoreNative(){if(activeKind==='coeur'){const button=doc.getElementById('coreClose');if(button?.onclick)button.onclick();}while(moved.length){const [node,marker]=moved.pop();marker.replaceWith(node);}nativeRoot.replaceChildren();doc.body.classList.remove('n4-native');}
+      function restoreNative(){if(activeKind==='coeur'){const button=doc.getElementById('coreClose');if(button?.onclick)button.onclick();}
+        doc.querySelectorAll('details.n4-rec-voies').forEach(box=>{const sel=box.querySelector('#recSel');if(sel)box.replaceWith(sel);else box.remove();});while(moved.length){const [node,marker]=moved.pop();marker.replaceWith(node);}nativeRoot.replaceChildren();doc.body.classList.remove('n4-native');}
       function alignInline(){
         layoutPending=false;
         if(!activeSlot?.isConnected||frame.hidden)return;
-        const rect=activeSlot.getBoundingClientRect();
+        const rect=activeSlot.getBoundingClientRect();nativeRoot.style.setProperty('--n4-vue-h',window.innerHeight+'px');
         frame.style.left=(rect.left+window.scrollX)+'px';frame.style.top=(rect.top+window.scrollY)+'px';frame.style.width=rect.width+'px';
         const height=Math.ceil(nativeRoot.getBoundingClientRect().height+28);
         activeSlot.style.height=height+'px';frame.style.height=height+'px';
@@ -87,13 +104,15 @@
       cleanupInline=()=>{observer.disconnect();window.removeEventListener('resize',queueLayout);window.removeEventListener('scroll',queueLayout);};
       function closeNative(){restoreNative();frame.hidden=true;frame.style.cssText='';activeSlot=null;activeKind=null;}
       function move(node){if(!node)return;const marker=doc.createComment('n4-native-origin');node.replaceWith(marker);moved.push([node,marker]);nativeRoot.appendChild(node);}
+      const ACCUEIL='Active MISSIONS pour le parcours guidé (16 missions) ou MODE FACILE pour l’analyse d’état. Les vitesses ×60 et ×300 sont dans le volet « Simulation », en haut du poste.';
+      function accueil(){const a=doc.getElementById('easyMsg');if(a&&activeKind==='formation'&&!sim.S.easy&&!sim.S.mis&&a.textContent!==ACCUEIL)a.textContent=ACCUEIL;}
       const nativeTitles={instrumentation:'RPN · RIC · KRT · Bilan de réactivité',coeur:'Carte du cœur '+palier,pt:'Domaine pression / température',formation:'Formation · Missions · Lexique',enregistreur:'Enregistreur'};
       function mountInline(page,slot){
         const kind=page==='tendances'?'enregistreur':page;
         if(!slot||!Object.hasOwn(nativeTitles,kind)){closeNative();return {ok:true};}
         activeSlot=slot;
         if(activeKind===kind){queueLayout();return {ok:true};}
-        if(sim.S.ihm===false)return {ok:false,motif:epr?'MCP indisponible : utiliser le MCS':'KIC indisponible : utiliser le panneau auxiliaire'};
+        if(sim.S.ihm===false){closeNative();return {ok:false,motif:epr?'MCP indisponible : utiliser le MCS':'KIC indisponible : utiliser le panneau auxiliaire'};}
         if(!Object.hasOwn(nativeTitles,kind))return {ok:false,motif:'Écran non disponible'};
         restoreNative();activeKind=kind;nativeRoot.dataset.kind=kind;doc.body.classList.add('n4-native');
         const byId=id=>doc.getElementById(id),card=id=>{const e=byId(id);return e&&e.closest('.card');};
@@ -101,7 +120,7 @@
         if(kind==='coeur'){
           move(byId('coreModal'));if(core)core.click();if(epr){const explanation=doc.createElement('p');explanation.textContent='EPR · 241 assemblages · disposition pédagogique, pas un plan de chargement.';nativeRoot.prepend(explanation);}
           const grid=byId('coreGrid'),detail=byId('coreDetail');
-          if(grid){const cols=Number(grid.style.gridTemplateColumns.match(/\d+/)?.[0])||17;grid.style.minWidth=(cols*52)+'px';
+          if(grid){const cols=Number(grid.style.gridTemplateColumns.match(/\d+/)?.[0])||17;grid.style.minWidth='';
             [...grid.children].forEach((cell,i)=>{cell.setAttribute('role','button');cell.setAttribute('aria-label','Assemblage '+(i+1));cell.tabIndex=i===0?0:-1;});
             grid.onclick=e=>{const cell=e.target.closest('#coreGrid > div');if(!cell)return;grid.querySelectorAll('[data-picked]').forEach(n=>n.removeAttribute('data-picked'));cell.setAttribute('data-picked','true');[...grid.children].forEach(n=>n.tabIndex=n===cell?0:-1);};
             grid.onkeydown=e=>{const cells=[...grid.children],i=cells.indexOf(e.target);if(i<0)return;if(['Enter',' '].includes(e.key)){e.preventDefault();e.target.click();}else if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();const delta={ArrowLeft:-1,ArrowRight:1,ArrowUp:-cols,ArrowDown:cols}[e.key];cells[Math.max(0,Math.min(cells.length-1,i+delta))].focus();}};
@@ -109,39 +128,57 @@
           }
         }
         if(kind==='pt')move(byId('secSock'));
-        if(kind==='formation'){['bEasy','bMis','easyCard','easyLex'].forEach(id=>move(byId(id)));byId('easyLex')?.classList.add('on');}
-        if(kind==='enregistreur')move(card('recRun'));
+        // H16 : l’accueil du châssis cite « ×60 et ×300 (en haut) » ; au poste, les vitesses sont dans le volet Simulation.
+        if(kind==='formation'){['bEasy','bMis','easyCard','easyLex'].forEach(id=>move(byId(id)));byId('easyLex')?.classList.add('on');accueil();}
+        // H14 : voies de l’enregistreur repliables ; le résumé garde la sélection visible quand le volet est fermé.
+        if(kind==='enregistreur'){move(card('recRun'));const sel=byId('recSel');if(sel&&!sel.closest('details.n4-rec-voies')){const box=doc.createElement('details'),summary=doc.createElement('summary');box.className='n4-rec-voies';box.open=!window.matchMedia?.('(max-width:760px), (max-width:1000px) and (max-height:500px)').matches;box.append(summary);sel.replaceWith(box);box.append(sel);
+          const voies=()=>{const labels=[...sel.querySelectorAll('label')],on=labels.filter(l=>l.querySelector('input')?.checked).map(l=>(l.childNodes[1]?.textContent||'').trim());summary.textContent='Voies enregistrées · '+on.length+' sur '+labels.length+(on.length?' : '+on.join(', '):'');};
+          box.addEventListener('change',voies);voies();}}
         frame.hidden=false;frame.setAttribute('title',nativeTitles[kind]);frame.style.cssText='position:absolute;border:0;background:#10181b;z-index:2;box-sizing:border-box';
         sim.render();win.scrollTo(0,0);queueLayout();return {ok:true};
       }
       // Conserver les fonctions natives dans leur document d'origine préserve leurs événements
       // et toutes les recherches par identifiant du moteur, sans recharger l'iframe.
       if(core)core.addEventListener('click',function(){if(activeKind&&activeKind!=='coeur')poste.selectPage('coeur');});
-      const history={pressureHistory:[],temperatureHistory:[],powerHistory:[]};
+      // Historique des courbes (H13) : valeurs mêmes de l’instantané du poste, une par seconde simulée, 300 au plus.
+      const APP=epr?SDCEPR:SDCN4,histories=Object.fromEntries(['t',...Object.keys(APP.CURVE_METRICS)].map(k=>[k,[]]));
       let lastSample=-Infinity,lastRender=0;
       const stamp=t=>'T+'+Math.floor(t/3600).toString().padStart(2,'0')+':'+Math.floor(t/60%60).toString().padStart(2,'0')+':'+Math.floor(t%60).toString().padStart(2,'0');
       function snapshot(){
-        sim.render();if(activeKind==='enregistreur')sim.recRender();const S=sim.S;
-        if(S.t<lastSample){Object.values(history).forEach(a=>a.length=0);lastSample=-Infinity;}
-        if(S.t-lastSample>=1){lastSample=S.t;history.pressureHistory.push(S.Ppzr);history.temperatureHistory.push(S.Tavg);history.powerHistory.push(S.Ptot*win.__PALIERS[palier].PTH);Object.values(history).forEach(a=>{if(a.length>300)a.shift();});}
+        sim.render();if(activeKind==='enregistreur')sim.recRender();accueil();const S=sim.S;
+        if(S.t<lastSample){Object.values(histories).forEach(a=>a.length=0);lastSample=-Infinity;}
         // Heure d'apparition datée au pas moteur (local ou serveur), pas l'heure du rafraîchissement.
         const onset=typeof sim.alarmes==='function'?sim.alarmes()||{}:{};
         const alarms=[...doc.querySelectorAll('.al.red,.al.amber')].map(e=>{const red=e.classList.contains('red'),o=onset[e.id],since=o&&o.etat===(red?'red':'amber')&&Number.isFinite(o.t)?o.t:S.t;return {time:stamp(since),origin:'PROTECTION',message:e.textContent.trim(),color:red?'rouge':'jaune'};});
         const journal=[...doc.querySelectorAll('#log > div')].slice(0,80).map(e=>({time:e.textContent.slice(0,10),origin:'TRANCHE',message:e.textContent.slice(10).trim(),color:e.classList.contains('red')?'rouge':e.classList.contains('amber')?'jaune':'blanche'}));
-        return SDCN4Adaptateur.snapshot(S,win.__PALIERS[palier],Object.assign({alarms,journal},history));
+        // Température vapeur sortie GV : la lecture que le châssis affiche (saturation, 1 °C), sans recopier sa loi (H06).
+        const steamTemperature=Number.parseFloat(doc.getElementById('sTvap')?.textContent);
+        const snap=SDCN4Adaptateur.snapshot(S,win.__PALIERS[palier],{alarms,journal,steamTemperature,mission:win.__missionEtat?.()||null});
+        if(S.t-lastSample>=1){lastSample=S.t;for(const [k,a] of Object.entries(histories)){a.push(k==='t'?S.t:APP.curveValue(snap,k));if(a.length>300)a.shift();}}
+        snap.histories=Object.fromEntries(Object.entries(histories).map(([k,a])=>[k,a.slice()]));
+        Object.assign(snap,{pressureHistory:snap.histories.pressurePrimary,temperatureHistory:snap.histories.tempAverage,powerHistory:snap.histories.powerThermal});
+        return snap;
       }
-      let storage;try{storage=window.localStorage;}catch(e){}
       // Quitter la tranche : gestes maintenus arrêtés et confirmés par le serveur, puis poste détruit.
-      async function quitter(){if(transport){const r=await transport.dispatch({type:'set',k:'bori',v:false,...(sim.S.ihm===false?{poste:'secours'}:{})});if(!r.ok)throw Error(r.motif);if(sim.S.dilu){const d=await transport.dispatch({type:'set',k:'dilu',v:false});if(!d.ok)throw Error(d.motif);}}poste.destroy();}
+      async function quitter(){if(transport){const r=await transport.dispatch({type:'set',k:'bori',v:false,...(sim.S.ihm===false?{poste:'secours'}:{})});if(!r.ok)throw Error(r.motif);if(sim.S.dilu){const d=await transport.dispatch({type:'set',k:'dilu',v:false,...(sim.S.ihm===false?{poste:'secours'}:{})});if(!d.ok)throw Error(d.motif);}}closeNative();memo();poste.destroy();}
       // Dans la coquille privée, retour à la carte de France ou au CNPE de la tranche par message au parent.
-      const retour=transport&&window.parent!==window?async vue=>{try{await quitter();}catch(e){return {ok:false,motif:'Retour suspendu : '+e.message};}
-        window.parent.postMessage({type:'sdc-retour',vue:vue==='cnpe'?'cnpe':'france',site:config.site,unit:config.unit},location.origin);return {ok:true};}:undefined;
-      poste=(epr?SDCEPR:SDCN4).mount(host,{published:config.published===true,site:config.site||(epr?'Flamanville':'Civaux'),unit:config.unit||(epr?3:1),snapshot:snapshot(),onNavigate:retour,synthesis:SDCN4Preferences.read(storage,palier),onPageMount:mountInline,onSynthesisChange:choices=>SDCN4Preferences.write(storage,choices,palier),onCommand:async command=>{const result=transport?await transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command);if(sim.S.ihm===false)closeNative();poste.update(snapshot());return result;}});
-      window.revueSDC=window.revueN4=poste;window.essaiSDC=window.essaiN4={sim,document:doc,snapshot,prepareLeave:quitter,dispatch:command=>transport?transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command)};
+      // Après confirmation seulement : écran neutre à la place du poste, jamais le châssis ni un module natif (H02).
+      let depart=null;
+      const retour=transport&&window.parent!==window?vue=>depart||(depart=(async()=>{try{await quitter();}catch(e){depart=null;return {ok:false,motif:'Retour suspendu : '+e.message};}
+        const attente=document.createElement('p');attente.id='n4-loading';attente.setAttribute('role','status');attente.textContent=vue==='cnpe'?'Retour au CNPE…':'Retour à la carte de France…';host.replaceChildren(attente);
+        window.parent.postMessage({type:'sdc-retour',vue:vue==='cnpe'?'cnpe':'france',site:config.site,unit:config.unit},location.origin);return {ok:true};})()):undefined;
+      poste=APP.mount(host,{published:config.published===true,site:config.site||(epr?'Flamanville':'Civaux'),unit:config.unit||(epr?3:1),snapshot:snapshot(),onNavigate:retour,synthesis:SDCN4Preferences.read(storage,palier),onPageMount:mountInline,onSynthesisChange:choices=>SDCN4Preferences.write(storage,choices,palier),curves:SDCN4Preferences.readCurves(storage,palier),onCurvesChange:choices=>SDCN4Preferences.writeCurves(storage,choices,palier),missionOpen:ouvert,onMissionOpen:o=>{ouvert=o;memo();},
+        // Arrêt du parcours : bouton MISSIONS du châssis (état local, journal), jamais le transport de conduite.
+        onMission:action=>{if(action!=='stop')return {ok:false,motif:'Action inconnue'};if(sim.S.mis)doc.getElementById('bMis')?.onclick?.();memo();poste.update(snapshot());return {ok:!sim.S.mis,motif:'Arrêt du parcours non confirmé'};},onCommand:async command=>{const result=transport?await transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command);if(command.type==='incident'&&command.id==='iReset'&&result?.ok&&win.__missionPoser)win.__missionPoser(aGarder(win.__missionEtat()));if(sim.S.ihm===false)closeNative();poste.update(snapshot());return result;}});
+      window.revueSDC=window.revueN4=poste;signalerPret();window.essaiSDC=window.essaiN4={sim,document:doc,snapshot,prepareLeave:quitter,dispatch:command=>transport?transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command)};
       // Même pas fixe que le moteur/serveur. Le navigateur peut ralentir cet essai en arrière-plan.
-      timer=setInterval(()=>{try{for(let i=0;!transport&&i<sim.S.accel;i++){sim.physStep(.05);sim.slowStep(.05);sim.trips();if(sim.recTick)sim.recTick();}if(Date.now()-lastRender>=1000){lastRender=Date.now();if(sim.S.ihm===false&&!frame.hidden)closeNative();poste.update(snapshot());queueLayout();}}catch(e){clearInterval(timer);host.setAttribute('data-engine-error',String(e));console.error(e);}},50);
-    }catch(e){host.textContent='Initialisation impossible : '+e.message;console.error(e);}
+      timer=setInterval(()=>{try{for(let i=0;!transport&&i<sim.S.accel;i++){sim.physStep(.05);sim.slowStep(.05);sim.trips();if(sim.recTick)sim.recTick();}if(Date.now()-lastRender>=1000){lastRender=Date.now();if(sim.S.ihm===false&&!frame.hidden)closeNative();poste.update(snapshot());memo();queueLayout();}}catch(e){clearInterval(timer);host.setAttribute('data-engine-error',String(e));console.error(e);}},50);
+    }catch(e){const motif=document.createElement('p');motif.id='n4-loading';motif.setAttribute('role','status');motif.textContent='Initialisation impossible : '+e.message;host.replaceChildren(motif);sortie();console.error(e);signalerPret();}
   }
+  // L’enveloppe publique garde son écran d’attente jusqu’au poste monté (ou à son échec lisible).
+  function signalerPret(){if(window.parent!==window)window.parent.postMessage({type:'sdc-pret'},location.origin);}
+  // Poste non monté : seule sortie vers la carte (l’enveloppe n’a plus de barre) ; aucun geste n’a pu être tenu.
+  function sortie(){if(window.parent===window)return;const b=document.createElement('button');b.type='button';b.id='n4-sortie';b.textContent='‹ France';b.onclick=()=>window.parent.postMessage({type:'sdc-retour',vue:'france'},location.origin);host.appendChild(b);}
   frame.addEventListener('load',boot);
   if(frame.contentDocument&&frame.contentDocument.readyState==='complete'&&frame.contentWindow.__sim)boot();
   window.addEventListener('pagehide',()=>{if(timer)clearInterval(timer);if(cleanupInline)cleanupInline();});

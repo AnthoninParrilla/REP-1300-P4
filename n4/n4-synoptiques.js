@@ -32,19 +32,28 @@
   function vessel(x, y, w, h, color) {
     return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + Math.min(w / 2, 15) + '" fill="' + C.bg + '" stroke="' + color + '" stroke-width="1.6"/>';
   }
-  // GMPP (D12) : le moteur ne donne que leur nombre en marche. Toutes en marche (disque plein) ou toutes arrêtées
-  // (contour gris pointillé) : l'état de chaque pompe s'en déduit ; sinon dessin neutre, sans désigner la pompe arrêtée.
+  // GMPP (H07) : seul le nombre en service est reçu. Tout = pleine, rien = pointillée ; partiel = hachure neutre,
+  // jamais quatre symboles d'arrêt ni pompe désignée. Le compteur encadré dit « n en service / m arrêtée(s) ».
   function pump(id, name, x, y, selected, labelY, direction, etat) {
     var sign = direction === 'left' ? -1 : 1, box = [x - 41, Math.min(y - 18, labelY - 17), 82, Math.max(y + 19, labelY + 5) - Math.min(y - 18, labelY - 17)];
     var triangle = 'M' + (x - 5 * sign) + ' ' + (y - 8) + ' L' + (x + 8 * sign) + ' ' + y + ' L' + (x - 5 * sign) + ' ' + (y + 8) + ' Z';
     if (!etat) return equipment(id, name + ' · ouvrir la fiche', selected, box,
       '<circle cx="' + x + '" cy="' + y + '" r="13" fill="' + C.bg + '" stroke="' + C.cold + '" stroke-width="2"/>' +
       path(triangle, 'cold') + text(x, labelY, name, { size: 13 }));
-    var on = etat === 'marche', off = etat === 'arret';
+    var on = etat === 'marche', off = etat === 'arret', partiel = etat === 'partiel';
     return equipment(id, name + (on ? ' · en marche' : off ? ' · à l’arrêt' : ' · état de la pompe non indiqué') + ' · ouvrir la fiche', selected, box,
-      '<circle data-n4-gmpp="' + etat + '" cx="' + x + '" cy="' + y + '" r="13" fill="' + (on ? C.cold : C.bg) + '" stroke="' + (off ? C.dim : C.cold) + '" stroke-width="2"' + (off ? ' stroke-dasharray="3 2"' : '') + '/>' +
-      '<path d="' + triangle + '" fill="' + (on ? C.bg : 'none') + '" stroke="' + (off ? C.dim : on ? C.bg : C.cold) + '" stroke-width="' + (on ? 1.5 : 2) + '"/>' +
+      '<circle data-n4-gmpp="' + etat + '" cx="' + x + '" cy="' + y + '" r="13" fill="' + (on ? C.cold : partiel ? 'url(#n4-gmpp-partiel)' : C.bg) + '" stroke="' + (off ? C.dim : C.cold) + '" stroke-width="2"' + (off ? ' stroke-dasharray="3 2"' : '') + '/>' +
+      '<path d="' + triangle + '" fill="' + (on || partiel ? C.bg : 'none') + '" stroke="' + (off ? C.dim : on ? C.bg : C.cold) + '" stroke-width="' + (on ? 1.5 : 2) + '"/>' +
       text(x, labelY, name, { size: 13, color: off ? C.dim : C.text }));
+  }
+  function compteGmpp(n) {
+    if (n === null) return '';
+    var arret = 4 - n, partiel = n > 0 && arret > 0;
+    var ligne = 'GMPP : ' + n + ' en service' + (arret ? ' / ' + arret + ' arrêtée' + (arret > 1 ? 's' : '') : '');
+    // Couleur d'attention propre (pas celle de la branche chaude) ; le cadre ne capte aucun toucher (GV 1 dessous).
+    return (partiel ? '<rect data-n4-gmpp-compte="partiel" pointer-events="none" x="10" y="55" width="272" height="36" rx="3" fill="' + C.bg + '" stroke="#e7d78e" stroke-width="1.5"/>' : '') +
+      text(18, 69, ligne, { anchor: 'start', color: partiel ? '#e7d78e' : C.dim, size: 13 }) +
+      (partiel ? text(18, 85, arret > 1 ? 'pompes arrêtées non identifiées' : 'pompe arrêtée non identifiée', { anchor: 'start', color: C.text, size: 12 }) : '');
   }
   function gv(id, x, y, selected, secondary) {
     var w = 58, h = secondary ? 72 : 94, n = id.slice(2);
@@ -65,8 +74,9 @@
     var shape = vertical
       ? 'M' + (x - 10) + ' ' + (y - 10) + ' H' + (x + 10) + ' L' + (x - 10) + ' ' + (y + 10) + ' H' + (x + 10) + ' Z'
       : 'M' + (x - 10) + ' ' + (y - 10) + ' V' + (y + 10) + ' L' + (x + 10) + ' ' + (y - 10) + ' V' + (y + 10) + ' Z';
-    var left = Math.min(x - 16, labelX - 33), top = Math.min(y - 16, labelY - 17);
-    var right = Math.max(x + 16, labelX + 33), bottom = Math.max(y + 16, labelY + 5);
+    // Cible tactile d'au moins 48 u autour du robinet, étiquette comprise (H06 : GCT-C touché sans viser au pixel).
+    var left = Math.min(x - 24, labelX - 33), top = Math.min(y - 24, labelY - 17);
+    var right = Math.max(x + 24, labelX + 33), bottom = Math.max(y + 24, labelY + 5);
     return equipment(id, label + ' · ouvrir la fiche', selected, [left, top, right - left, bottom - top],
       '<path d="' + shape + '" fill="' + C.bg + '" stroke="' + C.steam + '" stroke-width="1.8"/>' + text(labelX, labelY, label, { size: 13 }));
   }
@@ -98,8 +108,7 @@
     h += pump('gmpp1', 'GMPP 1', 265, 169, selected, 148, '', etat) + pump('gmpp2', 'GMPP 2', 655, 169, selected, 148, 'left', etat);
     h += pump('gmpp3', 'GMPP 3', 265, 384, selected, 416, '', etat) + pump('gmpp4', 'GMPP 4', 655, 384, selected, 416, 'left', etat);
     // Sous « Branche chaude » : visible sans glisser dans la vue agrandie du téléphone.
-    if (enMarche !== null) h += text(18, 69, 'GMPP en marche : ' + enMarche + ' / 4', { anchor: 'start', color: etat === 'partiel' ? C.text : C.dim, size: 13 }) +
-      (etat === 'partiel' ? text(18, 85, 'répartition par boucle non indiquée', { anchor: 'start', color: C.dim, size: 12 }) : '');
+    h += compteGmpp(enMarche);
     h += equipment('rcp', 'Réacteur et circuit primaire · ouvrir la fiche', selected, [413, 187, 94, 145],
       text(460, 206, 'CUVE') + vessel(421, 212, 78, 112, C.metal) +
       text(460, 242, 'CŒUR', { size: 13, color: C.dim }) + text(460, 269, number(data.powerThermal, 0)) +
@@ -222,6 +231,7 @@
     var definitions = ['hot', 'cold', 'steam', 'asg'].map(function (key) {
       return '<marker id="n4-' + page + '-' + key + '" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L5 2.5 L0 5 Z" fill="' + C[key] + '"/></marker>';
     }).join('');
+    definitions += '<pattern id="n4-' + page + '-gmpp-partiel" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="' + C.bg + '"/><path d="M1.5 0V6" stroke="' + C.cold + '" stroke-width="2.2"/></pattern>';
     var legend = page === 'primaire'
       ? [['hot', 'Branche chaude'], ['cold', 'Branche froide'], ['metal', 'Équipement']]
       : page === 'sourcefroide' ? [['hot', 'Eau réchauffée'], ['cold', 'Eau refroidie'], ['metal', 'Équipement']] : [['steam', 'Vapeur'], ['cold', 'ARE'], ['asg', 'ASG · secours'], ['metal', 'Équipement']];

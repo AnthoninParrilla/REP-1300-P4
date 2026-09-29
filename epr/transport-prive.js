@@ -13,8 +13,8 @@
   }if(c.type==='set'&&c.k==='speed')c={type:'speed',v:c.v,poste:c.poste};if(c.type==='set'&&c.k==='gainePct'){if(!Number.isFinite(c.v)||c.v<0||c.v>30||!Number.isInteger(c.v*2))throw Error('Gainage hors plage');c.k='gaine';c.v/=100;}return c;}
   async function connect(win,config){
     for(let i=0;!win.__net&&i<100;i++)await new Promise(r=>setTimeout(r,50));
-    if(!win.__net||!win.CNPE)throw Error('Transport serveur indisponible');
-    const site=win.__SITES.find(s=>s.n===config.site);if(!site||!await win.CNPE.take(site,config.unit))throw Error('Prise de quart serveur refusée');
+    if(!win.__net||!win.CNPE)throw Error('Liaison au poste indisponible');
+    const site=win.__SITES.find(s=>s.n===config.site);if(!site||!await win.CNPE.take(site,config.unit))throw Error('Prise de quart refusée');
     const net=win.__net,key=config.site+'|'+config.unit,u=net.ukey(),sim=win.__sim;
     if(sim.S.pal!==config.palier)throw Error('Palier de tranche inattendu');
     let tail=Promise.resolve(),holdTimer=null,renewing=false;
@@ -39,9 +39,9 @@
         const answer=await net.take(issued,null);
         if(net.ukey()!==issued)throw Error('Tranche changée : confirmation ignorée');
         net.select(issued,key,answer.state);
-        if(c.type==='set'&&sim.S[c.k]!==c.v)throw Error('Consigne non appliquée dans l’état serveur');
-        if(c.type==='etat'&&sim.S.etat!==c.e)throw Error(sim.S.note||'Transition refusée par le moteur');
-        if(c.type==='ihm'&&sim.S.ihm!==!c.perdue)throw Error('État IHM non confirmé');
+        if(c.type==='set'&&sim.S[c.k]!==c.v)throw Error('Consigne non appliquée');
+        if(c.type==='etat'&&sim.S.etat!==c.e)throw Error(sim.S.note||'Transition refusée');
+        if(c.type==='ihm'&&sim.S.ihm!==!c.perdue)throw Error('Changement de poste de conduite non confirmé');
         return {ok:true,confirmed:true};
       });const handled=operation.catch(async e=>{stopRenewals();if(net.reconcile)try{await net.reconcile(issued);}catch(_){}return {ok:false,motif:e.message};});tail=handled;return handled;
     }
