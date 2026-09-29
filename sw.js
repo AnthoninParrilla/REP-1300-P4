@@ -1,8 +1,8 @@
 // ═══ SIMUREP — © 2026 AnthoninP — Tous droits réservés. Reproduction, copie, extraction ou réutilisation
 // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée. ═══
-// Service worker du châssis public — SIMUREP (paliers 900 et 1300)
+// Service worker du châssis public — SIMUREP (paliers 900, 1300, N4 et EPR)
 // Stratégie : réseau d'abord (version toujours fraîche), cache en secours (mode avion).
-var CACHE = 'rep1300-client-202609161618';
+var CACHE = 'rep1300-client-202609290821';
 
 // Ressources locales nécessaires à l'installation et à l'identité sur iPhone.
 var PWA_ASSETS = [
@@ -14,7 +14,11 @@ var PWA_ASSETS = [
   './assets/identite/icon-512.png'
 ];
 var BASE = new URL('./', self.location.href);
-var STATIC_PATHS = PWA_ASSETS.map(function (path) { return new URL(path, BASE).pathname; });
+// Complété depuis la liste fermée du paquet lors du déploiement.
+var SDC_ASSETS = ["./index.html","./france.html","./client.html","./n4/index.html","./n4/n4.css","./n4/instruments-n4.js","./n4/n4-synoptiques.js","./n4/n4-commandes.js","./n4/n4.js","./n4/preferences-n4.js","./n4/adaptateur-n4.js","./n4/essai-n4.js","./n4/transport-prive.js","./epr/index.html","./epr/n4.css","./epr/instruments-n4.js","./epr/n4-synoptiques.js","./epr/n4-commandes.js","./epr/n4.js","./epr/preferences-n4.js","./epr/adaptateur-n4.js","./epr/essai-n4.js","./epr/transport-prive.js","./epr/epr-synoptiques.js","./epr/epr.js","./epr/epr.css"]; // SDC_PUBLIC_ASSETS
+// Cache.addAll refuse les doublons : comparer les URL résolues, pas les écritures relatives.
+var INSTALL_ASSETS = Array.from(new Set(['./', './index.html'].concat(PWA_ASSETS, SDC_ASSETS).map(function (path) { return new URL(path, BASE).href; })));
+var STATIC_PATHS = PWA_ASSETS.concat(SDC_ASSETS).map(function (path) { return new URL(path, BASE).pathname; });
 
 function cacheable(request, response) {
   if (!response || !response.ok || response.status === 206) return false;
@@ -26,7 +30,7 @@ function cacheable(request, response) {
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
-    caches.open(CACHE).then(function (c) { return c.addAll(['./', './index.html'].concat(PWA_ASSETS)); })
+    caches.open(CACHE).then(function (c) { return c.addAll(INSTALL_ASSETS); })
       .then(function () { return self.skipWaiting(); })
   );
 });

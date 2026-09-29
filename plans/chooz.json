@@ -3,8 +3,8 @@
  "palier": "N4",
  "tranches": 2,
  "src": "releve",
- "maj": "2026-09-14",
- "note": "Nord en haut ; contours bâtis publics OSM conservés sans déplacer leurs centres ni inventer de BR. Les deux ensembles nommés ChoozB1/B2 représentent des complexes entiers. Les arcs de quelques sommets ne permettent pas un centre BR suffisamment fiable ; aucune restitution circulaire forcée. SDM individuelles conservées en cartouche faute de contour distinct probant. Îlots historiques inchangés en cartouche. Deux tours aux centres et emprises source, sans attribution de tranche non prouvée. DUS, pompages, transformateurs et STE restent hors carte faute de localisation individuelle documentée.",
+ "maj": "2026-09-15",
+ "note": "Première restitution extérieure N4 : deux îlots dédiés, SDM rectangulaires aux emplacements documentaires, grandes tours et eau conservées. Gabarit commun de Civaux 1 choisi par l’auteur, sans rectangles de toiture rapportés. Placements de dessin distingués des relevés dans les preuves privées. BK, DUS et ouvrages hydrauliques non attribués par supposition.",
  "eau": {
   "type": "fleuve",
   "nom": "la Meuse",
@@ -1855,7 +1855,7 @@
    "y": 339.5,
    "r": 0,
    "m": 1,
-   "d": 139.5,
+   "d": 134.45,
    "empreinte": [
     [
      -88.9,
@@ -1944,8 +1944,18 @@
     "source": "https://www.openstreetmap.org/way/105913451",
     "releve": "2026-09-14",
     "description": "Tour explicitement taguée cooling. Centre surfacique et emprise source ; diamètre équivalent issu de l’aire, non cote constructeur. Aucun numéro de tranche dans l’objet ni concordance publique individuelle suffisante : rattachement et panache de tranche neutralisés.",
-    "millesime": "Millésime du tracé non renseigné dans cet objet"
-   }
+    "millesime": "Millésime du tracé non renseigné dans cet objet",
+    "dimensionsTour": {
+     "date": "2026-09-15",
+     "source": "https://inis.iaea.org/records/z70k4-8ph44",
+     "titre": "EDF, Chooz B, dossier de presse du 3 novembre 1997",
+     "pageImprimee": 21,
+     "diametreBaseM": 134.45,
+     "diametreSortieM": 87.83,
+     "description": "Cotes lues sur la page ; empreinte OSM plus large conservée pour le sol et le cadrage, sans assimilation à un diamètre de coque."
+    }
+   },
+   "dBouche": 87.83
   },
   {
    "t": "aero",
@@ -1953,7 +1963,7 @@
    "y": 59.2,
    "r": 0,
    "m": 1,
-   "d": 139.4,
+   "d": 134.45,
    "empreinte": [
     [
      265.1,
@@ -2042,101 +2052,316 @@
     "source": "https://www.openstreetmap.org/way/105913432",
     "releve": "2026-09-14",
     "description": "Tour explicitement taguée cooling. Centre surfacique et emprise source ; diamètre équivalent issu de l’aire, non cote constructeur. Aucun numéro de tranche dans l’objet ni concordance publique individuelle suffisante : rattachement et panache de tranche neutralisés.",
-    "millesime": "Millésime du tracé non renseigné dans cet objet"
+    "millesime": "Millésime du tracé non renseigné dans cet objet",
+    "dimensionsTour": {
+     "date": "2026-09-15",
+     "source": "https://inis.iaea.org/records/z70k4-8ph44",
+     "titre": "EDF, Chooz B, dossier de presse du 3 novembre 1997",
+     "pageImprimee": 21,
+     "diametreBaseM": 134.45,
+     "diametreSortieM": 87.83,
+     "description": "Cotes lues sur la page ; empreinte OSM plus large conservée pour le sol et le cadrage, sans assimilation à un diamètre de coque."
+    }
+   },
+   "dBouche": 87.83
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
    }
   },
   {
-   "t": "ilot",
-   "x": -68.3434526967013,
-   "y": -4.345768568323258,
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 0,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
+   }
+  },
+  {
+   "t": "transfo",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "kv": "400",
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
+   }
+  },
+  {
+   "t": "dus",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "u": 1,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
+   }
+  },
+  {
+   "t": "sdp",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "n": 2,
+   "u0": 0,
+   "L": 80,
+   "l": 26,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
+   }
+  },
+  {
+   "t": "ste",
+   "x": 0,
+   "y": 0,
+   "r": 0,
+   "m": 1,
+   "L": 64,
+   "l": 34,
+   "localisation": "non-documentee",
+   "preuve": {
+    "statut": "indetermine",
+    "releve": "2026-09-14",
+    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
+   }
+  },
+  {
+   "t": "n4",
+   "x": -74.97718046057267,
+   "y": 9.87893799425521,
    "r": 168.15622344682515,
    "m": 1,
    "u": 0,
    "lab": "BR",
+   "bkDiffere": true,
+   "geometrie": "exterieur-n4",
    "localisation": "schematique-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Aucun arc de BR suffisamment probant et confirmé indépendamment. Position du centre non déduite du barycentre du complexe. Forme du gabarit historique inchangée.",
-    "raccordementGeometrique": {
-     "statut": "implantation-schematique-raccordee",
-     "date": "2026-09-14",
-     "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
-     "angleAvant": 0,
-     "angleApres": 168.15622344682515,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
-    }
+   "contourN4": [
+    [
+     21.12209158924529,
+     -51.03965731961542
+    ],
+    [
+     -39.94616262480294,
+     -51.03965731961542
+    ],
+    [
+     -29.483555417463506,
+     -49.48238656034751
+    ],
+    [
+     -30.856591799041148,
+     -49.49041366525625
+    ],
+    [
+     -30.85254942192022,
+     -27.114297997290283
+    ],
+    [
+     -43.74062469611761,
+     -27.15569633777245
+    ],
+    [
+     -43.69300198170925,
+     -11.144542169440134
+    ],
+    [
+     -43.73140011121622,
+     -6.758821566711061
+    ],
+    [
+     -47.98742331945485,
+     -6.779288767611721
+    ],
+    [
+     -49.4872929732733,
+     -6.77897957098582
+    ],
+    [
+     -49.500680597819716,
+     14.742104441245878
+    ],
+    [
+     -35.995026091425075,
+     14.75098863199336
+    ],
+    [
+     -28.663280528691516,
+     21.877768666566514
+    ],
+    [
+     -23.375801040607243,
+     18.38419378060723
+    ],
+    [
+     -21.10236267443603,
+     21.1936958337374
+    ],
+    [
+     -18.472441485182383,
+     23.662066535670014
+    ],
+    [
+     -15.489933209993847,
+     25.745137647471662
+    ],
+    [
+     -12.285888143279802,
+     27.38152072541859
+    ],
+    [
+     -13.040583075673775,
+     28.73019814729298
+    ],
+    [
+     -14.429926964215777,
+     31.145039896892285
+    ],
+    [
+     -14.613068292975637,
+     31.457277647424483
+    ],
+    [
+     -14.636171096882286,
+     46.35978066721714
+    ],
+    [
+     -14.58147346206747,
+     52.30500216752861
+    ],
+    [
+     -14.603445770338139,
+     57.73159473969488
+    ],
+    [
+     11.616299948009253,
+     57.759657860008176
+    ],
+    [
+     11.615100799896545,
+     48.62987153450008
+    ],
+    [
+     12.333487950545212,
+     48.64457926438619
+    ],
+    [
+     15.73348938848724,
+     44.876589181426425
+    ],
+    [
+     21.286074002896083,
+     53.702081198309344
+    ],
+    [
+     31.063806216683446,
+     47.603314723171835
+    ],
+    [
+     31.72544304549146,
+     48.6838968915351
+    ],
+    [
+     55.970838996184135,
+     48.70172319344836
+    ],
+    [
+     55.90428451916705,
+     -7.078697695925243
+    ],
+    [
+     63.3470437741747,
+     -7.06440856792231
+    ],
+    [
+     63.341314321943436,
+     -29.043287101852737
+    ],
+    [
+     62.379662702404445,
+     -29.01104353501733
+    ],
+    [
+     62.39400217670374,
+     -31.324741593378153
+    ],
+    [
+     49.59926462955649,
+     -31.38169802683423
+    ],
+    [
+     49.59778985952054,
+     -49.30209132803714
+    ],
+    [
+     37.21769024363742,
+     -49.325721862397344
+    ],
+    [
+     37.251333760739556,
+     -29.112187802299864
+    ],
+    [
+     34.28834316752242,
+     -29.111292390264797
+    ],
+    [
+     34.27991845891068,
+     -44.13018799765935
+    ],
+    [
+     35.16775136674159,
+     -44.18854210738742
+    ],
+    [
+     35.19112979329138,
+     -50.30043815115744
+    ],
+    [
+     27.534705876003958,
+     -50.30472243060405
+    ],
+    [
+     27.56081188403494,
+     -50.88530027527566
+    ]
+   ],
+   "raccordN4": {
+    "x": -9.412035517778822,
+    "y": -51.03965731961542,
+    "largeur": 61.068254214048224
    },
-   "geometrie": "gabarit-conserve",
-   "implantationAvantRaccord": {
-    "x": 0,
-    "y": 0,
-    "r": 0,
-    "m": 1,
-    "u": 0,
-    "localisation": "non-documentee",
-    "preuve": {
-     "statut": "indetermine",
-     "releve": "2026-09-14",
-     "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Aucun arc de BR suffisamment probant et confirmé indépendamment. Position du centre non déduite du barycentre du complexe. Forme du gabarit historique inchangée."
-    }
-   }
-  },
-  {
-   "t": "sdm",
-   "x": -55.28994124165542,
-   "y": 57.900242056398596,
-   "r": 348.15622344682515,
-   "m": 1,
-   "n": 1,
-   "u0": 0,
-   "L": 60.20408184682904,
-   "l": 108.09711262950154,
-   "axe": "axe",
-   "localisation": "schematique-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Le polygone OSM comprend BR, auxiliaires et corps allongé ; aucune limite SDM distincte explicitement identifiée dans les sources consultées.",
-    "restitutionHalle": {
-     "statut": "corps-rectangulaire-interprete",
-     "source": "https://www.openstreetmap.org/way/331249625",
-     "sommetsFaceExterieure": [
-      18,
-      19
-     ],
-     "sommetLongCote": 14,
-     "dimensionsSource": [
-      60.20408184682904,
-      108.09711262950154
-     ],
-     "description": "Corps longitudinal reconnu dans le complexe attribué à la tranche ; face extérieure lue sur les sommets indiqués. Limite intérieure et profondeur sans cote constructeur : restitution schématique, aucun appendice attribué à un transformateur."
-    },
-    "raccordementGeometrique": {
-     "statut": "rectangle-dessine-raccorde",
-     "date": "2026-09-14",
-     "distanceDeplacementM": 80.059,
-     "angleAvant": 0,
-     "angleApres": 348.15622344682515,
-     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
-    }
-   },
-   "implantationAvantRaccord": {
-    "x": 0,
-    "y": 0,
-    "r": 0,
-    "m": 1,
-    "n": 1,
-    "u0": 0,
-    "L": 88,
-    "l": 122,
-    "localisation": "non-documentee",
-    "preuve": {
-     "statut": "indetermine",
-     "releve": "2026-09-14",
-     "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Le polygone OSM comprend BR, auxiliaires et corps allongé ; aucune limite SDM distincte explicitement identifiée dans les sources consultées."
-    }
-   },
+   "gabaritN4": "civaux-1-auteur-2026-09-15",
    "empreinteSource": [
     [
      -73.20660408325317,
@@ -2279,151 +2504,457 @@
      -48.75815999949879
     ]
    ],
-   "geometrie": "rectangle-halle",
-   "empreinte": [
-    [
-     -84.75113556782952,
-     64.07850205661954
-    ],
-    [
-     -25.828746915481325,
-     51.72198205617766
-    ],
-    [
-     -3.642474934874649,
-     157.51780000016677
-    ],
-    [
-     -62.56486358722284,
-     169.87432000060866
-    ],
-    [
-     -84.75113556782952,
-     64.07850205661954
-    ]
-   ]
-  },
-  {
-   "t": "transfo",
-   "x": 0,
-   "y": 0,
-   "r": 0,
-   "m": 1,
-   "u": 0,
-   "kv": "400",
-   "localisation": "non-documentee",
    "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
-   }
-  },
-  {
-   "t": "dus",
-   "x": 0,
-   "y": 0,
-   "r": 0,
-   "m": 1,
-   "u": 0,
-   "localisation": "non-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
-   }
-  },
-  {
-   "t": "ilot",
-   "x": 91.10124946214742,
-   "y": -38.034190437376814,
-   "r": 168.09462624659727,
-   "m": 1,
-   "u": 1,
-   "lab": "BR",
-   "localisation": "schematique-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Aucun arc de BR suffisamment probant et confirmé indépendamment. Position du centre non déduite du barycentre du complexe. Forme du gabarit historique inchangée.",
-    "raccordementGeometrique": {
-     "statut": "implantation-schematique-raccordee",
-     "date": "2026-09-14",
-     "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
-     "angleAvant": 0,
-     "angleApres": 168.09462624659727,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
-    }
-   },
-   "geometrie": "gabarit-conserve",
-   "implantationAvantRaccord": {
-    "x": 0,
-    "y": 0,
-    "r": 0,
-    "m": 1,
-    "u": 1,
-    "localisation": "non-documentee",
-    "preuve": {
-     "statut": "indetermine",
-     "releve": "2026-09-14",
-     "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Aucun arc de BR suffisamment probant et confirmé indépendamment. Position du centre non déduite du barycentre du complexe. Forme du gabarit historique inchangée."
-    }
+    "statut": "dessin-exterieur-interprete",
+    "source": "https://www.openstreetmap.org/way/331249625",
+    "date": "2026-09-15",
+    "centreBR": {
+     "statut": "raccord-gabarit-auteur",
+     "positionAvantGabarit": [
+      -74.21361517906189,
+      6.492307424545288
+     ],
+     "preuveAvantGabarit": {
+      "statut": "centre-interprete",
+      "sommetsArc": [
+       29,
+       30,
+       31,
+       32
+      ],
+      "rayonFixeM": 25.45,
+      "residuMaxCalculM": 0.21,
+      "description": "Ajustement sur un arc cadastral court, croisé avec photo EDF/CNRS et disposition NUCLEUS. Centre graphique, non levé topographique. L’entraxe NUCLEUS160 m n’est pas imposé artificiellement."
+     },
+     "translationM": [
+      -0.763565281510779,
+      3.386630569709922
+     ],
+     "description": "Gabarit Civaux 1 transposé à la façade SDM conservée, sans redimensionnement. Choix explicite de l’auteur, non nouvelle mesure du site."
+    },
+    "diametreBR": {
+     "source": "https://www.irsn.fr/sites/default/files/documents/larecherche/publications-documentation/collection-ouvrages-irsn/LAG_fran%C3%A7ais_web.pdf",
+     "pagePDF": 47,
+     "pageImprimee": 28,
+     "tableau": "2.5",
+     "diametreInterieurParoiExterieureM": 49.8,
+     "epaisseurParoiExterieureM": 0.55,
+     "diametreExterieurCalculeM": 50.9
+    },
+    "gabaritAuteur": {
+     "reference": "Civaux tranche 1 au commit 19f6d20",
+     "date": "2026-09-15",
+     "decision": "Même dessin pour les quatre N4, suppression des rectangles de couleur sur l’îlot."
+    },
+    "description": "Gabarit Civaux 1 choisi par l’auteur, raccordé aux SDM conservées. Empreinte de chaque site gardée comme référence distincte. Voir references-cnpe/DESSIN-N4.md."
    }
   },
   {
    "t": "sdm",
-   "x": 104.2216724255457,
-   "y": 24.197750728406618,
-   "r": 348.0946262465973,
-   "m": 1,
+   "u0": 0,
    "n": 1,
-   "u0": 1,
-   "L": 60.43666627381703,
-   "l": 107.58152653274962,
-   "axe": "axe",
-   "localisation": "schematique-documentee",
+   "x": -55.28994124165542,
+   "y": 57.900242056398596,
+   "r": 348.1562234468252,
+   "m": 1,
+   "L": 60.20408184682904,
+   "l": 108.09711262950154,
    "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Le polygone OSM comprend BR, auxiliaires et corps allongé ; aucune limite SDM distincte explicitement identifiée dans les sources consultées.",
     "restitutionHalle": {
      "statut": "corps-rectangulaire-interprete",
-     "source": "https://www.openstreetmap.org/way/331249628",
+     "source": "https://www.openstreetmap.org/way/331249625",
      "sommetsFaceExterieure": [
-      17,
-      18
+      18,
+      19
      ],
      "sommetLongCote": 14,
      "dimensionsSource": [
-      60.43666627381703,
-      107.58152653274962
+      60.20408184682904,
+      108.09711262950154
      ],
      "description": "Corps longitudinal reconnu dans le complexe attribué à la tranche ; face extérieure lue sur les sommets indiqués. Limite intérieure et profondeur sans cote constructeur : restitution schématique, aucun appendice attribué à un transformateur."
     },
-    "raccordementGeometrique": {
-     "statut": "rectangle-dessine-raccorde",
-     "date": "2026-09-14",
-     "distanceDeplacementM": 106.994,
-     "angleAvant": 0,
-     "angleApres": 348.0946262465973,
-     "description": "Façade intérieure placée sur la face électrique de l’asset nucléaire figé, avec axes identiques. Contour dessiné mis à jour ; empreinteSource et implantationAvantRaccord conservent le relevé documentaire distinct. La cote de raccord est celle de l’asset, pas celle du site."
+    "dessinN4": {
+     "date": "2026-09-15",
+     "description": "Rectangle repris avant raccordP4 ; bandes de toiture observées sur photographie. Pas de GTA interne ni de transformateur assimilé à la halle."
     }
    },
-   "implantationAvantRaccord": {
-    "x": 0,
-    "y": 0,
-    "r": 0,
-    "m": 1,
-    "n": 1,
-    "u0": 1,
-    "L": 88,
-    "l": 122,
-    "localisation": "non-documentee",
-    "preuve": {
-     "statut": "indetermine",
-     "releve": "2026-09-14",
-     "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées. Le polygone OSM comprend BR, auxiliaires et corps allongé ; aucune limite SDM distincte explicitement identifiée dans les sources consultées."
-    }
+   "axe": "axe",
+   "localisation": "schematique-documentee",
+   "empreinteSource": [
+    [
+     -73.20660408325317,
+     -48.75815999949879
+    ],
+    [
+     -98.98961293597036,
+     -43.41479999954288
+    ],
+    [
+     -97.1326649299508,
+     -34.17523999993222
+    ],
+    [
+     -99.63240263038612,
+     -28.943199999695253
+    ],
+    [
+     -107.34587896305833,
+     -37.29219999997241
+    ],
+    [
+     -115.98782929867686,
+     -29.165839999924117
+    ],
+    [
+     -140.84236414844767,
+     -24.935679999530578
+    ],
+    [
+     -129.20072857224332,
+     29.945080000329654
+    ],
+    [
+     -135.91430982480483,
+     31.392240000630807
+    ],
+    [
+     -131.41478196402122,
+     52.9883200006833
+    ],
+    [
+     -102.56066679368074,
+     47.31099999998861
+    ],
+    [
+     -99.56098155322177,
+     61.89392000034616
+    ],
+    [
+     -92.84740030066027,
+     60.33544000032606
+    ],
+    [
+     -91.91892629765051,
+     65.4561600000531
+    ],
+    [
+     -84.41971319647139,
+     64.00900000054293
+    ],
+    [
+     -72.38526169595822,
+     121.85087200020405
+    ],
+    [
+     -65.63596990484626,
+     155.2691359999909
+    ],
+    [
+     -63.77902189889014,
+     163.8630400007571
+    ],
+    [
+     -62.56486358722294,
+     169.87432000060863
+    ],
+    [
+     -3.6424749348747407,
+     157.5178000001668
+    ],
+    [
+     -5.285159709401218,
+     149.94804000029518
+    ],
+    [
+     -7.570634178343476,
+     139.0386800001545
+    ],
+    [
+     -25.854429929881537,
+     52.9883200006833
+    ],
+    [
+     -34.63922241989222,
+     54.76944000014129
+    ],
+    [
+     -43.852541372762175,
+     11.577280000036296
+    ],
+    [
+     -25.78300885271718,
+     7.681080000381542
+    ],
+    [
+     -30.211115636272982,
+     -13.581039999723146
+    ],
+    [
+     -42.995488446916745,
+     -11.354639999807432
+    ],
+    [
+     -52.351649554178856,
+     -17.143279999430092
+    ],
+    [
+     -57.49396710925136,
+     -12.690479999598665
+    ],
+    [
+     -60.99359988986082,
+     -15.139519999743243
+    ],
+    [
+     -65.35028559625226,
+     -17.58855999988782
+    ],
+    [
+     -69.92123453413677,
+     -18.4791200000123
+    ],
+    [
+     -67.70718114235888,
+     -22.263999999948112
+    ],
+    [
+     -73.20660408325317,
+     -48.75815999949879
+    ]
+   ],
+   "toiture": "n4-chooz",
+   "empreinte": [
+    [
+     -84.75113556782952,
+     64.07850205661951
+    ],
+    [
+     -25.828746915481325,
+     51.72198205617768
+    ],
+    [
+     -3.642474934874741,
+     157.5178000001668
+    ],
+    [
+     -62.56486358722293,
+     169.87432000060863
+    ],
+    [
+     -84.75113556782952,
+     64.07850205661951
+    ]
+   ],
+   "geometrie": "rectangle-halle"
+  },
+  {
+   "t": "n4",
+   "x": 84.48281814043663,
+   "y": -23.802360348578745,
+   "r": 168.09462624659727,
+   "m": 1,
+   "u": 1,
+   "lab": "BR",
+   "bkDiffere": true,
+   "geometrie": "exterieur-n4",
+   "localisation": "schematique-documentee",
+   "contourN4": [
+    [
+     21.12209158924529,
+     -51.03965731961542
+    ],
+    [
+     -39.94616262480294,
+     -51.03965731961542
+    ],
+    [
+     -29.483555417463506,
+     -49.48238656034751
+    ],
+    [
+     -30.856591799041148,
+     -49.49041366525625
+    ],
+    [
+     -30.85254942192022,
+     -27.114297997290283
+    ],
+    [
+     -43.74062469611761,
+     -27.15569633777245
+    ],
+    [
+     -43.69300198170925,
+     -11.144542169440134
+    ],
+    [
+     -43.73140011121622,
+     -6.758821566711061
+    ],
+    [
+     -47.98742331945485,
+     -6.779288767611721
+    ],
+    [
+     -49.4872929732733,
+     -6.77897957098582
+    ],
+    [
+     -49.500680597819716,
+     14.742104441245878
+    ],
+    [
+     -35.995026091425075,
+     14.75098863199336
+    ],
+    [
+     -28.663280528691516,
+     21.877768666566514
+    ],
+    [
+     -23.375801040607243,
+     18.38419378060723
+    ],
+    [
+     -21.10236267443603,
+     21.1936958337374
+    ],
+    [
+     -18.472441485182383,
+     23.662066535670014
+    ],
+    [
+     -15.489933209993847,
+     25.745137647471662
+    ],
+    [
+     -12.285888143279802,
+     27.38152072541859
+    ],
+    [
+     -13.040583075673775,
+     28.73019814729298
+    ],
+    [
+     -14.429926964215777,
+     31.145039896892285
+    ],
+    [
+     -14.613068292975637,
+     31.457277647424483
+    ],
+    [
+     -14.636171096882286,
+     46.35978066721714
+    ],
+    [
+     -14.58147346206747,
+     52.30500216752861
+    ],
+    [
+     -14.603445770338139,
+     57.73159473969488
+    ],
+    [
+     11.616299948009253,
+     57.759657860008176
+    ],
+    [
+     11.615100799896545,
+     48.62987153450008
+    ],
+    [
+     12.333487950545212,
+     48.64457926438619
+    ],
+    [
+     15.73348938848724,
+     44.876589181426425
+    ],
+    [
+     21.286074002896083,
+     53.702081198309344
+    ],
+    [
+     31.063806216683446,
+     47.603314723171835
+    ],
+    [
+     31.72544304549146,
+     48.6838968915351
+    ],
+    [
+     55.970838996184135,
+     48.70172319344836
+    ],
+    [
+     55.90428451916705,
+     -7.078697695925243
+    ],
+    [
+     63.3470437741747,
+     -7.06440856792231
+    ],
+    [
+     63.341314321943436,
+     -29.043287101852737
+    ],
+    [
+     62.379662702404445,
+     -29.01104353501733
+    ],
+    [
+     62.39400217670374,
+     -31.324741593378153
+    ],
+    [
+     49.59926462955649,
+     -31.38169802683423
+    ],
+    [
+     49.59778985952054,
+     -49.30209132803714
+    ],
+    [
+     37.21769024363742,
+     -49.325721862397344
+    ],
+    [
+     37.251333760739556,
+     -29.112187802299864
+    ],
+    [
+     34.28834316752242,
+     -29.111292390264797
+    ],
+    [
+     34.27991845891068,
+     -44.13018799765935
+    ],
+    [
+     35.16775136674159,
+     -44.18854210738742
+    ],
+    [
+     35.19112979329138,
+     -50.30043815115744
+    ],
+    [
+     27.534705876003958,
+     -50.30472243060405
+    ],
+    [
+     27.56081188403494,
+     -50.88530027527566
+    ]
+   ],
+   "raccordN4": {
+    "x": -9.412035517778822,
+    "y": -51.03965731961542,
+    "largeur": 61.068254214048224
    },
+   "gabaritN4": "civaux-1-auteur-2026-09-15",
    "empreinteSource": [
     [
      87.20513520550071,
@@ -2554,97 +3085,244 @@
      -83.26735999937881
     ]
    ],
-   "geometrie": "rectangle-halle",
+   "preuve": {
+    "statut": "dessin-exterieur-interprete",
+    "source": "https://www.openstreetmap.org/way/331249628",
+    "date": "2026-09-15",
+    "centreBR": {
+     "statut": "raccord-gabarit-auteur",
+     "positionAvantGabarit": [
+      86.48178374767303,
+      -28.02775490283966
+     ],
+     "preuveAvantGabarit": {
+      "statut": "centre-interprete",
+      "sommetsArc": [
+       25,
+       26,
+       27,
+       28,
+       29
+      ],
+      "rayonFixeM": 25.45,
+      "residuMaxCalculM": 0.12,
+      "description": "Ajustement sur un arc cadastral court, croisé avec photo EDF/CNRS et disposition NUCLEUS. Centre graphique, non levé topographique. L’entraxe NUCLEUS160 m n’est pas imposé artificiellement."
+     },
+     "translationM": [
+      -1.9989656072364,
+      4.225394554260916
+     ],
+     "description": "Gabarit Civaux 1 transposé à la façade SDM conservée, sans redimensionnement. Choix explicite de l’auteur, non nouvelle mesure du site."
+    },
+    "diametreBR": {
+     "source": "https://www.irsn.fr/sites/default/files/documents/larecherche/publications-documentation/collection-ouvrages-irsn/LAG_fran%C3%A7ais_web.pdf",
+     "pagePDF": 47,
+     "pageImprimee": 28,
+     "tableau": "2.5",
+     "diametreInterieurParoiExterieureM": 49.8,
+     "epaisseurParoiExterieureM": 0.55,
+     "diametreExterieurCalculeM": 50.9
+    },
+    "gabaritAuteur": {
+     "reference": "Civaux tranche 1 au commit 19f6d20",
+     "date": "2026-09-15",
+     "decision": "Même dessin pour les quatre N4, suppression des rectangles de couleur sur l’îlot."
+    },
+    "description": "Gabarit Civaux 1 choisi par l’auteur, raccordé aux SDM conservées. Empreinte de chaque site gardée comme référence distincte. Voir references-cnpe/DESSIN-N4.md."
+   }
+  },
+  {
+   "t": "sdm",
+   "u0": 1,
+   "n": 1,
+   "x": 104.2216724255457,
+   "y": 24.197750728406618,
+   "r": 348.09462624659733,
+   "m": 1,
+   "L": 60.43666627381703,
+   "l": 107.58152653274962,
+   "preuve": {
+    "restitutionHalle": {
+     "statut": "corps-rectangulaire-interprete",
+     "source": "https://www.openstreetmap.org/way/331249628",
+     "sommetsFaceExterieure": [
+      17,
+      18
+     ],
+     "sommetLongCote": 14,
+     "dimensionsSource": [
+      60.43666627381703,
+      107.58152653274962
+     ],
+     "description": "Corps longitudinal reconnu dans le complexe attribué à la tranche ; face extérieure lue sur les sommets indiqués. Limite intérieure et profondeur sans cote constructeur : restitution schématique, aucun appendice attribué à un transformateur."
+    },
+    "dessinN4": {
+     "date": "2026-09-15",
+     "description": "Rectangle repris avant raccordP4 ; bandes de toiture observées sur photographie. Pas de GTA interne ni de transformateur assimilé à la halle."
+    }
+   },
+   "axe": "axe",
+   "localisation": "schematique-documentee",
+   "empreinteSource": [
+    [
+     87.20513520550071,
+     -83.26735999937881
+    ],
+    [
+     61.20786312129046,
+     -77.5900399994751
+    ],
+    [
+     62.636284664387304,
+     -67.79387999968776
+    ],
+    [
+     60.279389118280676,
+     -63.56371999929422
+    ],
+    [
+     52.56591278560849,
+     -71.3561199993947
+    ],
+    [
+     44.35248891284924,
+     -63.56371999929422
+    ],
+    [
+     19.783638371735826,
+     -59.110919999462794
+    ],
+    [
+     31.28243179361147,
+     -4.452799999831427
+    ],
+    [
+     23.99748192386199,
+     -3.005639999530274
+    ],
+    [
+     28.497009784582147,
+     18.367800000293357
+    ],
+    [
+     57.56538818641571,
+     12.801800000108585
+    ],
+    [
+     60.279389118280676,
+     27.273400000747188
+    ],
+    [
+     67.49291791086581,
+     25.60360000021717
+    ],
+    [
+     69.77839237980807,
+     30.835640000454134
+    ],
+    [
+     74.84928885777964,
+     30.390359999996406
+    ],
+    [
+     87.04086672802903,
+     88.83336000035456
+    ],
+    [
+     93.49018999507607,
+     119.55768000029877
+    ],
+    [
+     96.8469806213568,
+     135.69908000067642
+    ],
+    [
+     155.98363250513464,
+     123.23124000051564
+    ],
+    [
+     133.77167751012786,
+     19.481000000646702
+    ],
+    [
+     125.34399040593895,
+     21.0394800006668
+    ],
+    [
+     116.41635576159956,
+     -22.93191999984373
+    ],
+    [
+     134.70015151313763,
+     -26.939440000008403
+    ],
+    [
+     130.27204472958184,
+     -47.867599999374306
+    ],
+    [
+     116.41635576159956,
+     -45.52987999973965
+    ],
+    [
+     108.06008973457503,
+     -41.522359999574974
+    ],
+    [
+     104.20335156820721,
+     -46.197799999635265
+    ],
+    [
+     99.98950801614448,
+     -49.64871999962327
+    ],
+    [
+     95.98992769544796,
+     -51.76379999982004
+    ],
+    [
+     91.4903998347278,
+     -52.876999999382406
+    ],
+    [
+     92.84740030066027,
+     -57.5524399994427
+    ],
+    [
+     87.20513520550071,
+     -83.26735999937881
+    ]
+   ],
+   "toiture": "n4-chooz",
    "empreinte": [
     [
-     74.6533464836568,
-     30.43167072848704
+     74.65334648365678,
+     30.431670728486985
     ],
     [
-     133.7899983674346,
-     17.963830728326197
+     133.78999836743463,
+     17.96383072832625
     ],
     [
-     155.98363250513484,
-     123.23124000051556
+     155.98363250513466,
+     123.23124000051565
     ],
     [
-     96.846980621357,
-     135.6990800006764
+     96.8469806213568,
+     135.69908000067642
     ],
     [
-     74.6533464836568,
-     30.43167072848704
+     74.65334648365678,
+     30.431670728486985
     ]
-   ]
-  },
-  {
-   "t": "transfo",
-   "x": 0,
-   "y": 0,
-   "r": 0,
-   "m": 1,
-   "u": 1,
-   "kv": "400",
-   "localisation": "non-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
-   }
-  },
-  {
-   "t": "dus",
-   "x": 0,
-   "y": 0,
-   "r": 0,
-   "m": 1,
-   "u": 1,
-   "localisation": "non-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
-   }
-  },
-  {
-   "t": "sdp",
-   "x": 0,
-   "y": 0,
-   "r": 0,
-   "m": 1,
-   "n": 2,
-   "u0": 0,
-   "L": 80,
-   "l": 26,
-   "localisation": "non-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
-   }
-  },
-  {
-   "t": "ste",
-   "x": 0,
-   "y": 0,
-   "r": 0,
-   "m": 1,
-   "L": 64,
-   "l": 34,
-   "localisation": "non-documentee",
-   "preuve": {
-    "statut": "indetermine",
-    "releve": "2026-09-14",
-    "description": "Fonction conservée en cartouche ; aucun emplacement individuel suffisamment documenté dans les références consultées."
-   }
+   ],
+   "geometrie": "rectangle-halle"
   }
  ],
  "auditVisuel": {
-  "date": "2026-09-14",
-  "reference": "references-cnpe/ign/chooz.jpg",
-  "source": "IGN — BD ORTHO, Licence ouverte 2.0",
-  "portee": "Paysage IGN observé avec emprise pixellisée ; géométrie bâtie et tours tirées exclusivement d’OSM public. Aucun contour déduit des pixels masqués. Degrés de preuve géométrique et fonctionnelle distincts par objet."
+  "date": "2026-09-15",
+  "source": "Photographies publiques EDF/CNRS et Civaux-communication ; géométrie OSM ; dimensions IRSN2013.",
+  "portee": "Silhouette extérieure et rapports de taille ; positions cartographiques interprétées, pas un inventaire topographique certifié. Détails absents consignés dans DESSIN-N4.md."
  },
  "geographie": {
   "origine": [
@@ -2659,8 +3337,14 @@
   "licence": "ODbL 1.0",
   "portee": "Empreintes publiques collaboratives ; précision et fonctions non certifiées par un exploitant."
  },
- "reparationImplantations": {
-  "date": "2026-09-14",
-  "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."
+ "dessinN4": {
+  "date": "2026-09-15",
+  "phase": "4.5",
+  "versionCible": "2.17.0",
+  "statut": "premier-dessin-prive",
+  "reference": "references-cnpe/DESSIN-N4.md",
+  "gabaritAuteur": "civaux-1-auteur-2026-09-15",
+  "bkDiffere": true,
+  "description": "Moteur N4 fermé ; aucun cnK factice. Qualification du bâtiment combustible avant ouverture de la conduite."
  }
 }

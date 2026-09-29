@@ -2,8 +2,8 @@
 
 **→ [simurep.fr](https://simurep.fr)**
 
-Le site permet de piloter deux paliers du parc : le **900 MWe** (CPY et CP0, trois
-boucles) et le **1300 MWe** (P4 et P'4, quatre boucles), chacun dans sa salle de
+La version **2.17.0** permet de piloter les paliers **900 MWe** (CPY et CP0, trois
+boucles), **1300 MWe** (P4 et P'4), **N4** et **EPR**, chacun dans sa salle de
 commande, depuis la carte de France et le plan de chacun des dix-huit sites en
 exploitation.
 
@@ -11,7 +11,9 @@ Ce dépôt sert **uniquement** à publier le site. Il ne contient pas le logicie
 
 ## Ce qu'il y a ici
 
-`index.html` est un **châssis d'affichage** : les fonctions du moteur physique
+`index.html` accueille la navigation. `france.html` et `client.html` sont des
+**châssis d'affichage** ; `n4/` et `epr/` contiennent les postes de conduite.
+Dans les châssis, les fonctions du moteur physique
 (`physStep`, `slowStep`, `trips`, `applyEtat`, `gridStep`, `ptrStep`,
 `initOperatingPoint`, `electricalSetpoint`) y sont
 **vides**, et `setEtat` et `doScram` se bornent à relayer la commande au serveur.
