@@ -25,7 +25,7 @@
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
 <meta name="identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
 <meta name="dcterms.identifier" content="IDDN.FR.001.350014.000.S.P.2026.000.21100">
-<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.17.0d</title>
+<title>SIMUREP, le simulateur du parc électronucléaire français · version 2.17.0e</title>
 <!-- IDENTITE_PARTAGE_DEBUT : reprise par le générateur sur la page racine, lisible sans JavaScript. -->
 <meta property="og:title" content="SIMUREP, le simulateur du parc électronucléaire français">
 <meta property="og:description" content="Explore la carte de France, choisis une centrale et prends le quart sur ses tranches. Paliers 900, 1300, N4 et EPR, missions et mode facile.">
@@ -639,7 +639,7 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
   <div>
     <h1><span id="hdrTranche">Tranche REP 1300 MWe</span> <span id="hdrPal" style="font-size:.55em;font-weight:600;opacity:.75">· palier P4/P'4 · SIMUREP, le simulateur du parc électronucléaire français</span></h1>
     <div class="sub"><span id="hdrSub">Palier P4</span> · Synoptique primaire / secondaire
-      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.17.0d</span></div>
+      <span id="siteTag" style="float:right;color:var(--amber,#d8a03c);font-size:11px;margin-left:10px"></span><span id="srvDot" style="font-size:10px;margin-right:8px">● connexion…</span><span id="verTag" style="float:right;color:var(--dim);font-size:11px;letter-spacing:0.5px;margin-left:8px">version 2.17.0e</span></div>
     <div class="stageSteps" role="group" aria-label="Niveaux du simulateur · vue Tranche"><span>01 France</span><i aria-hidden="true">›</i><span>02 CNPE</span><i aria-hidden="true">›</i><b aria-current="step">03 Tranche</b></div>
   </div>
   <div class="spacer"></div>
@@ -1996,7 +1996,8 @@ body:not(.pal-900) .cadran,body:not(.pal-900) .voyant,body:not(.pal-900) .gamme{
     }
     S.pal=id; PALID=id;
     peauPalier(id);
-    PAL=PALIERS[id]; PRESET=PRESETS[id]; JUMP=JUMPS[id];
+    
+    PAL=PALIERS[id]; PRESET=PRESETS[id]||{}; JUMP=JUMPS[id]||{};
     COND=typeof PROGRAMMES_PALIERS.conduite==='function'?PROGRAMMES_PALIERS.conduite(id):null;
     S0=JSON.parse(JSON.stringify(nominal())); S0.pal=id;   
     W_ROD=PAL.W_ROD; W_BORE=1; W_XE=0; A_MOD=PAL.A_MOD; DEF_PUI=PAL.DEF_PUI; WG=PAL.WG;
@@ -3813,8 +3814,8 @@ var ISO=(function(){
    {pal:'N4|EPR',t:'Le pic xénon',c:'Reste en arrêt à chaud, passe en ×300 et suis le « Xénon » (page Réacteur, fiche de la cuve) : il MONTE pendant des heures après l’arrêt. Attends qu’il dépasse 1,50 (pic quelques heures après l’arrêt).',test:function(){return S.scram&&S.Xe>1.5;},b:'Voilà le fameux pic xénon : l’iode accumulé continue de se transformer en xénon alors que plus rien ne le brûle. Redémarrer maintenant serait très difficile : c’est LA contrainte de planning des vrais exploitants.'},
    {pal:'N4|EPR',t:'Réarmer et re-diverger',c:'Laisse le xénon retomber (encore ×300, ~1 jour simulé), puis page Exploitation : « Réarmer AAR ». Ensuite monte PAR PALIERS la « Consigne de charge » (Eau-vapeur, fiche GRE · Turbine) : 10 %, attends que les grappes remontent et que la température se stabilise, puis 20, puis 30 ; la mission est réussie dès que la puissance dépasse 25 %. Tout ouvrir d’un coup sur un cœur endormi glace le primaire et fait sortir du domaine (page Domaine P/T) !',test:function(){return !S.scram&&S.Pn>0.25;},b:'Tu viens de faire une re-divergence complète : réarmement des grappes, retour en puissance. En vrai il faudrait la chimie, les essais et l’accord du réseau, mais la physique, tu l’as.'},
    {pal:'N4|EPR',t:'Changer d’état',c:'Passe officiellement à l’état AN/GV : page Exploitation, « État de tranche », bouton ANGV.',test:function(){return S.etat==='ANGV';},b:'Te voilà en Arrêt Normal sur les GV. Prochaine étape : la vraie descente d’un exploitant.'},
-   {pal:'N4',t:'La descente complète',c:'Objectif final : l’AN/RRA (page Domaine P/T : ton juge). Page Eau-vapeur, vanne GCT-C : « Consigne de pression vapeur » à 8 bar, puis ×300. Vers 250 °C, la pression primaire quitte 155 bar : repasse en ×60 et, page Sauvegardes, « Blocage signal IS » dès qu’elle passe sous 139 bar (avant 118 bar, sinon l’injection de sécurité démarre). Vers 180 °C, passe en ×1 : quelques minutes plus tard, la pression plonge vers 30 bar ; « Isolement accumulateurs » dès qu’elle passe sous 50 bar (tu as une demi-minute, avant 42 bar). Manqués, ils se vident dans le primaire et la connexion attend une demi-heure de plus. Entre 160 et 180 °C et sous 31 bar : page Exploitation, « ANRRA ».',test:function(){return S.etat==='ANRRA';},b:'🏆 CHAPEAU ! Tu viens de conduire une tranche N4 de la pleine puissance jusqu’au refroidissement à l’arrêt, dans les clous du domaine. Continue vers l’APIF, l’APR ou le RCD, remonte, ou casse tout pour voir, le guide reste là.'},
-   {pal:'EPR',t:'La descente complète',c:'Objectif final : l’AN/RRA par le RIS-RA (page Domaine P/T : ton juge). Page Eau-vapeur, vanne GCT-C : « Consigne de pression vapeur » à 8 bar, puis ×300. Vers 250 °C, la pression primaire quitte 155 bar : repasse en ×60 et, page Sauvegardes, « Blocage signal IS » dès qu’elle passe sous 130 bar (avant 115 bar, sinon l’injection de sécurité démarre). Vers 180 °C, passe en ×1 : quelques minutes plus tard, la pression plonge vers 30 bar ; « Isolement accumulateurs » dès qu’elle passe sous 50 bar (tu as une demi-minute, avant 42 bar). Manqués, ils se vident dans le primaire et la connexion attend une demi-heure de plus. Entre 100 et 180 °C et sous 32 bar : page Exploitation, « ANRRA ».',test:function(){return S.etat==='ANRRA';},b:'🏆 CHAPEAU ! Tu viens de conduire une tranche EPR de la pleine puissance jusqu’au refroidissement à l’arrêt par le RIS-RA, dans les clous du domaine. Continue vers l’APIF, l’APR ou le RCD, remonte, ou casse tout pour voir, le guide reste là.'},
+   {pal:'N4',t:'La descente complète',c:'Objectif final : l’AN/RRA (page Domaine P/T : ton juge). Page Eau-vapeur, vanne GCT-C : « Consigne de pression vapeur » à 8 bar, puis ×300. Vers 250 °C, la pression primaire quitte 155 bar : repasse en ×60 et, page Sauvegardes, « Blocage signal IS » dès qu’elle passe sous 139 bar (avant 118 bar, sinon l’injection de sécurité démarre). Vers 180 °C, passe en ×1 : quelques minutes plus tard, la pression plonge vers 30 bar ; « Isolement accumulateurs » dès qu’elle passe sous 50 bar (tu as une demi-minute, avant 42 bar). Manqués, ils se vident dans le primaire et la connexion attend une demi-heure de plus. Entre 160 et 180 °C et sous 31 bar : page Exploitation, « ANRRA ». Injection de sécurité démarrée faute de blocage ? Ce n’est pas une fuite : page Sauvegardes, arrête l’injection moyenne pression puis basse pression, isole les accumulateurs, puis connecte.',test:function(){return S.etat==='ANRRA';},b:'🏆 CHAPEAU ! Tu viens de conduire une tranche N4 de la pleine puissance jusqu’au refroidissement à l’arrêt, dans les clous du domaine. Continue vers l’APIF, l’APR ou le RCD, remonte, ou casse tout pour voir, le guide reste là.'},
+   {pal:'EPR',t:'La descente complète',c:'Objectif final : l’AN/RRA par le RIS-RA (page Domaine P/T : ton juge). Page Eau-vapeur, vanne GCT-C : « Consigne de pression vapeur » à 8 bar, puis ×300. Vers 250 °C, la pression primaire quitte 155 bar : repasse en ×60 et, page Sauvegardes, « Blocage signal IS » dès qu’elle passe sous 130 bar (avant 115 bar, sinon l’injection de sécurité démarre). Vers 180 °C, passe en ×1 : quelques minutes plus tard, la pression plonge vers 30 bar ; « Isolement accumulateurs » dès qu’elle passe sous 50 bar (tu as une demi-minute, avant 42 bar). Manqués, ils se vident dans le primaire et la connexion attend une demi-heure de plus. Entre 100 et 180 °C et sous 32 bar : page Exploitation, « ANRRA ». Injection de sécurité démarrée faute de blocage ? Ce n’est pas une fuite : page Sauvegardes, arrête les ordres ISMP puis ISBP, isole les accumulateurs, puis connecte.',test:function(){return S.etat==='ANRRA';},b:'🏆 CHAPEAU ! Tu viens de conduire une tranche EPR de la pleine puissance jusqu’au refroidissement à l’arrêt par le RIS-RA, dans les clous du domaine. Continue vers l’APIF, l’APR ou le RCD, remonte, ou casse tout pour voir, le guide reste là.'},
    {pal:'N4|EPR',t:'Perte du RRA',c:'En AN/RRA, page Incidents : « Perte RRA ». Plus rien n’évacue la chaleur, la température remonte toute seule. Clique « Rétablir RRA » avant de repasser 180 °C !',test:function(){return S._mW.sawRraF&&!S.rraF&&S.etat==='ANRRA'&&S.Tavg<178;},watch:function(){if(S.rraF)S._mW.sawRraF=true;},b:'Tu as vu la tranche « morte » se réchauffer seule : la chaleur résiduelle n’attend personne, et la pression finit par décoller le long de la courbe de saturation. C’est LE scénario qui justifie les secours du refroidissement à l’arrêt.'},
    {pal:'N4|EPR',t:'La boucle complète',c:'Dernier défi : remonte TOUTE la tranche. Page Exploitation : ANGV (les GMPP redémarrent), laisse réchauffer (×300) jusqu’à l’arrêt à chaud (température moyenne stable, pression 155 bar ; trop tôt, le passage en RP finit en arrêt automatique), puis RP : la montée en charge est automatique, la turbine part de 1 %. ATTENTION : après un long arrêt le xénon est retombé, le cœur est TRÈS réactif. Si le journal (page Alarmes) annonce une MONTÉE SUSPENDUE, maintiens « Borication » (grappes trop basses) ou « Dilution » (grappes sorties à fond), fiche de la cuve. C’est le vrai métier du redémarrage.',test:function(){return S.etat==='RP'&&S.Pn>0.9;},b:'🏆 RP retrouvé après un cycle complet descente-remontée : tu as fait, en accéléré, ce qu’une équipe de conduite fait sur plusieurs jours. La tranche est à toi.'},
   ];
@@ -3841,6 +3842,12 @@ var ISO=(function(){
     var e=S.etat,SDC=PAL.ID==='N4'||PAL.ID==='EPR',EPRp=PAL.ID==='EPR',RRA_T=EPRp?100:160,RRA_P=EPRp?32:31; 
     if(S.dmg>0.05)return "🔴 Le cœur est endommagé : le combustible a trop chauffé. En vrai, ce serait un accident grave. Tu peux RÉINITIALISER la simulation, ou observer la suite.";
     if(S.fus)return "🔴 Fusion du cœur. Réinitialise la simulation pour recommencer.";
+    
+    
+    
+    if(S.sigIS&&SDC&&S.etat==='ANGV'&&!(S.breche>0)&&!(S.fuiteGV>0)&&!S.rtv)return S.Ppzr>=PAL.REARM
+      ?"🟠 SIGNAL IS présent sans fuite (blocage IS non posé) : page Sauvegardes, « Réarmer IS » arrête l’injection (accepté au-dessus de "+PAL.REARM+" bar)."
+      :"🟠 SIGNAL IS déclenché par la baisse de pression de la descente (blocage IS non posé sous "+PAL.P11+" bar) : ce n’est pas une fuite, mais l’injection tient la pression au-dessus de la fenêtre de connexion et du domaine P-T. Page Sauvegardes : arrête "+(EPRp?"les ordres ISMP puis ISBP":"l’injection moyenne pression puis basse pression")+" ; la pression rejoint celle des accumulateurs : isole-les, puis connecte (page Exploitation). « Réarmer IS » n’est accepté qu’au-dessus de "+PAL.REARM+" bar.";
     if(S._ptBad)return SDC?"⚠ Le point pression/température est SORTI de la zone autorisée (page Domaine P/T). En général : refroidir moins vite (vanne GCT-C, « Consigne de pression vapeur » plus haute).":"⚠ Le point pression/température est SORTI de la zone autorisée (onglet Chaussette). En général : refroidir moins vite, ou ajuster la consigne du pressuriseur.";
     if(S.sigIS)return "🚨 FUITE DÉTECTÉE : l’injection de secours envoie automatiquement de l’eau borée dans le réacteur. Laisse les automatismes travailler et surveille l’inventaire en eau.";
     if(S.easy&&S._blkDue)return "👉 Changement d’état de tranche : on baisse la pression volontairement, sans fuite. BLOQUE l’injection de secours ("+(SDC?"page Sauvegardes : « Blocage signal IS »":"bouton BLOQUER IS, carte Signaux")+"), sinon l’automate croira à une brèche et re-pressurisera le circuit.";
@@ -4715,7 +4722,8 @@ var ISO=(function(){
     }else if(Math.abs(S.Ptot-S.turb/100)>0.06){
       msg.textContent="Transitoire de charge : les grappes ajustent la réactivité pour tenir Tmoy sur son programme.";
     }else if(S.etat==='ANGV'&&!S.scram){
-      msg.textContent="AN/GV, arrêt à chaud : réacteur sous-critique boré, primaire à "+PAL.PPRIM+" bar / ~"+Math.round((JUMP.ANGV||{}).Tavg||0)+" °C, puissance résiduelle évacuée par les GV via le GCT. C'est un domaine d'exploitation, l'état standard reste l'AN/GV.";
+      var _tAN=(JUMP&&JUMP.ANGV&&Number.isFinite(JUMP.ANGV.Tavg))?JUMP.ANGV.Tavg:S.Tavg; 
+      msg.textContent="AN/GV, arrêt à chaud : réacteur sous-critique boré, primaire à "+PAL.PPRIM+" bar"+(Number.isFinite(_tAN)?" / ~"+Math.round(_tAN)+" °C":"")+", puissance résiduelle évacuée par les GV via le GCT. C'est un domaine d'exploitation, l'état standard reste l'AN/GV.";
     }else if(S.etat==='ANRRA'){
       msg.textContent="AN/RRA, refroidissement à l’arrêt : GMPP arrêtées, le RRA assure la circulation et évacue la puissance résiduelle vers le RRI. Réacteur boré grappes insérées, pressuriseur en eau vers 25-31 bar.";
     }else if(S.etat==='APIF'||S.etat==='APIO'){
@@ -7676,6 +7684,6 @@ document.querySelectorAll('button').forEach(function(b){
     <footer class="parcFooter"><span>SIMUREP · Le simulateur du parc électronucléaire français</span><span>by AnthoninP · helped by AI · © 2026 tous droits réservés</span></footer>
   </div>
 </div>
-<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 75e366a49201d609 · contact@simurep.fr -->
+<!-- SIMUREP · © 2026 AnthoninP · tous droits réservés · build 1094e7a2a51fd484 · contact@simurep.fr -->
 </body>
 </html>

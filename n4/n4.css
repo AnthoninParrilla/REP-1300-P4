@@ -140,3 +140,8 @@
 .n4-sdc .n4-mission-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .n4-sdc .n4-mission-actions button{min-height:44px;margin:0;padding:6px 12px;background:#22383d;color:#e1eeee;border:1px solid #577078;border-radius:3px;font:13px system-ui,sans-serif}
 @media(max-width:380px){.n4-sdc .n4-mission-toggle{gap:6px;padding:6px 8px;font-size:12px}}
+/* 2.17.0e (N3, N6) : affichage du poste interrompu par une erreur ; alerte fixe, lisible, avec « Recharger le poste ». */
+.n4-alerte-poste{position:fixed;z-index:60;top:calc(8px + var(--simurep-safe-top,env(safe-area-inset-top,0px)));left:12px;right:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 14px;border:2px solid #a03030;border-radius:6px;background:#f6dcd6;color:#4a1410;font:14px/1.45 system-ui,sans-serif;box-shadow:0 3px 12px #0006}
+.n4-alerte-poste p{margin:0;flex:1 1 220px}
+.n4-alerte-poste button{min-height:44px;padding:8px 14px;border:1px solid #6e2a20;border-radius:6px;background:#7a2418;color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer}
+#n4-reessayer{margin:0 0 0 24px;min-height:44px;padding:8px 16px;font:16px system-ui}

@@ -11,6 +11,14 @@
     else if({tr005:1,tr02:1,tr06:1,tr12:1}[id])c={type:'set',k:'turbRate',v:{tr005:.05,tr02:.2,tr06:.6,tr12:1.2}[id]};
     c.poste=p;
   }if(c.type==='set'&&c.k==='speed')c={type:'speed',v:c.v,poste:c.poste};if(c.type==='set'&&c.k==='gainePct'){if(!Number.isFinite(c.v)||c.v<0||c.v>30||!Number.isInteger(c.v*2))throw Error('Gainage hors plage');c.k='gaine';c.v/=100;}return c;}
+  // 2.17.0e (N6) : un échec de liaison (requête perdue, délai, moteur indisponible) n'atteint jamais le joueur en message brut ;
+  // un motif métier du serveur ou du poste (permissif, refus motivé, tranche changée) reste tel quel.
+  const RESEAU=/Failed to fetch|Load failed|NetworkError|fetch failed|network error|délai de confirmation dépassé|aborted/i;
+  function motifJoueur(e){const m=String(e&&e.message||e||''),nom=e&&e.name||'';
+    if(nom==='AbortError'||RESEAU.test(m))return 'Liaison avec le moteur interrompue : commande non confirmée. L’affichage reprend l’état réel du serveur dès le retour du réseau ; vérifie-le avant de recommencer.';
+    if(/^requête refusée \(5\d\d\)$/.test(m)||/^(serveur|dispatching) plein$/.test(m))return 'Le moteur de SIMUREP ne répond pas pour l’instant : commande non confirmée. Réessaie dans un instant.';
+    if(['TypeError','ReferenceError','RangeError','SyntaxError'].includes(nom)){try{console.error(e);}catch(_){}return 'Commande non confirmée : erreur interne du poste. Vérifie l’état affiché avant de recommencer.';}
+    return m||'Commande non confirmée';}
   async function connect(win,config){
     for(let i=0;!win.__net&&i<100;i++)await new Promise(r=>setTimeout(r,50));
     if(!win.__net||!win.CNPE)throw Error('Liaison au poste indisponible');
@@ -36,16 +44,19 @@
         if(net.ukey()!==issued)throw Error('Tranche changée : commande annulée');
         const c=normalize(emitted,sim.S,win.CNPE.follow);
         await net.cmd(c);
-        const answer=await net.take(issued,null);
+        let answer;
+        // 2.17.0e : la commande vient d'être acceptée ; un échec ancien de la file (commande précédente sans réponse) ne la
+        // rend pas incertaine. L'ancienne est réconciliée avec l'état du serveur, sans être rejouée, puis l'état est relu.
+        try{answer=await net.take(issued,null);}catch(e){if(!net.reconcile)throw e;await net.reconcile(issued);answer=await net.take(issued,null);}
         if(net.ukey()!==issued)throw Error('Tranche changée : confirmation ignorée');
         net.select(issued,key,answer.state);
         if(c.type==='set'&&sim.S[c.k]!==c.v)throw Error('Consigne non appliquée');
         if(c.type==='etat'&&sim.S.etat!==c.e)throw Error(sim.S.note||'Transition refusée');
         if(c.type==='ihm'&&sim.S.ihm!==!c.perdue)throw Error('Changement de poste de conduite non confirmé');
         return {ok:true,confirmed:true};
-      });const handled=operation.catch(async e=>{stopRenewals();if(net.reconcile)try{await net.reconcile(issued);}catch(_){}return {ok:false,motif:e.message};});tail=handled;return handled;
+      });const handled=operation.catch(async e=>{stopRenewals();if(net.reconcile)try{await net.reconcile(issued);}catch(_){}return {ok:false,motif:motifJoueur(e)};});tail=handled;return handled;
     }
     return {dispatch,stopRenewals,ready:true,palier:sim.S.pal,site:config.site,unit:config.unit};
   }
-  return {connect,normalize};
+  return {connect,normalize,motifJoueur};
 });

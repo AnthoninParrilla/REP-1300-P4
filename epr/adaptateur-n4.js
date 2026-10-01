@@ -8,7 +8,7 @@
     S=S||{};PAL=PAL||{};
     const d=PAL.DTB*S.Ptot*(S.gmppN>0?PAL.NB/S.gmppN:3);
     // État d’exploitation affiché comme à la vue CNPE : l’AU puis l’îlotage priment sur l’état visé (targetState).
-    return {state:Object.assign(copy(S),{residualMW:finite(S.Pres*PAL.PTH),boreTotal:Number.isFinite(S.Cb)&&Number.isFinite(PAL.CB0)?S.Cb+PAL.CB0:null,gainePct:Number.isFinite(S.gaine)?Math.round(S.gaine*100000)/1000:null,dus:S.dus===true,tVapGV:finite(options.steamTemperature)}),pal:copy(PAL),stateLabel:S.scram?'AU':S.ilote?'ÎLOT':(S.etat||'—'),targetState:S.etat||null,nominalElectric:PAL.ID==='EPR'?1650:1450,simulationTime:finite(S.t),
+    return {state:Object.assign(copy(S),{residualMW:finite(S.Pres*PAL.PTH),boreTotal:Number.isFinite(S.Cb)&&Number.isFinite(PAL.CB0)?S.Cb+PAL.CB0:null,gainePct:Number.isFinite(S.gaine)?Math.round(S.gaine*100000)/1000:null,dus:S.dus===true,tVapGV:finite(options.steamTemperature)}),pal:copy(PAL),stateLabel:S.scram?'AU':S.ilote?'ÎLOT':(S.etat||'—'),targetState:S.etat||null,nominalElectric:PAL.ID==='EPR'?1650:1450,simulationTime:finite(S.t),liaison:options.liaison&&typeof options.liaison==='object'?{ok:options.liaison.ok!==false,texte:String(options.liaison.texte||'')}:null,
       powerThermal:finite(PAL.PTH*S.Ptot),powerElectric:finite(S.Pelec),powerGross:finite(S.Pbrut),powerAuxiliary:finite(S.Paux),
       pressurePrimary:finite(S.Ppzr),pressureSteam:finite(S.Psteam),steamTemperature:finite(options.steamTemperature),tempAverage:finite(S.Tavg),
       tempHot:finite(Number.isFinite(S.Thot)?S.Thot:S.Tavg+d),tempCold:finite(Number.isFinite(S.Tcold)?S.Tcold:S.Tavg-d),

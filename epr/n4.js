@@ -119,11 +119,12 @@
   }
   // Mission active (H18) : titre compact au-dessus de l'écran principal, dépliable (consigne ou bravo, progression),
   // conservé entre pages et rafraîchissements ; arrêt explicite, sans passer par le transport de conduite.
+  // 2.17.0e (N2) : l'encart propose aussi la mission suivante (même effet que PASSER LA MISSION de la page Aide & missions).
   function missionBar(ui,data){
     const m=data.mission;if(!m||!m.actif)return '<section class="n4-mission" data-n4-mission-bar hidden aria-label="Mission active"></section>';
     const total=Number.isInteger(m.total)?m.total:0,index=Math.max(0,Math.min(Number.isInteger(m.index)?m.index:0,total)),fin=!!m.termine||index>=total;
     const titre=fin?'PARCOURS TERMINÉ':'MISSION '+(index+1)+'/'+total,etat=fin?total+'/'+total:m.reussie?'réussie ✓':'en cours';
-    const detail=ui.missionOpen?'<div class="n4-mission-detail"><p>'+escape(fin?'Formation terminée : le guide, le lexique et les alertes restent à ton service.':m.reussie?m.bravo:m.consigne)+'</p><progress max="'+Math.max(total,1)+'" value="'+(fin?total:index)+'" aria-label="Progression du parcours : '+(fin?total:index)+' missions réussies sur '+total+'"></progress><div class="n4-mission-actions"><button type="button" data-n4-mission="stop">Arrêter le parcours</button>'+(ui.page!=='formation'?'<button type="button" data-n4-page="formation">Aide &amp; missions</button>':'')+'</div></div>':'';
+    const detail=ui.missionOpen?'<div class="n4-mission-detail"><p>'+escape(fin?'Formation terminée : le guide, le lexique et les alertes restent à ton service.':m.reussie?m.bravo:m.consigne)+'</p><progress max="'+Math.max(total,1)+'" value="'+(fin?total:index)+'" aria-label="Progression du parcours : '+(fin?total:index)+' missions réussies sur '+total+'"></progress><div class="n4-mission-actions">'+(fin?'':'<button type="button" data-n4-mission="next">'+(m.reussie?'Mission suivante':'Passer à la mission suivante')+'</button>')+'<button type="button" data-n4-mission="stop">Arrêter le parcours</button>'+(ui.page!=='formation'?'<button type="button" data-n4-page="formation">Aide &amp; missions</button>':'')+'</div></div>':'';
     return '<section class="n4-mission" data-n4-mission-bar aria-label="Mission active"><button type="button" class="n4-mission-toggle" data-n4-mission="toggle" aria-expanded="'+!!ui.missionOpen+'"><b>'+titre+'</b><span>'+escape(fin?'Parcours de formation':m.titre||'')+'</span><small>'+etat+'</small></button>'+detail+'</section>';
   }
   function secoursInstruments(data){
@@ -207,7 +208,11 @@
       ui.synthesis=normalizeSynthesis(choices);draw();
       if(typeof options.onSynthesisChange==='function')options.onSynthesisChange(ui.synthesis.slice());
     }
-    function announce(message){ui.status=message;const win=host.ownerDocument?.defaultView;if(win){win.clearTimeout(statusTimer);statusTimer=win.setTimeout(()=>{ui.status='';draw();},4500);}}
+    function announce(message){ui.status=message;const win=host.ownerDocument?.defaultView;if(win){win.clearTimeout(statusTimer);statusTimer=win.setTimeout(()=>{ui.status=lienPerdu?LIEN_PERDU:'';draw();},4500);}}
+    // 2.17.0e (N6) : liaison au moteur perdue depuis 3 s (data.liaison, lu par l'hôte) : message tenu jusqu'au retour, valeurs figées dites.
+    const LIEN_PERDU='Liaison avec le moteur interrompue : les valeurs affichées ne bougent plus. Ta tranche continue sur le serveur ; l’affichage reprend seul au retour du réseau.';
+    let lienPerdu=false;
+    function lien(l){const perdu=!!l&&l.ok===false;if(perdu===lienPerdu)return;lienPerdu=perdu;if(perdu){ui.status=LIEN_PERDU;host.ownerDocument?.defaultView?.clearTimeout(statusTimer);}else announce('Liaison avec le moteur rétablie : valeurs à jour.');}
     // Accusé lisible : ce que la commande a établi, pas un booléen générique (retour D3).
     const MODES={auto:'Régulation grappes',areAuto:'Régulation ARE',pzrAuto:'Régulation pression',gctMode:'Régulation GCT-C',gctaMode:EPR?'Régulation VDA':'Régulation GCT-A'};
     const nombre=v=>Number.isFinite(v)?v.toLocaleString('fr-FR',{maximumFractionDigits:3}):String(v);
@@ -238,7 +243,7 @@
     function send(command,label=''){
       const success=()=>accuse(command,label);
       if(!ui.connected)return;
-      try{const result=options.onCommand(command);if(result&&typeof result.then==='function'){announce('Commande en cours…');result.then(r=>{announce(r?.ok?success():r?.motif||'Commande refusée');draw();}).catch(()=>{announce('Commande non transmise : liaison indisponible');draw();});}else announce(result?.ok?success():result?.motif||'Commande refusée');}catch(error){announce('Commande refusée : '+error.message);}
+      try{const result=options.onCommand(command);if(result&&typeof result.then==='function'){announce('Commande en cours…');result.then(r=>{announce(r?.ok?success():r?.motif||'Commande refusée');draw();}).catch(()=>{announce('Commande non confirmée : vérifie l’état affiché avant de recommencer.');draw();});}else announce(result?.ok?success():result?.motif||'Commande refusée');}catch(error){announce('Commande refusée : '+error.message);}
       draw();
     }
     let held=null;
@@ -302,6 +307,7 @@
       if(e.type==='click'&&target.getAttribute('data-n4-menu')){ui.menu=!ui.menu;draw();return;}
       // Bandeau de mission : déplier ne change ni de page ni de commande ; « Arrêter » passe par l'hôte (état local).
       if(e.type==='click'&&target.getAttribute('data-n4-mission')==='toggle'){ui.missionOpen=!ui.missionOpen;draw();options.onMissionOpen?.(ui.missionOpen);host.querySelector('[data-n4-mission="toggle"]')?.focus({preventScroll:true});return;}
+      if(e.type==='click'&&target.getAttribute('data-n4-mission')==='next'){Promise.resolve(options.onMission?.('next')).then(r=>{const m=r?.mission;announce(r?.ok===false?(r.motif||'Passage à la mission suivante non confirmé'):(m&&!m.termine?'Mission '+(m.index+1)+'/'+m.total+' : '+m.titre:'Parcours de missions terminé'));draw();}).catch(()=>{announce('Passage à la mission suivante non confirmé');draw();});return;}
       if(e.type==='click'&&target.getAttribute('data-n4-mission')==='stop'){Promise.resolve(options.onMission?.('stop')).then(r=>{announce(r?.ok===false?(r.motif||'Arrêt du parcours non confirmé'):'Parcours de missions arrêté · progression conservée');draw();
         const suite=[...(host.querySelectorAll?.('.n4-page-keys [data-n4-page="formation"],[data-n4-menu="toggle"]')||[])].find(b=>b.offsetParent!==null);suite?.focus?.({preventScroll:true});}).catch(()=>{announce('Arrêt du parcours non confirmé');draw();});return;}
       if(e.type==='click'&&target.getAttribute('data-n4-fiche')){const section=host.querySelector(SYNOPTICS.includes(ui.page)?'.n4-object-monitor':'.n4-main-content');section?.scrollIntoView?.({block:'start',behavior:'smooth'});return;}
@@ -322,7 +328,7 @@
     host.ownerDocument?.defaultView?.addEventListener('pagehide',releaseHold);
     const visibility=()=>{if(host.ownerDocument?.hidden)releaseHold();};host.ownerDocument?.addEventListener?.('visibilitychange',visibility);
     host.addEventListener('click',event);host.addEventListener('keydown',event);host.addEventListener('change',change);draw();
-    return {selectPage,setSynthesis,update(snapshot){const changed=data.state?.ihm!==snapshot?.state?.ihm;data={...(snapshot||{})};if(changed)releaseHold();draw();},setContext(site,unit){ui.site=String(site);ui.unit=unit;draw();},getState(){return {...ui,synthesis:ui.synthesis.slice(),curves:ui.curves.slice(),missionOpen:!!ui.missionOpen};},destroy(){endPan();telephone?.removeEventListener?.('change',bascule);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture'])host.removeEventListener(type,panEvent);host.ownerDocument?.defaultView?.removeEventListener('blur',endPan);releaseHold();for(const type of ['pointerdown','pointerup','pointercancel','keydown','keyup','focusout'])host.removeEventListener(type,holdEvent);host.ownerDocument?.defaultView?.removeEventListener('blur',releaseHold);host.ownerDocument?.defaultView?.removeEventListener('pagehide',releaseHold);host.ownerDocument?.removeEventListener?.('visibilitychange',visibility);alive=false;host.ownerDocument?.defaultView?.clearTimeout(statusTimer);host.removeEventListener('click',event);host.removeEventListener('keydown',event);host.removeEventListener('change',change);host.replaceChildren();}};
+    return {selectPage,setSynthesis,update(snapshot){const changed=data.state?.ihm!==snapshot?.state?.ihm;data={...(snapshot||{})};if(changed)releaseHold();lien(data.liaison);draw();},setContext(site,unit){ui.site=String(site);ui.unit=unit;draw();},getState(){return {...ui,synthesis:ui.synthesis.slice(),curves:ui.curves.slice(),missionOpen:!!ui.missionOpen};},destroy(){endPan();telephone?.removeEventListener?.('change',bascule);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture'])host.removeEventListener(type,panEvent);host.ownerDocument?.defaultView?.removeEventListener('blur',endPan);releaseHold();for(const type of ['pointerdown','pointerup','pointercancel','keydown','keyup','focusout'])host.removeEventListener(type,holdEvent);host.ownerDocument?.defaultView?.removeEventListener('blur',releaseHold);host.ownerDocument?.defaultView?.removeEventListener('pagehide',releaseHold);host.ownerDocument?.removeEventListener?.('visibilitychange',visibility);alive=false;host.ownerDocument?.defaultView?.clearTimeout(statusTimer);host.removeEventListener('click',event);host.removeEventListener('keydown',event);host.removeEventListener('change',change);host.replaceChildren();}};
   }
   return {createProfile:(p,syn,cmd)=>createPoste(syn,cmd||CMD,INST,p),mount,render,format:number,SYNTHESIS_METRICS,DEFAULT_SYNTHESIS,normalizeSynthesis,CURVE_METRICS,DEFAULT_CURVES,normalizeCurves,curveValue};
 });

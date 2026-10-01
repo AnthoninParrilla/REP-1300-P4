@@ -142,7 +142,11 @@
       if(core)core.addEventListener('click',function(){if(activeKind&&activeKind!=='coeur')poste.selectPage('coeur');});
       // Historique des courbes (H13) : valeurs mêmes de l’instantané du poste, une par seconde simulée, 300 au plus.
       const APP=epr?SDCEPR:SDCN4,histories=Object.fromEntries(['t',...Object.keys(APP.CURVE_METRICS)].map(k=>[k,[]]));
-      let lastSample=-Infinity,lastRender=0;
+      let lastSample=-Infinity,lastRender=0,liaisonKo=0;
+      // 2.17.0e (N6) : liaison lue sur le témoin du châssis caché ; perdue seulement si l'échec dure 3 s (un refus de commande
+      // isolé allume brièvement « commande non confirmée » sans que la liaison soit perdue).
+      function liaison(){const dot=doc.getElementById('srvDot');if(!dot)return null;const texte=dot.textContent.replace(/^●\s*/,''),ko=/injoignable|satur|non confirm/.test(texte);
+        if(!ko)liaisonKo=0;else if(!liaisonKo)liaisonKo=Date.now();return {ok:!(ko&&Date.now()-liaisonKo>=3000),texte};}
       const stamp=t=>'T+'+Math.floor(t/3600).toString().padStart(2,'0')+':'+Math.floor(t/60%60).toString().padStart(2,'0')+':'+Math.floor(t%60).toString().padStart(2,'0');
       function snapshot(){
         sim.render();if(activeKind==='enregistreur')sim.recRender();accueil();const S=sim.S;
@@ -153,12 +157,20 @@
         const journal=[...doc.querySelectorAll('#log > div')].slice(0,80).map(e=>({time:e.textContent.slice(0,10),origin:'TRANCHE',message:e.textContent.slice(10).trim(),color:e.classList.contains('red')?'rouge':e.classList.contains('amber')?'jaune':'blanche'}));
         // Température vapeur sortie GV : la lecture que le châssis affiche (saturation, 1 °C), sans recopier sa loi (H06).
         const steamTemperature=Number.parseFloat(doc.getElementById('sTvap')?.textContent);
-        const snap=SDCN4Adaptateur.snapshot(S,win.__PALIERS[palier],{alarms,journal,steamTemperature,mission:win.__missionEtat?.()||null});
+        const snap=SDCN4Adaptateur.snapshot(S,win.__PALIERS[palier],{alarms,journal,steamTemperature,mission:win.__missionEtat?.()||null,liaison:liaison()});
         if(S.t-lastSample>=1){lastSample=S.t;for(const [k,a] of Object.entries(histories)){a.push(k==='t'?S.t:APP.curveValue(snap,k));if(a.length>300)a.shift();}}
         snap.histories=Object.fromEntries(Object.entries(histories).map(([k,a])=>[k,a.slice()]));
         Object.assign(snap,{pressureHistory:snap.histories.pressurePrimary,temperatureHistory:snap.histories.tempAverage,powerHistory:snap.histories.powerThermal});
         return snap;
       }
+      // 2.17.0e (N3, N6) : une erreur d'affichage ne fige plus le poste en silence ni ne se fait passer pour une perte de liaison.
+      // Le détail technique va à la console et à data-engine-error ; le joueur lit un message clair et peut recharger le poste.
+      let alerte=null;const vues=new Set();
+      function erreurAffichage(e){host.setAttribute('data-engine-error',String(e));const k=String(e&&e.message||e);if(!vues.has(k)){vues.add(k);console.error(e);}
+        if(alerte)return;alerte=document.createElement('div');alerte.className='n4-alerte-poste';alerte.setAttribute('role','alert');
+        const t=document.createElement('p');t.textContent='Affichage du poste interrompu par une erreur : les valeurs ne se mettent plus à jour. Ta tranche continue sur le serveur.';
+        const b=document.createElement('button');b.type='button';b.textContent='Recharger le poste';b.onclick=()=>location.reload();alerte.append(t,b);host.before(alerte);}
+      function rafraichir(){try{poste.update(snapshot());if(alerte){alerte.remove();alerte=null;host.removeAttribute('data-engine-error');}return true;}catch(e){erreurAffichage(e);return false;}}
       // Quitter la tranche : gestes maintenus arrêtés et confirmés par le serveur, puis poste détruit.
       async function quitter(){if(transport){const r=await transport.dispatch({type:'set',k:'bori',v:false,...(sim.S.ihm===false?{poste:'secours'}:{})});if(!r.ok)throw Error(r.motif);if(sim.S.dilu){const d=await transport.dispatch({type:'set',k:'dilu',v:false,...(sim.S.ihm===false?{poste:'secours'}:{})});if(!d.ok)throw Error(d.motif);}}closeNative();memo();poste.destroy();}
       // Dans la coquille privée, retour à la carte de France ou au CNPE de la tranche par message au parent.
@@ -169,14 +181,26 @@
         window.parent.postMessage({type:'sdc-retour',vue:vue==='cnpe'?'cnpe':'france',site:config.site,unit:config.unit},location.origin);return {ok:true};})()):undefined;
       poste=APP.mount(host,{published:config.published===true,site:config.site||(epr?'Flamanville':'Civaux'),unit:config.unit||(epr?3:1),snapshot:snapshot(),onNavigate:retour,synthesis:SDCN4Preferences.read(storage,palier),onPageMount:mountInline,onSynthesisChange:choices=>SDCN4Preferences.write(storage,choices,palier),curves:SDCN4Preferences.readCurves(storage,palier),onCurvesChange:choices=>SDCN4Preferences.writeCurves(storage,choices,palier),missionOpen:ouvert,onMissionOpen:o=>{ouvert=o;memo();},
         // Arrêt du parcours : bouton MISSIONS du châssis (état local, journal), jamais le transport de conduite.
-        onMission:action=>{if(action!=='stop')return {ok:false,motif:'Action inconnue'};if(sim.S.mis)doc.getElementById('bMis')?.onclick?.();memo();poste.update(snapshot());return {ok:!sim.S.mis,motif:'Arrêt du parcours non confirmé'};},onCommand:async command=>{const result=transport?await transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command);if(command.type==='incident'&&command.id==='iReset'&&result?.ok&&win.__missionPoser)win.__missionPoser(aGarder(win.__missionEtat()));if(sim.S.ihm===false)closeNative();poste.update(snapshot());return result;}});
+        // 2.17.0e (N2) : « Passer à la mission suivante » depuis l'encart, par le bouton PASSER LA MISSION de la page Aide & missions.
+        onMission:action=>{if(action==='stop'){if(sim.S.mis)doc.getElementById('bMis')?.onclick?.();memo();rafraichir();return {ok:!sim.S.mis,motif:'Arrêt du parcours non confirmé'};}
+          if(action==='next'){const m0=win.__missionEtat?.();if(!m0||!m0.actif||m0.termine)return {ok:false,motif:'Aucune mission en cours'};doc.getElementById('bMSkip')?.onclick?.();const m1=win.__missionEtat?.();memo();rafraichir();
+            return m1&&m1.index===m0.index+1?{ok:true,mission:m1}:{ok:false,motif:'Passage à la mission suivante non confirmé'};}
+          return {ok:false,motif:'Action inconnue'};},onCommand:async command=>{const result=transport?await transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command);if(command.type==='incident'&&command.id==='iReset'&&result?.ok&&win.__missionPoser)win.__missionPoser(aGarder(win.__missionEtat()));if(sim.S.ihm===false)closeNative();rafraichir();return result;}});
       window.revueSDC=window.revueN4=poste;signalerPret();window.essaiSDC=window.essaiN4={sim,document:doc,snapshot,prepareLeave:quitter,dispatch:command=>transport?transport.dispatch(command):SDCN4Adaptateur.dispatch(sim,doc,command)};
       // Même pas fixe que le moteur/serveur. Le navigateur peut ralentir cet essai en arrière-plan.
-      timer=setInterval(()=>{try{for(let i=0;!transport&&i<sim.S.accel;i++){sim.physStep(.05);sim.slowStep(.05);sim.trips();if(sim.recTick)sim.recTick();}if(Date.now()-lastRender>=1000){lastRender=Date.now();if(sim.S.ihm===false&&!frame.hidden)closeNative();poste.update(snapshot());memo();queueLayout();}}catch(e){clearInterval(timer);host.setAttribute('data-engine-error',String(e));console.error(e);}},50);
-    }catch(e){const motif=document.createElement('p');motif.id='n4-loading';motif.setAttribute('role','status');motif.textContent='Initialisation impossible : '+e.message;host.replaceChildren(motif);sortie();console.error(e);signalerPret();}
+      timer=setInterval(()=>{try{for(let i=0;!transport&&i<sim.S.accel;i++){sim.physStep(.05);sim.slowStep(.05);sim.trips();if(sim.recTick)sim.recTick();}}catch(e){clearInterval(timer);erreurAffichage(e);return;}
+        if(Date.now()-lastRender>=1000){lastRender=Date.now();try{if(sim.S.ihm===false&&!frame.hidden)closeNative();}catch(_){}if(rafraichir()){memo();queueLayout();}}},50);
+    }catch(e){console.error(e);host.setAttribute('data-engine-error',String(e));
+      // 2.17.0e (N3) : jamais le message technique brut ; une issue visible (Réessayer, ‹ France).
+      const reseau=/Liaison au poste indisponible|Prise de quart refusée|état de la tranche non reçu|Failed to fetch|Load failed|NetworkError|fetch failed|délai/.test(String(e&&e.message));
+      const motif=document.createElement('p');motif.id='n4-loading';motif.setAttribute('role','status');
+      motif.textContent=reseau?'Le poste ne peut pas s’ouvrir : le moteur de SIMUREP ne répond pas (liaison réseau). Ta tranche est conservée sur le serveur ; réessaie dans un instant.'
+        :'Le poste n’a pas pu s’ouvrir à cause d’une erreur interne. Ta tranche continue sur le serveur ; réessaie, ou reviens à la carte.';
+      host.replaceChildren(motif);reessayer();sortie();signalerPret();}
   }
   // L’enveloppe publique garde son écran d’attente jusqu’au poste monté (ou à son échec lisible).
   function signalerPret(){if(window.parent!==window)window.parent.postMessage({type:'sdc-pret'},location.origin);}
+  function reessayer(){const b=document.createElement('button');b.type='button';b.id='n4-reessayer';b.textContent='Réessayer';b.onclick=()=>location.reload();host.appendChild(b);}
   // Poste non monté : seule sortie vers la carte (l’enveloppe n’a plus de barre) ; aucun geste n’a pu être tenu.
   function sortie(){if(window.parent===window)return;const b=document.createElement('button');b.type='button';b.id='n4-sortie';b.textContent='‹ France';b.onclick=()=>window.parent.postMessage({type:'sdc-retour',vue:'france'},location.origin);host.appendChild(b);}
   frame.addEventListener('load',boot);
