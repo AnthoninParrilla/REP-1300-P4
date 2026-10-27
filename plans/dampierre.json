@@ -4,7 +4,7 @@
  "tranches": 4,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Nord en haut. Quatre BR nommés OSM dans les ensembles Dampierre1…4 : centre et angle des deux paires recalés, formes nucléaires historiques figées ; entraxes source et écarts résiduels conservés. Une SDM transversale commune, contour partiellement interprété. Tours aux centres relevés et raccordement1…4 documenté par le plan public légendé de Roulex45 (2011), dérivé déclaré EDF, original non retrouvé : preuve secondaire, sans certification exploitant. Les équipements non localisés restent en cartouche.",
+ "note": "Nord en haut. Quatre BR nommés OSM dans les ensembles Dampierre 1…4 : centre et angle des deux paires recalés, formes nucléaires historiques figées ; entraxes source et écarts résiduels conservés. Une SDM transversale commune, contour partiellement interprété. Tours aux centres relevés et raccordement 1…4 documenté par le plan public légendé de Roulex45 (2011), dérivé déclaré EDF, original non retrouvé : preuve secondaire, sans certification exploitant. Les équipements non localisés restent en cartouche.",
  "eau": {
   "type": "fleuve",
   "nom": "la Loire",
@@ -1681,7 +1681,7 @@
       1032.0
      ]
     ],
-    "nom": "L'Aquiaulne",
+    "nom": "L’Aquiaulne",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/349258545"
    },
@@ -2194,7 +2194,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 39.24,
      "angleApres": 39.24000000000001,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     },
     "ecartsCentresApresRaccord": {
      "statut": "comparaison-dessin-releve",
@@ -2231,7 +2231,7 @@
      "statut": "centres-releves-gabarit-fige",
      "source": "https://www.openstreetmap.org/way/190127670",
      "releve": "2026-09-14",
-     "description": "Centres de deux empreintes explicitement nommées BR, contenues exclusivement dans les ensembles nommés Dampierre-1 et Dampierre-2. Centre et angle de la paire recalés ; gabarit nucléaire historique inchangé (entraxe84 m, BR39 m). Entraxe relevé 86.98 m ; écart résiduel théorique 1.49 m par BR, plus arrondis. Les auxiliaires internes du gabarit ne sont pas individuellement localisés par cette preuve.",
+     "description": "Centres de deux empreintes explicitement nommées BR, contenues exclusivement dans les ensembles nommés Dampierre-1 et Dampierre-2. Centre et angle de la paire recalés ; gabarit nucléaire historique inchangé (entraxe 84 m, BR39 m). Entraxe relevé 86.98 m ; écart résiduel théorique 1.49 m par BR, plus arrondis. Les auxiliaires internes du gabarit ne sont pas individuellement localisés par cette preuve.",
      "millesime": "Millésime du tracé non renseigné dans cet objet",
      "sources": [
       "https://www.openstreetmap.org/way/190127670",
@@ -2429,7 +2429,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 39.77,
      "angleApres": 39.24000000000001,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale.",
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale.",
      "ajustementHalleCommune": {
       "translationM": 0.2934771622048373,
       "centreAvant": [
@@ -2478,7 +2478,7 @@
      "statut": "centres-releves-gabarit-fige",
      "source": "https://www.openstreetmap.org/way/190127669",
      "releve": "2026-09-14",
-     "description": "Centres de deux empreintes explicitement nommées BR, contenues exclusivement dans les ensembles nommés Dampierre-3 et Dampierre-4. Centre et angle de la paire recalés ; gabarit nucléaire historique inchangé (entraxe84 m, BR39 m). Entraxe relevé 89.53 m ; écart résiduel théorique 2.77 m par BR, plus arrondis. Les auxiliaires internes du gabarit ne sont pas individuellement localisés par cette preuve.",
+     "description": "Centres de deux empreintes explicitement nommées BR, contenues exclusivement dans les ensembles nommés Dampierre-3 et Dampierre-4. Centre et angle de la paire recalés ; gabarit nucléaire historique inchangé (entraxe 84 m, BR39 m). Entraxe relevé 89.53 m ; écart résiduel théorique 2.77 m par BR, plus arrondis. Les auxiliaires internes du gabarit ne sont pas individuellement localisés par cette preuve.",
      "millesime": "Millésime du tracé non renseigné dans cet objet",
      "sources": [
       "https://www.openstreetmap.org/way/190127669",
@@ -2914,7 +2914,7 @@
      "date": "2011-10-06",
      "licence": "CC BY-SA 3.0",
      "repere": "Aéro1",
-     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro 1, nord=Aéro 2, est=Aéro 3, sud-est=Aéro 4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document 2011."
     }
    },
    "u": 0,
@@ -3065,7 +3065,7 @@
      "date": "2011-10-06",
      "licence": "CC BY-SA 3.0",
      "repere": "Aéro2",
-     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro 1, nord=Aéro 2, est=Aéro 3, sud-est=Aéro 4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document 2011."
     }
    },
    "u": 1,
@@ -3296,7 +3296,7 @@
      "date": "2011-10-06",
      "licence": "CC BY-SA 3.0",
      "repere": "Aéro3",
-     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro 1, nord=Aéro 2, est=Aéro 3, sud-est=Aéro 4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document 2011."
     }
    },
    "u": 2,
@@ -3527,7 +3527,7 @@
      "date": "2011-10-06",
      "licence": "CC BY-SA 3.0",
      "repere": "Aéro4",
-     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro1, nord=Aéro2, est=Aéro3, sud-est=Aéro4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document2011."
+     "description": "Concordance topologique des quatre tours explicitement numérotées, nord en haut. Ouest=Aéro 1, nord=Aéro 2, est=Aéro 3, sud-est=Aéro 4. La source est déclarée dérivée d’un rapport EDF non retrouvé ; cette concordance publique ne constitue pas une validation exploitant. Aucun DUS déduit de ce document 2011."
     }
    },
    "u": 3,

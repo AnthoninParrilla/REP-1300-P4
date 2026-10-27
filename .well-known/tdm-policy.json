@@ -1,8 +1,15 @@
 {
-  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "@context": [
+    "http://www.w3.org/ns/odrl.jsonld",
+    {
+      "dc": "http://purl.org/dc/terms/",
+      "cc": "http://creativecommons.org/ns#"
+    }
+  ],
   "@type": "Policy",
   "uid": "https://simurep.fr/.well-known/tdm-policy.json",
   "profile": "http://www.w3.org/ns/tdmrep",
+  "dc:description": "La réservation porte sur les contenus pour lesquels l’éditeur de SIMUREP détient les droits permettant de s’y opposer, dans les cas et limites prévus par la loi ; elle n’entend pas retirer les autorisations accordées par les licences des données tierces (https://simurep.fr/sources.html).",
   "permission": [
     {
       "target": "https://simurep.fr/",

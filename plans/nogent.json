@@ -4,7 +4,7 @@
  "tranches": 2,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Nord en haut ; centres des empreintes cylindriques et contours des halles relevés, gabarits nucléaires historiques inchangés. Dômes anonymes attribués aux tranches par concordance des axes avec les halles nommées1/2 : interprétation explicitée. Fonction SDM interprétée à partir de la disposition complète, jamais du seul tag power=generator. Deux tours placées sur leurs vrais contours ; raccordements individuels non documentés, panaches de tranche neutralisés. Équipements inconnus conservés en cartouche.",
+ "note": "Nord en haut ; centres des empreintes cylindriques et contours des halles relevés, gabarits nucléaires historiques inchangés. Dômes anonymes attribués aux tranches par concordance des axes avec les halles nommées 1/2 : interprétation explicitée. Fonction SDM interprétée à partir de la disposition complète, jamais du seul tag power=generator. Deux tours placées sur leurs vrais contours ; raccordements individuels non documentés, panaches de tranche neutralisés. Équipements inconnus conservés en cartouche.",
  "eau": {
   "type": "fleuve",
   "nom": "la Seine",
@@ -3879,7 +3879,7 @@
       875.1
      ]
     ],
-    "nom": "L'Ardusson",
+    "nom": "L’Ardusson",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/225655841"
    },
@@ -3925,7 +3925,7 @@
       -460.3
      ]
     ],
-    "nom": "Chenal d'Évacuation des Crues",
+    "nom": "Chenal d’Évacuation des Crues",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/475530692"
    },
@@ -3972,7 +3972,7 @@
       337.3
      ]
     ],
-    "nom": "Chenal d'Évacuation des Crues",
+    "nom": "Chenal d’Évacuation des Crues",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/475530694"
    },
@@ -4473,7 +4473,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 189.11,
      "angleApres": 189.11,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4779,7 +4779,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 189.11,
      "angleApres": 189.11,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",

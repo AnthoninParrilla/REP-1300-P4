@@ -4,7 +4,7 @@
  "tranches": 2,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Nord en haut ; contours bâtis publics OSM conservés sans déplacer leurs centres ni inventer de BR. Les deux halles séparées nommées Golfech1/2 sont interprétées comme SDM ; leur fonction est qualifiée, leur géométrie relevée. Le contour voisin ne contient aucun BR isolé explicitement identifié. Îlots historiques inchangés en cartouche. Deux tours aux centres et emprises source, sans attribution de tranche non prouvée. DUS, pompages, transformateurs et STE restent hors carte faute de localisation individuelle documentée.",
+ "note": "Nord en haut ; contours bâtis publics OSM conservés sans déplacer leurs centres ni inventer de BR. Les deux halles séparées nommées Golfech 1/2 sont interprétées comme SDM ; leur fonction est qualifiée, leur géométrie relevée. Le contour voisin ne contient aucun BR isolé explicitement identifié. Îlots historiques inchangés en cartouche. Deux tours aux centres et emprises source, sans attribution de tranche non prouvée. DUS, pompages, transformateurs et STE restent hors carte faute de localisation individuelle documentée.",
  "eau": {
   "type": "fleuve",
   "nom": "la Garonne",
@@ -2255,7 +2255,7 @@
       1042.7
      ]
     ],
-    "nom": "L'Arrats",
+    "nom": "L’Arrats",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/585137615"
    },
@@ -3535,7 +3535,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/58629318",
     "releve": "2026-09-14",
-    "description": "Enveloppe bâtie anonyme dans OSM, distincte des deux halles nommées Golfech1/2. Ce barycentre est celui de l’emprise complète, pas du BR. Aucun centre d’enceinte déduit de cette enveloppe ; gabarits nucléaires inchangés en cartouche. Fonction et numéro de chaque sous-bâtiment non prouvés.",
+    "description": "Enveloppe bâtie anonyme dans OSM, distincte des deux halles nommées Golfech 1/2. Ce barycentre est celui de l’emprise complète, pas du BR. Aucun centre d’enceinte déduit de cette enveloppe ; gabarits nucléaires inchangés en cartouche. Fonction et numéro de chaque sous-bâtiment non prouvés.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
    },
    "localisation": "non-documentee",
@@ -3686,7 +3686,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/58629329",
     "releve": "2026-09-14",
-    "description": "Enveloppe bâtie anonyme dans OSM, distincte des deux halles nommées Golfech1/2. Ce barycentre est celui de l’emprise complète, pas du BR. Aucun centre d’enceinte déduit de cette enveloppe ; gabarits nucléaires inchangés en cartouche. Fonction et numéro de chaque sous-bâtiment non prouvés.",
+    "description": "Enveloppe bâtie anonyme dans OSM, distincte des deux halles nommées Golfech 1/2. Ce barycentre est celui de l’emprise complète, pas du BR. Aucun centre d’enceinte déduit de cette enveloppe ; gabarits nucléaires inchangés en cartouche. Fonction et numéro de chaque sous-bâtiment non prouvés.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
    },
    "localisation": "non-documentee",
@@ -4449,7 +4449,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 206.92000000000002,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4515,7 +4515,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 206.6,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",

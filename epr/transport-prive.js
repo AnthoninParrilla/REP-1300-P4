@@ -10,14 +10,15 @@
     else if(id==='bAu')c={type:'scram'};else if(id==='bRearm')c={type:'rearm'};else if(id==='bSuivre')c={type:'follow',v:!follow};
     else if({tr005:1,tr02:1,tr06:1,tr12:1}[id])c={type:'set',k:'turbRate',v:{tr005:.05,tr02:.2,tr06:.6,tr12:1.2}[id]};
     c.poste=p;
-  }if(c.type==='set'&&c.k==='speed')c={type:'speed',v:c.v,poste:c.poste};if(c.type==='set'&&c.k==='gainePct'){if(!Number.isFinite(c.v)||c.v<0||c.v>30||!Number.isInteger(c.v*2))throw Error('Gainage hors plage');c.k='gaine';c.v/=100;}return c;}
+  }if(c.type==='set'&&c.k==='speed')c={type:'speed',v:c.v,poste:c.poste};if(c.type==='set'&&c.k==='gainePct'){if(!Number.isFinite(c.v)||c.v<0||c.v>30||!Number.isInteger(c.v*2))throw Error('Gainage hors plage');c.k='gaine';c.v/=100;}c.src='sdc';return c;}   // J2b : ordre marqué « salle » pour le serveur (chemin natif au CPY)
   // 2.17.0e (N6) : un échec de liaison (requête perdue, délai, moteur indisponible) n'atteint jamais le joueur en message brut ;
   // un motif métier du serveur ou du poste (permissif, refus motivé, tranche changée) reste tel quel.
   const RESEAU=/Failed to fetch|Load failed|NetworkError|fetch failed|network error|délai de confirmation dépassé|aborted/i;
   function motifJoueur(e){const m=String(e&&e.message||e||''),nom=e&&e.name||'';
     if(nom==='AbortError'||RESEAU.test(m))return 'Liaison avec le moteur interrompue : commande non confirmée. L’affichage reprend l’état réel du serveur dès le retour du réseau ; vérifie-le avant de recommencer.';
     if(/^requête refusée \(5\d\d\)$/.test(m)||/^(serveur|dispatching) plein$/.test(m))return 'Le moteur de SIMUREP ne répond pas pour l’instant : commande non confirmée. Réessaie dans un instant.';
-    if(['TypeError','ReferenceError','RangeError','SyntaxError'].includes(nom)){try{console.error(e);}catch(_){}return 'Commande non confirmée : erreur interne du poste. Vérifie l’état affiché avant de recommencer.';}
+    if(['TypeError','ReferenceError','RangeError','SyntaxError','SecurityError','QuotaExceededError','NS_ERROR_DOM_QUOTA_REACHED'].includes(nom)){try{console.error(e);}catch(_){}return 'Commande non confirmée : erreur interne. Vérifie l’état affiché avant de recommencer.';}   // J6 (V27-07) : jamais le texte du navigateur sur son stockage
+    if(e&&e.statut&&e.statut!==400&&e.statut!==409)return 'Le moteur de SIMUREP ne répond pas pour l’instant : commande non confirmée. Réessaie dans un instant.';   // tour 8 : hors refus motivé (400, 409), comme le témoin et la file
     return m||'Commande non confirmée';}
   async function connect(win,config){
     for(let i=0;!win.__net&&i<100;i++)await new Promise(r=>setTimeout(r,50));
@@ -42,18 +43,22 @@
       const operation=tail.catch(()=>{}).then(async()=>{
         if(renewal&&!held.has(emitted.k))return {ok:true,skipped:true};
         if(net.ukey()!==issued)throw Error('Tranche changée : commande annulée');
-        const c=normalize(emitted,sim.S,win.CNPE.follow);
+        const c=normalize(emitted,sim.S,win.CNPE.follow),avant=sim.S.etat;
         await net.cmd(c);
         let answer;
         // 2.17.0e : la commande vient d'être acceptée ; un échec ancien de la file (commande précédente sans réponse) ne la
         // rend pas incertaine. L'ancienne est réconciliée avec l'état du serveur, sans être rejouée, puis l'état est relu.
-        try{answer=await net.take(issued,null);}catch(e){if(!net.reconcile)throw e;await net.reconcile(issued);answer=await net.take(issued,null);}
+        // J6, 2b (relecture adverse) : l'accusé ne demande que les 25 dernières lignes du journal (l'anneau entier ne sert qu'à la prise de quart).
+        try{answer=await net.take(issued,null,true);}catch(e){if(!net.reconcile)throw e;await net.reconcile(issued);answer=await net.take(issued,null,true);}
         if(net.ukey()!==issued)throw Error('Tranche changée : confirmation ignorée');
         net.select(issued,key,answer.state);
         if(c.type==='set'&&sim.S[c.k]!==c.v)throw Error('Consigne non appliquée');
-        if(c.type==='etat'&&sim.S.etat!==c.e)throw Error(sim.S.note||'Transition refusée');
+        // Lot « Chaussette », passe 2 : AN/GV ou RP demandé depuis l'AN/RRA sous la limite d'isolement engage la remontée (l'état reste
+        // AN/RRA jusqu'à l'isolement du RRA) : c'est une réussite, pas un refus.
+        const remontee=c.type==='etat'&&(c.e==='ANGV'||c.e==='RP')&&((sim.S.etat==='ANRRA'&&sim.S.remontee===true)||(avant==='ANRRA'&&c.e==='RP'&&sim.S.etat==='ANGV'));   // isolée dès le pas suivant (EPR à 120 °C)
+        if(c.type==='etat'&&sim.S.etat!==c.e&&!remontee)throw Error(sim.S.note||'Transition refusée');
         if(c.type==='ihm'&&sim.S.ihm!==!c.perdue)throw Error('Changement de poste de conduite non confirmé');
-        return {ok:true,confirmed:true};
+        return {ok:true,confirmed:true,...(remontee?{remontee:true,...(sim.S.etat==='ANGV'?{isolee:true}:{})}:{})};   // revue du 09/10 : déjà isolée, l'accusé le dit
       });const handled=operation.catch(async e=>{stopRenewals();if(net.reconcile)try{await net.reconcile(issued);}catch(_){}return {ok:false,motif:motifJoueur(e)};});tail=handled;return handled;
     }
     return {dispatch,stopRenewals,ready:true,palier:sim.S.pal,site:config.site,unit:config.unit};

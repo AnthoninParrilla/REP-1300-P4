@@ -4,7 +4,7 @@
  "tranches": 2,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Recalage nord en haut depuis les empreintes publiques OSM. Halles côtémer, axes et emprises propres à chaque bâtiment. Flamanville2010 (schoella,CC BY3.0) montre les deuxBR historiques et le chantierEPR ; ne valide pas la configurationEPR actuelle ni lesDUS. Les assets nucléaires900/1300 sont conservés intégralement ; leur localisation approximative est signalée lorsque le BR n'est pas individualisé. DUS, transformateurs etSTE non attribués restent en cartouche.",
+ "note": "Recalage nord en haut depuis les empreintes publiques OSM. Halles côté mer, axes et emprises propres à chaque bâtiment. Flamanville 2010 (schoella, CC BY 3.0) montre les deux BR historiques et le chantier EPR ; ne valide pas la configuration EPR actuelle ni les DUS. Les assets nucléaires 900/1300 sont conservés intégralement ; leur localisation approximative est signalée lorsque le BR n'est pas individualisé. DUS, transformateurs et STE non attribués restent en cartouche.",
  "eau": {
   "type": "mer",
   "nom": "la Manche",
@@ -4079,7 +4079,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 285.4,
      "angleApres": 285.4,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4673,7 +4673,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 285.6,
      "angleApres": 285.6,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",

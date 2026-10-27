@@ -8,7 +8,7 @@
     S=S||{};PAL=PAL||{};
     const d=PAL.DTB*S.Ptot*(S.gmppN>0?PAL.NB/S.gmppN:3);
     // État d’exploitation affiché comme à la vue CNPE : l’AU puis l’îlotage priment sur l’état visé (targetState).
-    return {state:Object.assign(copy(S),{residualMW:finite(S.Pres*PAL.PTH),boreTotal:Number.isFinite(S.Cb)&&Number.isFinite(PAL.CB0)?S.Cb+PAL.CB0:null,gainePct:Number.isFinite(S.gaine)?Math.round(S.gaine*100000)/1000:null,dus:S.dus===true,tVapGV:finite(options.steamTemperature)}),pal:copy(PAL),stateLabel:S.scram?'AU':S.ilote?'ÎLOT':(S.etat||'—'),targetState:S.etat||null,nominalElectric:PAL.ID==='EPR'?1650:1450,simulationTime:finite(S.t),liaison:options.liaison&&typeof options.liaison==='object'?{ok:options.liaison.ok!==false,texte:String(options.liaison.texte||'')}:null,
+    return {state:Object.assign(copy(S),{residualMW:finite(S.Pres*PAL.PTH),boreTotal:Number.isFinite(S.Cb)&&Number.isFinite(PAL.CB0)?S.Cb+PAL.CB0:null,gainePct:Number.isFinite(S.gaine)?Math.round(S.gaine*100000)/1000:null,dus:S.dus===true,tVapGV:finite(options.steamTemperature)}),pal:copy(PAL),stateLabel:S.scram?'AU':S.ilote?'ÎLOT':(S.etat||'—'),targetState:S.etat||null,nominalElectric:PAL.ID==='EPR'?1650:1450,simulationTime:finite(S.t),follow:options.follow===true,liaison:options.liaison&&typeof options.liaison==='object'?{ok:options.liaison.ok!==false,texte:String(options.liaison.texte||'')}:null,
       powerThermal:finite(PAL.PTH*S.Ptot),powerElectric:finite(S.Pelec),powerGross:finite(S.Pbrut),powerAuxiliary:finite(S.Paux),
       pressurePrimary:finite(S.Ppzr),pressureSteam:finite(S.Psteam),steamTemperature:finite(options.steamTemperature),tempAverage:finite(S.Tavg),
       tempHot:finite(Number.isFinite(S.Thot)?S.Thot:S.Tavg+d),tempCold:finite(Number.isFinite(S.Tcold)?S.Tcold:S.Tavg-d),
@@ -43,7 +43,7 @@
       for(const [v,id] of Object.entries(rates))if(c.id===id)mapped={type:'set',k:'turbRate',v:+v};
       if(c.id==='bSuivre')mapped={type:'follow',v:!(doc&&doc.defaultView&&doc.defaultView.CNPE&&doc.defaultView.CNPE.follow)};
       if(c.id==='bAu')mapped={type:'scram'};if(c.id==='bRearm')mapped={type:'rearm'};
-      if(!mapped&&c.id!=='bRearmIS')return fail('Action non prise en charge');
+      if(!mapped&&c.id!=='bRearmIS'&&c.id!=='bRbsStop')return fail('Action non prise en charge');
       if(mapped)c=Object.assign(mapped,{poste:c.poste});
     }
     const gate=sim.commandePermise(c);if(!gate||!gate.ok)return fail(gate&&gate.motif||'Commande refusée par le poste');
@@ -67,7 +67,7 @@
       if(toggles[k]){if(typeof v!=='boolean')return fail('Valeur booléenne requise');if(S[k]===v)return {ok:true};return changed(k,v,button(toggles[k]));}
       if(k==='turbRate'){if(typeof sim.penteCharge==='function')return sim.penteCharge(v)?changed(k,v,{ok:true}):fail('Pente non disponible');return rates[v]?changed(k,v,button(rates[v])):fail('Pente non disponible');}
       if(k==='speed')return dispatch(sim,doc,{type:'speed',v,poste:c.poste});
-      if(sliders[k]){const [id,min,max,scale=1]=sliders[k];if(!Number.isFinite(v)||v<min||v>max)return fail('Consigne hors plage');const e=doc&&doc.getElementById(id),w=doc&&doc.defaultView;
+      if(sliders[k]){const [id,min0,max,scale=1]=sliders[k],min=(k==='gctTgt'&&S.pal==='EPR')?1:min0;if(!Number.isFinite(v)||v<min||v>max)return fail('Consigne hors plage');const e=doc&&doc.getElementById(id),w=doc&&doc.defaultView;
         if(!e||e.disabled||typeof e.dispatchEvent!=='function'||!w||!w.Event)return fail('Consigne native indisponible');
         e.value=String(v*scale);e.dispatchEvent(new w.Event('input',{bubbles:true}));e.dispatchEvent(new w.Event('change',{bubbles:true}));return changed(k,v,{ok:true});}
       if(k==='bori'||k==='dilu'){if(typeof v!=='boolean')return fail('Valeur booléenne requise');const e=doc&&doc.getElementById(k==='bori'?'bBori':'bDilu'),w=doc&&doc.defaultView;
@@ -77,7 +77,8 @@
     if(c.type==='incident'){
       // Recharge uniquement le document moteur privé ; aucune remise à zéro silencieuse de l'état.
       if(c.id==='iReset')return button('iReset');
-      return incidents.includes(c.id)?button(c.id):fail('Incident non pris en charge');
+      if(!incidents.includes(c.id))return fail('Incident non pris en charge');
+      const r=button(c.id);return r.ok&&S._refus?fail(S._refus):r;   // petit lot moteur (4A du 09/10) : motif d'un incident refusé par le moteur
     }
     if(c.type==='follow'){
       const api=doc&&doc.defaultView&&doc.defaultView.CNPE;
@@ -85,11 +86,13 @@
       api.setFollow(c.v);return api.follow===c.v?{ok:true}:fail('Suivi réseau refusé');
     }
     if(c.type==='action'&&c.id==='bRearmIS')return changed('sigIS',false,button(c.id));
-    if(c.type==='scram')return typeof sim.doScram==='function'?(sim.doScram('ARRÊT D’URGENCE manuel (SDC N4)'),{ok:!!S.scram}):changed('scram',true,button('bAu'));
+    if(c.type==='action'&&c.id==='bRbsStop')return changed('rbs',false,button(c.id));   // EPR (3A, 04/10)
+    if(c.type==='scram')return typeof sim.doScram==='function'?(sim.doScram(''),{ok:!!S.scram}):changed('scram',true,button('bAu'));
     if(c.type==='rearm')return changed('scram',false,button('bRearm'));
     if(c.type==='etat'){
       if(!['RP','ANGV','ANRRA','APIF','APIO','APR','RCD'].includes(c.e))return fail('État inconnu');
       if(typeof sim.setEtat==='function')sim.setEtat(c.e);else{const e=doc&&doc.querySelector&&doc.querySelector('[data-e="'+c.e+'"]');if(!e||e.disabled||!e.click)return fail('Sélecteur d’état indisponible');e.click();}
+      if(S.etat==='ANRRA'&&S.remontee===true&&(c.e==='ANGV'||c.e==='RP'))return {ok:true,remontee:true};   // lot « Chaussette », passe 2 : remontée engagée
       return changed('etat',c.e,{ok:true});
     }
     if(c.type==='voie')return ['RA','HS','RRI','SEC'].includes(c.role)&&Number.isInteger(c.i)&&typeof c.v==='boolean'&&typeof sim.voie==='function'&&sim.voie(c.role,c.i,c.v)?{ok:true}:fail('Commande de voie refusée');

@@ -8,11 +8,13 @@
   'use strict';
   if (!SDC || typeof SDC.normalizeSynthesis !== 'function') throw new Error('SDC N4 : normalisation des préférences indisponible');
   var KEY = 'simurep_sdc_n4_affichage_v1';
+  // Clé du palier : celle du N4 pour le N4 (et sans palier), celle de l'EPR pour l'EPR, sinon simurep_sdc_<palier>_… (J2b).
+  function cle(base, palier) { if (palier === 'EPR') return base.replace('_n4_', '_epr_'); if (!palier || palier === 'N4') return base; return base.replace('_n4_', '_' + String(palier).toLowerCase().replace(/[^a-z0-9]/g, '') + '_'); }
   function defaults() { return SDC.normalizeSynthesis(SDC.DEFAULT_SYNTHESIS); }
   function read(storage,palier) {
     try {
       if (!storage || typeof storage.getItem !== 'function') return defaults();
-      var saved = JSON.parse(storage.getItem(palier==='EPR'?'simurep_sdc_epr_affichage_v1':KEY));
+      var saved = JSON.parse(storage.getItem(cle(KEY,palier)));
       if (!saved || Array.isArray(saved) || typeof saved !== 'object' || saved.version !== 1) return defaults();
       return SDC.normalizeSynthesis(saved.synthesis);
     } catch (_) { return defaults(); }
@@ -20,13 +22,13 @@
   function write(storage, choices,palier) {
     try {
       if (!storage || typeof storage.setItem !== 'function') return false;
-      storage.setItem(palier==='EPR'?'simurep_sdc_epr_affichage_v1':KEY, JSON.stringify({ version: 1, synthesis: SDC.normalizeSynthesis(choices) }));
+      storage.setItem(cle(KEY,palier), JSON.stringify({ version: 1, synthesis: SDC.normalizeSynthesis(choices) }));
       return true;
     } catch (_) { return false; }
   }
   // Courbes (H13) : clé distincte, même contrat (versionnée, défauts sur lecture invalide, hors clés de conduite).
   var CURVES_KEY = 'simurep_sdc_n4_courbes_v1';
-  function curvesKey(palier) { return palier === 'EPR' ? 'simurep_sdc_epr_courbes_v1' : CURVES_KEY; }
+  function curvesKey(palier) { return cle(CURVES_KEY, palier); }
   function readCurves(storage, palier) {
     try {
       if (!storage || typeof storage.getItem !== 'function' || typeof SDC.normalizeCurves !== 'function') return SDC.DEFAULT_CURVES ? SDC.DEFAULT_CURVES.slice() : [];
@@ -44,7 +46,7 @@
   }
   // Mission active (H18) : progression du parcours par tranche, hors clés de conduite ; lecture stricte, null sinon.
   var MISSION_KEY = 'simurep_sdc_n4_mission_v1';
-  function missionKey(palier) { return palier === 'EPR' ? 'simurep_sdc_epr_mission_v1' : MISSION_KEY; }
+  function missionKey(palier) { return cle(MISSION_KEY, palier); }
   function valide(m) { return !!m && typeof m === 'object' && !Array.isArray(m) && typeof m.actif === 'boolean' && typeof m.ouvert === 'boolean' && Number.isInteger(m.total) && Number.isInteger(m.index) && m.total > 0 && m.total <= 64 && m.index >= 0 && m.index <= m.total; }
   function lireTout(storage, palier) {
     var saved = JSON.parse(storage.getItem(missionKey(palier)));

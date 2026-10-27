@@ -4,7 +4,7 @@
  "tranches": 4,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Recalage nord en haut sur OSM et lecture de la photo publique de Chinon publiée par Saumur en2025 (date de prise de vue inconnue). Paires1/2 et3/4 désormais séparées et d'orientations différentes. BR1/2 explicitement cartographiés ; centres BR3/4 indéterminés (paire en cartouche), séparation de certaines halles encore interprétée, signalés par objet. Quatre tours nommées TR1/2/3/4, attribution corrigée (ancien doublon TR2). Canal générique supprimé ; DUS, pompage, STE et transformateurs non localisés en cartouche. Aéros : 18 diffuseurs regroupés au centre, 6 intérieurs et 12 périphériques en trame hexagonale, rapport SCAM/EDF 1980 pages 11.3 à 11.6 ; forme évasée attestée, proportions internes du dessin non cotées.",
+ "note": "Recalage nord en haut sur OSM et lecture de la photo publique de Chinon publiée par Saumur en 2025 (date de prise de vue inconnue). Paires 1/2 et 3/4 désormais séparées et d'orientations différentes. BR1/2 explicitement cartographiés ; centres BR3/4 indéterminés (paire en cartouche), séparation de certaines halles encore interprétée, signalés par objet. Quatre tours nommées TR1/2/3/4, attribution corrigée (ancien doublon TR2). Canal générique supprimé ; DUS, pompage, STE et transformateurs non localisés en cartouche. Aéros : 18 diffuseurs regroupés au centre, 6 intérieurs et 12 périphériques en trame hexagonale, rapport SCAM/EDF 1980 pages 11.3 à 11.6 ; forme évasée attestée, proportions internes du dessin non cotées.",
  "eau": {
   "type": "fleuve",
   "nom": "la Loire",
@@ -4425,7 +4425,7 @@
       -910.5
      ]
     ],
-    "nom": "L'Indre",
+    "nom": "L’Indre",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/81572636"
    },
@@ -4725,7 +4725,7 @@
     "statut": "empreinte-partielle-interpretee",
     "source": "https://www.openstreetmap.org/relation/2221203",
     "releve": "2026-09-14",
-    "description": "Paire1/2 orientée et centrée à partir des BR1 (way62412076) et BR2 (way62411882), explicitement nommés. L'entraxe de l'asset reste84m contre88,8m relevés : symboles à environ2,4m de chaque centre. Sous-bâtiments schématiques ; séparation nucléaire/SDM interprétée dans l'emprise commune.",
+    "description": "Paire 1/2 orientée et centrée à partir des BR1 (way62412076) et BR2 (way62411882), explicitement nommés. L'entraxe de l'asset reste 84 m contre 88,8 m relevés : symboles à environ 2,4 m de chaque centre. Sous-bâtiments schématiques ; séparation nucléaire/SDM interprétée dans l'emprise commune.",
     "millesime": "Millésime du tracé non renseigné dans cet objet",
     "raccordementGeometrique": {
      "statut": "implantation-schematique-raccordee",
@@ -4733,7 +4733,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 186.0,
      "angleApres": 186.05,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4752,7 +4752,7 @@
      "statut": "empreinte-partielle-interpretee",
      "source": "https://www.openstreetmap.org/relation/2221203",
      "releve": "2026-09-14",
-     "description": "Paire1/2 orientée et centrée à partir des BR1 (way62412076) et BR2 (way62411882), explicitement nommés. L'entraxe de l'asset reste84m contre88,8m relevés : symboles à environ2,4m de chaque centre. Sous-bâtiments schématiques ; séparation nucléaire/SDM interprétée dans l'emprise commune.",
+     "description": "Paire 1/2 orientée et centrée à partir des BR1 (way62412076) et BR2 (way62411882), explicitement nommés. L'entraxe de l'asset reste 84 m contre 88,8 m relevés : symboles à environ 2,4 m de chaque centre. Sous-bâtiments schématiques ; séparation nucléaire/SDM interprétée dans l'emprise commune.",
      "millesime": "Millésime du tracé non renseigné dans cet objet"
     },
     "empreinte": [
@@ -5616,7 +5616,7 @@
     "statut": "empreinte-partielle-interpretee",
     "source": "https://www.openstreetmap.org/relation/2221203",
     "releve": "2026-09-14",
-    "description": "Partie rectangulaire de la façade sud du complexe1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
+    "description": "Partie rectangulaire de la façade sud du complexe 1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en 2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
     "millesime": "Millésime du tracé non renseigné dans cet objet",
     "rectangleHalle": {
      "statut": "dimensions-interpretees",
@@ -5723,7 +5723,7 @@
      "statut": "empreinte-partielle-interpretee",
      "source": "https://www.openstreetmap.org/relation/2221203",
      "releve": "2026-09-14",
-     "description": "Partie rectangulaire de la façade sud du complexe1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
+     "description": "Partie rectangulaire de la façade sud du complexe 1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en 2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
      "millesime": "Millésime du tracé non renseigné dans cet objet",
      "rectangleHalle": {
       "statut": "dimensions-interpretees",
@@ -5781,7 +5781,7 @@
     "statut": "empreinte-partielle-interpretee",
     "source": "https://www.openstreetmap.org/relation/2221203",
     "releve": "2026-09-14",
-    "description": "Partie rectangulaire de la façade sud du complexe1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
+    "description": "Partie rectangulaire de la façade sud du complexe 1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en 2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
     "millesime": "Millésime du tracé non renseigné dans cet objet",
     "rectangleHalle": {
      "statut": "dimensions-interpretees",
@@ -5884,7 +5884,7 @@
      "statut": "empreinte-partielle-interpretee",
      "source": "https://www.openstreetmap.org/relation/2221203",
      "releve": "2026-09-14",
-     "description": "Partie rectangulaire de la façade sud du complexe1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
+     "description": "Partie rectangulaire de la façade sud du complexe 1/2, interprétée comme halle par concordance des points de production et de la photographie publique de Chinon publiée par Saumur en 2025. OSM ne nomme pas cette subdivision ; contour partiel interprété.",
      "millesime": "Millésime du tracé non renseigné dans cet objet",
      "rectangleHalle": {
       "statut": "dimensions-interpretees",
@@ -5942,7 +5942,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/62410634",
     "releve": "2026-09-14",
-    "description": "Halle à l'ouest de la paire3/4. Attribution tranche3/4 par les points générateurs nommés ; la photo publique de Saumur confirme les volumes. Le BR adjacent n'est pas individualisé dans OSM.",
+    "description": "Halle à l'ouest de la paire 3/4. Attribution tranche 3/4 par les points générateurs nommés ; la photo publique de Saumur confirme les volumes. Le BR adjacent n'est pas individualisé dans OSM.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "rectangleHalle": {
      "statut": "dimensions-interpretees",
@@ -6081,7 +6081,7 @@
      "statut": "empreinte-cartographique",
      "source": "https://www.openstreetmap.org/way/62410634",
      "releve": "2026-09-14",
-     "description": "Halle à l'ouest de la paire3/4. Attribution tranche3/4 par les points générateurs nommés ; la photo publique de Saumur confirme les volumes. Le BR adjacent n'est pas individualisé dans OSM.",
+     "description": "Halle à l'ouest de la paire 3/4. Attribution tranche 3/4 par les points générateurs nommés ; la photo publique de Saumur confirme les volumes. Le BR adjacent n'est pas individualisé dans OSM.",
      "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
      "rectangleHalle": {
       "statut": "dimensions-interpretees",
@@ -6139,7 +6139,7 @@
     "statut": "empreinte-partielle-interpretee",
     "source": "https://www.openstreetmap.org/way/62411267",
     "releve": "2026-09-14",
-    "description": "Aile ouest rectangulaire du complexe3/4, attribuée à la halle4 par le point générateur nommé. Séparation halle/îlot interprétée au sein d'une empreinte commune.",
+    "description": "Aile ouest rectangulaire du complexe 3/4, attribuée à la halle 4 par le point générateur nommé. Séparation halle/îlot interprétée au sein d'une empreinte commune.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "rectangleHalle": {
      "statut": "dimensions-interpretees",
@@ -6242,7 +6242,7 @@
      "statut": "empreinte-partielle-interpretee",
      "source": "https://www.openstreetmap.org/way/62411267",
      "releve": "2026-09-14",
-     "description": "Aile ouest rectangulaire du complexe3/4, attribuée à la halle4 par le point générateur nommé. Séparation halle/îlot interprétée au sein d'une empreinte commune.",
+     "description": "Aile ouest rectangulaire du complexe 3/4, attribuée à la halle 4 par le point générateur nommé. Séparation halle/îlot interprétée au sein d'une empreinte commune.",
      "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
      "rectangleHalle": {
       "statut": "dimensions-interpretees",
@@ -6301,7 +6301,7 @@
     "statut": "fonction-identifiee-position-non-relevee",
     "source": "https://www.openstreetmap.org/way/62411267",
     "releve": "2026-09-14",
-    "description": "Complexe3/4 identifié, centres BR non individualisés dans OSM. La paire fonctionnelle reste dans le cartouche ; l'enveloppe réelle du complexe est dessinée séparément.",
+    "description": "Complexe 3/4 identifié, centres BR non individualisés dans OSM. La paire fonctionnelle reste dans le cartouche ; l'enveloppe réelle du complexe est dessinée séparément.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "raccordementGeometrique": {
      "statut": "implantation-schematique-raccordee",
@@ -6309,7 +6309,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 285.75,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -6328,7 +6328,7 @@
      "statut": "fonction-identifiee-position-non-relevee",
      "source": "https://www.openstreetmap.org/way/62411267",
      "releve": "2026-09-14",
-     "description": "Complexe3/4 identifié, centres BR non individualisés dans OSM. La paire fonctionnelle reste dans le cartouche ; l'enveloppe réelle du complexe est dessinée séparément.",
+     "description": "Complexe 3/4 identifié, centres BR non individualisés dans OSM. La paire fonctionnelle reste dans le cartouche ; l'enveloppe réelle du complexe est dessinée séparément.",
      "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
     }
    }
@@ -7473,7 +7473,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/62411267",
     "releve": "2026-09-14",
-    "description": "Enveloppe du complexe comprenant la halle4 et l'îlot3/4, couche de contexte non exclusive. Elle ne doit pas être interprétée comme une empriseBR seule.",
+    "description": "Enveloppe du complexe comprenant la halle 4 et l'îlot 3/4, couche de contexte non exclusive. Elle ne doit pas être interprétée comme une emprise BR seule.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
    },
    "localisation": "non-documentee",

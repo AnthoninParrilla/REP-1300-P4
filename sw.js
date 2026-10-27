@@ -2,7 +2,7 @@
 // interdites sans autorisation écrite de l'auteur (contact@simurep.fr). Ce fichier fait partie d'une œuvre protégée. ═══
 // Service worker du châssis public — SIMUREP (paliers 900, 1300, N4 et EPR)
 // Stratégie : réseau d'abord (version toujours fraîche), cache en secours (mode avion).
-var CACHE = 'rep1300-client-202610012131';
+var CACHE = 'rep1300-client-202610272044';
 
 // Ressources locales nécessaires à l'installation et à l'identité sur iPhone.
 var PWA_ASSETS = [
@@ -15,7 +15,7 @@ var PWA_ASSETS = [
 ];
 var BASE = new URL('./', self.location.href);
 // Complété depuis la liste fermée du paquet lors du déploiement.
-var SDC_ASSETS = ["./index.html","./france.html","./client.html","./n4/index.html","./n4/n4.css","./n4/instruments-n4.js","./n4/n4-synoptiques.js","./n4/n4-commandes.js","./n4/n4.js","./n4/preferences-n4.js","./n4/adaptateur-n4.js","./n4/essai-n4.js","./n4/transport-prive.js","./epr/index.html","./epr/n4.css","./epr/instruments-n4.js","./epr/n4-synoptiques.js","./epr/n4-commandes.js","./epr/n4.js","./epr/preferences-n4.js","./epr/adaptateur-n4.js","./epr/essai-n4.js","./epr/transport-prive.js","./epr/epr-synoptiques.js","./epr/epr.js","./epr/epr.css"]; // SDC_PUBLIC_ASSETS
+var SDC_ASSETS = ["./index.html","./france.html","./client.html","./reseau-400kv.json","./n4/index.html","./n4/n4.css","./n4/instruments-n4.js","./n4/n4-synoptiques.js","./n4/n4-commandes.js","./n4/n4.js","./n4/preferences-n4.js","./n4/adaptateur-n4.js","./n4/essai-n4.js","./n4/transport-prive.js","./epr/index.html","./epr/n4.css","./epr/instruments-n4.js","./epr/n4-synoptiques.js","./epr/n4-commandes.js","./epr/n4.js","./epr/preferences-n4.js","./epr/adaptateur-n4.js","./epr/essai-n4.js","./epr/transport-prive.js","./epr/epr-synoptiques.js","./epr/epr.js","./epr/epr.css","./900/index.html","./900/n4.css","./900/instruments-n4.js","./900/n4-synoptiques.js","./900/n4-commandes.js","./900/n4.js","./900/preferences-n4.js","./900/adaptateur-n4.js","./900/essai-n4.js","./900/transport-prive.js","./900/instruments-900.js","./900/synoptique-900.js","./900/ks6p.js","./900/salle-900.js","./900/salle-900.css","./1300/index.html","./1300/n4.css","./1300/instruments-n4.js","./1300/n4-synoptiques.js","./1300/n4-commandes.js","./1300/n4.js","./1300/preferences-n4.js","./1300/adaptateur-n4.js","./1300/essai-n4.js","./1300/transport-prive.js","./1300/instruments-900.js","./1300/synoptique-900.js","./1300/salle-900.js","./1300/salle-900.css","./1300/pupitre-1300.js","./1300/kis-1300.js","./1300/enregistreur-1300.js","./1300/salle-1300.js","./1300/salle-1300.css"]; // SDC_PUBLIC_ASSETS
 // Cache.addAll refuse les doublons : comparer les URL résolues, pas les écritures relatives.
 var INSTALL_ASSETS = Array.from(new Set(['./', './index.html'].concat(PWA_ASSETS, SDC_ASSETS).map(function (path) { return new URL(path, BASE).href; })));
 var STATIC_PATHS = PWA_ASSETS.concat(SDC_ASSETS).map(function (path) { return new URL(path, BASE).pathname; });

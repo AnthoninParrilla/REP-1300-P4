@@ -349,7 +349,7 @@
       ]
      ]
     ],
-    "nom": "Plan d'eau Les Blaches",
+    "nom": "Plan d’eau Les Blaches",
     "source": "https://www.openstreetmap.org/way/158344801"
    },
    {
@@ -4281,7 +4281,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 61.04902646932595,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4320,7 +4320,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 61.70304037258927,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -5184,7 +5184,7 @@
    "preuve": {
     "statut": "indetermine",
     "releve": "2026-09-14",
-    "description": "Fonction du simulateur conservée ; aucune attribution géographique certaine dans les sources examinées. Le cartouche ne représente pas son emplacement physique. Rapport EDF environnement2023 p22-23 : fonctionnement des DUS évoqué, sans repère géographique individuel. Le plan IFARE ancien ne permet pas leur identification.",
+    "description": "Fonction du simulateur conservée ; aucune attribution géographique certaine dans les sources examinées. Le cartouche ne représente pas son emplacement physique. Rapport EDF environnement 2023 p22-23 : fonctionnement des DUS évoqué, sans repère géographique individuel. Le plan IFARE ancien ne permet pas leur identification.",
     "source": "https://www.edf.fr/sites/groupe/files/2024-06/Rapport%20annuel%20environnement%20Saint-Alban_2023.pdf"
    }
   },
@@ -5196,7 +5196,7 @@
    "m": 1,
    "L": 64,
    "l": 34,
-   "lab": "Traitement des effluents — bilan du site",
+   "lab": "Traitement des effluents : bilan du site",
    "localisation": "non-documentee",
    "preuve": {
     "statut": "indetermine",
@@ -5216,7 +5216,7 @@
    "preuve": {
     "statut": "indetermine",
     "releve": "2026-09-14",
-    "description": "Fonction du simulateur conservée ; aucune attribution géographique certaine dans les sources examinées. Le cartouche ne représente pas son emplacement physique. Rapport EDF environnement2023 p22-23 : fonctionnement des DUS évoqué, sans repère géographique individuel. Le plan IFARE ancien ne permet pas leur identification.",
+    "description": "Fonction du simulateur conservée ; aucune attribution géographique certaine dans les sources examinées. Le cartouche ne représente pas son emplacement physique. Rapport EDF environnement 2023 p22-23 : fonctionnement des DUS évoqué, sans repère géographique individuel. Le plan IFARE ancien ne permet pas leur identification.",
     "source": "https://www.edf.fr/sites/groupe/files/2024-06/Rapport%20annuel%20environnement%20Saint-Alban_2023.pdf"
    }
   }
@@ -5227,7 +5227,7 @@
   "source": "IGN — BD ORTHO, Licence ouverte 2.0",
   "portee": "Contexte IGN disponible mais emprise pixellisée. Recalage des seuls objets attribuables sur données publiques OSM ; source et portée détaillées par objet. Aucune géométrie déduite de pixels masqués."
  },
- "note": "Recalage nord en haut sur les deux enveloppes nommées Saint-Alban-1 et Saint-Alban-2 : unité1 au nord-ouest, unité2 au sud-est. OSM n’individualise pas BR et salles des machines dans ces polygones. Les assets nucléaires figés et les fonctions non localisées demeurent en cartouche ; aucune précision métrique inventée. Le plan IFARE est une perspective d’accès sans numérotation des sous-bâtiments. Rhône et canaux suivent des données OSM séparées. Les installations sont refroidies en circuit ouvert, sans aéro ajouté.",
+ "note": "Recalage nord en haut sur les deux enveloppes nommées Saint-Alban-1 et Saint-Alban-2 : unité 1 au nord-ouest, unité 2 au sud-est. OSM n’individualise pas BR et salles des machines dans ces polygones. Les assets nucléaires figés et les fonctions non localisées demeurent en cartouche ; aucune précision métrique inventée. Le plan IFARE est une perspective d’accès sans numérotation des sous-bâtiments. Rhône et canaux suivent des données OSM séparées. Les installations sont refroidies en circuit ouvert, sans aéro ajouté.",
  "geographie": {
   "origine": [
    45.404,

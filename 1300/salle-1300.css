@@ -1,0 +1,418 @@
+/* SIMUREP — © 2026 AnthoninP — Tous droits réservés. Salle de commande du 1300 (J2b), P4 et P'4.
+   Chargée après salle-900.css : la salle reprend la feuille commune des salles conventionnelles et n'écrit ici que ce qui lui est
+   propre (grand QCM de la nuit du 03/10). KIS : écran plat moderne à fond clair, dans l'esprit des écrans de l'EPR (17A). */
+.s13-sdc{--m-pave:#ad8f68;--m-ombre:#9d8461;--m-joint:#8a714f;--m-cadre:#d5b697;--m-panneau:#c4ab83;--m-olive:#917b4c;--sarcelle:#2a4848;background:linear-gradient(#c7b089,#b79f78)}
+/* ── Matière du pupitre (6A, 7A ; photo du pupitre de Paluel 1, teintes mesurées) : mastic uniforme, panneaux un ton plus clair, pavés
+      carrés vissés, cadre crème ; seules couleurs vives : plaques, traits et organes. ── */
+.s13-sdc .s9-quickbar{background:linear-gradient(#cdb58c,#bfa57b)!important;box-shadow:inset 0 -1px #8f7754,0 2px 0 #7f6848!important}
+.s13-sdc .s9-panneau{background:linear-gradient(var(--m-panneau),#b9a07a);border-color:#7f6848;box-shadow:inset 0 2px #dcc9a6}
+.s13-sdc .s9-panneau-t h2{color:#2a2015}
+.s13-pupitre{padding:6px;background:var(--patine) 0 0/480px 480px,linear-gradient(#e0c6a4,var(--m-cadre) 30%,#c9a985);border:1px solid #8f774f;border-radius:3px;box-shadow:inset 0 1px 0 #f4e9d2,inset 0 -2px 4px #0003,0 2px 6px #0004}
+.s13-cols{display:flex;gap:6px;align-items:stretch;margin-bottom:6px}.s13-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:6px}
+.s13-col>.s13-zone:last-child{flex:1 1 auto}
+.s13-zone{display:flex;flex-direction:column;min-width:0;margin:0 0 6px;border:1px solid #5a4730;border-radius:2px;background:var(--m-ombre);box-shadow:0 1px 0 #f6ead0,0 -1px 0 #a88d66,1px 2px 4px #0004}
+.s13-col .s13-zone{margin:0}
+.s13-tete{margin:0;padding:5px 8px 4px;text-align:center;background:var(--patine) 0 0/480px 480px,linear-gradient(#c6ab83,#ad9269);border-bottom:1px solid #4e3d26;box-shadow:inset 0 1px #dcc6a0}
+/* Plaque gravée : lettres creusées (reflet clair sous le trait), bord biseauté, petite ombre portée. */
+.s13-tete span{display:inline-block;padding:2px 12px;background:linear-gradient(#fbf9f2,#ece7da);border:1px solid #3c3428;border-radius:1px;color:#141210;font:700 11.5px/1.25 "Arial Narrow",Arial,sans-serif;letter-spacing:.08em;text-shadow:0 1px 0 #fff;box-shadow:inset 0 1px #fff,inset 0 -1px #c9c1ae,1px 2px 2px #0005}
+/* Grandes plaques mastic vissées (photo du pupitre de Paluel 1, relue le 03/10 au soir) : chaque plaque porte des organes entiers,
+   vissée aux quatre coins ; joints étroits et sombres entre plaques ; une rangée prend toute la largeur de la section. */
+.s13-pave{flex:1 1 auto;display:flex;flex-direction:column;gap:4px;padding:4px;background:#46371f;box-shadow:inset 0 2px 4px #000c,inset 0 0 0 1px #2c2213}
+.s13-pans{display:flex;flex-wrap:wrap;gap:4px;align-items:stretch}
+/* Rendu réaliste (04/10, « tout est taillé dans la pâte à modeler ») : la lumière vient d'en haut à gauche, comme dans la salle.
+   Chaque plaque a un biseau (arête claire en haut et à gauche, sombre en bas et à droite), une surface très légèrement bombée, une
+   ombre portée dans le joint ; vis fendues aux quatre coins, fentes à des angles différents ; peinture brillante à fines rayures d’usage. */
+.s13-sdc{--vis1:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23fbf6ea'/%3E%3Cstop offset='.42' stop-color='%23c3bba9'/%3E%3Cstop offset='1' stop-color='%235a5040'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23463c2c' stroke-width='.7'/%3E%3Cg transform='rotate(28 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--vis2:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23fbf6ea'/%3E%3Cstop offset='.42' stop-color='%23c3bba9'/%3E%3Cstop offset='1' stop-color='%235a5040'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23463c2c' stroke-width='.7'/%3E%3Cg transform='rotate(-52 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--vis3:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23fbf6ea'/%3E%3Cstop offset='.42' stop-color='%23c3bba9'/%3E%3Cstop offset='1' stop-color='%235a5040'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23463c2c' stroke-width='.7'/%3E%3Cg transform='rotate(71 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--vis4:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23fbf6ea'/%3E%3Cstop offset='.42' stop-color='%23c3bba9'/%3E%3Cstop offset='1' stop-color='%235a5040'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23463c2c' stroke-width='.7'/%3E%3Cg transform='rotate(-14 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");
+  --patine:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22480%22%20height%3D%22480%22%20viewBox%3D%220%200%20480%20480%22%3E%3Cg%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%2013l8%202%20M108%20164l21%20-3%20M205%20315l34%20-4%20M302%2026l47%205%20M399%20177l9%20-6%20M56%20328l22%20-7%20M153%2039l35%208%20M250%20190l48%20-9%20M347%20341l10%20-2%20M444%2052l23%203%20M101%20203l36%20-4%20M198%20354l49%20-5%20M295%2065l11%206%20M392%20216l24%20-7%20M49%20367l37%20-8%20M146%2078l50%209%20M243%20229l12%20-2%20M340%20380l25%20-3%20M437%2091l38%204%20M94%20242l51%20-5%20M191%20393l13%20-6%20M288%20104l26%207%20M385%20255l39%20-8%20M42%20406l52%20-9%20M139%20117l14%202%20M236%20268l27%20-3%20M333%20419l40%20-4%20M430%20130l53%205%20M87%20281l15%20-6%20M184%20432l28%20-7%20M281%20143l41%208%20M378%20294l54%20-9%20M35%20445l16%20-2%20M132%20156l29%203%20M229%20307l42%20-4%20M326%2018l55%20-5%22%20stroke%3D%22%23fff%22%20stroke-width%3D%22.65%22%20opacity%3D%22.14%22%2F%3E%3Cpath%20d%3D%22M11%2013l8%202%20M108%20164l21%20-3%20M205%20315l34%20-4%20M302%2026l47%205%20M399%20177l9%20-6%20M56%20328l22%20-7%20M153%2039l35%208%20M250%20190l48%20-9%20M347%20341l10%20-2%20M444%2052l23%203%20M101%20203l36%20-4%20M198%20354l49%20-5%20M295%2065l11%206%20M392%20216l24%20-7%20M49%20367l37%20-8%20M146%2078l50%209%20M243%20229l12%20-2%20M340%20380l25%20-3%20M437%2091l38%204%20M94%20242l51%20-5%20M191%20393l13%20-6%20M288%20104l26%207%20M385%20255l39%20-8%20M42%20406l52%20-9%20M139%20117l14%202%20M236%20268l27%20-3%20M333%20419l40%20-4%20M430%20130l53%205%20M87%20281l15%20-6%20M184%20432l28%20-7%20M281%20143l41%208%20M378%20294l54%20-9%20M35%20445l16%20-2%20M132%20156l29%203%20M229%20307l42%20-4%20M326%2018l55%20-5%22%20transform%3D%22translate%280%20.65%29%22%20stroke%3D%22%233a3026%22%20stroke-width%3D%22.4%22%20opacity%3D%22.045%22%2F%3E%3Cpath%20d%3D%22M48%20321q68-17%20132-8m-116%2012q64-16%20116-9M294%2091q38-12%2073-9%22%20stroke%3D%22%23fff%22%20stroke-width%3D%22.55%22%20opacity%3D%22.08%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --relief:linear-gradient(118deg,#fffbea45 0%,#fffbea12 20%,#fffbea00 36%,#fffbea1c 49%,#fffbea00 56%,#3a281016 100%);
+  --vis-pos:left 4px top 4px,right 4px top 4px,left 4px bottom 4px,right 4px bottom 4px;--vis-t:13px 13px}
+.s13-pan{flex:1 1 auto;min-width:min(100%,150px);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 14px 14px;border:0;
+  background-image:var(--vis1),var(--vis2),var(--vis3),var(--vis4),var(--patine),var(--relief);background-position:var(--vis-pos),0 0,0 0;background-size:var(--vis-t),var(--vis-t),var(--vis-t),var(--vis-t),480px 480px,100% 100%;
+  background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat;background-color:var(--m-pave);
+  box-shadow:inset 1px 1px 0 #e8d6b3,inset -1px -1px 0 #6e5a3c,inset 3px 3px 3px -1px #f3e4c544,inset -3px -3px 4px -1px #4a381e40,1px 2px 2px #0008,2px 3px 5px #0005}
+.s13-pan-olive{background-color:var(--m-olive);box-shadow:inset 1px 1px 0 #c3ad7b,inset -1px -1px 0 #5a4a28,inset 3px 3px 3px -1px #e6d6a344,inset -3px -3px 4px -1px #3a2e1440,1px 2px 2px #0008,2px 3px 5px #0005}
+.s13-pan-large{flex-basis:100%}
+/* 04/10 : organes centrés dans une plaque étirée (hors plaques à trait peint, dont l'axe est fixe). */
+.s13-pans:not(.s13-ligne)>.s13-pan{justify-content:center}
+.s13-pan-c{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:center;align-items:flex-start;max-width:100%}
+.s13-pan .s13-note{margin-top:6px}
+/* La dernière rangée d'une section prend la hauteur restante ; une note posée seule devient une plaque. */
+.s13-pave>.s13-pans:last-child{flex:1 1 auto}
+.s13-pave>.s13-note{margin:0;padding:8px 12px;background:var(--patine) 0 0/480px 480px,var(--relief),var(--m-pave);border:0;box-shadow:inset 1px 1px 0 #e8d6b3,inset -1px -1px 0 #6e5a3c,1px 2px 2px #0008}
+.s13-note{margin:8px 2px 0;font:12.5px/1.45 Arial,sans-serif;color:#2f2618;text-align:center}
+.s13-src{align-self:center;padding:4px 10px;background:#f2efe6;border:1px solid #3c3428;font:13px Arial,sans-serif;color:#1d1914}
+/* Plaques : vert sarcelle à lettres blanches (groupes de commandes), blanches (sous les postes et en tête), noires (19A). */
+.s13-plaque,.s13-plaque-b,.s13-plaque-n{display:inline-block;max-width:100%;box-sizing:border-box;padding:2px 7px;border-radius:1px;font:700 9.5px/1.2 "Arial Narrow",Arial,sans-serif;letter-spacing:.05em;text-align:center;overflow-wrap:anywhere}
+.s13-plaque{background:linear-gradient(#335656,var(--sarcelle) 45%,#223c3c);color:#f4f6f2;border:1px solid #142626;text-shadow:0 -1px 0 #0008;box-shadow:inset 0 1px #5a8282,inset 0 -1px #142a2a,1px 2px 2px #0006}
+.s13-plaque-b{background:linear-gradient(#fbf9f2,#ece7da);color:#141210;border:1px solid #3c3428;text-shadow:0 1px 0 #fff;box-shadow:inset 0 1px #fff,1px 2px 2px #0005}.s13-plaque-b small{display:block;font:400 9px "Arial Narrow",Arial,sans-serif;letter-spacing:0;color:#4a4033}
+.s13-plaque-n{background:linear-gradient(#2b2b29,#121211);color:#efeee9;border:1px solid #000;box-shadow:inset 0 1px #4a4a46,1px 2px 2px #0006}
+.s13-pan-t{align-self:center}
+/* Trait peint d'un circuit : il traverse les plaques de la rangée et leurs joints à hauteur des manettes des TPL. */
+/* Peinture du trait : arête haute éclairée, arête basse dans l'ombre ; la patine passe aussi sur la peinture. */
+.s13-ligne{--axe:85px;--peint:linear-gradient(color-mix(in srgb,var(--trait),#fff 30%) 0 1px,var(--trait) 1px 5px,color-mix(in srgb,var(--trait),#000 35%) 5px);
+  background:var(--peint) 0 var(--axe)/100% 6px no-repeat,#46371f}
+.s13-ligne-haut{--axe:78px}
+.s13-ligne>.s13-pan{background-image:var(--vis1),var(--vis2),var(--vis3),var(--vis4),var(--patine),var(--peint),var(--relief);background-position:var(--vis-pos),0 0,0 var(--axe),0 0;
+  background-size:var(--vis-t),var(--vis-t),var(--vis-t),var(--vis-t),480px 480px,100% 6px,100% 100%;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat,no-repeat}
+/* TPL du 1300 (9A) : manette chromée à barrette sur son trait ; diodes d'état dessous. */
+.s13-tpl-o{display:flex;flex-direction:column;align-items:center;gap:4px;width:124px}
+.s13-tpl-o .s13-plaque{height:26px;display:flex;align-items:center;justify-content:center;width:116px;overflow:hidden;line-height:1.05}
+.s13-sdc .s13-tpl{position:relative;display:block;width:124px;height:84px;margin:0;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.s13-tpl svg{display:block;width:124px;height:84px;filter:drop-shadow(0 1px 1px #0006)}
+.s13-sdc .s13-tpl:disabled{cursor:default}.s13-sdc .s13-tpl:disabled svg{opacity:.7}.s13-sdc .s13-tpl:focus-visible{outline:3px solid #ffd23a;outline-offset:1px}
+.s13-sdc .s13-tpl:active:not(:disabled) svg{transform:scale(.97)}
+.s13-tpl .s13-diodes{position:absolute;right:6px;bottom:2px}
+.s13-tpl-etat{font:700 10.5px/1.2 "Arial Narrow",Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#241c12;text-align:center}
+.s13-tpl-etat-d{color:#0b4f87}
+.s13-tpl-discord svg{animation:s13-discord 1s steps(1,end) infinite}@keyframes s13-discord{50%{filter:drop-shadow(0 0 6px #8fd3ff)}}
+@media (prefers-reduced-motion:reduce){.s13-tpl-discord svg{animation:none;filter:drop-shadow(0 0 6px #8fd3ff)}}
+/* Diodes d'état (9 bis A) : verte = hors service, rouge = en service ; éteintes, sombres. */
+.s13-diodes{display:inline-flex;gap:4px;padding:2px 3px;background:#1b1a17;border-radius:7px;box-shadow:inset 0 1px 2px #000}
+.s13-d{display:block;width:9px;height:9px;border-radius:50%}
+.s13-d-v{background:#17391f}.s13-d-r{background:#43150f}
+.s13-d-v.on{background:radial-gradient(circle at 40% 35%,#d6ffe0,#3ee26b 55%,#16943a);box-shadow:0 0 6px 1px #3ee26baa}
+.s13-d-r.on{background:radial-gradient(circle at 40% 35%,#ffd7cf,#ff4a3d 55%,#c01d10);box-shadow:0 0 6px 1px #ff4a3daa}
+.s13-etat{display:inline-flex;align-items:center;gap:6px;padding:3px 8px 3px 4px;background:#f2efe6;border:1px solid #3c3428;font:700 10px/1.2 "Arial Narrow",Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#141210}
+/* Poste de réglage noir (10A, repère 25) : échelle 0–100, pictogrammes main et flèches avec leur diode, + et −, plaque blanche. */
+.s13-poste{display:inline-flex;flex-direction:column;align-items:center;gap:4px;vertical-align:top}
+.s13-poste-boite{display:flex;gap:8px;padding:8px;background:linear-gradient(#262725,#141513);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px #555,0 2px 3px #0006}
+.s13-poste-ech{width:44px;height:112px;flex:0 0 auto}
+.s13-poste-d{display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:118px}
+.s13-modes{display:flex;gap:6px;justify-content:center}
+.s13-sdc .s13-mode{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;width:54px;min-height:50px;margin:0;padding:12px 2px 3px;border:1px solid #4a4b48;border-radius:2px;background:linear-gradient(#3a3b38,#232422);color:#d9d9d2;cursor:pointer;font:700 9px "Arial Narrow",Arial,sans-serif;letter-spacing:.05em}
+.s13-mode svg{width:20px;height:20px}.s13-mode small{font:inherit}
+.s13-mode-d{position:absolute;top:3px;left:50%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:#4a1626}
+.s13-sdc .s13-mode.on{color:#fff;border-color:#7a7b77}.s13-mode.on .s13-mode-d{background:radial-gradient(circle at 40% 35%,#ffe1ee,#ff5f9e 55%,#c2185b);box-shadow:0 0 6px 1px #ff5f9ecc}
+.s13-sdc .s13-mode:disabled{opacity:.5;cursor:default}
+.s13-poste-r{display:flex;flex-direction:column;gap:5px;color:#e8e8e2;font:12px Arial,sans-serif}
+.s13-poste-v b{font:700 16px "DIN Alternate","Bahnschrift",Arial,sans-serif;color:#fff}
+.s13-pastouches{display:flex;gap:6px}
+.s13-sdc .s13-pas{flex:1 1 0;min-height:36px;margin:0;border:1px solid #6b6c68;border-radius:2px;background:linear-gradient(#4a4b47,#2c2d2a);color:#fff;font:700 18px Arial,sans-serif;cursor:pointer}
+.s13-sdc .s13-pas:disabled{opacity:.4;cursor:default}
+.s13-poste-r label{display:flex;flex-direction:column;gap:2px}
+.s13-sdc .s13-poste-r input{width:100%;box-sizing:border-box;min-height:34px;padding:4px 6px;background:#f2f1eb;color:#141210;border:1px solid #000;border-radius:1px;font:600 14px Arial,sans-serif}
+.s13-poste-r small{color:#b9b9b2;font:10.5px/1.3 Arial,sans-serif;max-width:150px}
+.s13-poste-seul .s13-poste-d{min-width:0}
+/* Clés d'inhibition sur pavé olive (11A, repères 18 et 26). */
+.s13-inhib{display:flex;flex-wrap:wrap;gap:10px 12px;justify-content:center}
+.s13-cle-o{display:flex;flex-direction:column;align-items:center;gap:4px;width:132px}.s13-cle-o .s13-plaque{min-height:26px;display:flex;align-items:center;justify-content:center;width:100%}
+.s13-sdc .s13-cle-o .s9-cle{color:#f4f1e6;width:110px}.s13-sdc .s13-cle-o .s9-cle-t{display:none}
+.s13-sdc .s13-cle-o .s9-cle-en{background:#c8261f40;box-shadow:inset 0 0 0 2px #ff6a5c}
+/* Capot transparent des SEBIM (12A, repère 28). */
+.s13-capot-o{display:flex;flex-direction:column;align-items:center;gap:4px}
+.s13-capot{position:relative;width:118px;height:86px;display:flex;align-items:center;justify-content:center;background:#6f5a3d;border:1px solid #3c3428;border-radius:2px;box-shadow:inset 0 1px 3px #0007}
+.s13-sdc .s13-capot-b{width:86px;min-height:52px;margin:0;border:3px solid #c9ccc8;border-radius:2px;background:linear-gradient(#7f1d17,#58110c);color:#ffc6bd;font:700 11px "Arial Narrow",Arial,sans-serif;letter-spacing:.06em;box-shadow:0 0 0 1px #535553,0 0 0 4px #363836;cursor:pointer}
+.s13-sdc .s13-capot-b.on{background:radial-gradient(circle at 50% 40%,#ffd8cf,#ff5242 45%,#c81e12);color:#fff;box-shadow:0 0 0 1px #535553,0 0 0 4px #363836,0 0 14px 6px #ff4a3da0}
+.s13-sdc .s13-capot-v{position:absolute;inset:4px;margin:0;border:1px solid #ffffffc0;border-radius:4px;background:linear-gradient(160deg,#ffffff70,#ffffff18 45%,#ffffff45);box-shadow:inset 0 0 0 1px #0002,0 2px 4px #0005;cursor:pointer}
+.s13-sdc .s13-capot-v::after{content:'';position:absolute;left:10px;right:10px;top:-5px;height:5px;border-radius:2px 2px 0 0;background:#2b2b28}
+.s13-capot-releve{position:absolute;left:4px;right:4px;top:-30px;height:26px;border:1px solid #ffffffc0;border-radius:4px 4px 1px 1px;background:linear-gradient(#ffffff20,#ffffff60);transform:perspective(80px) rotateX(48deg);transform-origin:bottom;pointer-events:none}
+.s13-sdc .s13-capot-ouvert{margin-top:24px}
+/* Paires de boutons lumineux sous plaques noires (19A). */
+.s13-paire-o{display:flex;flex-direction:column;align-items:center;gap:4px}
+@media(max-width:960px){.s13-cols{flex-direction:column}}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+  .s13-pan{padding:14px 8px 12px}.s13-tpl-o{width:112px}.s13-sdc .s13-tpl,.s13-tpl svg{width:112px;height:76px}.s13-ligne{--axe:79px}.s13-ligne-haut{--axe:73px}.s13-tpl-o .s13-plaque{width:108px}
+  .s13-poste-boite{padding:6px;gap:6px}.s13-poste-d{min-width:104px}.s13-cle-o{width:116px}
+}
+/* ── KIS (8a B, 17A, 23A) : un seul écran, des pages ; consultation seule ── */
+.s13-kis{margin:0 auto;max-width:1240px;background:#2b3236;border:10px solid #2b3236;border-radius:6px;box-shadow:0 0 0 1px #111,0 6px 14px #0005;color:#203842;font:13px/1.45 system-ui,"Segoe UI",Arial,sans-serif}
+.s13-kis-tete{display:flex;align-items:center;gap:12px;padding:6px 12px;background:#1e3e4d;color:#eef7fa;border-radius:2px 2px 0 0}
+.s13-kis-tete b{padding:1px 8px;border:1px solid #9fc4d3;border-radius:2px;font:700 13px system-ui,Arial,sans-serif;letter-spacing:.18em}
+.s13-kis-tete span{font:600 13px system-ui,Arial,sans-serif;letter-spacing:.04em;margin-right:auto}
+.s13-kis-pages{display:flex;flex-wrap:wrap;gap:3px;padding:5px;background:#c9d4d9;border-bottom:1px solid #9fb0b8}.s13-kis-suite{display:none}
+.s13-sdc .s13-kis-pages button{min-height:38px;margin:0;padding:4px 12px;border:1px solid transparent;border-radius:3px;background:transparent;color:#2e4955;font:600 12.5px system-ui,Arial,sans-serif;cursor:pointer;box-shadow:none}
+.s13-sdc .s13-kis-pages button:hover{background:#e3eaed}
+.s13-sdc .s13-kis-pages button[aria-current=page]{background:#1e3e4d;color:#eff9fc}
+.s13-kis-corps{min-height:320px;padding:12px 14px;background:#f4f7f8}
+.s13-kis-pied{padding:3px 12px;background:#e1e8eb;color:#4a5f69;font:11px system-ui,Arial,sans-serif;border-top:1px solid #c3d0d6}
+.s13-kis-n{margin:4px 0 10px;color:#5b717b}
+.s13-kis-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.s13-sdc .s13-kis-t{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-height:72px;margin:0;padding:8px 10px;border:1px solid #b5c4cb;border-left:5px solid #b5c4cb;border-radius:3px;background:#fff;color:#203842;text-align:left;cursor:pointer;box-shadow:none}
+.s13-kis-t b{font:700 15px system-ui,Arial,sans-serif;letter-spacing:.06em;color:#1e3e4d}.s13-kis-t span{font:12.5px system-ui,Arial,sans-serif}.s13-kis-t small{color:#5b717b;font-size:11.5px}
+.s13-sdc .s13-kis-t:is(:hover,:focus-visible){background:#eaf1f4}
+.s13-sdc .s13-kis-t[data-niveau=rouge]{border-left-color:#d22b2b;background:#fdecec}
+.s13-sdc .s13-kis-t[data-niveau=orange]{border-left-color:#e8a21a;background:#fff6dd}
+.s13-sdc .s13-kis-t[data-niveau=blanc]{border-left-color:#7b8f99;background:#ffffff}
+.s13-kis-sys h3{display:flex;align-items:center;gap:10px;margin:0 0 10px;font:700 15px system-ui,Arial,sans-serif;color:#1e3e4d}
+.s13-sdc .s13-kis-b{min-height:36px;margin:0;padding:4px 12px;border:1px solid #8ea4ae;border-radius:3px;background:#e9eff2;color:#1e3e4d;font:600 12.5px system-ui,Arial,sans-serif;cursor:pointer;box-shadow:none}
+.s13-kis-d{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+.s13-kis-d h4{margin:8px 0 6px;padding:3px 8px;background:#dde6ea;color:#1e3e4d;font:700 11.5px system-ui,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.s13-kis-l{display:flex;align-items:baseline;gap:8px;padding:3px 2px;border-bottom:1px solid #dfe7ea}
+.s13-kis-l span{flex:1 1 auto;color:#3d5560}.s13-kis-l b{font:700 14px "DIN Alternate","Bahnschrift",system-ui,Arial,sans-serif;color:#0f3b52}.s13-kis-l i{min-width:5ch;font-style:normal;color:#5b717b;font-size:12px}
+.s13-kis-e[data-c=v]{color:#1f7a3a!important}.s13-kis-e[data-c=r]{color:#c22a2a!important}.s13-kis-e[data-c=j]{color:#9a6a00!important}.s13-kis-e[data-c=c]{color:#1d6c8f!important}
+.s13-kis-ev,.s13-kis-journal{max-height:420px;overflow:auto;background:#fff;border:1px solid #d3dde1;padding:6px 8px;font:12.5px/1.5 system-ui,Arial,sans-serif}
+.s13-kis-ev p,.s13-kis-journal p{margin:0 0 3px}.s13-kis-ev b,.s13-kis-journal b{color:#5b717b;font-weight:600;margin-right:6px}
+.s13-kis-ev .r,.s13-kis-journal .r{color:#b42020}.s13-kis-ev .o,.s13-kis-journal .o{color:#8a5a00}
+.s13-kis .n4-live-slot{display:block;min-height:320px;background:#f4f7f8}
+/* Lot 4 ter (6A du 07/10) : le journal de la tranche en bas de la page Alarmes, sur l'écran du KIS (sans touches de pages). */
+.s13-kis-seul{margin-top:14px}
+/* Pages du KIS sur deux rangées : synoptiques, puis les autres pages ; horloge du moteur dans le bandeau. */
+.s13-kis-pages{flex-direction:column;align-items:stretch}.s13-kis-rang{display:flex;flex-wrap:wrap;gap:3px}.s13-kis-rang2{padding-top:3px;border-top:1px solid #b2c2c9}
+.s13-kis-tete em{font:600 12px "DIN Alternate","Bahnschrift",system-ui,monospace;font-style:normal;color:#cfe3ea;letter-spacing:.04em}
+/* Synoptique et fiche d'équipement (8b A, 8c A) : le dessin à gauche, la fiche à droite (dessous au téléphone). */
+.s13-k-synpage{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start}
+.s13-k-synvue{min-width:0;background:#f6f8f9;border:1px solid #c3d0d6;border-radius:3px;overflow:hidden}
+.s13-k-syn{display:block;width:100%;height:auto;font-family:system-ui,"Segoe UI",Arial,sans-serif}
+.s13-k-eq{cursor:pointer}.s13-k-eq:hover{filter:brightness(1.08)}.s13-k-eq:focus-visible{outline:3px solid #1d6f9e;outline-offset:2px}
+.s13-k-sel :is(rect,circle,path){stroke:#0b6fb8!important;stroke-width:3px!important}
+.s13-k-fiche{background:#fff;border:1px solid #c3d0d6;border-radius:3px;padding:10px 12px;font:13px/1.45 system-ui,Arial,sans-serif;color:#1f3741}
+.s13-k-fiche-vide p{margin:0;color:#5b717b}
+.s13-k-fiche-t{display:flex;flex-direction:column;gap:1px;padding-bottom:6px;margin-bottom:4px;border-bottom:2px solid #1e3e4d}.s13-k-fiche-t b{font:700 14.5px system-ui,Arial,sans-serif;color:#1e3e4d}.s13-k-fiche-t small{color:#5b717b}
+.s13-k-fiche h4{margin:10px 0 4px;padding:2px 6px;background:#dde6ea;color:#1e3e4d;font:700 11px system-ui,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.s13-k-al{margin:2px 0;padding:3px 6px;border-left:4px solid #e8a21a;background:#fff6dd;font-weight:600}.s13-k-al[data-c=r]{border-left-color:#d22b2b;background:#fdecec}
+.s13-sdc .s13-k-aller{display:flex;flex-direction:column;align-items:flex-start;gap:0;width:100%;margin-top:12px;padding:6px 10px;background:#1e3e4d;color:#eff9fc;border-color:#1e3e4d}.s13-k-aller small{font:400 11px system-ui,Arial,sans-serif;color:#bcd6e0}
+/* FLASH (18A) : grandes valeurs encadrées. */
+.s13-k-flash{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.s13-k-flash-v{display:flex;flex-direction:column;gap:2px;padding:10px 14px;background:#fff;border:2px solid #1e3e4d;border-radius:3px}
+.s13-k-flash-v span{font:600 12px system-ui,Arial,sans-serif;color:#5b717b;text-transform:uppercase;letter-spacing:.06em}
+.s13-k-flash-v b{font:700 40px/1.05 "DIN Alternate","Bahnschrift",system-ui,Arial,sans-serif;color:#0f3b52}.s13-k-flash-v i{font-style:normal;color:#5b717b}
+.s13-k-flash-g{grid-column:1/-1;padding:10px 14px;background:#fff;border:2px solid #1e3e4d;border-radius:3px}
+.s13-k-flash-g>span{display:block;margin-bottom:6px;font:600 12px system-ui,Arial,sans-serif;color:#5b717b;text-transform:uppercase;letter-spacing:.06em}
+.s13-k-flash-g>div{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.s13-k-flash-g p{margin:0;display:flex;align-items:baseline;gap:6px;padding:6px 8px;background:#f4f7f8;border:1px solid #c3d0d6}
+.s13-k-flash-g p b{font:700 14px system-ui,Arial,sans-serif;color:#1e3e4d}.s13-k-flash-g p em{font:700 24px "DIN Alternate","Bahnschrift",system-ui,Arial,sans-serif;font-style:normal;color:#0f3b52}.s13-k-flash-g p small{color:#5b717b}
+/* Courbes : mêmes tracés que les postes, sur fond blanc. */
+.s13-k-courbes .n4-chart{width:100%;height:auto;border:1px solid #c3d0d6;background:#fff}
+.s13-k-courbes :is(.n4-bande-temps,.n4-bande-vide){color:#5b717b}   /* courbes en bandes (14/10 au soir) */
+.s13-k-courbes .n4-chart-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0;font:12.5px system-ui,Arial,sans-serif;color:#1f3741}.s13-k-courbes .n4-chart-legend i{display:inline-block;width:12px;height:12px;margin-right:4px;border-radius:2px;vertical-align:-1px}
+.s13-k-courbes .n4-chart-options{display:flex;flex-wrap:wrap;gap:6px;border:1px solid #c3d0d6;padding:8px;background:#fff}.s13-k-courbes .n4-chart-options legend{font:600 12px system-ui,Arial,sans-serif;color:#1e3e4d}
+.s13-sdc .s13-k-courbes .n4-chart-options button{min-height:36px;margin:0;padding:4px 10px;border:1px solid #b5c4cb;border-radius:3px;background:#fff;color:#1f3741;font:12.5px system-ui,Arial,sans-serif;box-shadow:none;cursor:pointer}
+.s13-sdc .s13-k-courbes .n4-chart-options button[aria-pressed=true]{background:#1e3e4d;color:#eff9fc;border-color:#1e3e4d}
+.s13-k-courbes .n4-chart-options button i{display:inline-block;width:10px;height:10px;margin-right:5px;border-radius:2px}
+/* Bouton du KIS dans un panneau (23A : FLASH depuis Barres-flux, Sûreté depuis le panneau de sûreté). */
+.s13-sdc .s13-vers-kis{min-height:40px;margin:0;padding:5px 12px;border:1px solid #1e3e4d;border-radius:3px;background:#1e3e4d;color:#eff9fc;font:600 12px system-ui,Arial,sans-serif;cursor:pointer;box-shadow:0 1px 2px #0005}
+/* Zone visée depuis une fiche du KIS : la section s'éclaire 1,6 s. */
+.s13-zone[data-visee="1"]{animation:s13-visee 1.6s ease-out}@keyframes s13-visee{0%,60%{box-shadow:0 0 0 4px #ffd23a,0 0 24px 6px #ffd23a99}100%{box-shadow:0 1px 0 #f1e4c6}}
+@media (prefers-reduced-motion:reduce){.s13-zone[data-visee="1"]{animation:none;box-shadow:0 0 0 4px #ffd23a}}
+@media(max-width:960px){.s13-k-synpage{grid-template-columns:minmax(0,1fr)}.s13-k-flash{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+  .s13-k-synvue{overflow-x:auto;-webkit-overflow-scrolling:touch}.s13-k-syn{min-width:640px}
+  .s13-k-flash{grid-template-columns:minmax(0,1fr)}.s13-k-flash-v b{font-size:34px}
+  .s13-kis-rang{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+  .s13-kis{border-width:5px}.s13-kis-corps{padding:8px}.s13-kis-d{grid-template-columns:minmax(0,1fr)}
+  .s13-sdc .s13-kis-pages button{min-height:42px}
+  .s13-kis-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* ── Alarmes (13A) : verrines rouges en matrices (bordeaux éteintes, rose-rouge allumées, « D » détouré), en tête de section et sur le
+      mur ; les autres sur la page Alarmes du KIS en jaune, blanc ou vert. ── */
+.s13-sdc{--s9-v-off:linear-gradient(#5e1d27,#47141c)}
+.s13-mat{min-width:0}.s13-mat h4{margin:0;padding:3px 8px;background:#1b1a17;color:#efeee9;font:700 10px "Arial Narrow",Arial,sans-serif;letter-spacing:.12em;border-radius:2px 2px 0 0}
+.s13-mat-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:4px;background:#0f0f0e;border:3px solid #0a0a09;border-top:0;border-radius:0 0 2px 2px}
+.s13-sdc .s13-v[data-mode=repos]{color:#e7b3bf;border-color:#2b0a10;box-shadow:inset 0 0 0 1px #6c2633}
+.s13-sdc .s13-v[data-mode=repos] .s9-d{color:#e7b3bf}
+.s13-mur-mat{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px 12px;align-items:start}
+.s13-mur-ver{background:linear-gradient(#c7b089,#b79f78)!important;border-color:#7f6848!important;box-shadow:inset 0 2px #dcc9a6!important}
+.s13-tete-mat{margin:0 0 8px}.s13-tete-mat .s13-mat-g{grid-template-columns:repeat(6,minmax(0,1fr))}
+.s13-vers-kis-l{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0;font:13px Arial,sans-serif;color:#2a2015}
+/* Page Alarmes du KIS */
+.s13-k-al-tete{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.s13-k-al-tete span{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid #c3d0d6;border-left-width:6px;border-radius:3px;background:#fff;font:600 12.5px system-ui,Arial,sans-serif;color:#1f3741}
+.s13-k-al-tete b{font:700 15px "DIN Alternate","Bahnschrift",system-ui,Arial,sans-serif;color:#0f3b52}
+.s13-k-al-tete [data-c=rouge]{border-left-color:#d22b2b}.s13-k-al-tete [data-c=jaune]{border-left-color:#e8b60f}.s13-k-al-tete [data-c=blanc]{border-left-color:#9aa9b0}.s13-k-al-tete [data-c=vert]{border-left-color:#2f9a4f}.s13-k-al-tete [data-c=acq]{border-left-color:#1e3e4d}
+.s13-k-al-liste{background:#fff;border:1px solid #c3d0d6;border-radius:3px;overflow:hidden}
+.s13-k-al-l{display:grid;grid-template-columns:100px minmax(0,1fr) 110px 170px;gap:8px;align-items:center;padding:5px 10px;border-bottom:1px solid #e3e9ec;font:13px system-ui,Arial,sans-serif;color:#1f3741}
+.s13-k-al-h{background:#dde6ea;font:700 11px system-ui,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#1e3e4d}
+.s13-k-al-l span:nth-child(2){display:flex;align-items:center;gap:8px;font-weight:600}.s13-k-al-l i{display:block;width:14px;height:14px;border-radius:2px;border:1px solid #0003;flex:0 0 auto}
+.s13-k-al-l[data-c=jaune] i{background:#f5c518}.s13-k-al-l[data-c=blanc] i{background:#fff;border-color:#7b8f99}.s13-k-al-l[data-c=vert] i{background:#34a853}
+.s13-k-al-l[data-c=jaune]{background:#fff9e0}.s13-k-al-l[data-c=vert]{background:#eef8f0}
+.s13-k-al-l[data-mode=nouvelle] span:nth-child(4){color:#b42020;font-weight:700;animation:s13-al 1s steps(1,end) infinite}.s13-k-al-l[data-mode=disparue] span:nth-child(4){color:#8a5a00;font-weight:700}
+@keyframes s13-al{50%{opacity:.25}}@media (prefers-reduced-motion:reduce){.s13-k-al-l[data-mode=nouvelle] span:nth-child(4){animation:none}}
+.s13-k-al-st{margin:12px 0 6px;padding:3px 8px;background:#dde6ea;color:#1e3e4d;font:700 11.5px system-ui,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.s13-k-al-hist p[data-c=rouge]{color:#b42020}.s13-k-al-hist p[data-c=jaune]{color:#7a5a00}.s13-k-al-hist p[data-c=vert]{color:#1f6b35}
+@media(max-width:760px){.s13-k-al-l{grid-template-columns:76px minmax(0,1fr);row-gap:2px}.s13-k-al-l span:nth-child(3),.s13-k-al-h span:nth-child(3){display:none}.s13-k-al-l span:nth-child(4){grid-column:2}.s13-k-al-h span:nth-child(4){display:none}.s13-mat-g,.s13-tete-mat .s13-mat-g{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* Clignotement des verrines rouges : la phase éteinte reprend le bordeaux et l'inscription claire ; fenêtres de réserve en verre éteint. */
+@keyframes s13-clign{50%{background:var(--s9-v-off);color:#e7b3bf;box-shadow:inset 0 0 0 1px #6c2633}}
+.s13-sdc .s13-v[data-mode=nouvelle]{animation:s13-clign .5s steps(1,end) infinite}.s13-sdc .s13-v[data-mode=disparue]{animation:s13-clign 1.6s steps(1,end) infinite}
+@media (prefers-reduced-motion:reduce){.s13-sdc .s13-v[data-mode=nouvelle],.s13-sdc .s13-v[data-mode=disparue]{animation:none!important}}
+.s13-sdc .s13-mat-g .s9-v-libre{min-height:30px;background:var(--s9-v-off);border:1px solid #2b0a10;border-radius:2px;box-shadow:inset 0 0 0 1px #521a25,inset 0 2px 5px #0006;opacity:.8}
+/* ── Grappes (14A) : un module noir par groupe, une colonne de diodes par grappe, une diode allumée au bout ; compteur de pas. ── */
+.s13-mods{display:flex;flex-wrap:wrap;gap:10px 12px;justify-content:center;padding:10px;background:#1b1c1a;border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px #3a3b38}
+.s13-mod{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.s13-mod-p{min-width:34px;padding:1px 8px;border:1px solid #000;border-radius:2px;font:700 12px "Arial Narrow",Arial,sans-serif;letter-spacing:.06em;text-align:center}
+.s13-mod svg{display:block;max-width:100%;height:auto}
+.s13-mod figcaption{display:flex;align-items:center;gap:4px;padding:2px 4px;background:#0b0b0a;border-radius:2px}.s13-mod figcaption svg{width:auto;height:24px}.s13-mod figcaption small{font:700 9px "Arial Narrow",Arial,sans-serif;color:#d9d9d2}
+.s13-mod-tot{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;padding:5px 10px;background:#1b1c1a;border:1px solid #000;border-radius:3px;color:#e9e9e3;font:700 10.5px "Arial Narrow",Arial,sans-serif;letter-spacing:.06em}
+.s13-mod-tot svg{height:26px;width:auto}
+/* Carte du cœur du KIS (15A) */
+.s13-k-cartevue{padding:8px;background:#fff}.s13-k-carte{display:block;width:100%;max-width:540px;height:auto;margin:0 auto;font-family:system-ui,"Segoe UI",Arial,sans-serif}
+.s13-k-case{cursor:pointer}.s13-k-case:hover rect:first-child{stroke:#1d6f9e}.s13-k-case:focus-visible{outline:3px solid #1d6f9e}
+.s13-k-carte-g{display:grid;grid-template-columns:minmax(0,1fr);gap:3px}.s13-k-carte-g p{margin:0;display:grid;grid-template-columns:14px 34px minmax(0,1fr) auto;gap:6px;align-items:center;font:12.5px system-ui,Arial,sans-serif}
+.s13-k-carte-g i{display:block;width:12px;height:12px;border-radius:2px;border:1px solid #0003}.s13-k-carte-g em{font-style:normal;font-weight:700;color:#0f3b52}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){.s13-mods{padding:6px;gap:6px 8px}.s13-mod svg{max-width:150px}}
+/* ── Enregistreurs numériques (16A, planche 1 repère 6) : un par panneau, format unique carré (04/10), logé dans une plaque du
+   panneau, dans la colonne la plus courte. Rendu réaliste (04/10) d'après l'appareil de référence de la veille, sans marque :
+   boîtier noir carré à arêtes, écran vitré en retrait (reflet), bandeau d'état bleu, papier clair qui défile vers le bas, cases de
+   valeurs de la couleur des plumes, barre de touches grise de l'écran, menus contextuels bleus ; quatre touches rondes et une
+   molette sous l'écran (dessin seul, sans geste). ── */
+.s13-zone-enr .s13-pan-enr{justify-content:center;padding:12px 10px}
+/* Taille de l'appareil indépendante de l'écran affiché (courbes, valeurs ou barres) : la plaque lui donne toute sa largeur. */
+.s13-zone-enr .s13-pan-enr>.s13-pan-c{align-self:stretch;width:100%}.s13-zone-enr .s13-enr{margin:0 auto}
+.s13-enr{width:100%;max-width:392px}
+.s13-enr-face{box-sizing:border-box;aspect-ratio:1/1;display:flex;flex-direction:column;gap:7px;padding:11px 11px 8px;border-radius:5px;
+  background:linear-gradient(#ffffff12,#ffffff00 30%),linear-gradient(#2b2c2a,#151614 60%,#0f100e);border:1px solid #000;
+  box-shadow:inset 1px 1px 0 #5a5b57,inset -1px -1px 0 #000,inset 0 0 0 4px #1b1c1a,1px 3px 5px #000a,2px 6px 12px #0005}
+.s13-enr-ecran{position:relative;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#d6dade;border:3px solid #050606;border-radius:2px;
+  box-shadow:0 0 0 1px #3c3d3a,inset 0 2px 5px #0009}
+.s13-enr-ecran::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(158deg,#ffffff3a 0,#ffffff14 34%,#ffffff00 35%,#ffffff00 86%,#ffffff12 100%),linear-gradient(#0000,#0000 94%,#00000022)}
+.s13-enr-tete{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:8px;align-items:baseline;padding:2px 6px 3px;background:linear-gradient(#2c3fb4,#17248a);color:#f2f5ff;border-bottom:1px solid #0b1250;font:700 10.5px/1.2 "Arial Narrow",Arial,sans-serif;letter-spacing:.06em}
+.s13-enr-tete b{letter-spacing:.18em}.s13-enr-tete span{font:600 10.5px "DIN Alternate","Bahnschrift",Arial,sans-serif;color:#cfe0ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s13-enr-tete em{font-style:normal;color:#ffe680;font-weight:700}.s13-enr-tete small{grid-column:1/-1;font:600 9px/1.2 "Arial Narrow",Arial,sans-serif;color:#aebcf5;letter-spacing:.06em}
+.s13-enr-replay .s13-enr-tete{background:linear-gradient(#5a5f6b,#3b3f48);border-bottom-color:#22252b}
+.s13-enr-trace{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:stretch;padding:3px;background:#d6dade}
+.s13-enr-papier{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 34%;gap:3px}
+.s13-enr-c{display:block;width:100%;height:100%;min-height:0;font-family:"DIN Alternate","Bahnschrift",Arial,sans-serif;background:#e3e6ea}
+.s13-enr-cases{display:flex;flex-direction:column;gap:2px;min-height:0}
+.s13-enr-case{flex:1 1 0;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n u" "v v";align-content:center;align-items:baseline;padding:1px 4px;border:1px solid #9aa2ad;border-left:4px solid var(--pl);border-radius:1px;
+  background:linear-gradient(color-mix(in srgb,var(--pl),#fff 88%),color-mix(in srgb,var(--pl),#fff 80%))}
+.s13-enr-case span{grid-area:n;color:var(--pl);font:700 8.5px/1.1 "Arial Narrow",Arial,sans-serif;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;filter:brightness(.8)}
+.s13-enr-case b{grid-area:v;color:var(--pl);font:700 15px/1.05 "DIN Alternate","Bahnschrift",Arial,sans-serif;filter:brightness(.8);white-space:nowrap}
+.s13-enr-case i{grid-area:u;font-style:normal;color:#4b5360;font:9px "Arial Narrow",Arial,sans-serif;padding-left:3px;text-align:right}
+.s13-enr-v{flex:1 1 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:3px}
+.s13-enr-case-g{padding:3px 7px}.s13-enr-case-g span{font-size:9.5px}.s13-enr-case-g b{font-size:24px}
+.s13-enr-vide{margin:20px 6px;color:#3b4450;font:13px system-ui,Arial,sans-serif;text-align:center}
+.s13-enr-b{flex:1 1 auto;display:flex;flex-direction:column;gap:3px;justify-content:space-between}
+.s13-enr-b>div{flex:1 1 0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto auto auto;column-gap:4px;align-items:center;padding:2px 5px;background:#fbfcfd;border:1px solid #9aa2ad;border-left:4px solid var(--pl)}
+.s13-enr-b span{grid-column:1/-1;color:var(--pl);filter:brightness(.8);font:700 9px "Arial Narrow",Arial,sans-serif}
+.s13-enr-b small{color:#4b5360;font:8.5px "DIN Alternate","Bahnschrift",Arial,sans-serif}
+.s13-enr-b em{display:block;height:9px;background:#111;border:1px solid #000}.s13-enr-b em i{display:block;height:100%;background:var(--pl)}
+.s13-enr-b b{grid-column:1/3;color:var(--pl);filter:brightness(.8);font:700 15px/1.1 "DIN Alternate","Bahnschrift",Arial,sans-serif}.s13-enr-b b i{font:9px Arial,sans-serif;font-style:normal;color:#4b5360;filter:none}
+.s13-enr-b u{text-decoration:none;color:#4b5360;font:8.5px "DIN Alternate","Bahnschrift",Arial,sans-serif;text-align:right}
+.s13-enr-touches{display:flex;gap:1px;padding:1px;background:#6b717a;border-top:1px solid #3d424a}
+.s13-sdc .s13-enr-k{flex:1 1 0;min-width:0;min-height:26px;margin:0;padding:1px 1px;overflow:hidden;text-overflow:clip;border:1px solid #f4f6f8;border-right-color:#7c838d;border-bottom-color:#7c838d;border-radius:0;
+  background:linear-gradient(#e7eaee,#c7ccd3);color:#14181d;font:700 9.5px "Arial Narrow",Arial,sans-serif;letter-spacing:.02em;white-space:nowrap;cursor:pointer;box-shadow:none}
+.s13-sdc .s13-enr-k.on{background:linear-gradient(#ffe680,#f2c94c);color:#1a1400}.s13-sdc .s13-enr-k:disabled{color:#8a919b;cursor:default}
+.s13-enr-menu{position:absolute;left:5px;bottom:31px;z-index:1;display:flex;flex-direction:column;min-width:120px;padding:2px;background:#1d2b9a;border:1px solid #f2f5ff;box-shadow:2px 3px 6px #0007}
+.s13-enr-menu b{padding:1px 6px 2px;color:#fff;font:700 9.5px "Arial Narrow",Arial,sans-serif;letter-spacing:.08em;border-bottom:1px solid #6d7fe6}
+.s13-sdc .s13-enr-menu .s13-enr-k{flex:none;min-height:28px;text-align:left;padding:2px 8px;background:#1d2b9a;color:#f2f5ff;border:0;font-size:11px}
+.s13-sdc .s13-enr-menu .s13-enr-k.on{background:#ffe680;color:#141000}
+.s13-enr-clavier{display:flex;align-items:center;justify-content:center;gap:12%;height:22px;flex:0 0 auto}
+.s13-enr-clavier i{width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#6e6f6b,#2a2b28 60%,#151614);box-shadow:inset 0 1px #8a8b86,0 1px 2px #000}
+.s13-enr-clavier span{width:24px;height:20px;border-radius:50%;background:repeating-linear-gradient(90deg,#1b1c1a 0 2px,#3b3c38 2px 3px),#262724;box-shadow:inset 0 2px 3px #0009,0 0 0 2px #121311,0 1px 2px #000}
+.s13-enr-choix{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;padding:6px;background:#1b1c1a;border:1px solid #000;border-radius:3px}.s13-enr-choix small{flex-basis:100%;color:#cfd3cc;font:11px system-ui,Arial,sans-serif}
+.s13-sdc .s13-enr-choix .s13-enr-k{flex:0 0 auto;min-height:30px;padding:2px 8px}
+@media(max-width:760px){.s13-enr{max-width:360px}.s13-sdc .s13-enr-k{min-height:30px}}
+/* ── Afficheur de la puissance électrique (18A ; lot 4 ter, Anthonin du 07/10 : barre verte retirée, « un bel affichage de MW bien fier ») :
+      grands chiffres rouges dans une fenêtre noire profonde sous verre, cadre d'acier, unité gravée ; toujours visible sur le bandeau du mur. ── */
+.s13-mw{display:inline-flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;background:linear-gradient(#6d6f6c,#3b3d3a 45%,#232522);border:1px solid #0b0b0a;border-radius:4px;box-shadow:inset 0 1px #a9aba7,inset 0 -1px #121311,0 2px 5px #0008}
+.s13-mw-f{position:relative;display:flex;padding:4px 10px;background:#140303;border:2px solid #050505;border-radius:2px;box-shadow:inset 0 0 12px #000,inset 0 3px 4px #000,0 1px 0 #777a75}
+.s13-mw svg{height:44px;width:auto;filter:drop-shadow(0 0 3px #ff2a1acc) drop-shadow(0 0 9px #ff2a1a55)}
+.s13-mw small{color:#f2f1ea;font:700 15px "Arial Narrow",Arial,sans-serif;letter-spacing:.08em;text-shadow:0 1px 0 #000}
+.s13-sdc .s9-mur-volet>summary{flex-wrap:wrap}
+/* ── Page Sûreté du KIS (19A) : barres des grandeurs de sûreté et ébulliomètre, sur fond clair. ── */
+.s13-k-surete{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px}
+.s13-k-surete h4{margin:0 0 6px;padding:3px 8px;background:#dde6ea;color:#1e3e4d;font:700 11.5px system-ui,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.s13-k-sb{display:grid;grid-template-columns:150px minmax(0,1fr) 70px 44px;gap:8px;align-items:center;padding:4px 2px;border-bottom:1px solid #e3e9ec;font:13px system-ui,Arial,sans-serif;color:#1f3741}
+.s13-k-sb em{display:block;height:12px;background:#e8eef1;border:1px solid #c3d0d6}.s13-k-sb em i{display:block;height:100%;background:#1d6f9e}
+.s13-k-sb b{text-align:right;font:700 14px "DIN Alternate","Bahnschrift",system-ui,Arial,sans-serif;color:#0f3b52}.s13-k-sb small{color:#5b717b}
+.s13-k-sb-a em i{background:#d22b2b}.s13-k-sb-a b,.s13-k-rouge{color:#c22a2a!important}
+.s13-k-tors{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.s13-k-tor{padding:3px 8px;border:1px solid #c3d0d6;border-radius:3px;background:#fff;color:#7b8f99;font:600 12px system-ui,Arial,sans-serif}
+.s13-k-tor[data-on=true]{color:#fff;border-color:transparent;background:#a8740f}.s13-k-tor[data-on=true][data-c=r]{background:#d22b2b}
+.s13-kis .s9-ebu{background:#fff;border:1px solid #c3d0d6}
+.s13-kis .s9-ebu .s9-ebu-g{stroke:#dbe3e7;stroke-dasharray:none}.s13-kis .s9-ebu :is(.s9-ebu-t,.s9-ebu-l){fill:#5b717b;font-family:system-ui,Arial,sans-serif}
+.s13-kis .s9-ebu .s9-ebu-c{stroke:#b0442a}.s13-kis .s9-ebu .s9-ebu-m{stroke:#1d6f9e}.s13-kis .s9-ebu :is(.s9-ebu-p,.s9-ebu-f){stroke:#0f3b52}
+@media(max-width:960px){.s13-k-surete{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+  .s13-k-sb{grid-template-columns:118px minmax(0,1fr) 64px;font-size:12px}.s13-k-sb small{display:none}
+  .s13-mw{order:-1;flex-basis:auto;justify-content:center}.s13-mw svg{height:34px}.s13-mw small{font-size:13px}
+}
+/* ── Téléphone (passe 7) : l'afficheur de puissance reste visible dans le bandeau d'état (le mur est replié hors de l'écran) ; pages du
+      KIS sur deux rangées défilantes ; titre du KIS sur une ligne. ── */
+.s13-mw-tel{display:none}
+.s13-kis-tete b{flex:0 0 auto;white-space:nowrap}.s13-kis-tete span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+  .s13-mw-tel{display:flex;order:3;flex-basis:100%;justify-content:center;margin:2px 0}.s13-mw-tel .s13-mw{flex-basis:auto}
+  .s13-kis-pages{padding:4px}.s13-kis-rang{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.s13-kis-rang::-webkit-scrollbar{display:none}
+  /* Retour d'Anthonin (14/10 au soir) : les deux rangées sortaient de l'écran (fond gris clair et trait de séparation compris) au lieu de
+     défiler ; elles tiennent dans la largeur du KIS. */
+  .s13-kis-pages{min-width:0;max-width:100%;box-sizing:border-box}.s13-kis-rang{min-width:0;max-width:100%;box-sizing:border-box}
+  .s13-sdc .s13-kis-rang button{flex:0 0 auto;min-height:40px;white-space:nowrap}
+  /* J6, client 2 (101A) : les onglets qui défilent en largeur sont signalés ; le repère colle au bord droit tant qu'il reste des onglets à droite. */
+  .s13-kis-suite{display:block;position:sticky;right:0;flex:0 0 0;width:0;margin-left:-3px;pointer-events:none}.s13-kis-rang[data-fin] .s13-kis-suite{visibility:hidden}
+  .s13-kis-suite::before{content:'›';position:absolute;right:0;top:0;bottom:0;width:30px;display:flex;align-items:center;justify-content:flex-end;padding-right:3px;box-sizing:border-box;background:linear-gradient(90deg,#c9d4d900,#c9d4d9 55%);color:#1e3e4d;font:700 20px/1 system-ui,Arial,sans-serif}
+  .s13-kis-tete{gap:8px}.s13-kis-tete em{font-size:11px}
+}
+/* ── Rendu réaliste (04/10), passe 2 : les verres. Lumière d'en haut à gauche ; chaque verre porte un reflet (bande claire à bord
+      net sur sa moitié haute, comme une vitre qui reflète le plafond) et sa fenêtre est enfoncée dans son boîtier. Calques
+      purement visuels (pointer-events:none), sans effet sur les commandes. ── */
+/* Afficheurs à sept segments : fenêtre en retrait, verre fumé, reflet oblique. */
+.s13-sdc .s9-aff-f,.s13-sdc .s13-mod figcaption,.s13-sdc .s13-mod-tot>svg{position:relative}
+.s13-sdc .s9-aff-f{border-color:#050505;box-shadow:inset 0 0 8px #000,inset 0 2px 3px #000,0 1px 0 #5a5a55}
+.s13-sdc .s9-aff-f::after,.s13-sdc .s13-mod figcaption::after,.s13-mw-f::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(162deg,#ffffff30 0,#ffffff12 40%,#ffffff00 41%,#ffffff00 78%,#ffffff0d 100%)}
+.s13-sdc .s9-aff{background:linear-gradient(#4a4a46,#2a2a27 40%,#1c1c1a);box-shadow:inset 0 1px #77776f,inset 0 -1px #0a0a09,1px 2px 3px #0007}
+.s13-mw{position:relative}
+/* Indicateurs en barrette : faces blanches bombées sous verre (reflet vertical à gauche, ombre du boîtier en haut). Géométrie de la
+   face lue sur le dessin commun (cadran 42 × 124 dans une figure de 62 px, étiquette de 8 px et écart de 2 px au-dessus). */
+.s13-sdc .s9-ind{position:relative}
+.s13-sdc .s9-ind::after{content:'';position:absolute;left:4.4px;width:53.2px;top:14.4px;height:174.2px;pointer-events:none;
+  background:linear-gradient(90deg,#ffffff00 0,#ffffff70 14%,#ffffff20 26%,#ffffff00 40%,#ffffff00 82%,#0000000f 100%),linear-gradient(#0000002a,#00000000 9%,#00000000 92%,#0000001a)}
+.s13-sdc .s9-barr{background:linear-gradient(#34342f,#151513 50%,#0d0d0c);box-shadow:inset 0 1px #5d5d57,inset 0 -1px #000,1px 2px 3px #0008}
+/* Diodes et voyants : lentille bombée, point de lumière en haut à gauche, éteinte ou allumée. */
+.s13-d{position:relative}
+.s13-d::after{content:'';position:absolute;left:22%;top:16%;width:34%;height:28%;border-radius:50%;background:#ffffffb0;filter:blur(.4px);pointer-events:none}
+.s13-d:not(.on)::after{background:#ffffff40}
+.s13-diodes{background:linear-gradient(#2a2926,#121110);box-shadow:inset 0 1px 2px #000,0 1px 0 #ffffff30}
+.s13-sdc .s9-voy i{position:relative;box-shadow:0 0 0 2px #e4e4de,0 0 0 3px #8d8d86,0 0 0 4px #4d4d48,1px 2px 3px 3px #0006}
+.s13-sdc .s9-voy-vert i{box-shadow:0 0 0 2px #e4e4de,0 0 0 3px #8d8d86,0 0 0 4px #4d4d48,0 0 10px 3px #58e07a}
+.s13-sdc .s9-voy-ambre i{box-shadow:0 0 0 2px #e4e4de,0 0 0 3px #8d8d86,0 0 0 4px #4d4d48,0 0 10px 3px #ffb23c}
+.s13-sdc .s9-voy-rouge i{box-shadow:0 0 0 2px #e4e4de,0 0 0 3px #8d8d86,0 0 0 4px #4d4d48,0 0 10px 3px #ff4136}
+.s13-sdc .s9-voy i::after{content:'';position:absolute;left:20%;top:13%;width:36%;height:26%;border-radius:50%;background:#ffffff90;filter:blur(.6px);pointer-events:none}
+.s13-sdc .s9-voy-eteint i::after{background:#ffffff38}
+/* Verrines : verre dépoli dans une grille noire en retrait ; reflet du plafond sur la moitié haute, bord bas plus sombre. Le reflet
+   reste en place pendant le clignotement (il appartient au verre, pas à la lampe). */
+.s13-sdc :is(.s13-mat-g,.s9-mat-g){box-shadow:inset 0 2px 4px #000,0 1px 0 #ffffff26}
+.s13-sdc :is(.s13-mat-g,.s9-mat-g) :is(.s9-v,.s9-v-libre)::after{content:'';position:absolute;inset:1px;pointer-events:none;border-radius:1px;
+  background:linear-gradient(#ffffff2c,#ffffff10 44%,#ffffff00 45%,#ffffff00 82%,#00000026)}
+.s13-sdc :is(.s13-mat-g,.s9-mat-g) .s9-v-libre{position:relative}
+/* ── Rendu réaliste (04/10), passe 3 : les organes. Postes noirs brillants (vernis, reflet en bande haute, arête claire), touches
+      bombées ; capot transparent épais (arêtes, reflet oblique, ombre sur la plaque) ; poussoirs à lentille bombée (reflet sur la
+      moitié haute, bague d'acier éclairée en haut à gauche). Manettes des TPL et clés : dessin chromé (pupitre-1300.js). ── */
+.s13-poste-boite{background:linear-gradient(#ffffff14,#ffffff05 46%,#ffffff00 47%),linear-gradient(#30312e,#161715 55%,#0e0f0d);border-color:#000;
+  box-shadow:inset 1px 1px 0 #5c5d59,inset -1px -1px 0 #000,inset 0 2px 6px #ffffff0d,1px 3px 4px #0009,2px 5px 9px #0004}
+.s13-sdc .s13-mode,.s13-sdc .s13-pas{background:linear-gradient(#ffffff1c,#ffffff06 45%,#ffffff00 46%),linear-gradient(#41423f,#252623 60%,#1c1d1b);border-color:#090909;
+  box-shadow:inset 1px 1px 0 #6e6f6a,inset -1px -1px 0 #0b0b0a,0 1px 2px #000a}
+.s13-sdc .s13-mode.on{border-color:#3a3b38;box-shadow:inset 1px 1px 0 #8a8b86,inset -1px -1px 0 #0b0b0a,0 1px 2px #000a}
+.s13-sdc :is(.s13-mode,.s13-pas):active:not(:disabled){box-shadow:inset 0 2px 3px #000c;transform:translateY(1px)}
+.s13-poste-ech{filter:drop-shadow(0 0 1px #000)}
+.s13-sdc .s13-poste-r input{box-shadow:inset 0 2px 3px #0005}
+/* Capot transparent des SEBIM : plexiglas épais, arêtes éclairées, reflet oblique, ombre portée ; socle en retrait. */
+.s13-capot{background:linear-gradient(#5d4a31,#6f5a3d);box-shadow:inset 0 2px 5px #000b,0 1px 0 #ffffff30}
+.s13-sdc .s13-capot-v{border:1.5px solid #ffffffd0;border-right-color:#ffffff70;border-bottom-color:#ffffff60;
+  background:linear-gradient(118deg,#ffffff00 0,#ffffff00 22%,#ffffff70 23%,#ffffff2a 37%,#ffffff00 38%,#ffffff00 60%,#ffffff40 61%,#ffffff10 68%,#ffffff00 69%),linear-gradient(#d8ecff22,#d8ecff10);
+  box-shadow:inset 0 0 0 1px #00000018,inset 1px 1px 0 #ffffffa0,inset -2px -2px 3px #0000001c,2px 4px 5px #0006}
+.s13-capot-releve{background:linear-gradient(118deg,#ffffff18 20%,#ffffff80 24%,#ffffff20 40%,#ffffff40)}
+/* Poussoirs à lentille du pupitre : lentille bombée (reflet sur la moitié haute, bord bas assombri) ; le reflet reste éteint ou
+   allumé (il appartient à la lentille). */
+.s13-sdc .s13-pupitre :is(.s9-pous,.s9-hold,.s9-lent,.n4-scram,.s13-capot-b)::before{content:'';position:absolute;inset:1px;pointer-events:none;border-radius:1px;
+  background:linear-gradient(#ffffff40,#ffffff14 44%,#ffffff00 45%,#ffffff00 80%,#00000030)}
+.s13-sdc .s13-pupitre :is(.s9-pous,.s9-hold,.s9-lent,.n4-scram){border-color:#d9dcd8 #a3a7a2 #8d918c #cfd2ce!important}
+.s13-sdc .s13-capot-b{position:relative}
+.s13-sdc .s9-paire{background:linear-gradient(#7a7c79,#4a4c4a 45%,#2c2e2c);box-shadow:inset 1px 1px 0 #b2b4b0,inset -1px -1px 0 #1a1b1a,1px 3px 4px #0008}
+/* ── Rendu réaliste (04/10), passe 5 : finitions. La même patine très légère sur les grands fonds (panneaux, mur, bandeau) ; vitre
+      fumée des modules des grappes ; cadre de l'écran du KIS légèrement vernis. ── */
+.s13-sdc .s9-panneau{background:var(--patine) 0 0/480px 480px,linear-gradient(var(--m-panneau),#b9a07a)}
+.s13-mur-ver{background:var(--patine) 0 0/480px 480px,linear-gradient(#c7b089,#b79f78)!important}
+.s13-sdc .s9-quickbar{background:var(--patine) 0 0/480px 480px,linear-gradient(#cdb58c,#bfa57b)!important}
+.s13-mods{position:relative;box-shadow:inset 0 1px #3a3b38,inset 0 0 0 1px #000,1px 3px 5px #0008}
+.s13-mods::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(170deg,#ffffff1c 0,#ffffff08 30%,#ffffff00 31%,#ffffff00 85%,#ffffff0a)}
+.s13-mod-tot{box-shadow:inset 0 1px #3a3b38,1px 2px 4px #0008}
+.s13-kis{box-shadow:0 0 0 1px #111,inset 0 1px #5a6267,1px 4px 8px #0007,2px 8px 18px #0004;background:linear-gradient(#3a4146,#2b3236 30%,#22282b)}
+/* J3 (passe 3, 2A) : au 1300, la fiche de consigne est une feuille blanche à bandeau bleu-gris, comme les écrans clairs du KIS. */
+.s9-sdc.s13-sdc .n4-mission{background:#fbfcfd;border-color:#9fb3bd;color:#1f3741}
+.s9-sdc.s13-sdc .n4-mission-toggle{background:#e6edf1;border-bottom:1px solid #c3d0d6;color:#1f3741;font:700 13px/1.3 system-ui,sans-serif}
+.s9-sdc.s13-sdc .n4-mission-toggle b{color:#1f4e66}.s9-sdc.s13-sdc .n4-mission-toggle span{color:#1f3741}
+.s9-sdc.s13-sdc .n4-mission-toggle small,.s9-sdc.s13-sdc .n4-mission-toggle::after{color:#526e7b}
+.s9-sdc.s13-sdc .n4-mission-detail{color:#1f3741}.s9-sdc.s13-sdc .n4-mission-detail progress{accent-color:#1f4e66}
+.s9-sdc.s13-sdc .n4-mission-guide{border-left-color:#1f4e66;background:#eef3f6;color:#24414d}.s9-sdc.s13-sdc .n4-mission-guide b{color:#1f4e66}
+.s9-sdc.s13-sdc .n4-terme{text-decoration-color:#1f4e66}
+.s9-sdc.s13-sdc .n4-terme-def{background:#ffffff;border-color:#c3d0d6;color:#1f3741}.s9-sdc.s13-sdc .n4-terme-plus summary{color:#1f4e66}
+.s9-sdc.s13-sdc .n4-mission-montrer span{color:#526e7b}
+.s9-sdc.s13-sdc :is(.n4-mission-actions button,.n4-montrer,.n4-terme-fermer){border-color:#1f4e66;background:#ffffff;color:#1f4e66}
+.s9-sdc.s13-sdc .n4-guide-choix span{color:#526e7b}
+.s9-sdc.s13-sdc .n4-etape b,.s9-sdc.s13-sdc .n4-prevoir b{color:#1f4e66}.s9-sdc.s13-sdc .n4-etapes summary{color:#526e7b}
+.s9-sdc.s13-sdc .n4-guide-choix button{border-color:#1f4e66;color:#1f4e66}.s9-sdc.s13-sdc .n4-guide-choix button[aria-pressed=true]{background:#1f4e66;border-color:#1f4e66;color:#ffffff}
+.s9-sdc.s13-sdc .n4-pq{background:#ffffff;border-color:#9fb3bd;color:#1f3741}.s9-sdc.s13-sdc .n4-pq h3{color:#1f4e66}.s9-sdc.s13-sdc .n4-pq .n4-pq-etape{color:#526e7b;font-family:system-ui,sans-serif}
+.s9-sdc.s13-sdc .n4-pq-actions button{background:#1f4e66;border-color:#1f4e66;color:#fff}.s9-sdc.s13-sdc .n4-pq-actions button.n4-pq-discret{background:#fff;color:#1f4e66}
+.s9-sdc.s13-sdc .n4-cvp-arret{border-color:#a3392b}.s9-sdc.s13-sdc .n4-cvp-arret h3{color:#a3392b}

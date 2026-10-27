@@ -129,9 +129,9 @@
     h += path('M450 66 V156 H496', 'steam', 'steam');
     // Le dessin des corps suit l’arbre ; leur alimentation BP est distribuée,
     // sans représenter les trois corps BP comme trois détentes en série.
-    // Architecture N4 (matrice N4-03, TAB p. 143-144) : HP, MP, puis trois BP.
+    // Architecture N4 : un corps combiné HP-MP, puis trois BP (liste cochée, tour 4, 22/10 : DP97 p. 14 et 21, « double corps HP-MP à
+    // simple flux », comme le lexique et l’EPR ; la matrice N4-03, TAB p. 143-144, compte un corps HP et un corps MP).
     // Les séparateurs-surchauffeurs ne sont pas détaillés dans cette vue globale.
-    h += path('M537 145 H543', 'steam');
     h += path('M584 145 V97 H726', 'steam');
     [616, 671, 726].forEach(function (x) {
       h += path('M' + x + ' 97 V122', 'steam', 'steam');
@@ -144,15 +144,12 @@
     h += path('M496 165 H849', 'metal');
     [42, 143, 244, 345].forEach(function (x, i) { h += gv('gv' + (i + 1), x, 87, selected, true); });
     var bodies = '';
-    [[496, 'HP'], [543, 'MP']].forEach(function (part) {
-      var x = part[0];
-      bodies += '<path d="M' + x + ' 136 L' + (x + 41) + ' 122 V198 L' + x + ' 184 Z" fill="' + C.bg + '" stroke="' + C.metal + '" stroke-width="1.7"/>' + text(x + 20, 167, part[1], { size: 13 });
-    });
+    bodies += '<path d="M496 136 L584 122 V198 L496 184 Z" fill="' + C.bg + '" stroke="' + C.metal + '" stroke-width="1.7"/><path d="M540 129 V191" stroke="' + C.dim + '" stroke-dasharray="3 3"/>' + text(518, 167, 'HP', { size: 13 }) + text(562, 167, 'MP', { size: 13 });
     [595, 650, 705].forEach(function (x) {
       bodies += '<path d="M' + x + ' 145 L' + (x + 42) + ' 122 V209 L' + x + ' 186 Z" fill="' + C.bg + '" stroke="' + C.metal + '" stroke-width="1.7"/>' + text(x + 21, 171, 'BP', { size: 13 });
     });
-    bodies += text(630, 88, 'TURBINE · HP + MP + 3 BP', { size: 13 });
-    h += equipment('turbine', 'Turbine : un corps haute pression, un corps moyenne pression et trois corps basse pression · ouvrir la fiche', selected, [485, 71, 273, 144], bodies);
+    bodies += text(630, 88, 'TURBINE · HP/MP + 3 BP', { size: 13 });
+    h += equipment('turbine', 'Turbine : un corps combiné haute et moyenne pression et trois corps basse pression · ouvrir la fiche', selected, [485, 71, 273, 144], bodies);
     h += equipment('alternateur', 'Alternateur · ouvrir la fiche', selected, [779, 120, 122, 130],
       '<circle cx="818" cy="165" r="31" fill="' + C.bg + '" stroke="' + C.metal + '" stroke-width="1.8"/>' +
       text(818, 171, '~', { size: 26 }) + text(837, 222, 'ALTERNATEUR', { size: 13 }) +

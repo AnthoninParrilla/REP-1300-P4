@@ -2186,7 +2186,7 @@
     "identification": {
      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
      "millesime": "janvier 2017, en-tête PROJET",
-     "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+     "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines 1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
     },
     "raccordementGeometrique": {
      "statut": "implantation-schematique-raccordee",
@@ -2194,7 +2194,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 264.9,
      "angleApres": 264.9923182947186,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     },
     "ecartsCentresApresRaccord": {
      "statut": "comparaison-dessin-releve",
@@ -2231,7 +2231,7 @@
      "statut": "centres-releves-gabarit-fige",
      "source": "https://www.openstreetmap.org/way/424725797",
      "releve": "2026-09-14",
-     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR1 et BR2. Entraxe OSM 87.58 m, contre 84 m dans l'asset figé ; décalage théorique de 1.79 m par centre après centrage symétrique, plus arrondi inférieur à0,08 m. Le BR reste au diamètre nominal39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
+     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR1 et BR2. Entraxe OSM 87.58 m, contre 84 m dans l'asset figé ; décalage théorique de 1.79 m par centre après centrage symétrique, plus arrondi inférieur à 0,08 m. Le BR reste au diamètre nominal 39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
      "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
      "sources": [
       "https://www.openstreetmap.org/way/424725797",
@@ -2240,7 +2240,7 @@
      "identification": {
       "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
       "millesime": "janvier 2017, en-tête PROJET",
-      "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+      "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines 1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
      }
     }
    },
@@ -2287,7 +2287,7 @@
     "identification": {
      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
      "millesime": "janvier 2017, en-tête PROJET",
-     "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+     "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines 1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
     },
     "raccordementGeometrique": {
      "statut": "implantation-schematique-raccordee",
@@ -2295,7 +2295,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 265.26,
      "angleApres": 264.9923182947186,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale.",
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale.",
      "ajustementHalleCommune": {
       "translationM": 5.3290705182007514e-14,
       "centreAvant": [
@@ -2344,7 +2344,7 @@
      "statut": "centres-releves-gabarit-fige",
      "source": "https://www.openstreetmap.org/way/75707945",
      "releve": "2026-09-14",
-     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR3 et BR4. Entraxe OSM 83.84 m, contre 84 m dans l'asset figé ; décalage théorique de 0.08 m par centre après centrage symétrique, plus arrondi inférieur à0,08 m. Le BR reste au diamètre nominal39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
+     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR3 et BR4. Entraxe OSM 83.84 m, contre 84 m dans l'asset figé ; décalage théorique de 0.08 m par centre après centrage symétrique, plus arrondi inférieur à 0,08 m. Le BR reste au diamètre nominal 39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
      "millesime": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
      "sources": [
       "https://www.openstreetmap.org/way/75707945",
@@ -2353,7 +2353,7 @@
      "identification": {
       "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
       "millesime": "janvier 2017, en-tête PROJET",
-      "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
+      "description": "Attribution des emprises cylindriques à toit en dôme par concordance avec les BR et salles des machines 1…4 explicitement numérotés dans le plan. Les emprises BR elles-mêmes sont anonymes dans OSM ; ce rapprochement est une interprétation documentaire."
      }
     }
    },
@@ -3072,7 +3072,7 @@
    "preuve": {
     "statut": "projet-groupe-non-geolocalise",
     "releve": "2026-09-14",
-    "description": "Le projet2017 indique le groupe DUS 1/2 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "description": "Le projet 2017 indique le groupe DUS 1/2 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
     "millesime": "janvier 2017, en-tête PROJET"
    }
@@ -3088,7 +3088,7 @@
    "preuve": {
     "statut": "projet-groupe-non-geolocalise",
     "releve": "2026-09-14",
-    "description": "Le projet2017 indique le groupe DUS 3/4 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "description": "Le projet 2017 indique le groupe DUS 3/4 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
     "millesime": "janvier 2017, en-tête PROJET"
    }
@@ -3104,7 +3104,7 @@
    "preuve": {
     "statut": "projet-groupe-non-geolocalise",
     "releve": "2026-09-14",
-    "description": "Le projet2017 indique le groupe DUS 3/4 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "description": "Le projet 2017 indique le groupe DUS 3/4 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
     "millesime": "janvier 2017, en-tête PROJET"
    }
@@ -3137,7 +3137,7 @@
    "preuve": {
     "statut": "projet-groupe-non-geolocalise",
     "releve": "2026-09-14",
-    "description": "Le projet2017 indique le groupe DUS 1/2 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
+    "description": "Le projet 2017 indique le groupe DUS 1/2 dans les constructions à venir, en rose hachuré. Il ne distingue pas les deux DUS individuellement et ne prouve pas leur réalisation. Objet fonctionnel conservé en cartouche sans emplacement prétendu.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-TRICASTIN.pdf",
     "millesime": "janvier 2017, en-tête PROJET"
    }
@@ -3162,7 +3162,7 @@
   "licence": "ODbL 1.0",
   "portee": "Empreintes cartographiques publiques ; précision topographique non certifiée."
  },
- "note": "Recalage nord en haut sur données publiques OSM. Les paires nucléaires historiques sont figées : centre et axe recalés sur les BR, entraxe84 m et diamètre39 m conservés, écart résiduel documenté par paire. Les contours des salles des machines sont relevés ; leurs machines restent schématiques. Les quatre salles des machines forment des travées contiguës à l'ouest des BR. Le projet2017 nomme deux groupes DUS futurs sans preuve d'exécution ni attribution individuelle : aucun emplacement DUS n'en est déduit. Pompage, transformateurs, STE et DUS restent dans le cartouche fonctionnel faute de localisation documentaire suffisante.",
+ "note": "Recalage nord en haut sur données publiques OSM. Les paires nucléaires historiques sont figées : centre et axe recalés sur les BR, entraxe 84 m et diamètre 39 m conservés, écart résiduel documenté par paire. Les contours des salles des machines sont relevés ; leurs machines restent schématiques. Les quatre salles des machines forment des travées contiguës à l'ouest des BR. Le projet 2017 nomme deux groupes DUS futurs sans preuve d'exécution ni attribution individuelle : aucun emplacement DUS n'en est déduit. Pompage, transformateurs, STE et DUS restent dans le cartouche fonctionnel faute de localisation documentaire suffisante.",
  "reparationImplantations": {
   "date": "2026-09-14",
   "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."

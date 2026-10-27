@@ -4,7 +4,7 @@
  "tranches": 4,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Recalage nord en haut : quatre enveloppes de production nommées Bugey2 à5, positions et emprises des quatre tours. Disposition générale corroborée par le plan IFARE2024. BR et SDM ne sont pas séparés par le relevé disponible : leurs fonctions restent dans le cartouche, sans faux centres. DUS2/3/4/5 explicitement identifiés par les repères161/162/163/164 du plan IFARE, mais sans localisation métrique certaine. L'ancien canal copié de Cruas est retiré ; hydrographie réelle distincte.",
+ "note": "Recalage nord en haut : quatre enveloppes de production nommées Bugey 2 à 5, positions et emprises des quatre tours. Disposition générale corroborée par le plan IFARE 2024. BR et SDM ne sont pas séparés par le relevé disponible : leurs fonctions restent dans le cartouche, sans faux centres. DUS 2/3/4/5 explicitement identifiés par les repères 161/162/163/164 du plan IFARE, mais sans localisation métrique certaine. L'ancien canal copié de Cruas est retiré ; hydrographie réelle distincte.",
  "eau": {
   "type": "fleuve",
   "nom": "le Rhône",
@@ -764,7 +764,7 @@
       ]
      ]
     ],
-    "nom": "Lac d'Hières",
+    "nom": "Lac d’Hières",
     "source": "https://www.openstreetmap.org/relation/20181972"
    }
   ],
@@ -1086,7 +1086,7 @@
       -337.6
      ]
     ],
-    "nom": "Ruisseau d'Amby",
+    "nom": "Ruisseau d’Amby",
     "souterrain": true,
     "source": "https://www.openstreetmap.org/way/497771820"
    },
@@ -1321,7 +1321,7 @@
       -324.3
      ]
     ],
-    "nom": "Ruisseau d'Amby",
+    "nom": "Ruisseau d’Amby",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/497771822"
    },
@@ -1580,7 +1580,7 @@
       -831.8
      ]
     ],
-    "nom": "Ruisseau d'Amby",
+    "nom": "Ruisseau d’Amby",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/497771824"
    }
@@ -1849,7 +1849,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 285.2,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -1891,7 +1891,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 285.3,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -1938,7 +1938,7 @@
       "https://www.openstreetmap.org/way/235373544"
      ],
      "concordance": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
-     "description": "Halle commune située à l’ouest des BR, deux unités par volume. Longueur et axe estimés des longs côtés ouest des deux complexes attribués ; profondeur48 m interprétée de leur bande rectangulaire. Le plan EDF/IFARE confirme BR côté Rhône et halles côté terre. Pas une cote constructeur."
+     "description": "Halle commune située à l’ouest des BR, deux unités par volume. Longueur et axe estimés des longs côtés ouest des deux complexes attribués ; profondeur 48 m interprétée de leur bande rectangulaire. Le plan EDF/IFARE confirme BR côté Rhône et halles côté terre. Pas une cote constructeur."
     },
     "raccordementGeometrique": {
      "statut": "rectangle-dessine-raccorde",
@@ -2172,7 +2172,7 @@
       "https://www.openstreetmap.org/way/235373545"
      ],
      "concordance": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-BUGEY.pdf",
-     "description": "Halle commune située à l’ouest des BR, deux unités par volume. Longueur et axe estimés des longs côtés ouest des deux complexes attribués ; profondeur48 m interprétée de leur bande rectangulaire. Le plan EDF/IFARE confirme BR côté Rhône et halles côté terre. Pas une cote constructeur."
+     "description": "Halle commune située à l’ouest des BR, deux unités par volume. Longueur et axe estimés des longs côtés ouest des deux complexes attribués ; profondeur 48 m interprétée de leur bande rectangulaire. Le plan EDF/IFARE confirme BR côté Rhône et halles côté terre. Pas une cote constructeur."
     },
     "raccordementGeometrique": {
      "statut": "rectangle-dessine-raccorde",
@@ -3040,7 +3040,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/192923327",
     "releve": "2026-09-14",
-    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche 5 et des deux tours sud à la tranche 4 par concordance topologique ; rapport EDF2024 : deux tours par tranche 4/5.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
    },
    "empreinte": [
@@ -3134,7 +3134,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/192923324",
     "releve": "2026-09-14",
-    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche 5 et des deux tours sud à la tranche 4 par concordance topologique ; rapport EDF2024 : deux tours par tranche 4/5.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
    },
    "empreinte": [
@@ -3224,7 +3224,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/192923325",
     "releve": "2026-09-14",
-    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche 5 et des deux tours sud à la tranche 4 par concordance topologique ; rapport EDF2024 : deux tours par tranche 4/5.",
     "millesime": "Millésime du tracé non renseigné dans cet objet"
    },
    "empreinte": [
@@ -3314,7 +3314,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/192923326",
     "releve": "2026-09-14",
-    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche5 et des deux tours sud à la tranche4 par concordance topologique ; rapport EDF2024 : deux tours par tranche4/5.",
+    "description": "Centre et diamètre équivalent de l'emprise cartographique de la tour ; le diamètre n'est pas une cote de coque constructeur. Affectation des deux tours nord à la tranche 5 et des deux tours sud à la tranche 4 par concordance topologique ; rapport EDF2024 : deux tours par tranche 4/5.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
    },
    "empreinte": [

@@ -11838,7 +11838,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 139.985,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -11980,7 +11980,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 139.89499999999998,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -12047,7 +12047,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 139.89,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -12195,7 +12195,7 @@
    "m": 1,
    "L": 40,
    "l": 17,
-   "lab": "Traitement des effluents — bilan du site",
+   "lab": "Traitement des effluents : bilan du site",
    "localisation": "non-documentee",
    "preuve": {
     "statut": "indetermine",

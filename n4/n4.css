@@ -2,17 +2,19 @@
 .n4-sdc{--n4-bg:#090e12;--n4-line:#435157;--n4-ink:#dbe4e2;--n4-cyan:#68cddd;--n4-cream:#d5d2c4;box-sizing:border-box;background:#bbbdb2;color:#202d2b;font:15px/1.4 Arial,Helvetica,sans-serif;min-height:100vh}
 .n4-sdc *{box-sizing:border-box}.n4-sdc button{font:inherit;cursor:pointer}.n4-sdc button:disabled{cursor:default}.n4-sdc button:focus-visible,.n4-sdc [role=button]:focus-visible{outline:3px solid #efd179;outline-offset:3px}.n4-sdc button:disabled:focus{outline:none}
 .n4-study{display:flex;justify-content:space-between;gap:12px;padding:7px max(24px,calc((100vw - 1800px)/2));background:#ede6d1;border-bottom:1px solid #a39e90;font-size:12px;letter-spacing:.04em;font-weight:700}.n4-study span{font-weight:400;letter-spacing:0}
-.n4-header{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:20px 28px 18px;max-width:1860px;margin:auto}.n4-brand{display:flex;flex-direction:column;gap:3px}.n4-brand b{font-size:24px;letter-spacing:.12em;color:#294536}.n4-brand span{font-size:12px;color:#47554b}.n4-unit{text-align:right;display:flex;flex-direction:column;gap:5px}.n4-unit strong{font-size:18px;letter-spacing:.06em}.n4-unit span{font-size:12px;color:#56645b;letter-spacing:.04em}.n4-steps{display:flex;gap:13px;align-items:center;font-size:11px;letter-spacing:.06em;color:#5c6860}.n4-steps i{font-style:normal;color:#92968a}.n4-steps b{color:#2e4a38}
+.n4-header{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:20px 28px 18px;max-width:1860px;margin:auto}.n4-brand{display:flex;flex-direction:column;gap:3px}.n4-brand b{font-size:24px;letter-spacing:.12em;color:#294536}.n4-brand span{font-size:12px;color:#3a463e}.n4-unit{text-align:right;display:flex;flex-direction:column;gap:5px}.n4-unit strong{font-size:18px;letter-spacing:.06em}.n4-unit span{font-size:12px;color:#3a463e;letter-spacing:.04em}.n4-steps{display:flex;gap:13px;align-items:center;font-size:11px;letter-spacing:.06em;color:#5c6860}.n4-steps i{font-style:normal;color:#92968a}.n4-steps b{color:#2e4a38}
+/* Geste 50 (136A du 25/10) : version du simulateur sous le slogan (PC) ou après lui (téléphone), sur une ligne. */
+.n4-brand .n4-version{font-size:10px;letter-spacing:.03em;white-space:nowrap}
 .n4-wall{margin:0 auto 17px;max-width:1800px;border:8px solid #5d625b;border-bottom-width:11px;background:var(--n4-bg);color:var(--n4-ink);box-shadow:0 2px 0 #e2e0d4,inset 0 0 0 1px #020405;font-family:Consolas,'Lucida Console',monospace}.n4-wall-title{display:flex;justify-content:space-between;padding:10px 18px;border-bottom:1px solid #3d484a;color:#b7c6c6;font-size:12px;letter-spacing:.06em}.n4-wall-title b{color:#9ecb9e;font-weight:400}.n4-wall-measures{display:grid;grid-template-columns:repeat(4,1fr);padding:14px 0}.n4-wall-measures .n4-measure{border:0;border-left:1px solid #384449;padding:0 24px}.n4-wall-measures .n4-measure:first-child{border-left:0}.n4-wall-measures .n4-measure>span{color:#91a7b0;text-transform:uppercase;font-size:12px;letter-spacing:.03em}.n4-wall-measures .n4-measure b{font-size:clamp(24px,2.5vw,38px);font-weight:400;letter-spacing:.01em;color:#79cedd}.n4-wall-measures .n4-measure div>span{font-size:13px;color:#bec9c6}.n4-wall-footer{display:flex;justify-content:space-between;gap:16px;padding:6px 18px;border-top:1px solid #2c373c;color:#839594;font-size:11px;letter-spacing:.04em}
-.n4-console{max-width:1840px;margin:auto;padding:0 20px;background:linear-gradient(#d6d4c6,#c5c5b9);border:1px solid #a1a397;border-radius:5px 5px 0 0;box-shadow:inset 0 2px #eeece1}.n4-desk-head{display:flex;align-items:center;gap:24px;padding:13px 4px;font-size:12px;letter-spacing:.08em;font-weight:700}.n4-selection-help{margin-left:auto;font-size:12px;font-weight:400;letter-spacing:0;color:#5d685d}
+.n4-console{max-width:1840px;margin:auto;padding:0 20px;background:linear-gradient(#d6d4c6,#c5c5b9);border:1px solid #a1a397;border-radius:5px 5px 0 0;box-shadow:inset 0 2px #eeece1}.n4-desk-head{display:flex;align-items:center;gap:24px;padding:13px 4px;font-size:12px;letter-spacing:.08em;font-weight:700}.n4-selection-help{margin-left:auto;font-size:12px;font-weight:400;letter-spacing:0;color:#414c44}
 .n4-monitors{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,24%);gap:16px}.n4-monitor{background:var(--n4-bg);color:var(--n4-ink);border:7px solid #565e59;border-bottom-color:#4a554e;border-radius:3px;box-shadow:0 2px 0 #ededdf,inset 0 0 0 1px #020506;min-width:0;font:14px/1.4 Consolas,'Lucida Console',monospace}.n4-monitor-head{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:39px;padding:9px 13px;border-bottom:1px solid #45585e;color:#b4c7c9;font-size:11px;letter-spacing:.04em;background:#142027}.n4-monitor-head span:last-child{white-space:nowrap;color:#6f949b}.n4-monitor-head button{font:inherit;background:none;border:0;color:#b6d6cd;padding:0}.n4-main-content{min-height:350px}.n4-svg{display:block;width:100%;height:auto;max-height:540px;background:var(--n4-bg)}.n4-svg [data-n4-equipement]{cursor:pointer}.n4-svg [data-n4-equipement]:hover{filter:brightness(1.25)}
-.n4-page-keys{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #425256;background:#152127;padding:7px;gap:5px}.n4-page-keys button{padding:8px 6px;background:#253238;border:1px solid #546369;color:#b8c5c3;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;min-height:42px;box-shadow:inset 0 1px #5b6a6c}.n4-page-keys button small{color:#7f979b;font-size:10px}.n4-page-keys button[aria-current=page]{color:#e3f6ec;background:#29473b;border-color:#759f8a;box-shadow:inset 0 -2px #9dceb8}.n4-page-keys button[aria-current=page] small{color:#bddccb}.n4-page-keys button:hover{color:#fff;border-color:#9bb7aa}
+.n4-page-keys{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #425256;background:#152127;padding:7px;gap:5px}.n4-page-keys button{padding:8px 6px;background:#253238;border:1px solid #546369;color:#b8c5c3;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;min-height:42px;box-shadow:inset 0 1px #5b6a6c}.n4-page-keys button small{color:#8ea5a9;font-size:10px}.n4-page-keys button[aria-current=page]{color:#e3f6ec;background:#29473b;border-color:#759f8a;box-shadow:inset 0 -2px #9dceb8}.n4-page-keys button[aria-current=page] small{color:#bddccb}.n4-page-keys button:hover{color:#fff;border-color:#9bb7aa}
 .n4-object-body{padding:17px}.n4-object-code{color:#7dc4d4;font-size:13px;letter-spacing:.05em}.n4-object-body h3{font-size:18px;font-weight:400;margin:5px 0 23px;color:#eef1df}.n4-measure{padding:11px 0;border-bottom:1px solid #283d41}.n4-measure>span{color:#99acaf;font-size:12px;display:block;margin-bottom:4px}.n4-measure>div{display:flex;align-items:baseline;gap:9px}.n4-measure b{font-weight:400;font-size:23px;color:#7acddd}.n4-measure div>span{color:#aebdbc;font-size:12px}.n4-measure strong{font-size:17px;font-weight:400;color:#a5c8a2}.n4-object-note{font-family:Arial,sans-serif;color:#abb8b6;font-size:13px;line-height:1.6;margin:20px 0}.n4-commands{display:flex;gap:8px;margin-top:18px}.n4-commands button{border:1px solid #6f7f7b;border-bottom-width:3px;background:#27322f;color:#aab6ad;padding:9px 10px;font-size:12px}.n4-commands button:disabled{opacity:.6}.n4-command-note{font:11px/1.5 Arial,sans-serif;color:#7e918e;margin:10px 0 0}
-.n4-lower-monitors{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr);gap:16px;margin:17px 0 0}.n4-alarm-counts{display:flex;border-bottom:1px solid #324146;gap:0}.n4-alarm-count{flex:1;display:flex;align-items:center;gap:9px;padding:13px;text-transform:uppercase;font-size:11px;border-right:1px solid #263a3e;color:#9caeaf}.n4-alarm-count:last-child{border-right:0}.n4-alarm-count i{width:8px;height:8px;background:#d9e2dc;border:1px solid #a6b4b0}.n4-alarm-count.rouge i{background:#d97670;border-color:#e58b80}.n4-alarm-count.jaune i{background:#d3c16a;border-color:#f0d477}.n4-alarm-count b{margin-left:auto;color:#dce3d8;font-size:17px;font-weight:400}.n4-alarm-head,.n4-alarm-row{display:grid;grid-template-columns:90px 90px 1fr;gap:8px;padding:10px 14px;border-bottom:1px solid #27383f;font-size:12px}.n4-alarm-head{color:#79929e;font-size:10px;letter-spacing:.04em}.n4-alarm-empty{color:#a2b2b1;padding:22px 14px;font-size:12px;min-height:107px}.n4-alarm-row{color:#d0dbd8}.n4-chart{display:block;width:100%;height:155px}.n4-chart-legend{display:flex;gap:8px 20px;flex-wrap:wrap;padding:7px 14px 12px;font-size:10px;color:#b5c5c2}.n4-chart-legend span{display:flex;align-items:center;gap:7px}.n4-chart-legend i{height:2px;width:12px}.n4-chart-legend small{font-size:9px;color:#7f969a}.n4-desk-footer{display:flex;justify-content:space-between;padding:15px 4px;font-size:11px;letter-spacing:.04em;color:#5d6a60}
+.n4-lower-monitors{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr);gap:16px;margin:17px 0 0}.n4-alarm-counts{display:flex;border-bottom:1px solid #324146;gap:0}.n4-alarm-count{flex:1;display:flex;align-items:center;gap:9px;padding:13px;text-transform:uppercase;font-size:11px;border-right:1px solid #263a3e;color:#9caeaf}.n4-alarm-count:last-child{border-right:0}.n4-alarm-count i{width:8px;height:8px;background:#d9e2dc;border:1px solid #a6b4b0}.n4-alarm-count.rouge i{background:#d97670;border-color:#e58b80}.n4-alarm-count.jaune i{background:#d3c16a;border-color:#f0d477}.n4-alarm-count b{margin-left:auto;color:#dce3d8;font-size:17px;font-weight:400}.n4-alarm-head,.n4-alarm-row{display:grid;grid-template-columns:90px 90px 1fr auto;gap:8px;padding:10px 14px;border-bottom:1px solid #27383f;font-size:12px}.n4-alarm-head{color:#79929e;font-size:10px;letter-spacing:.04em}.n4-alarm-empty{color:#a2b2b1;padding:22px 14px;font-size:12px;min-height:107px}.n4-alarm-row{color:#d0dbd8}.n4-chart{display:block;width:100%;height:155px}.n4-chart-legend{display:flex;gap:8px 20px;flex-wrap:wrap;padding:7px 14px 12px;font-size:10px;color:#b5c5c2}.n4-chart-legend span{display:flex;align-items:center;gap:7px}.n4-chart-legend i{height:2px;width:12px}.n4-chart-legend small{font-size:9px;color:#7f969a}.n4-desk-footer{display:flex;justify-content:space-between;padding:15px 4px;font-size:11px;letter-spacing:.04em;color:#414c44}
 .n4-curves-page,.n4-alarms-page,.n4-pa-page{padding:22px;min-height:400px}.n4-main-content h2{margin:0 0 10px;color:#d6e7de;font-size:18px;font-weight:400}.n4-screen-note{color:#9bb0b2;font:13px/1.6 Arial,sans-serif;max-width:680px}.n4-curves-page .n4-chart{height:290px}.n4-curves-page .n4-chart-legend{font-size:12px;gap:15px}.n4-curves-page .n4-chart-legend small{font-size:10px}.n4-panel-ref{color:#d3c579;font-size:11px;letter-spacing:.08em}.n4-pa-page h2{margin-top:10px}.n4-pa-page>p{max-width:710px;line-height:1.6}.n4-pa-sketch{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:#6f766e;border:7px solid #889282;color:#333f35;margin:28px 0;padding:8px}.n4-pa-sketch>div{background:#bebfaf;padding:19px 12px;text-align:center}.n4-pa-lamps{color:#697848;font-size:14px;letter-spacing:.15em}.n4-pa-sketch b{font:12px Arial,sans-serif;display:block;margin:18px 0}.n4-pa-instruments{font-size:27px;color:#5b675f}
 @media(min-width:1900px){.n4-monitor{font-size:16px}.n4-monitor-head{font-size:13px}.n4-object-body{padding:25px}.n4-object-body h3{font-size:23px}.n4-object-note{font-size:15px}.n4-measure>span{font-size:14px}.n4-measure b{font-size:28px}.n4-page-keys button{font-size:14px}.n4-alarm-empty,.n4-alarm-row{font-size:14px}.n4-chart{height:175px}}
 @media(max-width:1100px){.n4-steps{display:none}.n4-header{padding:16px 20px}.n4-wall{margin:0 12px 12px}.n4-wall-measures .n4-measure{padding:0 15px}.n4-wall-measures .n4-measure>span{font-size:10px}.n4-console{padding:0 12px}.n4-selection-help{display:none}.n4-monitors{grid-template-columns:minmax(0,1fr) 270px;gap:10px}.n4-page-keys button{font-size:10px;gap:4px;padding:6px 3px}.n4-page-keys button small{display:none}.n4-monitor-head{font-size:10px}.n4-monitor-head span:last-child{display:none}.n4-object-body{padding:12px}.n4-object-body h3{font-size:16px}.n4-lower-monitors{gap:10px}}
-@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-sdc{font-size:14px;padding-bottom:var(--simurep-safe-bottom,env(safe-area-inset-bottom,0))}.n4-study{display:block;font-size:10px;padding:8px max(12px,var(--n4-safe-left));padding-top:max(8px,var(--n4-safe-top))}.n4-study span{display:block;margin-top:3px}.n4-header{padding:14px 13px;gap:10px}.n4-brand b{font-size:19px}.n4-brand span{display:none}.n4-unit strong{font-size:13px}.n4-unit span{font-size:9px}.n4-wall{border-width:5px;margin:0 8px 12px}.n4-wall-title{font-size:9px;padding:8px 9px;gap:5px}.n4-wall-measures{grid-template-columns:repeat(2,1fr);gap:16px 0;padding:12px 0}.n4-wall-measures .n4-measure{padding:0 12px}.n4-wall-measures .n4-measure:nth-child(3){border-left:0}.n4-wall-measures .n4-measure b{font-size:23px}.n4-wall-measures .n4-measure div>span{font-size:10px}.n4-wall-footer{font-size:8px;padding:7px 9px;gap:8px}.n4-wall-footer span:last-child{max-width:190px;text-align:right}.n4-console{padding:0 7px}.n4-desk-head{font-size:10px;gap:10px;justify-content:space-between}.n4-monitors{grid-template-columns:1fr;gap:12px}.n4-monitor{border-width:5px}.n4-monitor-head{font-size:9px;padding:9px;min-height:33px}.n4-main-content{min-height:0;overflow-x:auto}.n4-svg{min-width:0;max-height:none}.n4-page-keys{grid-template-columns:repeat(3,1fr);padding:6px;gap:5px}.n4-page-keys button{font-size:11px;min-height:40px}.n4-object-body{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;padding:15px}.n4-object-code,.n4-object-body h3,.n4-object-note,.n4-commands,.n4-command-note{grid-column:1/-1}.n4-object-body h3{font-size:19px;margin-bottom:10px}.n4-object-note{margin:15px 0}.n4-lower-monitors{grid-template-columns:1fr;margin-top:12px;gap:12px}.n4-alarm-empty{min-height:50px}.n4-chart{height:180px}.n4-chart-legend{font-size:10px}.n4-desk-footer{font-size:9px;gap:10px}.n4-curves-page,.n4-alarms-page,.n4-pa-page{padding:14px;min-height:300px}.n4-curves-page .n4-chart{height:220px;min-width:600px}.n4-pa-sketch>div{padding:12px 4px}.n4-pa-lamps{font-size:9px;letter-spacing:0}.n4-alarm-head,.n4-alarm-row{grid-template-columns:60px 62px 1fr;font-size:10px}.n4-alarm-count{padding:11px 9px;font-size:10px}}
+@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-sdc{font-size:14px;padding-bottom:var(--simurep-safe-bottom,env(safe-area-inset-bottom,0))}.n4-study{display:block;font-size:10px;padding:8px max(12px,var(--n4-safe-left));padding-top:max(8px,var(--n4-safe-top))}.n4-study span{display:block;margin-top:3px}.n4-header{padding:14px 13px;gap:10px}.n4-brand b{font-size:19px}.n4-unit strong{font-size:13px}.n4-unit span{font-size:9px}.n4-wall{border-width:5px;margin:0 8px 12px}.n4-wall-title{font-size:9px;padding:8px 9px;gap:5px}.n4-wall-measures{grid-template-columns:repeat(2,1fr);gap:16px 0;padding:12px 0}.n4-wall-measures .n4-measure{padding:0 12px}.n4-wall-measures .n4-measure:nth-child(3){border-left:0}.n4-wall-measures .n4-measure b{font-size:23px}.n4-wall-measures .n4-measure div>span{font-size:10px}.n4-wall-footer{font-size:8px;padding:7px 9px;gap:8px}.n4-wall-footer span:last-child{max-width:190px;text-align:right}.n4-console{padding:0 7px}.n4-desk-head{font-size:10px;gap:10px;justify-content:space-between}.n4-monitors{grid-template-columns:1fr;gap:12px}.n4-monitor{border-width:5px}.n4-monitor-head{font-size:9px;padding:9px;min-height:33px}.n4-main-content{min-height:0;overflow-x:auto}.n4-svg{min-width:0;max-height:none}.n4-page-keys{grid-template-columns:repeat(3,1fr);padding:6px;gap:5px}.n4-page-keys button{font-size:11px;min-height:40px}.n4-object-body{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;padding:15px}.n4-object-code,.n4-object-body h3,.n4-object-note,.n4-commands,.n4-command-note{grid-column:1/-1}.n4-object-body h3{font-size:19px;margin-bottom:10px}.n4-object-note{margin:15px 0}.n4-lower-monitors{grid-template-columns:1fr;margin-top:12px;gap:12px}.n4-alarm-empty{min-height:50px}.n4-chart{height:180px}.n4-chart-legend{font-size:10px}.n4-desk-footer{font-size:9px;gap:10px}.n4-curves-page,.n4-alarms-page,.n4-pa-page{padding:14px;min-height:300px}.n4-curves-page .n4-chart{height:220px;min-width:600px}.n4-pa-sketch>div{padding:12px 4px}.n4-pa-lamps{font-size:9px;letter-spacing:0}.n4-alarm-head,.n4-alarm-row{grid-template-columns:60px 62px 1fr;font-size:10px}.n4-alarm-count{padding:11px 9px;font-size:10px}}
 
 /* Sur un panneau de navigateur étroit, conserver la taille utile du synoptique. */
 @media(min-width:761px) and (max-width:1000px){.n4-monitors,.n4-lower-monitors{grid-template-columns:1fr}.n4-object-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px;padding:18px}.n4-object-code,.n4-object-body h3,.n4-object-note,.n4-commands,.n4-command-note{grid-column:1/-1}.n4-object-body h3{margin-bottom:10px}.n4-object-note{margin:12px 0}.n4-page-keys button{font-size:12px}}
@@ -27,64 +29,75 @@
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-monitor-head .n4-zoom-key{display:block;position:relative;flex-shrink:0;padding:3px 6px;font-size:10px;min-height:24px;border:1px solid #435157;background:#1a292d;color:#b6c7c6;border-radius:2px}.n4-zoom-key::after{content:"";position:absolute;inset:-8px -3px}.n4-synoptic-zoom .n4-svg{min-width:720px}}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-main-monitor>.n4-monitor-head>span:nth-child(2){display:none}}
 /* Poste de conduite : séparation synoptique / fiche, lisible au toucher. */
-.n4-quickbar{max-width:1800px;margin:12px auto 0;display:flex;gap:10px;align-items:center;padding:0 16px;font:12px monospace}.n4-quickbar>span{margin-right:auto}.n4-sdc button,.n4-sdc input,.n4-sdc select{min-height:44px}.n4-quickbar button,.n4-diagnostics button{padding:10px 16px;background:#263e34;color:#edf5df;border:1px solid #67796b;border-radius:3px}.n4-quickbar .n4-scram{background:#7a2929;border-color:#cf7f6d;color:#fff}.n4-command-status{max-width:1800px;margin:8px auto;padding:0 16px;color:#304938;font:12px monospace;min-height:18px}.n4-kic-lost{background:#8a2922;color:#fff;padding:16px;text-align:center;font-weight:700}.n4-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:18px}.n4-control-group{border:1px solid #3d5355;background:#101d23;padding:14px;min-width:0}.n4-control-group h3{color:#8fceca;font:600 13px monospace;letter-spacing:.04em;border-bottom:1px solid #355052;padding-bottom:12px;margin:0 0 12px}.n4-control-group p{color:#a8bcb8;font-size:13px;line-height:1.5}.n4-control-group button{padding:9px 12px;margin:3px;background:#23333a;border:1px solid #556869;color:#dce7df;border-radius:2px;font:12px monospace;cursor:pointer}.n4-control-group button[aria-pressed=true]{background:#24483a;border-color:#79b995;color:#c3ffce}.n4-control-group button:disabled{opacity:.45;cursor:default}.n4-control-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:8px 0}.n4-control-row>span{margin-right:auto;color:#b8c8c3;font-size:12px}.n4-setpoint{display:grid;grid-template-columns:1fr 100px;gap:8px;align-items:center;margin:14px 0;color:#bacac7;font-size:12px}.n4-setpoint span b{display:block;margin-top:5px;color:#8cd5dc}.n4-setpoint input{width:100%;box-sizing:border-box;background:#050c10;color:#a9e7d4;border:1px solid #526d70;padding:8px;font:16px monospace}.n4-setpoint small{grid-column:1/-1;color:#809c9a;font-size:10px}.n4-readings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}.n4-readings dt{font:11px monospace;color:#9bb4b5}.n4-readings dd{margin:5px 0;color:#86d5de;font:19px monospace}.n4-readings small{font-size:11px}.n4-object-body>.n4-control-grid{display:block;padding:0}.n4-object-body .n4-control-group{padding:10px;margin:12px 0}.n4-object-body .n4-setpoint{grid-template-columns:1fr 85px}.n4-page-keys{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}.n4-page-keys button{font-size:12px!important}.n4-diagnostics{padding:24px;color:#c8d8cc;line-height:1.8}.n4-journal{max-height:360px;overflow:auto;font:12px monospace;color:#bbc8c5}.n4-main-content{min-height:360px}.n4-object-monitor{max-height:850px;overflow:auto}.n4-alarm-table{max-height:250px;overflow:auto}.n4-sdc button:focus-visible,.n4-sdc input:focus-visible{outline:2px solid #e5c981;outline-offset:3px}
+.n4-quickbar{max-width:1800px;margin:12px auto 0;display:flex;gap:10px;align-items:center;padding:0 16px;font:12px monospace}.n4-quickbar>span{margin-right:auto}.n4-sdc button,.n4-sdc input,.n4-sdc select{min-height:44px}.n4-quickbar button,.n4-diagnostics button{padding:10px 16px;background:#263e34;color:#edf5df;border:1px solid #67796b;border-radius:3px}.n4-quickbar .n4-scram{background:#7a2929;border-color:#cf7f6d;color:#fff}.n4-command-status{max-width:1800px;margin:8px auto;padding:0 16px;color:#304938;font:12px monospace;min-height:18px}.n4-kic-lost{background:#8a2922;color:#fff;padding:16px;text-align:center;font-weight:700}.n4-control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:18px}.n4-control-group{border:1px solid #3d5355;background:#101d23;padding:14px;min-width:0}.n4-control-group h3{color:#8fceca;font:600 13px monospace;letter-spacing:.04em;border-bottom:1px solid #355052;padding-bottom:12px;margin:0 0 12px}.n4-control-group p{color:#a8bcb8;font-size:13px;line-height:1.5}.n4-control-group button{padding:9px 12px;margin:3px;background:#23333a;border:1px solid #556869;color:#dce7df;border-radius:2px;font:12px monospace;cursor:pointer}.n4-control-group button[aria-pressed=true]{background:#24483a;border-color:#79b995;color:#c3ffce}.n4-control-group button:disabled{opacity:.8;border-style:dashed;border-width:2px;cursor:default}.n4-control-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:8px 0}.n4-control-row>span{margin-right:auto;color:#b8c8c3;font-size:12px}.n4-mode-row>span{flex:1 1 0;min-width:0}[data-n4-pince]{touch-action:pan-x pan-y}.n4-sdc .n4-pq{scroll-margin-top:calc(8px + var(--n4-safe-top,0px))}.n4-sdc [data-n4-pince-zoom]{overflow-x:auto}.n4-setpoint{display:grid;grid-template-columns:1fr 100px;gap:8px;align-items:center;margin:14px 0;color:#bacac7;font-size:12px}.n4-setpoint span b{display:block;margin-top:5px;color:#8cd5dc}.n4-setpoint input{width:100%;box-sizing:border-box;background:#050c10;color:#a9e7d4;border:1px solid #526d70;padding:8px;font:16px monospace}.n4-setpoint small{grid-column:1/-1;color:#809c9a;font-size:10px}.n4-readings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}.n4-readings dt{font:11px monospace;color:#9bb4b5}.n4-readings dd{margin:5px 0;color:#86d5de;font:19px monospace}.n4-readings small{font-size:11px}.n4-object-body>.n4-control-grid{display:block;padding:0}.n4-object-body .n4-control-group{padding:10px;margin:12px 0}.n4-object-body .n4-setpoint{grid-template-columns:1fr 85px}.n4-page-keys{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}.n4-page-keys button{font-size:12px!important}.n4-diagnostics{padding:24px;color:#c8d8cc;line-height:1.8}.n4-journal{max-height:360px;overflow:auto;font:12px monospace;color:#bbc8c5}.n4-main-content{min-height:360px}.n4-object-monitor{max-height:850px;overflow:auto}.n4-alarm-table{max-height:250px;overflow:auto}.n4-sdc button:focus-visible,.n4-sdc input:focus-visible{outline:2px solid #e5c981;outline-offset:3px}
 @media(min-width:1100px){.n4-monitors{grid-template-columns:minmax(0,1fr) 350px!important}.n4-wall{margin-top:14px}.n4-main-content .n4-control-grid{max-height:680px;overflow:auto}}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-quickbar{padding:0 8px;gap:6px;flex-wrap:wrap}.n4-quickbar>span{width:100%;font-size:11px}.n4-quickbar button{flex:1;font-size:11px}.n4-control-grid{grid-template-columns:1fr;padding:10px;gap:10px}.n4-page-keys{grid-template-columns:repeat(3,minmax(0,1fr))!important;position:relative}.n4-page-keys button{min-height:48px;padding:7px 3px!important;font-size:11px!important}.n4-object-monitor{max-height:none}.n4-readings{grid-template-columns:repeat(2,minmax(0,1fr))}.n4-main-content{min-height:0}.n4-command-status{font-size:11px;padding:0 8px}.n4-header .n4-steps{display:none}.n4-setpoint input{font-size:16px}.n4-control-group button{min-height:44px}.n4-wall-footer{font-size:9px}.n4-object-body .n4-control-grid{display:grid}.n4-object-body .n4-control-group{margin:0}.n4-sdc{overflow-wrap:anywhere}}
 .n4-monitors.n4-single{grid-template-columns:1fr!important}.n4-single>.n4-object-monitor{display:none}.n4-single .n4-main-monitor{display:flex;flex-direction:column}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-main-monitor{display:flex;flex-direction:column}.n4-wall{margin-bottom:6px}.n4-header{padding-top:14px;padding-bottom:14px}}
 .n4-diagnostic-keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.n4-diagnostic-keys button{text-align:left;padding:20px;min-height:100px}.n4-diagnostic-keys span{display:block;margin-top:8px;font-size:12px;color:#abc6ba}.n4-instrument-key{background:#223d33;color:#d5eee1;padding:12px;border:1px solid #698e79;margin-top:12px}.n4-object-body>.n4-control-grid{grid-column:1/-1}.n4-journal p{padding:8px;border-bottom:1px solid #2a4147}
+/* Lot 4 ter (6A du 07/10) : le journal de la tranche dans une fenêtre du KIC (N4) ou du MCP (EPR), en page Alarmes ; lignes colorées
+   par famille, aux couleurs des compteurs d'alarmes du poste. */
+.n4-journal-monitor{margin-top:18px}
+.n4-journal-monitor .n4-journal{max-height:380px;padding:2px 0}
+.n4-journal-monitor .n4-journal p{margin:0;padding:5px 13px;line-height:1.45}
+.n4-journal p b{font-weight:400;color:#79929e}
+.n4-journal p[data-famille=rouge]{color:#e58b80}
+.n4-journal p[data-famille=jaune]{color:#f0d477}
+.n4-journal p[data-famille=blanche]{color:#d0dbd8}
+.n4-journal .n4-journal-vide{color:#a2b2b1}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-diagnostic-keys{grid-template-columns:1fr}.n4-diagnostics{padding:14px}.n4-curves-page .n4-chart{min-width:0}.n4-quickbar{margin-top:8px}}
 /* Panneau auxiliaire conventionnel : cadrans, voyants et organes physiques.
    Disposition SIMUREP ; aucun plan d'implantation lisible reçu. */
-.n4-secours .n4-main-content{background:#babbb0;padding:8px}.n4-secours .n4-main-content .n4-control-group{background:#d0d0c3;border:2px solid #8b9184;box-shadow:inset 1px 1px #f1f0df,2px 3px 0 #797f75;color:#29382f}.n4-secours .n4-main-content .n4-control-group h3{color:#26372d;border-bottom:2px solid #8c9988;text-align:center;background:#e7e4d3;padding:10px;font-size:12px}.n4-secours .n4-main-content .n4-control-group p,.n4-secours .n4-main-content .n4-control-row>span,.n4-secours .n4-main-content .n4-setpoint{color:#38483d}.n4-secours .n4-main-content .n4-control-group button{background:linear-gradient(#4a514b,#252b28);border:3px solid #91968b;box-shadow:1px 2px 3px #555;color:#f0f0dc;border-radius:5px;position:relative;padding:10px 14px}.n4-secours .n4-main-content .n4-control-group button[aria-pressed=true]{background:linear-gradient(#3a6546,#23432f);color:#d7ffd2;border-color:#a9b29d}.n4-secours .n4-main-content .n4-control-group button[aria-pressed=true]::before{content:'●';color:#9bf191;padding-right:7px;text-shadow:0 0 4px #6cd662}.n4-secours .n4-main-content .n4-readings>div{background:#f4f0dc;border:4px solid #505951;box-shadow:inset 1px 2px 3px #a4a894;padding:10px}.n4-secours .n4-main-content .n4-readings dt{color:#4b594e}.n4-secours .n4-main-content .n4-readings dd{color:#183c29;font-weight:700}.n4-secours .n4-main-content .n4-setpoint input{border:4px solid #626c60;background:#f1eedb;color:#223b28}.n4-secours .n4-main-content .n4-setpoint small{color:#556452}.n4-secours .n4-main-content .n4-setpoint b{color:#284b35}
+.n4-secours .n4-main-content{background:#babbb0;padding:8px}.n4-secours .n4-main-content .n4-control-group{background:#d0d0c3;border:2px solid #8b9184;box-shadow:inset 1px 1px #f1f0df,2px 3px 0 #797f75;color:#29382f}.n4-secours .n4-main-content .n4-control-group h3{color:#26372d;border-bottom:2px solid #8c9988;text-align:center;background:#e7e4d3;padding:10px;font-size:12px}.n4-secours .n4-main-content .n4-control-group p{color:#38483d}.n4-secours .n4-main-content .n4-control-group button{background:linear-gradient(#4a514b,#252b28);border:3px solid #91968b;box-shadow:1px 2px 3px #555;color:#f0f0dc;border-radius:5px;position:relative;padding:10px 14px}.n4-secours .n4-main-content .n4-control-group button[aria-pressed=true]{background:linear-gradient(#3a6546,#23432f);color:#d7ffd2;border-color:#a9b29d}.n4-secours .n4-main-content .n4-control-group button[aria-pressed=true]::before{content:'●';color:#9bf191;padding-right:7px;text-shadow:0 0 4px #6cd662}
 .n4-physical-instruments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:18px}.n4-dial{max-width:260px;width:100%;margin:auto}.n4-dial svg{display:block;width:100%;filter:drop-shadow(2px 3px 2px #727a6c)}.n4-dial text{fill:#243b2c}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-physical-instruments{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px}}
-.n4-physical-lamps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 0}.n4-secours .n4-main-content .n4-control-group button:has(.n4-selector){display:inline-flex;flex-direction:column;align-items:center;gap:8px;max-width:170px;font-size:11px;background:#b8bcb5;border:1px solid #737c72;color:#1c3024;box-shadow:none}.n4-secours .n4-main-content button:has(.n4-selector)::before{display:none}.n4-secours .n4-main-content button:has(.n4-selector)[aria-pressed=true]{border:2px solid #376647;background:#c4d0be}.n4-secours .n4-main-content button:has(.n4-selector):disabled{opacity:.5}
-@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-physical-lamps{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:10px}.n4-secours .n4-main-content .n4-control-group button:has(.n4-selector){max-width:145px}}
-.n4-secours .n4-main-content .n4-control-group{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}.n4-secours .n4-main-content .n4-control-group>h3,.n4-secours .n4-main-content .n4-control-group>p,.n4-secours .n4-main-content .n4-control-group>.n4-readings,.n4-secours .n4-main-content .n4-control-group>.n4-control-row,.n4-secours .n4-main-content .n4-control-group>.n4-setpoint{flex-basis:100%}.n4-secours .n4-main-content .n4-control-group button:has(.n4-selector){flex:1 1 110px;margin:0;max-width:160px}
-@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-secours .n4-main-content .n4-control-group button:has(.n4-selector){flex:0 1 calc(50% - 4px);max-width:none}}
+.n4-physical-lamps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 0}.n4-secours .n4-main-content button:has(.n4-selector)::before{display:none}.n4-secours .n4-main-content button:has(.n4-selector)[aria-pressed=true]{border:2px solid #376647;background:#c4d0be}.n4-secours .n4-main-content button:has(.n4-selector):disabled{opacity:.5}
+@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-physical-lamps{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:10px}}
+.n4-secours .n4-main-content .n4-control-group{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}.n4-secours .n4-main-content .n4-control-group>h3,.n4-secours .n4-main-content .n4-control-group>p{flex-basis:100%}
 /* Bandeau d’état à sa place dans la page (H04) : il ne suit plus le défilement ; au téléphone, AU et secours restent au dock. */
 .n4-quickbar{position:relative;background:#bbbdb2;padding-top:8px;padding-bottom:8px;box-shadow:0 2px 0 #8c988b}.n4-sdc button,.n4-sdc input{scroll-margin-top:12px}.n4-secours .n4-main-content .n4-control-grid{max-height:none}
 .n4-thumb-dock,.n4-thumb-menu{display:none}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){
-.n4-sdc{padding-bottom:calc(96px + var(--n4-safe-bottom))}.n4-thumb-dock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;position:fixed;z-index:40;bottom:0;left:0;right:0;padding:10px 10px calc(10px + var(--n4-safe-bottom));background:#182b28;border-top:2px solid #7b9889;box-shadow:0 -4px 15px #0005}.n4-thumb-dock button{min-height:56px;margin:0;padding:6px;border:1px solid #6b877b;border-radius:4px;background:#29473c;color:#f0f5e8;font:600 12px system-ui}.n4-thumb-dock .n4-scram{background:#762b28;border-color:#c3897a}.n4-thumb-dock button[aria-expanded=true]{background:#426453}.n4-thumb-menu{display:block;position:fixed;bottom:calc(82px + var(--n4-safe-bottom));left:8px;right:8px;z-index:41;background:#12201e;border:2px solid #74978b;box-shadow:0 -12px 40px #0009;padding:12px;color:#d8e8db}.n4-thumb-menu>div{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.n4-thumb-menu nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.n4-thumb-menu button{min-height:52px;padding:8px;background:#263d35;color:#eef4e9;border:1px solid #668378;font:12px system-ui}.n4-thumb-menu button[aria-current=page]{background:#476b52;border-color:#bbe0bd}.n4-command-status[data-active=true]{position:fixed;bottom:calc(88px + var(--n4-safe-bottom));left:12px;right:12px;z-index:35;background:#0e2420;border:1px solid #8ec9ac;color:#e5fae6;padding:12px;font-size:13px;box-shadow:0 3px 12px #0006;pointer-events:none}.n4-control-group button{min-height:48px;min-width:48px}.n4-object-monitor,.n4-main-content{scroll-margin-top:calc(8px + var(--n4-safe-top))}.n4-desk-footer{padding-bottom:12px}}
-@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-quickbar>button{display:none}.n4-quickbar>span{width:auto;margin:0}.n4-quickbar{min-height:30px;margin-top:0;padding:6px 12px}.n4-thumb-dock button:active,.n4-control-group button:active{outline:3px solid #e7d78e;outline-offset:1px}}
+.n4-sdc{padding-bottom:calc(96px + var(--n4-safe-bottom))}.n4-thumb-dock{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;position:fixed;z-index:40;bottom:0;left:0;right:0;padding:10px 10px calc(10px + var(--n4-safe-bottom));background:#182b28;border-top:2px solid #7b9889;box-shadow:0 -4px 15px #0005}.n4-thumb-dock button{min-height:56px;margin:0;padding:6px;border:1px solid #6b877b;border-radius:4px;background:#29473c;color:#f0f5e8;font:600 12px system-ui}.n4-thumb-dock .n4-scram{background:#762b28;border-color:#c3897a}.n4-thumb-dock button[aria-expanded=true]{background:#426453}.n4-thumb-menu{display:block;position:fixed;bottom:calc(82px + var(--n4-safe-bottom));left:8px;right:8px;z-index:41;background:#12201e;border:2px solid #74978b;box-shadow:0 -12px 40px #0009;padding:12px;color:#d8e8db}.n4-thumb-menu>div{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.n4-thumb-menu nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.n4-thumb-menu button{min-height:52px;padding:8px;background:#263d35;color:#eef4e9;border:1px solid #668378;font:12px system-ui}.n4-thumb-menu button[aria-current=page]{background:#476b52;border-color:#bbe0bd}.n4-command-status[data-active=true]{position:fixed;bottom:calc(88px + var(--n4-safe-bottom));left:12px;right:12px;z-index:35;background:#0e2420;border:1px solid #8ec9ac;color:#e5fae6;padding:12px;font-size:13px;box-shadow:0 3px 12px #0006;pointer-events:none}.n4-control-group button{min-height:48px;min-width:48px}.n4-object-monitor,.n4-main-content{scroll-margin-top:calc(8px + var(--n4-safe-top))}.n4-desk-footer{padding-bottom:12px}
+.n4-quickbar>button{display:none}.n4-quickbar>span{width:auto;margin:0}.n4-quickbar{min-height:30px;margin-top:0;padding:6px 12px}.n4-thumb-dock button:active,.n4-control-group button:active{outline:3px solid #e7d78e;outline-offset:1px}
 
 :root{--n4-safe-top:var(--simurep-safe-top,env(safe-area-inset-top,0px));--n4-safe-bottom:var(--simurep-safe-bottom,env(safe-area-inset-bottom,0px));--n4-safe-left:var(--simurep-safe-left,env(safe-area-inset-left,0px));--n4-safe-right:var(--simurep-safe-right,env(safe-area-inset-right,0px))}
 .n4-sdc{padding-left:var(--n4-safe-left);padding-right:var(--n4-safe-right);padding-top:var(--n4-safe-top)}.n4-study{padding-top:8px}
-@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-thumb-dock{padding-left:max(10px,var(--n4-safe-left));padding-right:max(10px,var(--n4-safe-right))}.n4-thumb-menu{left:max(8px,var(--n4-safe-left));right:max(8px,var(--n4-safe-right));max-height:calc(100dvh - 110px - var(--n4-safe-bottom) - var(--n4-safe-top));overflow:auto}.n4-command-status[data-active=true]{left:max(12px,var(--n4-safe-left));right:max(12px,var(--n4-safe-right))}}
+.n4-thumb-dock{padding-left:max(10px,var(--n4-safe-left));padding-right:max(10px,var(--n4-safe-right))}.n4-thumb-menu{left:max(8px,var(--n4-safe-left));right:max(8px,var(--n4-safe-right));max-height:calc(100dvh - 110px - var(--n4-safe-bottom) - var(--n4-safe-top));overflow:auto}.n4-command-status[data-active=true]{left:max(12px,var(--n4-safe-left));right:max(12px,var(--n4-safe-right))}
 
 /* Révision PC : une seule circulation verticale et navigation toujours sous l’écran. */
 .n4-monitors{align-items:start}.n4-main-content{min-height:0}.n4-object-monitor{max-height:none;overflow:visible}.n4-main-content .n4-control-grid{max-height:none;overflow:visible}.n4-page-keys{grid-template-columns:repeat(4,minmax(0,1fr))!important}.n4-main-monitor>.n4-page-keys{order:initial}.n4-main-monitor>.n4-main-content{order:initial}.n4-live-slot{min-height:140px;position:relative}.n4-command-status:empty{display:none}.n4-simulation{max-width:1800px;margin:8px auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:10px 16px;color:#35483e;font:12px system-ui}.n4-simulation b{font-size:11px;letter-spacing:.08em}.n4-simulation button{border:1px solid #677b70;background:#e2e6df;color:#233b2e;padding:8px 12px;margin:2px;font:inherit}.n4-simulation button[aria-pressed=true]{background:#315340;color:#fff}.n4-simulation details{position:relative;margin-left:auto}.n4-simulation summary{cursor:pointer;min-height:44px;display:flex;align-items:center;padding:8px}.n4-simulation details[open]{padding:12px;border:1px solid #798d7e;background:#e1e5dd}.n4-simulation details p{max-width:300px}.n4-object-monitor{scroll-margin-top:12px}.n4-svg{max-height:none}.n4-trend-monitor .n4-chart{height:auto;aspect-ratio:430/188}
-@media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-page-keys{grid-template-columns:repeat(3,minmax(0,1fr))!important}.n4-simulation{padding:8px;gap:6px}.n4-simulation>span{margin-left:auto}.n4-simulation details{margin-left:0}.n4-simulation button{min-height:48px}.n4-live-slot{min-width:0}.n4-main-content{overflow-x:clip}}
+.n4-page-keys{grid-template-columns:repeat(3,minmax(0,1fr))!important}.n4-simulation{padding:8px;gap:6px}.n4-simulation>span{margin-left:auto}.n4-simulation details{margin-left:0}.n4-simulation button{min-height:48px}.n4-live-slot{min-width:0}.n4-main-content{overflow-x:clip}
 
 .n4-chart-options{border:1px solid #40575b;padding:10px;display:flex;flex-wrap:wrap;gap:8px;color:#afc7c8;font:12px system-ui}.n4-chart-options button{padding:8px 12px;background:#17282f;color:#aec3c6;border:1px solid #526a70}.n4-chart-options button[aria-pressed=true]{background:#294b40;color:#edf8ee;border-color:#83b09e}
 
 .n4-main-monitor{scroll-margin-top:10px}.n4-page-keys{position:sticky;bottom:0;z-index:5}
-@media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-page-keys{position:static}.n4-main-monitor{scroll-margin-top:calc(8px + var(--n4-safe-top))}}
+.n4-page-keys{position:static}.n4-main-monitor{scroll-margin-top:calc(8px + var(--n4-safe-top))}
 
 .n4-hold{touch-action:none;user-select:none}.n4-hold[aria-pressed=true]{outline:3px solid #dfd394;outline-offset:2px}
 
 .n4-control-grid{align-items:start}.n4-secours .n4-control-group{align-self:start}
 /* L’insertion d’un instrument ne doit pas ancrer la page sur la barre du bas. */
 .n4-sdc,#n4-engine{overflow-anchor:none}
-@media(min-width:1300px){.n4-page-keys{grid-template-columns:repeat(6,minmax(0,1fr))!important}}
-@media(min-width:1001px){.n4-command-status[data-active=true]{position:fixed;top:calc(12px + var(--n4-safe-top));right:20px;z-index:30;max-width:480px;margin:0;padding:12px 16px;background:#102922;color:#e4f4e8;border:1px solid #8ec9ac;box-shadow:0 3px 12px #0005;pointer-events:none}}
+.n4-page-keys{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+/* Retour d'Anthonin (copie d'essai, 14/10 au soir) : ce haut d'écran s'ajoutait au bas posé plus haut, et l'accusé d'une commande couvrait
+   tout le téléphone ; il redevient un bandeau au-dessus de la barre du pouce, à sa hauteur de texte. */
+.n4-command-status[data-active=true]{position:fixed;top:auto;bottom:calc(88px + var(--n4-safe-bottom));left:max(12px,var(--n4-safe-left));right:max(12px,var(--n4-safe-right));z-index:35;max-width:none;margin:0;padding:12px 16px;background:#102922;color:#e4f4e8;border:1px solid #8ec9ac;box-shadow:0 3px 12px #0005;pointer-events:none}
 /* Commandes de session et état courant : repères immédiatement lisibles. */
 .n4-simulation summary{min-height:48px;min-width:180px;padding:12px 18px;border:1px solid #63796a;border-radius:4px;background:#e6ebe3;color:#233c2d;font:600 14px system-ui;box-shadow:0 2px 0 #8a9b8d;justify-content:center}
 .n4-simulation summary:hover{background:#f0f4ed;border-color:#32583f}.n4-simulation summary:focus-visible{outline:3px solid #8b6821;outline-offset:3px}
 .n4-quickbar>span{font:700 18px system-ui;letter-spacing:.04em;color:#203c2b}.n4-wall-title b{font-size:16px;font-weight:700;letter-spacing:.04em}
-@media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-quickbar>span{font-size:16px}.n4-wall-title b{font-size:14px}.n4-simulation details{width:100%}.n4-simulation summary{width:100%;min-height:50px}.n4-quickbar{min-height:40px}}
+.n4-quickbar>span{font-size:16px}.n4-wall-title b{font-size:14px}.n4-simulation details{width:100%}.n4-simulation summary{width:100%;min-height:50px}.n4-quickbar{min-height:40px}
 
 /* Le compteur conserve sa place : aucun déplacement des commandes à 9/10, 99/100 s. */
 .n4-simulation>span{flex:0 0 25ch;width:25ch;font-variant-numeric:tabular-nums;white-space:nowrap}
 /* Identité compacte, y compris avec les marges latérales d'encoche. */
 .n4-brand{flex-shrink:0}.n4-brand b{white-space:nowrap}.n4-unit{min-width:0}
-@media(max-width:420px){.n4-header{flex-wrap:wrap}.n4-unit{flex:1 1 170px}.n4-brand b{font-size:18px}}
+.n4-header{flex-wrap:wrap}.n4-unit{flex:1 1 170px}.n4-brand b{font-size:18px}
 .n4-model-limit{padding:12px;border-left:3px solid #d3b56c;background:#2b2b20;color:#eee0b5!important}
 .n4-fiche-lecture{margin:6px 0 10px;padding:8px 10px;border-left:3px solid #6fa3c7;background:rgba(111,163,199,.14);font-size:13px}
 .n4-wall-measures .n4-measure>div{flex-wrap:wrap}.n4-wall-measures .n4-measure b,.n4-wall-measures .n4-measure div>span{white-space:nowrap}
-@media(max-width:380px){.n4-wall-measures .n4-measure{padding:0 7px}.n4-wall-measures .n4-measure b{font-size:20px}.n4-thumb-dock{gap:5px}.n4-thumb-dock button{font-size:10px;padding:4px;white-space:nowrap}}
+.n4-wall-measures .n4-measure{padding:0 7px}.n4-wall-measures .n4-measure b{font-size:20px}.n4-thumb-dock{gap:5px}.n4-thumb-dock button{font-size:10px;padding:4px;white-space:nowrap}
 /* Session N4 discrète, hors du chemin synthèse → procédé ; palette N4 conservée. */
 .n4-session{position:relative;z-index:31;flex-shrink:0;font:12px system-ui}
 .n4-session>summary{display:flex;flex-direction:column;justify-content:center;min-height:44px;padding:5px 12px;border:1px solid #869180;border-radius:3px;color:#35483e;cursor:pointer;list-style:none}
@@ -98,30 +111,42 @@
 .n4-sdc:not(.epr-sdc) .n4-alarm-count{min-width:0;padding:8px;gap:5px;flex-wrap:wrap;justify-content:center}
 .n4-sdc:not(.epr-sdc) .n4-alarm-count b{flex-basis:100%;margin:0;text-align:center}
 .n4-sdc:not(.epr-sdc) .n4-alarm-count i{flex-shrink:0}
-.n4-sdc:not(.epr-sdc) .n4-alarm-head,.n4-sdc:not(.epr-sdc) .n4-alarm-row{grid-template-columns:11ch 11ch minmax(0,1fr)}
+.n4-sdc:not(.epr-sdc) .n4-alarm-head,.n4-sdc:not(.epr-sdc) .n4-alarm-row{grid-template-columns:11ch 11ch minmax(0,1fr) auto}
 .n4-sdc:not(.epr-sdc) .n4-alarm-row>span,.n4-sdc:not(.epr-sdc) .n4-alarm-head>span{min-width:0;overflow-wrap:anywhere}
-@media(max-width:760px),(max-width:1000px) and (max-height:500px){
 .n4-sdc:not(.epr-sdc) .n4-header{flex-wrap:wrap;gap:8px;padding-top:8px;padding-bottom:8px}
-.n4-sdc:not(.epr-sdc) .n4-header .n4-brand{display:none}
+/* J6, client 2 : le slogan reste au téléphone, sur une ligne à lui sous la tranche (une seule identité sur toutes les surfaces). */
+.n4-sdc:not(.epr-sdc) .n4-header .n4-brand{order:9;flex:1 1 100%;flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:0 6px;min-width:0}.n4-sdc:not(.epr-sdc) .n4-header .n4-brand b{font-size:11px;letter-spacing:.12em}.n4-sdc:not(.epr-sdc) .n4-header .n4-brand span{font-size:10.5px;white-space:normal}
 .n4-sdc:not(.epr-sdc) .n4-header .n4-unit{flex:1 1 120px;text-align:left}
 .n4-session{margin-left:auto}.n4-session>summary{font-size:11px;padding:4px 8px}
 .n4-session>summary span{font-size:10px;min-width:12ch}
 .n4-sdc:not(.epr-sdc) .n4-alarm-head{display:none}
-.n4-sdc:not(.epr-sdc) .n4-alarm-row{grid-template-columns:11ch minmax(0,1fr);gap:5px 10px}
-.n4-sdc:not(.epr-sdc) .n4-alarm-row>span:last-child{grid-column:1/-1;font-size:12px;line-height:1.4}
+.n4-sdc:not(.epr-sdc) .n4-alarm-row{grid-template-columns:11ch minmax(0,1fr) auto;gap:5px 10px}
+.n4-sdc:not(.epr-sdc) .n4-alarm-row>span:nth-child(3){grid-column:1/-1;font-size:12px;line-height:1.4}
+.n4-sdc:not(.epr-sdc) .n4-alarm-row>.n4-alarm-etat{grid-row:1;grid-column:3}
 }
 
 /* Défilement tactile natif, saisie du dessin à la souris en vue agrandie. */
 .n4-synoptic-zoom{cursor:grab;user-select:none;touch-action:pan-x pan-y}
 .n4-synoptic-zoom:active{cursor:grabbing}
-/* Sortie de la tranche vers la France ou le CNPE : cibles au pouce, distinctes de la conduite. */
-.n4-exit{display:flex;gap:8px;flex-shrink:0}
+/* Sortie de la tranche vers la France ou la centrale : fil des niveaux, cibles au pouce, distinctes de la conduite (J1). */
+.n4-exit{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.n4-exit i{font-style:normal;opacity:.5;color:#35483e}
+.n4-exit b{padding:6px 4px;color:#35483e;font:700 12px system-ui;letter-spacing:.04em;text-transform:uppercase}
+.n4-temoins{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.n4-temoin{font:600 11px system-ui;padding:4px 9px;border-radius:12px;border:1px solid #869180;color:#35483e;background:transparent;white-space:nowrap}
+.n4-temoin[data-on="true"]{background:#dfeee4;border-color:#2e6a58;color:#1f4d3f}
+.n4-liaison[data-on="false"]{background:#f6dcd6;border-color:#a03030;color:#7a2418}
+.n4-retour{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 14px;padding:10px 14px;border:2px solid #b8862b;border-radius:6px;background:#f7e7bd;color:#3a2a10;font:13px/1.45 system-ui,sans-serif}
+.n4-retour b{color:#5a3d0a}
+.n4-retour button{margin-left:auto;min-height:36px;padding:6px 14px;border:1px solid #6e5c44;border-radius:6px;background:#3d3021;color:#ffb03a;font:700 13px system-ui;cursor:pointer}
+.n4-thumb-exits{display:flex;gap:8px;margin-top:10px}
+.n4-thumb-exits button{flex:1;min-height:44px}
 .n4-exit button{min-height:44px;min-width:44px;padding:6px 12px;border:1px solid #869180;border-radius:3px;background:transparent;color:#35483e;font:600 12px system-ui;letter-spacing:.04em;cursor:pointer}
 .n4-exit button:hover{background:#dfe4d8}
 .n4-exit button:focus-visible{outline:3px solid #2e6a58;outline-offset:2px}
 @media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-header{flex-wrap:wrap}.n4-exit{order:-1;flex:1 1 100%}.n4-exit button{flex:1}}
 /* H12 : au téléphone, le menu « Écrans » du dock est le seul menu du poste N4, comme à l’EPR ; les touches reviennent avec la disparition du dock (même requête). */
-@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-sdc:not(.epr-sdc) .n4-main-monitor>.n4-page-keys{display:none!important}}
+@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-sdc:not(.epr-sdc) .n4-console>.n4-page-keys{display:none!important}}
 /* H13 : choix des courbes, pastille de couleur de chaque grandeur et cibles tactiles. */
 .n4-chart-options button{display:inline-flex;align-items:center;gap:6px;min-height:40px}.n4-chart-options button i{display:inline-block;width:14px;height:4px;flex:none}.n4-chart-options button small{opacity:.8;font-size:10px}.n4-chart-options button[aria-pressed=false] i{opacity:.35}.n4-chart-options legend{padding:0 4px}
 @media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-chart-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.n4-chart-options button{display:block;min-height:44px;padding:6px 8px;font-size:12px;text-align:left}.n4-chart-options button i{display:inline-block;vertical-align:middle;margin-right:6px}}
@@ -138,10 +163,309 @@
 .n4-sdc .n4-mission-detail{padding:2px 12px 10px;font:13px/1.45 system-ui,sans-serif}.n4-sdc .n4-mission-detail p{margin:0 0 8px}
 .n4-sdc .n4-mission-detail progress{display:block;width:100%;height:8px}
 .n4-sdc .n4-mission-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.n4-sdc .n4-mission-actions button{min-height:44px;margin:0;padding:6px 12px;background:#22383d;color:#e1eeee;border:1px solid #577078;border-radius:3px;font:13px system-ui,sans-serif}
+.n4-sdc .n4-mission-actions button{min-height:32px;margin:0;padding:4px 10px;background:#22383d;color:#e1eeee;border:1px solid #577078;border-radius:3px;font:13px system-ui,sans-serif}
 @media(max-width:380px){.n4-sdc .n4-mission-toggle{gap:6px;padding:6px 8px;font-size:12px}}
+/* J3 (passe 3) : ligne du guide (mode facile, 7A), termes du lexique soulignés et leur définition dans l’encart, « Montrer » des salles. */
+.n4-sdc .n4-mission-guide{margin:0 0 8px;padding:5px 10px;border-left:3px solid #e7d78e;background:#0f1c19;color:#d5e6e3;font:13px/1.45 system-ui,sans-serif}
+.n4-sdc .n4-mission-guide b{margin-right:6px;color:#e7d78e;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.n4-sdc .n4-guide-court{margin:0 12px 8px;padding-bottom:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}   /* sans marge basse : la troisième ligne ne dépasse pas */
+.n4-sdc .n4-guide-seul .n4-mission-guide{margin:0;padding:8px 12px}
+.n4-sdc .n4-terme{display:inline;min-height:0;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:none;text-align:inherit;
+  text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:help}
+.n4-sdc .n4-terme:hover,.n4-sdc .n4-terme:focus-visible{text-decoration-style:solid}
+.n4-sdc .n4-terme-def{margin:0 12px 10px;padding:8px 10px;border:1px solid #577078;border-radius:3px;background:#0b1513;color:#dce7e5;font:13px/1.45 system-ui,sans-serif}
+.n4-sdc .n4-terme-def p{margin:0 0 6px}.n4-sdc .n4-terme-def details p{margin:6px 0}
+.n4-sdc .n4-terme-plus summary{padding:6px 0;color:#e7d78e;font-weight:600;cursor:pointer}
+.n4-sdc .n4-terme-fermer,.n4-sdc .n4-montrer{min-height:30px;margin:0;padding:4px 10px;background:#22383d;color:#e1eeee;border:1px solid #577078;border-radius:3px;font:13px system-ui,sans-serif;cursor:pointer}
+.n4-sdc .n4-mission-montrer{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+.n4-sdc .n4-mission-montrer span{margin-right:2px;color:#a1b6b9;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+/* J3 (passe 4, 2A) : objectif de la mission (Indices, Libre) et choix du Guide dans l’encart. */
+.n4-sdc .n4-mission-objectif{margin:0 0 8px;font-weight:600}
+/* J3 (passe 6, 10A) : prévision avant le geste clé (question, réponses), effet attendu en Pas à pas. */
+.n4-sdc .n4-prevoir{margin:0 0 6px}.n4-sdc .n4-prevoir b{margin-right:6px;color:#e7d78e;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.n4-sdc .n4-prevoir-choix{margin:0 0 10px}
+/* J3 (passe 5, V19) : récit bref d’une mission historique, en tête de l’encart déplié. */
+.n4-sdc .n4-mission-recit{margin:0 0 8px;padding:1px 0 1px 10px;border-left:3px solid #a1b6b9;font-style:italic}
+/* J3 (05/10, 1A) : consigne en étapes ; l'étape en cours en tête, toute la consigne repliée, étapes faites cochées. */
+.n4-sdc .n4-etape{margin:0 0 8px;font-weight:600}
+.n4-sdc .n4-etape b{margin-right:6px;color:#e7d78e;font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.n4-sdc .n4-etapes{margin:0 0 8px}
+.n4-sdc .n4-etapes summary{padding:4px 0;color:#a1b6b9;font-size:12px;cursor:pointer}
+.n4-sdc .n4-etapes ol{margin:4px 0 0;padding-left:22px}.n4-sdc .n4-etapes li{margin:3px 0}
+.n4-sdc .n4-etapes li[data-fait]{opacity:.72}.n4-sdc .n4-etapes li[data-fait]::after{content:' ✓'}.n4-sdc .n4-etapes li[aria-current]{font-weight:600}
+.n4-sdc .n4-guide-choix{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+.n4-sdc .n4-guide-choix span{margin-right:2px;color:#a1b6b9;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.n4-sdc .n4-guide-choix button{min-height:28px;margin:0;padding:3px 11px;background:transparent;color:#e1eeee;border:1px solid #577078;border-radius:18px;font:12px system-ui,sans-serif;cursor:pointer}
+.n4-sdc .n4-guide-choix button[aria-pressed=true]{background:#e7d78e;border-color:#e7d78e;color:#13221f;font-weight:700}
+/* J3 (passe 4, 3A) : premier quart — accueil en trois étapes et bilan, au-dessus de l’encart des missions. */
+.n4-sdc .n4-pq{margin:0;padding:12px 14px;border-bottom:1px solid #40575b;background:#1a2e2a;color:#e4efec;font:14px/1.5 system-ui,sans-serif}
+.n4-sdc .n4-pq h3{margin:2px 0 6px;color:#f1e7b4;font:700 16px/1.3 system-ui,sans-serif}
+.n4-sdc .n4-pq p{margin:0 0 8px}
+.n4-sdc .n4-pq .n4-pq-etape{margin:0;color:#a1b6b9;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.n4-sdc .n4-pq-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.n4-sdc .n4-pq-actions button{min-height:34px;margin:0;padding:5px 13px;border:1px solid #e7d78e;border-radius:3px;background:#e7d78e;color:#13221f;font:700 13px system-ui,sans-serif;cursor:pointer}
+.n4-sdc .n4-pq-actions button.n4-pq-discret{background:transparent;border-color:#577078;color:#e1eeee;font-weight:400}
+/* Remarque d'Anthonin (05/10) : boutons des encarts « un poil gros » ; plus petits à la souris, un peu plus hauts au doigt. */
+@media(pointer:coarse){.n4-sdc :is(.n4-mission-actions button,.n4-pq-actions button){min-height:40px}.n4-sdc :is(.n4-terme-fermer,.n4-montrer){min-height:38px}.n4-sdc .n4-guide-choix button{min-height:34px}}
+/* J3 (passe 5, 4A) : « Ce qui vient de se passer » et « Bilan de l’arrêt », dans l’habillage du premier quart. */
+.n4-sdc .n4-cvp .n4-cvp-sous{margin:6px 0 2px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.n4-sdc .n4-cvp-releves{margin:0 0 8px;padding-left:18px}.n4-sdc .n4-cvp-releves li{margin:2px 0}
+.n4-sdc .n4-cvp-duree{opacity:.85;font-size:13px}
+.n4-sdc .n4-cvp-arret h3{color:#ffb4a8}
 /* 2.17.0e (N3, N6) : affichage du poste interrompu par une erreur ; alerte fixe, lisible, avec « Recharger le poste ». */
 .n4-alerte-poste{position:fixed;z-index:60;top:calc(8px + var(--simurep-safe-top,env(safe-area-inset-top,0px)));left:12px;right:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 14px;border:2px solid #a03030;border-radius:6px;background:#f6dcd6;color:#4a1410;font:14px/1.45 system-ui,sans-serif;box-shadow:0 3px 12px #0006}
 .n4-alerte-poste p{margin:0;flex:1 1 220px}
 .n4-alerte-poste button{min-height:44px;padding:8px 14px;border:1px solid #6e2a20;border-radius:6px;background:#7a2418;color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer}
 #n4-reessayer{margin:0 0 0 24px;min-height:44px;padding:8px 16px;font:16px system-ui}
+/* Coup de propre N4/EPR (04/10, 8A et 15 bis A) : page Cœur, écran RGL et carte des grappes, au-dessus de la carte actuelle native. */
+.n4-rgl-page{padding:14px 16px 4px;color:var(--n4-ink)}.n4-rgl-page .n4-control-group{margin:10px 0}
+.n4-rgl{border:1px solid var(--n4-line);background:#0d1519}
+.n4-rgl header{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:6px 10px;background:#13232b;border-bottom:1px solid var(--n4-line);font:12px Consolas,'Lucida Console',monospace}
+.n4-rgl header b{padding:0 8px;background:var(--n4-cyan);color:#041014;letter-spacing:.14em}.n4-rgl header strong{margin-left:auto;padding:1px 8px;background:#e0a21a;color:#1d1200;letter-spacing:.06em}
+.n4-rgl table{width:100%;border-collapse:collapse;font:13px Consolas,'Lucida Console',monospace}
+.n4-rgl th,.n4-rgl td{padding:5px 8px;border-bottom:1px solid #1e2c33;text-align:left;white-space:nowrap}.n4-rgl thead th{color:#9bb0b2;font-weight:400;font-size:11.5px}
+.n4-rgl tbody th i{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:50%;vertical-align:-1px}
+.n4-rgl tr[data-ecart] td,.n4-rgl tr[data-ecart] th{background:#2a1f05}.n4-rgl td strong{color:#ffb43a}
+.n4-rgl-barres{min-width:150px}.n4-rgl-barres span{display:block;height:6px;margin:2px 0;background:#1e2c33}.n4-rgl-barres em{display:block;height:100%;border:1px solid #9bb0b2;box-sizing:border-box}.n4-rgl-barres i{display:block;height:100%;background:var(--n4-cyan)}
+.n4-rgl-n{margin:6px 10px 8px;color:#9bb0b2;font:12px/1.5 Arial,sans-serif;white-space:normal}
+.n4-gr-titre{margin:16px 0 6px;color:#d6e7de;font:400 15px Arial,sans-serif}
+.n4-gr{display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:8px 16px;align-items:start}
+.n4-gr-carte{display:block;width:100%;height:auto;border:1px solid var(--n4-line)}.n4-gr-case{cursor:pointer}.n4-gr-case:focus-visible{outline:2px solid #ffd23a}
+.n4-gr-leg{display:flex;flex-direction:column;gap:4px;font:12.5px Arial,sans-serif;color:var(--n4-ink)}.n4-gr-leg i{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:50%;vertical-align:-1px}
+.n4-gr-detail{grid-column:1/-1;margin:0;padding:6px 10px;border:1px solid var(--n4-line);background:#0d1519;color:var(--n4-ink);font:13px Arial,sans-serif}
+.n4-grappes-vide{color:#9bb0b2;font:13px Arial,sans-serif}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-rgl-page{padding:10px 8px 2px}.n4-rgl{overflow-x:auto}.n4-gr{grid-template-columns:minmax(0,1fr)}.n4-rgl table{font-size:12px}.n4-rgl th,.n4-rgl td{padding:5px 5px}.n4-rgl th:nth-child(6),.n4-rgl td:nth-child(6){display:none}}
+/* Passe 3 de la reprise J3 (14A du 06/10) : panneau auxiliaire du N4, matière des salles (rendu réaliste du 04/10). Lumière d'en haut à
+   gauche : plaques à biseau, ombre portée dans le joint, vis fendues aux coins (acier), patine trois fois plus faible qu'au 1300 (fond clair, REX des salles 900) ; étiquettes gravées ; verres des
+   voyants et des cadrans dessinés dans les instruments. Dessin seul : mêmes commandes, mêmes identifiants, même disposition. */
+.n4-secours:not(.epr-sdc){--vis1:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23f5f6f1'/%3E%3Cstop offset='.42' stop-color='%23bfc2b8'/%3E%3Cstop offset='1' stop-color='%23545950'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23404539' stroke-width='.7'/%3E%3Cg transform='rotate(28 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--vis2:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23f5f6f1'/%3E%3Cstop offset='.42' stop-color='%23bfc2b8'/%3E%3Cstop offset='1' stop-color='%23545950'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23404539' stroke-width='.7'/%3E%3Cg transform='rotate(-52 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--vis3:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23f5f6f1'/%3E%3Cstop offset='.42' stop-color='%23bfc2b8'/%3E%3Cstop offset='1' stop-color='%23545950'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23404539' stroke-width='.7'/%3E%3Cg transform='rotate(71 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--vis4:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs%3E%3CradialGradient id='t' cx='.36' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%23f5f6f1'/%3E%3Cstop offset='.42' stop-color='%23bfc2b8'/%3E%3Cstop offset='1' stop-color='%23545950'/%3E%3C/radialGradient%3E%3CradialGradient id='l' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='.7' stop-color='%23000' stop-opacity='.42'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='11.6' cy='12.2' r='10' fill='url(%23l)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='url(%23t)'/%3E%3Ccircle cx='11' cy='11' r='7.6' fill='none' stroke='%23404539' stroke-width='.7'/%3E%3Cg transform='rotate(-14 11 11)'%3E%3Crect x='3.8' y='9.9' width='14.4' height='2.2' rx='.5' fill='%232a2218'/%3E%3Crect x='3.8' y='11.6' width='14.4' height='.6' fill='%23fff' opacity='.45'/%3E%3C/g%3E%3C/svg%3E");--patine:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22480%22%20height%3D%22480%22%20viewBox%3D%220%200%20480%20480%22%3E%3Cg%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M11%2013l8%202%20M108%20164l21%20-3%20M205%20315l34%20-4%20M302%2026l47%205%20M399%20177l9%20-6%20M56%20328l22%20-7%20M153%2039l35%208%20M250%20190l48%20-9%20M347%20341l10%20-2%20M444%2052l23%203%20M101%20203l36%20-4%20M198%20354l49%20-5%20M295%2065l11%206%20M392%20216l24%20-7%20M49%20367l37%20-8%20M146%2078l50%209%20M243%20229l12%20-2%20M340%20380l25%20-3%20M437%2091l38%204%20M94%20242l51%20-5%20M191%20393l13%20-6%20M288%20104l26%207%20M385%20255l39%20-8%20M42%20406l52%20-9%20M139%20117l14%202%20M236%20268l27%20-3%20M333%20419l40%20-4%20M430%20130l53%205%20M87%20281l15%20-6%20M184%20432l28%20-7%20M281%20143l41%208%20M378%20294l54%20-9%20M35%20445l16%20-2%20M132%20156l29%203%20M229%20307l42%20-4%20M326%2018l55%20-5%22%20stroke%3D%22%23fff%22%20stroke-width%3D%22.65%22%20opacity%3D%22.12%22%2F%3E%3Cpath%20d%3D%22M11%2013l8%202%20M108%20164l21%20-3%20M205%20315l34%20-4%20M302%2026l47%205%20M399%20177l9%20-6%20M56%20328l22%20-7%20M153%2039l35%208%20M250%20190l48%20-9%20M347%20341l10%20-2%20M444%2052l23%203%20M101%20203l36%20-4%20M198%20354l49%20-5%20M295%2065l11%206%20M392%20216l24%20-7%20M49%20367l37%20-8%20M146%2078l50%209%20M243%20229l12%20-2%20M340%20380l25%20-3%20M437%2091l38%204%20M94%20242l51%20-5%20M191%20393l13%20-6%20M288%20104l26%207%20M385%20255l39%20-8%20M42%20406l52%20-9%20M139%20117l14%202%20M236%20268l27%20-3%20M333%20419l40%20-4%20M430%20130l53%205%20M87%20281l15%20-6%20M184%20432l28%20-7%20M281%20143l41%208%20M378%20294l54%20-9%20M35%20445l16%20-2%20M132%20156l29%203%20M229%20307l42%20-4%20M326%2018l55%20-5%22%20transform%3D%22translate%280%20.65%29%22%20stroke%3D%22%233a3026%22%20stroke-width%3D%22.4%22%20opacity%3D%22.045%22%2F%3E%3Cpath%20d%3D%22M48%20321q68-17%20132-8m-116%2012q64-16%20116-9M294%2091q38-12%2073-9%22%20stroke%3D%22%23fff%22%20stroke-width%3D%22.55%22%20opacity%3D%22.08%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");--relief:linear-gradient(118deg,#ffffff47 0%,#ffffff14 20%,#ffffff00 36%,#ffffff18 49%,#ffffff00 56%,#1c242014 100%);--vis-pos:left 4px top 4px,right 4px top 4px,left 4px bottom 4px,right 4px bottom 4px;--vis-t:12px 12px}
+.n4-secours:not(.epr-sdc) .n4-main-content{background:var(--patine) 0 0/480px 480px,linear-gradient(#c4c5ba,#b0b1a5)}
+.n4-secours:not(.epr-sdc) .n4-main-content .n4-control-group{background-image:var(--vis1),var(--vis2),var(--vis3),var(--vis4),var(--patine),var(--relief);background-position:var(--vis-pos),0 0,0 0;background-size:var(--vis-t),var(--vis-t),var(--vis-t),var(--vis-t),480px 480px,100% 100%;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat;background-color:#d0d0c3;border:0;border-radius:2px;padding-top:20px;box-shadow:inset 1px 1px 0 #f4f3e6,inset -1px -1px 0 #6c7367,inset 3px 3px 3px -1px #ffffff3d,inset -3px -3px 4px -1px #3a40363b,1px 2px 2px #0007,2px 3px 5px #0004}
+.n4-secours:not(.epr-sdc) .n4-main-content .n4-control-group h3{margin:0 14px 6px;border:0;border-radius:2px;background:linear-gradient(#f3f0e3,#dbd7c5);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #a19e89,0 0 0 1px #868c7b,1px 2px 0 #ffffff66;text-shadow:0 1px 0 #ffffffb0}
+/* Lot 4 ter : indicateurs de profil en rangée, logement en creux et plaques gravées. */
+.n4-secours .n4-profile{margin:0;min-width:0;display:flex;flex-direction:column;align-items:stretch;text-align:center;color:#232a25}
+.n4-secours .n4-profile-face{display:block;width:100%;max-width:100px;height:auto;margin:0 auto 8px;filter:drop-shadow(1px 3px 2px #0006)}
+.n4-secours .n4-profile figcaption{min-height:34px;display:flex;align-items:center;justify-content:center;padding:4px 2px;background:linear-gradient(#fffef9,#eaeae2);border:1px solid #7a7e75;border-radius:1px;box-shadow:inset 0 1px #fff,0 1px 1px #0004;color:#161c18;text-shadow:0 1px #fff;font:700 10px/1.2 "Arial Narrow",Arial,sans-serif;text-transform:uppercase}
+.n4-secours .n4-profile-value{padding:5px 0 0;font:600 12px/1.2 "Arial Narrow",Arial,sans-serif;font-variant-numeric:tabular-nums;color:#333a33}
+.n4-secours .n4-profile-value small{font-size:10px;font-weight:400}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-secours .n4-profile-face{max-width:82px}.n4-secours .n4-profile figcaption{font-size:9px}}
+/* Organes conventionnels : lentille carrée encastrée dans son acier, éclairage lié au retour d'état. */
+.n4-secours{--sec-lens:linear-gradient(155deg,#dfe3db,#b7beb3);--sec-lit:radial-gradient(ellipse at 46% 38%,#fff 10%,#edf5ed 58%,#aebcac);--sec-ink:#242b25;--sec-light:#eefbeb55}
+/* La page de secours est une plaque physique, son titre n'est plus un bandeau de calculateur. */
+.n4-secours{--sec-panel:#cdcec2;--sec-floor:#adaf9f;--sec-border:#757e6a}
+.n4-secours.n4-sdc .n4-physical-panel{position:relative;padding:16px 8px 8px;border:1px solid var(--sec-border);border-radius:2px;background:var(--patine) 0 0/480px 480px,var(--relief),var(--sec-panel);box-shadow:inset 1px 1px #ffffdfb0,inset -1px -1px #646e57,0 3px 5px #0005;font:13px/1.5 Arial,Helvetica,sans-serif;color:#252f25}
+.n4-secours.n4-sdc .n4-physical-panel>.n4-physical-title{display:flex;justify-content:center;gap:16px;width:fit-content;max-width:calc(100% - 36px);min-height:34px;margin:0 auto 16px;padding:7px 24px;background:linear-gradient(#fffffa,#eaece1);border:1px solid #76816e;border-radius:1px;box-shadow:inset 0 1px #fff,0 2px 2px #0004;color:#283123;font:700 13px/1.3 "Arial Narrow",Arial,sans-serif;text-align:center;letter-spacing:.07em;text-transform:uppercase;text-shadow:0 1px #fff}
+.n4-secours.n4-sdc .n4-physical-title>span{color:inherit!important}
+.n4-secours.n4-sdc .n4-physical-panel>.n4-main-content{background:transparent;overflow:visible;padding:0}
+.n4-secours.n4-sdc .n4-main-content>.n4-control-grid{background:transparent;gap:12px;align-items:start;padding:16px 10px}
+.n4-secours.n4-sdc .n4-main-content .n4-control-group{padding:20px 14px 16px;row-gap:12px;font:13px/1.5 Arial,Helvetica,sans-serif}
+.n4-secours.n4-sdc .n4-main-content .n4-control-group h3{font:700 12px/1.35 "Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:7px 10px}
+.n4-secours.n4-sdc .n4-main-content .n4-control-group p{font:12px/1.5 Arial,Helvetica,sans-serif;max-width:65ch;margin:4px 2px 8px}
+
+/* Lecture tactile : trois profils sans réduction du texte, commandes dégagées du bord et du dock. */
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+ .n4-secours.n4-sdc .n4-physical-panel{padding:14px 3px 8px}
+ .n4-secours.n4-sdc .n4-physical-panel>.n4-physical-title{padding:8px 12px;font-size:12px;margin-bottom:14px}
+ .n4-secours.n4-sdc .n4-main-content>.n4-control-grid{padding:14px 4px;gap:12px}
+ .n4-secours.n4-sdc .n4-main-content .n4-control-group{padding:20px 12px 14px;gap:10px 6px}
+ .n4-secours.n4-sdc .n4-main-content .n4-control-group h3{margin:0 8px 6px}
+ .n4-secours .n4-main-content :is(button,input){scroll-margin-bottom:100px}
+}
+
+/* ══ Lot 4 ter, mélange retenu par Anthonin (07/10 au soir) : indicateurs de profil et vernis de Codex ; agencements et organes des salles
+      (Claude). N4 : verrines sous cadre noir, lentilles carrées sous cadre d'acier (bouton de l'essai des lampes des salles), arrêt
+      d'urgence en gros bouton rouge allumé, borication ambre à maintenir, TPL posés sur la plaque (nom gravé, état dessous), afficheurs
+      rouges et voyants, blocs et postes de réglage noirs. L'EPR a son propre thème (epr.css, variables ci-dessous). Dessin seul : mêmes
+      commandes, mêmes identifiants. ══ */
+.n4-sdc.n4-secours{--l-off:linear-gradient(#e3e6e2,#c3c7c2);--l-ink:#22262a;--l-on:radial-gradient(circle at 50% 38%,#ffffff,#f7faff 55%,#d4e1f2);--l-ink-on:#0d1115;--l-glow:#eaf2ffcc;
+  --l-cadre:#c9ccc8;--l-anneau:0 0 0 1px #535553,0 0 0 4px #363836,0 0 0 5px #111211;--bloc:linear-gradient(#3e403d,#222421);--bloc-bord:#111;--bloc-arete:#6b6d69;
+  --ver-cadre:#0f0f0e;--ver-bord:#0a0a09;--ver-off:linear-gradient(#eceeef,#cfd3d6);--ver-lentille:#8a8f94;--ver-encre:#171717;--plaque:linear-gradient(#fbfaf6,#e6e4dc)}
+/* Indicateurs de profil (dessin de Codex) en rangée de boîtiers jointifs, plaque et valeur dessous ; trois par rangée au téléphone. */
+.n4-secours .n4-physical-instruments{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 0;margin:0 auto;padding:20px 18px 8px}
+.n4-secours .n4-profile{flex:0 0 auto;width:104px}
+.n4-secours .n4-profile-face{max-width:none;margin:0 0 9px}
+.n4-secours .n4-profile figcaption{width:92%;box-sizing:border-box;margin:0 auto}
+/* Verrines */
+.n4-verrines{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;max-width:780px;margin:6px auto 6px;padding:6px;background:var(--ver-cadre);border:3px solid var(--ver-bord);border-radius:3px;box-shadow:inset 0 2px 4px #000,0 1px 0 #ffffff26,1px 3px 5px #0006}
+.n4-verrine{position:relative;min-height:48px;display:flex;align-items:center;justify-content:center;padding:4px 8px;background:var(--ver-off);border:2px solid var(--ver-lentille);border-radius:2px;box-shadow:inset 0 0 0 1px #f4f6f7;color:var(--ver-encre);text-align:center}
+.n4-verrine span{font:700 11px/1.12 "Arial Narrow","Roboto Condensed",Arial,sans-serif;letter-spacing:.03em}
+.n4-verrine[data-on=true][data-couleur=rouge]{background:radial-gradient(ellipse at 50% 45%,#ff8db0,#ff2d6b 62%,#e8124f);box-shadow:inset 0 0 0 1px #ffc2d4,0 0 12px #ff2d6b99;color:#3a0012}
+.n4-verrine[data-on=true][data-couleur=ambre]{background:radial-gradient(ellipse at 50% 45%,#ffe0a0,#ffab2e 62%,#f08a10);box-shadow:inset 0 0 0 1px #ffe1b0,0 0 12px #ffa52699;color:#3a1d00}
+.n4-verrine::after{content:'';position:absolute;inset:1px;pointer-events:none;border-radius:1px;background:linear-gradient(#ffffff5a,#ffffff1c 44%,#ffffff00 45%,#ffffff00 82%,#00000026)}
+/* Lentilles carrées sous cadre (essai des lampes des salles) */
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-lens{position:relative;box-sizing:border-box;min-height:44px;min-width:58px;margin:5px;padding:5px 12px;border:3px solid var(--l-cadre);border-radius:2px;background:var(--l-off);color:var(--l-ink);
+  box-shadow:inset 0 0 0 1px #0007,inset 0 2px 4px #0005,var(--l-anneau);font:700 11.5px/1.12 "Arial Narrow",Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;text-align:center;text-shadow:none;cursor:pointer}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-lens[aria-pressed=true]{background:var(--l-on);color:var(--l-ink-on);box-shadow:inset 0 0 0 1px #fff7,var(--l-anneau),0 0 14px 6px var(--l-glow)}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-lens::before{content:'';position:absolute;inset:1px;padding:0;pointer-events:none;border-radius:1px;text-shadow:none;background:linear-gradient(#ffffff40,#ffffff14 44%,#ffffff00 45%,#ffffff00 80%,#00000030)}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-lens:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.6)}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-lens:active:not(:disabled){transform:translateY(1px);filter:brightness(.9);outline:0}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-lens-amber{--l-off:linear-gradient(#865c1e,#5e3e0e);--l-ink:#ffdeac;--l-on:radial-gradient(circle at 50% 40%,#fff4d2,#ffc24c 45%,#ea920f);--l-ink-on:#3a2000;--l-glow:#ffb43aa0}
+/* Arrêt d'urgence : gros bouton rouge allumé, même cadre que les lentilles */
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-emergency{position:relative;box-sizing:border-box;min-width:210px;min-height:58px;margin:8px 5px;padding:6px 16px;border:3px solid var(--l-cadre);border-radius:2px;
+  background:radial-gradient(circle at 50% 40%,#ffd8cf,#ff5242 45%,#c81e12);color:#fff;box-shadow:inset 0 0 0 1px #fff7,var(--l-anneau),0 0 14px 6px #ff3b2aa0;font:700 15px/1.1 "Arial Narrow",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-shadow:0 1px 1px #7a0e06;cursor:pointer}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-emergency::before{content:'';position:absolute;inset:1px;padding:0;pointer-events:none;border-radius:1px;background:linear-gradient(#ffffff55,#ffffff18 44%,#ffffff00 45%,#ffffff00 80%,#00000030)}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-emergency:active:not(:disabled){transform:translateY(1px);filter:brightness(.92)}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-emergency:disabled{opacity:.55;cursor:not-allowed}
+/* Modes AUTO/MANU et voies : bloc, plaque gravée au nom, lentilles côte à côte */
+.n4-sdc.n4-secours .n4-main-content .n4-control-row{flex:0 0 auto;display:inline-grid;grid-template-columns:repeat(2,auto);justify-content:center;gap:2px 4px;margin:4px 0;padding:8px 10px 10px;background:var(--bloc);border:1px solid var(--bloc-bord);border-radius:3px;box-shadow:inset 0 1px var(--bloc-arete),1px 3px 4px #0007}
+.n4-sdc.n4-secours .n4-main-content .n4-control-row>span{grid-column:1/-1;justify-self:stretch;margin:0 0 6px;padding:3px 10px;background:var(--plaque);border:1px solid #000;color:#111;font:700 10.5px/1.2 "Arial Narrow",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-align:center}
+/* TPL posés sur la plaque : nom gravé, état en petit dessous */
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-physical-tpl{flex:0 0 auto;width:118px;max-width:none;min-height:0;margin:2px;padding:0 0 4px;display:inline-flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;border-radius:0;box-shadow:none;color:#151515;font:700 10px/1.15 "Arial Narrow",Arial,sans-serif;text-transform:uppercase}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-physical-tpl svg{filter:drop-shadow(1px 2px 2px #0007)}
+.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-physical-tpl:disabled{opacity:.62}
+.n4-tpl-nom{display:block;box-sizing:border-box;width:100%;padding:3px 4px;background:linear-gradient(#fdfdfb,#ebeae4);border:1px solid #8f8e86;border-radius:2px;box-shadow:inset 0 1px 0 #fff,0 1px 1px #0005;color:#121212}
+.n4-tpl-etat{display:block;font:700 9px/1 Arial,Helvetica,sans-serif;letter-spacing:.06em;color:#2f342d}
+.n4-tpl-etat i{display:none}
+/* Pompes ASG côte à côte : TPL, puis voyant de marche compact et état de la pompe */
+.n4-secours .n4-asg-unit{display:inline-flex;flex-direction:column;align-items:center;gap:3px}
+.n4-sdc.n4-secours .n4-main-content .n4-asg-unit .n4-asg-status{margin:0 0 8px;max-width:120px;text-align:center}
+/* Poste de réglage : bloc, plaque gravée, fenêtre rouge (la case de saisie) */
+.n4-sdc.n4-secours .n4-main-content .n4-setpoint{flex:0 0 auto;display:inline-grid;grid-template-columns:auto 116px;gap:6px 10px;align-items:center;margin:6px 0;padding:8px 10px;background:var(--bloc);border:1px solid var(--bloc-bord);border-radius:3px;box-shadow:inset 0 1px var(--bloc-arete),1px 3px 4px #0007;color:#e6e6dd}
+.n4-sdc.n4-secours .n4-main-content .n4-setpoint>span{padding:3px 8px;background:var(--plaque);border:1px solid #000;color:#111;font:700 10.5px/1.2 "Arial Narrow",Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;text-align:center}
+.n4-sdc.n4-secours .n4-main-content .n4-setpoint>span b{display:block;margin-top:2px;color:#3a3a36;font:700 10px Arial,sans-serif;text-transform:none}
+.n4-sdc.n4-secours .n4-main-content .n4-setpoint input{width:100%;box-sizing:border-box;padding:6px 8px;border:2px solid #050505;background:#170504;color:#ff4a32;font:700 19px/1 "Courier New",monospace;letter-spacing:.08em;text-align:right;text-shadow:0 0 4px #ff2a1a99;box-shadow:inset 0 0 8px #000,inset 0 2px 3px #000,0 1px 0 #5a5a55;color-scheme:dark}
+.n4-sdc.n4-secours .n4-main-content .n4-setpoint input:disabled{color:#a5584a;opacity:.85}
+.n4-sdc.n4-secours .n4-main-content .n4-setpoint small{grid-column:1/-1;color:#c9c9c0;font:9.5px Arial,sans-serif}
+/* Afficheurs rouges à sept segments et voyants ronds */
+.n4-mesures{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 12px;align-items:flex-start;margin:4px 0 8px}
+.n4-aff{display:inline-flex;flex-direction:column;align-items:stretch;gap:3px;padding:5px;background:linear-gradient(#4a4a46,#2a2a27 40%,#1c1c1a);border:1px solid #0a0a09;border-radius:3px;box-shadow:inset 0 1px #6a6a64,1px 3px 4px #0007,2px 5px 9px #0003}
+.n4-aff-f{position:relative;display:flex;justify-content:flex-end;padding:3px 6px;background:#170504;border:2px solid #050505;box-shadow:inset 0 0 8px #000,inset 0 2px 3px #000,0 1px 0 #5a5a55}
+.n4-aff-f svg{display:block;filter:drop-shadow(0 0 2px #ff2a1a99)}
+.n4-aff-f::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(162deg,#ffffff30 0,#ffffff12 40%,#ffffff00 41%,#ffffff00 78%,#ffffff0d 100%)}
+.n4-aff small{display:block;max-width:150px;background:#f4f3ee;border:1px solid #000;padding:2px 5px;text-align:center;font:700 9.5px/1.15 "Arial Narrow",Arial,sans-serif;text-transform:uppercase;color:#111}
+.n4-aff small i{font-style:normal;font-weight:400;color:#444;text-transform:none}
+.n4-voy{display:inline-flex;flex-direction:column;align-items:center;gap:4px;min-width:72px;max-width:120px}
+.n4-voy i{position:relative;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#6a665c,#2c2a25);box-shadow:0 0 0 3px #b9b9b4,0 0 0 4px #6d6d66,1px 2px 3px 4px #0004}
+.n4-voy i::after{content:'';position:absolute;left:20%;top:13%;width:36%;height:26%;border-radius:50%;background:#ffffff90;filter:blur(.6px);pointer-events:none}
+.n4-voy-eteint i::after{background:#ffffff38}
+.n4-voy-blanc i{background:radial-gradient(circle at 40% 35%,#ffffff,#f3f6ff 50%,#c9d6ea);box-shadow:0 0 0 3px #b9b9b4,0 0 0 4px #6d6d66,0 0 10px 2px #eaf2ff}
+.n4-voy-ambre i{background:radial-gradient(circle at 40% 35%,#fff1d0,#ffb23c 50%,#c97a08);box-shadow:0 0 0 3px #b9b9b4,0 0 0 4px #6d6d66,0 0 10px 2px #ffb23c}
+.n4-voy-rouge i{background:radial-gradient(circle at 40% 35%,#ffd6cc,#ff4136 50%,#b8170d);box-shadow:0 0 0 3px #b9b9b4,0 0 0 4px #6d6d66,0 0 10px 2px #ff4136}
+.n4-voy>span{display:block;max-width:120px;background:#f4f3ee;border:1px solid #333;padding:1px 4px;font:700 9.5px/1.15 "Arial Narrow",Arial,sans-serif;text-transform:uppercase;text-align:center;color:#111}
+.n4-voy small{font:700 9px/1 Arial,sans-serif;letter-spacing:.05em;color:#2f342d}
+.n4-voy-compact{flex-direction:row;gap:7px;min-width:0}
+.n4-voy-compact i{width:16px;height:16px}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){.n4-secours .n4-physical-instruments{padding:14px 4px 6px}.n4-secours .n4-profile{width:33.3%;max-width:104px}
+  .n4-verrines{grid-template-columns:repeat(2,minmax(0,1fr));margin:8px 6px 4px}.n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-physical-tpl{width:104px}.n4-mesures{gap:8px}.n4-aff small{max-width:132px}
+  .n4-sdc.n4-secours .n4-main-content .n4-control-group button.n4-emergency{min-width:180px}}
+/* Plaque titre : le nom seul, gravé ; le code de l'écran (PA, MCS) reste un repère d'écran du KIC ou du MCP. */
+.n4-sdc.n4-secours .n4-physical-title>span:nth-child(2){display:none}
+/* 21A du 13/10 : acquittement aux postes, comme aux salles 900 et 1300 : klaxon visuel sans son, alarmes à acquitter et bouton
+   « Acquitter » en tête des alarmes (page et vignettes) ; une ligne nouvelle clignote, une ligne disparue reste en retrait jusqu'à son
+   acquittement ; au téléphone, cinquième bouton du dock, allumé tant que le klaxon est actif. */
+.n4-alarm-acq{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;margin:0;padding:8px 14px;border-bottom:1px solid #324146}
+.n4-alarm-acq em{font:700 12px system-ui;color:#f2a58f;white-space:nowrap}
+.n4-alarm-acq button{margin-left:auto;padding:8px 18px;background:#263e34;color:#edf5df;border:1px solid #67796b;border-radius:3px;font:600 12px system-ui;cursor:pointer}
+.n4-alarm-acq button[data-on=true]{background:#8a4a14;border-color:#f0b46a;color:#fff}
+.n4-alarm-acq button[aria-disabled=true]{opacity:.85;cursor:default}
+.n4-alarm-auto{color:#9bb0b2;font:12px/1.5 system-ui}
+.n4-klaxon{display:inline-flex;align-items:center;gap:7px}
+.n4-klaxon i{width:14px;height:14px;border-radius:50%;background:#4a1d17;box-shadow:0 0 0 2px #5d6a60}
+.n4-klaxon b{font:700 10.5px system-ui;letter-spacing:.12em;color:#9caeaf}
+.n4-klaxon[data-on=true] i{background:#ff5a2a;box-shadow:0 0 0 2px #5d6a60,0 0 10px 3px #ff5a2a;animation:n4-klax .5s steps(1,end) infinite}
+.n4-klaxon[data-on=true] b{color:#ffb39c}
+.n4-alarm-row>.n4-alarm-etat{white-space:nowrap}
+.n4-alarm-row[data-mode=nouvelle]>.n4-alarm-etat{color:#ff9b82;font-weight:700;animation:n4-klax 1s steps(1,end) infinite}
+.n4-alarm-row[data-mode=disparue]{opacity:.7}
+.n4-alarm-row[data-mode=disparue]>.n4-alarm-etat{color:#e3c46a;font-weight:700;animation:n4-klax 2s steps(1,end) infinite}
+.n4-thumb-dock .n4-dock-acq[data-on=true]{background:#8a4a14;border-color:#f0b46a;color:#fff;animation:n4-dock 1s steps(1,end) infinite}
+.n4-thumb-dock .n4-dock-acq{position:relative}
+.n4-thumb-dock .n4-dock-acq b{position:absolute;top:3px;right:3px;min-width:16px;padding:0 4px;border-radius:8px;background:#fff;color:#5a2a08;font-size:10px;line-height:16px}
+@keyframes n4-klax{50%{opacity:.3}}
+@keyframes n4-dock{50%{background:#4f2a0b}}
+@media (prefers-reduced-motion:reduce){.n4-klaxon[data-on=true] i,.n4-alarm-row[data-mode]>.n4-alarm-etat,.n4-thumb-dock .n4-dock-acq[data-on=true]{animation:none}}
+/* 29A et 30A du 13/10 : barre courte au bandeau du haut, visible sans défiler (au téléphone, le dock la porte) ; MCP perdu, « Acquitter » du
+   MCP inhibé : lisible, désactivé, avec son motif court. */
+.n4-alarm-acq-court{padding:0;border:0;gap:8px;flex-wrap:nowrap}
+.n4-alarm-acq-court button{margin-left:0}
+.n4-quickbar .n4-alarm-acq em,.n4-quickbar .n4-klaxon[data-on=true] b{color:#8a1f12}
+.n4-quickbar .n4-klaxon b{color:#203c2b}
+.n4-alarm-acq button:disabled,.n4-thumb-dock .n4-dock-acq:disabled{opacity:.85;cursor:not-allowed;background:#3a4440;border-color:#7d8a85;color:#e3e9e6}
+.n4-alarm-acq button small,.n4-dock-acq small{display:block;font-size:10px;font-weight:400;line-height:1.15;white-space:normal}
+@media(max-width:760px), (max-width:1000px) and (max-height:500px){.n4-quickbar>.n4-alarm-acq{display:none}}
+/* Captures du 13/10, 39A et 41A du 14/10, postes N4 et EPR au PC : le volet « Simulation » du N4 a son style (ses règles n'étaient que
+   dans le bloc du téléphone) et s'ouvre par-dessus l'en-tête ; en-tête, synthèse et barres se resserrent : à l'arrivée, la synoptique d'abord. */
+@media(min-width:1001px),(min-width:761px) and (min-height:501px){
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session{position:relative;z-index:31;flex-shrink:0;font:12px system-ui}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session>summary{display:flex;flex-direction:column;justify-content:center;min-height:36px;padding:4px 24px 4px 10px;border:1px solid #869180;border-radius:3px;color:#35483e;cursor:pointer;list-style:none}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session>summary::-webkit-details-marker{display:none}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session>summary span{font-size:11px;font-variant-numeric:tabular-nums;min-width:14ch}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session>summary::after{content:'⌄';position:absolute;right:8px;top:4px}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session .n4-simulation{position:absolute;right:0;top:100%;width:320px;margin:4px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px;background:#e1e5dd;border:1px solid #798d7e;box-shadow:0 8px 24px #132a2440;color:#35483e;font:12px system-ui}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation b{font-size:11px;letter-spacing:.08em}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation>span{flex:auto;font-variant-numeric:tabular-nums;white-space:nowrap}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation button{min-height:36px;border:1px solid #677b70;background:#e2e6df;color:#233b2e;padding:6px 10px;margin:2px;font:inherit}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation button[aria-pressed=true]{background:#315340;color:#fff}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation details{position:relative;width:100%;margin:0}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation summary{cursor:pointer;min-height:36px;display:flex;align-items:center;padding:6px 8px;border:1px solid #63796a;border-radius:4px;background:#e6ebe3;color:#233c2d;font:600 12px system-ui}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-simulation details[open]>p{max-width:300px}
+.n4-sdc:not(.s9-sdc) .n4-header{padding:6px 20px;gap:16px}
+.n4-sdc:not(.s9-sdc) .n4-brand{gap:1px}
+.n4-sdc:not(.s9-sdc) .n4-brand b{font-size:17px}
+.n4-sdc:not(.s9-sdc) .n4-brand span{font-size:11px;white-space:nowrap}
+.n4-sdc:not(.s9-sdc) .n4-unit{gap:2px}
+.n4-sdc:not(.s9-sdc) .n4-unit strong{font-size:15px;white-space:nowrap}
+.n4-sdc:not(.s9-sdc) .n4-unit span{font-size:11px;white-space:nowrap}
+.n4-sdc:not(.s9-sdc) .n4-exit button{min-height:36px;padding:4px 10px}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-wall{border-width:5px;border-bottom-width:7px;margin-bottom:8px}
+.n4-sdc:not(.s9-sdc) .n4-wall-title{padding:4px 14px;font-size:11px}
+.n4-sdc:not(.s9-sdc) .n4-wall-measures{padding:6px 0}
+.n4-sdc:not(.s9-sdc) .n4-wall-measures .n4-measure{padding:0 16px}
+.n4-sdc:not(.s9-sdc) .n4-wall-measures .n4-measure b{font-size:clamp(20px,2vw,30px)}
+.n4-sdc:not(.s9-sdc) select.n4-synthesis-select{min-height:30px;padding-top:2px;padding-bottom:2px}
+.n4-sdc:not(.s9-sdc) .n4-wall-footer{padding:2px 14px;font-size:10px}
+.n4-sdc:not(.s9-sdc) .n4-quickbar{margin-top:6px}
+.n4-sdc:not(.s9-sdc) .n4-quickbar button{min-height:36px;padding:6px 12px}
+.n4-sdc:not(.s9-sdc) .n4-command-status{margin:2px auto;min-height:12px}
+.n4-sdc:not(.s9-sdc) .n4-desk-head{padding:6px 4px}
+}
+/* 41A du 14/10, postes N4 et EPR au téléphone : en-tête sur trois lignes basses (niveaux ; tranche ; témoins et simulation), synthèse
+   2 × 2 resserrée, barres basses ; les commandes gardent des cibles de 28 à 36 px. */
+@media(max-width:760px), (max-width:1000px) and (max-height:500px){
+.n4-sdc:not(.s9-sdc) .n4-header{padding:6px 10px 4px;gap:4px 8px}
+.n4-sdc:not(.s9-sdc) .n4-exit button{min-height:36px;min-width:0;padding:4px 12px;flex:none}
+.n4-sdc:not(.s9-sdc) .n4-header .n4-unit{flex:1 1 100%;flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:0 8px;text-align:left}
+.n4-sdc:not(.s9-sdc) .n4-unit strong{font-size:13px;white-space:nowrap}
+.n4-sdc:not(.s9-sdc) .n4-unit span{font-size:10px;white-space:nowrap}
+.n4-sdc:not(.s9-sdc) .n4-temoins{gap:4px}
+.n4-sdc:not(.s9-sdc) .n4-temoin{padding:2px 7px;font-size:10px}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-session>summary{min-height:32px;padding:2px 22px 2px 8px}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-wall{margin:0 6px 4px;border-width:4px}
+.n4-sdc:not(.s9-sdc) .n4-wall-title{padding:3px 8px;font-size:9px}
+.n4-sdc:not(.s9-sdc) .n4-wall-measures{gap:2px 0;padding:3px 0}
+.n4-sdc:not(.s9-sdc) .n4-wall-measures .n4-measure{padding:0 8px}
+.n4-sdc:not(.s9-sdc) .n4-wall-measures .n4-measure b{font-size:17px}
+.n4-sdc:not(.s9-sdc) select.n4-synthesis-select{min-height:28px;padding-top:1px;padding-bottom:1px;font-size:10px}
+.n4-sdc:not(.s9-sdc) .n4-wall-footer{padding:1px 8px;font-size:8px}
+.n4-sdc:not(.s9-sdc) .n4-quickbar{margin-top:0;min-height:30px}
+.n4-sdc:not(.s9-sdc) .n4-quickbar>span{font-size:13px}
+.n4-sdc:not(.s9-sdc) .n4-desk-head{padding:4px 2px}
+}
+/* Courbes (retour d'Anthonin, 14/10 au soir) : une bande par grandeur, empilées sur un axe du temps commun ; nom, valeur et échelle
+   au-dessus de chaque bande, en texte de la page ; la bande s'étire en largeur, ses traits gardent leur épaisseur. */
+.n4-chart-bandes{display:flex;flex-direction:column;gap:4px}
+.n4-chart-bandes>.n4-bande>svg.n4-chart{display:block;width:100%;height:84px;min-width:0;aspect-ratio:auto}
+.n4-chart-bandes.n4-bandes-court>.n4-bande>svg.n4-chart{height:44px}
+.n4-chart-bandes>.n4-bande>.n4-chart-legend{padding:5px 2px 3px}
+.n4-bande-temps{display:flex;justify-content:space-between;padding:3px 2px 0;font:11px monospace;color:#94a7b2}
+.n4-bande-vide{margin:0;padding:24px 8px;text-align:center;color:#94a7b2}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+.n4-chart-bandes>.n4-bande>svg.n4-chart{height:64px}
+.n4-chart-bandes.n4-bandes-court>.n4-bande>svg.n4-chart{height:40px}
+}
+/* 56A du 20/10, poste N4 au PC : les touches d'écrans en haut de la console (n4.js). Dès 1001 px, une ligne de douze touches collée en
+   haut de la fenêtre quand la page défile, la page choisie ramenée sous elle ; l'encart de mission déplié et la définition d'un terme
+   s'ouvrent par-dessus l'écran sans l'allonger (n4.js les replie quand le focus passe dessous, Échap les referme). Relecture du 20/10 :
+   de 761 à 1000 px, où la fiche passe sous l'écran, touches en haut sans être collées et volets dans le flux ; au téléphone, rien ne
+   change (dock au pouce et menu « Écrans »). */
+@media(min-width:1001px),(min-width:761px) and (min-height:501px){
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-console>.n4-page-keys{margin:0 0 10px;border:1px solid #425256;border-radius:3px}
+}
+@media(min-width:1001px){
+html:has(.n4-sdc:not(.epr-sdc):not(.s9-sdc)){scroll-padding-top:62px}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-console>.n4-page-keys{position:sticky;top:0;z-index:25;box-shadow:0 3px 8px #0003;grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);padding:5px;gap:4px}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-console>.n4-page-keys button{min-height:36px;padding:3px 4px;gap:5px;font-size:11px!important;line-height:1.15}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-main-monitor>.n4-mission{position:relative;z-index:20}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-main-monitor>.n4-mission>.n4-mission-detail{position:absolute;left:0;right:0;top:100%;max-height:min(60vh,540px);overflow:auto;padding-top:8px;background:#13221f;border-bottom:1px solid #40575b;box-shadow:0 12px 24px #000b}
+.n4-sdc:not(.epr-sdc):not(.s9-sdc) .n4-main-monitor>.n4-mission>.n4-terme-def{position:absolute;left:12px;right:12px;top:100%;margin:0;max-height:min(50vh,420px);overflow:auto;box-shadow:0 12px 24px #000b}
+}

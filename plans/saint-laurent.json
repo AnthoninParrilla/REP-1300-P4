@@ -4,7 +4,7 @@
  "tranches": 2,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Nord en haut. Deux contours OSM Saint-Laurent B1/B2 représentent des complexes entiers, pas des BR isolés : enveloppes bâties affichées sans inventer leurs centres BR. Paire nucléaire et SDM historiques inchangées, conservées en cartouche faute de localisation individuelle fiable. Deux tours aux centres et emprises relevés ; rattachement individuel non documenté, sans panache couplé à une tranche. Le plan historique1981 publié par le ministère de la Culture confirme seulement la disposition générale. Aucun équipement récent n’en est déduit.",
+ "note": "Nord en haut. Deux contours OSM Saint-Laurent B1/B2 représentent des complexes entiers, pas des BR isolés : enveloppes bâties affichées sans inventer leurs centres BR. Paire nucléaire et SDM historiques inchangées, conservées en cartouche faute de localisation individuelle fiable. Deux tours aux centres et emprises relevés ; rattachement individuel non documenté, sans panache couplé à une tranche. Le plan historique 1981 publié par le ministère de la Culture confirme seulement la disposition générale. Aucun équipement récent n’en est déduit.",
  "eau": {
   "type": "fleuve",
   "nom": "la Loire",
@@ -2716,7 +2716,7 @@
       1600.0
      ]
     ],
-    "nom": "L'Ardoux",
+    "nom": "L’Ardoux",
     "souterrain": false,
     "source": "https://www.openstreetmap.org/way/208735950"
    },
@@ -4224,7 +4224,7 @@
      "origineCentre": "Restitution depuis la façade de la halle attribuée ; centre BR non mesuré.",
      "angleAvant": 0,
      "angleApres": 156.91484501339312,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",

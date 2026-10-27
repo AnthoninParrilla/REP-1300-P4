@@ -4,7 +4,7 @@
  "tranches": 2,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Recalage nord en haut depuis les empreintes publiques OSM. Halles côtémer, axes et emprises propres à chaque bâtiment. PhotoaérienneRemiMathis2012,CC BY-SA3.0 : deux volumes de tranches, halles côtémer et bassin côtier, sansDUS attribuables. Les assets nucléaires900/1300 sont conservés intégralement ; leur localisation approximative est signalée lorsque le BR n'est pas individualisé. DUS, transformateurs etSTE non attribués restent en cartouche.",
+ "note": "Recalage nord en haut depuis les empreintes publiques OSM. Halles côté mer, axes et emprises propres à chaque bâtiment. Photo aérienne Remi Mathis 2012, CC BY-SA 3.0 : deux volumes de tranches, halles côté mer et bassin côtier, sans DUS attribuables. Les assets nucléaires 900/1300 sont conservés intégralement ; leur localisation approximative est signalée lorsque le BR n'est pas individualisé. DUS, transformateurs et STE non attribués restent en cartouche.",
  "eau": {
   "type": "mer",
   "nom": "la Manche",
@@ -4691,7 +4691,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/386450003",
     "releve": "2026-09-14",
-    "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire1300 conservé sans modification ; seules implantation et rotation sont recalées.",
+    "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire 1300 conservé sans modification ; seules implantation et rotation sont recalées.",
     "millesime": "Millésime du tracé non renseigné dans cet objet",
     "raccordementGeometrique": {
      "statut": "implantation-schematique-raccordee",
@@ -4699,7 +4699,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 315.0,
      "angleApres": 315.0,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4713,7 +4713,7 @@
      "statut": "empreinte-cartographique",
      "source": "https://www.openstreetmap.org/way/386450003",
      "releve": "2026-09-14",
-     "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire1300 conservé sans modification ; seules implantation et rotation sont recalées.",
+     "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire 1300 conservé sans modification ; seules implantation et rotation sont recalées.",
      "millesime": "Millésime du tracé non renseigné dans cet objet"
     },
     "empreinte": [
@@ -5059,7 +5059,7 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/386450002",
     "releve": "2026-09-14",
-    "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire1300 conservé sans modification ; seules implantation et rotation sont recalées.",
+    "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire 1300 conservé sans modification ; seules implantation et rotation sont recalées.",
     "millesime": "Millésime du tracé non renseigné dans cet objet",
     "raccordementGeometrique": {
      "statut": "implantation-schematique-raccordee",
@@ -5067,7 +5067,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 315.0,
      "angleApres": 315.0,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -5081,7 +5081,7 @@
      "statut": "empreinte-cartographique",
      "source": "https://www.openstreetmap.org/way/386450002",
      "releve": "2026-09-14",
-     "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire1300 conservé sans modification ; seules implantation et rotation sont recalées.",
+     "description": "Centre de l'enceinte explicitement nommée Réacteur Tranche dans OSM. Asset nucléaire 1300 conservé sans modification ; seules implantation et rotation sont recalées.",
      "millesime": "Millésime du tracé non renseigné dans cet objet"
     },
     "empreinte": [

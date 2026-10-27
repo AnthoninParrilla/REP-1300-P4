@@ -1,5 +1,13 @@
 [
   {
+    "location": "/plans/*",
+    "tdm-reservation": 0
+  },
+  {
+    "location": "/reseau-400kv.json",
+    "tdm-reservation": 0
+  },
+  {
     "location": "/",
     "tdm-reservation": 1,
     "tdm-policy": "https://simurep.fr/.well-known/tdm-policy.json"

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sources · SIMUREP</title>
+<meta name="description" content="Sources de SIMUREP : données ouvertes, publications, cartes et plans, algorithmes, avec leurs licences, et les bases dérivées d’OpenStreetMap à télécharger.">
+<meta name="copyright" content="© 2026 AnthoninP. SIMUREP, tous droits réservés.">
+<meta name="robots" content="index, follow, noai, noimageai">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
+<meta name="theme-color" content="#f6f7f2">
+<link rel="canonical" href="https://simurep.fr/sources.html">
+<link rel="icon" href="assets/identite/icon-32.png">
+<style>
+:root{--forest:#153f32;--ink:#203c32;--muted:#5c715e;--line:#dbe3da;--paper:#f6f7f2;--card:#f9fbf5;--cardLine:#d1ddcd}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:max(12px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(32px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.tete{display:flex;align-items:center;gap:12px;padding:10px 0 14px;border-bottom:1px solid var(--line)}
+.tete img{width:44px;height:44px;flex:none;border-radius:10px}
+.marque{font-size:20px;font-weight:800;letter-spacing:3px;line-height:1.1;color:var(--forest)}
+.slogan{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+.retour{display:inline-flex;align-items:center;min-height:44px;margin:14px 0 0;padding:9px 14px;border:1px solid var(--cardLine);border-radius:8px;background:#fff;color:var(--forest);font-size:14px;font-weight:600;text-decoration:none}
+.retour:hover{background:#e9f0e1}
+h1{margin:20px 0 4px;font-size:26px;line-height:1.2;letter-spacing:-.5px;color:var(--forest)}
+.date{margin:0 0 14px;font-size:13px;color:var(--muted)}
+h2{margin:30px 0 10px;font-size:19px;line-height:1.3;letter-spacing:-.2px;color:var(--forest)}
+h3{margin:0 0 6px;font-size:15px;line-height:1.4;color:var(--forest)}
+p{margin:0 0 10px}
+a{color:var(--forest);overflow-wrap:anywhere}
+.sommaire{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.sommaire a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid var(--cardLine);border-radius:8px;background:#fff;font-size:13px;font-weight:600;text-decoration:none}
+.carte{margin:0 0 12px;padding:14px 16px;border:1px solid var(--cardLine);border-radius:14px;background:var(--card);box-shadow:0 4px 16px #183d2a05}
+.carte p{margin:0 0 6px}
+.carte p:last-child{margin-bottom:0}
+.meta{font-size:13.5px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+.explication{padding:14px 16px;border-left:3px solid #94b184;border-radius:0 10px 10px 0;background:#eaf0e3;color:#33503a}
+.liste{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 14px}
+.liste a{display:inline-flex;align-items:center;min-height:36px;font-size:14px}
+footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+footer a{display:inline-flex;align-items:center;min-height:36px}
+a:focus-visible,.retour:focus-visible{outline:3px solid #87aa6f;outline-offset:3px}
+@media(max-width:480px){h1{font-size:23px}h2{font-size:17.5px}.carte{padding:12px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="tete"><img src="assets/identite/icon-180.png" width="44" height="44" alt=""><div><div class="marque">SIMUREP</div><span class="slogan">Le simulateur du parc électronucléaire français</span></div></header>
+<a class="retour" href="./" data-retour>‹ Retour au simulateur</a>
+<main>
+<h1>Sources</h1>
+<p class="date">Page mise à jour le 27 octobre 2026.</p>
+<p>Tu trouveras ici l’origine des données et des publications utilisées pour construire SIMUREP. Une publication citée n’implique ni partenariat ni approbation par son auteur. Les données publiques alimentent la production des tranches et le bilan national. Selon leur disponibilité, SIMUREP conserve une valeur reçue, utilise une autre source ou calcule une extrapolation. Les états initiaux et les calculs du jeu sont propres à SIMUREP.</p>
+<p>Les droits sur les données tierces restent ceux de leurs licences et conditions applicables. Les textes et dessins créés pour SIMUREP sont distincts des documents consultés. Les photographies utilisées comme références de dessin ne sont pas reproduites dans le jeu.</p>
+<nav aria-label="Sommaire"><ul class="sommaire"><li><a href="#donnees">Données ouvertes</a></li><li><a href="#ouvrages">Publications</a></li><li><a href="#cartes">Cartes et plans</a></li><li><a href="#bases">Bases à télécharger</a></li><li><a href="#algorithmes">Algorithmes</a></li></ul></nav>
+
+<section id="donnees" aria-labelledby="t-donnees">
+<h2 id="t-donnees">1. Données ouvertes et flux publics</h2>
+<p class="explication">La production de chaque tranche, les indisponibilités, la consommation, le mix et les échanges aux frontières viennent des interfaces de données (API) de RTE et d’éCO2mix. La production par groupe et les flux physiques aux frontières sont des données horaires ; le mix et la consommation réalisée sont fournis au quart d’heure. La fréquence de collecte ne rend pas les données plus récentes. Le bilan national peut réunir plusieurs séries dont les dates diffèrent.</p>
+<article class="carte">
+<h3>RTE · Actual Generation, production réalisée</h3>
+<p class="meta"><b>Conditions&nbsp;:</b> <a href="https://data.rte-france.com/cgu" target="_blank" rel="noopener">conditions générales d’utilisation des API de RTE</a> · <a href="https://www.data.gouv.fr/datasets/actual-generation" target="_blank" rel="noopener">fiche sur data.gouv.fr</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> la production correspond à la puissance nette injectée sur le réseau. Pour chaque tranche, SIMUREP retient la dernière valeur reçue, l’arrondit et ramène les valeurs négatives à zéro pour l’affichage du jeu. Il calcule une tendance et sélectionne les totaux par filière pour le bilan national. Une valeur négative de la source peut correspondre à la consommation d’un groupe arrêté.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> carte de France, centrales, état initial des tranches et bilan national.</p>
+</article>
+<article class="carte">
+<h3>RTE · Consumption, consommation</h3>
+<p class="meta"><b>Conditions&nbsp;:</b> <a href="https://data.rte-france.com/cgu" target="_blank" rel="noopener">conditions générales d’utilisation des API de RTE</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> SIMUREP recueille séparément la consommation réalisée et la prévision intrajournalière auprès de l’API Consumption de RTE. Elles concernent la France continentale, incluent les pertes du réseau et excluent la consommation du pompage hydraulique.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> consommation de la France.</p>
+</article>
+<article class="carte">
+<h3>RTE · Physical Flow, flux physiques aux frontières</h3>
+<p class="meta"><b>Conditions&nbsp;:</b> <a href="https://data.rte-france.com/cgu" target="_blank" rel="noopener">conditions générales d’utilisation des API de RTE</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> les flux physiques horaires de RTE décrivent l’électricité qui traverse les interconnexions. SIMUREP les regroupe par pays et calcule un solde arrondi, positif pour les importations vers la France. Les échanges commerciaux fournis en repli par éCO2mix restent d’une autre nature.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> échanges aux frontières.</p>
+</article>
+<article class="carte">
+<h3>RTE · Unavailability Additional Information, indisponibilités</h3>
+<p class="meta"><b>Conditions&nbsp;:</b> <a href="https://data.rte-france.com/cgu" target="_blank" rel="noopener">conditions générales d’utilisation des API de RTE</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> SIMUREP retient les événements nucléaires actifs et leur dernière version disponible parmi les indisponibilités publiées par RTE. Le jeu utilise leurs dates, leurs motifs et leurs capacités pour déduire un état initial. Cet état n’est pas une mesure de la température ni du chargement du réacteur.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> arrêts des tranches et leurs motifs.</p>
+</article>
+<article class="carte">
+<h3>RTE et Open Data Réseaux Énergies (ODRÉ) · Données éCO2mix nationales en temps réel</h3>
+<p class="meta"><b>Licence&nbsp;:</b> <a href="https://www.data.gouv.fr/pages/legal/licences/etalab-2.0" target="_blank" rel="noopener">Licence Ouverte version 2.0 (Etalab)</a> · <a href="https://odre.opendatasoft.com/explore/dataset/eco2mix-national-tr/" target="_blank" rel="noopener">jeu sur ODRÉ</a> · <a href="https://www.data.gouv.fr/datasets/donnees-eco2mix-nationales-temps-reel-1" target="_blank" rel="noopener">fiche sur data.gouv.fr</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> SIMUREP retient l’observation la plus récente dont la consommation est renseignée. Ces données associent télémesures, forfaits et estimations du producteur.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> en complément ou en relais des API de RTE, notamment pour le bilan national, le CO₂ et les prévisions J et J-1.</p>
+</article>
+<article class="carte">
+<h3>RTE et ODRÉ · Postes électriques RTE</h3>
+<p class="meta"><b>Licence&nbsp;:</b> <a href="https://www.data.gouv.fr/pages/legal/licences/etalab-2.0" target="_blank" rel="noopener">Licence Ouverte version 2.0 (Etalab)</a> · <a href="https://odre.opendatasoft.com/explore/dataset/postes-electriques-rte/" target="_blank" rel="noopener">jeu sur ODRÉ</a> · extraction du 21/08/2026</p>
+<p class="meta"><b>Traitement&nbsp;:</b> liste et noms officiels des postes 400&nbsp;kV, appariés aux positions d’OpenStreetMap.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> noms des postes du réseau 400&nbsp;kV de la carte.</p>
+</article>
+<h3 id="etats-arret">États à l’arrêt</h3>
+<p class="explication">RTE ne fournit ni la température ni l’état de chargement du réacteur. SIMUREP déduit un état initial selon les seuls motifs et dates RTE, avec les mêmes règles pour toutes les tranches : arrêt à chaud, rechargement ou cuve déchargée. Les arrêts totaux programmés de quatre semaines ou plus suivent ce cycle ; le début et la fin d’arrêt préparent les transitions. Une économie de combustible conserve un arrêt à chaud. Les catégories visite décennale ou visite partielle ne sont affichées que si RTE les mentionne. Cet état n’est pas une télémesure ; un quart déjà joué conserve sa mémoire.</p>
+</section>
+
+<section id="ouvrages" aria-labelledby="t-ouvrages">
+<h2 id="t-ouvrages">2. Publications</h2>
+<p>Les faits tirés de ces publications sont reformulés. Les citer ne donne aucun droit de reproduire leurs textes ou leurs figures.</p>
+<article class="carte">
+<h3>IRSN, coordination Jean Couturier · Éléments de sûreté nucléaire : les réacteurs à eau sous pression (2020)</h3>
+<p class="meta"><a href="https://recherche-expertise.asnr.fr/page/collection-sciences-techniques" target="_blank" rel="noopener">Collection Sciences et techniques</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> limites du domaine P/T, fonctionnement et données des paliers.</p>
+</article>
+<article class="carte">
+<h3>IRSN, coordination Didier Jacquemain · Les accidents de fusion du cœur des réacteurs nucléaires de puissance (2013)</h3>
+<p class="meta"><a href="https://www.irsn.fr/sites/default/files/documents/larecherche/publications-documentation/collection-ouvrages-irsn/LAG_fran%C3%A7ais_web.pdf" target="_blank" rel="noopener">Ouvrage en ligne</a> · © IRSN 2013</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> dimensions des enceintes sur les plans de Chooz et de Civaux.</p>
+</article>
+<article class="carte">
+<h3>EDF · Rapport de sûreté de Flamanville&nbsp;3, version publique (2023)</h3>
+<p class="meta"><a href="https://reglementation-controle.asnr.fr/reglementation/consultations-du-public/projet-d-autorisation-de-mise-en-service-de-l-epr-de-flamanville-et-de-prescriptions-techniques" target="_blank" rel="noopener">Publication sur le site de l’ASNR</a> · © EDF 2023</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> fonctionnement et données de l’EPR.</p>
+</article>
+<article class="carte">
+<h3>EDF · Rapport préliminaire de sûreté de Flamanville&nbsp;3, version publique (2006)</h3>
+<p class="meta"><a href="https://inis.iaea.org/records/ngqem-kpc88" target="_blank" rel="noopener">Notice sur INIS (AIEA)</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> principes de conception de l’EPR.</p>
+</article>
+<article class="carte">
+<h3>IRSN · Avis 2018-00193 du 13 juillet 2018, deuxième réexamen du N4</h3>
+<p class="meta"><a href="https://recherche-expertise.asnr.fr/sites/default/files/documents/expertise/avis/2018/Avis-IRSN-2018-00193.pdf" target="_blank" rel="noopener">Avis en ligne</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> données et limites du N4.</p>
+</article>
+<article class="carte">
+<h3>IRSN · Repères n°&nbsp;24, Comment anticiper la fatigue thermique des matériaux&nbsp;? (février 2015)</h3>
+<p class="meta"><a href="https://www.irsn.fr/sites/default/files/2023-02/specifique_Reperes-1502_24.pdf" target="_blank" rel="noopener">Magazine en ligne</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> récit de la mission « Civaux 1, mai 1998 ».</p>
+</article>
+<article class="carte">
+<h3>ASN · Note technique sur l’incident de Penly&nbsp;2 du 5 avril 2012 (11 avril 2012)</h3>
+<p class="meta"><a href="https://www.asn.fr/content/download/53949/file/2012-04-11-ESS-Penly2-note-technique.pdf" target="_blank" rel="noopener">Note en ligne</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> récit de la mission « Penly 2, avril 2012 ».</p>
+</article>
+<article class="carte">
+<h3>IPSN · Rapport sur l’inondation du site du Blayais survenue le 27 décembre 1999 (17 janvier 2000)</h3>
+<p class="meta"><a href="https://www.irsn.fr/sites/default/files/documents/expertise/rapports_expertise/rapport_sur_l_inondation_du_site_du_blayais.pdf" target="_blank" rel="noopener">Rapport en ligne</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> récit de la mission « Blayais 2, décembre 1999 ».</p>
+</article>
+<article class="carte">
+<h3>Mathieu Muniglia, CEA et Université Paris-Saclay · Optimisation du pilotage d’un réacteur à eau pressurisée dans le cadre de la transition énergétique à l’aide d’algorithmes évolutionnaires (thèse, 2017)</h3>
+<p class="meta"><a href="https://theses.hal.science/tel-01678043v1" target="_blank" rel="noopener">Thèse sur HAL</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> pilotage du 1300 et groupes de grappes.</p>
+</article>
+<article class="carte">
+<h3>Valentin Drouet, CEA et Université Paris-Saclay · Optimisation multi-objectifs du pilotage des réacteurs nucléaires à eau sous pression en suivi de charge dans le contexte de la transition énergétique à l’aide d’algorithmes évolutionnaires (thèse, 2020)</h3>
+<p class="meta"><a href="https://theses.hal.science/tel-03186048v1" target="_blank" rel="noopener">Thèse sur HAL</a></p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> modes de pilotage des paliers.</p>
+</article>
+</section>
+
+<section id="cartes" aria-labelledby="t-cartes">
+<h2 id="t-cartes">3. Cartes, plans et dessins</h2>
+<article class="carte">
+<h3>IGN · BD&nbsp;TOPO version 3, réseau d’énergie</h3>
+<p class="meta"><b>Licence&nbsp;:</b> <a href="https://www.data.gouv.fr/pages/legal/licences/etalab-2.0" target="_blank" rel="noopener">Licence Ouverte version 2.0 (Etalab)</a> · <a href="https://geoservices.ign.fr/bdtopo" target="_blank" rel="noopener">présentation par l’IGN</a> · extraction du 21/08/2026</p>
+<p class="meta"><b>Traitement&nbsp;:</b> lignes 400&nbsp;kV retenues, reprojetées et simplifiées pour l’affichage.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> lignes 400&nbsp;kV de la carte de France.</p>
+</article>
+<article class="carte">
+<h3>Contributeurs d’OpenStreetMap · Postes électriques</h3>
+<p class="meta"><b>Attribution et licence&nbsp;:</b> © les contributeurs d’OpenStreetMap · <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">Open Database License (ODbL) version 1.0</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">droits et attribution</a> · extraction du 21/08/2026</p>
+<p class="meta"><b>Traitement&nbsp;:</b> postes 400&nbsp;kV retenus, appariés à la liste de RTE et projetés sur la carte.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> postes du réseau 400&nbsp;kV de la carte de France. Base dérivée à télécharger ci-dessous.</p>
+</article>
+<article class="carte">
+<h3>Contributeurs d’OpenStreetMap · Empreintes, axes et hydrographie des sites</h3>
+<p class="meta"><b>Attribution et licence&nbsp;:</b> © les contributeurs d’OpenStreetMap · <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">Open Database License (ODbL) version 1.0</a> · extraction du 14/09/2026</p>
+<p class="meta"><b>Traitement&nbsp;:</b> projection, découpe et simplification des empreintes, des positions, des axes et des eaux.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> plans des centrales. Bases dérivées à télécharger ci-dessous.</p>
+</article>
+<article class="carte">
+<h3>Blanquet et Graillât, SCAM et EDF · Journées de l’hydraulique, 1980, rapport II.11</h3>
+<p class="meta"><a href="https://www.persee.fr/doc/jhydr_0000-0001_1980_act_16_1_5735" target="_blank" rel="noopener">Publication sur Persée</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> nombre et organisation des diffuseurs repris comme des faits ; les proportions du dessin sont propres à SIMUREP.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> tours de refroidissement de Chinon.</p>
+</article>
+<article class="carte">
+<h3>EDF · Chooz&nbsp;B, dossier de presse du 3 novembre 1997</h3>
+<p class="meta"><a href="https://inis.iaea.org/records/z70k4-8ph44" target="_blank" rel="noopener">Notice sur INIS (AIEA)</a></p>
+<p class="meta"><b>Traitement&nbsp;:</b> dimensions reprises comme des faits ; figures non reproduites.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> tours de refroidissement de Chooz.</p>
+</article>
+<article class="carte">
+<h3>EDF, IN2P3 et CNRS · Photographie de la centrale de Chooz</h3>
+<p class="meta"><a href="https://images.cnrs.fr/photo/20070001_0061" target="_blank" rel="noopener">Notice de la photothèque du CNRS</a> · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> vue de Chooz.</p>
+</article>
+<article class="carte">
+<h3>Civaux-communication, crédit indiqué sur Wikimedia Commons · Vue aérienne de la centrale de Civaux</h3>
+<p class="meta"><a href="https://commons.wikimedia.org/wiki/File:Vue_a%C3%A9rienne_de_la_centrale_de_Civaux.JPG" target="_blank" rel="noopener">Fichier sur Wikimedia Commons</a> · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> vue de Civaux.</p>
+</article>
+<article class="carte">
+<h3>Bodoklecksel · Centrale de Paluel, 25 juillet 2010</h3>
+<p class="meta"><a href="https://commons.wikimedia.org/wiki/File:AKW_Paluel_01.jpg" target="_blank" rel="noopener">Fichier sur Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a> · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> plan de Paluel.</p>
+</article>
+<article class="carte">
+<h3>Remi Mathis · Vue aérienne de la centrale de Penly, 1er juillet 2012</h3>
+<p class="meta"><a href="https://commons.wikimedia.org/wiki/File:Penly_nuclear_power_plant_-_aerial_view.jpg" target="_blank" rel="noopener">Fichier sur Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a> · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> plan de Penly.</p>
+</article>
+<article class="carte">
+<h3>schoella · Centrale de Flamanville, 15 juillet 2010</h3>
+<p class="meta"><a href="https://commons.wikimedia.org/wiki/File:Flamanville_2010-07-15.jpg" target="_blank" rel="noopener">Fichier sur Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a> · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> plan de Flamanville.</p>
+</article>
+<article class="carte">
+<h3>EDF, publiée par la CCI · Photographie aérienne de la centrale de Gravelines</h3>
+<p class="meta"><a href="https://occitanie.ccibusiness.fr/sites/default/files/2021-02/Photo%20a%C3%A9rienne%20EDF%20CNPE%20Gravelines_1000px.JPG" target="_blank" rel="noopener">Image publiée par la CCI</a> · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> plan de Gravelines.</p>
+</article>
+<article class="carte">
+<h3>Saumur · Photographie publique de la centrale de Chinon, publiée en 2025</h3>
+<p class="meta">Date de prise de vue inconnue · consultée pour le dessin, non reproduite</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> plan de Chinon.</p>
+</article>
+<article class="carte">
+<h3>AnthoninP · Identité visuelle et dessins de SIMUREP (2026)</h3>
+<p class="meta">Logo d’après un dessin d’AnthoninP, retouché avec un outil de génération d’images, et icônes qui en sont des réductions&nbsp;; dessins créés pour le jeu, distincts des références consultées. Droits réservés, sous réserve des exceptions prévues par la loi et des licences des données tierces.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> identité, équipements et interface.</p>
+</article>
+</section>
+
+<section id="bases" aria-labelledby="t-bases">
+<h2 id="t-bases">4. Bases à télécharger</h2>
+<p>Les bases géographiques dérivées d’OpenStreetMap que le jeu utilise sont offertes ici, sous <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">Open Database License (ODbL) version 1.0</a>, avec leur attribution : © les contributeurs d’OpenStreetMap. Le code, les textes et les dessins de SIMUREP en restent distincts.</p>
+<article class="carte">
+<h3>Postes 400&nbsp;kV de la carte de France</h3>
+<p class="meta"><a href="reseau-400kv.json" target="_blank" rel="noopener">reseau-400kv.json</a> : positions des postes issues d’OpenStreetMap, noms de RTE et ODRÉ, coordonnées de la carte et méthode de projection.</p>
+</article>
+<article class="carte">
+<h3>Plans des centrales, un fichier par site</h3>
+<ul class="liste">
+<li><a href="plans/belleville.json" target="_blank" rel="noopener">Belleville</a></li>
+<li><a href="plans/blayais.json" target="_blank" rel="noopener">Blayais</a></li>
+<li><a href="plans/bugey.json" target="_blank" rel="noopener">Bugey</a></li>
+<li><a href="plans/cattenom.json" target="_blank" rel="noopener">Cattenom</a></li>
+<li><a href="plans/chinon.json" target="_blank" rel="noopener">Chinon</a></li>
+<li><a href="plans/chooz.json" target="_blank" rel="noopener">Chooz</a></li>
+<li><a href="plans/civaux.json" target="_blank" rel="noopener">Civaux</a></li>
+<li><a href="plans/cruas.json" target="_blank" rel="noopener">Cruas</a></li>
+<li><a href="plans/dampierre.json" target="_blank" rel="noopener">Dampierre</a></li>
+<li><a href="plans/flamanville.json" target="_blank" rel="noopener">Flamanville</a></li>
+<li><a href="plans/golfech.json" target="_blank" rel="noopener">Golfech</a></li>
+<li><a href="plans/gravelines.json" target="_blank" rel="noopener">Gravelines</a></li>
+<li><a href="plans/nogent.json" target="_blank" rel="noopener">Nogent</a></li>
+<li><a href="plans/paluel.json" target="_blank" rel="noopener">Paluel</a></li>
+<li><a href="plans/penly.json" target="_blank" rel="noopener">Penly</a></li>
+<li><a href="plans/saint-alban.json" target="_blank" rel="noopener">Saint-Alban</a></li>
+<li><a href="plans/saint-laurent.json" target="_blank" rel="noopener">Saint-Laurent</a></li>
+<li><a href="plans/tricastin.json" target="_blank" rel="noopener">Tricastin</a></li>
+</ul>
+<p class="meta">Licence et attribution des plans : <a href="plans/LICENCE-DONNEES.md" target="_blank" rel="noopener">LICENCE-DONNEES.md</a>.</p>
+</article>
+</section>
+
+<section id="algorithmes" aria-labelledby="t-algorithmes">
+<h2 id="t-algorithmes">5. Algorithmes et données scientifiques</h2>
+<article class="carte">
+<h3>International Association for the Properties of Water and Steam (IAPWS) · Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, R7-97(2012)</h3>
+<p class="meta"><a href="https://iapws.org/technical-guidance/release/IF97-Rev.download" target="_blank" rel="noopener">Publication de l’IAPWS</a> · publication autorisée avec attribution à l’IAPWS</p>
+<p class="meta"><b>Traitement&nbsp;:</b> implémentation propre à SIMUREP, limitée à ses besoins.</p>
+<p class="meta"><b>Dans le jeu&nbsp;:</b> propriétés de l’eau et de la vapeur du N4 et de l’EPR.</p>
+</article>
+<p>Les lois et calculs pédagogiques propres au simulateur, dont la puissance résiduelle, sont des simplifications : ils ne constituent pas des références d’exploitation.</p>
+</section>
+</main>
+<footer>SIMUREP · Par AnthoninP, aidé d’une IA · © 2026 tous droits réservés<br><a href="/mentions-legales.html">Mentions légales</a> · <a href="/cgu.html">Conditions d’utilisation</a></footer>
+</div>
+<script>
+document.querySelectorAll('a[data-retour]').forEach(function(a){a.addEventListener('click',function(e){if(window.parent===window)return;try{window.parent.postMessage({type:'sdc-retour',vue:'france'},location.origin);e.preventDefault();}catch(_){}});});
+</script>
+</body>
+</html>

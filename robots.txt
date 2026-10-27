@@ -12,9 +12,15 @@
 #  exprimée ici de manière lisible par machine, ainsi que dans
 #  /.well-known/tdmrep.json et dans les balises <meta> de chaque page.
 #
-#  Toute extraction du contenu de ce site aux fins de constitution d'un
-#  corpus, d'entraînement, de mise au point ou d'évaluation d'un modèle
-#  est INTERDITE sans autorisation écrite préalable.
+#  Cette opposition porte sur les contenus pour lesquels l'auteur détient
+#  les droits permettant de s'y opposer, dans les cas et limites prévus
+#  par la loi ; elle n'entend pas retirer les autorisations accordées par
+#  les licences des données tierces (bases dérivées d'OpenStreetMap sous
+#  ODbL : /plans/ et /reseau-400kv.json ; voir /sources.html).
+#
+#  Sous cette réserve, toute extraction du contenu de ce site aux fins de
+#  constitution d'un corpus, d'entraînement, de mise au point ou
+#  d'évaluation d'un modèle est INTERDITE sans autorisation écrite préalable.
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ── Moteurs de recherche : autorisés ──

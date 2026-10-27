@@ -1,6 +1,6 @@
 NOTICE — SIMUREP
 Sources et licences des données tierces incorporées
-Mise à jour : 2026-09-14 — branche de revue
+Mise à jour : 2026-10-26
 
 ═══════════════════════════════════════════════════════════════════════════════
 1. L'ŒUVRE
@@ -8,6 +8,10 @@ Mise à jour : 2026-09-14 — branche de revue
 
 SIMUREP — code, moteur physique, figures, textes, interface, identité visuelle —
 est une œuvre originale de AnthoninP, © 2026, tous droits réservés.
+Identité visuelle : logo d'après un dessin d'AnthoninP, retouché avec un outil
+de génération d'images ; les icônes du site en sont des réductions. Le fichier
+du logo (assets/identite/logo-simurep.png) garde ses métadonnées de provenance
+(C2PA).
 Voir LICENCE.md. Contact : contact@simurep.fr
 
 Œuvre déposée à l'Agence pour la Protection des Programmes (APP Paris),
@@ -19,7 +23,19 @@ en dehors de son propre moteur (moteur.simurep.fr). Les polices sont celles du
 système. Le code est écrit intégralement pour ce projet.
 
 Le présent fichier ne recense donc QUE des DONNÉES tierces, incorporées sous
-licence ouverte, et les obligations d'attribution qui les accompagnent.
+licence ouverte ou sous conditions particulières, et les obligations
+d'attribution qui les accompagnent. La liste complète des sources du jeu, avec
+leurs licences, est sur la page Sources : https://simurep.fr/sources.html
+
+DROITS DES TIERS ET EXCEPTIONS LÉGALES. Les restrictions de LICENCE.md portent
+sur les éléments pour lesquels l'auteur détient les droits concernés. Elles ne
+limitent ni les exceptions prévues par la loi ni les droits accordés par les
+licences et conditions applicables aux données ci-dessous ; ces données, y compris les
+transformations géographiques mises à disposition sous ODbL, se réutilisent
+selon leurs licences respectives. L'opposition à la fouille de textes et de
+données porte sur les contenus pour lesquels l'auteur détient les droits
+permettant de s'y opposer, dans les cas et limites prévus par la loi ; elle
+n'entend pas retirer les autorisations accordées par ces licences.
 
 Les 18 plans de site de la branche de revue incorporent désormais des données
 OpenStreetMap (empreintes, centres, orientations et hydrographie), extraites le
@@ -28,7 +44,8 @@ sous ODbL 1.0 : © les contributeurs d'OpenStreetMap.
 https://www.openstreetmap.org/copyright
 https://opendatacommons.org/licenses/odbl/1-0/
 Voir plans/LICENCE-DONNEES.md et les champs de provenance des plans/*.json.
-Les relevés sont téléchargeables depuis les références de chaque vue CNPE.
+Les relevés (plans/*.json) et leur licence (plans/LICENCE-DONNEES.md) sont
+offerts depuis la page Sources, reliée à chaque plan.
 Le code du simulateur et les dessins originaux restent distincts de cette base.
 Les photographies de référence ne sont pas intégrées au produit ; leurs droits
 propres sont consignés dans le dossier de revue local references-cnpe/.
@@ -53,15 +70,16 @@ propres sont consignés dans le dossier de revue local references-cnpe/.
 
      ⚠ OBLIGATION ODbL — à respecter et à ne pas perdre de vue
        a) L'attribution ci-dessus doit rester visible pour l'utilisateur final.
-          Elle figure dans l'encart « À propos » du simulateur et sur la page
-          des mentions légales.
+          Elle figure sur la page Sources, atteinte depuis l'encart « À propos »
+          du simulateur et depuis chaque plan.
        b) L'ODbL est une licence de BASE DE DONNÉES à partage à l'identique.
           Elle porte sur la base extraite, PAS sur le simulateur qui l'affiche :
           SIMUREP est une « œuvre produite » (produced work) au sens de l'ODbL,
           et reste sous licence propriétaire. En revanche, la base dérivée
           elle-même (les coordonnées de postes issues d'OSM, dans geo.js) est
-          soumise au partage à l'identique si elle venait à être distribuée
-          en tant que base de données.
+          soumise au partage à l'identique : elle est offerte, isolée du code,
+          au format JSON depuis la page Sources (reseau-400kv.json, sous ODbL
+          1.0, avec cette attribution et la méthode de projection).
        c) EN CLAIR : « tous droits réservés » couvre le code, le moteur, les
           figures et la mise en forme — il ne s'étend pas aux coordonnées
           brutes issues d'OSM. Cette distinction ne fragilise en rien les
@@ -81,40 +99,65 @@ propres sont consignés dans le dossier de revue local references-cnpe/.
 3.1  API RTE — data.rte-france.com
      Jeux     : production par unité, indisponibilités (planifiées et fortuites),
                 consommation, mix de production, échanges aux frontières
-     Accès    : compte développeur RTE, OAuth2 (identifiants dans /opt/rep1300/
-                rte.env sur le serveur privé — jamais dans le dépôt)
-     Licence  : conditions d'utilisation des API RTE (data.rte-france.com)
-     Mention  : « Données RTE — data.rte-france.com »
-     Usage    : lecture périodique (toutes les 15 min), affichage, cache disque.
-                Aucune redistribution des flux bruts.
+     Accès    : compte développeur RTE, OAuth2 (identifiants gardés sur le
+                serveur privé, hors du dépôt)
+     API      : Actual Generation, Consumption, Physical Flow et
+                Unavailability Additional Information
+     Conditions : CGU des portails RTE, complétées par les règles SI, leurs
+                annexes et les guides applicables
+     Source   : RTE, https://data.rte-france.com
+     Usage    : le serveur conserve un cache et transmet au navigateur une
+                sélection de données, avec les traitements décrits sur la
+                page Sources ; les réponses intégrales des API ne sont pas
+                transmises. Aucune Licence Ouverte générale n'est revendiquée
+                pour ces API.
 
 3.2  éCO2mix
      Source   : RTE via ODRÉ (Open Data Réseaux Énergies)
      Licence  : Licence Ouverte / Open Licence 2.0 (Etalab)
      Mention  : « Source : éCO2mix — RTE / ODRÉ — Licence Ouverte 2.0 »
+     Jeu      : « Données éCO2mix nationales temps réel » (eco2mix-national-tr),
+                https://odre.opendatasoft.com/explore/dataset/eco2mix-national-tr/
+     Usage    : télémesures, forfaits et estimations du producteur, en
+                complément ou en relais des API, pour le bilan national, le CO₂
+                et les prévisions J/J-1.
 
-     Lorsque ni RTE ni éCO2mix ne répondent, SIMUREP extrapole et l'INDIQUE
-     explicitement à l'utilisateur (pastille ambre « données extrapolées »).
-     Une valeur extrapolée n'est jamais présentée comme une donnée RTE.
+     Les tendances, états déduits et extrapolations sont des calculs de
+     SIMUREP ; quand le bilan national est extrapolé, le jeu l'indique
+     (« données extrapolées »).
 
 ═══════════════════════════════════════════════════════════════════════════════
 4. DONNÉES TECHNIQUES ET DOCUMENTAIRES  ->  veille/
 ═══════════════════════════════════════════════════════════════════════════════
 
-Toutes les valeurs physiques, nomenclatures, seuils et récits pédagogiques de
-SIMUREP proviennent de sources PUBLIQUES et traçables, consignées source par
-source dans veille/SOURCES.md et veille/JOURNAL.md :
+Les valeurs physiques, nomenclatures, seuils et récits pédagogiques de SIMUREP
+s'appuient sur des sources PUBLIQUES et traçables, consignées source par source
+dans veille/SOURCES.md et veille/JOURNAL.md (dépôt privé) ; certaines valeurs
+sont des choix de simulation, signalés comme tels dans le code. Les publications
+utilisées sont listées sur la page Sources :
 
   · Collection « Éléments de sûreté nucléaire — les réacteurs à eau sous
     pression » (IRSN / ASNR), publications en accès libre
   · Avis et rapports d'expertise IRSN / ASNR publiés
   · Décisions et prescriptions de l'Autorité (ASN / ASNR), publiées
-  · Courbe de puissance résiduelle ANS (norme publiée)
+  · Rapports de sûreté de Flamanville 3 en version publique, thèses publiées
+  · Formulation IAPWS-IF97 (révision 2012) des propriétés de l'eau et de la
+    vapeur, publiée par l'International Association for the Properties of
+    Water and Steam, dont la publication est autorisée avec attribution à
+    l'IAPWS ; implémentation propre à SIMUREP
   · Données ouvertes RTE / ODRÉ / IGN / OSM (voir §2 et §3)
 
-AUCUNE donnée d'exploitation, consigne de conduite interne, procédure,
-documentation d'exploitant, information à diffusion restreinte ou information
-sensible relative à la sécurité nucléaire n'entre dans SIMUREP.
+La puissance résiduelle suit une loi pédagogique simplifiée propre au
+simulateur ; aucune norme n'est revendiquée.
+
+SIMUREP s'appuie sur des publications publiques d'exploitants, d'autorités et
+d'organismes de recherche (rapports de sûreté en version publique, avis
+d'expertise, ouvrages, thèses) : les faits qui en sont tirés sont reformulés,
+et citer une publication n'autorise pas à en reproduire le texte ou les
+figures. Ces publications publiques sont distinguées des documents internes ou
+à diffusion restreinte : AUCUN document interne d'exploitant, consigne de
+conduite interne, procédure d'exploitation, information à diffusion restreinte
+ni information sensible relative à la sécurité nucléaire n'entre dans SIMUREP.
 Cette règle est une CONDITION DE CONCEPTION, pas une précaution rédactionnelle :
 elle est inscrite dans veille/AGENT.md et vérifiée à chaque passage de veille.
 
@@ -122,9 +165,11 @@ elle est inscrite dans veille/AGENT.md et vérifiée à chaque passage de veille
 5. OÙ CES MENTIONS SONT VISIBLES POUR L'UTILISATEUR
 ═══════════════════════════════════════════════════════════════════════════════
 
-  · encart « À propos » du simulateur (accessible depuis la carte de France)
+  · page Sources (simurep.fr/sources.html), atteinte depuis l'encart
+    « À propos » du simulateur et depuis chaque plan de centrale
+  · crédit « © les contributeurs d'OpenStreetMap · ODbL » de chaque plan
   · page public/mentions-legales.html (simurep.fr/mentions-legales.html)
-  · en-tête du fichier geo.js
+  · en-tête du fichier geo.js et base reseau-400kv.json du site public
   · le présent fichier NOTICE, distribué avec toute copie autorisée
 
 Toute réutilisation autorisée de SIMUREP doit reproduire le présent NOTICE.

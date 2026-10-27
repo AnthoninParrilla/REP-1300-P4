@@ -3662,7 +3662,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 310.99,
      "angleApres": 305.3,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     },
     "ecartsCentresApresRaccord": {
      "statut": "comparaison-dessin-releve",
@@ -3699,7 +3699,7 @@
      "statut": "centres-releves-gabarit-fige",
      "source": "https://www.openstreetmap.org/way/201289510",
      "releve": "2026-09-14",
-     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR1 et BR2. Entraxe OSM 85.43 m, contre 84 m dans l'asset figé ; décalage théorique de 0.71 m par centre après centrage symétrique, plus arrondi inférieur à0,08 m. Le BR reste au diamètre nominal39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
+     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR1 et BR2. Entraxe OSM 85.43 m, contre 84 m dans l'asset figé ; décalage théorique de 0.71 m par centre après centrage symétrique, plus arrondi inférieur à 0,08 m. Le BR reste au diamètre nominal 39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
      "millesime": "Millésime du tracé non renseigné dans cet objet",
      "sources": [
       "https://www.openstreetmap.org/way/201289510",
@@ -3763,7 +3763,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 306.13,
      "angleApres": 305.08000000000004,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     },
     "ecartsCentresApresRaccord": {
      "statut": "comparaison-dessin-releve",
@@ -3800,7 +3800,7 @@
      "statut": "centres-releves-gabarit-fige",
      "source": "https://www.openstreetmap.org/way/201289511",
      "releve": "2026-09-14",
-     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR3 et BR4. Entraxe OSM 86.27 m, contre 84 m dans l'asset figé ; décalage théorique de 1.14 m par centre après centrage symétrique, plus arrondi inférieur à0,08 m. Le BR reste au diamètre nominal39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
+     "description": "Centre et axe de la paire calés sur les centres surfaciques des empreintes BR3 et BR4. Entraxe OSM 86.27 m, contre 84 m dans l'asset figé ; décalage théorique de 1.14 m par centre après centrage symétrique, plus arrondi inférieur à 0,08 m. Le BR reste au diamètre nominal 39 m. Les auxiliaires, formes, dimensions et entraxe du gabarit nucléaire sont conservés, sans découpe ni déformation ; leurs emplacements internes ne sont pas attestés par ces empreintes.",
      "millesime": "Millésime du tracé non renseigné dans cet objet",
      "sources": [
       "https://www.openstreetmap.org/way/201289511",
@@ -4917,12 +4917,12 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/84490501",
     "releve": "2026-09-14",
-    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
+    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours 1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "identification": {
      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
      "millesime": "2022-07-05 (métadonnées PDF)",
-     "description": "Aéroréfrigérant1 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
+     "description": "Aéroréfrigérant 1 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
     }
    }
   },
@@ -5264,12 +5264,12 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/84490494",
     "releve": "2026-09-14",
-    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
+    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours 1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "identification": {
      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
      "millesime": "2022-07-05 (métadonnées PDF)",
-     "description": "Aéroréfrigérant2 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
+     "description": "Aéroréfrigérant 2 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
     }
    }
   },
@@ -5611,12 +5611,12 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/67980627",
     "releve": "2026-09-14",
-    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
+    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours 1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "identification": {
      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
      "millesime": "2022-07-05 (métadonnées PDF)",
-     "description": "Aéroréfrigérant3 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
+     "description": "Aéroréfrigérant 3 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
     }
    }
   },
@@ -5954,12 +5954,12 @@
     "statut": "empreinte-cartographique",
     "source": "https://www.openstreetmap.org/way/67981106",
     "releve": "2026-09-14",
-    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
+    "description": "Centre surfacique et contour de la tour explicitement taguée tower:type=cooling dans OSM. Diamètre équivalent calculé par 2*sqrt(aire/pi), pas une cote constructeur. Les tours 1/2 sont au sud-ouest du site,3/4 au nord-ouest ; aucune mise en rangée artificielle.",
     "millesime": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "identification": {
      "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
      "millesime": "2022-07-05 (métadonnées PDF)",
-     "description": "Aéroréfrigérant4 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
+     "description": "Aéroréfrigérant 4 identifié par concordance topologique avec les quatre tours numérotées du plan public, en tenant compte de sa rose d'orientation ; attribution non fondée sur la seule proximité du BR. Les objets OSM ne portent pas ces numéros."
     }
    }
   },
@@ -6051,7 +6051,7 @@
    "preuve": {
     "statut": "fonction-identifiee-position-non-relevee",
     "releve": "2026-09-14",
-    "description": "DUS tranche 1, repère 157, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère136 est distinct.",
+    "description": "DUS tranche 1, repère 157, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère 136 est distinct.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
     "millesime": "2022-07-05 (métadonnées PDF)"
    }
@@ -6067,7 +6067,7 @@
    "preuve": {
     "statut": "fonction-identifiee-position-non-relevee",
     "releve": "2026-09-14",
-    "description": "DUS tranche 2, repère 158, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère136 est distinct.",
+    "description": "DUS tranche 2, repère 158, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère 136 est distinct.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
     "millesime": "2022-07-05 (métadonnées PDF)"
    }
@@ -6083,7 +6083,7 @@
    "preuve": {
     "statut": "fonction-identifiee-position-non-relevee",
     "releve": "2026-09-14",
-    "description": "DUS tranche 3, repère 159, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère136 est distinct.",
+    "description": "DUS tranche 3, repère 159, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère 136 est distinct.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
     "millesime": "2022-07-05 (métadonnées PDF)"
    }
@@ -6099,7 +6099,7 @@
    "preuve": {
     "statut": "fonction-identifiee-position-non-relevee",
     "releve": "2026-09-14",
-    "description": "DUS tranche 4, repère 160, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère136 est distinct.",
+    "description": "DUS tranche 4, repère 160, explicitement nommé dans le plan public. Aucun appariement certain avec une empreinte OSM n'a été établi : position géographique indéterminée. Le GUS repère 136 est distinct.",
     "source": "https://www.ifare.asso.fr/wp-content/uploads/2024/10/Plan-CNPE-CRUAS.pdf",
     "millesime": "2022-07-05 (métadonnées PDF)"
    }
@@ -6139,7 +6139,7 @@
   "licence": "ODbL 1.0",
   "portee": "Empreintes cartographiques publiques ; précision topographique non certifiée."
  },
- "note": "Recalage nord en haut sur données publiques OSM. Les paires nucléaires historiques sont figées : centre et axe recalés sur les BR, entraxe84 m et diamètre39 m conservés, écart résiduel documenté par paire. Les contours des salles des machines sont relevés ; leurs machines restent schématiques. Les quatre tours suivent leurs positions réelles et leur attribution documentaire. DUS1…4 identifiés dans le plan2022 par les repères157…160, mais leur position métrique n'est pas attestée. L'ancien canal arbitraire est retiré ; hydrographie OSM distincte. Pompage, transformateurs, STE et DUS restent dans le cartouche fonctionnel faute de localisation documentaire suffisante.",
+ "note": "Recalage nord en haut sur données publiques OSM. Les paires nucléaires historiques sont figées : centre et axe recalés sur les BR, entraxe 84 m et diamètre 39 m conservés, écart résiduel documenté par paire. Les contours des salles des machines sont relevés ; leurs machines restent schématiques. Les quatre tours suivent leurs positions réelles et leur attribution documentaire. DUS 1…4 identifiés dans le plan 2022 par les repères 157…160, mais leur position métrique n'est pas attestée. L'ancien canal arbitraire est retiré ; hydrographie OSM distincte. Pompage, transformateurs, STE et DUS restent dans le cartouche fonctionnel faute de localisation documentaire suffisante.",
  "reparationImplantations": {
   "date": "2026-09-14",
   "methode": "Raccordement pédagogique des essentiels BR/SDM aux gabarits nucléaires conservés. Relevés sources séparés des coordonnées de dessin ; aucun DUS ni tracé d’eau modifié."

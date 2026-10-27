@@ -4,7 +4,7 @@
  "tranches": 4,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Recalage nord en haut depuis les empreintes publiques OSM. Halles côtémer, axes et emprises propres à chaque bâtiment. PhotoBodoklecksel2010,CC BY-SA3.0 : quatre enceintes visibles ; pas un relevé aérien ni une preuve desDUS. Les assets nucléaires900/1300 sont conservés intégralement ; leur localisation approximative est signalée lorsque le BR n'est pas individualisé. DUS, transformateurs etSTE non attribués restent en cartouche. Les deux stations de pompage sont effectivement obliques : axes154,7°/154,6°, contre une rangée de tranches à environ6,7°.",
+ "note": "Recalage nord en haut depuis les empreintes publiques OSM. Halles côté mer, axes et emprises propres à chaque bâtiment. Photo Bodoklecksel 2010, CC BY-SA 3.0 : quatre enceintes visibles ; pas un relevé aérien ni une preuve des DUS. Les assets nucléaires 900/1300 sont conservés intégralement ; leur localisation approximative est signalée lorsque le BR n'est pas individualisé. DUS, transformateurs et STE non attribués restent en cartouche. Les deux stations de pompage sont effectivement obliques : axes 154,7°/154,6°, contre une rangée de tranches à environ 6,7°.",
  "eau": {
   "type": "mer",
   "nom": "la Manche",
@@ -1590,7 +1590,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 6.7,
      "angleApres": 6.699999999999932,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -2276,7 +2276,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 6.8,
      "angleApres": 6.7999999999999545,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -2990,7 +2990,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 6.7,
      "angleApres": 6.699999999999932,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -3652,7 +3652,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 6.8,
      "angleApres": 6.7999999999999545,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -4267,7 +4267,7 @@
     ],
     "releve": "2026-09-14",
     "millesime": "Cadastre2014 (tags OSM)",
-    "description": "Deux volumes nommés Station de pompage. Axes longs154,7° et154,6° par rapport à l'est, soit environ32° par rapport à la perpendiculaire des halles. Les deux empreintes conservent leurs angles propres. Un objet logique porte les quatre animations ; aucune affectation d'un ouvrage à une paire de tranches n'est déduite."
+    "description": "Deux volumes nommés Station de pompage. Axes longs 154,7° et 154,6° par rapport à l'est, soit environ 32° par rapport à la perpendiculaire des halles. Les deux empreintes conservent leurs angles propres. Un objet logique porte les quatre animations ; aucune affectation d'un ouvrage à une paire de tranches n'est déduite."
    }
   }
  ],

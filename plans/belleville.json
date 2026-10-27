@@ -4,7 +4,7 @@
  "tranches": 2,
  "src": "releve",
  "maj": "2026-09-14",
- "note": "Nord en haut ; centres des empreintes cylindriques et contours des halles relevés, gabarits nucléaires historiques inchangés. Noms cartographiques TR1/TR2 concordants avec Belleville1/2. Fonction SDM interprétée à partir de la disposition complète, jamais du seul tag power=generator. Deux tours placées sur leurs vrais contours ; raccordements individuels non documentés, panaches de tranche neutralisés. Équipements inconnus conservés en cartouche.",
+ "note": "Nord en haut ; centres des empreintes cylindriques et contours des halles relevés, gabarits nucléaires historiques inchangés. Noms cartographiques TR1/TR2 concordants avec Belleville 1/2. Fonction SDM interprétée à partir de la disposition complète, jamais du seul tag power=generator. Deux tours placées sur leurs vrais contours ; raccordements individuels non documentés, panaches de tranche neutralisés. Équipements inconnus conservés en cartouche.",
  "eau": {
   "type": "fleuve",
   "nom": "la Loire",
@@ -186,7 +186,7 @@
       ]
      ]
     ],
-    "nom": "Plan d'eau des Grèves",
+    "nom": "Plan d’eau des Grèves",
     "source": "https://www.openstreetmap.org/way/64728688"
    },
    {
@@ -462,7 +462,7 @@
       ]
      ]
     ],
-    "nom": "Plan d'eau des Genièvres",
+    "nom": "Plan d’eau des Genièvres",
     "source": "https://www.openstreetmap.org/way/64728690"
    },
    {
@@ -3435,7 +3435,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 322.88,
      "angleApres": 322.88,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",
@@ -3741,7 +3741,7 @@
      "origineCentre": "Centre précédent conservé ; orientation raccordée à la halle de la même tranche.",
      "angleAvant": 322.78,
      "angleApres": 322.78,
-     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
+     "description": "Face électrique historique orientée vers la SDM. Formes, miroir et dimensions nucléaires inchangés ; paire à entraxe 84 m. Les coordonnées du raccord sont des coordonnées de dessin, pas une nouvelle attestation cadastrale."
     }
    },
    "geometrie": "gabarit-conserve",

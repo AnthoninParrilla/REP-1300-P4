@@ -63,7 +63,7 @@
     return equipment(id, 'Générateur de vapeur ' + n + ' · ouvrir la fiche', selected, [x - 7, y - 6, w + (secondary ? 35 : 14), h + 31],
       vessel(x, y, w, h, C.metal) +
       path(tubes, 'metal') +
-      text(x + (secondary ? 40 : 29), y + h + 21, 'GV ' + n, { anchor: secondary ? 'start' : 'middle' }));
+      text(x + (secondary ? 50 : 29), y + h + 21, 'GV ' + n, { anchor: secondary ? 'start' : 'middle' }));
   }
   function valve(id, label, x, y, selected, vertical, labelX, labelY) {
     var shape = vertical
@@ -130,8 +130,9 @@
       h+=path('M'+(x+15)+' 344 V153','asg','asg');
       h+=gv('gv'+(i+1),x,85,selected,true);
       var id=['mpsa','mpsb','mpsc','mpsd'][i],name='MPS '+['A','B','C','D'][i];
-      h+=equipment(id,name+' · motopompe ASG électrique · ouvrir la fiche',selected,[x-9,231,92,74],
-        '<circle cx="'+(x+15)+'" cy="250" r="15" fill="'+C.bg+'" stroke="'+C.asg+'" stroke-width="2"/>'+path('M'+(x+7)+' 256 L'+(x+15)+' 240 L'+(x+23)+' 256 Z','asg')+text(x+27,285,name,{color:C.asg,size:13})+text(x+27,301,'ÉLECTRIQUE',{color:C.dim,size:10}));
+      // J6, client 2 (76A) : libellés à gauche du refoulement ASG, celui du GV à droite de l'alimentation ARE ; aucun trait ne les barre.
+      h+=equipment(id,name+' · motopompe ASG électrique · ouvrir la fiche',selected,[x-56,231,94,74],
+        '<circle cx="'+(x+15)+'" cy="250" r="15" fill="'+C.bg+'" stroke="'+C.asg+'" stroke-width="2"/>'+path('M'+(x+7)+' 256 L'+(x+15)+' 240 L'+(x+23)+' 256 Z','asg')+text(x+8,285,name,{color:C.asg,size:13,anchor:'end'})+text(x+8,301,'ÉLECTRIQUE',{color:C.dim,size:10,anchor:'end'}));
       h+=equipment('asg'+(i+1),'Réserve ASG '+(i+1)+' · inventaire commun aux quatre réserves',selected,[x-13,333,98,61],
         '<rect x="'+(x-7)+'" y="340" width="86" height="45" rx="3" fill="'+C.bg+'" stroke="'+C.asg+'"/>'+text(x+36,359,'RÉSERVE '+(i+1),{size:11,color:C.asg})+text(x+36,376,'ASG',{size:12,color:C.asg}));
     });
@@ -151,7 +152,7 @@
     [620,664,708].forEach(function(x){corps+='<path d="M'+x+' 116 L'+(x+19)+' 134 L'+(x+38)+' 116 V190 L'+(x+19)+' 172 L'+x+' 190 Z" fill="'+C.bg+'" stroke="'+C.metal+'" stroke-width="2"/>'+text(x+19,157,'BP',{size:11});});
     corps+='<rect x="556" y="83" width="64" height="18" rx="3" fill="'+C.bg+'" stroke="'+C.steam+'" stroke-width="1.6"/>'+text(588,96,'GSS ×2',{size:10,color:C.steam});
     corps+=text(636,240,'TURBINE · HP/MP + 3 BP',{size:10});
-    h+=equipment('turbine','Turbine ARABELLE : un corps combiné haute et moyenne pression, deux sécheurs-surchauffeurs et trois corps basse pression · ouvrir la fiche',selected,[556,78,195,170],corps);
+    h+=equipment('turbine','Turbine : un corps combiné haute et moyenne pression, deux sécheurs-surchauffeurs et trois corps basse pression · ouvrir la fiche',selected,[556,78,195,170],corps);
     h+=equipment('alternateur','Alternateur · bilan électrique calculé',selected,[751,109,151,115],
       '<circle cx="802" cy="148" r="29" fill="'+C.bg+'" stroke="'+C.metal+'" stroke-width="2"/>'+text(802,157,'~',{size:28})+text(814,197,'ALTERNATEUR',{size:12})+text(814,218,number(data.powerElectric,0)+' MWe',{color:C.dim,size:13}));
     h+=equipment('condenseur','Condenseur · ouvrir la fiche',selected,[550,270,173,72],
@@ -165,7 +166,7 @@
     h+='<path d="M94 385 V404 H424 V385 M204 385 V404 M314 385 V404" fill="none" stroke="'+C.asg+'" stroke-dasharray="4 4"/>';
     h+=text(234,424,'4 réserves communicables',{size:12,color:C.asg});
     h+=text(234,442,'Inventaire ASG et niveau GV agrégés',{size:11,color:C.dim});
-    h+=text(760,376,'Circuit d’alimentation fonctionnel',{size:12,color:C.dim});
+    h+=text(760,376,'Tracé fonctionnel de l’alimentation',{size:12,color:C.dim});
     h+=text(760,396,'États réels des pompes dans leurs fiches',{size:11,color:C.dim});
     return h;
   }
@@ -183,10 +184,10 @@
     [0,1,2,3].forEach(function(i){
       var y=195+i*61;
       h+=path('M255 '+y+' H739','cold');
-      h+=equipment('rra'+(i+1),'RIS-RA '+(i+1)+' · ouvrir les quatre trains',selected,[100,y-24,159,48],
+      h+=equipment('rra'+(i+1),'RIS-RA '+(i+1)+' · ouvrir la fiche du train',selected,[100,y-24,159,48],
         '<rect x="110" y="'+(y-21)+'" width="143" height="42" fill="'+C.bg+'" stroke="'+C.metal+'"/>'+text(181,y-2,'RIS-RA '+(i+1),{size:13})+text(181,y+14,'ÉCHANGEUR',{size:10,color:C.dim}));
       [['rri','RRI',335,st.voieRRI],['sec','SEC',535,st.voieSEC]].forEach(function(e){
-        h+=equipment(e[0]+(i+1),e[1]+' '+(i+1)+' · état de la chaîne',selected,[e[2]-5,y-26,128,52],
+        h+=equipment(e[0]+(i+1),e[1]+' '+(i+1)+' · état local simulé',selected,[e[2]-5,y-26,128,52],
           '<rect x="'+e[2]+'" y="'+(y-22)+'" width="118" height="44" fill="'+C.bg+'" stroke="'+C.cold+'"/>'+text(e[2]+59,y-3,e[1]+' '+(i+1),{size:13})+text(e[2]+59,y+15,status(e[3]&&e[3][i],!!(st.sec&&st.secOk&&(e[0]!=='rri'||st.rri)&&(st.reseau||st.diesel||(st.ilote&&st.turb>3)))),{size:10,color:C.dim}));
       });
     });

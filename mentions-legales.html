@@ -2,104 +2,127 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mentions légales · SIMUREP</title>
-<meta name="description" content="Mentions légales du site simurep.fr : éditeur, hébergement, propriété intellectuelle, données personnelles.">
+<meta name="description" content="Mentions légales du site simurep.fr : éditeur, hébergement, propriété intellectuelle, sources, données personnelles.">
 <meta name="copyright" content="© 2026 AnthoninP. SIMUREP, tous droits réservés.">
 <meta name="robots" content="index, follow, noai, noimageai">
 <meta name="tdm-reservation" content="1">
 <meta name="tdm-policy" content="https://simurep.fr/.well-known/tdm-policy.json">
+<meta name="theme-color" content="#f6f7f2">
 <link rel="canonical" href="https://simurep.fr/mentions-legales.html">
+<link rel="icon" href="assets/identite/icon-32.png">
 <style>
-:root{--panel:#d8cfba;--panel2:#c6bba1;--edge:#8a765a;--ink:#2b2318;--dim:#6f5f4b;--red:#c9271b;--cyan:#17656f;--scr:#0a120c;--scrInk:#8fe89a;--mono:"IBM Plex Mono","Cascadia Mono",Consolas,Menlo,monospace;--cond:"Arial Narrow","Roboto Condensed","Helvetica Neue",Arial,sans-serif}
+:root{--forest:#153f32;--ink:#203c32;--muted:#5c715e;--line:#dbe3da;--paper:#f6f7f2;--card:#f9fbf5;--cardLine:#d1ddcd}
 *{box-sizing:border-box}
-body{margin:0;background:var(--panel2);color:var(--ink);font:15px/1.6 var(--cond);-webkit-text-size-adjust:100%}
-.wrap{max-width:820px;margin:0 auto;padding:18px 16px 60px}
-header{background:var(--scr);color:var(--scrInk);border:2px solid var(--edge);border-radius:4px;padding:14px 16px;margin:14px 0 22px;font-family:var(--mono)}
-header .t{font-size:19px;font-weight:700;letter-spacing:.06em}
-header .s{font-size:12px;opacity:.75;margin-top:4px}
-main{background:var(--panel);border:2px solid var(--edge);border-radius:4px;padding:20px 22px;box-shadow:inset 0 1px 0 #efe7d6}
-h2{font-family:var(--mono);font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--edge);margin:26px -22px 12px;padding:7px 22px;border-top:1px solid #a28f74;border-bottom:1px solid #6b5a44}
-h2:first-child{margin-top:0}
-h3{font-size:15px;margin:18px 0 6px;color:#4a3c28}
-p,li{margin:8px 0}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:max(12px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(32px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.tete{display:flex;align-items:center;gap:12px;padding:10px 0 14px;border-bottom:1px solid var(--line)}
+.tete img{width:44px;height:44px;flex:none;border-radius:10px}
+.marque{font-size:20px;font-weight:800;letter-spacing:3px;line-height:1.1;color:var(--forest)}
+.slogan{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+.retour{display:inline-flex;align-items:center;min-height:44px;margin:14px 0 0;padding:9px 14px;border:1px solid var(--cardLine);border-radius:8px;background:#fff;color:var(--forest);font-size:14px;font-weight:600;text-decoration:none}
+.retour:hover{background:#e9f0e1}
+h1{margin:20px 0 4px;font-size:26px;line-height:1.2;letter-spacing:-.5px;color:var(--forest)}
+.date{margin:0 0 14px;font-size:13px;color:var(--muted)}
+h2{margin:30px 0 10px;font-size:19px;line-height:1.3;letter-spacing:-.2px;color:var(--forest)}
+h3{margin:18px 0 6px;font-size:15px;line-height:1.4;color:var(--forest)}
+p,li{margin:0 0 10px}
 ul{padding-left:20px}
-a{color:var(--cyan)}
-b{color:#1d1710}
-code{font-family:var(--mono);font-size:13px;background:#e6ddc9;border:1px solid #b6a68a;border-radius:3px;padding:1px 5px}
-.box{border:2px solid var(--edge);background:#e6ddc9;border-radius:4px;padding:12px 14px;margin:14px 0}
-.box.warn{border-color:var(--red);background:#f2e2d8}
-.box .lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:5px}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
-th,td{border:1px solid #b6a68a;padding:7px 9px;text-align:left;vertical-align:top}
-th{background:#e6ddc9;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;width:34%}
-footer{margin-top:24px;font-size:12px;color:var(--dim);text-align:center;font-family:var(--mono)}
-.back{display:inline-block;margin:16px 0 0;font-family:var(--mono);font-size:13px;background:var(--edge);color:#fff;text-decoration:none;padding:7px 14px;border-radius:4px}
-@media(max-width:520px){.wrap{padding:12px 10px 40px}main{padding:16px 14px}h2{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}th{width:auto}table,tbody,tr,td,th{display:block;width:100%}th{border-bottom:0}}
+a{color:var(--forest);overflow-wrap:anywhere}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#eef3ea;border:1px solid var(--cardLine);border-radius:4px;padding:0 4px}
+.carte{margin:0 0 12px;padding:14px 16px;border:1px solid var(--cardLine);border-radius:14px;background:var(--card);box-shadow:0 4px 16px #183d2a05}
+.carte p:last-child{margin-bottom:0}
+.carte h3{margin-top:0}
+.meta{font-size:13.5px;color:var(--muted)}
+.encadre{padding:14px 16px;border-left:3px solid #94b184;border-radius:0 10px 10px 0;background:#eaf0e3;color:#33503a}
+.encadre p:last-child{margin-bottom:0}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;overflow-wrap:anywhere}
+footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+footer a{display:inline-flex;align-items:center;min-height:36px}
+a:focus-visible,.retour:focus-visible{outline:3px solid #87aa6f;outline-offset:3px}
+@media(max-width:480px){h1{font-size:23px}h2{font-size:17.5px}.carte{padding:12px 14px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><div class="t">SIMUREP</div><div class="s">Mentions légales &middot; mise à jour du 27 août 2026</div></header>
+<header class="tete"><img src="assets/identite/icon-180.png" width="44" height="44" alt=""><div><div class="marque">SIMUREP</div><span class="slogan">Le simulateur du parc électronucléaire français</span></div></header>
+<a class="retour" href="./" data-retour>‹ Retour au simulateur</a>
 <main>
+<h1>Mentions légales</h1>
+<p class="date">Mise à jour du 26 octobre 2026.</p>
+
 <h2>1. Éditeur du site</h2>
-<p>Le site <b>simurep.fr</b> et le simulateur SIMUREP sont édités à titre <b>personnel et non professionnel</b> par une personne physique publiant sous le pseudonyme :</p>
-<table>
-<tr><th>Éditeur</th><td><b>AnthoninP</b><br><span style="font-size:13px;color:#6f5f4b">Personne physique. Conformément à l'article 6 III&nbsp;2° de la loi n°&nbsp;2004-575 du 21 juin 2004 (LCEN), l'éditeur non professionnel peut ne conserver l'anonymat vis-à-vis du public qu'à la condition d'avoir communiqué son identité complète à son hébergeur, ce qui a été fait.</span></td></tr>
-<tr><th>Directeur de la publication</th><td>AnthoninP</td></tr>
-<tr><th>Contact</th><td><a href="mailto:contact@simurep.fr">contact@simurep.fr</a></td></tr>
-<tr><th>Nature du site</th><td>Site non marchand, sans publicité, sans compte utilisateur, sans collecte commerciale. Projet personnel à vocation pédagogique.</td></tr>
-</table>
+<p>Le site <b>simurep.fr</b> et le simulateur SIMUREP sont édités à titre <b>personnel et non professionnel</b> par une personne physique publiant sous le pseudonyme AnthoninP.</p>
+<div class="carte">
+<h3>Éditeur : AnthoninP</h3>
+<p class="meta">Personne physique agissant à titre non professionnel. Conformément à l’article 1-1 II de la loi n°&nbsp;2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique (LCEN), l’éditeur ne rend pas publique son identité personnelle ; les éléments d’identification requis ont été communiqués à son hébergeur.</p>
+<p class="meta"><b>Directeur de la publication&nbsp;:</b> AnthoninP</p>
+<p class="meta"><b>Contact&nbsp;:</b> <a href="mailto:contact@simurep.fr">contact@simurep.fr</a></p>
+<p class="meta"><b>Nature du site&nbsp;:</b> site non marchand, sans publicité, sans compte utilisateur, sans collecte commerciale. Projet personnel à vocation pédagogique.</p>
+</div>
 
 <h2>2. Hébergement</h2>
 <p>Le site est servi par deux infrastructures distinctes.</p>
-<table>
-<tr><th>Interface (simurep.fr)</th><td><b>GitHub, Inc.</b> : service GitHub Pages<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis<br><a href="https://support.github.com">support.github.com</a><br><span style="font-size:13px;color:#6f5f4b">GitHub ne publie pas de numéro de téléphone ; les signalements passent par son formulaire de support.</span></td></tr>
-<tr><th>Moteur de calcul (moteur.simurep.fr)</th><td><b>OVH SAS</b><br>Société par actions simplifiée au capital de 50 000 000 €<br>2 rue Kellermann, 59100 Roubaix, France<br>RCS Lille Métropole 424 761 419, TVA FR 22 424 761 419, APE 2620Z<br>Téléphone : 1007 (depuis la France)<br><a href="https://www.ovhcloud.com">ovhcloud.com</a></td></tr>
-</table>
+<div class="carte">
+<h3>Interface (simurep.fr)</h3>
+<p class="meta"><b>GitHub, Inc.</b>, service GitHub Pages<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis<br><a href="https://support.github.com" target="_blank" rel="noopener">support.github.com</a></p>
+<p class="meta">GitHub fournit son assistance par voie électronique, depuis son site de support.</p>
+</div>
+<div class="carte">
+<h3>Moteur de calcul (moteur.simurep.fr)</h3>
+<p class="meta"><b>OVH SAS</b><br>Société par actions simplifiée au capital de 50&nbsp;000&nbsp;000&nbsp;€<br>2 rue Kellermann, 59100 Roubaix, France<br>RCS Lille Métropole 424&nbsp;761&nbsp;419, TVA FR 22&nbsp;424&nbsp;761&nbsp;419, APE 2620Z<br>Téléphone&nbsp;: 1007 (depuis la France)<br><a href="https://www.ovhcloud.com" target="_blank" rel="noopener">ovhcloud.com</a></p>
+<p class="meta">Le moteur de calcul est hébergé sur un serveur privé virtuel fourni par OVH SAS. L’éditeur administre le serveur et l’application ; OVHcloud administre l’infrastructure matérielle et réseau.</p>
+</div>
 
 <h2>3. Propriété intellectuelle</h2>
-<p><b>&copy; 2026 AnthoninP. Tous droits réservés.</b></p>
-<div class="box"><div class="lab" style="color:#17656f">Œuvre déposée</div><p style="margin:0">SIMUREP est déposé à l'<b>Agence pour la Protection des Programmes</b> (APP Paris) et enregistré au répertoire international IDDN sous le numéro&nbsp;:<br><span style="font-family:var(--mono);font-size:13px">IDDN.FR.001.350014.000.S.P.2026.000.21100</span></p></div>
-<p>SIMUREP (son code, son moteur physique, ses figures, ses textes, ses données propres, son interface et son identité visuelle) constitue une <b>œuvre originale</b> protégée par le droit d'auteur (Code de la propriété intellectuelle, art. L111-1 et suivants ; protection des logiciels, art. L112-2 13° et L122-6).</p>
-<p>Sauf autorisation <b>écrite et préalable</b> de l'auteur, sont interdites toute reproduction, copie, extraction, adaptation, traduction, décompilation, réutilisation ou redistribution, totale ou partielle, gratuite ou payante, à quelque fin que ce soit.</p>
-<p>Le moteur de calcul s'exécute sur un serveur privé. Le code chargé par le navigateur n'est qu'un <b>châssis d'affichage</b> ; il reste intégralement couvert par la présente protection. Toute tentative d'accès, d'analyse par rétro-ingénierie ou d'usage automatisé du moteur en dehors de l'usage normal du simulateur est interdite.</p>
-
-<div class="box warn">
-<div class="lab">Réservation des droits de fouille (opt-out TDM)</div>
-<p style="margin-top:0">L'auteur <b>réserve expressément</b> ses droits au titre de la fouille de textes et de données, en application de l'article <b>L122-5-3 III</b> du Code de la propriété intellectuelle et de l'article 4 §3 de la directive (UE) 2019/790.</p>
-<p style="margin-bottom:0">Toute extraction du contenu de ce site en vue de constituer un corpus, d'entraîner, de mettre au point ou d'évaluer un modèle d'intelligence artificielle est <b>interdite</b> sans autorisation écrite préalable. Cette réservation est exprimée de manière lisible par machine dans <code>/robots.txt</code>, dans <code>/.well-known/tdmrep.json</code> et dans les balises <code>&lt;meta&gt;</code> de chaque page.</p>
+<p><b>© 2026 AnthoninP. Tous droits réservés.</b></p>
+<div class="carte">
+<h3>Œuvre déposée</h3>
+<p class="meta">SIMUREP est déposé à l’<b>Agence pour la Protection des Programmes</b> (APP Paris) et enregistré au répertoire international IDDN sous le numéro&nbsp;:<br><span class="mono">IDDN.FR.001.350014.000.S.P.2026.000.21100</span></p>
+</div>
+<p>SIMUREP (son code, son moteur physique, ses figures, ses textes, ses données propres, son interface et son identité visuelle) constitue une <b>œuvre originale</b> protégée par le droit d’auteur (Code de la propriété intellectuelle, art. L111-1 et suivants ; protection des logiciels, art. L112-2 13° et L122-6). Identité visuelle&nbsp;: logo d’après un dessin d’AnthoninP, retouché avec un outil de génération d’images&nbsp;; les icônes du site en sont des réductions.</p>
+<p>Sauf autorisation <b>écrite et préalable</b> de l’auteur, sont interdites toute reproduction, copie, extraction, adaptation, traduction, décompilation, réutilisation ou redistribution, totale ou partielle, gratuite ou payante, à quelque fin que ce soit.</p>
+<p class="encadre">Ces restrictions portent sur les éléments pour lesquels l’éditeur détient les droits concernés. Elles ne limitent ni les exceptions prévues par la loi ni les droits accordés par les licences et conditions applicables aux données tierces, indiquées sur la <a href="/sources.html">page Sources</a>. Tu peux réutiliser ces données selon leurs licences respectives, y compris les transformations géographiques mises à disposition sous ODbL. Le code, les textes et les dessins originaux de SIMUREP restent régis par sa licence.</p>
+<p>Le moteur de calcul s’exécute sur un serveur privé. Le code chargé par le navigateur n’est qu’un <b>châssis d’affichage</b> ; il reste couvert par la présente protection. Toute tentative d’accès, d’analyse par rétro-ingénierie ou d’usage automatisé du moteur en dehors de l’usage normal du simulateur est interdite, sous réserve des exceptions prévues par la loi.</p>
+<div class="carte">
+<h3>Réservation des droits de fouille de textes et de données</h3>
+<p class="meta">L’auteur <b>réserve expressément</b> ses droits au titre de la fouille de textes et de données, en application de l’article <b>L122-5-3 III</b> du Code de la propriété intellectuelle et de l’article 4 §3 de la directive (UE) 2019/790. Cette opposition porte sur les contenus pour lesquels l’éditeur détient les droits permettant de s’y opposer, dans les cas et limites prévus par la loi ; elle n’entend pas retirer les autorisations accordées par les licences des données tierces.</p>
+<p class="meta">Sous cette réserve, toute extraction du contenu de ce site en vue de constituer un corpus, d’entraîner, de mettre au point ou d’évaluer un modèle d’intelligence artificielle est <b>interdite</b> sans autorisation écrite préalable. Cette réservation est exprimée de manière lisible par machine dans <code>/robots.txt</code>, dans <code>/.well-known/tdmrep.json</code> et dans les balises <code>&lt;meta&gt;</code> de chaque page.</p>
 </div>
 
 <h2>4. Sources et données tierces</h2>
-<p>SIMUREP incorpore des données publiques sous licence ouverte, dont l'attribution est due :</p>
-<ul>
-<li><b>Réseau 400&nbsp;kV</b>, tracés des lignes&nbsp;: &copy; IGN, BD&nbsp;TOPO&reg;&nbsp;v3, Licence Ouverte 2.0 (Géoplateforme). Localisation des postes&nbsp;: &copy; les contributeurs d'<b>OpenStreetMap</b> (ODbL&nbsp;1.0). Liste et noms officiels des postes&nbsp;: RTE, jeu «&nbsp;Postes électriques RTE&nbsp;» (ODRÉ, Licence Ouverte 2.0). Données extraites le 21/08/2026, simplifiées pour l'affichage.</li>
-<li><b>Parc réel en temps réel</b>, production par tranche, indisponibilités, consommation, mix et échanges aux frontières&nbsp;: <b>API RTE</b> (data.rte-france.com) et <b>éCO2mix</b> (RTE&nbsp;/ ODRÉ, Licence Ouverte 2.0). Relecture toutes les quinze minutes&nbsp;; lorsque la donnée réelle est indisponible, le simulateur extrapole et <b>l'indique explicitement</b>.</li>
-<li><b>Données techniques</b>, l'ensemble des valeurs physiques, nomenclatures et seuils provient de <b>sources publiques traçables</b> (collection «&nbsp;Éléments de sûreté nucléaire&nbsp;» IRSN/ASNR, avis et rapports publiés, décisions de l'Autorité, norme ANS pour la puissance résiduelle).</li>
-</ul>
-<p>La licence ODbL portant sur les coordonnées de postes issues d'OpenStreetMap s'applique à cette base dérivée&nbsp;; elle ne s'étend pas au simulateur, qui en constitue une «&nbsp;œuvre produite&nbsp;» au sens de l'ODbL.</p>
+<p>Les sources de SIMUREP, leurs licences et les bases géographiques dérivées d’OpenStreetMap sont réunies sur la <a href="/sources.html">page Sources</a>, atteinte depuis «&nbsp;À propos&nbsp;» et depuis chaque plan.</p>
+<p>La licence ODbL des données issues d’OpenStreetMap s’applique à ces bases dérivées, offertes depuis la page Sources ; elle ne s’étend pas au simulateur, qui en constitue une «&nbsp;œuvre produite&nbsp;» au sens de l’ODbL.</p>
 
-<h2>5. Données personnelles</h2>
-<p>SIMUREP fonctionne <b>sans compte utilisateur</b>. Les données techniques décrites ci-dessous servent au fonctionnement du simulateur et à la reprise de ta partie.</p>
+<h2 id="donnees">5. Tes données</h2>
+<p>SIMUREP fonctionne <b>sans compte utilisateur</b>. Des données techniques servent au fonctionnement du simulateur, à la reprise de ta partie et à la protection du service.</p>
+<p><b>Responsable du traitement&nbsp;: AnthoninP, éditeur du site</b> (voir 1). Contact&nbsp;: <a href="mailto:contact@simurep.fr">contact@simurep.fr</a>.</p>
 <ul>
-<li><b>Aucun compte</b>, aucune inscription, aucun formulaire, aucun paiement.</li>
-<li><b>Aucun cookie publicitaire</b>, aucune mesure d'audience ni aucun profilage. Le stockage du navigateur est utilisé pour le fonctionnement du simulateur.</li>
-<li><b>Stockage local</b> (<code>localStorage</code>), le navigateur conserve tes préférences d'affichage, les tranches jouées et un identifiant technique aléatoire (<code>rep_site</code>, <code>rep_units</code>, <code>rep_view</code>, <code>rep_layers</code>, <code>rep_parc</code>, <code>rep_sid</code>). L'identifiant et les commandes de conduite sont transmis au moteur de SIMUREP pour retrouver et faire évoluer chaque tranche. Ce stockage sert au fonctionnement du service demandé, sans publicité ni mesure d'audience.</li>
-<li><b>Mémoire de conduite</b>, le moteur conserve une sauvegarde technique par tranche, sous un nom de fichier dérivé de l'identifiant aléatoire. Elle contient l'état simulé, les réglages et les derniers événements de conduite. Les sessions actives sont sauvegardées toutes les 30&nbsp;secondes. Après 30&nbsp;minutes d'inactivité, la simulation est retirée de la mémoire vive&nbsp;; sa sauvegarde reste disponible pendant au plus 30&nbsp;jours après sa dernière écriture, sous réserve du plafond global de stockage. Les sauvegardes expirées sont supprimées lors de l'entretien horaire du serveur. Elles ne sont pas publiées et ne servent ni à la publicité ni au profilage.</li>
-<li><b>Effacement</b>, «&nbsp;Réinitialiser ma session&nbsp;» efface la mémoire locale et demande au moteur d'effacer les sauvegardes des tranches connues de ce navigateur, lorsque la connexion le permet. Vider les données du site dans le navigateur efface les données locales et l'identifiant de reprise&nbsp;; cela ne supprime pas immédiatement les sauvegardes du serveur, qui expirent selon la durée indiquée ci-dessus.</li>
-<li><b>Journaux techniques</b>, les hébergeurs peuvent conserver des journaux de connexion (dont l'adresse IP) pour la sécurité et le bon fonctionnement de leurs serveurs, dans les conditions et durées prévues par la loi. L'éditeur ne les exploite à aucune fin d'analyse ni de profilage.</li>
+<li><b>Dans ton navigateur</b> (<code>localStorage</code>)&nbsp;: un identifiant technique aléatoire de reprise, la tranche en cours et la mémoire de tes tranches, ta progression (missions, carnet, premier quart), tes choix d’affichage et du Guide, la dernière réponse du parc réel et les nouveautés déjà lues. Ces données restent dans ton navigateur, sauf ce que le moteur de SIMUREP reçoit pour retrouver et faire évoluer chaque tranche&nbsp;: l’identifiant de reprise, la tranche jouée et tes commandes de conduite. Elles n’ont pas d’expiration automatique&nbsp;: elles restent jusqu’à «&nbsp;Tout réinitialiser&nbsp;» ou jusqu’à l’effacement des données du site par ton navigateur. Les réglages d’affichage des salles et des postes et le cache de l’application sont gardés à part. Aucune de ces données ne sert à la publicité ni à la mesure d’audience.</li>
+<li><b>Sur le serveur du moteur</b>&nbsp;: une sauvegarde technique par tranche, sous un nom de fichier dérivé de l’identifiant aléatoire. Elle contient l’état simulé, les réglages et les derniers événements de conduite. Les sessions actives sont sauvegardées toutes les 30&nbsp;secondes. Après 30&nbsp;minutes d’inactivité, la simulation est retirée de la mémoire vive ; sa sauvegarde reste disponible pendant au plus 7&nbsp;jours après sa dernière écriture, sous réserve du plafond global de stockage. Les sauvegardes expirées sont supprimées lors de l’entretien horaire du serveur. Elles ne sont pas publiées et ne servent ni à la publicité ni au profilage.</li>
+<li><b>Base légale</b>&nbsp;: ces données sont nécessaires au jeu et à la reprise de partie que tu demandes (article 6, paragraphe 1, point b, du RGPD).</li>
+<li><b>Interface</b>&nbsp;: quand tu consultes l’interface, GitHub Pages enregistre ton adresse IP pour la sécurité de son service, même si tu n’as pas de compte GitHub. Sa déclaration de confidentialité décrit les critères de conservation, les transferts internationaux et les garanties utilisées.</li>
+<li><b>Journaux techniques du moteur</b>&nbsp;: le serveur du moteur peut conserver des journaux de connexion (dont l’adresse IP) pour sa sécurité et son bon fonctionnement. Ils reposent sur l’intérêt légitime à faire fonctionner et à protéger le service (article 6, paragraphe 1, point f, du RGPD). L’éditeur ne s’en sert ni pour compter les visites, ni pour analyser ou profiler les joueurs.</li>
+<li><b>Courriels</b>&nbsp;: quand tu écris à <a href="mailto:contact@simurep.fr">contact@simurep.fr</a>, ton adresse, ton message et les pièces que tu choisis d’envoyer servent à traiter ta demande et à te répondre. «&nbsp;Signaler un problème&nbsp;», dans «&nbsp;À propos&nbsp;», prépare dans ta messagerie la version du site, la centrale, la tranche et le palier de ton dernier quart, ton navigateur et l’heure. Le jeu n’y ajoute ni identifiant de reprise ni sauvegarde de partie. Tu peux relire et modifier le message avant de l’envoyer ; le site ne l’envoie pas lui-même.</li>
+<li><b>Effacement</b>&nbsp;: «&nbsp;Tout réinitialiser&nbsp;», en bas de la page France, efface les données de partie gardées par ton navigateur et demande au moteur d’effacer les sauvegardes des tranches connues de ce navigateur, lorsque la connexion le permet. Vider les données du site dans le navigateur efface les données locales et l’identifiant de reprise ; cela ne supprime pas immédiatement les sauvegardes du serveur, qui expirent selon la durée indiquée ci-dessus.</li>
+<li><b>Hébergement</b>&nbsp;: l’interface est fournie par GitHub Pages et le moteur est hébergé par OVHcloud (voir 2).</li>
 </ul>
-<p>Ces données techniques ne sont pas utilisées pour rechercher ton identité. Pour toute question relative à leur utilisation ou à leur effacement&nbsp;: <a href="mailto:contact@simurep.fr">contact@simurep.fr</a>.</p>
+<p>Ces données techniques ne sont pas utilisées pour rechercher ton identité.</p>
+<h3>Tes droits</h3>
+<p>Tu peux demander l’accès aux données qui te concernent, leur rectification, leur effacement ou la limitation de leur traitement, t’opposer au traitement fondé sur l’intérêt légitime et demander la portabilité des données de reprise, en écrivant à <a href="mailto:contact@simurep.fr">contact@simurep.fr</a>. L’éditeur te répond en principe dans un délai d’un mois. Il cherche les informations concernées avec le minimum d’éléments nécessaires, sans demander systématiquement une pièce d’identité ; si elles ne peuvent plus être rattachées à ta demande, il t’explique cette limite. Tu peux aussi adresser une réclamation à la CNIL&nbsp;: <a href="https://www.cnil.fr/fr/adresser-une-plainte" target="_blank" rel="noopener">cnil.fr</a>.</p>
 
 <h2>6. Accessibilité et signalement</h2>
-<p>Pour signaler un contenu illicite, une erreur, une atteinte à tes droits ou un défaut d'accessibilité&nbsp;: <a href="mailto:contact@simurep.fr">contact@simurep.fr</a>.</p>
+<p>Pour signaler un contenu illicite, une erreur, une atteinte à tes droits ou un défaut d’accessibilité&nbsp;: <a href="mailto:contact@simurep.fr">contact@simurep.fr</a>.</p>
 
 <h2>7. Droit applicable</h2>
 <p>Le présent site est soumis au <b>droit français</b>. Tout litige relatif à son utilisation relève de la compétence des juridictions françaises.</p>
 </main>
-<a class="back" href="/">&#8592; Retour au simulateur</a>
-<footer>SIMUREP &middot; by AnthoninP &middot; helped by AI &middot; &copy; 2026 tous droits r&eacute;serv&eacute;s</footer>
+<footer>SIMUREP · Par AnthoninP, aidé d’une IA · © 2026 tous droits réservés<br><a href="/sources.html">Sources</a> · <a href="/cgu.html">Conditions d’utilisation</a></footer>
 </div>
+<script>
+document.querySelectorAll('a[data-retour]').forEach(function(a){a.addEventListener('click',function(e){if(window.parent===window)return;try{window.parent.postMessage({type:'sdc-retour',vue:'france'},location.origin);e.preventDefault();}catch(_){}});});
+</script>
 </body>
 </html>
