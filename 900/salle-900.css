@@ -115,8 +115,15 @@
 /* Apparition : clignotement rapide (2 par seconde) ; disparition : lent (une fois toutes les 1,6 s), la lentille gardant sa couleur. */
 .s9-v[data-mode=nouvelle]{animation:s9-clign .5s steps(1,end) infinite}
 .s9-v[data-mode=disparue]{animation:s9-clign 1.6s steps(1,end) infinite}
-/* Mouvement réduit : ni clignotement ni pulsation ; une apparition garde un cadre sombre, une disparition reste pâlie. */
-@media (prefers-reduced-motion:reduce){.s9-v[data-mode=nouvelle],.s9-v[data-mode=disparue],.s9-klaxon[data-on=true] i,.s9-sdc .s9-dock-al.s9-dock-k{animation:none!important}.s9-v[data-mode=nouvelle]{outline:3px solid #20140b;outline-offset:-5px}.s9-v[data-mode=disparue]{opacity:.45}}
+/* C-04 (265A) : un cadre blanc fixe dit l'état sans la couleur ni le mouvement : plein pour une nouvelle, en tirets pour une disparue, aucun une fois
+   acquittée. Il ne clignote pas (s9-clign et s13-clign ne touchent pas à outline) : dans la phase éteinte, lui seul sépare une verrine à acquitter
+   d'une verrine éteinte. Un contour ne compte pas dans la boîte, donc aucun saut ; 3 px dont 2 sur la bordure et 1 au-dehors : la gouttière la plus fine
+   des matrices (2 px, mur) garde 1 px noir, sinon une verrine au repos recevrait le blanc de ses voisines sur ses quatre côtés.
+   La salle du 1300 charge cette feuille et ses verrines portent .s9-v : elle a le même cadre et le même repli. */
+.s9-v:is([data-mode=nouvelle],[data-mode=disparue]){outline:3px solid #f4f4f0;outline-offset:-2px}
+.s9-v[data-mode=disparue]{outline-style:dashed}
+/* Mouvement réduit : ni clignotement ni pulsation ; le cadre blanc reste seul à dire une apparition (il remplace l'ancien cadre sombre), une disparition reste pâlie. */
+@media (prefers-reduced-motion:reduce){.s9-v[data-mode=nouvelle],.s9-v[data-mode=disparue],.s9-klaxon[data-on=true] i,.s9-sdc .s9-dock-al.s9-dock-k{animation:none!important}.s9-v[data-mode=disparue]{opacity:.45}}
 .s9-mat-plein .s9-v,.s9-mat-plein .s9-v-libre{min-height:42px}.s9-mur-ver .s9-v,.s9-mur-ver .s9-v-libre{min-height:31px}.s9-mur-ver .s9-mat-g{gap:2px}.s9-mat-plein .s9-v span{font-size:10px}.s9-mat-plein .s9-mat-s h4{font-size:11px}
 /* ── La salle : pupitre continu (5A du 03/10, photos de Gravelines 5) : plages qui se touchent, traits bordeaux fins à pans
       coupés, losanges du fond aux croisements, titres noirs centrés, sous-zones. ── */
@@ -368,16 +375,18 @@
    pupitre et tableau arrière de la même teinte, zones cernées d'un trait brun ; seules les plaques des TPL gardent leur couleur.
    Mur : synoptique en bandeau noir (style du Bugey, synoptique-900.js) ; enseigne de tranche, horloge et puissance en afficheurs
    rouges sur le bandeau du mur. Écrans du KIT et du panneau de sûreté en phosphore vert monochrome (idée de Codex, 11A). */
-.s9-sdc[data-palier="CP0"]{--cp0:#d3b57c;--cp0-c:#e3ca98;--cp0-f:#b59561;--cp0-t:#5b4426;background:linear-gradient(#ccb07a,#bea16b)}
-.s9-sdc[data-palier="CP0"] :is(.s9-zone,.s9-repere){--z:var(--cp0);--z2:var(--cp0-c)}
-.s9-sdc[data-palier="CP0"] .s9-zone{background:var(--cp0-t)}
-.s9-sdc[data-palier="CP0"] .s9-zone .s9-note{color:#3f301a}
-.s9-sdc[data-palier="CP0"] .s9-panneau{background:linear-gradient(#d6bb85,#cbae77);border-color:#8a6d40;box-shadow:inset 0 2px #e8d7b0}
-.s9-sdc[data-palier="CP0"] .s9-pupitre{background:#b49460;border-color:#7d6237}
-.s9-sdc[data-palier="CP0"] .s9-quickbar{background:linear-gradient(#d9c08e,#c9ac78)!important;box-shadow:inset 0 -1px #9c7f4c,0 2px 0 #876b3c!important}
-.s9-sdc[data-palier="CP0"] .s9-mur-ver{background:linear-gradient(#d6bb85,#c8ab74);border-color:#8a6d40;box-shadow:inset 0 2px #e8d7b0}
-.s9-sdc[data-palier="CP0"] :is(.s9-mur-syn,.s9-syn-page){background:#0e0f0d}
-.s9-sdc[data-palier="CP0"] .s9-crt{background:linear-gradient(#d9c08e,#c4a670);border-color:#8a6d40;box-shadow:inset 0 1px #ecdcb8,0 2px 6px #0003}
+/* J5a (272A) : Fessenheim (FSH) partage chaque règle de la salle du CP0 par un sélecteur commun, jamais par une copie ; son delta
+   (bleu, verrines, afficheurs) viendra de la planche validée par Anthonin. */
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]){--cp0:#d3b57c;--cp0-c:#e3ca98;--cp0-f:#b59561;--cp0-t:#5b4426;background:linear-gradient(#ccb07a,#bea16b)}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) :is(.s9-zone,.s9-repere){--z:var(--cp0);--z2:var(--cp0-c)}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-zone{background:var(--cp0-t)}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-zone .s9-note{color:#3f301a}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-panneau{background:linear-gradient(#d6bb85,#cbae77);border-color:#8a6d40;box-shadow:inset 0 2px #e8d7b0}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-pupitre{background:#b49460;border-color:#7d6237}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-quickbar{background:linear-gradient(#d9c08e,#c9ac78)!important;box-shadow:inset 0 -1px #9c7f4c,0 2px 0 #876b3c!important}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-mur-ver{background:linear-gradient(#d6bb85,#c8ab74);border-color:#8a6d40;box-shadow:inset 0 2px #e8d7b0}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) :is(.s9-mur-syn,.s9-syn-page){background:#0e0f0d}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt{background:linear-gradient(#d9c08e,#c4a670);border-color:#8a6d40;box-shadow:inset 0 1px #ecdcb8,0 2px 6px #0003}
 /* Enseigne du mur (photo du Bugey 2) : « TRANCHE n » en lettres blanches, jour et heure, puissance en MW, afficheurs rouges. */
 .s9-ens{display:flex;align-items:center;gap:14px;padding:2px 12px;background:#060706;border:1px solid #2b2c29;border-radius:2px}
 .s9-ens>b{font:700 19px Arial,Helvetica,sans-serif;letter-spacing:.06em;color:#f2f2ec}.s9-mur-volet>summary .s9-ens>b::before{content:none}
@@ -390,43 +399,43 @@
 /* Geste 50 (136A du 25/10) : puissance électrique dans la barre d'état (CPY ; CP0 quand le mur et son enseigne sont repliés hors de la page). */
 .s9-quickbar .s9-pel{margin-left:14px;white-space:nowrap;font-variant-numeric:tabular-nums}.s9-pel-tel{display:none}
 /* Écrans en phosphore vert monochrome : vidéo inverse pour les états présents et les alarmes, sans autre couleur. */
-.s9-sdc[data-palier="CP0"] .s9-crt-verre{background:#020803;font-family:"Consolas","Lucida Console","Courier New",monospace}
-.s9-sdc[data-palier="CP0"] .s9-crt-tete{border-bottom-color:#1e6b36}
-.s9-sdc[data-palier="CP0"] .s9-crt-tete b{background:#7dff9a;color:#021a08}
-.s9-sdc[data-palier="CP0"] :is(.s9-crt-tete span,.s9-kit-e b,.s9-kit-d h4){color:#7dff9a}
-.s9-sdc[data-palier="CP0"] .s9-kit-d h4{background:#0b2a14}
-.s9-sdc[data-palier="CP0"] .s9-crt-l{border-bottom-color:#123c1f}
-.s9-sdc[data-palier="CP0"] .s9-crt-l span{color:#4fd977}
-.s9-sdc[data-palier="CP0"] .s9-crt-l b{color:#b8ffc6}
-.s9-sdc[data-palier="CP0"] :is(.s9-crt-l i,.s9-crt-n,.s9-kit-ev b,.s9-kit-t small){color:#2f8f4f}
-.s9-sdc[data-palier="CP0"] .s9-crt-rouge :is(b,span){color:#021a08;background:#b8ffc6;padding:0 3px}
-.s9-sdc[data-palier="CP0"] .s9-crt-barre{background:repeating-linear-gradient(90deg,#0c2a15 0 5px,#020803 5px 7px)}
-.s9-sdc[data-palier="CP0"] :is(.s9-crt-barre span,.s9-crt-rouge .s9-crt-barre span){background:repeating-linear-gradient(90deg,#7dff9a 0 5px,#020803 5px 7px)}
-.s9-sdc[data-palier="CP0"] .s9-crt-tor{border-color:#1e6b36;color:#2f8f4f}
-.s9-sdc[data-palier="CP0"] .s9-crt-tor[data-on=true]{background:#7dff9a;color:#021a08;border-color:#7dff9a}
-.s9-sdc[data-palier="CP0"] .s9-crt-tor[data-on=true][data-c=r]{background:#b8ffc6;border-color:#b8ffc6;outline:1px solid #b8ffc6;outline-offset:2px}
-.s9-sdc[data-palier="CP0"] .s9-crt-e:is([data-c=v],[data-c=c],[data-c=""]){color:#7dff9a!important}
-.s9-sdc[data-palier="CP0"] .s9-crt-e:is([data-c=r],[data-c=j]){color:#021a08!important;background:#b8ffc6;padding:0 4px}
-.s9-sdc[data-palier="CP0"] .s9-crt-b{background:#03140a;color:#7dff9a;border-color:#2f8f4f}
-.s9-sdc[data-palier="CP0"] .s9-crt-b:hover{background:#0b3a1c}
-.s9-sdc[data-palier="CP0"] .s9-kit-t{background:#03110a;border-color:#1e6b36;color:#4fd977}
-.s9-sdc[data-palier="CP0"] .s9-kit-t b{color:#b8ffc6}
-.s9-sdc[data-palier="CP0"] .s9-kit-t:is(:hover,:focus-visible){background:#0b3a1c}
-.s9-sdc[data-palier="CP0"] .s9-kit-t[data-niveau=rouge]{background:#b8ffc6;color:#021a08;border-color:#b8ffc6;outline:2px solid #b8ffc6;outline-offset:2px}
-.s9-sdc[data-palier="CP0"] .s9-kit-t[data-niveau=orange]{background:#7dff9a;color:#021a08;border-color:#7dff9a}
-.s9-sdc[data-palier="CP0"] .s9-kit-t[data-niveau=blanc]{background:#03110a;color:#b8ffc6;border:2px solid #b8ffc6}
-.s9-sdc[data-palier="CP0"] .s9-kit-t[data-niveau=blanc] :is(b,small){color:#b8ffc6}
-.s9-sdc[data-palier="CP0"] .s9-kit-ev :is(p,.r,.o){color:#7dff9a}
-.s9-sdc[data-palier="CP0"] .s9-kit-ev :is(.r,.o){color:#b8ffc6;font-weight:700}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-verre{background:#020803;font-family:"Consolas","Lucida Console","Courier New",monospace}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-tete{border-bottom-color:#1e6b36}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-tete b{background:#7dff9a;color:#021a08}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) :is(.s9-crt-tete span,.s9-kit-e b,.s9-kit-d h4){color:#7dff9a}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-d h4{background:#0b2a14}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-l{border-bottom-color:#123c1f}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-l span{color:#4fd977}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-l b{color:#b8ffc6}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) :is(.s9-crt-l i,.s9-crt-n,.s9-kit-ev b,.s9-kit-t small){color:#2f8f4f}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-rouge :is(b,span){color:#021a08;background:#b8ffc6;padding:0 3px}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-barre{background:repeating-linear-gradient(90deg,#0c2a15 0 5px,#020803 5px 7px)}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) :is(.s9-crt-barre span,.s9-crt-rouge .s9-crt-barre span){background:repeating-linear-gradient(90deg,#7dff9a 0 5px,#020803 5px 7px)}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-tor{border-color:#1e6b36;color:#2f8f4f}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-tor[data-on=true]{background:#7dff9a;color:#021a08;border-color:#7dff9a}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-tor[data-on=true][data-c=r]{background:#b8ffc6;border-color:#b8ffc6;outline:1px solid #b8ffc6;outline-offset:2px}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-e:is([data-c=v],[data-c=c],[data-c=""]){color:#7dff9a!important}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-e:is([data-c=r],[data-c=j]){color:#021a08!important;background:#b8ffc6;padding:0 4px}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-b{background:#03140a;color:#7dff9a;border-color:#2f8f4f}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-b:hover{background:#0b3a1c}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t{background:#03110a;border-color:#1e6b36;color:#4fd977}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t b{color:#b8ffc6}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t:is(:hover,:focus-visible){background:#0b3a1c}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t[data-niveau=rouge]{background:#b8ffc6;color:#021a08;border-color:#b8ffc6;outline:2px solid #b8ffc6;outline-offset:2px}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t[data-niveau=orange]{background:#7dff9a;color:#021a08;border-color:#7dff9a}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t[data-niveau=blanc]{background:#03110a;color:#b8ffc6;border:2px solid #b8ffc6}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-t[data-niveau=blanc] :is(b,small){color:#b8ffc6}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-ev :is(p,.r,.o){color:#7dff9a}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-ev :is(.r,.o){color:#b8ffc6;font-weight:700}
 /* Lot 4 ter (7A) : au CP0, ligne rouge du journal en vidéo inverse, comme les alarmes des écrans du KIT ; l'ambre reste en vert vif. */
-.s9-sdc[data-palier="CP0"] .s9-kit-ev .r{background:#b8ffc6;color:#021a08}
-.s9-sdc[data-palier="CP0"] .s9-kit-ev .r b{color:#021a08}
-.s9-sdc[data-palier="CP0"] .s9-crt-natif .n4-live-slot{background:#020803!important}
-.s9-sdc[data-palier="CP0"] .s9-ebu .s9-ebu-g{stroke:#0f3a1c}
-.s9-sdc[data-palier="CP0"] .s9-ebu :is(.s9-ebu-t,.s9-ebu-l){fill:#2f8f4f}
-.s9-sdc[data-palier="CP0"] .s9-ebu .s9-ebu-c{stroke:#7dff9a}
-.s9-sdc[data-palier="CP0"] .s9-ebu .s9-ebu-m{stroke:#b8ffc6}
-.s9-sdc[data-palier="CP0"] .s9-ebu :is(.s9-ebu-p,.s9-ebu-f){stroke:#b8ffc6}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-ev .r{background:#b8ffc6;color:#021a08}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-ev .r b{color:#021a08}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-crt-natif .n4-live-slot{background:#020803!important}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-ebu .s9-ebu-g{stroke:#0f3a1c}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-ebu :is(.s9-ebu-t,.s9-ebu-l){fill:#2f8f4f}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-ebu .s9-ebu-c{stroke:#7dff9a}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-ebu .s9-ebu-m{stroke:#b8ffc6}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-ebu :is(.s9-ebu-p,.s9-ebu-f){stroke:#b8ffc6}
 /* ══ Rendu réaliste des salles 900 (04/10, 2A du QCM du rendu du 1300) : même lumière, mêmes ombres, même patine très légère et
       mêmes reflets qu'au 1300, sur les teintes propres de chaque salle (plages colorées du CPY, sable ocré du CP0). Règles limitées aux
       salles 900 (« :not(.s13-sdc) ») : la salle du 1300 garde les siennes. Calques sans effet sur les commandes. ══ */
@@ -476,12 +485,12 @@
 /* Carte des grappes du KIT (4A du 04/10) : dessin commun des cartes (instruments-n4.js) sur le verre du KIT. */
 .s9-kit-carte .n4-gr{grid-template-columns:minmax(0,520px) minmax(0,1fr)}.s9-kit-carte .n4-gr-carte{border-color:#1f6f5a}
 .s9-kit-carte .n4-gr-leg{color:#9fe8bf;font:12px Consolas,'Lucida Console',monospace}.s9-kit-carte .n4-gr-detail{background:#04140f;border-color:#2f8f5f;color:#9fe8bf;font:12.5px Consolas,'Lucida Console',monospace}
-.s9-sdc[data-palier="CP0"] .s9-kit-carte .n4-gr-leg,.s9-sdc[data-palier="CP0"] .s9-kit-carte .n4-gr-detail{color:#6fdc8c}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-carte .n4-gr-leg,.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .s9-kit-carte .n4-gr-detail{color:#6fdc8c}
 @media(max-width:760px),(max-width:1000px) and (max-height:500px){.s9-kit-carte .n4-gr{grid-template-columns:minmax(0,1fr)}}
 /* J3 (passe 3, 2A) : l’encart des missions en fiche de consigne papier posée sur le pupitre, propre à chaque salle : CPY crème, CP0
    jaunie ; en-tête tapé à la machine, liens du lexique soulignés à l’encre, « Montrer » vers la zone citée. Aucune commande. */
 .s9-sdc .n4-mission{position:relative;margin:2px 4px 12px;border:1px solid #b3a27f;border-radius:2px;background:#f7f2e4;color:#2b2318;box-shadow:inset 0 1px #fffc,0 3px 9px #0006}
-.s9-sdc[data-palier="CP0"] .n4-mission{background:#f2e8c9;border-color:#a88f60}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]) .n4-mission{background:#f2e8c9;border-color:#a88f60}
 .s9-sdc .n4-mission-toggle{min-height:44px;padding:8px 12px;border-bottom:1px dashed #c9b994;color:#2b2318;font:700 13px/1.3 "Courier New",Courier,monospace}
 .s9-sdc .n4-mission-toggle[aria-expanded=false]{border-bottom:0}
 .s9-sdc .n4-mission-toggle b{color:#7a1f2b;letter-spacing:.08em}
@@ -520,7 +529,46 @@
 .s9-sdc:not(.s13-sdc){--s9-machine:"American Typewriter","Courier New",Courier,monospace;--s9-encre:#2b2722;--s9-papier:#fbfaf4;--s9-perfo:#bdb39b;
   --s9-trou:radial-gradient(circle at 50% 50%,#958c76 0 2.1px,#b9af97 2.4px 2.8px,#0000 3.2px);
   --s9-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .29 0 0 0 0 .22 0 0 0 1.4 -.55'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23f)' opacity='.16'/%3E%3C/svg%3E")}
-.s9-sdc[data-palier="CP0"]:not(.s13-sdc){--s9-encre:#2f2a21;--s9-papier:#f5eed9;--s9-perfo:#b8aa88}
+.s9-sdc:is([data-palier="CP0"],[data-palier="FSH"]):not(.s13-sdc){--s9-encre:#2f2a21;--s9-papier:#f5eed9;--s9-perfo:#b8aa88}
+/* Salle de Fessenheim (FSH ; planche 2, 278A du 29/10) : 275B : panneaux beige-crème (confirmé par un habitué de la
+   centrale) ; chaque TPL posé sur un petit carré à la teinte pastel que sa zone porte au CPY ; turquoise au mur des verrines, et en touches hors du mur. */
+.s9-sdc[data-palier="FSH"]{--fsh:#3e9a8c;--fsh-o:#2e6b60;--fsh-c:#5fb3a5;--cr:#ece4cf;--cr-c:#f6f1e3;--cr-f:#d9cfb5;background:linear-gradient(#e2dac4,#d4cab0)}
+.s9-sdc[data-palier="FSH"] :is(.s9-zone,.s9-repere){--z:var(--cr);--z2:var(--cr-c)}
+.s9-sdc[data-palier="FSH"] .s9-zone .s9-note{color:#4a3f30}
+.s9-sdc[data-palier="FSH"] .s9-panneau{background:linear-gradient(#e6dec8,#d8ceb4);border-color:#9d927a;box-shadow:inset 0 2px #f6f1e3}
+.s9-sdc[data-palier="FSH"] .s9-pupitre{background:#d3c8ad;border-color:#9d927a}
+/* teintes du CPY, portées par le seul carré du TPL */
+.s9-sdc[data-palier="FSH"] .s9-zone{--p:#f3efe4}
+.s9-sdc[data-palier="FSH"] .s9-teinte-blanc{--p:#f3efe4}.s9-sdc[data-palier="FSH"] .s9-teinte-beige{--p:#e3d4ae}
+.s9-sdc[data-palier="FSH"] .s9-teinte-creme{--p:#efe7cf}.s9-sdc[data-palier="FSH"] .s9-teinte-kaki{--p:#d8c497}
+.s9-sdc[data-palier="FSH"] .s9-teinte-verteau{--p:#a6d1bd}.s9-sdc[data-palier="FSH"] .s9-teinte-saumon{--p:#ebb9a1}
+.s9-sdc[data-palier="FSH"] .s9-tpl{background:var(--p);border:1px solid #8f8670;border-radius:2px;padding:4px 3px 3px;box-shadow:inset 0 1px #fff8}
+/* le mur : pas de synoptique (salle-900.js ne le dessine pas), la bande de verrines encadrée de turquoise ; enseigne : MW à gauche,
+   date et heure en rouge-orangé à droite (photos de la salle réelle de la tranche 1) */
+.s9-sdc[data-palier="FSH"] .s9-mur-ver{background:linear-gradient(var(--fsh-c),var(--fsh));border:6px solid var(--fsh-o);border-top-width:10px;box-shadow:inset 0 2px #8fd0c4}
+.s9-sdc[data-palier="FSH"] .s9-mur-ver .s9-v:not([data-mode=nouvelle],[data-mode=disparue]){outline:2px solid var(--fsh-o)}   /* sans écraser le cadre de C-04 */
+/* Retour d'Anthonin du 31/10 : du turquoise partout dans la salle, le volet replié compris, et le téléphone, qui n'a pas de volet : touches, barre et menu, cadres
+   des zones (les restes du Bugey : brun, bordeaux), bandeau du panneau, comme les bandeaux et les plinthes des photos ; les faces restent crème. Texte sombre sur
+   le turquoise : le blanc n'y fait que 3,4:1. Enfants directs du volet seulement : l'enseigne garde ses couleurs. */
+.s9-sdc[data-palier="FSH"]{--s9-bord:var(--fsh-o)}
+.s9-sdc[data-palier="FSH"] .s9-zone{background:var(--fsh-o)}
+.s9-sdc[data-palier="FSH"] .s9-panneau{border-top:6px solid var(--fsh)}
+.s9-sdc[data-palier="FSH"] .s9-mur-volet>summary{background:linear-gradient(var(--fsh-c),var(--fsh));border-color:var(--fsh-o);box-shadow:inset 0 1px #8fd0c4}
+.s9-sdc[data-palier="FSH"] .s9-mur-volet>summary>:is(b,span){color:#0b2420}
+.s9-sdc[data-palier="FSH"] .s9-mur-volet>summary>b::before{color:#0b2420}
+.s9-sdc[data-palier="FSH"] .s9-keys{background:linear-gradient(var(--fsh),var(--fsh-o))!important;border-color:var(--fsh-o)!important}
+.s9-sdc[data-palier="FSH"] .s9-dock{background:linear-gradient(var(--fsh),var(--fsh-o))!important;border-top-color:var(--fsh-o)!important}
+.s9-sdc[data-palier="FSH"] .n4-thumb-menu{background:linear-gradient(var(--fsh-c),var(--fsh))!important;border-color:var(--fsh-o)!important;color:#0b2420!important}
+.s9-sdc[data-palier="FSH"] .n4-thumb-menu b{color:#0b2420}
+/* Aide & missions (retour d'Anthonin du 31/10) : la page, dessinée dans le châssis, a sa crème par styleNatifPour ; ici le fond de son emplacement. */
+.s9-sdc[data-palier="FSH"] .s9-formation .n4-live-slot{background:#e6dec8!important}
+/* barre d'état et cadres des écrans : beige-crème comme les faces (relecture du 29/10 ; la règle commune est en !important) */
+.s9-sdc[data-palier="FSH"] .s9-quickbar{background:linear-gradient(#e6dec8,#d8ceb4)!important;box-shadow:inset 0 -1px #9d927a,0 2px 0 #8f8670!important}
+.s9-sdc[data-palier="FSH"] .s9-crt{background:linear-gradient(#e6dec8,#d4cab0);border-color:#9d927a;box-shadow:inset 0 1px #f6f1e3,0 2px 6px #0003}
+.s9-sdc[data-palier="FSH"] .s9-ens{background:#0b1210;border-color:#1d4a42;gap:18px}
+.s9-sdc[data-palier="FSH"] .s9-ens-mw{order:1}.s9-sdc[data-palier="FSH"] .s9-ens-h{order:2}
+.s9-sdc[data-palier="FSH"] .s9-ens-h :is(small,em){color:#ff8a2a}
+.s9-sdc[data-palier="FSH"] .s9-ens-h svg{filter:hue-rotate(24deg) saturate(1.15) brightness(1.08)}
 .s9-sdc:not(.s13-sdc) :is(.n4-mission,.n4-pq){border:0;border-radius:0;color:var(--s9-encre);font-family:var(--s9-machine);
   background:var(--s9-trou) 0 0/16px 20px repeat-y,var(--s9-trou) 100% 0/16px 20px repeat-y,
     repeating-linear-gradient(var(--s9-perfo) 0 3px,#0000 3px 7px) 16px 0/1px 100% no-repeat,

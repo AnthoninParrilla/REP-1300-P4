@@ -1,0 +1,341 @@
+/* SIMUREP · © 2026 AnthoninP · Tous droits réservés. Classeur de synoptiques de Fessenheim (sdc/classeur-900.js), posé sur le pupitre.
+   Couverture en toile vinyle vert sapin, porte-étiquette, mécanisme à quatre anneaux, feuilles A3 perforées en papier jauni, encre au
+   tire-ligne (fusion « multiply » sur le grain du papier), coins cornés pour tourner, épaisseur des piles, ombres portées. Aucun fond noir. */
+.s9-classeur,.s9-cl-lentille{
+  --cl-encre:#1d1a16;--cl-encre-l:#8d8574;--cl-stylo:#1b3a86;--cl-cadre:rgba(250,246,233,.94);--cl-papier-plein:rgba(244,237,216,.96);
+  --cl-prim:#b4302a;--cl-prim-l:#e9a59a;--cl-pf:#1f55c8;--cl-pf-l:#a9c0ee;--cl-vap:#c97818;--cl-vap-l:#f0c98a;--cl-are:#2e7a45;--cl-are-l:#a9d3a8;--cl-asg:#2a9fd6;--cl-asg-l:#b3def3;
+  --cl-ris:#6e3f92;--cl-ris-l:#cdb3e0;--cl-rra:#8a8a1a;--cl-rra-l:#dcdca0;--cl-rri:#23306e;--cl-rri-l:#b3b8d6;--cl-sec:#13867a;--cl-sec-l:#a6d8cf;
+  --cl-hta:#9a2a6a;--cl-hta-l:#e3b3cf;--cl-sb:#6b4a22;--cl-sb-l:#e6d3b0;
+  --cl-papier:#f1e8cf;--cl-sapin:#1f4d3a;--cl-foret:#2f7a4f;--cl-sapin-f:#163a2b;--cl-sapin-n:#102c20}
+.s9-classeur{
+  --cl-toile:repeating-linear-gradient(0deg,rgba(200,235,210,.055) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(6,28,18,.2) 0 1px,transparent 1px 3px);
+  --cl-dos:clamp(12px,2.1cqi,46px);--u:min(1cqi,30.9px);--cl-lourd:1.05s cubic-bezier(.6,.04,.4,.96);
+  container-type:inline-size;position:relative;display:block;color:var(--cl-encre);font-family:Arial,Helvetica,sans-serif;outline:none}
+/* ── Le pupitre : stratifié crème de la salle 900, grain fin, lumière de plafond ── */
+.s9-cl-pupitre{position:relative;padding:clamp(18px,3.4cqi,90px) clamp(16px,3.2cqi,96px) clamp(26px,4cqi,110px);border-radius:6px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 18%,rgba(255,252,240,.55),rgba(255,252,240,0) 60%),radial-gradient(140% 120% at 50% 50%,rgba(0,0,0,0) 55%,rgba(60,48,28,.22)),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+  linear-gradient(#e2d9bd,#d5cbab);box-shadow:inset 0 1px 0 #f6f0dc,inset 0 -2px 0 #b8ad8e}
+/* ── Le livre : deux demi-plats et le dos ; fermé, il se recentre sur son plat droit ── */
+.s9-cl-livre{position:relative;display:grid;grid-template-columns:1fr var(--cl-dos) 1fr;max-width:2900px;margin:0 auto;perspective:3600px;touch-action:pan-y pinch-zoom}
+.s9-classeur[data-feuille="0"] .s9-cl-livre{transform:translateX(calc(-25% - var(--cl-dos) / 4))}
+.s9-cl-gauche,.s9-cl-droite{position:relative;aspect-ratio:420/297;min-width:0}
+/* plats intérieurs : toile vinyle et carton, débordant des feuilles */
+.s9-cl-plat{position:absolute;top:-2.6%;bottom:-2.6%;border-radius:6px;border:1px solid #0f2a1e;background:var(--cl-toile),
+  linear-gradient(100deg,var(--cl-sapin-f),#286248 14%,var(--cl-sapin-f) 16%,var(--cl-sapin) 40%,var(--cl-sapin-f));
+  box-shadow:0 2px 0 #7b8367,0 5px 0 #13301f,3px 13px 15px rgba(61,52,42,.38),17px 30px 31px rgba(64,59,43,.25),inset 0 1px 0 rgba(255,255,255,.1)}
+.s9-cl-plat-g{left:-2.8%;right:0;border-radius:6px 2px 2px 6px}.s9-cl-plat-d{right:-2.8%;left:0;border-radius:2px 6px 6px 2px}
+.s9-cl-plat::after{content:"";position:absolute;inset:5px;border:1px solid rgba(212,209,174,.18);border-radius:4px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(0,0,0,.08));box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),inset 0 0 18px rgba(0,0,0,.25)}
+/* piles : tranches des feuilles déjà tournées (à gauche) et des suivantes (à droite) */
+.s9-cl-pile{position:absolute;inset:0;border-radius:1px;background:#e9dfc3}
+.s9-cl-pile-d{box-shadow:calc(var(--n)*.09px + .6px) calc(var(--n)*.12px + .8px) 0 #dcd1b2,calc(var(--n)*.18px + 1.2px) calc(var(--n)*.24px + 1.6px) 0 #c9bd9c,calc(var(--n)*.27px + 1.8px) calc(var(--n)*.36px + 2.4px) 0 #e4d9bb,calc(var(--n)*.36px + 2.6px) calc(var(--n)*.5px + 3.2px) 1px #b3a685,0 4px 10px rgba(40,30,12,.35)}
+.s9-cl-pile-g{box-shadow:calc(var(--n)*-.09px - .6px) calc(var(--n)*.12px + .8px) 0 #dcd1b2,calc(var(--n)*-.18px - 1.2px) calc(var(--n)*.24px + 1.6px) 0 #c9bd9c,calc(var(--n)*-.27px - 1.8px) calc(var(--n)*.36px + 2.4px) 0 #e4d9bb,calc(var(--n)*-.36px - 2.6px) calc(var(--n)*.5px + 3.2px) 1px #b3a685,0 4px 10px rgba(40,30,12,.35)}
+/* ── La feuille : papier jauni, grain, fibres, bords plus roux ; l'encre se fond au papier ── */
+.s9-cl-page{position:absolute;inset:0;overflow:hidden;border-radius:1px;background-color:var(--cl-papier);
+  background-image:radial-gradient(130% 125% at 48% 42%,rgba(255,250,232,.5),rgba(255,250,232,0) 55%,rgba(176,136,62,.16) 88%,rgba(150,108,40,.3)),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .05' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .25 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  box-shadow:inset 0 0 0 .5px rgba(120,96,50,.35),inset 0 0 28px rgba(150,112,48,.12)}
+.s9-cl-recto{box-shadow:inset 0 0 0 .5px rgba(120,96,50,.35),inset 0 0 28px rgba(150,112,48,.12),inset 18px 0 22px -14px rgba(60,44,18,.28)}
+.s9-cl-verso{box-shadow:inset 0 0 0 .5px rgba(120,96,50,.35),inset 0 0 28px rgba(150,112,48,.12),inset -18px 0 22px -14px rgba(60,44,18,.28)}
+.s9-cl-dessin,.s9-cl-trous{position:absolute;inset:0;width:100%;height:100%;display:block}
+.s9-cl-encre{mix-blend-mode:multiply;opacity:.93}
+.s9-cl-t{opacity:.96}
+.s9-cl-trou{fill:#1b3a2b;stroke:rgba(80,60,30,.55);stroke-width:.5}
+.s9-cl-oeillet{fill:rgba(250,247,238,.85);stroke:rgba(150,130,90,.45);stroke-width:.25}
+.s9-cl-transparence .s9-cl-oeillet{display:none}
+.s9-cl-rel rect:first-of-type{filter:none}
+/* verso : l'encre de la feuille transparaît à l'envers */
+.s9-cl-transparence{position:absolute;inset:0;transform:scaleX(-1);opacity:.1;filter:blur(.5px) grayscale(.4)}
+.s9-cl-transparence .s9-cl-trou{display:none}
+/* ── Revers de la couverture : papier de garde gris vert ── */
+.s9-cl-revers{position:absolute;inset:0;border-radius:2px;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"),linear-gradient(170deg,#8fa294,#7a8f80);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),inset -16px 0 20px -12px rgba(0,0,0,.35)}
+/* ── Couverture fermée : toile vinyle vert sapin, porte-étiquette chromé, rivets, tranche des feuilles ── */
+.s9-cl-couv{position:absolute;top:-2.6%;bottom:-2.6%;left:0;right:-2.8%;border-radius:3px 7px 7px 3px;border:1px solid #0f2a1e;background:
+  radial-gradient(ellipse at 22% 20%,rgba(135,170,140,.16),transparent 70%),var(--cl-toile),
+  linear-gradient(100deg,var(--cl-sapin-f),var(--cl-sapin) 30%,#22543f 55%,var(--cl-sapin-f));
+  box-shadow:inset 0 -3px 6px rgba(0,0,0,.2),inset -1px -2px 0 rgba(135,149,125,.45),0 1px 1px rgba(10,30,20,.5),3px 12px 14px rgba(61,52,42,.38),15px 26px 32px rgba(64,59,43,.24)}
+.s9-cl-couv::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,rgba(6,20,13,.55) 0,rgba(120,170,135,.22) 2px,rgba(47,122,79,.12) 4px,rgba(0,0,0,0) 8px),radial-gradient(14% 18% at 100% 100%,rgba(190,210,190,.16),transparent),radial-gradient(14% 18% at 100% 0,rgba(190,210,190,.14),transparent),radial-gradient(60% 40% at 70% 80%,rgba(0,0,0,.08),transparent)}
+.s9-cl-couv::before{content:"";position:absolute;inset:2.4%;border-radius:4px;border:1px solid rgba(0,0,0,.25);box-shadow:0 1px 0 rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.06)}
+/* ── Étiquette de couverture : le dessin de Codex (lot D2), recopié tel quel sous la
+      couverture : porte-fiche en tôle nickelée emboutie, deux fixations à tête ronde, fiche de carton crème mate, frappe à la machine. ── */
+.s9-cl-etiq-pos{position:absolute;left:50%;top:13%;width:min(54%,850px);transform:translateX(-50%)}
+.s9-cl-couv .s9-cl-etiquette {
+  container: s9-etiquette / inline-size;
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  color: #302f29;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3;
+  text-shadow: none;
+}
+.s9-cl-couv .s9-cl-etiquette,
+.s9-cl-couv .s9-cl-etiquette *,
+.s9-cl-couv .s9-cl-etiquette *::before,
+.s9-cl-couv .s9-cl-etiquette *::after { box-sizing: border-box; }
+
+/* Tôle mince : arêtes rabattues, lumière diffuse, gris légèrement chaud.
+   Les surfaces restent lisses ; quelques traces locales, pas de zébrures. */
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__cadre {
+  position: relative;
+  padding: max(4px, 1.35%) 5.2% max(5px, 1.55%);
+  border: 1px solid #666c62;
+  border-top-color: #b5b8aa;
+  border-bottom-color: #464e44;
+  border-radius: clamp(3px, .7cqi, 6px);
+  background:
+    linear-gradient(106deg, transparent 8%, #f1efdb30 12%, transparent 19% 76%, #293c2b17 90%, transparent),
+    radial-gradient(ellipse at 1% 100%, #635e4852, transparent 26%),
+    radial-gradient(ellipse at 99% 0%, #56605138, transparent 24%),
+    linear-gradient(180deg, #d1d1c2 0%, #b3b8ad 4%, #8e978d 8%, #a8aea3 47%, #b8bbb0 88%, #d1d1c1 96%, #8c9386 100%);
+  box-shadow:
+    inset 1px 0 0 #e4e3d054,
+    inset -1px 0 0 #38443542,
+    0 1px 0 #10271f,
+    0 2px 2px #0920176b,
+    0 5px 7px -5px #06150ec9;
+}
+/* Le rebord presse le carton. Le trait sombre supérieur est la glissière. */
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__cadre::before {
+  content: "";
+  position: absolute;
+  top: max(2px, .55cqi);
+  left: 6%;
+  right: 6%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #4b5245b3 8% 90%, transparent);
+  box-shadow: 0 1px 0 #e2e0ca61;
+  pointer-events: none;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__cadre::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(177deg, transparent 43%, #f4efdc47 46% 48%, transparent 51%) 19% 1% / 13% 3px no-repeat,
+    linear-gradient(4deg, transparent 44%, #474b3945 46% 49%, transparent 51%) 78% 99% / 9% 3px no-repeat;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__rivet {
+  position: absolute;
+  top: 50%;
+  left: 1.65%;
+  width: clamp(4px, 1.65cqi, 12px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border: 1px solid #687062;
+  border-top-color: #c3c6b7;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 38% 28%, #d4d3bf, #a7aea0 42%, #929b8d 72%, #727c6e);
+  box-shadow: 0 1px 1px #29392bcc, 0 0 0 1px #61684b25;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__rivet--droit { left: auto; right: 1.65%; }
+
+/* Carton non couché, légèrement ivoire. Fibres et poussières sont discrètes
+   et non périodiques à l'échelle du texte. Aucune image ni filtre SVG. */
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__fiche {
+  position: relative;
+  margin: 0;
+  padding: clamp(13px, 3.4cqi, 30px) clamp(12px, 3.8cqi, 34px) clamp(11px, 2.7cqi, 24px);
+  border: 1px solid #777d69;
+  border-right-color: #8f947c;
+  border-bottom-color: #c3c3aa;
+  background:
+    radial-gradient(ellipse at 0% 3%, #9b874c1c, transparent 31%),
+    radial-gradient(ellipse at 97% 98%, #99854c19, transparent 26%),
+    radial-gradient(ellipse at 26% 71%, #ffffff45, transparent 52%),
+    radial-gradient(circle at 16% 23%, #6b603329 0 .5px, transparent .9px),
+    radial-gradient(circle at 81% 68%, #6b603324 0 .5px, transparent 1px),
+    radial-gradient(circle at 61% 87%, #6b603324 0 .4px, transparent .8px),
+    linear-gradient(100deg, #e7e2cd, #eee9d7 34%, #e9e5d1 85%, #e3dfca);
+  box-shadow: inset 0 2px 2px #323b2940, inset 1px 0 1px #555d382e, 0 1px 0 #e1e0cb94;
+  font-size: clamp(11px, 3.05cqi, 24px);
+  letter-spacing: .015em;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__centrale {
+  display: block;
+  margin: 0;
+  font: inherit;
+  text-transform: uppercase;
+  letter-spacing: .035em;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__titre {
+  display: block;
+  margin: .72em 0 .68em;
+  padding: 0;
+  color: #292b25;
+  font: 700 1.55em/1.16 "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  letter-spacing: .045em;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__titre span { display: block; }
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__pied {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: .6em 1.5em;
+  margin: 0;
+  padding-top: .7em;
+  border-top: 1px solid #666a536e;
+  font: inherit;
+}
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__edition { white-space: nowrap; }
+.s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__tranche { white-space: nowrap; font-weight: 700; }
+@container s9-etiquette (min-width: 380px) {
+  .s9-cl-couv .s9-cl-etiquette .s9-cl-etiquette__pied { justify-content: space-between; }
+}
+
+/* charnière : la toile se plie à quelques millimètres du bord de reliure (rainure ombrée, lèvre éclairée) */
+.s9-cl-charniere{position:absolute;top:0;bottom:0;left:2.6%;width:3px;background:linear-gradient(90deg,rgba(4,16,10,.5),rgba(4,16,10,.15) 45%,rgba(150,200,165,.2) 70%,rgba(0,0,0,0));pointer-events:none}
+/* griffe SIMUREP sérigraphiée : les deux carrés bleus de l'enregistreur à points */
+.s9-cl-griffe{--g:clamp(18px,calc(var(--u) * 2.4),72px);position:absolute;left:7%;bottom:7%;display:flex;gap:calc(var(--g) * .044);opacity:.9;box-shadow:none}
+.s9-cl-griffe i{display:grid;place-items:center;width:var(--g);height:var(--g);background:var(--cl-toile),#5d9fd4}.s9-cl-griffe i+i{width:calc(var(--g) * 1.088)}
+.s9-cl-griffe b{font:700 calc(var(--g) * .19)/1 Helvetica,Arial,sans-serif;color:#eef5fb;letter-spacing:.01em}
+.s9-classeur[data-feuille="0"] .s9-cl-dos{background:none;box-shadow:none}
+/* ── Dos ouvert : mécanisme chromé et quatre anneaux qui passent dans les perforations ── */
+.s9-cl-dos{position:relative;z-index:6}
+.s9-classeur:not([data-feuille="0"]) .s9-cl-dos{background:linear-gradient(90deg,#0f281d,#21503b 30%,#2a5e46 50%,#21503b 70%,#0f281d);margin:-2.6% 0;box-shadow:inset 0 0 6px rgba(0,0,0,.6)}
+.s9-cl-meca{position:absolute;left:8%;right:8%;top:3%;bottom:5%;border-radius:50% / 2%;background:linear-gradient(90deg,#787e74,#d5d5bf 12%,#92988b 25%,#ececdb 49%,#9da497 58%,#5d695f 77%,#bec3ad 93%,#5f675b);box-shadow:2px 2px 5px rgba(20,40,28,.5),inset 0 0 1px 1px #e2e1cc}
+.s9-cl-meca::before,.s9-cl-meca::after{content:"";position:absolute;left:30%;width:40%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#c2c5b8,#6c786b 48%,#3d4c3e 50%,#b9c4b1 60%);box-shadow:0 0 0 1px #637365}
+.s9-cl-meca::before{top:2%}.s9-cl-meca::after{bottom:2%}
+.s9-cl-levier{position:absolute;bottom:5%;left:-40%;width:180%;height:3.2%;background:linear-gradient(90deg,#839183,#dfe0c9,#6b786b);border:1px solid #737b6b;transform:rotate(-8deg);border-radius:3px;box-shadow:2px 4px 4px rgba(30,47,33,.4)}
+.s9-cl-anneau{position:absolute;z-index:4;top:var(--y);left:50%;width:calc(100% + (min(100cqi - 2 * clamp(16px,3.2cqi,96px),2900px) - var(--cl-dos)) * 12 / 420);height:clamp(10px,2.1cqi,52px);transform:translate(-50%,-50%) rotate(-5deg);border-radius:48%;
+  border:clamp(3px,.42cqi,13px) solid #bbbcae;border-bottom-color:#656f64;border-top-color:#f5f2df;border-right-color:#a8b0a3;box-shadow:1px 4px 4px rgba(23,36,31,.4),inset 0 2px 3px rgba(53,68,53,.45)}
+.s9-cl-anneau b{position:absolute;height:100%;width:2px;left:53%;top:0;background:#536058;box-shadow:1px 0 #f0efdf}
+/* ── Coins cornés : de vrais boutons ; le rabat montre le verso du papier, la feuille de dessous apparaît ── */
+.s9-cl-corne{--v:clamp(14px,2.1cqi,40px);position:absolute;z-index:6;bottom:0;width:max(44px,var(--v));height:max(44px,var(--v));padding:0;border:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.s9-cl-suiv{right:0}.s9-cl-prec{left:0}
+.s9-cl-corne::before,.s9-cl-corne i{content:"";position:absolute;bottom:0;width:var(--v);height:var(--v);transition:width .28s cubic-bezier(.3,.1,.2,1),height .28s cubic-bezier(.3,.1,.2,1)}
+.s9-cl-suiv::before,.s9-cl-suiv i{right:0}.s9-cl-prec::before,.s9-cl-prec i{left:0}
+/* sous le rabat : la feuille de dessous, ombrée près du pli */
+.s9-cl-suiv::before{clip-path:polygon(100% 0,100% 100%,0 100%);background:linear-gradient(315deg,#efe6cb 30%,#cfc3a1 62%)}
+.s9-cl-prec::before{clip-path:polygon(0 0,100% 100%,0 100%);background:linear-gradient(45deg,#efe6cb 30%,#cfc3a1 62%)}
+.s9-cl-corne i{filter:drop-shadow(-1px -1px 1.5px rgba(50,36,12,.4)) drop-shadow(-4px -4px 6px rgba(50,36,12,.2))}
+.s9-cl-prec i{filter:drop-shadow(1px -1px 1.5px rgba(50,36,12,.4)) drop-shadow(4px -4px 6px rgba(50,36,12,.2))}
+/* le rabat : verso du papier, plus clair au pli, la pointe dans l'ombre */
+.s9-cl-corne i::after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,0 100%);background:linear-gradient(135deg,#d3c7a5 0%,#ebe2c6 38%,#fbf6e8 62%,#e9e0c4 100%)}
+.s9-cl-prec i::after{clip-path:polygon(0 0,100% 0,100% 100%);background:linear-gradient(225deg,#d3c7a5 0%,#ebe2c6 38%,#fbf6e8 62%,#e9e0c4 100%)}
+:is(.s9-classeur[data-feuille="0"],.s9-cl-face-av) .s9-cl-suiv i::after{background:linear-gradient(135deg,#6a8071 0%,#859a8b 40%,#a5b7a7 65%,#7a8e80)}
+:is(.s9-classeur[data-feuille="0"],.s9-cl-face-av) .s9-cl-suiv::before{background:linear-gradient(315deg,#efe6cb 30%,#cfc3a1 62%)}
+:is(.s9-classeur[data-feuille="0"],.s9-cl-face-av) .s9-cl-suiv{right:-2.8%;bottom:-2.6%}
+.s9-cl-corne:focus-visible{--v:clamp(30px,3.4cqi,90px)}
+.s9-cl-corne:active{--v:clamp(36px,4cqi,104px)}
+.s9-cl-corne:focus-visible{outline:none}
+.s9-cl-corne:focus-visible::after{content:"";position:absolute;inset:-3px;border:2px dashed #1b3a86;border-radius:4px}
+/* ── Feuille qui tourne autour des anneaux ── */
+.s9-cl-anim{position:absolute;inset:0;z-index:5;pointer-events:none}
+.s9-cl-sous{position:absolute;top:0;bottom:0;width:calc(50% - var(--cl-dos) / 2)}.s9-cl-sous-g{left:0}.s9-cl-sous-d{right:0}
+.s9-cl-sous:empty{display:none}
+.s9-cl-volant{position:absolute;top:0;bottom:0;right:0;width:calc(50% - var(--cl-dos) / 2);transform-origin:calc(var(--cl-dos) / -2) 50%;transform-style:preserve-3d;animation:s9-cl-tourne .85s cubic-bezier(.35,.05,.25,1) both;z-index:2}
+.s9-cl-anim-prec .s9-cl-volant{animation-name:s9-cl-revient}
+.s9-cl-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.s9-cl-face-ar{transform:rotateY(180deg)}
+.s9-cl-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(40,28,10,.35),rgba(40,28,10,0) 40%,rgba(255,255,255,.18) 75%,rgba(40,28,10,.12));opacity:0;animation:s9-cl-ombre .85s ease both}
+@keyframes s9-cl-tourne{0%{transform:rotateY(0)}45%{transform:rotateY(-80deg) skewY(-1.2deg)}100%{transform:rotateY(-180deg)}}
+@keyframes s9-cl-revient{0%{transform:rotateY(-180deg)}55%{transform:rotateY(-100deg) skewY(1.2deg)}100%{transform:rotateY(0)}}
+@keyframes s9-cl-ombre{0%,100%{opacity:0}50%{opacity:1}}
+/* ── La couverture n'est pas une feuille (retour 7, 31/10) : une planche lourde, en perspective, d'une seule courbe. Le livre glisse sous elle, le dos
+      et ses anneaux se découvrent, le côté gauche reste vide jusqu'à l'atterrissage. Devant les anneaux tant qu'elle couvre la feuille, derrière une fois basculée. ── */
+.s9-classeur[data-anim] .s9-cl-gauche>*{visibility:hidden}
+.s9-classeur[data-anim] .s9-cl-livre{animation:s9-cl-glisse var(--cl-lourd) both}
+.s9-classeur[data-anim="ferme"] .s9-cl-livre{animation-name:s9-cl-glisse-retour}
+.s9-classeur[data-anim="ouvre"] .s9-cl-dos{animation:s9-cl-dos-ouvre var(--cl-lourd) both}
+.s9-classeur[data-anim="ferme"] .s9-cl-dos{animation:s9-cl-dos-ferme var(--cl-lourd) both}
+.s9-classeur[data-anim="ouvre"] .s9-cl-plat-d{animation:s9-cl-plat-ouvre var(--cl-lourd) both}
+.s9-classeur[data-anim="ferme"] .s9-cl-plat-d{animation:s9-cl-plat-ferme var(--cl-lourd) both}
+.s9-cl-anim-couv{z-index:7;perspective:calc(var(--u) * 400);animation:s9-cl-plan-ouvre var(--cl-lourd) both}
+.s9-cl-anim-couv.s9-cl-anim-prec{animation-name:s9-cl-plan-ferme}
+.s9-cl-anim-couv .s9-cl-volant{animation:s9-cl-couv-ouvre var(--cl-lourd) both}
+.s9-cl-anim-couv.s9-cl-anim-prec .s9-cl-volant{animation-name:s9-cl-couv-ferme}
+.s9-cl-anim-couv .s9-cl-face::after{animation:s9-cl-ombre var(--cl-lourd) both}
+/* l'ombre que la planche jette sur la feuille : elle se lève avec elle */
+.s9-cl-anim-couv::before{content:"";position:absolute;top:0;bottom:0;right:0;width:calc(50% - var(--cl-dos) / 2);background:linear-gradient(90deg,rgba(24,18,6,.55),rgba(24,18,6,.14));animation:s9-cl-jour-ouvre var(--cl-lourd) both}
+.s9-cl-anim-couv.s9-cl-anim-prec::before{animation-name:s9-cl-jour-ferme}
+@keyframes s9-cl-couv-ouvre{from{transform:rotateY(0)}to{transform:rotateY(-180deg)}}
+@keyframes s9-cl-couv-ferme{from{transform:rotateY(-180deg)}to{transform:rotateY(0)}}
+@keyframes s9-cl-plan-ouvre{0%,50%{z-index:7}50.01%,100%{z-index:5}}
+@keyframes s9-cl-plan-ferme{0%,50%{z-index:5}50.01%,100%{z-index:7}}
+@keyframes s9-cl-jour-ouvre{0%{opacity:1}55%,100%{opacity:0}}
+@keyframes s9-cl-jour-ferme{0%,45%{opacity:0}100%{opacity:1}}
+@keyframes s9-cl-dos-ouvre{0%,25%{opacity:0}55%,100%{opacity:1}}
+@keyframes s9-cl-dos-ferme{0%,45%{opacity:1}75%,100%{opacity:0}}
+@keyframes s9-cl-plat-ouvre{from{box-shadow:none}}
+@keyframes s9-cl-plat-ferme{to{box-shadow:none}}
+@keyframes s9-cl-glisse{from{transform:translateX(calc(-25% - var(--cl-dos) / 4))}to{transform:none}}
+@keyframes s9-cl-glisse-retour{from{transform:none}to{transform:translateX(calc(-25% - var(--cl-dos) / 4))}}
+@media (prefers-reduced-motion:reduce){.s9-cl-anim{display:none}.s9-cl-corne{transition:none}}
+/* ── Légende sous le classeur et relevés de la feuille (fiche de relevés, utile au téléphone) ── */
+.s9-cl-aide{margin:clamp(8px,1.2cqi,20px) 0 0;text-align:center;font:600 clamp(12px,.9cqi,20px)/1.3 Arial,sans-serif;color:#4a4030;letter-spacing:.02em}
+.s9-cl-releves{margin:10px auto 0;max-width:1100px;background:#f4ecd4;border:1px solid #c9bd99;border-radius:2px;box-shadow:0 2px 6px rgba(60,44,18,.2);font:14px/1.35 Arial,sans-serif}
+.s9-cl-releves summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:10px;padding:0 14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:13px}
+.s9-cl-releves summary span{display:inline-grid;place-items:center;min-width:24px;height:22px;border-radius:11px;background:#d9ceb0;font-size:12px}
+.s9-cl-releves dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:0;margin:0;padding:4px 14px 12px}
+.s9-cl-releves dl div{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid rgba(80,110,170,.3);margin-right:14px}
+.s9-cl-releves dt{font-size:12px;color:#4a4030}.s9-cl-releves dd{margin:0;font:700 14px "Courier New",Courier,monospace;color:#1b3a86;white-space:nowrap}
+/* ── Zoom sans bouton (retour 8, 31/10). Pincement limité au dessin (102A, n4.js), en largeur réelle au lâcher : le navigateur redessine le vecteur, aucune image ne reste ; pendant le geste, voir plus bas (290A).
+      À ×1, un doigt tourne la feuille ou fait défiler la page ; zoomée, il défile le cadre. Sans coin arrondi : un clip arrondi casse le chemin rapide d'iOS (index.html). ── */
+.s9-cl-page[data-n4-pince]{touch-action:pan-y}
+.s9-cl-droite:has(>.s9-cl-page[data-n4-pince-zoom]){aspect-ratio:auto}
+.s9-cl-livre:has(.s9-cl-page[data-n4-pince-zoom]) .s9-cl-gauche{aspect-ratio:auto}
+.s9-cl-page[data-n4-pince-zoom]{position:relative;inset:auto;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x pan-y;border-radius:0}
+/* Papier repris par le dessin, ici et sous la lentille : WebKit met le contenu défilé ou transformé sur sa propre couche, le « multiply » de l'encre n'y verrait plus le papier (cadres de relevés blanchis, vu au compositeur). */
+.s9-cl-page[data-n4-pince-zoom]>.s9-cl-dessin{position:relative;inset:auto;height:auto;background:inherit}
+/* 290A (01/11) : pendant le geste, le dessin seul bouge, sur sa couche : origine au coin pour les comptes de monter, papier repris comme au zoom (multiply), sans coin arrondi.
+   À ×1, l'ombre de la feuille, que ce papier couvrirait, est reprise aussi : poser deux doigts ne change rien à l'écran. */
+.s9-cl-page[data-s9-cl-geste]{border-radius:0}
+.s9-cl-page[data-s9-cl-geste]>.s9-cl-dessin{transform-origin:0 0;will-change:transform;background:inherit}
+.s9-cl-page[data-s9-cl-geste]:not([data-n4-pince-zoom])>.s9-cl-dessin{box-shadow:inherit}
+/* La loupe du PC : une lentille de verre qui suit la souris, que tout traverse ; la petite loupe, dans la marge du pupitre, l'éteint. */
+.s9-cl-lentille{position:fixed;left:0;top:0;z-index:30;display:none;overflow:hidden;border-radius:50%;pointer-events:none;background:var(--cl-papier);will-change:transform;box-shadow:0 0 0 2px #5b5f58,0 0 0 6px #c9ccc0,0 0 0 7px #4a4d48,0 10px 22px rgba(40,30,12,.45)}
+.s9-cl-lentille svg{position:absolute;left:0;top:0;display:block;background:var(--cl-papier);will-change:transform}
+.s9-cl-loupe-b{display:none;position:absolute;z-index:2;top:clamp(1px,calc(1.28cqi - 15px),10px);right:clamp(16px,3.2cqi,96px);width:30px;height:30px;padding:4px;margin:0;border:0;border-radius:50%;background:none;color:#4a4030;cursor:pointer}
+.s9-cl-loupe-b svg{display:block;width:100%;height:100%;fill:rgba(255,252,240,.45);stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.s9-cl-loupe-b:hover{background:rgba(255,252,240,.5)}.s9-cl-loupe-b:focus-visible{outline:2px dashed #1b3a86;outline-offset:-2px}
+.s9-cl-loupe-barre{display:none}.s9-cl-loupe-b[aria-pressed="false"]{color:#7d7360}.s9-cl-loupe-b[aria-pressed="false"] .s9-cl-loupe-barre{display:block}
+.n4-sdc .s9-cl-loupe-b{min-height:0}
+/* Le bouton garde ses 30 px quand la fenêtre rétrécit : au PC, la marge du haut lui laisse 32 px au-dessus du plat, qui déborde de la feuille de 2,6 % de sa hauteur (.85cqi en double page, 1.7cqi en feuille seule). */
+@media (hover:hover) and (pointer:fine){.s9-cl-loupe-b{display:block}.s9-classeur .s9-cl-pupitre{padding-top:max(clamp(18px,3.4cqi,90px),calc(32px + .85cqi))}}
+/* ── Les feuilles mènent aux panneaux (retour 9, 31/10) : zones transparentes, le dessin d'époque reste intact ; au survol, un tireté à l'encre du stylo et un voile. ── */
+.s9-cl-lien{fill:transparent;stroke:none;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+@media (hover:hover){.s9-cl-lien:hover{fill:rgba(27,58,134,.06);stroke:var(--cl-stylo);stroke-width:1px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}}
+.s9-cl-lien:focus-visible{stroke:var(--cl-stylo);stroke-width:2px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+/* ── Dépliant des relevés (téléphone) : bande de papier pliée en accordéon, plis alternés, ombres de pli, lettrage du classeur ── */
+.s9-cl-depliant{display:none;position:relative;border-radius:2px;background-color:var(--cl-papier);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");box-shadow:inset 0 0 0 .5px rgba(120,96,50,.4),inset 0 0 18px rgba(150,112,48,.12)}
+.s9-cl-pli{position:relative;margin:0;padding:0;border:0;background:none}
+.s9-cl-pli svg{display:block;width:100%;height:auto;position:relative;z-index:1}.s9-cl-pli svg path{mix-blend-mode:multiply}
+/* une seule bande : les volets sont jointifs ; seuls l'ombre et la lumière de chaque pan et le pli (creux sombre, arête claire) les séparent */
+.s9-cl-pli::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2}
+.s9-cl-pli-a::after{background:linear-gradient(180deg,rgba(255,252,240,.4),rgba(255,252,240,0) 35%,rgba(120,96,50,.05) 70%,rgba(80,60,25,.22))}
+.s9-cl-pli-b::after{background:linear-gradient(180deg,rgba(80,60,25,.2),rgba(120,96,50,.05) 30%,rgba(255,252,240,0) 65%,rgba(255,252,240,.35))}
+.s9-cl-pli+.s9-cl-pli::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(70,52,20,.38),rgba(255,252,238,.5))}
+/* ── Feuille seule (moins de 900 px de classeur) : le plat gauche disparaît, les anneaux restent au bord gauche ── */
+@container (max-width:900px){
+  .s9-cl-releves{display:none}
+  @media (pointer:coarse){.s9-classeur:not([data-feuille="0"]) .s9-cl-aide::after{content:" · pince pour agrandir";font-weight:400}}
+  .s9-cl-depliant{display:block;margin:16px 6px 6px;filter:drop-shadow(0 1px 1px rgba(60,44,18,.3)) drop-shadow(0 8px 10px rgba(60,44,18,.25))}
+  .s9-cl-livre{grid-template-columns:0 var(--cl-dos) 1fr}
+  .s9-cl-gauche{visibility:hidden;aspect-ratio:auto}.s9-cl-gauche .s9-cl-prec{visibility:visible;left:calc(var(--cl-dos) + 0px)}
+  .s9-classeur[data-feuille="0"] .s9-cl-livre{transform:none}
+  .s9-cl-anneau{width:calc(var(--cl-dos) + (100cqi - 2 * clamp(16px,3.2cqi,96px) - var(--cl-dos)) * 24 / 420);border-width:2px}
+  .s9-cl-sous-g{display:none}
+  .s9-cl-volant{width:calc(100% - var(--cl-dos))}.s9-cl-sous-d{width:calc(100% - var(--cl-dos))}
+  /* pas de côté gauche : passé 90°, la planche sort de l'écran ; la courbe passe 90° aux trois quarts, pour ne rien laisser attendre ; son dos ne laisse pas de bande sur les anneaux */
+  .s9-classeur[data-anim="ouvre"] .s9-cl-pupitre{--cl-lourd:.9s cubic-bezier(.55,.05,.8,.55)}
+  .s9-classeur[data-anim="ferme"] .s9-cl-pupitre{--cl-lourd:.9s cubic-bezier(.2,.45,.45,.95)}
+  .s9-classeur[data-anim] :is(.s9-cl-livre,.s9-cl-plat-d),.s9-cl-anim-couv,.s9-cl-anim-couv.s9-cl-anim-prec{animation:none}
+  .s9-cl-anim-couv{perspective:calc(var(--u) * 1000)}
+  .s9-cl-anim-couv::before{width:calc(100% - var(--cl-dos))}
+  .s9-cl-anim-couv .s9-cl-face-ar{visibility:hidden}
+  @media (hover:hover) and (pointer:fine){.s9-classeur .s9-cl-pupitre{padding-top:calc(32px + 1.7cqi)}}
+}
+@container (max-width:560px){.s9-cl-pupitre{padding:14px 16px 22px 12px}.s9-cl-releves dl{grid-template-columns:1fr}}

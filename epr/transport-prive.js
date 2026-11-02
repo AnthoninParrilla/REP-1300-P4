@@ -23,7 +23,8 @@
   async function connect(win,config){
     for(let i=0;!win.__net&&i<100;i++)await new Promise(r=>setTimeout(r,50));
     if(!win.__net||!win.CNPE)throw Error('Liaison au poste indisponible');
-    const site=win.__SITES.find(s=>s.n===config.site);if(!site||!await win.CNPE.take(site,config.unit))throw Error('Prise de quart refusée');
+    const site=win.__SITES.find(s=>s.n===config.site);if(site&&site.reveil&&site.p==='\u2020')throw Error('Centrale arrêtée');   // un site endormi (Retour après « Rendormir », adresse directe) n'est pas une panne du moteur
+    if(!site||!await win.CNPE.take(site,config.unit))throw Error('Prise de quart refusée');
     const net=win.__net,key=config.site+'|'+config.unit,u=net.ukey(),sim=win.__sim;
     if(sim.S.pal!==config.palier)throw Error('Palier de tranche inattendu');
     let tail=Promise.resolve(),holdTimer=null,renewing=false;

@@ -1,0 +1,411 @@
+{
+  "site": "Fessenheim",
+  "palier": "FSH",
+  "tranches": 2,
+  "src": "releve",
+  "maj": "2026-10-28",
+  "note": "Nord en haut. Placement lu sur le plan de masse publié par l’ASNR (rapport CODEP-DRC-2026-023572, p. 5 fig. 1 : salle des machines commune à l’ouest, BAN entre les deux BR, BK à l’est, station de pompage au bout du canal d’amenée, au sud-est) et sur EDF, plan de démantèlement de l’INB n° 75, nov. 2020, p. 16, 17 et 19 ; calé dans le repère d’OSM, avec lequel la figure de l’ASNR concorde (contour du site, salle des machines, BR, canal d’amenée et sa digue). Eau : contours d’OSM (ODbL). BR et paire : gabarit 900 du produit (écart de 84 m, 88 m sur OSM), axe parallèle au canal d’amenée, 13,4° (OSM). Salle des machines : longueur et position d’OSM (190 m), profondeur 55 m. Station de pompage : emprise d’OSM. Ordre des tranches sur le terrain non établi : tranche 1 au nord, choix déclaré.",
+  "eau": {
+    "type": "canal",
+    "nom": "Grand Canal d’Alsace",
+    "polygones": [
+      {
+        "anneaux": [
+          [
+            [
+              629.3,
+              -650
+            ],
+            [
+              629.2,
+              -649.8
+            ],
+            [
+              624.5,
+              -626.9
+            ],
+            [
+              619.6,
+              -544.1
+            ],
+            [
+              620.0,
+              -517.2
+            ],
+            [
+              628.6,
+              -474.1
+            ],
+            [
+              550.2,
+              -257.8
+            ],
+            [
+              494.6,
+              -95.5
+            ],
+            [
+              409.8,
+              166.9
+            ],
+            [
+              385.8,
+              248.0
+            ],
+            [
+              331.5,
+              410.5
+            ],
+            [
+              255.0,
+              650
+            ],
+            [
+              -6.7,
+              650
+            ],
+            [
+              54.1,
+              443.6
+            ],
+            [
+              109.8,
+              282.5
+            ],
+            [
+              121.5,
+              217.0
+            ],
+            [
+              80.2,
+              127.5
+            ],
+            [
+              111.8,
+              -5.5
+            ],
+            [
+              161.8,
+              8.6
+            ],
+            [
+              135.7,
+              113.4
+            ],
+            [
+              150.3,
+              159.0
+            ],
+            [
+              153.5,
+              122.4
+            ],
+            [
+              231.0,
+              -158.4
+            ],
+            [
+              286.0,
+              -355.6
+            ],
+            [
+              321.2,
+              -496.5
+            ],
+            [
+              344.2,
+              -608.2
+            ],
+            [
+              355.3,
+              -650
+            ],
+            [
+              471.2,
+              -650
+            ],
+            [
+              455.2,
+              -591.8
+            ],
+            [
+              428.0,
+              -488.4
+            ],
+            [
+              375.6,
+              -272.1
+            ],
+            [
+              330.8,
+              -125.8
+            ],
+            [
+              261.4,
+              138.3
+            ],
+            [
+              232.6,
+              235.3
+            ],
+            [
+              221.4,
+              303.7
+            ],
+            [
+              230.6,
+              307.5
+            ],
+            [
+              257.5,
+              222.6
+            ],
+            [
+              287.0,
+              141.5
+            ],
+            [
+              377.2,
+              -116.2
+            ],
+            [
+              425.9,
+              -263.3
+            ],
+            [
+              491.4,
+              -484.4
+            ],
+            [
+              524.5,
+              -609.0
+            ],
+            [
+              571.3,
+              -640.1
+            ],
+            [
+              574.8,
+              -650
+            ],
+            [
+              602.1,
+              -650
+            ],
+            [
+              597.3,
+              -622.2
+            ],
+            [
+              598.2,
+              -617.9
+            ],
+            [
+              601.5,
+              -620.1
+            ],
+            [
+              616.2,
+              -650
+            ],
+            [
+              629.3,
+              -650
+            ]
+          ]
+        ],
+        "nom": "",
+        "source": "https://www.openstreetmap.org/way/144834530"
+      },
+      {
+        "anneaux": [
+          [
+            [
+              650.0,
+              -650
+            ],
+            [
+              650.0,
+              650
+            ],
+            [
+              650.0,
+              650
+            ],
+            [
+              650.0,
+              -650
+            ],
+            [
+              650.0,
+              -650
+            ]
+          ]
+        ],
+        "nom": "",
+        "source": "https://www.openstreetmap.org/relation/1811567"
+      }
+    ],
+    "libelles": [
+      {
+        "x": 312,
+        "y": 130,
+        "texte": "Grand Canal d’Alsace",
+        "angle": -73.5,
+        "source": "https://www.openstreetmap.org/way/144834530",
+        "boiteMetres": [
+          [
+            289.4,
+            181.7
+          ],
+          [
+            321.2,
+            74.3
+          ],
+          [
+            334.6,
+            78.3
+          ],
+          [
+            302.8,
+            185.7
+          ]
+        ],
+        "alignement": "middle",
+        "largeurReserveeMetres": 112.0,
+        "hauteurReserveeMetres": 14
+      },
+      {
+        "x": 110,
+        "y": 150,
+        "texte": "Canal d’amenée",
+        "angle": -73.5,
+        "source": "ASNR 2026",
+        "boiteMetres": [
+          [
+            92.2,
+            185.6
+          ],
+          [
+            114.4,
+            110.4
+          ],
+          [
+            127.8,
+            114.4
+          ],
+          [
+            105.6,
+            189.6
+          ]
+        ],
+        "alignement": "middle",
+        "largeurReserveeMetres": 78.4,
+        "hauteurReserveeMetres": 14
+      }
+    ]
+  },
+  "objets": [
+    {
+      "t": "paire",
+      "x": 8.3,
+      "y": 42.0,
+      "r": -76.6,
+      "m": 1,
+      "u": 0,
+      "us": [
+        1,
+        0
+      ],
+      "localisation": "schematique-documentee",
+      "preuve": {
+        "statut": "publie",
+        "description": "ASNR 2026 fig. 1 : deux BR alignés nord-sud, BAN commun entre eux, BK à l’est ; centres calés sur OSM (way 922512192 et 922512183)."
+      }
+    },
+    {
+      "t": "sdm",
+      "x": -32.2840482663274,
+      "y": 27.670563761908905,
+      "r": 103.4,
+      "m": 1,
+      "n": 2,
+      "u0": 0,
+      "us": [
+        0,
+        1
+      ],
+      "L": 190,
+      "l": 55,
+      "axe": "file",
+      "localisation": "schematique-documentee",
+      "preuve": {
+        "statut": "publie",
+        "description": "ASNR 2026 fig. 1 : salle des machines commune, à l’ouest de l’îlot, accolée sans le chevaucher ; emprise d’OSM (way 48950487)."
+      }
+    },
+    {
+      "t": "sdp",
+      "x": 94.8,
+      "y": 68.2,
+      "r": 103.4,
+      "m": 1,
+      "n": 2,
+      "u0": 0,
+      "us": [
+        0,
+        1
+      ],
+      "L": 64,
+      "l": 42,
+      "localisation": "schematique-documentee",
+      "preuve": {
+        "statut": "publie",
+        "description": "ASNR 2026 fig. 1 : station de pompage commune au bout du canal d’amenée ; emprise d’OSM (way 922512208), prises tournées vers l’eau."
+      }
+    },
+    {
+      "t": "transfo",
+      "x": 0,
+      "y": 0,
+      "r": 0,
+      "m": 1,
+      "u": 0,
+      "kv": "400",
+      "localisation": "non-documentee",
+      "preuve": {
+        "statut": "indetermine",
+        "description": "Évacuation vers le réseau à l’ouest (ASNR fig. 1, FES20 p. 16) ; emplacement des transformateurs non attribué."
+      }
+    },
+    {
+      "t": "transfo",
+      "x": 0,
+      "y": 0,
+      "r": 0,
+      "m": 1,
+      "u": 1,
+      "kv": "400",
+      "localisation": "non-documentee",
+      "preuve": {
+        "statut": "indetermine",
+        "description": "Idem."
+      }
+    }
+  ],
+  "auditVisuel": {
+    "date": "2026-10-28",
+    "reference": "ASNR CODEP-DRC-2026-023572 p. 5 fig. 1 ; OSM",
+    "source": "positions relatives lues sur la figure, recalées sur OSM (ODbL)",
+    "portee": "Figure et OSM concordants ; formes des bâtiments : gabarits du produit."
+  },
+  "geographie": {
+    "origine": [
+      47.9035,
+      7.563
+    ],
+    "rotationDeg": 0,
+    "source": "OpenStreetMap",
+    "date": "2026-10-28"
+  }
+}

@@ -6,7 +6,7 @@
 // les pages, le rendu, et le cycle d'acquittement des alarmes montré pour la décision 10A d'Anthonin.
 (function(root){'use strict';
 const req=n=>typeof module==='object'&&module.exports?require(n):null;
-const common=req('./n4.js')||root.SDCN4,IN=req('./instruments-n4.js')||root.SDCN4Instruments,I=req('./instruments-900.js')||root.SDC900Instruments,SYN=req('./synoptique-900.js')||root.SDC900Synoptique,KS=req('./ks6p.js')||root.SDC900Enregistreur;
+const common=req('./n4.js')||root.SDCN4,IN=req('./instruments-n4.js')||root.SDCN4Instruments,I=req('./instruments-900.js')||root.SDC900Instruments,SYN=req('./synoptique-900.js')||root.SDC900Synoptique,KS=req('./ks6p.js')||root.SDC900Enregistreur,CL=req('./classeur-900.js')||root.SDC900Classeur;
 const {esc,num}=I;
 const PAGES={pupitre:'Pupitre de conduite',arriere:'Tableau arrière',synoptique:'Synoptique mural',verrines:'Alarmes',enregistreur:'Enregistreur à points',surete:'Panneau de sûreté',instrumentation:'KIT · neutronique, KRT',coeur:'KIT · carte calculée',pt:'KIT · domaine P/T',incidents:'Incidents (simulateur)',formation:'Aide & missions'};
 PAGES.kit='KIT · systèmes';
@@ -17,8 +17,8 @@ const ZONES={'Grappes · régulation de température':'pupitre:RGL','Bore et app
   'Source froide et auxiliaires':'arriere:CRF','Arrêt d’urgence et réarmement':'arriere:AAR'};
 // « Montrer » (2A) : chaque zone connue citée par un texte (« zone « Z » ») devient sa cible page:clé ; une page citée sans zone connue
 // (« page Alarmes », « page Incidents (simulateur), zone « Défaut d’étanchéité des gaines » ») amène la page seule. Lecture du texte,
-// dans l'ordre, sans doublon ; aucune commande.
-function ciblesTexte(texte,pages,zones){const s=String(texte||''),out=[],vus=new Set(),labels=Object.entries(pages).sort((a,b)=>b[1].length-a[1].length);let m;
+// dans l'ordre, sans doublon ; aucune commande. `autres` : noms de pages propres à une salle ([clé, nom]), reconnus en plus de `pages`.
+function ciblesTexte(texte,pages,zones,autres=[]){const s=String(texte||''),out=[],vus=new Set(),labels=[...Object.entries(pages),...autres].sort((a,b)=>b[1].length-a[1].length);let m;
   const ajoute=(cible,label)=>{if(cible&&!vus.has(cible)){vus.add(cible);out.push({cible,label});}};
   const re=/\b[Pp]age |zone « ([^»]+) »|\(([^()›]+) › ([^()]+)\)/g;
   while((m=re.exec(s))){
@@ -26,10 +26,16 @@ function ciblesTexte(texte,pages,zones){const s=String(texte||''),out=[],vus=new
     const i=m.index+m[0].length,r=labels.find(([,l])=>s.startsWith(l,i));if(!r)continue;
     const suite=/^, zone « ([^»]+) »/.exec(s.slice(i+r[1].length));if(suite&&zones[suite[1]])continue;ajoute(r[0],r[1]);}
   return out;}
-const cibles=t=>ciblesTexte(t,PAGES,ZONES);
+// Salle de Fessenheim (276A du 29/10 ; retour d'Anthonin du 31/10) : pas de synoptique mural dans la vraie salle, la page se nomme « Synoptique » ;
+// pas de tableau arrière non plus (salle en fer à cheval), la page se nomme par sa fonction. La clé `arriere` et PAGES restent ceux du CPY et du CP0.
+const NOMS_FSH={synoptique:'Synoptique',arriere:'Sauvegardes et auxiliaires'};
+const cibles=t=>ciblesTexte(t,PAGES,ZONES,[['arriere',NOMS_FSH.arriere]]);
 // KIT (12A du 03/10) : une seule entrée, la grille des systèmes ; neutronique et KRT, carte du cœur et domaine P/T s'y ouvrent.
 const SOUS_KIT=['instrumentation','coeur','pt'],ORDRE=['pupitre','arriere','synoptique','verrines','enregistreur','surete','kit','incidents','formation'];
 const NAV=ORDRE.map(id=>[id,PAGES[id]]);
+const titrePage=(id,palier)=>palier==='FSH'&&NOMS_FSH[id]||PAGES[id];
+// Cible d'une feuille du classeur de Fessenheim dite au joueur : le panneau par son nom de salle, la zone par son titre (retour 9).
+const lieuFSH=c=>{const [p,z]=c.split(':'),t=z&&Object.keys(ZONES).find(k=>ZONES[k]===c);return titrePage(p,'FSH')+(t?', zone '+t:'');};
 const ETATS={AU:'Arrêt d’urgence réacteur','ÎLOT':'Îlotée : l’alternateur ne porte que ses auxiliaires',RP:'Réacteur en production',ANGV:'Arrêt normal sur GV',ANRRA:'Arrêt normal sur RRA',APIF:'Arrêt pour intervention, circuit fermé',APIO:'Arrêt pour intervention, circuit ouvert',APR:'Arrêt pour rechargement',RCD:'Réacteur complètement déchargé'};
 // ══ VERRINES : sections du tableau d'alarmes (verrines groupées par système, en tête des panneaux : matrice SDC § 15.2 E6, A1).
 //    Lentille : rouge pour le seuil haut d'une alarme, orange pour son premier seuil, blanche pour une action automatique ou un état
@@ -87,8 +93,11 @@ function commandesAlarmes(court,cy=CY){const k=cy.klaxon(),c=cy.compte(),acq=c.n
     +'<span class="s9-paire" role="group" aria-label="Essai des lampes et acquittement">'+bp('essai','ESSAI<br>LAMPES','ESSAI LAMPES',essai,' title="Essai des lampes : toutes les verrines s’allument trois secondes"')+bp('acquitter','ACQUIT-<br>TEMENT','ACQUITTEMENT',k,k?'':' aria-disabled="true"')+'</span></div>';}
 // ══ OUTILS DE RENDU
 const st=d=>d&&d.state||{};
-// Palier servi (J2b) et groupe de régulation : R en mode G (CPY), D en mode A (CP0 ; 3A à 6A du 03/10).
-const palDe=d=>st(d).pal==='CP0'?'CP0':'CPY',grpReg=d=>palDe(d)==='CP0'?'D':'R';
+// Palier servi (J2b) et groupe de régulation : R en mode G (CPY), D en mode A (CP0 ; 3A à 6A du 03/10). J5a (270A) : FSH, Fessenheim, est
+// un CP0 sous son propre code ; typeCP0 dit le mode A, palDe garde le code servi.
+// 285A (30/10) : au joueur, Fessenheim est un CP0 (et sa salle se dit fictive) ; FSH reste interne (data-palier, règles de la salle, classeur).
+const palierAff=p=>p==='FSH'?'CP0':p;
+const typeCP0=p=>p==='CP0'||p==='FSH',palDe=d=>{const p=st(d).pal;return typeCP0(p)?p:'CPY';},grpReg=d=>typeCP0(palDe(d))?'D':'R';
 const set=(k,v)=>({type:'set',k,v});
 // Voyant d'état d'un matériel (2A du 04/10, règle 9 bis du 1300 appliquée au 900) : rouge allumé = en service (circuit fermé, pompe en
 // marche, disjoncteur fermé), vert allumé = hors service, éteint = état non donné.
@@ -164,7 +173,7 @@ const TEINTE={RGL:'blanc',RCP:'saumon',REA:'saumon',ARE:'verteau',GRE:'kaki',GCT
 // le synoptique) ; aucune commande.
 const REPERES={pupitre:[['RGL','Grappes'],['RCP','Pression'],['REA','Bore'],['ARE','Eau alimentaire'],['GRE','Turbine'],['GCT','Vapeur'],['ETAT','État de tranche']],
   arriere:[['ASG','Secours GV'],['CRF','Source froide'],['RIS','Injection'],['LH','Électricité'],['AAR','Arrêt d’urgence'],['RPR','Inhibitions']]};
-function reperes(page){return '<nav class="s9-reperes s9-reperes-'+page+'" aria-label="Zones du '+(page==='pupitre'?'pupitre':'tableau arrière')+'">'+REPERES[page].map(([cle,l])=>'<button type="button" class="s9-pous s9-repere s9-teinte-'+TEINTE[cle]+'" data-s9-aller="'+page+':'+cle+'">'+esc(l)+'</button>').join('')+'</nav>';}
+function reperes(page,palier){return '<nav class="s9-reperes s9-reperes-'+page+'" aria-label="Zones '+(page==='pupitre'?'du pupitre':palier==='FSH'?'de la page '+titrePage(page,palier):'du tableau arrière')+'">'+REPERES[page].map(([cle,l])=>'<button type="button" class="s9-pous s9-repere s9-teinte-'+TEINTE[cle]+'" data-s9-aller="'+page+':'+cle+'">'+esc(l)+'</button>').join('')+'</nav>';}
 function pupitre(d,on){const s=st(d),manu=s.auto===false,pzrM=s.pzrAuto===false,areM=s.areAuto===false,au=!!s.scram,nb=(d.pal&&d.pal.NB)||3;
   const rgl=I.zone({titre:'Grappes · régulation de température',code:'RGL',cle:'RGL',teinte:TEINTE.RGL},
     '<div class="s9-rang">'+I.manipulateur({titre:'Régulation grappes',sous:'groupe '+grpReg(d),groupe:grpReg(d),mode:{auto:mode(s.auto),cmdAuto:set('auto',true),cmdManu:set('auto',false),nom:'Régulation grappes'},modeEnabled:on,k:'rod',label:'Extraction du groupe '+grpReg(d),value:unite(s.rod),min:0,max:100,pas:.5,enabled:on&&manu&&!au,verrou:au?'arrêt d’urgence : grappes au fond':'en AUTO, en production, les grappes règlent la température jusqu’en butée'})
@@ -194,7 +203,7 @@ function pupitre(d,on){const s=st(d),manu=s.auto===false,pzrM=s.pzrAuto===false,
     +I.poste({titre:'GCTa · atmosphère',mode:{auto:modeTxt(s.gctaMode,'auto','manu'),cmdAuto:set('gctaMode','auto'),cmdManu:set('gctaMode','manu'),nom:'GCTa'},modeEnabled:on,k:'gctaM',label:'Ouverture GCTa (MANU)',value:unite(s.gctaMode==='manu'?s.gctaM:(s.gctA||0)*100),sortie:(s.gctA||0)*100,min:0,max:100,pas:1,unit:'%',enabled:on&&s.gctaMode==='manu',verrou:'en AUTO, ouverture au-dessus de la consigne'})+'</div>');
   const etats=I.zone({titre:'État de tranche',cle:'ETAT',teinte:TEINTE.ETAT,large:true},'<div class="s9-paire s9-etats" role="group" aria-label="État de tranche">'+['RP','ANGV','ANRRA','APIF','APIO','APR','RCD'].map(e=>I.poussoir({label:{ANGV:'AN/GV',ANRRA:'AN/RRA',APIF:'API fermé',APIO:'API ouvert'}[e]||e,cmd:{type:'etat',e},actif:s.etat===e,enabled:on,nom:'État de tranche'})).join('')+'</div><p class="s9-note">Choisir un état lointain enchaîne les transitions et s’arrête à la première refusée, avec son motif.</p>');
   return reperes('pupitre')+'<div class="s9-pupitre"><div class="s9-pcols"><div class="s9-pcol">'+rgl+pzr+rea+'</div><div class="s9-pcol">'+gv+turb+gct+'</div></div>'+etats+'</div>';}
-function arriere(d,on){const s=st(d),pal=d.pal&&d.pal.ID,cp0=pal==='CP0'||(d.state&&d.state.pal==='CP0');
+function arriere(d,on){const s=st(d),pal=d.pal&&d.pal.ID,cp0=pal==='CP0'||typeCP0(d.state&&d.state.pal);
   const tps=s.tpsA===true||s.tpsB===true?true:s.tpsA===false&&s.tpsB!==true?false:null;
   // V24 (S411, 14/10) : le verrou de l'arrêt manuel ne bloque que le démarrage sur niveau GV très bas, pas la bascule AN/GV ni le signal IS.
   const asg=I.zone({titre:'Alimentation de secours des GV',code:'ASG',cle:'ASG',teinte:TEINTE.ASG},'<div class="s9-rang">'
@@ -214,7 +223,7 @@ function arriere(d,on){const s=st(d),pal=d.pal&&d.pal.ID,cp0=pal==='CP0'||(d.sta
   // Inhibitions en commutateurs à clé HORS / EN (11 bis A du grand QCM du 1300 : « il y en a aussi sur la SDC 900 »), mêmes commandes.
   const inh=I.zone({titre:'Inhibitions · protection réacteur et automatismes',code:'RPR',cle:'RPR',teinte:TEINTE.RPR,large:true},'<div class="s9-inhib">'+INH.map(([k,l])=>I.cle({titre:l,nom:l,k,valeur:s[k],enabled:on})).join('')+'</div><p class="s9-note">Les inhibitions ne sont pas réinitialisées par la mise à l’état ; chaque ordre inhibé est consigné au journal.</p>');
   const elec=I.zone({titre:'Alimentations électriques',code:'LH',cle:'LH',teinte:TEINTE.LH},'<div class="s9-rang"><div class="s9-voys">'+etatV('Réseau extérieur',ouiNon(s.reseau))+I.voyant({label:'Îlotage',on:!!s.ilote,couleur:'ambre'})
-    +etatV('Diesels '+(cp0?'LHG/LHH':'LHP/LHQ'),ouiNon(s.diesel))+etatV('Ultime secours',ouiNon(s.lls))+I.voyant({label:'Perte totale (H3)',on:!!s.h3,couleur:'rouge'})+'</div>'
+    +etatV('Diesels '+(st(d).pal==='FSH'?'voies A/B':cp0?'LHG/LHH':'LHP/LHQ'),ouiNon(s.diesel))+etatV('Ultime secours',ouiNon(s.lls))+I.voyant({label:'Perte totale (H3)',on:!!s.h3,couleur:'rouge'})+'</div>'
     +I.afficheur({label:'Production nette',value:s.Pelec,unit:'MWe'})+'</div><p class="s9-note">Tableaux secourus LHA et LHB ; les pertes de sources se commandent depuis la page Incidents (simulateur).</p>');
   const src={mer:'mer',estuaire:'estuaire',fleuve:'fleuve, circuit ouvert',tour:'fleuve et aéroréfrigérants'}[s.srcType]||'—';
   const sf=I.zone({titre:'Source froide et auxiliaires',code:'CRF · SEC',cle:'CRF',teinte:TEINTE.CRF},'<div class="s9-rang"><div class="s9-src">Source froide du site : <b>'+esc(src)+'</b></div>'
@@ -224,7 +233,7 @@ function arriere(d,on){const s=st(d),pal=d.pal&&d.pal.ID,cp0=pal==='CP0'||(d.sta
     +I.barrette([{label:'P condenseur',value:Number.isFinite(s.Pcond)?s.Pcond*1000:null,min:0,max:200,pas:40,unit:'mbar',digits:0,tag:'#a9d3bd'}])+'</div>');
   const au=I.zone({titre:'Arrêt d’urgence et réarmement',code:'AAR',cle:'AAR',teinte:TEINTE.AAR},'<div class="s9-rang">'+I.poussoir({label:'ARRÊT D’URGENCE',cmd:{type:'scram'},enabled:on,lent:'rouge',classe:'s9-pous-au',nom:'Arrêt d’urgence'})
     +I.poussoir({label:'Réarmer',sous:s.scram?'réacteur arrêté':'réacteur réarmé',cmd:{type:'rearm'},enabled:on&&!!s.scram,actif:!!s.scram,lent:'ambre',nom:'Réarmement'})+'</div>');
-  return reperes('arriere')+'<div class="s9-pupitre s9-arriere"><div class="s9-pcols"><div class="s9-pcol">'+asg+sf+'</div><div class="s9-pcol">'+ris+elec+au+'</div></div>'+inh+'</div>';}
+  return reperes('arriere',palDe(d))+'<div class="s9-pupitre s9-arriere"><div class="s9-pcols"><div class="s9-pcol">'+asg+sf+'</div><div class="s9-pcol">'+ris+elec+au+'</div></div>'+inh+'</div>';}
 // ══ ÉCRANS SEMI-GRAPHIQUES (KPS et KIT, 11A et 12A du 03/10) : écran noir sous un cadre beige, police à chasse fixe, couleurs
 //    d'époque (vert en service, rouge défaut, jaune valeurs, cyan titres) ; tout se lit dans l'instantané reçu.
 function ecran(code,titre,corps,o={}){return '<section class="s9-crt'+(o.classe?' '+o.classe:'')+'" aria-label="'+esc(code+' · '+titre)+'"><div class="s9-crt-verre"><div class="s9-crt-tete"><b>'+esc(code)+'</b><span>'+esc(titre)+'</span>'+(o.droite||'')+'</div>'+corps+'</div>'+(o.pied?'<div class="s9-crt-pied">'+esc(o.pied)+'</div>':'')+'</section>';}
@@ -329,7 +338,7 @@ const KIT_ECRANS=[['instrumentation','Neutronique, KRT et réactivité'],['coeur
 // 36 de pilotage lues et les 17 S du plan de 1978 ; CP0 : 48), leur position, le détail au toucher (sans commande), puis la carte calculée
 // native (température, puissance, épuisement, indice PF, gaine). Couleurs de l'écran du KIT au CPY, phosphore vert au CP0.
 const COUL_KIT={R:'#ff5a4a',G1:'#c8ccc8',G2:'#9aa19d',N1:'#ffe36b',N2:'#3be0d0',S:'#4d9bff',D:'#4dff86',C:'#4dff86',B:'#4dff86',A:'#4dff86',SA:'#4dff86',SB:'#4dff86'};
-function carteKit(d){const g=d.grappes,cp0=palDe(d)==='CP0';
+function carteKit(d){const g=d.grappes,cp0=typeCP0(palDe(d));
   const theme=cp0?{fond:'#03070a',vide:'#04110a',case:'#0a2414',trait:'#1f5a3a',texte:'#6fdc8c',sel:'#e6ff9a',gris:'#3f8f5a'}:{fond:'#03070a',vide:'#0a1418',case:'#122229',trait:'#2b4a52',texte:'#9fe8bf',sel:'#ffe36b',gris:'#9aa19d'};
   return ecran('KIT','Carte du cœur · grappes',IN.carteGrappes(g,{sel:KITSEL.cas,attr:'data-s9-case',theme,couleurs:COUL_KIT,cellule:16})
     +'<button type="button" class="s9-crt-b" data-n4-page="coeur">▸ Carte calculée : température, puissance, épuisement, indice PF, gaine</button>',
@@ -369,6 +378,9 @@ function contenu(ui,d,H){const on=ui.connected;
   if(ui.page==='formation')return '<div class="s9-formation"><div data-n4-live-slot="formation" class="n4-live-slot" aria-label="Aide et missions"></div></div>';
   if(ui.page==='kit')return kit(d);
   if(ui.page==='pupitre')return pupitre(d,on);if(ui.page==='arriere')return arriere(d,on);if(ui.page==='surete')return surete(d);
+  // Fessenheim (276A, 283A) : pas de synoptique mural dans la vraie salle ; la page ouvre le classeur de synoptiques, monté dans un
+  // emplacement vivant que la salle ne redessine pas (mount, onPageMount).
+  if(ui.page==='synoptique'&&st(d).pal==='FSH'&&CL)return '<div class="s9-classeur-page"><div data-n4-live-slot="classeur" class="n4-live-slot" aria-label="Classeur de synoptiques"></div></div>';
   if(ui.page==='synoptique')return '<div class="s9-syn-page">'+SYN.render(d,{vue:'page'})+SYN.render(d,{vue:'tel',coupe:SYNV.coupe,releves:SYNV.releves})+'</div>';
   if(ui.page==='verrines')return commandesAlarmes(false)+tableau(d,true)+journalKit(d);
   if(ui.page==='enregistreur')return KS.page(enr(),d.enregistreur,null,st(d).t,'e',{groupe:grpReg(d)});
@@ -379,7 +391,9 @@ const ENR={e:null,store:null,tel:false};
 function enr(){if(!ENR.e){ENR.e=KS.etatNeuf(ENR.store);ENR.e.ouvert=!ENR.tel;}return ENR.e;}
 // Zone visée depuis le synoptique : éclairée 1,6 s, l'attribut est posé au rendu pour survivre aux rafraîchissements.
 const VISEE={cle:'',jusqua:0},RETOUR={page:''},SYNV={coupe:0,releves:false};
-function render(ui,data,H){return viser(rendu(ui,data,H));}
+// Fessenheim : le panneau et ses zones reçoivent le focus d'un lien de feuille (aller, plus bas) ; le mur des autres 900 ne change pas.
+const focalisables=h=>h.replace(/ data-s9-zone="/g,' tabindex="-1" data-s9-zone="').replace('<section class="s9-panneau"','<section tabindex="-1" class="s9-panneau"');
+function render(ui,data,H){const h=viser(rendu(ui,data,H));return st(data).pal==='FSH'?focalisables(h):h;}
 const courant=(id,page)=>id===page||(id==='kit'&&SOUS_KIT.includes(page));
 // Enseigne du CP0 (10A du 03/10, photos de la salle du Bugey 2 : « TRANCHE 2 », horloge rouge, puissance en MW) : sur le bandeau
 // noir du mur, visible mur replié ; l'horloge donne le jour et l'heure de l'appareil du joueur, comme une horloge de salle, la
@@ -399,21 +413,21 @@ function rendu(ui,data,H){if(ui.page==='synoptique')RETOUR.page='';
   const k=klaxon(),c=compte();
   // Geste 50 (136A du 25/10) : puissance électrique reçue du moteur dans la barre d'état, comme au 1300 ; au CP0, l'enseigne du mur la porte,
   // la barre la reprend quand le mur est replié hors de la page (téléphone). Inconnue : « — ».
-  const pel='<span class="s9-pel'+(palier==='CP0'?' s9-pel-tel':'')+'" title="Puissance électrique">'+number(Number.isFinite(s.Pelec)?Math.max(0,Math.round(s.Pelec)):null,0)+'&nbsp;MWe</span>';
-  return '<div class="n4-sdc s9-sdc" data-page="'+e(ui.page)+'" data-palier="'+e(palier)+'">'+(ui.published?'':'<div class="n4-study">ESSAI PRIVÉ · SALLE 900 <span>palier '+e(palier)+'</span></div>')
+  const pel='<span class="s9-pel'+(typeCP0(palier)?' s9-pel-tel':'')+'" title="Puissance électrique">'+number(Number.isFinite(s.Pelec)?Math.max(0,Math.round(s.Pelec)):null,0)+'&nbsp;MWe</span>';
+  return '<div class="n4-sdc s9-sdc" data-page="'+e(ui.page)+'" data-palier="'+e(palier)+'">'+(ui.published?'':'<div class="n4-study">ESSAI PRIVÉ · SALLE 900 <span>palier '+e(palierAff(palier))+'</span></div>')
     // En-tête sur une ligne (1A du 03/10) : niveaux, tranche, témoins, identité en petit, simulation.
-    +'<header class="n4-header s9-entete">'+navigation(ui)+'<div class="n4-unit"><strong>'+e(ui.site.toUpperCase())+' · TRANCHE&nbsp;'+e(ui.unitLabel||ui.unit)+'</strong><span>PALIER '+e(palier)+'</span></div>'+temoins(data)+'<div class="n4-brand"><b>SIMUREP</b><span>Le simulateur du parc électronucléaire français</span>'+ligneVersion(ui)+'</div><details class="n4-session"><summary>Simulation <span>'+horloge(data.simulationTime)+' · ×'+(s.accel||1)+'</span></summary>'+simulationControls(ui,data)+'</details></header>'
+    +'<header class="n4-header s9-entete">'+navigation(ui)+'<div class="n4-unit"><strong>'+e(ui.site.toUpperCase())+' · TRANCHE&nbsp;'+e(ui.unitLabel||ui.unit)+'</strong><span>PALIER '+e(palierAff(palier))+(palier==='FSH'?' · FICTIF':'')+'</span></div>'+temoins(data)+'<div class="n4-brand"><b>SIMUREP</b><span>Le simulateur du parc électronucléaire français</span>'+ligneVersion(ui)+'</div><details class="n4-session"><summary>Simulation <span>'+horloge(data.simulationTime)+' · ×'+(s.accel||1)+'</span></summary>'+simulationControls(ui,data)+'</details></header>'
     +'<div class="n4-quickbar s9-quickbar"><span class="s9-etat"><b>'+e(etatCourt(data.stateLabel)||'—')+'</b>'+(ETATS[data.stateLabel]?' '+ETATS[data.stateLabel]:'')+(data.targetState&&data.targetState!==data.stateLabel?' · état visé '+e(etatCourt(data.targetState)):'')+pel+'</span>'+commandesAlarmes(true)+scram+'</div>'
     +'<div class="n4-command-status" data-active="'+!!ui.status+'" role="status">'+e(ui.status||'')+'</div>'
     // Mur dépliant (Anthonin, 03/10, question 7 du point d'arrêt) : le pupitre d'abord, le mur dans un volet que le joueur
     // déplie ou replie ; son choix est gardé. Replié, le bandeau garde klaxon, acquittement et nombre d'alarmes.
-    +'<details class="s9-mur-volet"'+(MUR.ouvert?' open':'')+'><summary><b>Mur · synoptique et verrines</b><span>'+etatMur(c)+'</span>'+(palier==='CP0'?enseigne(ui,s):'')+'<i>'+(MUR.ouvert?'Replier':'Déplier')+'</i></summary>'
-    +'<div class="s9-mur" aria-label="Mur de la salle : synoptique et verrines"><div class="s9-mur-syn">'+SYN.render(data,{vue:'mur'})+'</div><div class="s9-mur-ver">'+tableau(data,false)+'</div></div></details>'
-    +'<div class="s9-salle"><nav class="n4-page-keys s9-keys" aria-label="Panneaux de la salle">'+NAV.map(([id,label])=>page(id,label,'aria-current="'+(courant(id,ui.page)?'page':'false')+'"')).join('')+'</nav>'
-    +'<section class="s9-panneau" aria-label="'+e(PAGES[ui.page]||'')+'"><div class="s9-panneau-t"><h2>'+e(PAGES[ui.page]||'')+'</h2>'+(RETOUR.page&&RETOUR.page!==ui.page?'<button type="button" class="s9-pous s9-l-blanc s9-retour" data-s9-retour="'+e(RETOUR.page)+'">‹ '+e(RETOUR.page==='synoptique'?'Synoptique':PAGES[RETOUR.page]||'Retour')+'</button>':'')+'</div>'+missionBar(ui,data,{montrer:cibles,attribut:'data-s9-aller'})+'<div class="n4-main-content s9-main">'+contenu(ui,data,H)+'</div></section></div>'
-    +'<footer class="n4-desk-footer"><span>Salle de commande · palier '+e(palier)+'</span><span>© 2026 AnthoninP · SIMUREP</span></footer>'
+    +'<details class="s9-mur-volet"'+(MUR.ouvert?' open':'')+'><summary><b>'+(palier==='FSH'?'Mur · verrines':'Mur · synoptique et verrines')+'</b><span>'+etatMur(c)+'</span>'+(typeCP0(palier)?enseigne(ui,s):'')+'<i>'+(MUR.ouvert?'Replier':'Déplier')+'</i></summary>'
+    +(palier==='FSH'?'<div class="s9-mur" aria-label="Mur de la salle : verrines">':'<div class="s9-mur" aria-label="Mur de la salle : synoptique et verrines"><div class="s9-mur-syn">'+SYN.render(data,{vue:'mur'})+'</div>')+'<div class="s9-mur-ver">'+tableau(data,false)+'</div></div></details>'
+    +'<div class="s9-salle"><nav class="n4-page-keys s9-keys" aria-label="Panneaux de la salle">'+NAV.map(([id])=>page(id,titrePage(id,palier),'aria-current="'+(courant(id,ui.page)?'page':'false')+'"')).join('')+'</nav>'
+    +'<section class="s9-panneau" aria-label="'+e(titrePage(ui.page,palier)||'')+'"><div class="s9-panneau-t"><h2>'+e(titrePage(ui.page,palier)||'')+'</h2>'+(RETOUR.page&&RETOUR.page!==ui.page?'<button type="button" class="s9-pous s9-l-blanc s9-retour" data-s9-retour="'+e(RETOUR.page)+'">‹ '+e(RETOUR.page==='synoptique'?'Synoptique':titrePage(RETOUR.page,palier)||'Retour')+'</button>':'')+'</div>'+missionBar(ui,data,{montrer:cibles,attribut:'data-s9-aller'})+'<div class="n4-main-content s9-main">'+contenu(ui,data,H)+'</div></section></div>'
+    +'<footer class="n4-desk-footer"><span>Salle de commande · palier '+e(palierAff(palier))+(palier==='FSH'?' · fictif':'')+'</span><span>© 2026 AnthoninP · SIMUREP</span></footer>'
     +'<nav class="n4-thumb-dock s9-dock" aria-label="Navigation au pouce"><button type="button" data-n4-menu="toggle" aria-expanded="'+!!ui.menu+'">Panneaux</button>'+page('verrines','Alarmes'+(c.nouvelle+c.disparue?' <b class="s9-dock-n">'+(c.nouvelle+c.disparue)+'</b>':''),'class="s9-dock-al'+(k?' s9-dock-k':'')+'"')+'<button type="button" class="s9-dock-acq s9-l-vert" data-s9="acquitter" data-on="'+k+'"'+(k?'':' aria-disabled="true"')+'>Acquitter</button>'+scram.replace('ARRÊT D’URGENCE</button>','Arrêt<br>d’urgence</button>')+'</nav>'
-    +(ui.menu?'<div class="n4-thumb-menu"><div><b>Panneaux de la salle</b><button type="button" data-n4-menu="toggle">Fermer</button></div><nav>'+NAV.map(([id,label])=>page(id,label,'aria-current="'+(courant(id,ui.page)?'page':'false')+'"')).join('')+'</nav>'+sortiesMenu(ui)+'</div>':'')
+    +(ui.menu?'<div class="n4-thumb-menu"><div><b>Panneaux de la salle</b><button type="button" data-n4-menu="toggle">Fermer</button></div><nav>'+NAV.map(([id])=>page(id,titrePage(id,palier),'aria-current="'+(courant(id,ui.page)?'page':'false')+'"')).join('')+'</nav>'+sortiesMenu(ui)+'</div>':'')
     +'</div>';
 }
 // Écrans natifs du KIT (12A du 03/10) : même contenu, habillage d'époque (fond noir, chasse fixe, couleurs du calculateur) ; Aide &
@@ -447,8 +461,10 @@ body.n4-native:has(#n4-native-root[data-kind=formation])::after{display:none}
 #n4-native-root #secSock>h2>span{color:#02110f!important;font-weight:700}#n4-native-root #skVal[data-etat=hors]{background:#ff5a4a;color:#03070a}
 `;
 // CP0 (11A et 9A du 03/10) : écrans natifs du KIT en phosphore vert, Aide & missions au sable ocré de la salle, trait brun.
+// Fessenheim (retour d'Anthonin du 31/10) : même phosphore, Aide & missions à la crème de sa salle, trait turquoise sombre.
 const PHOSPHORE={'#ff5a4a':'#b8ffc6','#123a2a':'#0e3318','#3be0d0':'#7dff9a','#02110f':'#021a08','#ffe36b':'#b8ffc6','#cfe8d8':'#7dff9a','#9fe8bf':'#4fd977','#7fbfa0':'#2f8f4f','#1f6f5a':'#1e6b36','#1f4f3c':'#123c1f','#04140f':'#03140a','#7dffb0':'#7dff9a','#2f8f5f':'#2f8f4f','#03070a':'#020803','#e1d9c1':'#d6bb85','#f7f5ef':'#e3ca98','#6d1b26':'#5b4426'};
-function styleNatifPour(pal){return pal==='CP0'?styleNatif.replace(/#[0-9a-f]{6}/g,c=>PHOSPHORE[c]||c):styleNatif;}
+const CREME_FSH={'#e1d9c1':'#e6dec8','#f7f5ef':'#f6f1e3','#6d1b26':'#2e6b60'};
+function styleNatifPour(pal){if(!typeCP0(pal))return styleNatif;const T=pal==='FSH'?{...PHOSPHORE,...CREME_FSH}:PHOSPHORE;return styleNatif.replace(/#[0-9a-f]{6}/g,c=>T[c]||c);}
 // Pompes ASG nommées dans les accusés : au 900, une seule turbopompe (ses deux clés du moteur vont ensemble).
 // Retour d'Anthonin (copie d'essai, 14/10 au soir) : on arrive dans la salle sur le synoptique mural.
 const app=common.createProfile({palier:'CPY',pages:PAGES,nav:NAV,synoptics:[],pageInitiale:'synoptique',selectionInitiale:null,render,pompesAsg:{mpsA:'Motopompe ASG A',mpsB:'Motopompe ASG B',tpsA:'Turbopompe ASG',tpsB:'Turbopompe ASG'}},null,null);
@@ -472,7 +488,18 @@ const mount0=app.mount;
 function mount(host,options={}){
   ACK.etats={};ACK.init=false;ACK.essai=0;RETOUR.page='';VISEE.cle='';SYNV.coupe=0;SYNV.releves=false;KITSEL.sys='';KITSEL.cas='';let store=null;try{store=host.ownerDocument&&host.ownerDocument.defaultView&&host.ownerDocument.defaultView.localStorage;}catch(_){}ENR.store=store;ENR.e=null;MUR.store=store;try{MUR.ouvert=!!store&&store.getItem(MUR.cle)==='1';}catch(_){MUR.ouvert=false;}try{const w=host.ownerDocument&&host.ownerDocument.defaultView;ENR.tel=!!(w&&w.matchMedia&&w.matchMedia('(max-width:760px)').matches);}catch(_){ENR.tel=false;}
   let dernier=options.snapshot||{};nourrir(dernier.verrines,dernier.simulationTime);
-  const inst=mount0(host,options),up=inst.update,sent=sentinelle(host);
+  // Classeur de Fessenheim (283A) : monté une fois dans son emplacement, mis à jour à chaque instantané ; la feuille ouverte est gardée
+  // d'une page à l'autre. Les autres emplacements restent à l'hôte.
+  // L'instance vit ici, pas sur le nœud : le rendu (sync de n4.js) réutilise le même élément pour une autre page ; elle est détruite dès
+  // qu'on quitte la page ou que l'emplacement change, et l'hôte est toujours prévenu (emplacement nul) pour fermer son écran natif.
+  const CLV={position:0},tranche=Number(options.unitLabel||options.unit)||1;let cl=null,clSlot=null,chassis=null;
+  const lacher=()=>{if(cl){cl.detruire();cl=null;clSlot=null;}};
+  const surPage=(page,slot)=>{const ici=page==='synoptique'&&CL&&slot&&slot.getAttribute&&slot.getAttribute('data-n4-live-slot')==='classeur';
+    if(!ici){lacher();if(options.onPageMount)options.onPageMount(page,slot);return;}
+    if(options.onPageMount)options.onPageMount(page,null);
+    if(cl&&clSlot!==slot)lacher();
+    if(!cl){cl=CL.monter(slot,{data:dernier,position:CLV.position,tranche,lieu:lieuFSH,cadres:()=>chassis&&chassis.pince(),onChange:e=>{CLV.position=e.position;}});clSlot=slot;}else cl.update(dernier);};
+  const inst=mount0(host,Object.assign({},options,{onPageMount:surPage})),up=inst.update,sent=sentinelle(host);chassis=inst;if(cl)inst.pince();
   // Synoptique au téléphone (retour d'Anthonin, 14/10 au soir) : le dessin entier défile ; un onglet amène sa coupe, la coupe au milieu de
   // l'écran allume son onglet, et le dessin rouvert revient à la coupe ouverte. Affichage seul.
   const echelle=e=>e.scrollWidth/SYN.largeur;
@@ -485,9 +512,11 @@ function mount(host,options={}){
   function redessiner(){up(dernier);caler();sent.guetter();}
   inst.update=function(snapshot){dernier=snapshot||{};nourrir(dernier.verrines,dernier.simulationTime);up(dernier);caler();sent.guetter();};
   caler();
+  // Fessenheim, boutons des feuilles : un lien change de page, le focus va à la zone visée ; il tombait sur BODY, le clavier et le lecteur d'écran repartaient du haut.
+  const focaliser=e=>{if(e&&st(dernier).pal==='FSH')e.focus?.({preventScroll:true});};
   function aller(cible){const [page,cle]=String(cible).split(':');if(!PAGES[page])return;const w=host.ownerDocument&&host.ownerDocument.defaultView;
     RETOUR.page=inst.getState().page==='synoptique'?'synoptique':'';VISEE.cle=cle||'';VISEE.jusqua=Date.now()+1600;inst.selectPage(page);sent.guetter(true);
-    const z=cle&&host.querySelector&&host.querySelector('[data-s9-zone="'+cle+'"]');(z||host.querySelector&&host.querySelector('.s9-panneau'))?.scrollIntoView?.({block:'start',behavior:'smooth'});
+    const z=cle&&host.querySelector&&host.querySelector('[data-s9-zone="'+cle+'"]'),c=z||host.querySelector&&host.querySelector('.s9-panneau');c?.scrollIntoView?.({block:'start',behavior:'smooth'});focaliser(c);
     if(w)w.setTimeout(redessiner,1700);}
   // J6 2c (139A) : l'élément de la salle touché est lu à la capture, avant que le poste redessine l'encart ; un bouton du poste que ce redessin
   // change sur place (« Pas à pas » devenu « Montrer · Turbine et charge », vu au navigateur) ne déclenche plus rien dans la salle.
@@ -498,7 +527,7 @@ function mount(host,options={}){
     if(t.hasAttribute('data-s9-case')){const r=t.getAttribute('data-s9-case');KITSEL.cas=KITSEL.cas===r?'':r;redessiner();return;}   // carte des grappes du KIT : affichage seul
     if(t.hasAttribute('data-s9-aller')){aller(t.getAttribute('data-s9-aller'));return;}
     if(t.hasAttribute('data-s9-kit')){KITSEL.sys=t.getAttribute('data-s9-kit')||'';redessiner();host.querySelector&&host.querySelector('.s9-panneau')?.scrollIntoView?.({block:'start'});return;}
-    if(t.hasAttribute('data-s9-retour')){const r=t.getAttribute('data-s9-retour');RETOUR.page='';if(PAGES[r]){inst.selectPage(r);host.querySelector&&host.querySelector('.s9-panneau')?.scrollIntoView?.({block:'start'});}return;}
+    if(t.hasAttribute('data-s9-retour')){const r=t.getAttribute('data-s9-retour');RETOUR.page='';if(PAGES[r]){inst.selectPage(r);const c=host.querySelector&&host.querySelector('.s9-panneau');c?.scrollIntoView?.({block:'start'});focaliser(c);}return;}
     const a=t.getAttribute('data-s9'),k=t.getAttribute('data-s9-ks');
     if(a&&a.startsWith('coupe:')){SYNV.coupe=Number(a.slice(6))||0;redessiner();const e=host.querySelector&&host.querySelector('.s9-syn-defil');if(e){e.__s9cale=true;amener(e,true);}return;}
     if(a==='acquitter'){acquitter();redessiner();return;}
@@ -511,10 +540,11 @@ function mount(host,options={}){
   function mur(ev){const t=ev.target;if(!t||!t.classList||!t.classList.contains('s9-mur-volet'))return;if(MUR.ouvert===!!t.open)return;MUR.ouvert=!!t.open;try{MUR.store&&MUR.store.setItem(MUR.cle,MUR.ouvert?'1':'0');}catch(_){}redessiner();}
   host.addEventListener('toggle',mur,true);
   host.addEventListener('click',touche,true);host.addEventListener('keydown',touche,true);host.addEventListener('click',clic);host.addEventListener('keydown',clic);
-  const destroy=inst.destroy;inst.destroy=function(){host.removeEventListener('scroll',defile,true);host.removeEventListener('click',touche,true);host.removeEventListener('keydown',touche,true);host.removeEventListener('click',clic);host.removeEventListener('keydown',clic);host.removeEventListener('toggle',volet,true);host.removeEventListener('toggle',mur,true);sent.fin();destroy();};
+  const destroy=inst.destroy;inst.destroy=function(){lacher();host.removeEventListener('scroll',defile,true);host.removeEventListener('click',touche,true);host.removeEventListener('keydown',touche,true);host.removeEventListener('click',clic);host.removeEventListener('keydown',clic);host.removeEventListener('toggle',volet,true);host.removeEventListener('toggle',mur,true);sent.fin();destroy();};
   inst.alarmes=()=>({klaxon:klaxon(),etats:JSON.parse(JSON.stringify(ACK.etats)),compte:compte()});
   inst.acquitter=()=>{const n=acquitter();redessiner();return n;};
   inst.aller=aller;
+  inst.classeur=()=>cl;
   return inst;
 }
 // Pièces communes aux salles conventionnelles (J2b) : la salle du 1300 les reprend telles quelles, sans copie.

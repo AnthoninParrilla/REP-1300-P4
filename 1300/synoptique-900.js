@@ -158,7 +158,7 @@ function contenu(data){PL.length=0;
   // ═══ PLAQUES ET ÉTIQUETTES ═══
   T+=etiq(72,93,'SOUPAPES',{w:61})+etiq(64,70,'RDP')+etiq(24,396,'PTR',{w:30})+etiq(92,396,'ISHP · ISBP',{w:64})+etiq(86,254,'ACCU ×3',{w:52});
   T+=plaque(48,176,'P PRIMAIRE',num(f(s.Ppzr),1)+' bar',{w:86});
-  T+=plaque(36,272,'NIVEAU CUVE',Number.isFinite(s.lvlCuve)?num(s.lvlCuve,0)+' %':'—',{w:86,detail:true})+plaque(36,302,s.pal==='CP0'?'GRAPPES D':'GRAPPES R',Number.isFinite(s.rod)?num(s.rod,1)+' %':'—',{w:86,detail:true});
+  T+=plaque(36,272,'NIVEAU CUVE',Number.isFinite(s.lvlCuve)?num(s.lvlCuve,0)+' %':'—',{w:86,detail:true})+plaque(36,302,s.pal==='CP0'||s.pal==='FSH'?'GRAPPES D':'GRAPPES R',Number.isFinite(s.rod)?num(s.rod,1)+' %':'—',{w:86,detail:true});
   T+=plaque(384,120,'NIVEAU GV',ngv===null?'—':num(ngv,0)+' %',{w:96})+plaque(384,150,'GMPP',n===null?'—':n+' / '+nb+' en marche',{w:96});
   T+=plaque(384,180,'T BRANCHE CHAUDE',Number.isFinite(data.tempHot)?num(data.tempHot,1)+' °C':'—',{w:96})+plaque(384,210,'T BRANCHE FROIDE',Number.isFinite(data.tempCold)?num(data.tempCold,1)+' °C':'—',{w:96})+plaque(384,240,'P ENCEINTE',num(f(s.Penc),2)+' bar',{w:96,detail:true});
   T+=plaque(656,2,'GCT ATMOSPHÈRE',gcta===null?'—':num(gcta*100,0)+' %',{w:92,detail:true})+etiq(470,12,'GCTa')+etiq(582,12,'SOUPAPES GV')+etiq(592,146,'VIV');
@@ -185,7 +185,8 @@ function contenu(data){PL.length=0;
 const COUPES=[['Circuit primaire',0,560,'Primaire',0,480],['Vapeur, eau alimentaire, secours',540,460,'Vapeur et eau',480,990],['Turbine, condenseur, source froide',996,604,'Turbine',990,W]];
 const BANDE=560;
 function render(data,opts={}){
-  const bugey=!!(data&&data.state&&data.state.pal==='CP0');C=bugey?BUGEY:GRAVELINES;K=bugey?.6:1;
+  // J5a : Fessenheim (FSH) prend le mur du Bugey jusqu'à la planche de sa salle (272A).
+  const bugey=!!(data&&data.state&&(data.state.pal==='CP0'||data.state.pal==='FSH'));C=bugey?BUGEY:GRAVELINES;K=bugey?.6:1;
   const c=contenu(data||{}),vue=opts.vue||'page',lab='Synoptique de la tranche : circuits primaire et secondaire';
   if(vue==='tel'){const i=Math.max(0,Math.min(COUPES.length-1,Math.trunc(Number(opts.coupe))||0)),[t,,,,a,b]=COUPES[i];
     const rel=PL.filter(p=>p.x>=a&&p.x<b).sort((p,q)=>p.y-q.y||p.x-q.x);

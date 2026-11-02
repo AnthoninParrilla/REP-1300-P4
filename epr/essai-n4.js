@@ -1,10 +1,10 @@
 // SIMUREP — © 2026 AnthoninP. Banc visuel privé : moteur réel en iframe isolée.
 (function(){
   'use strict';
-  const config=window.SDC_PRIVATE||{},palier=config.palier||'N4',epr=palier==='EPR',salle900=palier==='CPY'||palier==='CP0',salle1300=palier==='P4'||palier==="P'4",salle=salle900||salle1300;
+  const config=window.SDC_PRIVATE||{},palier=config.palier||'N4',epr=palier==='EPR',salle900=palier==='CPY'||palier==='CP0'||palier==='FSH',salle1300=palier==='P4'||palier==="P'4",salle=salle900||salle1300;
   // Tranche par défaut d'un essai sans adresse (la vraie vient de l'URL) : Civaux 1 (N4), Flamanville 3 (EPR), Gravelines 5 (CPY),
   // Bugey 3 (CP0, index interne 2 : ULAB donne le numéro réel), Paluel 1 (P4), Cattenom 1 (P'4).
-  const DEF=salle900?(palier==='CP0'?{site:'Bugey',unit:2}:{site:'Gravelines',unit:5}):salle1300?(palier==='P4'?{site:'Paluel',unit:1}:{site:'Cattenom',unit:1}):epr?{site:'Flamanville',unit:3}:{site:'Civaux',unit:1};
+  const DEF=salle900?(palier==='CP0'?{site:'Bugey',unit:2}:palier==='FSH'?{site:'Fessenheim',unit:1}:{site:'Gravelines',unit:5}):salle1300?(palier==='P4'?{site:'Paluel',unit:1}:{site:'Cattenom',unit:1}):epr?{site:'Flamanville',unit:3}:{site:'Civaux',unit:1};
   const frame=document.getElementById('n4-engine'),host=document.getElementById('n4-root');
   let timer=null,poste=null,cleanupInline=null;
   async function boot(){
@@ -20,7 +20,8 @@
       const transport=config.transport?await SDCTransportPrive.connect(win,config):null;
       // Ordre de la prise de quart : palier, source froide du site (saison et température), puis point de fonctionnement.
       if(!transport){if(!win.__setPalier(palier))throw Error('Palier privé indisponible');
-        const unit=config.unit||DEF.unit,base=(win.__SITES||[]).find(s=>s.n===(config.site||DEF.site)),site=base&&win.CNPE.unitSite?win.CNPE.unitSite(base,unit):base;
+        // Essai privé de Fessenheim, sans transport : le site dort (« † ») ; l'essai le prend par son palier interne et sa source (reveil : 'FSH', src : 'fleuve').
+        const unit=config.unit||DEF.unit,b0=(win.__SITES||[]).find(s=>s.n===(config.site||DEF.site)),base=b0&&b0.reveil?Object.assign({},b0,{p:b0.reveil}):b0,site=base&&win.CNPE.unitSite?win.CNPE.unitSite(base,unit):base;
         if(!site||!win.CNPE.initSource(site,unit))throw Error('Source froide du site indisponible');
         sim.initOperatingPoint(win.__PALIERS[palier].PEL,'RP');sim.S.accel=1;}
       // H18 : progression de mission mémorisée pour cette tranche, restituée après la prise de quart (même parcours) ;
@@ -262,7 +263,8 @@
         if(g.nextSibling!==p)g.after(p);if(!g.dataset.effet){g.dataset.effet='1';g.addEventListener('click',()=>Promise.resolve().then(guideEffet));}
         const n=win.__guideNiveau?.()||'indices',b=g.querySelector('[data-guide="'+n+'"]'),t=b&&b.title&&GUIDE_NOMS[n]?'Guide « '+GUIDE_NOMS[n]+' », encart de la mission déplié : '+b.title.charAt(0).toLowerCase()+b.title.slice(1)+'.':'';
         if(p.textContent!==t)p.textContent=t;}
-      const nativeTitles={instrumentation:'RPN · RIC · KRT · Bilan de réactivité',coeur:'Carte calculée du cœur '+palier,pt:'Domaine pression / température',formation:'Formation · Missions · Lexique',enregistreur:'Enregistreur'};
+      const palierVu=palier==='FSH'?'CP0':palier;   // 285A : au joueur, Fessenheim est un CP0
+      const nativeTitles={instrumentation:'RPN · RIC · KRT · Bilan de réactivité',coeur:'Carte calculée du cœur '+palierVu,pt:'Domaine pression / température',formation:'Formation · Missions · Lexique',enregistreur:'Enregistreur'};
       function mountInline(page,slot){
         const kind=page==='tendances'?'enregistreur':page;
         if(!slot||!Object.hasOwn(nativeTitles,kind)){closeNative();return {ok:true};}
@@ -429,7 +431,10 @@
       // Même pas fixe que le moteur/serveur. Le navigateur peut ralentir cet essai en arrière-plan.
       timer=setInterval(()=>{try{for(let i=0;!transport&&i<sim.S.accel;i++){sim.physStep(.05);sim.slowStep(.05);sim.trips();if(sim.recTick)sim.recTick();}}catch(e){clearInterval(timer);erreurAffichage(e);return;}
         if(horloge()-lastRender>=1000){lastRender=horloge();try{if(sim.S.ihm===false&&!frame.hidden&&activeKind!=='formation')closeNative();}catch(_){}if(rafraichir()){memo();queueLayout();}}},50);
-    }catch(e){console.error(e);host.setAttribute('data-engine-error',String(e));
+    }catch(e){
+      // Relecture du 30/10 : un site endormi n'a pas de salle, ce n'est ni une panne ni à réessayer ; la seule issue est la carte.
+      if(String(e&&e.message)==='Centrale arrêtée'){const m=document.createElement('p');m.id='n4-loading';m.setAttribute('role','status');m.textContent=config.site+' est arrêtée : sa salle est fermée.';host.replaceChildren(m);sortie();signalerPret();return;}
+      console.error(e);host.setAttribute('data-engine-error',String(e));
       // 2.17.0e (N3) : jamais le message technique brut ; une issue visible (Réessayer, ‹ France).
       const reseau=/Liaison au poste indisponible|Prise de quart refusée|état de la tranche non reçu|Failed to fetch|Load failed|NetworkError|fetch failed|délai/.test(String(e&&e.message));
       const motif=document.createElement('p');motif.id='n4-loading';motif.setAttribute('role','status');

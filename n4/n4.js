@@ -266,7 +266,7 @@
     for(const p of /^[^\s/]+(?: \/ [^\s/]+)+$/.test(t)?t.split(' / '):[t]){const m=/^(.*?)\s*\(([^()]*)\)$/.exec(p);if(!m){out.push(p.trim());continue;}
       // Entre parenthèses : un sigle (« TPA (APP) ») ou une expression de plusieurs mots ; ni un nom de palier (« (EPR) »), ni un mot
       // seul (« (pilotage) »), ni une valeur (« (1450 MWe) »), ni une liste.
-      const x=m[2].trim();out.push(m[1].trim());if(!/[,…]/.test(x)&&!/^\d/.test(x)&&!/^(EPR|N4|CPY|CP0|P4|P[’']4|900|1300)$/.test(x)&&(SIGLE(x)||/\s/.test(x)))out.push(x);}
+      const x=m[2].trim();out.push(m[1].trim());if(!/[,…]/.test(x)&&!/^\d/.test(x)&&!/^(EPR|N4|CPY|CP0|FSH|P4|P[’']4|900|1300)$/.test(x)&&(SIGLE(x)||/\s/.test(x)))out.push(x);}
     return out.filter(f=>f.length>=2&&/\p{L}/u.test(f));}
   const SIGLE=f=>!/\s/.test(f)&&f.length<=6&&/[A-Z0-9Δ]/.test(f.slice(1));
   function termes(lex){if(!Array.isArray(lex)||!lex.length)return null;let T=TERMES.get(lex);if(T)return T;
@@ -416,7 +416,7 @@
     let lienPerdu=false;
     function lien(l){const perdu=!!l&&l.ok===false;if(perdu===lienPerdu)return;lienPerdu=perdu;if(perdu){ui.status=LIEN_PERDU;host.ownerDocument?.defaultView?.clearTimeout(statusTimer);}else announce('Liaison avec le moteur rétablie : valeurs à jour.');}
     // Accusé lisible : ce que la commande a établi, pas un booléen générique (retour D3).
-    const MODES={auto:'Régulation grappes',areAuto:'Régulation ARE',pzrAuto:'Régulation pression',gctMode:'Régulation GCT-C',gctaMode:EPR?'Régulation VDA':/^(CPY|CP0|P4|P'4)$/.test(profile.palier||'')?'Régulation GCTa':'Régulation GCT-A'};   // tour 8 : GCTa aux salles 900/1300
+    const MODES={auto:'Régulation grappes',areAuto:'Régulation ARE',pzrAuto:'Régulation pression',gctMode:'Régulation GCT-C',gctaMode:EPR?'Régulation VDA':/^(CPY|CP0|FSH|P4|P'4)$/.test(profile.palier||'')?'Régulation GCTa':'Régulation GCT-A'};   // tour 8 : GCTa aux salles 900/1300
     const nombre=v=>Number.isFinite(v)?v.toLocaleString('fr-FR',{maximumFractionDigits:3}):String(v);
     // Pompes ASG nommées comme au journal : EPR, quatre motopompes (tpsA/tpsB = C/D) ; N4, deux motopompes et deux turbopompes.
     const POMPES_ASG=profile.pompesAsg||(EPR?{mpsA:'Motopompe ASG A',mpsB:'Motopompe ASG B',tpsA:'Motopompe ASG C',tpsB:'Motopompe ASG D'}
@@ -488,6 +488,9 @@
     // (×1 à ×4) autour du point pincé, en largeur (défilement du cadre) comme en hauteur (défilement de la page) ; la page garde son échelle
     // (touch-action du cadre, gestes de Safari retenus). Écouteurs non passifs sur les seuls cadres. L'échelle, en part de la largeur du
     // cadre (juste après une rotation), et la position sont gardées par dessin et rendues après chaque rafraîchissement. Affichage seul.
+    // Pose de deux doigts à zoom actif : la hauteur du cadre est tenue le temps de mesurer le dessin à ×1 ; là où le dessin la fait (classeur), le
+    // document rétrécirait et WebKit bornerait le défilement, la page sautant sous les doigts. data-n4-pince-seuil (facultatif) : sous cette échelle,
+    // la fin du geste rend ×1, et le défilement de cette échelle (deux doigts posés par mégarde sur une feuille que le glissé doit pouvoir tourner).
     const PINCE=new Map(),CADRES=new Set();let pince=null;
     const pinceLargeur=(svg,cadre,z)=>{svg.style.width=(z.p*z.s).toFixed(2)+'%';svg.style.maxWidth='none';cadre.setAttribute('data-n4-pince-zoom','');};
     function pinceAppliquer(cadre){const z=PINCE.get(cadre.getAttribute('data-n4-pince')),svg=cadre.querySelector('svg');
@@ -499,12 +502,12 @@
       if(e.type==='gesturestart'){e.preventDefault();return;}
       if(e.type==='touchstart'){pince=null;if(t.length!==2||!cadre.contains(t[0].target)||!cadre.contains(t[1].target))return;const svg=cadre.querySelector('svg');if(!svg)return;
         const k=cadre.getAttribute('data-n4-pince'),z=PINCE.get(k)||{s:1,p:100,x:0},x0=cadre.scrollLeft,win=cadre.ownerDocument.defaultView;
-        svg.style.width='';svg.style.maxWidth='';z.p=svg.getBoundingClientRect().width/(cadre.clientWidth||1)*100;if(z.s>1){pinceLargeur(svg,cadre,z);cadre.scrollLeft=x0;}
+        if(z.s>1){cadre.style.minHeight=cadre.getBoundingClientRect().height+'px';}svg.style.width='';svg.style.maxWidth='';z.p=svg.getBoundingClientRect().width/(cadre.clientWidth||1)*100;if(z.s>1){pinceLargeur(svg,cadre,z);cadre.style.minHeight='';cadre.scrollLeft=x0;}
         const r=cadre.getBoundingClientRect();PINCE.set(k,z);pince={cadre,z,win,s0:z.s,d0:Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)||1,x0,y0:win.scrollY,
           mx:(t[0].clientX+t[1].clientX)/2-r.left,my:(t[0].clientY+t[1].clientY)/2-r.top};e.preventDefault();return;}
       if(e.type==='touchmove'&&pince&&t.length===2){const p=pince;if(!p.cadre.isConnected){pince=null;return;}const s=Math.max(1,Math.min(4,p.s0*Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)/p.d0));
         p.z.s=s;pinceAppliquer(p.cadre);p.cadre.scrollLeft=(p.x0+p.mx)*s/p.s0-p.mx;p.z.x=p.cadre.scrollLeft;p.win.scrollTo(p.win.scrollX,p.y0+p.my*(s/p.s0-1));e.preventDefault();return;}
-      if((e.type==='touchend'||e.type==='touchcancel')&&pince&&t.length<2){pince.z.x=pince.cadre.scrollLeft;pince=null;}}
+      if((e.type==='touchend'||e.type==='touchcancel')&&pince&&t.length<2){const p=pince;pince=null;if(p.z.s>1&&p.z.s<Number(p.cadre.getAttribute('data-n4-pince-seuil'))){p.z.s=1;p.z.x=0;pinceAppliquer(p.cadre);p.win.scrollTo(p.win.scrollX,p.y0+p.my*(1/p.s0-1));}else p.z.x=p.cadre.scrollLeft;}}
     let pan=null,suppressPanClick=false;
     function endPan(){
       if(!pan)return;
@@ -581,7 +584,7 @@
     host.ownerDocument?.defaultView?.addEventListener('pagehide',releaseHold);
     const visibility=()=>{if(host.ownerDocument?.hidden)releaseHold();};host.ownerDocument?.addEventListener?.('visibilitychange',visibility);
     host.addEventListener('click',event);host.addEventListener('keydown',event);host.addEventListener('change',change);host.addEventListener('focusin',voletSous);draw();
-    return {selectPage,setSynthesis,setMissionOpen(v){ui.missionOpen=!!v;draw();options.onMissionOpen?.(ui.missionOpen);},update(snapshot){const changed=data.state?.ihm!==snapshot?.state?.ihm;data={...(snapshot||{})};if(changed)releaseHold();nourrirAlarmes(data);lien(data.liaison);draw();},setContext(site,unit,unitLabel){ui.site=String(site);ui.unit=unit;ui.unitLabel=String(unitLabel||unit);draw();},getState(){const {acq,...vu}=ui;return {...vu,synthesis:ui.synthesis.slice(),curves:ui.curves.slice(),missionOpen:!!ui.missionOpen};},alarmes(){const vu=cy=>cy?{klaxon:cy.klaxon(),etats:JSON.parse(JSON.stringify(cy.A.etats)),compte:cy.compte()}:null;return {...vu(ui.acq&&ui.acq.principal),secours:vu(ui.acq&&ui.acq.secours)};},destroy(){endPan();telephone?.removeEventListener?.('change',bascule);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture'])host.removeEventListener(type,panEvent);for(const c of CADRES){for(const type of ['touchstart','touchmove','touchend','touchcancel','gesturestart'])c.removeEventListener(type,pinceEvent,{passive:false});c.removeEventListener('scroll',pinceDefile,{passive:true});}CADRES.clear();pince=null;host.ownerDocument?.defaultView?.removeEventListener('blur',endPan);releaseHold();for(const type of ['pointerdown','pointermove','pointerup','pointercancel','keydown','keyup','focusout'])host.removeEventListener(type,holdEvent);host.ownerDocument?.defaultView?.removeEventListener('blur',releaseHold);host.ownerDocument?.defaultView?.removeEventListener('pagehide',releaseHold);host.ownerDocument?.removeEventListener?.('visibilitychange',visibility);alive=false;host.ownerDocument?.defaultView?.clearTimeout(statusTimer);host.removeEventListener('click',event);host.removeEventListener('keydown',event);host.removeEventListener('change',change);host.removeEventListener('focusin',voletSous);host.replaceChildren();}};
+    return {selectPage,pince(){host.querySelectorAll?.('[data-n4-pince]').forEach(pinceAppliquer);},setSynthesis,setMissionOpen(v){ui.missionOpen=!!v;draw();options.onMissionOpen?.(ui.missionOpen);},update(snapshot){const changed=data.state?.ihm!==snapshot?.state?.ihm;data={...(snapshot||{})};if(changed)releaseHold();nourrirAlarmes(data);lien(data.liaison);draw();},setContext(site,unit,unitLabel){ui.site=String(site);ui.unit=unit;ui.unitLabel=String(unitLabel||unit);draw();},getState(){const {acq,...vu}=ui;return {...vu,synthesis:ui.synthesis.slice(),curves:ui.curves.slice(),missionOpen:!!ui.missionOpen};},alarmes(){const vu=cy=>cy?{klaxon:cy.klaxon(),etats:JSON.parse(JSON.stringify(cy.A.etats)),compte:cy.compte()}:null;return {...vu(ui.acq&&ui.acq.principal),secours:vu(ui.acq&&ui.acq.secours)};},destroy(){endPan();telephone?.removeEventListener?.('change',bascule);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture'])host.removeEventListener(type,panEvent);for(const c of CADRES){for(const type of ['touchstart','touchmove','touchend','touchcancel','gesturestart'])c.removeEventListener(type,pinceEvent,{passive:false});c.removeEventListener('scroll',pinceDefile,{passive:true});}CADRES.clear();pince=null;host.ownerDocument?.defaultView?.removeEventListener('blur',endPan);releaseHold();for(const type of ['pointerdown','pointermove','pointerup','pointercancel','keydown','keyup','focusout'])host.removeEventListener(type,holdEvent);host.ownerDocument?.defaultView?.removeEventListener('blur',releaseHold);host.ownerDocument?.defaultView?.removeEventListener('pagehide',releaseHold);host.ownerDocument?.removeEventListener?.('visibilitychange',visibility);alive=false;host.ownerDocument?.defaultView?.clearTimeout(statusTimer);host.removeEventListener('click',event);host.removeEventListener('keydown',event);host.removeEventListener('change',change);host.removeEventListener('focusin',voletSous);host.replaceChildren();}};
   }
   return {createProfile:(p,syn,cmd)=>createPoste(syn,cmd||CMD,INST,p),mount,render,cycle,ALARMES_ETAT,familleAlarme,format:number,SYNTHESIS_METRICS,DEFAULT_SYNTHESIS,normalizeSynthesis,CURVE_METRICS,DEFAULT_CURVES,normalizeCurves,curveValue};
 });
